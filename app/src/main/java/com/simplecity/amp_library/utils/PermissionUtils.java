@@ -6,7 +6,7 @@ import com.greysonparrelli.permiso.Permiso;
 public class PermissionUtils {
 
     private PermissionUtils() {
-
+        // Intentionally left empty.
     }
 
     public interface PermissionCallback {

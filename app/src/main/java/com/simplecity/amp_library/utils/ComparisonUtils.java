@@ -9,7 +9,7 @@ public class ComparisonUtils {
     private static Collator collator = Collator.getInstance(Locale.getDefault());
 
     private ComparisonUtils() {
-
+        // Intentionally left empty.
     }
 
     public static int compareLong(long x, long y) {

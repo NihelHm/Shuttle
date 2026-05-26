@@ -466,7 +466,7 @@ class SearchFragment :
         }
 
         override fun onStartDrag(holder: SongView.ViewHolder) {
-
+            // Intentionally left empty.
         }
     }
 

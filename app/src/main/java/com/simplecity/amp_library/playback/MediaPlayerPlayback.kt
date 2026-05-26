@@ -277,6 +277,7 @@ internal class MediaPlayerPlayback(context: Context) : LocalPlayback(context), M
                 return true
             }
             else -> {
+                // Intentionally left empty.
             }
         }
 
@@ -296,7 +297,7 @@ internal class MediaPlayerPlayback(context: Context) : LocalPlayback(context), M
     }
 
     override fun updateLastKnownStreamPosition() {
-
+        // Intentionally left empty.
     }
 
     private fun createMediaPlayer(context: Context): MediaPlayer {

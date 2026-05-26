@@ -74,6 +74,7 @@ public class SettingsParentFragment extends BaseNavigationController implements
     }
 
     public SettingsParentFragment() {
+        // Intentionally left empty.
     }
 
     @Override
@@ -166,6 +167,7 @@ public class SettingsParentFragment extends BaseNavigationController implements
         }
 
         public SettingsFragment() {
+            // Intentionally left empty.
         }
 
         @Override
@@ -475,7 +477,7 @@ public class SettingsParentFragment extends BaseNavigationController implements
 
         @Override
         public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
-
+            // Intentionally left empty.
         }
 
         // Support View

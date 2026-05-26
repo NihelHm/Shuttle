@@ -36,7 +36,7 @@ public class ArtworkUtils {
 
     //This class is never instantiated
     private ArtworkUtils() {
-
+        // Intentionally left empty.
     }
 
     /**
@@ -116,12 +116,12 @@ public class ArtworkUtils {
                         try {
                             fileInputStream = new FileInputStream(file);
                         } catch (FileNotFoundException ignored) {
-
+                            // Intentionally left empty.
                         }
                     }
                 }
             } catch (NullPointerException ignored) {
-
+                // Intentionally left empty.
             } finally {
                 cursor.close();
             }
@@ -167,7 +167,7 @@ public class ArtworkUtils {
                     }
                 }
             } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException ignored) {
-
+                // Intentionally left empty.
             }
         }
 

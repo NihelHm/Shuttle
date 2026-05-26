@@ -41,6 +41,8 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
 
     private static final String TAG = "SongView";
 
+    @SuppressWarnings("java:S1104")
+
     public Song song;
 
     private RequestManager requestManager;
@@ -323,6 +325,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         PlayCountView playCount;
 
         @BindView(R.id.btn_overflow)
+        @SuppressWarnings("java:S1104")
         public NonScrollImageButton overflowButton;
 
         @Nullable

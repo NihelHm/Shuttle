@@ -37,6 +37,7 @@ public abstract class BaseFragment extends BaseController {
     protected NavigationEventRelay navigationEventRelay;
 
     @Inject
+    @SuppressWarnings("java:S1104")
     public AnalyticsManager analyticsManager;
 
     @Override

@@ -56,6 +56,7 @@ public class InputMethodManagerLeaks {
 
         @Override
         public void onViewAttachedToWindow(View v) {
+            // Intentionally left empty.
         }
 
         @Override
@@ -174,7 +175,7 @@ public class InputMethodManagerLeaks {
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
+                // Intentionally left empty.
             }
 
             @Override
@@ -189,27 +190,27 @@ public class InputMethodManagerLeaks {
 
             @Override
             public void onActivityResumed(Activity activity) {
-
+                // Intentionally left empty.
             }
 
             @Override
             public void onActivityPaused(Activity activity) {
-
+                // Intentionally left empty.
             }
 
             @Override
             public void onActivityStopped(Activity activity) {
-
+                // Intentionally left empty.
             }
 
             @Override
             public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
-
+                // Intentionally left empty.
             }
 
             @Override
             public void onActivityDestroyed(Activity activity) {
-
+                // Intentionally left empty.
             }
         });
     }

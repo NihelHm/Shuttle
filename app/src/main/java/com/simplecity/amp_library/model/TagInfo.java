@@ -20,17 +20,30 @@ import org.jaudiotagger.tag.TagException;
  */
 public class TagInfo implements Serializable {
 
+    @SuppressWarnings("java:S1104")
+
     public String artistName;
+    @SuppressWarnings("java:S1104")
     public String albumArtistName;
+    @SuppressWarnings("java:S1104")
     public String albumName;
+    @SuppressWarnings("java:S1104")
     public String trackName;
+    @SuppressWarnings("java:S1104")
     public int trackNumber;
+    @SuppressWarnings("java:S1104")
     public int trackTotal;
+    @SuppressWarnings("java:S1104")
     public int discNumber;
+    @SuppressWarnings("java:S1104")
     public int discTotal;
+    @SuppressWarnings("java:S1104")
     public String bitrate;
+    @SuppressWarnings("java:S1104")
     public String format;
+    @SuppressWarnings("java:S1104")
     public int sampleRate;
+    @SuppressWarnings("java:S1104")
     public String genre;
 
     public TagInfo(String filePath) {
@@ -70,6 +83,7 @@ public class TagInfo implements Serializable {
                 }
             }
         } catch (UnsupportedOperationException ignored) {
+            // Intentionally left empty.
         }
         return "Unknown";
     }
@@ -81,6 +95,7 @@ public class TagInfo implements Serializable {
                 return audioHeader.getBitRate();
             }
         } catch (UnsupportedOperationException ignored) {
+            // Intentionally left empty.
         }
         return "Unknown";
     }
@@ -92,6 +107,7 @@ public class TagInfo implements Serializable {
                 return audioHeader.getFormat();
             }
         } catch (UnsupportedOperationException ignored) {
+            // Intentionally left empty.
         }
         return "Unknown";
     }
@@ -103,6 +119,7 @@ public class TagInfo implements Serializable {
                 return audioHeader.getSampleRateAsNumber();
             }
         } catch (UnsupportedOperationException ignored) {
+            // Intentionally left empty.
         }
         return -1;
     }

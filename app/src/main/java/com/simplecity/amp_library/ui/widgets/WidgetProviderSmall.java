@@ -26,6 +26,7 @@ public class WidgetProviderSmall extends BaseWidgetProvider {
 
     @Inject
     public WidgetProviderSmall() {
+        // Intentionally left empty.
     }
 
     @Override

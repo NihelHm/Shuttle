@@ -3,7 +3,9 @@ package com.simplecity.amp_library.model;
 public class UserSelectedArtwork {
 
     @ArtworkProvider.Type
+    @SuppressWarnings("java:S1104")
     public int type;
+    @SuppressWarnings("java:S1104")
     public String path;
 
     public UserSelectedArtwork(@ArtworkProvider.Type int type, String path) {

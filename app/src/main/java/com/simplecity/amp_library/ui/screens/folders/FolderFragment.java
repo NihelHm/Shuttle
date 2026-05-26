@@ -488,7 +488,7 @@ public class FolderFragment extends BaseFragment implements
 
     @Override
     public void onFileObjectCheckboxClick(CheckBox checkBox, FolderView folderView) {
-
+        // Intentionally left empty.
     }
 
     public void changeBreadcrumbPath() {
@@ -704,7 +704,7 @@ public class FolderFragment extends BaseFragment implements
 
         @Override
         public void onPlaylistItemsInserted() {
-
+            // Intentionally left empty.
         }
 
         @Override

@@ -14,7 +14,7 @@ public class MiniPlayerLockManager {
     private List<MiniPlayerLock> miniPlayerLocks = new ArrayList<>();
 
     private MiniPlayerLockManager() {
-
+        // Intentionally left empty.
     }
 
     public boolean canShowMiniPlayer() {

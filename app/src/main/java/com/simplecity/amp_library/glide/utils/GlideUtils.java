@@ -9,7 +9,7 @@ import android.support.annotation.NonNull;
 public class GlideUtils {
 
     private GlideUtils() {
-
+        // Intentionally left empty.
     }
 
     public static Bitmap drawableToBitmap(@NonNull Drawable drawable) {

@@ -4,14 +4,16 @@ import java.util.ArrayList;
 
 public class Suggestion {
 
-    public AlbumArtist mostPlayedArtist;
-    public Album mostPlayedAlbum;
+    private AlbumArtist mostPlayedArtist;
+    private Album mostPlayedAlbum;
+    @SuppressWarnings("java:S1104")
     public Song mostPlayedSong;
-    public ArrayList<Song> favouriteSongsOne = new ArrayList<>(3);
-    public ArrayList<Song> favouriteSongsTwo = new ArrayList<>(3);
+    private ArrayList<Song> favouriteSongsOne= new ArrayList<>(3);
+    private ArrayList<Song> favouriteSongsTwo= new ArrayList<>(3);
+    @SuppressWarnings("java:S1104")
     public ArrayList<Album> recentlyPlayedAlbums = new ArrayList<>(4);
-    public ArrayList<Album> recentlyAddedAlbumsOne = new ArrayList<>(2);
-    public ArrayList<Album> recentlyAddedAlbumsTwo = new ArrayList<>(2);
+    private ArrayList<Album> recentlyAddedAlbumsOne= new ArrayList<>(2);
+    private ArrayList<Album> recentlyAddedAlbumsTwo= new ArrayList<>(2);
 
     public Suggestion(AlbumArtist mostPlayedAlbumArtist,
             Album mostPlayedAlbum,

@@ -319,6 +319,7 @@ public class PlaybackManager implements Playback.Callbacks {
         try {
             id = Long.valueOf(uri.getLastPathSegment());
         } catch (NumberFormatException ignored) {
+            // Intentionally left empty.
         }
 
         Function1<? super Song, Boolean> predicate;

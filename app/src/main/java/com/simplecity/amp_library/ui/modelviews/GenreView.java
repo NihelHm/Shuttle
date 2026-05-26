@@ -25,6 +25,8 @@ public class GenreView extends BaseViewModel<GenreView.ViewHolder> implements
         void onOverflowClick(View v, Genre genre);
     }
 
+    @SuppressWarnings("java:S1104")
+
     public Genre genre;
 
     @Nullable
@@ -95,12 +97,15 @@ public class GenreView extends BaseViewModel<GenreView.ViewHolder> implements
     public static class ViewHolder extends BaseViewHolder<GenreView> {
 
         @BindView(R.id.line_one)
+        @SuppressWarnings("java:S1104")
         public TextView lineOne;
 
         @BindView(R.id.line_two)
+        @SuppressWarnings("java:S1104")
         public TextView lineTwo;
 
         @BindView(R.id.btn_overflow)
+        @SuppressWarnings("java:S1104")
         public NonScrollImageButton overflowButton;
 
         public ViewHolder(View itemView) {

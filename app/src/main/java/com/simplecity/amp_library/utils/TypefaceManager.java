@@ -20,6 +20,7 @@ public class TypefaceManager {
      * Only initialize through {@link #getInstance()}
      */
     private TypefaceManager() {
+        // Intentionally left empty.
     }
 
     public static TypefaceManager getInstance() {

@@ -6,7 +6,10 @@ import com.google.gson.annotations.SerializedName;
 public class LastFmImage {
 
     @SerializedName("#text")
+    @SuppressWarnings("java:S1104")
     public String url;
+
+    @SuppressWarnings("java:S1104")
 
     public String size;
 }

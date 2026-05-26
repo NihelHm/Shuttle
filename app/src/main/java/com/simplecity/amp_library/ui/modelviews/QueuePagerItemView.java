@@ -16,6 +16,8 @@ import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 
 public class QueuePagerItemView extends BaseViewModel<QueuePagerItemView.ViewHolder> {
 
+    @SuppressWarnings("java:S1104")
+
     public Song song;
     private RequestManager requestManager;
     private SettingsManager settingsManager;

@@ -97,7 +97,7 @@ public class PlayPauseView extends FrameLayout {
     }
 
     public void update() {
-
+        // Intentionally left empty.
     }
 
     public void toggle(@Nullable Function0<Unit> completion) {

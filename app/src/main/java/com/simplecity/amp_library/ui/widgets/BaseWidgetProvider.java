@@ -47,7 +47,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider {
     public static final String ARG_WIDGET_COLOR_FILTER = "widget_color_filter_";
 
     @LayoutRes
-    public int mLayoutId;
+    private int mLayoutId;
 
     public abstract void update(MusicService service, SharedPreferences sharedPreferences, int[] appWidgetIds, boolean updateArtwork);
 

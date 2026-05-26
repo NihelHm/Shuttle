@@ -14,6 +14,7 @@ public class CustomBottomSheetBehavior<V extends View> extends BottomSheetBehavi
     private boolean allowDragging = true;
 
     public CustomBottomSheetBehavior() {
+        // Intentionally left empty.
     }
 
     public CustomBottomSheetBehavior(Context context, AttributeSet attrs) {

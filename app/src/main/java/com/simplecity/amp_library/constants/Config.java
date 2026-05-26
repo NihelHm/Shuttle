@@ -4,6 +4,7 @@ public final class Config {
 
     /* This class is never initialized */
     private Config() {
+        // Intentionally left empty.
     }
 
     public static final String ID = "id";

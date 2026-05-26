@@ -6,8 +6,12 @@ import java.io.Serializable;
 
 public class Genre implements Serializable {
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String name;
+    @SuppressWarnings("java:S1104")
     public int numSongs;
 
     public static String[] getProjection() {

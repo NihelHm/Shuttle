@@ -20,7 +20,7 @@ public class SqlUtils {
     private static final String TAG = "SqlUtils";
 
     private SqlUtils() {
-
+        // Intentionally left empty.
     }
 
     @WorkerThread

@@ -14,7 +14,9 @@ public class HttpClient {
 
     private static HttpClient sInstance;
 
-    public OkHttpClient okHttpClient;
+    private OkHttpClient okHttpClient;
+
+    @SuppressWarnings("java:S1104")
 
     public LastFmService lastFmService;
 

@@ -9,7 +9,10 @@ public class ArtworkModel {
     private static final String TAG = "ArtworkModel";
 
     @ArtworkProvider.Type
+    @SuppressWarnings("java:S1104")
     public int type;
+
+    @SuppressWarnings("java:S1104")
 
     public File file;
 

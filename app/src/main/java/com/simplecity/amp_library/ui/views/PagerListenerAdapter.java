@@ -6,16 +6,16 @@ public abstract class PagerListenerAdapter implements ViewPager.OnPageChangeList
 
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onPageSelected(int position) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
-
+        // Intentionally left empty.
     }
 }

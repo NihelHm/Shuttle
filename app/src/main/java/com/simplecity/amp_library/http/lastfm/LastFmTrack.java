@@ -8,18 +8,22 @@ import java.util.List;
 class LastFmTrack implements LastFmResult {
 
     @SerializedName("track")
+    @SuppressWarnings("java:S1104")
     public Track track;
 
     public static class Track {
         @SerializedName("album")
+        @SuppressWarnings("java:S1104")
         public TrackAlbum album;
 
         public static class TrackAlbum {
 
             @SerializedName("album")
+            @SuppressWarnings("java:S1104")
             public TrackAlbum album;
 
             @SerializedName("image")
+            @SuppressWarnings("java:S1104")
             public List<LastFmImage> images = new ArrayList<>();
         }
     }

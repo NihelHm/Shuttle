@@ -242,17 +242,17 @@ public abstract class BaseWidgetConfigureActivity extends BaseActivity implement
 
     @Override
     public void onStartTrackingTouch(SeekBar seekBar) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onStopTrackingTouch(SeekBar seekBar) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onPageScrolled(int i, float v, int i2) {
-
+        // Intentionally left empty.
     }
 
     @Override
@@ -264,7 +264,7 @@ public abstract class BaseWidgetConfigureActivity extends BaseActivity implement
 
     @Override
     public void onPageScrollStateChanged(int i) {
-
+        // Intentionally left empty.
     }
 
     @Override
@@ -432,7 +432,7 @@ public abstract class BaseWidgetConfigureActivity extends BaseActivity implement
 
     @Override
     public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
-
+        // Intentionally left empty.
     }
 
     @Nullable

@@ -67,6 +67,7 @@ public class VoiceSearchActivity extends BaseActivity {
 
     @Override
     public void onServiceDisconnected(ComponentName name) {
+        // Intentionally left empty.
     }
 
     private void searchAndPlaySongs() {

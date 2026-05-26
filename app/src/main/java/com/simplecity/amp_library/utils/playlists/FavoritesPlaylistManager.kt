@@ -68,7 +68,9 @@ class FavoritesPlaylistManager @Inject constructor(
             }
             .subscribeOn(Schedulers.io())
             .subscribe(
-                { },
+                {
+                    // Intentionally left empty.
+                },
                 { throwable -> LogUtils.logException(TAG, "clearFavorites error", throwable) }
             )
     }

@@ -24,7 +24,11 @@ public class AlbumArtist implements
         ArtworkProvider,
         Sortable {
 
+    @SuppressWarnings("java:S1104")
+
     public String name;
+
+    @SuppressWarnings("java:S1104")
 
     public List<Album> albums = new ArrayList<>();
 

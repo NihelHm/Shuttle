@@ -25,7 +25,7 @@ public class TaggerUtils {
 
     //This class is never instantiated
     private TaggerUtils() {
-
+        // Intentionally left empty.
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)

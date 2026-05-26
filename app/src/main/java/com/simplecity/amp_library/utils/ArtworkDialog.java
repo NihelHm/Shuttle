@@ -38,7 +38,7 @@ public class ArtworkDialog {
     private static final String TAG = "ArtworkDialog";
 
     private ArtworkDialog() {
-
+        // Intentionally left empty.
     }
 
     public static MaterialDialog build(Context context, ArtworkProvider artworkProvider) {

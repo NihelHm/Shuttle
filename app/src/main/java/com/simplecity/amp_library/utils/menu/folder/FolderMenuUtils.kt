@@ -179,6 +179,7 @@ object FolderMenuUtils {
                 menu.menu.findItem(R.id.editTags).isVisible = false
             }
             FileType.PARENT -> {
+                // Intentionally left empty.
             }
         }
     }

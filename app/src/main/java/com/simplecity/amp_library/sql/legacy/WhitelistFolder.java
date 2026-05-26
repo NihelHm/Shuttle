@@ -4,7 +4,10 @@ import android.database.Cursor;
 
 public class WhitelistFolder {
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String folder;
 
     public WhitelistFolder(Cursor cursor) {

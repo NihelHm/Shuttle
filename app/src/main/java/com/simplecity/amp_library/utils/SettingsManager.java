@@ -60,6 +60,7 @@ public class SettingsManager extends BaseSettingsManager {
     public static String KEY_PREF_UPGRADE = "pref_upgrade";
 
     // Whether the 'rate' snackbar has been seen during this session
+    @SuppressWarnings("java:S1104")
     public boolean hasSeenRateSnackbar = false;
 
     // Whether to display artwork in the songs list

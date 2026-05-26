@@ -4,7 +4,11 @@ import android.database.Cursor;
 
 public class BlacklistedSong {
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+
+    @SuppressWarnings("java:S1104")
 
     public long songId;
 

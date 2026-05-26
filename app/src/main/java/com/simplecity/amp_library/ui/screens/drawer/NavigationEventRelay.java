@@ -32,7 +32,7 @@ public class NavigationEventRelay {
 
     @Inject
     public NavigationEventRelay() {
-
+        // Intentionally left empty.
     }
 
     public void sendEvent(@NonNull NavigationEvent event) {
@@ -60,9 +60,11 @@ public class NavigationEventRelay {
         }
 
         @Type
+        @SuppressWarnings("java:S1104")
         public int type;
 
         @Nullable
+        @SuppressWarnings("java:S1104")
         public Object data;
 
         private boolean isActionable = true;

@@ -42,7 +42,7 @@ abstract class BaseFetcher implements DataFetcher<InputStream> {
 
     @Override
     public void cancel() {
-
+        // Intentionally left empty.
     }
 
     @Override

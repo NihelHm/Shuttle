@@ -20,6 +20,8 @@ public class SuggestedSongView extends MultiItemView<SuggestedSongView.ViewHolde
         void onSongOverflowClicked(View v, int position, Song song);
     }
 
+    @SuppressWarnings("java:S1104")
+
     public Song song;
 
     private RequestManager requestManager;

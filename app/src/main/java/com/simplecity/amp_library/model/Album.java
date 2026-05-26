@@ -22,20 +22,37 @@ public class Album implements
         Comparable<Album>,
         Sortable {
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String name;
 
+    @SuppressWarnings("java:S1104")
+
     public List<Artist> artists = new ArrayList<>();
+    @SuppressWarnings("java:S1104")
     public String albumArtistName;
 
+    @SuppressWarnings("java:S1104")
+
     public int year;
+    @SuppressWarnings("java:S1104")
     public int numSongs;
+    @SuppressWarnings("java:S1104")
     public int numDiscs;
 
+    @SuppressWarnings("java:S1104")
+
     public long lastPlayed;
+    @SuppressWarnings("java:S1104")
     public long dateAdded;
 
+    @SuppressWarnings("java:S1104")
+
     public List<String> paths = new ArrayList<>();
+
+    @SuppressWarnings("java:S1104")
 
     public int songPlayCount;
 

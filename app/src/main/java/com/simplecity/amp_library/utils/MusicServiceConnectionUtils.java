@@ -20,7 +20,7 @@ public class MusicServiceConnectionUtils {
     private static final WeakHashMap<Context, ServiceBinder> connectionMap = new WeakHashMap<>();
 
     private MusicServiceConnectionUtils() {
-
+        // Intentionally left empty.
     }
 
     public static void bindToService(Lifecycle lifecycle, Context context, AnalyticsManager analyticsManager, ServiceConnection callback, UnsafeConsumer<ServiceToken> tokenCallback) {
@@ -78,6 +78,8 @@ public class MusicServiceConnectionUtils {
     }
 
     public static final class ServiceToken {
+
+        @SuppressWarnings("java:S1104")
 
         public Context context;
 

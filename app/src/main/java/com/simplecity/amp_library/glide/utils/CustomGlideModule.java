@@ -11,12 +11,12 @@ import java.io.InputStream;
 public class CustomGlideModule implements GlideModule {
 
     public CustomGlideModule() {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
-
+        // Intentionally left empty.
     }
 
     @Override

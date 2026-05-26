@@ -11,10 +11,14 @@ public class InclExclItem {
         int EXCLUDE = 1;
     }
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
     @NonNull
+    @SuppressWarnings("java:S1104")
     public String path;
     @Type
+    @SuppressWarnings("java:S1104")
     public int type;
 
     public InclExclItem(Cursor cursor) {

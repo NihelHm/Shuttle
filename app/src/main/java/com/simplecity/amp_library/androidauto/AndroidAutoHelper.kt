@@ -262,7 +262,9 @@ class MediaIdHelper(
                     .map { albumArtist -> albumArtist.toMediaItem(mediaId) }
                     .toMutableList()
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {})
+            .subscribe({ mediaItems -> completion(mediaItems) }, {
+                // Intentionally left empty.
+            })
     }
 
     @SuppressLint("CheckResult")
@@ -274,7 +276,9 @@ class MediaIdHelper(
                     .map { playlist -> playlist.toMediaItem(mediaId) }
                     .toMutableList()
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {})
+            .subscribe({ mediaItems -> completion(mediaItems) }, {
+                // Intentionally left empty.
+            })
     }
 
     @SuppressLint("CheckResult")
@@ -286,7 +290,9 @@ class MediaIdHelper(
                     .map { genre -> genre.toMediaItem(mediaId) }
                     .toMutableList()
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {})
+            .subscribe({ mediaItems -> completion(mediaItems) }, {
+                // Intentionally left empty.
+            })
     }
 
     @SuppressLint("CheckResult")
@@ -306,7 +312,9 @@ class MediaIdHelper(
                 .map { album -> album.toMediaItem(mediaId) }
                 .toMutableList()
         }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {})
+            .subscribe({ mediaItems -> completion(mediaItems) }, {
+                // Intentionally left empty.
+            })
     }
 
     @SuppressLint("CheckResult")
@@ -321,7 +329,9 @@ class MediaIdHelper(
                     .map { song -> song.toMediaItem(mediaId) }
                     .toMutableList()
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {})
+            .subscribe({ mediaItems -> completion(mediaItems) }, {
+                // Intentionally left empty.
+            })
     }
 
     private fun getSongsForPredicate(predicate: (Song) -> Boolean): Single<List<Song>> {

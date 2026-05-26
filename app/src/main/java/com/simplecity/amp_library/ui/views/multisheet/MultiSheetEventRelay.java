@@ -14,6 +14,7 @@ public class MultiSheetEventRelay {
 
     @Inject
     public MultiSheetEventRelay() {
+        // Intentionally left empty.
     }
 
     public void sendEvent(MultiSheetEvent event) {
@@ -33,9 +34,11 @@ public class MultiSheetEventRelay {
         }
 
         @Action
+        @SuppressWarnings("java:S1104")
         public int action;
 
         @MultiSheetView.Sheet
+        @SuppressWarnings("java:S1104")
         public int sheet;
 
         public MultiSheetEvent(int action, int sheet) {

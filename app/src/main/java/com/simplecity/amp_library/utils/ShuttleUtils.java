@@ -128,6 +128,7 @@ public final class ShuttleUtils {
         try {
             return application.getPackageName().equals(Config.PACKAGE_NAME_PRO);
         } catch (Exception ignored) {
+            // Intentionally left empty.
         }
 
         //If something goes wrong, assume the user has the pro version

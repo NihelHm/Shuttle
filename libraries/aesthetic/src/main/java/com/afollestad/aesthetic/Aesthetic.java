@@ -158,7 +158,7 @@ public class Aesthetic {
       return;
     }
     instance.context = activity;
-    
+
     if (instance.subs != null) {
       instance.subs.clear();
     }

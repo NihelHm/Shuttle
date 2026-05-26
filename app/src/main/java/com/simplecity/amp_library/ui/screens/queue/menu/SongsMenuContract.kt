@@ -6,10 +6,10 @@ import com.simplecity.amp_library.utils.menu.queue.QueueMenuCallbacks
 interface QueueMenuContract : SongMenuContract {
 
     interface View : SongMenuContract.View {
-
+        // Intentionally left empty.
     }
 
     interface Presenter : SongMenuContract.Presenter, QueueMenuCallbacks {
-
+        // Intentionally left empty.
     }
 }

@@ -28,6 +28,7 @@ public class WidgetFragment extends BaseFragment {
      * Empty constructor as per the fragment docs
      */
     public WidgetFragment() {
+        // Intentionally left empty.
     }
 
     @Override

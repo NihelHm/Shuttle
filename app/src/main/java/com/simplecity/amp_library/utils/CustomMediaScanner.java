@@ -157,7 +157,7 @@ public class CustomMediaScanner implements MediaScannerConnection.MediaScannerCo
         CustomMediaScanner.scanFiles(context, Collections.singletonList(path), new CustomMediaScanner.ScanCompletionListener() {
             @Override
             public void onPathScanned(String path) {
-
+                // Intentionally left empty.
             }
 
             @Override

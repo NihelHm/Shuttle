@@ -224,6 +224,7 @@ public class EqualizerFragment extends BaseFragment implements
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
+                // Intentionally left empty.
             }
         });
 
@@ -280,7 +281,7 @@ public class EqualizerFragment extends BaseFragment implements
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
+                    // Intentionally left empty.
                 }
 
                 @Override

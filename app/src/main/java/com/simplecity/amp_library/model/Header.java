@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public class Header implements Serializable {
 
+    @SuppressWarnings("java:S1104")
+
     public String title;
 
     public Header(String title) {

@@ -4,9 +4,13 @@ import java.io.Serializable;
 
 public class Artist implements Serializable {
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String name;
-    public int numAlbums;
+    private int numAlbums;
+    @SuppressWarnings("java:S1104")
     public int numSongs;
 
     public Artist(long id, String name) {

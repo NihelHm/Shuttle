@@ -74,6 +74,8 @@ public class ShuttleApplication extends DaggerApplication {
 
     private RefWatcher refWatcher;
 
+    @SuppressWarnings("java:S1104")
+
     public HashMap<String, UserSelectedArtwork> userSelectedArtwork = new HashMap<>();
 
     private static Logger jaudioTaggerLogger1 = Logger.getLogger("org.jaudiotagger.audio");
@@ -218,7 +220,7 @@ public class ShuttleApplication extends DaggerApplication {
         try {
             return getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException | NullPointerException ignored) {
-
+            // Intentionally left empty.
         }
         return "unknown";
     }
@@ -296,6 +298,7 @@ public class ShuttleApplication extends DaggerApplication {
             try {
                 getContentResolver().delete(PlayCountTable.URI, selection.toString(), null);
             } catch (IllegalArgumentException ignored) {
+                // Intentionally left empty.
             }
         });
     }

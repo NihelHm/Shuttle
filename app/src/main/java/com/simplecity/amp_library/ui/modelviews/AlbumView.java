@@ -31,6 +31,8 @@ public class AlbumView extends MultiItemView<AlbumView.ViewHolder, Album> implem
 
     private static final String TAG = "AlbumView";
 
+    @SuppressWarnings("java:S1104")
+
     public Album album;
 
     private int viewType;

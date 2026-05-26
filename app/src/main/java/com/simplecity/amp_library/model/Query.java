@@ -5,10 +5,16 @@ import java.util.Arrays;
 
 public class Query {
 
+    @SuppressWarnings("java:S1104")
+
     public Uri uri;
+    @SuppressWarnings("java:S1104")
     public String[] projection;
+    @SuppressWarnings("java:S1104")
     public String selection;
+    @SuppressWarnings("java:S1104")
     public String[] args;
+    @SuppressWarnings("java:S1104")
     public String sort;
 
     Query(Builder builder) {
@@ -27,6 +33,7 @@ public class Query {
         String sort;
 
         public Builder() {
+            // Intentionally left empty.
         }
 
         public Builder uri(Uri val) {

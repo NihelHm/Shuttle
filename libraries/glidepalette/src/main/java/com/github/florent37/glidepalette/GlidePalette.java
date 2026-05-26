@@ -14,6 +14,7 @@ public class GlidePalette<ModelType, TranscodeType> extends BitmapPalette implem
     protected RequestListener<ModelType, TranscodeType> callback;
 
     protected GlidePalette() {
+        // Intentionally left empty.
     }
 
     public static GlidePalette with(String url) {

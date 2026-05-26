@@ -23,6 +23,8 @@ public class TabViewModel extends BaseViewModel<TabViewModel.ViewHolder> {
         void onFolderChecked(TabViewModel tabViewModel, ViewHolder viewHolder);
     }
 
+    @SuppressWarnings("java:S1104")
+
     public CategoryItem categoryItem;
 
     @Nullable

@@ -30,9 +30,14 @@ public class CategoryItem {
     }
 
     @Type
+    @SuppressWarnings("java:S1104")
     public int type;
 
+    @SuppressWarnings("java:S1104")
+
     public int sortOrder;
+
+    @SuppressWarnings("java:S1104")
 
     public boolean isChecked;
 

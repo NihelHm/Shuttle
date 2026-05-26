@@ -7,7 +7,7 @@ import com.simplecity.amp_library.BuildConfig;
 public class ThreadUtils {
 
     private ThreadUtils() {
-
+        // Intentionally left empty.
     }
 
     public static void ensureNotOnMainThread() {

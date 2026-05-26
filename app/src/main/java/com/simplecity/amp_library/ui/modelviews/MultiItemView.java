@@ -45,23 +45,29 @@ public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> exte
     public static class ViewHolder<T extends ViewModel> extends BaseViewHolder<T> {
 
         @BindView(R.id.line_one)
+        @SuppressWarnings("java:S1104")
         public TextView lineOne;
 
         @BindView(R.id.line_two)
+        @SuppressWarnings("java:S1104")
         public TextView lineTwo;
 
         @Nullable
         @BindView(R.id.albumCount)
+        @SuppressWarnings("java:S1104")
         public TextView albumCount;
 
         @Nullable
         @BindView(R.id.trackCount)
+        @SuppressWarnings("java:S1104")
         public TextView trackCount;
 
         @BindView(R.id.image)
+        @SuppressWarnings("java:S1104")
         public ImageView imageOne;
 
         @BindView(R.id.btn_overflow)
+        @SuppressWarnings("java:S1104")
         public NonScrollImageButton overflowButton;
 
         @Nullable

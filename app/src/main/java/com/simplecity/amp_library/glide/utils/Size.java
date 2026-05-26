@@ -2,7 +2,10 @@ package com.simplecity.amp_library.glide.utils;
 
 public class Size {
 
+    @SuppressWarnings("java:S1104")
+
     public int width;
+    @SuppressWarnings("java:S1104")
     public int height;
 
     public Size(int width, int height) {

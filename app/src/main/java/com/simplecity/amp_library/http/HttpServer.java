@@ -158,6 +158,7 @@ public class HttpServer {
             try {
                 audioInputStream.close();
             } catch (IOException ignored) {
+                // Intentionally left empty.
             }
         }
     }
@@ -167,6 +168,7 @@ public class HttpServer {
             try {
                 imageInputStream.close();
             } catch (IOException ignored) {
+                // Intentionally left empty.
             }
         }
     }

@@ -2,8 +2,12 @@ package com.simplecity.amp_library.model;
 
 public class SuggestedHeader {
 
+    @SuppressWarnings("java:S1104")
+
     public String title;
+    @SuppressWarnings("java:S1104")
     public String subtitle;
+    @SuppressWarnings("java:S1104")
     public Playlist playlist;
 
     public SuggestedHeader(String title, String subtitle, Playlist playlist) {

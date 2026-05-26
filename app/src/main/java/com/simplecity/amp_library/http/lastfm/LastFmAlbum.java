@@ -8,12 +8,16 @@ import java.util.List;
 public class LastFmAlbum implements LastFmResult {
 
     @SerializedName("album")
+    @SuppressWarnings("java:S1104")
     public Album album;
 
     public static class Album {
+        @SuppressWarnings("java:S1104")
         public String name;
         @SerializedName("image")
+        @SuppressWarnings("java:S1104")
         public List<LastFmImage> images = new ArrayList<>();
+        @SuppressWarnings("java:S1104")
         public Wiki wiki;
     }
 
@@ -27,6 +31,7 @@ public class LastFmAlbum implements LastFmResult {
     }
 
     public static class Wiki {
+        @SuppressWarnings("java:S1104")
         public String summary;
     }
 }

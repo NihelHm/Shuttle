@@ -28,16 +28,16 @@ public abstract class BaseViewHolder<VM extends ViewModel> extends RecyclerView.
 
     @Override
     public void recycle() {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onAttachedToWindow() {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onDetachedFromWindow() {
-
+        // Intentionally left empty.
     }
 }

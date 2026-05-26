@@ -21,6 +21,8 @@ public class InclExclView extends BaseViewModel<InclExclView.ViewHolder> {
         void onRemove(InclExclView InclExclView);
     }
 
+    @SuppressWarnings("java:S1104")
+
     public InclExclItem inclExclItem;
 
     public InclExclView(InclExclItem inclExclItem) {
@@ -65,9 +67,11 @@ public class InclExclView extends BaseViewModel<InclExclView.ViewHolder> {
     public static class ViewHolder extends BaseViewHolder<InclExclView> {
 
         @BindView(R.id.line_one)
+        @SuppressWarnings("java:S1104")
         public TextView lineOne;
 
         @BindView(R.id.btn_overflow)
+        @SuppressWarnings("java:S1104")
         public OverflowButton overflow;
 
         public ViewHolder(View itemView) {

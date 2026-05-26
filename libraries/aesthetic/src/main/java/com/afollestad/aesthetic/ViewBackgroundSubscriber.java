@@ -29,7 +29,9 @@ final class ViewBackgroundSubscriber extends DisposableObserver<Integer> {
   }
 
   @Override
-  public void onComplete() {}
+  public void onComplete() {
+      // Intentionally left empty.
+  }
 
   @Override
   public void onNext(Integer color) {

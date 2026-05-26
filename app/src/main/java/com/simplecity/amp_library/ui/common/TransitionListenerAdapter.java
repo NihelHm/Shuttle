@@ -9,26 +9,26 @@ public abstract class TransitionListenerAdapter implements Transition.Transition
 
     @Override
     public void onTransitionStart(Transition transition) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onTransitionEnd(Transition transition) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onTransitionCancel(Transition transition) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onTransitionPause(Transition transition) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onTransitionResume(Transition transition) {
-
+        // Intentionally left empty.
     }
 }

@@ -189,6 +189,7 @@ public class MainActivity extends BaseActivity implements
                 .delaySubscription(350, TimeUnit.MILLISECONDS)
                 .subscribe(
                         aBoolean -> {
+                            // Intentionally left empty.
                         },
                         throwable -> LogUtils.logException(TAG, "handleIntent error", throwable)
                 );

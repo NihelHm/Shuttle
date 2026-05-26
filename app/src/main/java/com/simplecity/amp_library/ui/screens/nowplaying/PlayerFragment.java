@@ -180,6 +180,7 @@ public class PlayerFragment extends BaseFragment implements
     private ValueAnimator colorAnimator;
 
     public PlayerFragment() {
+        // Intentionally left empty.
     }
 
     public static PlayerFragment newInstance() {
@@ -403,7 +404,7 @@ public class PlayerFragment extends BaseFragment implements
 
     @Override
     public void queueChanged(int queuePosition, int queueLength) {
-
+        // Intentionally left empty.
     }
 
     @Override
@@ -711,7 +712,7 @@ public class PlayerFragment extends BaseFragment implements
 
     @Override
     public void presentCreatePlaylistDialog(@NotNull List<? extends Song> songs) {
-
+        // Intentionally left empty.
     }
 
     @Override
@@ -721,12 +722,12 @@ public class PlayerFragment extends BaseFragment implements
 
     @Override
     public void onSongsAddedToPlaylist(@NotNull Playlist playlist, int numSongs) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void onSongsAddedToQueue(int numSongs) {
-
+        // Intentionally left empty.
     }
 
     @Override
@@ -736,7 +737,7 @@ public class PlayerFragment extends BaseFragment implements
 
     @Override
     public void presentDeleteDialog(@NotNull List<? extends Song> songs) {
-
+        // Intentionally left empty.
     }
 
     @Override

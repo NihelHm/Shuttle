@@ -33,27 +33,47 @@ public class Song implements
 
     private static final String TAG = "Song";
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String name;
+    @SuppressWarnings("java:S1104")
     public String artistName;
-    public long artistId;
+    private long artistId;
+    @SuppressWarnings("java:S1104")
     public String albumName;
+    @SuppressWarnings("java:S1104")
     public long albumId;
+    @SuppressWarnings("java:S1104")
     public long duration;
+    @SuppressWarnings("java:S1104")
     public int year;
+    @SuppressWarnings("java:S1104")
     public int dateAdded;
+    @SuppressWarnings("java:S1104")
     public long playlistSongId;
+    @SuppressWarnings("java:S1104")
     public long playlistSongPlayOrder;
+    @SuppressWarnings("java:S1104")
     public int playCount;
+    @SuppressWarnings("java:S1104")
     public long lastPlayed;
-    public long startTime;
+    private long startTime;
     private long elapsedTime = 0;
     private boolean isPaused;
+    @SuppressWarnings("java:S1104")
     public int track;
+    @SuppressWarnings("java:S1104")
     public int discNumber;
+    @SuppressWarnings("java:S1104")
     public boolean isPodcast;
+    @SuppressWarnings("java:S1104")
     public String path;
+    @SuppressWarnings("java:S1104")
     public long bookMark;
+
+    @SuppressWarnings("java:S1104")
 
     public String albumArtistName;
 
@@ -146,7 +166,7 @@ public class Song implements
     }
 
     public Song() {
-
+        // Intentionally left empty.
     }
 
     public Single<Genre> getGenre(Context context) {

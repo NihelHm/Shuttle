@@ -7,11 +7,16 @@ import java.io.Serializable;
 
 public class BaseFileObject implements Serializable {
 
+    @SuppressWarnings("java:S1104")
+
     public String name;
+    @SuppressWarnings("java:S1104")
     public String path;
+    @SuppressWarnings("java:S1104")
     public long size;
 
     @FileType
+    @SuppressWarnings("java:S1104")
     public int fileType;
 
     public File getParent() {

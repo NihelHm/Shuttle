@@ -25,6 +25,8 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> {
         void onPlaylistOverflowClick(int position, View v, Playlist playlist);
     }
 
+    @SuppressWarnings("java:S1104")
+
     public Playlist playlist;
 
     @Nullable
@@ -75,8 +77,12 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> {
 
     public static class ViewHolder extends BaseViewHolder<PlaylistView> {
 
+        @SuppressWarnings("java:S1104")
+
         public TextView lineOne;
+        @SuppressWarnings("java:S1104")
         public NonScrollImageButton overflowButton;
+        @SuppressWarnings("java:S1104")
         public PlaylistClickListener listener;
 
         public ViewHolder(View itemView) {

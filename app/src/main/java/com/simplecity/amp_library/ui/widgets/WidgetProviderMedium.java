@@ -26,6 +26,7 @@ public class WidgetProviderMedium extends BaseWidgetProvider {
 
     @Inject
     public WidgetProviderMedium() {
+        // Intentionally left empty.
     }
 
     @Override

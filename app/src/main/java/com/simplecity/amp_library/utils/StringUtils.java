@@ -23,7 +23,7 @@ public class StringUtils {
     private static Pattern pattern = Pattern.compile("^(?i)\\s*(?:the |an |a )|(?:, the|, an|, a)\\s*$|[\\[\\]()!?.,']");
 
     private StringUtils() {
-
+        // Intentionally left empty.
     }
 
     /**
@@ -328,7 +328,7 @@ public class StringUtils {
             try {
                 return Integer.parseInt(string);
             } catch (NumberFormatException ignored) {
-
+                // Intentionally left empty.
             }
         }
         return -1;

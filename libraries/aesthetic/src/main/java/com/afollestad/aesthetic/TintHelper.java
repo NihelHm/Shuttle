@@ -297,7 +297,9 @@ final class TintHelper {
                 -android.R.attr.state_pressed,
                 -android.R.attr.state_focused
               },
-              new int[] {}
+              new int[] {
+                  // Intentionally left empty.
+              }
             },
             new int[] {
               ContextCompat.getColor(

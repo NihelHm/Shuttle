@@ -5,7 +5,7 @@ import android.graphics.Color;
 public class ColorUtils {
 
     private ColorUtils() {
-
+        // Intentionally left empty.
     }
 
     public static int adjustAlpha(int color, float factor) {

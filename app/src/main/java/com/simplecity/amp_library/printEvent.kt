@@ -21,7 +21,11 @@ inline fun printEvent(tag: String, error: Throwable?) =
  * Example usage of [log]:
 Single.timer(1, TimeUnit.SECONDS)
 .log()
-.subscribe({ }, { })
+.subscribe({
+    // Intentionally left empty.
+}, {
+    // Intentionally left empty.
+})
  */
 inline fun tag() =
         Thread.currentThread().stackTrace

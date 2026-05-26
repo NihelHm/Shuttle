@@ -25,6 +25,8 @@ public final class SleepTimer {
 
     private boolean isActive;
 
+    @SuppressWarnings("java:S1104")
+
     public boolean playToEnd = false;
 
     private int timeRemaining = 0;

@@ -17,6 +17,7 @@ public final class ActionBarUtils {
 
     /* This class is never initialized */
     private ActionBarUtils() {
+        // Intentionally left empty.
     }
 
     /**

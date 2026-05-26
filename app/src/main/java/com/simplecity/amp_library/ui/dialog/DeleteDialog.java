@@ -91,6 +91,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
     private CompositeDisposable disposables = new CompositeDisposable();
 
     public interface ListArtistsRef extends Supplier<List<AlbumArtist>> {
+        // Intentionally left empty.
     }
 
     public static DeleteDialog newInstance(@NonNull ListArtistsRef artists) {
@@ -104,6 +105,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
     }
 
     public interface ListAlbumsRef extends Supplier<List<Album>> {
+        // Intentionally left empty.
     }
 
     public static DeleteDialog newInstance(@NonNull ListAlbumsRef albums) {
@@ -117,6 +119,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
     }
 
     public interface ListSongsRef extends Supplier<List<Song>> {
+        // Intentionally left empty.
     }
 
     public static DeleteDialog newInstance(@NonNull ListSongsRef songs) {

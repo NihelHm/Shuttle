@@ -17,6 +17,8 @@ public class OverflowButton extends NonScrollImageButton {
 
     private Disposable aestheticDisposable;
 
+    @SuppressWarnings("java:S1104")
+
     public Drawable drawable;
 
     private boolean dark = false;

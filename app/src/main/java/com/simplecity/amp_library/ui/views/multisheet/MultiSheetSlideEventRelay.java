@@ -15,6 +15,7 @@ public class MultiSheetSlideEventRelay {
 
     @Inject
     public MultiSheetSlideEventRelay() {
+        // Intentionally left empty.
     }
 
     public void sendEvent(SlideEvent event) {

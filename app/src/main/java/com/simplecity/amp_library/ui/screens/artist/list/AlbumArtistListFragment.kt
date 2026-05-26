@@ -271,7 +271,9 @@ class AlbumArtistListFragment :
             playlistMenuDisposable?.dispose()
 
             playlistMenuDisposable = playlistMenuHelper.createUpdatingPlaylistMenu(sub).subscribe(
-                { },
+                {
+                    // Intentionally left empty.
+                },
                 { throwable -> LogUtils.logException(TAG, "setupContextualToolbar", throwable) }
             )
 

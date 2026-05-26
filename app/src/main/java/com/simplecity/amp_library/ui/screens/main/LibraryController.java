@@ -125,6 +125,7 @@ public class LibraryController extends BaseFragment implements
     }
 
     public LibraryController() {
+        // Intentionally left empty.
     }
 
     @Override

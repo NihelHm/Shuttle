@@ -34,6 +34,7 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
     /**
      * The dataset for this RecyclerView Adapter
      */
+    @SuppressWarnings("java:S1104")
     public List<ViewModel> items = new ArrayList<>();
 
     @Override

@@ -42,6 +42,8 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> {
 
     GlideListener glideListener;
 
+    @SuppressWarnings("java:S1104")
+
     public File file;
 
     private boolean selected;
@@ -168,12 +170,17 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> {
 
     public static class ViewHolder extends BaseViewHolder<ArtworkView> {
 
+        @SuppressWarnings("java:S1104")
+
         public ImageView imageView;
+        @SuppressWarnings("java:S1104")
         public TextView lineOne;
+        @SuppressWarnings("java:S1104")
         public TextView lineTwo;
-        public View checkView;
+        private View checkView;
+        @SuppressWarnings("java:S1104")
         public View textContainer;
-        public ProgressBar progressBar;
+        private ProgressBar progressBar;
 
         public ViewHolder(View itemView) {
             super(itemView);

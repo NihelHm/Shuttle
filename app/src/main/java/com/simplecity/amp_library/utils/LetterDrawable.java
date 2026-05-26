@@ -46,12 +46,12 @@ public class LetterDrawable extends Drawable {
 
     @Override
     public void setAlpha(int alpha) {
-
+        // Intentionally left empty.
     }
 
     @Override
     public void setColorFilter(ColorFilter cf) {
-
+        // Intentionally left empty.
     }
 
     @Override

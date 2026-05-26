@@ -18,7 +18,7 @@ public class DrawerLockManager {
     private DrawerLockController drawerLockController;
 
     private DrawerLockManager() {
-
+        // Intentionally left empty.
     }
 
     public static DrawerLockManager getInstance() {

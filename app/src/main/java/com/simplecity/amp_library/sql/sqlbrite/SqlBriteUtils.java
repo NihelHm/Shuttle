@@ -20,7 +20,7 @@ public final class SqlBriteUtils {
     static final boolean LOGGING_ENABLED = false;
 
     private SqlBriteUtils() {
-
+        // Intentionally left empty.
     }
 
     private static final String TAG = "SqlBriteUtils";

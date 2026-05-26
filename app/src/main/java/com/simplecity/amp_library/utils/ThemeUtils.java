@@ -33,16 +33,24 @@ public class ThemeUtils {
 
     public static class Theme {
 
+        @SuppressWarnings("java:S1104")
+
         public int id;
+        @SuppressWarnings("java:S1104")
         public String primaryColorName;
+        @SuppressWarnings("java:S1104")
         public String accentColorName;
+
+        @SuppressWarnings("java:S1104")
 
         public boolean isDark;
 
         @ColorRes
+        @SuppressWarnings("java:S1104")
         public int primaryColor;
 
         @ColorRes
+        @SuppressWarnings("java:S1104")
         public int accentColor;
 
         Theme(int id, String primaryColorName, String accentColorName, boolean isDark, int primaryColor, int accentColor) {

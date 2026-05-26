@@ -63,7 +63,7 @@ public class MiniPlayerFragment extends BaseFragment {
     private Unbinder unbinder;
 
     public MiniPlayerFragment() {
-
+        // Intentionally left empty.
     }
 
     public static MiniPlayerFragment newInstance() {
@@ -176,6 +176,7 @@ public class MiniPlayerFragment extends BaseFragment {
             private static final int SWIPE_VELOCITY_THRESHOLD = 100;
 
             GestureListener() {
+                // Intentionally left empty.
             }
 
             @Override

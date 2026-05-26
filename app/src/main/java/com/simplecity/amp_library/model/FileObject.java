@@ -7,7 +7,11 @@ import com.simplecity.amp_library.utils.StringUtils;
 
 public class FileObject extends BaseFileObject {
 
+    @SuppressWarnings("java:S1104")
+
     public String extension;
+
+    @SuppressWarnings("java:S1104")
 
     public TagInfo tagInfo;
 

@@ -43,6 +43,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
     }
 
     @NonNull
+    @SuppressWarnings("java:S1104")
     public BaseFileObject baseFileObject;
 
     @Nullable
@@ -235,27 +236,34 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
     public static class ViewHolder extends BaseViewHolder<FolderView> {
 
         @BindView(R.id.line_one)
+        @SuppressWarnings("java:S1104")
         public TextView lineOne;
 
         @BindView(R.id.line_two)
+        @SuppressWarnings("java:S1104")
         public TextView lineTwo;
 
         @BindView(R.id.line_three)
+        @SuppressWarnings("java:S1104")
         public TextView lineThree;
 
         @BindView(R.id.line_four)
-        public TextView lineFour;
+        private TextView lineFour;
 
         @BindView(R.id.textContainer)
+        @SuppressWarnings("java:S1104")
         public View textContainer;
 
         @BindView(R.id.image)
+        @SuppressWarnings("java:S1104")
         public CircleImageView imageView;
 
         @BindView(R.id.btn_overflow)
+        @SuppressWarnings("java:S1104")
         public ImageButton overflow;
 
         @BindView(R.id.checkbox)
+        @SuppressWarnings("java:S1104")
         public CheckBox checkBox;
 
         Drawable folderDrawable;

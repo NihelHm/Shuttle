@@ -45,6 +45,7 @@ public final class Util {
         field.setAccessible(true);
         return field;
       } catch (NoSuchFieldException ignored){
+          // Intentionally left empty.
       }
     }
 
@@ -177,7 +178,9 @@ public final class Util {
   //    int[][] states =
   //        new int[][] {
   //          new int[] {-android.R.attr.state_enabled}, // disabled
-  //          new int[] {} // enabled
+  //          new int[] {
+      // Intentionally left empty.
+  } // enabled
   //        };
   //    int[] colors = new int[] {adjustAlpha(newPrimaryColor, 0.4f), newPrimaryColor};
   //    return new ColorStateList(states, colors);

@@ -9,9 +9,13 @@ import android.support.v4.app.Fragment;
 
 public class FragmentInfo implements Parcelable {
 
+    @SuppressWarnings("java:S1104")
+
     public Class rootViewController;
 
     @Nullable public transient Bundle args;
+
+    @SuppressWarnings("java:S1104")
 
     public String rootViewControllerTag;
 

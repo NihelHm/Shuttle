@@ -1217,11 +1217,13 @@ public class CustomCollapsingToolbarLayout extends FrameLayout {
         })
         @Retention(RetentionPolicy.SOURCE)
         @interface CollapseMode {
+            // Intentionally left empty.
         }
     }
 
     private class OffsetUpdateListener implements AppBarLayout.OnOffsetChangedListener {
         OffsetUpdateListener() {
+            // Intentionally left empty.
         }
 
         @Override

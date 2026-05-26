@@ -9,7 +9,7 @@ import java.io.File;
 public class LegacyUtils {
 
     private LegacyUtils() {
-
+        // Intentionally left empty.
     }
 
     @NonNull

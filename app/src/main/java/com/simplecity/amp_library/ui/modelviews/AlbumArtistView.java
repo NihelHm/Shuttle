@@ -34,6 +34,8 @@ public class AlbumArtistView extends MultiItemView<AlbumArtistView.ViewHolder, A
 
     private static final String TAG = "AlbumArtistView";
 
+    @SuppressWarnings("java:S1104")
+
     public AlbumArtist albumArtist;
 
     private int viewType;

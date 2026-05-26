@@ -131,6 +131,7 @@ public class DrawerParent implements Parent<DrawerChild> {
     }
 
     @DrawerParent.Type
+    @SuppressWarnings("java:S1104")
     public int type;
 
     @Nullable

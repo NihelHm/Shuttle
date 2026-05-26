@@ -72,6 +72,7 @@ public class QueuePagerFragment extends BaseFragment implements
     }
 
     public QueuePagerFragment() {
+        // Intentionally left empty.
     }
 
     @Override

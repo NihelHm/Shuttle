@@ -255,7 +255,7 @@ public class SafManager {
         }
 
         public SafDialog() {
-
+            // Intentionally left empty.
         }
 
         public static <T extends AppCompatActivity & SafResultListener> void show(T activity) {

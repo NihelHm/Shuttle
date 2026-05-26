@@ -26,15 +26,23 @@ public class Playlist implements Serializable {
     }
 
     @Type
+    @SuppressWarnings("java:S1104")
     public int type;
 
+    @SuppressWarnings("java:S1104")
+
     public long id;
+    @SuppressWarnings("java:S1104")
     public String name;
+    @SuppressWarnings("java:S1104")
     public boolean canEdit = true;
+    @SuppressWarnings("java:S1104")
     public boolean canClear = false;
+    @SuppressWarnings("java:S1104")
     public boolean canDelete = true;
+    @SuppressWarnings("java:S1104")
     public boolean canRename = true;
-    public boolean canSort = true;
+    private boolean canSort= true;
 
     // These are the Playlist rows that we will retrieve.
     public static final String[] PROJECTION = new String[] {
