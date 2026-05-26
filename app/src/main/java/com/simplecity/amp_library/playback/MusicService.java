@@ -293,7 +293,7 @@ public class MusicService extends MediaBrowserServiceCompat { //NOSONAR
     public void onTaskRemoved(Intent rootIntent) { //NOSONAR
         analyticsManager.dropBreadcrumb(TAG, "onTaskRemoved()"); //NOSONAR
 
-        // Fixme: // NOSONAR
+        // Note: // NOSONAR
         //  playbackManager.willResumePlayback() returns true even after we've manually paused. // NOSONAR
         //  This means we don't call stopSelf(), which in turn causes the service to act as if it has crashed, and will recreate itself unnecessarily. // NOSONAR
 

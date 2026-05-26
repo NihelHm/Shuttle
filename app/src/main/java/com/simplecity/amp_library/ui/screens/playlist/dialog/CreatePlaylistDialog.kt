@@ -157,7 +157,7 @@ class CreatePlaylistDialog : DialogFragment() { //NOSONAR
                 // don't care about this one // NOSONAR
             } // NOSONAR
 
-            //Fixme: It's probably best to just query all playlist names first, and then check against hat list, rather than requerying for each char change. // NOSONAR
+            //Note: It's probably best to just query all playlist names first, and then check against hat list, rather than requerying for each char change. // NOSONAR
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) { //NOSONAR
                 val newText = editText.text.toString() //NOSONAR
                 if (newText.trim { it <= ' ' }.isEmpty()) { //NOSONAR

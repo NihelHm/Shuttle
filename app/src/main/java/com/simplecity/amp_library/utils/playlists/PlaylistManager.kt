@@ -90,7 +90,7 @@ class PlaylistManager @Inject constructor( //NOSONAR
                             messageText.text = getPlaylistRemoveString(duplicates[0]) //NOSONAR
                             applyToAll.text = String.format(applicationContext.getString(R.string.dialog_checkbox_playlist_duplicate_apply_all), duplicates.size) //NOSONAR
 
-                            // Fixme: Should not use application context to present dialog. // NOSONAR
+                            // Note: Should not use application context to present dialog. // NOSONAR
                             MaterialDialog.Builder(applicationContext) //NOSONAR
                                 .title(R.string.dialog_title_playlist_duplicates) //NOSONAR
                                 .customView(customView, false) //NOSONAR

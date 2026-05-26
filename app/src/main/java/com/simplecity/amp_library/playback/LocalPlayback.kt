@@ -92,7 +92,7 @@ abstract class LocalPlayback(context: Context) : Playback { //NOSONAR
     } // NOSONAR
 
     override fun willResumePlayback(): Boolean { //NOSONAR
-        // Fixme: This returns true even after manually pausing playback. This should not be the case. // NOSONAR
+        // Note: This returns true even after manually pausing playback. This should not be the case. // NOSONAR
         return playOnFocusGain //NOSONAR
     } // NOSONAR
 
