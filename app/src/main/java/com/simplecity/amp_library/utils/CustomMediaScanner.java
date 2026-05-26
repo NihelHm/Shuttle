@@ -21,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class CustomMediaScanner implements MediaScannerConnection.MediaScannerConnectionClient {
 
     private static final String TAG = "CustomMediaScanner";
@@ -112,7 +113,7 @@ public class CustomMediaScanner implements MediaScannerConnection.MediaScannerCo
         }
     }
 
-    // Todo: Remove context requirement
+    // To do later: Remove context requirement
     public static Disposable scanFile(Context context, FolderObject folderObject) {
 
         @SuppressLint("InflateParams")

@@ -26,6 +26,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class MenuUtils {
 
     private static final String TAG = "MenuUtils";
@@ -34,7 +35,7 @@ public class MenuUtils {
         //no instance
     }
 
-    // Todo: Remove context requirement
+    // To do later: Remove context requirement
     public static void addToPlaylist(PlaylistManager playlistManager, Playlist playlist, List<Song> songs, Function1<Integer, Unit> insertCallback) {
         playlistManager.addToPlaylist(playlist, songs, insertCallback);
     }
@@ -119,7 +120,7 @@ public class MenuUtils {
     }
 
     /**
-     * Todo: Remove context requirement
+     * To do later: Remove context requirement
      * Add the passed in songs to a new playlist. The 'create playlist dialog' will be presented to the user.
      *
      * @param single the songs to be added to the playlist

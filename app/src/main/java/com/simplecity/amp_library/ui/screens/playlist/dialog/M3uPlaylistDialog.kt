@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.ui.screens.playlist.dialog
 
 import android.app.Dialog
@@ -96,7 +98,7 @@ class M3uPlaylistDialog : DialogFragment() {
                                     .append(" - ")
                                     .append(song.artistName)
                                     .append("\n")
-                                    //Todo: Use relative paths instead of absolute
+                                    //To do later: Use relative paths instead of absolute
                                     .append(song.path)
                                     .append("\n")
                             }

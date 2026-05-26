@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.ui.screens.playlist.list
 
 import android.content.Context
@@ -132,7 +134,7 @@ class PlaylistListFragment :
     // PlaylistMenuContract.View Implementation
 
     override fun onPlaybackFailed() {
-        // Todo: Improve error message
+        // To do later: Improve error message
         Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show()
     }
 

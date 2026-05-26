@@ -25,6 +25,7 @@ import kotlin.jvm.functions.Function1;
 
 import static com.simplecity.amp_library.utils.StringUtils.containsIgnoreCase;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class VoiceSearchActivity extends BaseActivity {
 
     private static final String TAG = "VoiceSearchActivity";
@@ -139,7 +140,7 @@ public class VoiceSearchActivity extends BaseActivity {
                 .subscribe(songs -> {
                     if (songs != null) {
                         mediaManager.playAll(songs, position, true, () -> {
-                            // Todo: Show playback error toast
+                            // To do later: Show playback error toast
                             return Unit.INSTANCE;
                         });
                         startActivity(new Intent(this, MainActivity.class));

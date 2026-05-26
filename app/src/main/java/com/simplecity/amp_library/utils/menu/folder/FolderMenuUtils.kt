@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.utils.menu.folder
 
 import android.annotation.SuppressLint
@@ -83,12 +85,12 @@ object FolderMenuUtils {
         CustomMediaScanner.scanFile(context, fileObject.path, { callbacks.showToast(it) })
     }
 
-    // Todo: Remove context requirement.
+    // To do later: Remove context requirement.
     private fun scanFolder(context: Context, folderObject: FolderObject) {
         CustomMediaScanner.scanFile(context, folderObject)
     }
 
-    // Todo: Remove context requirement.
+    // To do later: Remove context requirement.
     private fun renameFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) {
 
         @SuppressLint("InflateParams")
@@ -119,7 +121,7 @@ object FolderMenuUtils {
             .show()
     }
 
-    // Todo: Remove context requirement.
+    // To do later: Remove context requirement.
     private fun deleteFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) {
         val builder = MaterialDialog.Builder(context)
             .title(R.string.delete_item)

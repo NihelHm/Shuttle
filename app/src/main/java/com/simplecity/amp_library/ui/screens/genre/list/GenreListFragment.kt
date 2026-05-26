@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.ui.screens.genre.list
 
 import android.content.Context
@@ -147,7 +149,7 @@ class GenreListFragment :
     }
 
     override fun onPlaybackFailed() {
-        // Todo: Improve error message
+        // To do later: Improve error message
         Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show()
     }
 

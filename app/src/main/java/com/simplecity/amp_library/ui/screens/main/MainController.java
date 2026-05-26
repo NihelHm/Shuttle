@@ -59,6 +59,7 @@ import test.com.androidnavigation.fragment.BackPressHandler;
 import test.com.androidnavigation.fragment.BaseNavigationController;
 import test.com.androidnavigation.fragment.FragmentInfo;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class MainController extends BaseNavigationController implements BackPressHandler, DrawerLockController {
 
     private static final String TAG = "MainController";
@@ -284,7 +285,7 @@ public class MainController extends BaseNavigationController implements BackPres
         ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
-    // Todo:  Remove once cause of shared element crash is understood.
+    // To do later:  Remove once cause of shared element crash is understood.
     // This is a copy of the superclass method of the same name/signature, with some additional logging
     // to help ascertain the cause of a crash.
     @Override

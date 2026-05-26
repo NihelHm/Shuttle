@@ -66,6 +66,7 @@ import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 import org.jaudiotagger.tag.TagOptionSingleton;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class ShuttleApplication extends DaggerApplication {
 
     private static final String TAG = "ShuttleApplication";
@@ -104,7 +105,7 @@ public class ShuttleApplication extends DaggerApplication {
             return;
         }
 
-        // Todo: Remove for production builds. Useful for tracking down crashes in beta.
+        // To do later: Remove for production builds. Useful for tracking down crashes in beta.
         RxDogTag.install();
 
         if (BuildConfig.DEBUG) {

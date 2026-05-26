@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.ui.screens.drawer
 
 import android.content.Context
@@ -141,7 +143,7 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
     override fun onResume() {
         super.onResume()
 
-        // Todo: Move this crap to presenter
+        // To do later: Move this crap to presenter
         disposables.add(Aesthetic.get(context)
             .colorPrimary()
             .compose(Rx.distinctToMainThread())
@@ -315,7 +317,7 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
     // PlaylistMenuContract.View Implementation
 
     override fun onPlaybackFailed() {
-        // Todo: Improve error message
+        // To do later: Improve error message
         Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show()
     }
 

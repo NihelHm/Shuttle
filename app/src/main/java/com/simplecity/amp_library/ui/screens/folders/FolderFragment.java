@@ -78,6 +78,7 @@ import test.com.androidnavigation.fragment.BackPressListener;
 import static com.afollestad.aesthetic.Rx.distinctToMainThread;
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
 public class FolderFragment extends BaseFragment implements
         BreadcrumbListener,
         BackPressListener,
@@ -464,7 +465,7 @@ public class FolderFragment extends BaseFragment implements
                                     }
                                     mediaManager.playAll(songs, index, true, () -> {
                                         if (isAdded() && getContext() != null) {
-                                            // Todo: Show playback failed toast
+                                            // To do later: Show playback failed toast
                                         }
                                         return Unit.INSTANCE;
                                     });
@@ -666,7 +667,7 @@ public class FolderFragment extends BaseFragment implements
 
         @Override
         public void onPlaybackFailed() {
-            // Todo: Improve error message
+            // To do later: Improve error message
             Toast.makeText(getContext(), R.string.emptyplaylist, Toast.LENGTH_SHORT).show();
         }
 

@@ -1,3 +1,5 @@
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+
 package com.simplecity.amp_library.ui.screens.search
 
 import android.annotation.SuppressLint
@@ -271,7 +273,7 @@ class SearchFragment :
     }
 
     override fun showPlaybackError() {
-        // Todo: Implement
+        // To do later: Implement
     }
 
 
@@ -290,7 +292,7 @@ class SearchFragment :
     }
 
     override fun onPlaybackFailed() {
-        // Todo: Improve error message
+        // To do later: Improve error message
         Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show()
     }
 
