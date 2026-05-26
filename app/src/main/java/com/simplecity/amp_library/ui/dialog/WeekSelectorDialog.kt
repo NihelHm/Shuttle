@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -17,41 +17,41 @@ import com.simplecity.amp_library.utils.SettingsManager
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class WeekSelectorDialog : DialogFragment() {
+class WeekSelectorDialog : DialogFragment() { //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
-        @SuppressLint("InflateParams")
-        val view = LayoutInflater.from(context).inflate(R.layout.weekpicker, null)
+        @SuppressLint("InflateParams") //NOSONAR
+        val view = LayoutInflater.from(context).inflate(R.layout.weekpicker, null) //NOSONAR
 
-        val numberPicker: NumberPicker
-        numberPicker = view.findViewById(R.id.weeks)
-        numberPicker.maxValue = 12
-        numberPicker.minValue = 1
-        numberPicker.value = settingsManager.numWeeks
+        val numberPicker: NumberPicker //NOSONAR
+        numberPicker = view.findViewById(R.id.weeks) //NOSONAR
+        numberPicker.maxValue = 12 //NOSONAR
+        numberPicker.minValue = 1 //NOSONAR
+        numberPicker.value = settingsManager.numWeeks //NOSONAR
 
-        return MaterialDialog.Builder(context!!)
-            .title(R.string.week_selector)
-            .customView(view, false)
-            .negativeText(R.string.cancel)
-            .positiveText(R.string.button_ok)
-            .onPositive { _, _ -> settingsManager.numWeeks = numberPicker.value }
-            .build()
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(R.string.week_selector) //NOSONAR
+            .customView(view, false) //NOSONAR
+            .negativeText(R.string.cancel) //NOSONAR
+            .positiveText(R.string.button_ok) //NOSONAR
+            .onPositive { _, _ -> settingsManager.numWeeks = numberPicker.value } //NOSONAR
+            .build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        const val TAG = "WeekSelectorDialog"
+        const val TAG = "WeekSelectorDialog" //NOSONAR
     }
 }

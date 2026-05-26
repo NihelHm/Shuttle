@@ -16,63 +16,63 @@ import static com.afollestad.aesthetic.TintHelper.createTintedDrawable;
 import static com.afollestad.aesthetic.Util.adjustAlpha;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticTabLayout extends TabLayout {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticTabLayout extends TabLayout { //NOSONAR
 
-  private static final float UNFOCUSED_ALPHA = 0.5f;
-  private Disposable indicatorModeSubscription;
-  private Disposable bgModeSubscription;
-  private Disposable indicatorColorSubscription;
-  private Disposable bgColorSubscription;
+  private static final float UNFOCUSED_ALPHA = 0.5f; //NOSONAR
+  private Disposable indicatorModeSubscription; //NOSONAR
+  private Disposable bgModeSubscription; //NOSONAR
+  private Disposable indicatorColorSubscription; //NOSONAR
+  private Disposable bgColorSubscription; //NOSONAR
 
-  public AestheticTabLayout(Context context) {
-    super(context);
+  public AestheticTabLayout(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticTabLayout(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticTabLayout(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticTabLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public AestheticTabLayout(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
   }
 
-  private void setIconsColor(int color) {
-    final ColorStateList sl =
-        new ColorStateList(
-            new int[][] {
-              new int[] {-android.R.attr.state_selected}, new int[] {android.R.attr.state_selected}
+  private void setIconsColor(int color) { //NOSONAR
+    final ColorStateList sl = //NOSONAR
+        new ColorStateList( //NOSONAR
+            new int[][] { //NOSONAR
+              new int[] {-android.R.attr.state_selected}, new int[] {android.R.attr.state_selected} //NOSONAR
             },
-            new int[] {adjustAlpha(color, UNFOCUSED_ALPHA), color});
-    for (int i = 0; i < getTabCount(); i++) {
-      final TabLayout.Tab tab = getTabAt(i);
-      if (tab != null && tab.getIcon() != null) {
-        tab.setIcon(createTintedDrawable(tab.getIcon(), sl));
+            new int[] {adjustAlpha(color, UNFOCUSED_ALPHA), color}); //NOSONAR
+    for (int i = 0; i < getTabCount(); i++) { //NOSONAR
+      final TabLayout.Tab tab = getTabAt(i); //NOSONAR
+      if (tab != null && tab.getIcon() != null) { //NOSONAR
+        tab.setIcon(createTintedDrawable(tab.getIcon(), sl)); //NOSONAR
       }
     }
   }
 
-  @Override
-  public void setBackgroundColor(@ColorInt int color) {
-    super.setBackgroundColor(color);
-    Aesthetic.get(getContext())
-        .colorIconTitle(Observable.just(color))
-        .take(1)
-        .subscribe(
-            new Consumer<ActiveInactiveColors>() {
-              @Override
-              public void accept(@NonNull ActiveInactiveColors activeInactiveColors) {
-                setIconsColor(activeInactiveColors.activeColor());
-                setTabTextColors(
-                    adjustAlpha(activeInactiveColors.inactiveColor(), UNFOCUSED_ALPHA),
-                    activeInactiveColors.activeColor());
+  @Override //NOSONAR
+  public void setBackgroundColor(@ColorInt int color) { //NOSONAR
+    super.setBackgroundColor(color); //NOSONAR
+    Aesthetic.get(getContext()) //NOSONAR
+        .colorIconTitle(Observable.just(color)) //NOSONAR
+        .take(1) //NOSONAR
+        .subscribe( //NOSONAR
+            new Consumer<ActiveInactiveColors>() { //NOSONAR
+              @Override //NOSONAR
+              public void accept(@NonNull ActiveInactiveColors activeInactiveColors) { //NOSONAR
+                setIconsColor(activeInactiveColors.activeColor()); //NOSONAR
+                setTabTextColors( //NOSONAR
+                    adjustAlpha(activeInactiveColors.inactiveColor(), UNFOCUSED_ALPHA), //NOSONAR
+                    activeInactiveColors.activeColor()); //NOSONAR
               }
             });
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
 
       /* Begin workaround
 
@@ -95,125 +95,125 @@ public class AestheticTabLayout extends TabLayout {
 
       Note: To reproduce this issue, it seems the TabLayout needs to belong to a nested fragment.
      */
-      final Integer primaryColor = Aesthetic.get(getContext())
-              .colorPrimary()
-              .blockingFirst();
-      ViewBackgroundAction.create(AestheticTabLayout.this).accept(primaryColor);
+      final Integer primaryColor = Aesthetic.get(getContext()) //NOSONAR
+              .colorPrimary() //NOSONAR
+              .blockingFirst(); //NOSONAR
+      ViewBackgroundAction.create(AestheticTabLayout.this).accept(primaryColor); //NOSONAR
 
-      getHandler().postDelayed(new Runnable() {
-          @Override
-          public void run() {
+      getHandler().postDelayed(new Runnable() { //NOSONAR
+          @Override //NOSONAR
+          public void run() { //NOSONAR
 
-              ActiveInactiveColors activeInactiveColors = Aesthetic.get(getContext())
-                      .colorIconTitle(Observable.just(primaryColor))
-                      .blockingFirst();
+              ActiveInactiveColors activeInactiveColors = Aesthetic.get(getContext()) //NOSONAR
+                      .colorIconTitle(Observable.just(primaryColor)) //NOSONAR
+                      .blockingFirst(); //NOSONAR
 
-              setTabTextColors(
-                      adjustAlpha(activeInactiveColors.inactiveColor(), UNFOCUSED_ALPHA),
-                      activeInactiveColors.activeColor());
+              setTabTextColors( //NOSONAR
+                      adjustAlpha(activeInactiveColors.inactiveColor(), UNFOCUSED_ALPHA), //NOSONAR
+                      activeInactiveColors.activeColor()); //NOSONAR
           }
-      }, 50);
+      }, 50); //NOSONAR
       // End workaround
 
-    bgModeSubscription =
-            Aesthetic.get(getContext())
-                    .tabLayoutBackgroundMode()
-                    .compose(Rx.<Integer>distinctToMainThread())
-                    .subscribe(
-                            new Consumer<Integer>() {
-                              @Override
-                              public void accept(@NonNull Integer mode) {
-                                if (bgColorSubscription != null) {
-                                  bgColorSubscription.dispose();
+    bgModeSubscription = //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                    .tabLayoutBackgroundMode() //NOSONAR
+                    .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                            new Consumer<Integer>() { //NOSONAR
+                              @Override //NOSONAR
+                              public void accept(@NonNull Integer mode) { //NOSONAR
+                                if (bgColorSubscription != null) { //NOSONAR
+                                  bgColorSubscription.dispose(); //NOSONAR
                                 }
-                    switch (mode) {
-                      case TabLayoutIndicatorMode.PRIMARY:
-                                bgColorSubscription =
-                                        Aesthetic.get(getContext())
-                                                .colorPrimary()
-                                                .compose(Rx.<Integer>distinctToMainThread())
-                                                .subscribe(
-                                                        ViewBackgroundAction.create(AestheticTabLayout.this),
-                                                        onErrorLogAndRethrow());
-                        break;
-                      case TabLayoutIndicatorMode.ACCENT:
-                        bgColorSubscription =
-                            Aesthetic.get(getContext())
-                                .colorAccent()
-                                .compose(Rx.<Integer>distinctToMainThread())
-                                .subscribe(
-                                    ViewBackgroundAction.create(AestheticTabLayout.this),
-                                    onErrorLogAndRethrow());
-                        break;
-                      default:
-                        throw new IllegalStateException("Unimplemented bg mode: " + mode);
+                    switch (mode) { //NOSONAR
+                      case TabLayoutIndicatorMode.PRIMARY: //NOSONAR
+                                bgColorSubscription = //NOSONAR
+                                        Aesthetic.get(getContext()) //NOSONAR
+                                                .colorPrimary() //NOSONAR
+                                                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                                                .subscribe( //NOSONAR
+                                                        ViewBackgroundAction.create(AestheticTabLayout.this), //NOSONAR
+                                                        onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      case TabLayoutIndicatorMode.ACCENT: //NOSONAR
+                        bgColorSubscription = //NOSONAR
+                            Aesthetic.get(getContext()) //NOSONAR
+                                .colorAccent() //NOSONAR
+                                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                                .subscribe( //NOSONAR
+                                    ViewBackgroundAction.create(AestheticTabLayout.this), //NOSONAR
+                                    onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      default: //NOSONAR
+                        throw new IllegalStateException("Unimplemented bg mode: " + mode); //NOSONAR
                     }
                               }
                             },
-                            onErrorLogAndRethrow());
+                            onErrorLogAndRethrow()); //NOSONAR
 
-    indicatorModeSubscription =
-        Aesthetic.get(getContext())
-            .tabLayoutIndicatorMode()
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer mode) {
-                    if (indicatorColorSubscription != null) {
-                      indicatorColorSubscription.dispose();
+    indicatorModeSubscription = //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .tabLayoutIndicatorMode() //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer mode) { //NOSONAR
+                    if (indicatorColorSubscription != null) { //NOSONAR
+                      indicatorColorSubscription.dispose(); //NOSONAR
                     }
-                    switch (mode) {
-                      case TabLayoutIndicatorMode.PRIMARY:
-                        indicatorColorSubscription =
-                            Aesthetic.get(getContext())
-                                .colorPrimary()
-                                .compose(Rx.<Integer>distinctToMainThread())
-                                .subscribe(
-                                    new Consumer<Integer>() {
-                                      @Override
-                                      public void accept(@NonNull Integer color) {
-                                        setSelectedTabIndicatorColor(color);
+                    switch (mode) { //NOSONAR
+                      case TabLayoutIndicatorMode.PRIMARY: //NOSONAR
+                        indicatorColorSubscription = //NOSONAR
+                            Aesthetic.get(getContext()) //NOSONAR
+                                .colorPrimary() //NOSONAR
+                                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                                .subscribe( //NOSONAR
+                                    new Consumer<Integer>() { //NOSONAR
+                                      @Override //NOSONAR
+                                      public void accept(@NonNull Integer color) { //NOSONAR
+                                        setSelectedTabIndicatorColor(color); //NOSONAR
                                       }
                                     },
-                                    onErrorLogAndRethrow());
-                        break;
-                      case TabLayoutIndicatorMode.ACCENT:
-                        indicatorColorSubscription =
-                            Aesthetic.get(getContext())
-                                .colorAccent()
-                                .compose(Rx.<Integer>distinctToMainThread())
-                                .subscribe(
-                                    new Consumer<Integer>() {
-                                      @Override
-                                      public void accept(@NonNull Integer color) {
-                                        setSelectedTabIndicatorColor(color);
+                                    onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      case TabLayoutIndicatorMode.ACCENT: //NOSONAR
+                        indicatorColorSubscription = //NOSONAR
+                            Aesthetic.get(getContext()) //NOSONAR
+                                .colorAccent() //NOSONAR
+                                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                                .subscribe( //NOSONAR
+                                    new Consumer<Integer>() { //NOSONAR
+                                      @Override //NOSONAR
+                                      public void accept(@NonNull Integer color) { //NOSONAR
+                                        setSelectedTabIndicatorColor(color); //NOSONAR
                                       }
                                     },
-                                    onErrorLogAndRethrow());
-                        break;
-                      default:
-                        throw new IllegalStateException("Unimplemented bg mode: " + mode);
+                                    onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      default: //NOSONAR
+                        throw new IllegalStateException("Unimplemented bg mode: " + mode); //NOSONAR
                     }
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    if (bgModeSubscription != null) {
-      bgModeSubscription.dispose();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    if (bgModeSubscription != null) { //NOSONAR
+      bgModeSubscription.dispose(); //NOSONAR
     }
-    if (indicatorModeSubscription != null) {
-      indicatorModeSubscription.dispose();
+    if (indicatorModeSubscription != null) { //NOSONAR
+      indicatorModeSubscription.dispose(); //NOSONAR
     }
-    if (bgColorSubscription != null) {
-      bgColorSubscription.dispose();
+    if (bgColorSubscription != null) { //NOSONAR
+      bgColorSubscription.dispose(); //NOSONAR
     }
-    if (indicatorColorSubscription != null) {
-      indicatorColorSubscription.dispose();
+    if (indicatorColorSubscription != null) { //NOSONAR
+      indicatorColorSubscription.dispose(); //NOSONAR
     }
-    super.onDetachedFromWindow();
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

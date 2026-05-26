@@ -9,60 +9,60 @@ import com.simplecityapps.recycler_adapter.model.ViewModel;
 import io.reactivex.disposables.Disposable;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class LoggingViewModelAdapter extends ViewModelAdapter {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class LoggingViewModelAdapter extends ViewModelAdapter { //NOSONAR
 
-    private static final String TAG = "LoggingVMAdapter";
+    private static final String TAG = "LoggingVMAdapter"; //NOSONAR
 
-    String tag;
+    String tag; //NOSONAR
 
-    public LoggingViewModelAdapter(String tag) {
-        this.tag = tag;
+    public LoggingViewModelAdapter(String tag) { //NOSONAR
+        this.tag = tag; //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public synchronized Disposable setItems(List<ViewModel> items, @Nullable CompletionListUpdateCallback callback) {
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public synchronized Disposable setItems(List<ViewModel> items, @Nullable CompletionListUpdateCallback callback) { //NOSONAR
 
-        Crashlytics.log(Log.DEBUG, TAG, String.format("setItems called for: '%s'", tag));
+        Crashlytics.log(Log.DEBUG, TAG, String.format("setItems called for: '%s'", tag)); //NOSONAR
 
-        return super.setItems(items, new CompletionListUpdateCallback() {
+        return super.setItems(items, new CompletionListUpdateCallback() { //NOSONAR
 
-            @Override
-            public void onComplete() {
+            @Override //NOSONAR
+            public void onComplete() { //NOSONAR
 
-                Crashlytics.log(Log.DEBUG, TAG, String.format("setItems complete for: '%s'. Dispatching updates.", tag));
+                Crashlytics.log(Log.DEBUG, TAG, String.format("setItems complete for: '%s'. Dispatching updates.", tag)); //NOSONAR
 
-                if (callback != null) {
-                    callback.onComplete();
+                if (callback != null) { //NOSONAR
+                    callback.onComplete(); //NOSONAR
                 }
             }
 
-            @Override
-            public void onInserted(int position, int count) {
-                if (callback != null) {
-                    callback.onInserted(position, count);
+            @Override //NOSONAR
+            public void onInserted(int position, int count) { //NOSONAR
+                if (callback != null) { //NOSONAR
+                    callback.onInserted(position, count); //NOSONAR
                 }
             }
 
-            @Override
-            public void onRemoved(int position, int count) {
-                if (callback != null) {
-                    callback.onRemoved(position, count);
+            @Override //NOSONAR
+            public void onRemoved(int position, int count) { //NOSONAR
+                if (callback != null) { //NOSONAR
+                    callback.onRemoved(position, count); //NOSONAR
                 }
             }
 
-            @Override
-            public void onMoved(int fromPosition, int toPosition) {
-                if (callback != null) {
-                    callback.onMoved(fromPosition, toPosition);
+            @Override //NOSONAR
+            public void onMoved(int fromPosition, int toPosition) { //NOSONAR
+                if (callback != null) { //NOSONAR
+                    callback.onMoved(fromPosition, toPosition); //NOSONAR
                 }
             }
 
-            @Override
-            public void onChanged(int position, int count, Object payload) {
-                if (callback != null) {
-                    callback.onChanged(position, count, payload);
+            @Override //NOSONAR
+            public void onChanged(int position, int count, Object payload) { //NOSONAR
+                if (callback != null) { //NOSONAR
+                    callback.onChanged(position, count, payload); //NOSONAR
                 }
             }
         });

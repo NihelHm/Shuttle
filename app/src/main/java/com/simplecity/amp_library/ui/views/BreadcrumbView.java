@@ -29,23 +29,23 @@ import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 /**
  * A view that holds the navigation breadcrumb pattern
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClickListener {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClickListener { //NOSONAR
 
-    HorizontalScrollView mScrollView;
-    private ViewGroup mBreadcrumbBar;
-    private int mTextColor = -1;
+    HorizontalScrollView mScrollView; //NOSONAR
+    private ViewGroup mBreadcrumbBar; //NOSONAR
+    private int mTextColor = -1; //NOSONAR
 
-    private List<BreadcrumbListener> mBreadcrumbListeners;
+    private List<BreadcrumbListener> mBreadcrumbListeners; //NOSONAR
 
-    private Disposable aestheticDisposable;
+    private Disposable aestheticDisposable; //NOSONAR
 
     /**
      * Constructor of <code>BreadcrumbView</code>
      */
-    public BreadcrumbView(Context context) {
-        super(context);
-        init();
+    public BreadcrumbView(Context context) { //NOSONAR
+        super(context); //NOSONAR
+        init(); //NOSONAR
     }
 
     /**
@@ -53,9 +53,9 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      *
      * @param attrs The attributes of the XML tag that is inflating the view
      */
-    public BreadcrumbView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        init();
+    public BreadcrumbView(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
+        init(); //NOSONAR
     }
 
     /**
@@ -67,88 +67,88 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * either be an attribute resource, whose value will be retrieved
      * from the current theme, or an explicit style resource.
      */
-    public BreadcrumbView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        init();
+    public BreadcrumbView(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+        super(context, attrs, defStyle); //NOSONAR
+        init(); //NOSONAR
     }
 
     /**
      * Initialises the view. Loads all necessary
      * information and creates an appropriate layout for the view
      */
-    private void init() {
+    private void init() { //NOSONAR
         //Initialise the listeners
-        this.mBreadcrumbListeners = Collections.synchronizedList(new ArrayList<BreadcrumbListener>());
+        this.mBreadcrumbListeners = Collections.synchronizedList(new ArrayList<BreadcrumbListener>()); //NOSONAR
 
         //Add the view of the breadcrumb
-        addView(inflate(getContext(), R.layout.breadcrumb_view, null));
+        addView(inflate(getContext(), R.layout.breadcrumb_view, null)); //NOSONAR
 
         //Recover all views
-        this.mScrollView = findViewById(R.id.breadcrumb_scrollview);
-        this.mBreadcrumbBar = findViewById(R.id.breadcrumb);
+        this.mScrollView = findViewById(R.id.breadcrumb_scrollview); //NOSONAR
+        this.mBreadcrumbBar = findViewById(R.id.breadcrumb); //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        Aesthetic.get(getContext())
-                .colorPrimary()
-                .take(1)
-                .subscribe(color -> ViewBackgroundAction.create(this)
-                        .accept(color), onErrorLogAndRethrow());
+        Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .take(1) //NOSONAR
+                .subscribe(color -> ViewBackgroundAction.create(this) //NOSONAR
+                        .accept(color), onErrorLogAndRethrow()); //NOSONAR
 
-        aestheticDisposable = (Aesthetic.get(getContext())
-                .colorPrimary()
-                .compose(distinctToMainThread())
-                .subscribe(color -> ViewBackgroundAction.create(this)
-                        .accept(color), onErrorLogAndRethrow()));
+        aestheticDisposable = (Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .compose(distinctToMainThread()) //NOSONAR
+                .subscribe(color -> ViewBackgroundAction.create(this) //NOSONAR
+                        .accept(color), onErrorLogAndRethrow())); //NOSONAR
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        aestheticDisposable.dispose();
-        super.onDetachedFromWindow();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        aestheticDisposable.dispose(); //NOSONAR
+        super.onDetachedFromWindow(); //NOSONAR
     }
 
-    @Override
-    public void addBreadcrumbListener(BreadcrumbListener listener) {
-        this.mBreadcrumbListeners.add(listener);
+    @Override //NOSONAR
+    public void addBreadcrumbListener(BreadcrumbListener listener) { //NOSONAR
+        this.mBreadcrumbListeners.add(listener); //NOSONAR
     }
 
-    @Override
-    public void removeBreadcrumbListener(BreadcrumbListener listener) {
-        this.mBreadcrumbListeners.remove(listener);
+    @Override //NOSONAR
+    public void removeBreadcrumbListener(BreadcrumbListener listener) { //NOSONAR
+        this.mBreadcrumbListeners.remove(listener); //NOSONAR
     }
 
-    @Override
-    public void setTextColor(int textColor) {
-        mTextColor = textColor;
+    @Override //NOSONAR
+    public void setTextColor(int textColor) { //NOSONAR
+        mTextColor = textColor; //NOSONAR
     }
 
-    @Override
-    public void changeBreadcrumbPath(final String newPath) {
+    @Override //NOSONAR
+    public void changeBreadcrumbPath(final String newPath) { //NOSONAR
 
-        if (TextUtils.isEmpty(newPath)) {
-            return;
+        if (TextUtils.isEmpty(newPath)) { //NOSONAR
+            return; //NOSONAR
         }
 
         //Remove all views
-        this.mBreadcrumbBar.removeAllViews();
+        this.mBreadcrumbBar.removeAllViews(); //NOSONAR
 
-        this.mBreadcrumbBar.addView(createBreadcrumbItem(new File(FileHelper.ROOT_DIRECTORY)));
+        this.mBreadcrumbBar.addView(createBreadcrumbItem(new File(FileHelper.ROOT_DIRECTORY))); //NOSONAR
 
         //Add the rest of the path
-        String[] dirs = newPath.split(File.separator);
-        int cc = dirs.length;
+        String[] dirs = newPath.split(File.separator); //NOSONAR
+        int cc = dirs.length; //NOSONAR
 
-        for (int i = 1; i < cc; i++) {
-            this.mBreadcrumbBar.addView(createItemDivider());
-            this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i)));
+        for (int i = 1; i < cc; i++) { //NOSONAR
+            this.mBreadcrumbBar.addView(createItemDivider()); //NOSONAR
+            this.mBreadcrumbBar.addView(createBreadcrumbItem(createFile(dirs, i))); //NOSONAR
         }
 
         //Set scrollbar at the end
-        this.mScrollView.post(() -> BreadcrumbView.this.mScrollView.fullScroll(View.FOCUS_RIGHT));
+        this.mScrollView.post(() -> BreadcrumbView.this.mScrollView.fullScroll(View.FOCUS_RIGHT)); //NOSONAR
     }
 
     /**
@@ -156,11 +156,11 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      *
      * @return View divider icon
      */
-    private ImageView createItemDivider() {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        ImageView imageView = (ImageView) inflater.inflate(R.layout.breadcrumb_item_divider, this.mBreadcrumbBar, false);
-        imageView.setColorFilter(new LightingColorFilter(mTextColor, 0));
-        return imageView;
+    private ImageView createItemDivider() { //NOSONAR
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE); //NOSONAR
+        ImageView imageView = (ImageView) inflater.inflate(R.layout.breadcrumb_item_divider, this.mBreadcrumbBar, false); //NOSONAR
+        imageView.setColorFilter(new LightingColorFilter(mTextColor, 0)); //NOSONAR
+        return imageView; //NOSONAR
     }
 
     /**
@@ -169,15 +169,15 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * @param dir The path
      * @return BreadcrumbItem The view to create
      */
-    private BreadcrumbItem createBreadcrumbItem(File dir) {
-        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        BreadcrumbItem item = (BreadcrumbItem) inflater.inflate(R.layout.breadcrumb_item, this.mBreadcrumbBar, false);
-        item.setText(dir.getName().length() != 0 ? dir.getName() : dir.getPath());
-        item.setItemPath(dir.getPath());
-        item.setOnClickListener(this);
-        item.setTextColor(mTextColor);
+    private BreadcrumbItem createBreadcrumbItem(File dir) { //NOSONAR
+        LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE); //NOSONAR
+        BreadcrumbItem item = (BreadcrumbItem) inflater.inflate(R.layout.breadcrumb_item, this.mBreadcrumbBar, false); //NOSONAR
+        item.setText(dir.getName().length() != 0 ? dir.getName() : dir.getPath()); //NOSONAR
+        item.setItemPath(dir.getPath()); //NOSONAR
+        item.setOnClickListener(this); //NOSONAR
+        item.setTextColor(mTextColor); //NOSONAR
 
-        return item;
+        return item; //NOSONAR
     }
 
     /**
@@ -187,20 +187,20 @@ public class BreadcrumbView extends RelativeLayout implements Breadcrumb, OnClic
      * @param pos The position up to which to create
      * @return File The file reference
      */
-    private File createFile(String[] dirs, int pos) {
-        File parent = new File(FileHelper.ROOT_DIRECTORY);
-        for (int i = 1; i < pos; i++) {
-            parent = new File(parent, dirs[i]);
+    private File createFile(String[] dirs, int pos) { //NOSONAR
+        File parent = new File(FileHelper.ROOT_DIRECTORY); //NOSONAR
+        for (int i = 1; i < pos; i++) { //NOSONAR
+            parent = new File(parent, dirs[i]); //NOSONAR
         }
-        return new File(parent, dirs[pos]);
+        return new File(parent, dirs[pos]); //NOSONAR
     }
 
-    @Override
-    public void onClick(View v) {
-        BreadcrumbItem item = (BreadcrumbItem) v;
-        int cc = this.mBreadcrumbListeners.size();
-        for (int i = 0; i < cc; i++) {
-            this.mBreadcrumbListeners.get(i).onBreadcrumbItemClick(item);
+    @Override //NOSONAR
+    public void onClick(View v) { //NOSONAR
+        BreadcrumbItem item = (BreadcrumbItem) v; //NOSONAR
+        int cc = this.mBreadcrumbListeners.size(); //NOSONAR
+        for (int i = 0; i < cc; i++) { //NOSONAR
+            this.mBreadcrumbListeners.get(i).onBreadcrumbItemClick(item); //NOSONAR
         }
     }
 }

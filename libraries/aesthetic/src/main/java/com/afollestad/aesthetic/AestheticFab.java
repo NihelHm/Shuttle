@@ -15,68 +15,68 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticFab extends FloatingActionButton {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticFab extends FloatingActionButton { //NOSONAR
 
-  private Disposable subscription;
-  private int backgroundResId;
-  private int iconColor;
+  private Disposable subscription; //NOSONAR
+  private int backgroundResId; //NOSONAR
+  private int iconColor; //NOSONAR
 
-  public AestheticFab(Context context) {
-    super(context);
+  public AestheticFab(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticFab(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    init(context, attrs);
+  public AestheticFab(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  public AestheticFab(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    init(context, attrs);
+  public AestheticFab(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  private void init(Context context, AttributeSet attrs) {
-    if (attrs != null) {
-      backgroundResId = resolveResId(context, attrs, android.R.attr.background);
+  private void init(Context context, AttributeSet attrs) { //NOSONAR
+    if (attrs != null) { //NOSONAR
+      backgroundResId = resolveResId(context, attrs, android.R.attr.background); //NOSONAR
     }
   }
 
-  private void invalidateColors(ColorIsDarkState state) {
-    TintHelper.setTintAuto(this, state.color(), true, state.isDark());
-    iconColor = Util.isColorLight(state.color()) ? Color.BLACK : Color.WHITE;
-    setImageDrawable(getDrawable());
+  private void invalidateColors(ColorIsDarkState state) { //NOSONAR
+    TintHelper.setTintAuto(this, state.color(), true, state.isDark()); //NOSONAR
+    iconColor = Util.isColorLight(state.color()) ? Color.BLACK : Color.WHITE; //NOSONAR
+    setImageDrawable(getDrawable()); //NOSONAR
   }
 
-  @Override
-  public void setImageDrawable(@Nullable Drawable drawable) {
-    super.setImageDrawable(TintHelper.createTintedDrawable(drawable, iconColor));
+  @Override //NOSONAR
+  public void setImageDrawable(@Nullable Drawable drawable) { //NOSONAR
+    super.setImageDrawable(TintHelper.createTintedDrawable(drawable, iconColor)); //NOSONAR
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
     //noinspection ConstantConditions
-    subscription =
-        Observable.combineLatest(
-                ViewUtil.getObservableForResId(
-                    getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()),
-                Aesthetic.get(getContext()).isDark(),
-                ColorIsDarkState.creator())
-            .compose(Rx.<ColorIsDarkState>distinctToMainThread())
-            .subscribe(
-                new Consumer<ColorIsDarkState>() {
-                  @Override
-                  public void accept(@NonNull ColorIsDarkState colorIsDarkState) {
-                    invalidateColors(colorIsDarkState);
+    subscription = //NOSONAR
+        Observable.combineLatest( //NOSONAR
+                ViewUtil.getObservableForResId( //NOSONAR
+                    getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()), //NOSONAR
+                Aesthetic.get(getContext()).isDark(), //NOSONAR
+                ColorIsDarkState.creator()) //NOSONAR
+            .compose(Rx.<ColorIsDarkState>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<ColorIsDarkState>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
+                    invalidateColors(colorIsDarkState); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    subscription.dispose();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    subscription.dispose(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

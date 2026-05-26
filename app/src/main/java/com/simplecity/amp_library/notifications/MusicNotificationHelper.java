@@ -37,169 +37,169 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.schedulers.Schedulers;
 import java.util.ConcurrentModificationException;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MusicNotificationHelper extends NotificationHelper {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MusicNotificationHelper extends NotificationHelper { //NOSONAR
 
-    private static final String TAG = "MusicNotificationHelper";
+    private static final String TAG = "MusicNotificationHelper"; //NOSONAR
 
-    private static final int NOTIFICATION_ID = 150;
+    private static final int NOTIFICATION_ID = 150; //NOSONAR
 
-    Notification notification;
+    Notification notification; //NOSONAR
 
-    boolean isFavorite = false;
+    boolean isFavorite = false; //NOSONAR
 
-    Bitmap bitmap;
+    Bitmap bitmap; //NOSONAR
 
-    private Handler handler;
+    private Handler handler; //NOSONAR
 
-    private AnalyticsManager analyticsManager;
+    private AnalyticsManager analyticsManager; //NOSONAR
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable(); //NOSONAR
 
-    public MusicNotificationHelper(Context context, AnalyticsManager analyticsManager) {
-        super(context);
+    public MusicNotificationHelper(Context context, AnalyticsManager analyticsManager) { //NOSONAR
+        super(context); //NOSONAR
 
-        handler = new Handler(Looper.getMainLooper());
-        this.analyticsManager = analyticsManager;
+        handler = new Handler(Looper.getMainLooper()); //NOSONAR
+        this.analyticsManager = analyticsManager; //NOSONAR
     }
 
-    public NotificationCompat.Builder getBuilder(Context context, @NonNull Song song, @NonNull MediaSessionCompat.Token mediaSessionToken, @Nullable Bitmap bitmap, boolean isPlaying,
-            boolean isFavorite) {
+    public NotificationCompat.Builder getBuilder(Context context, @NonNull Song song, @NonNull MediaSessionCompat.Token mediaSessionToken, @Nullable Bitmap bitmap, boolean isPlaying, //NOSONAR
+            boolean isFavorite) { //NOSONAR
 
-        Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".PLAYBACK_VIEWER");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0);
+        Intent intent = new Intent(BuildConfig.APPLICATION_ID + ".PLAYBACK_VIEWER"); //NOSONAR
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK); //NOSONAR
+        PendingIntent contentIntent = PendingIntent.getActivity(context, 0, intent, 0); //NOSONAR
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_stat_notification)
-                .setContentIntent(contentIntent)
-                .setChannelId(NOTIFICATION_CHANNEL_ID)
-                .setPriority(NotificationCompat.PRIORITY_MAX)
-                .setContentTitle(song.name)
-                .setContentText(song.artistName + " - " + song.albumName)
-                .setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
-                        .setShowActionsInCompactView(0, 1, 2)
-                        .setMediaSession(mediaSessionToken))
-                .addAction(
-                        R.drawable.ic_skip_previous_24dp,
-                        context.getString(R.string.btn_prev),
-                        MusicService.retrievePlaybackAction(context, ServiceCommand.PREV)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID) //NOSONAR
+                .setSmallIcon(R.drawable.ic_stat_notification) //NOSONAR
+                .setContentIntent(contentIntent) //NOSONAR
+                .setChannelId(NOTIFICATION_CHANNEL_ID) //NOSONAR
+                .setPriority(NotificationCompat.PRIORITY_MAX) //NOSONAR
+                .setContentTitle(song.name) //NOSONAR
+                .setContentText(song.artistName + " - " + song.albumName) //NOSONAR
+                .setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle() //NOSONAR
+                        .setShowActionsInCompactView(0, 1, 2) //NOSONAR
+                        .setMediaSession(mediaSessionToken)) //NOSONAR
+                .addAction( //NOSONAR
+                        R.drawable.ic_skip_previous_24dp, //NOSONAR
+                        context.getString(R.string.btn_prev), //NOSONAR
+                        MusicService.retrievePlaybackAction(context, ServiceCommand.PREV) //NOSONAR
                 )
-                .addAction(
-                        isPlaying ? R.drawable.ic_pause_24dp : R.drawable.ic_play_24dp,
-                        context.getString(isPlaying ? R.string.btn_pause : R.string.btn_play),
-                        MusicService.retrievePlaybackAction(context, ServiceCommand.TOGGLE_PLAYBACK)
+                .addAction( //NOSONAR
+                        isPlaying ? R.drawable.ic_pause_24dp : R.drawable.ic_play_24dp, //NOSONAR
+                        context.getString(isPlaying ? R.string.btn_pause : R.string.btn_play), //NOSONAR
+                        MusicService.retrievePlaybackAction(context, ServiceCommand.TOGGLE_PLAYBACK) //NOSONAR
                 )
-                .addAction(
-                        R.drawable.ic_skip_next_24dp,
-                        context.getString(R.string.btn_skip),
-                        MusicService.retrievePlaybackAction(context, ServiceCommand.NEXT)
+                .addAction( //NOSONAR
+                        R.drawable.ic_skip_next_24dp, //NOSONAR
+                        context.getString(R.string.btn_skip), //NOSONAR
+                        MusicService.retrievePlaybackAction(context, ServiceCommand.NEXT) //NOSONAR
                 )
-                .addAction(
-                        isFavorite ? R.drawable.ic_favorite_24dp_scaled : R.drawable.ic_favorite_border_24dp_scaled,
-                        context.getString(R.string.fav_add),
-                        MusicService.retrievePlaybackAction(context, ServiceCommand.TOGGLE_FAVORITE)
+                .addAction( //NOSONAR
+                        isFavorite ? R.drawable.ic_favorite_24dp_scaled : R.drawable.ic_favorite_border_24dp_scaled, //NOSONAR
+                        context.getString(R.string.fav_add), //NOSONAR
+                        MusicService.retrievePlaybackAction(context, ServiceCommand.TOGGLE_FAVORITE) //NOSONAR
                 )
-                .setShowWhen(false)
-                .setVisibility(android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC);
+                .setShowWhen(false) //NOSONAR
+                .setVisibility(android.support.v4.app.NotificationCompat.VISIBILITY_PUBLIC); //NOSONAR
 
-        if (bitmap != null) {
-            builder.setLargeIcon(bitmap);
+        if (bitmap != null) { //NOSONAR
+            builder.setLargeIcon(bitmap); //NOSONAR
         }
 
-        return builder;
+        return builder; //NOSONAR
     }
 
-    @SuppressLint("CheckResult")
-    public void notify(
-            Context context,
-            @NonNull Repository.PlaylistsRepository playlistsRepository,
-            @NonNull Repository.SongsRepository songsRepository,
-            @NonNull Song song, boolean isPlaying,
-            @NonNull MediaSessionCompat.Token mediaSessionToken,
-            @NonNull SettingsManager settingsManager,
-            FavoritesPlaylistManager favoritesPlaylistManager
+    @SuppressLint("CheckResult") //NOSONAR
+    public void notify( //NOSONAR
+            Context context, //NOSONAR
+            @NonNull Repository.PlaylistsRepository playlistsRepository, //NOSONAR
+            @NonNull Repository.SongsRepository songsRepository, //NOSONAR
+            @NonNull Song song, boolean isPlaying, //NOSONAR
+            @NonNull MediaSessionCompat.Token mediaSessionToken, //NOSONAR
+            @NonNull SettingsManager settingsManager, //NOSONAR
+            FavoritesPlaylistManager favoritesPlaylistManager //NOSONAR
     ) {
-        notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build();
-        notify(NOTIFICATION_ID, notification);
+        notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build(); //NOSONAR
+        notify(NOTIFICATION_ID, notification); //NOSONAR
 
-        compositeDisposable.add(favoritesPlaylistManager.isFavorite(song)
-                .first(false)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(isFavorite -> {
-                    this.isFavorite = isFavorite;
-                    notification = getBuilder(context, song, mediaSessionToken, MusicNotificationHelper.this.bitmap, isPlaying, isFavorite).build();
-                    notify(notification);
-                }, error -> {
-                    LogUtils.logException(TAG, "MusicNotificationHelper failed to present notification", error);
+        compositeDisposable.add(favoritesPlaylistManager.isFavorite(song) //NOSONAR
+                .first(false) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe(isFavorite -> { //NOSONAR
+                    this.isFavorite = isFavorite; //NOSONAR
+                    notification = getBuilder(context, song, mediaSessionToken, MusicNotificationHelper.this.bitmap, isPlaying, isFavorite).build(); //NOSONAR
+                    notify(notification); //NOSONAR
+                }, error -> { //NOSONAR
+                    LogUtils.logException(TAG, "MusicNotificationHelper failed to present notification", error); //NOSONAR
                 }));
 
-        handler.post(() -> Glide.with(context)
-                .load(song)
-                .asBitmap()
-                .priority(Priority.IMMEDIATE)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .override(600, 600)
-                .placeholder(PlaceholderProvider.getInstance(context).getPlaceHolderDrawable(song.albumName, false, settingsManager))
-                .into(new SimpleTarget<Bitmap>() {
-                    @Override
-                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
-                        MusicNotificationHelper.this.bitmap = resource;
-                        try {
-                            notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build();
-                            MusicNotificationHelper.this.notify(notification);
-                        } catch (NullPointerException | ConcurrentModificationException e) {
-                            LogUtils.logException(TAG, "Exception while attempting to update notification with glide image.", e);
+        handler.post(() -> Glide.with(context) //NOSONAR
+                .load(song) //NOSONAR
+                .asBitmap() //NOSONAR
+                .priority(Priority.IMMEDIATE) //NOSONAR
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                .override(600, 600) //NOSONAR
+                .placeholder(PlaceholderProvider.getInstance(context).getPlaceHolderDrawable(song.albumName, false, settingsManager)) //NOSONAR
+                .into(new SimpleTarget<Bitmap>() { //NOSONAR
+                    @Override //NOSONAR
+                    public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) { //NOSONAR
+                        MusicNotificationHelper.this.bitmap = resource; //NOSONAR
+                        try { //NOSONAR
+                            notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build(); //NOSONAR
+                            MusicNotificationHelper.this.notify(notification); //NOSONAR
+                        } catch (NullPointerException | ConcurrentModificationException e) { //NOSONAR
+                            LogUtils.logException(TAG, "Exception while attempting to update notification with glide image.", e); //NOSONAR
                         }
                     }
 
-                    @Override
-                    public void onLoadFailed(Exception e, Drawable errorDrawable) {
-                        MusicNotificationHelper.this.bitmap = GlideUtils.drawableToBitmap(errorDrawable);
-                        super.onLoadFailed(e, errorDrawable);
-                        try {
-                            notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build();
-                            MusicNotificationHelper.this.notify(NOTIFICATION_ID, notification);
-                        } catch (IllegalArgumentException error) {
-                            LogUtils.logException(TAG, "Exception while attempting to update notification with error image", error);
+                    @Override //NOSONAR
+                    public void onLoadFailed(Exception e, Drawable errorDrawable) { //NOSONAR
+                        MusicNotificationHelper.this.bitmap = GlideUtils.drawableToBitmap(errorDrawable); //NOSONAR
+                        super.onLoadFailed(e, errorDrawable); //NOSONAR
+                        try { //NOSONAR
+                            notification = getBuilder(context, song, mediaSessionToken, bitmap, isPlaying, isFavorite).build(); //NOSONAR
+                            MusicNotificationHelper.this.notify(NOTIFICATION_ID, notification); //NOSONAR
+                        } catch (IllegalArgumentException error) { //NOSONAR
+                            LogUtils.logException(TAG, "Exception while attempting to update notification with error image", error); //NOSONAR
                         }
                     }
                 }));
     }
 
-    public boolean startForeground(
-            Service service,
-            @NonNull Repository.PlaylistsRepository playlistsRepository,
-            @NonNull Repository.SongsRepository songsRepository,
-            @NonNull Song song,
-            boolean isPlaying,
-            @NonNull MediaSessionCompat.Token mediaSessionToken,
-            SettingsManager settingsManager,
-            FavoritesPlaylistManager favoritesPlaylistManager
+    public boolean startForeground( //NOSONAR
+            Service service, //NOSONAR
+            @NonNull Repository.PlaylistsRepository playlistsRepository, //NOSONAR
+            @NonNull Repository.SongsRepository songsRepository, //NOSONAR
+            @NonNull Song song, //NOSONAR
+            boolean isPlaying, //NOSONAR
+            @NonNull MediaSessionCompat.Token mediaSessionToken, //NOSONAR
+            SettingsManager settingsManager, //NOSONAR
+            FavoritesPlaylistManager favoritesPlaylistManager //NOSONAR
     ) {
-        notify(service, playlistsRepository, songsRepository, song, isPlaying, mediaSessionToken, settingsManager, favoritesPlaylistManager);
-        try {
-            analyticsManager.dropBreadcrumb(TAG, "startForeground() called");
-            Log.w(TAG, "service.startForeground called");
-            service.startForeground(NOTIFICATION_ID, notification);
-            return true;
-        } catch (RuntimeException e) {
-            Log.e(TAG, "startForeground not called, error: " + e);
-            LogUtils.logException(TAG, "Error starting foreground notification", e);
-            return false;
+        notify(service, playlistsRepository, songsRepository, song, isPlaying, mediaSessionToken, settingsManager, favoritesPlaylistManager); //NOSONAR
+        try { //NOSONAR
+            analyticsManager.dropBreadcrumb(TAG, "startForeground() called"); //NOSONAR
+            Log.w(TAG, "service.startForeground called"); //NOSONAR
+            service.startForeground(NOTIFICATION_ID, notification); //NOSONAR
+            return true; //NOSONAR
+        } catch (RuntimeException e) { //NOSONAR
+            Log.e(TAG, "startForeground not called, error: " + e); //NOSONAR
+            LogUtils.logException(TAG, "Error starting foreground notification", e); //NOSONAR
+            return false; //NOSONAR
         }
     }
 
-    public void notify(Notification notification) {
-        super.notify(NOTIFICATION_ID, notification);
+    public void notify(Notification notification) { //NOSONAR
+        super.notify(NOTIFICATION_ID, notification); //NOSONAR
     }
 
-    public void cancel() {
-        super.cancel(NOTIFICATION_ID);
+    public void cancel() { //NOSONAR
+        super.cancel(NOTIFICATION_ID); //NOSONAR
     }
 
-    public void tearDown() {
-        compositeDisposable.clear();
+    public void tearDown() { //NOSONAR
+        compositeDisposable.clear(); //NOSONAR
     }
 }

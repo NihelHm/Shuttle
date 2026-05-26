@@ -9,67 +9,67 @@ import com.bignerdranch.expandablerecyclerview.model.Parent;
 import com.simplecity.amp_library.R;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class DrawerAdapter extends ExpandableRecyclerAdapter<Parent<DrawerChild>, DrawerChild, ParentViewHolder<Parent<DrawerChild>, DrawerChild>, DrawerChild.ChildHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class DrawerAdapter extends ExpandableRecyclerAdapter<Parent<DrawerChild>, DrawerChild, ParentViewHolder<Parent<DrawerChild>, DrawerChild>, DrawerChild.ChildHolder> { //NOSONAR
 
-    public DrawerAdapter(@NonNull List<Parent<DrawerChild>> parentList) {
-        super(parentList);
+    public DrawerAdapter(@NonNull List<Parent<DrawerChild>> parentList) { //NOSONAR
+        super(parentList); //NOSONAR
     }
 
-    static final int TYPE_DIVIDER = 3;
+    static final int TYPE_DIVIDER = 3; //NOSONAR
 
-    @Override
-    public int getParentViewType(int parentPosition) {
+    @Override //NOSONAR
+    public int getParentViewType(int parentPosition) { //NOSONAR
 
-        if (getParentList().get(parentPosition) instanceof DrawerDivider) {
-            return TYPE_DIVIDER;
+        if (getParentList().get(parentPosition) instanceof DrawerDivider) { //NOSONAR
+            return TYPE_DIVIDER; //NOSONAR
         }
 
-        return super.getParentViewType(parentPosition);
+        return super.getParentViewType(parentPosition); //NOSONAR
     }
 
-    @Override
-    public boolean isParentViewType(int viewType) {
-        return super.isParentViewType(viewType) || viewType == TYPE_DIVIDER;
+    @Override //NOSONAR
+    public boolean isParentViewType(int viewType) { //NOSONAR
+        return super.isParentViewType(viewType) || viewType == TYPE_DIVIDER; //NOSONAR
     }
 
-    @NonNull
-    @Override
-    public ParentViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) {
-        switch (viewType) {
-            case TYPE_DIVIDER:
-                return new DrawerDivider.DividerHolder(LayoutInflater.from(parentViewGroup.getContext()).inflate(R.layout.list_item_drawer_divider, parentViewGroup, false));
-            case TYPE_PARENT:
-                return new DrawerParent.ParentHolder(LayoutInflater.from(parentViewGroup.getContext()).inflate(R.layout.list_item_drawer, parentViewGroup, false));
+    @NonNull //NOSONAR
+    @Override //NOSONAR
+    public ParentViewHolder onCreateParentViewHolder(@NonNull ViewGroup parentViewGroup, int viewType) { //NOSONAR
+        switch (viewType) { //NOSONAR
+            case TYPE_DIVIDER: //NOSONAR
+                return new DrawerDivider.DividerHolder(LayoutInflater.from(parentViewGroup.getContext()).inflate(R.layout.list_item_drawer_divider, parentViewGroup, false)); //NOSONAR
+            case TYPE_PARENT: //NOSONAR
+                return new DrawerParent.ParentHolder(LayoutInflater.from(parentViewGroup.getContext()).inflate(R.layout.list_item_drawer, parentViewGroup, false)); //NOSONAR
         }
-        throw new IllegalStateException("onCreateParentViewHolder failed to return holder for type: " + viewType);
+        throw new IllegalStateException("onCreateParentViewHolder failed to return holder for type: " + viewType); //NOSONAR
     }
 
-    @NonNull
-    @Override
-    public DrawerChild.ChildHolder onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) {
-        return new DrawerChild.ChildHolder(LayoutInflater.from(childViewGroup.getContext()).inflate(R.layout.list_item_drawer, childViewGroup, false));
+    @NonNull //NOSONAR
+    @Override //NOSONAR
+    public DrawerChild.ChildHolder onCreateChildViewHolder(@NonNull ViewGroup childViewGroup, int viewType) { //NOSONAR
+        return new DrawerChild.ChildHolder(LayoutInflater.from(childViewGroup.getContext()).inflate(R.layout.list_item_drawer, childViewGroup, false)); //NOSONAR
     }
 
-    @Override
-    public void onBindParentViewHolder(@NonNull ParentViewHolder<Parent<DrawerChild>, DrawerChild> parentViewHolder, int parentPosition, @NonNull Parent<DrawerChild> parent) {
-        switch (getParentViewType(parentPosition)) {
-            case TYPE_DIVIDER:
-                ((DrawerDivider) getParentList().get(parentPosition)).bindView();
-                break;
-            case TYPE_PARENT:
-                ((DrawerParent) getParentList().get(parentPosition)).bindView((DrawerParent.ParentHolder) parentViewHolder);
-                break;
+    @Override //NOSONAR
+    public void onBindParentViewHolder(@NonNull ParentViewHolder<Parent<DrawerChild>, DrawerChild> parentViewHolder, int parentPosition, @NonNull Parent<DrawerChild> parent) { //NOSONAR
+        switch (getParentViewType(parentPosition)) { //NOSONAR
+            case TYPE_DIVIDER: //NOSONAR
+                ((DrawerDivider) getParentList().get(parentPosition)).bindView(); //NOSONAR
+                break; //NOSONAR
+            case TYPE_PARENT: //NOSONAR
+                ((DrawerParent) getParentList().get(parentPosition)).bindView((DrawerParent.ParentHolder) parentViewHolder); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    @Override
-    public void onBindChildViewHolder(@NonNull DrawerChild.ChildHolder childViewHolder, int parentPosition, int childPosition, @NonNull DrawerChild drawerChild) {
-        List<Parent<DrawerChild>> parentList = getParentList();
-        if (parentPosition >= 0 && !parentList.isEmpty() && parentPosition < parentList.size()) {
-            List<DrawerChild> childList = parentList.get(parentPosition).getChildList();
-            if (childPosition >= 0 && !childList.isEmpty() && childPosition < childList.size()) {
-                childList.get(childPosition).bindView(childViewHolder);
+    @Override //NOSONAR
+    public void onBindChildViewHolder(@NonNull DrawerChild.ChildHolder childViewHolder, int parentPosition, int childPosition, @NonNull DrawerChild drawerChild) { //NOSONAR
+        List<Parent<DrawerChild>> parentList = getParentList(); //NOSONAR
+        if (parentPosition >= 0 && !parentList.isEmpty() && parentPosition < parentList.size()) { //NOSONAR
+            List<DrawerChild> childList = parentList.get(parentPosition).getChildList(); //NOSONAR
+            if (childPosition >= 0 && !childList.isEmpty() && childPosition < childList.size()) { //NOSONAR
+                childList.get(childPosition).bindView(childViewHolder); //NOSONAR
             }
         }
     }

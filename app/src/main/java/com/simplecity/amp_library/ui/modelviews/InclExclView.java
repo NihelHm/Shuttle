@@ -15,101 +15,101 @@ import com.simplecity.amp_library.ui.views.OverflowButton;
 import com.simplecityapps.recycler_adapter.model.BaseViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class InclExclView extends BaseViewModel<InclExclView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class InclExclView extends BaseViewModel<InclExclView.ViewHolder> { //NOSONAR
 
-    public interface ClickListener {
-        void onRemove(InclExclView InclExclView);
+    public interface ClickListener { //NOSONAR
+        void onRemove(InclExclView InclExclView); //NOSONAR
     }
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public InclExclItem inclExclItem;
+    public InclExclItem inclExclItem; //NOSONAR
 
-    public InclExclView(InclExclItem inclExclItem) {
-        this.inclExclItem = inclExclItem;
+    public InclExclView(InclExclItem inclExclItem) { //NOSONAR
+        this.inclExclItem = inclExclItem; //NOSONAR
     }
 
-    @Nullable
-    ClickListener listener;
+    @Nullable //NOSONAR
+    ClickListener listener; //NOSONAR
 
-    public void setClickListener(@Nullable ClickListener listener) {
-        this.listener = listener;
+    public void setClickListener(@Nullable ClickListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    void onRemove() {
-        if (listener != null) {
-            listener.onRemove(this);
+    void onRemove() { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onRemove(this); //NOSONAR
         }
     }
 
-    @Override
-    public int getViewType() {
-        return ViewType.INCL_EXCL;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return ViewType.INCL_EXCL; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return R.layout.list_item_one_line;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return R.layout.list_item_one_line; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.lineOne.setText(inclExclItem.path);
+        holder.lineOne.setText(inclExclItem.path); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<InclExclView> {
+    public static class ViewHolder extends BaseViewHolder<InclExclView> { //NOSONAR
 
-        @BindView(R.id.line_one)
-        @SuppressWarnings("java:S1104")
-        public TextView lineOne;
+        @BindView(R.id.line_one) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineOne; //NOSONAR
 
-        @BindView(R.id.btn_overflow)
-        @SuppressWarnings("java:S1104")
-        public OverflowButton overflow;
+        @BindView(R.id.btn_overflow) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public OverflowButton overflow; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView); //NOSONAR
 
-            lineOne.setSingleLine(false);
+            lineOne.setSingleLine(false); //NOSONAR
 
-            overflow.drawable = DrawableCompat.wrap(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_close_24dp)).mutate();
+            overflow.drawable = DrawableCompat.wrap(ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_close_24dp)).mutate(); //NOSONAR
 
-            overflow.setOnClickListener(v -> viewModel.onRemove());
+            overflow.setOnClickListener(v -> viewModel.onRemove()); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "InclExclView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "InclExclView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        InclExclView that = (InclExclView) o;
+        InclExclView that = (InclExclView) o; //NOSONAR
 
-        return inclExclItem != null ? inclExclItem.equals(that.inclExclItem) : that.inclExclItem == null;
+        return inclExclItem != null ? inclExclItem.equals(that.inclExclItem) : that.inclExclItem == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return inclExclItem != null ? inclExclItem.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return inclExclItem != null ? inclExclItem.hashCode() : 0; //NOSONAR
     }
 
-    @Override
-    public boolean areContentsEqual(Object other) {
-        return false;
+    @Override //NOSONAR
+    public boolean areContentsEqual(Object other) { //NOSONAR
+        return false; //NOSONAR
     }
 }

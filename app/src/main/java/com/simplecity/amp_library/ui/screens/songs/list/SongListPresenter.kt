@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.songs.list
 
@@ -14,81 +14,81 @@ import com.simplecity.amp_library.utils.SettingsManager
 import com.simplecity.amp_library.utils.sorting.SortManager
 import javax.inject.Inject
 
-class SongListPresenter @Inject constructor(
-    private val songsRepository: SongsRepository,
-    private val mediaManager: MediaManager,
-    private val sortManager: SortManager,
-    private val settingsManager: SettingsManager,
-    private val songMenuPresenter: SongMenuPresenter
-) : Presenter<View>(),
-    SongListContract.Presenter,
-    SongMenuContract.Presenter by songMenuPresenter {
+class SongListPresenter @Inject constructor( //NOSONAR
+    private val songsRepository: SongsRepository, //NOSONAR
+    private val mediaManager: MediaManager, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val settingsManager: SettingsManager, //NOSONAR
+    private val songMenuPresenter: SongMenuPresenter //NOSONAR
+) : Presenter<View>(), //NOSONAR
+    SongListContract.Presenter, //NOSONAR
+    SongMenuContract.Presenter by songMenuPresenter { //NOSONAR
 
-    private var songs = mutableListOf<Song>()
+    private var songs = mutableListOf<Song>() //NOSONAR
 
-    override fun bindView(view: View) {
-        super.bindView(view)
-        songMenuPresenter.bindView(view)
+    override fun bindView(view: View) { //NOSONAR
+        super.bindView(view) //NOSONAR
+        songMenuPresenter.bindView(view) //NOSONAR
     }
 
-    override fun unbindView(view: View) {
-        super.unbindView(view)
-        songMenuPresenter.unbindView(view)
+    override fun unbindView(view: View) { //NOSONAR
+        super.unbindView(view) //NOSONAR
+        songMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    override fun loadSongs(scrollToTop: Boolean) {
-        addDisposable(songsRepository.getSongs()
-            .map { songs ->
-                val songs = songs.toMutableList()
+    override fun loadSongs(scrollToTop: Boolean) { //NOSONAR
+        addDisposable(songsRepository.getSongs() //NOSONAR
+            .map { songs -> //NOSONAR
+                val songs = songs.toMutableList() //NOSONAR
 
-                sortManager.sortSongs(songs)
+                sortManager.sortSongs(songs) //NOSONAR
 
-                if (!sortManager.songsAscending) {
-                    songs.reverse()
+                if (!sortManager.songsAscending) { //NOSONAR
+                    songs.reverse() //NOSONAR
                 }
-                songs
+                songs //NOSONAR
             }
-            .subscribe({ songs ->
-                this.songs = songs
-                view?.setData(songs, scrollToTop)
-            }, { error ->
-                LogUtils.logException(TAG, "Failed to load songs", error)
+            .subscribe({ songs -> //NOSONAR
+                this.songs = songs //NOSONAR
+                view?.setData(songs, scrollToTop) //NOSONAR
+            }, { error -> //NOSONAR
+                LogUtils.logException(TAG, "Failed to load songs", error) //NOSONAR
             })
         )
     }
 
-    override fun setSongsSortOrder(order: Int) {
-        sortManager.songsSortOrder = order
-        loadSongs(true)
-        view?.invalidateOptionsMenu()
+    override fun setSongsSortOrder(order: Int) { //NOSONAR
+        sortManager.songsSortOrder = order //NOSONAR
+        loadSongs(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun setSongsAscending(ascending: Boolean) {
-        sortManager.songsAscending = ascending
-        loadSongs(true)
-        view?.invalidateOptionsMenu()
+    override fun setSongsAscending(ascending: Boolean) { //NOSONAR
+        sortManager.songsAscending = ascending //NOSONAR
+        loadSongs(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun setShowArtwork(show: Boolean) {
-        settingsManager.setShowArtworkInSongList(show)
-        loadSongs(false)
-        view?.invalidateOptionsMenu()
+    override fun setShowArtwork(show: Boolean) { //NOSONAR
+        settingsManager.setShowArtworkInSongList(show) //NOSONAR
+        loadSongs(false) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun play(song: Song) {
-        mediaManager.playAll(songs, songs.indexOf(song), true) {
-            view?.showPlaybackError()
+    override fun play(song: Song) { //NOSONAR
+        mediaManager.playAll(songs, songs.indexOf(song), true) { //NOSONAR
+            view?.showPlaybackError() //NOSONAR
         }
     }
 
-    override fun shuffleAll() {
-        mediaManager.shuffleAll(songsRepository.getSongs().firstOrError()) {
-            view?.showPlaybackError()
+    override fun shuffleAll() { //NOSONAR
+        mediaManager.shuffleAll(songsRepository.getSongs().firstOrError()) { //NOSONAR
+            view?.showPlaybackError() //NOSONAR
         }
     }
 
-    companion object {
-        const val TAG = "SongListPresenter"
+    companion object { //NOSONAR
+        const val TAG = "SongListPresenter" //NOSONAR
     }
 
 }

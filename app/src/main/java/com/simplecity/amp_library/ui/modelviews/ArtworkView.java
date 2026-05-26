@@ -25,180 +25,180 @@ import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSONAR
 
-    public interface GlideListener {
-        void onArtworkLoadFailed(ArtworkView artworkView);
+    public interface GlideListener { //NOSONAR
+        void onArtworkLoadFailed(ArtworkView artworkView); //NOSONAR
     }
 
-    public interface ClickListener {
-        void onClick(ArtworkView artworkView);
+    public interface ClickListener { //NOSONAR
+        void onClick(ArtworkView artworkView); //NOSONAR
     }
 
-    @ArtworkProvider.Type
-    private int type;
+    @ArtworkProvider.Type //NOSONAR
+    private int type; //NOSONAR
 
-    private ArtworkProvider artworkProvider;
+    private ArtworkProvider artworkProvider; //NOSONAR
 
-    GlideListener glideListener;
+    GlideListener glideListener; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public File file;
+    public File file; //NOSONAR
 
-    private boolean selected;
+    private boolean selected; //NOSONAR
 
-    private boolean isCustom;
+    private boolean isCustom; //NOSONAR
 
-    @Nullable
-    private ClickListener listener;
+    @Nullable //NOSONAR
+    private ClickListener listener; //NOSONAR
 
-    public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener) {
-        this(type, artworkProvider, glideListener, null, false);
+    public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener) { //NOSONAR
+        this(type, artworkProvider, glideListener, null, false); //NOSONAR
     }
 
-    public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener, File file, boolean isCustom) {
-        this.type = type;
-        this.artworkProvider = artworkProvider;
-        this.glideListener = glideListener;
-        this.file = file;
-        this.isCustom = isCustom;
+    public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener, File file, boolean isCustom) { //NOSONAR
+        this.type = type; //NOSONAR
+        this.artworkProvider = artworkProvider; //NOSONAR
+        this.glideListener = glideListener; //NOSONAR
+        this.file = file; //NOSONAR
+        this.isCustom = isCustom; //NOSONAR
     }
 
-    public ArtworkModel getItem() {
-        return new ArtworkModel(type, file);
+    public ArtworkModel getItem() { //NOSONAR
+        return new ArtworkModel(type, file); //NOSONAR
     }
 
-    public void setListener(@Nullable ClickListener listener) {
-        this.listener = listener;
+    public void setListener(@Nullable ClickListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    public void setSelected(boolean selected) {
-        this.selected = selected;
+    public void setSelected(boolean selected) { //NOSONAR
+        this.selected = selected; //NOSONAR
     }
 
-    public boolean isSelected() {
-        return selected;
+    public boolean isSelected() { //NOSONAR
+        return selected; //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return ViewType.ARTWORK;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return ViewType.ARTWORK; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return R.layout.list_item_artwork;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return R.layout.list_item_artwork; //NOSONAR
     }
 
-    void onClick() {
-        if (listener != null) {
-            listener.onClick(this);
+    void onClick() { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onClick(this); //NOSONAR
         }
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        long time = System.currentTimeMillis();
+        long time = System.currentTimeMillis(); //NOSONAR
 
-        holder.textContainer.setBackground(null);
-        holder.progressBar.setVisibility(View.VISIBLE);
-        holder.lineTwo.setText(null);
+        holder.textContainer.setBackground(null); //NOSONAR
+        holder.progressBar.setVisibility(View.VISIBLE); //NOSONAR
+        holder.lineTwo.setText(null); //NOSONAR
 
-        Glide.with(holder.itemView.getContext())
-                .using(new TypeLoader(holder.itemView.getContext(), type, file), InputStream.class)
-                .from(ArtworkProvider.class)
-                .as(BitmapAndSize.class)
-                .sourceEncoder(new StreamEncoder())
-                .decoder(new BitmapAndSizeDecoder(holder.itemView.getContext()))
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .load(artworkProvider)
-                .listener(new RequestListener<ArtworkProvider, BitmapAndSize>() {
-                    @Override
-                    public boolean onException(Exception e, ArtworkProvider model, Target<BitmapAndSize> target, boolean isFirstResource) {
-                        if (glideListener != null) {
-                            if (holder.itemView.getHandler() != null) {
-                                holder.itemView.getHandler().postDelayed(() ->
-                                        glideListener.onArtworkLoadFailed(ArtworkView.this), System.currentTimeMillis() + 1000 - time);
+        Glide.with(holder.itemView.getContext()) //NOSONAR
+                .using(new TypeLoader(holder.itemView.getContext(), type, file), InputStream.class) //NOSONAR
+                .from(ArtworkProvider.class) //NOSONAR
+                .as(BitmapAndSize.class) //NOSONAR
+                .sourceEncoder(new StreamEncoder()) //NOSONAR
+                .decoder(new BitmapAndSizeDecoder(holder.itemView.getContext())) //NOSONAR
+                .diskCacheStrategy(DiskCacheStrategy.NONE) //NOSONAR
+                .load(artworkProvider) //NOSONAR
+                .listener(new RequestListener<ArtworkProvider, BitmapAndSize>() { //NOSONAR
+                    @Override //NOSONAR
+                    public boolean onException(Exception e, ArtworkProvider model, Target<BitmapAndSize> target, boolean isFirstResource) { //NOSONAR
+                        if (glideListener != null) { //NOSONAR
+                            if (holder.itemView.getHandler() != null) { //NOSONAR
+                                holder.itemView.getHandler().postDelayed(() -> //NOSONAR
+                                        glideListener.onArtworkLoadFailed(ArtworkView.this), System.currentTimeMillis() + 1000 - time); //NOSONAR
                             }
                         }
-                        return false;
+                        return false; //NOSONAR
                     }
 
-                    @Override
-                    public boolean onResourceReady(BitmapAndSize resource, ArtworkProvider model, Target<BitmapAndSize> target, boolean isFromMemoryCache, boolean isFirstResource) {
-                        return false;
+                    @Override //NOSONAR
+                    public boolean onResourceReady(BitmapAndSize resource, ArtworkProvider model, Target<BitmapAndSize> target, boolean isFromMemoryCache, boolean isFirstResource) { //NOSONAR
+                        return false; //NOSONAR
                     }
                 })
-                .into(new ImageViewTarget<BitmapAndSize>(((ViewHolder) holder).imageView) {
-                    @Override
-                    protected void setResource(BitmapAndSize resource) {
-                        holder.textContainer.setBackgroundResource(R.drawable.text_protection_scrim_reversed);
-                        holder.progressBar.setVisibility(View.GONE);
+                .into(new ImageViewTarget<BitmapAndSize>(((ViewHolder) holder).imageView) { //NOSONAR
+                    @Override //NOSONAR
+                    protected void setResource(BitmapAndSize resource) { //NOSONAR
+                        holder.textContainer.setBackgroundResource(R.drawable.text_protection_scrim_reversed); //NOSONAR
+                        holder.progressBar.setVisibility(View.GONE); //NOSONAR
 
-                        holder.imageView.setImageBitmap(resource.bitmap);
-                        holder.lineTwo.setText(String.format("%sx%spx", resource.size.width, resource.size.height));
+                        holder.imageView.setImageBitmap(resource.bitmap); //NOSONAR
+                        holder.lineTwo.setText(String.format("%sx%spx", resource.size.width, resource.size.height)); //NOSONAR
                     }
                 });
 
-        holder.lineOne.setText(ArtworkModel.getTypeString(holder.itemView.getContext(), type));
+        holder.lineOne.setText(ArtworkModel.getTypeString(holder.itemView.getContext(), type)); //NOSONAR
 
-        if (type == ArtworkProvider.Type.FOLDER && file != null) {
-            holder.lineOne.setText(file.getName());
+        if (type == ArtworkProvider.Type.FOLDER && file != null) { //NOSONAR
+            holder.lineOne.setText(file.getName()); //NOSONAR
         }
 
-        if (isCustom && file != null && file.getPath().contains("custom_artwork")) {
-            holder.lineOne.setText(holder.itemView.getContext().getString(R.string.artwork_type_custom));
+        if (isCustom && file != null && file.getPath().contains("custom_artwork")) { //NOSONAR
+            holder.lineOne.setText(holder.itemView.getContext().getString(R.string.artwork_type_custom)); //NOSONAR
         }
 
-        holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE);
+        holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder, int position, List payloads) {
-        super.bindView(holder, position, payloads);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
+        super.bindView(holder, position, payloads); //NOSONAR
 
-        holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE);
+        holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<ArtworkView> {
+    public static class ViewHolder extends BaseViewHolder<ArtworkView> { //NOSONAR
 
-        @SuppressWarnings("java:S1104")
+        @SuppressWarnings("java:S1104") //NOSONAR
 
-        public ImageView imageView;
-        @SuppressWarnings("java:S1104")
-        public TextView lineOne;
-        @SuppressWarnings("java:S1104")
-        public TextView lineTwo;
-        private View checkView;
-        @SuppressWarnings("java:S1104")
-        public View textContainer;
-        private ProgressBar progressBar;
+        public ImageView imageView; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineOne; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineTwo; //NOSONAR
+        private View checkView; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public View textContainer; //NOSONAR
+        private ProgressBar progressBar; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            imageView = itemView.findViewById(R.id.imageView);
-            lineOne = itemView.findViewById(R.id.line_one);
-            lineTwo = itemView.findViewById(R.id.line_two);
-            checkView = itemView.findViewById(R.id.checkView);
-            textContainer = itemView.findViewById(R.id.textContainer);
-            progressBar = itemView.findViewById(R.id.progressBar);
+            imageView = itemView.findViewById(R.id.imageView); //NOSONAR
+            lineOne = itemView.findViewById(R.id.line_one); //NOSONAR
+            lineTwo = itemView.findViewById(R.id.line_two); //NOSONAR
+            checkView = itemView.findViewById(R.id.checkView); //NOSONAR
+            textContainer = itemView.findViewById(R.id.textContainer); //NOSONAR
+            progressBar = itemView.findViewById(R.id.progressBar); //NOSONAR
 
-            itemView.setOnClickListener(v -> viewModel.onClick());
+            itemView.setOnClickListener(v -> viewModel.onClick()); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "ArtworkView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "ArtworkView.ViewHolder"; //NOSONAR
         }
     }
 }

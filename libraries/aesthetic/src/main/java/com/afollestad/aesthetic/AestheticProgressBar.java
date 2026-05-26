@@ -10,47 +10,47 @@ import io.reactivex.functions.Consumer;
 import me.zhanghai.android.materialprogressbar.MaterialProgressBar;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticProgressBar extends MaterialProgressBar {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticProgressBar extends MaterialProgressBar { //NOSONAR
 
-  private Disposable subscription;
+  private Disposable subscription; //NOSONAR
 
-  public AestheticProgressBar(Context context) {
-    super(context);
+  public AestheticProgressBar(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticProgressBar(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticProgressBar(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public AestheticProgressBar(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
   }
 
-  private void invalidateColors(int color) {
-    TintHelper.setTint(this, color);
+  private void invalidateColors(int color) { //NOSONAR
+    TintHelper.setTint(this, color); //NOSONAR
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    subscription =
-        Aesthetic.get(getContext())
-            .colorAccent()
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer color) {
-                    invalidateColors(color);
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    subscription = //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .colorAccent() //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer color) { //NOSONAR
+                    invalidateColors(color); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    subscription.dispose();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    subscription.dispose(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

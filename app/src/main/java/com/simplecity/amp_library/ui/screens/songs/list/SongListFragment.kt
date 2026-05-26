@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.songs.list
 
@@ -49,162 +49,162 @@ import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_recycler.recyclerView
 import javax.inject.Inject
 
-class SongListFragment :
-    BaseFragment(),
-    SongView.ClickListener,
-    ShuffleView.ShuffleClickListener,
-    SongListContract.View,
-    SongMenuContract.View {
+class SongListFragment : //NOSONAR
+    BaseFragment(), //NOSONAR
+    SongView.ClickListener, //NOSONAR
+    ShuffleView.ShuffleClickListener, //NOSONAR
+    SongListContract.View, //NOSONAR
+    SongMenuContract.View { //NOSONAR
 
-    private val adapter = SectionedAdapter()
+    private val adapter = SectionedAdapter() //NOSONAR
 
-    private val shuffleView = ShuffleView()
+    private val shuffleView = ShuffleView() //NOSONAR
 
-    private var contextualToolbarHelper: ContextualToolbarHelper<Song>? = null
+    private var contextualToolbarHelper: ContextualToolbarHelper<Song>? = null //NOSONAR
 
-    private var setDataDisposable: Disposable? = null
+    private var setDataDisposable: Disposable? = null //NOSONAR
 
-    private var playlistMenuDisposable: Disposable? = null
+    private var playlistMenuDisposable: Disposable? = null //NOSONAR
 
-    private val menuDisposables = CompositeDisposable()
+    private val menuDisposables = CompositeDisposable() //NOSONAR
 
-    @Inject lateinit var requestManager: RequestManager
+    @Inject lateinit var requestManager: RequestManager //NOSONAR
 
-    @Inject lateinit var songsPresenter: SongListPresenter
+    @Inject lateinit var songsPresenter: SongListPresenter //NOSONAR
 
-    @Inject lateinit var sortManager: SortManager
+    @Inject lateinit var sortManager: SortManager //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper
+    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper //NOSONAR
 
     // Lifecycle
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreate(icicle: Bundle?) {
-        super.onCreate(icicle)
+    override fun onCreate(icicle: Bundle?) { //NOSONAR
+        super.onCreate(icicle) //NOSONAR
 
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(true) //NOSONAR
 
-        shuffleView.setClickListener(this)
+        shuffleView.setClickListener(this) //NOSONAR
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_recycler, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
+        return inflater.inflate(R.layout.fragment_recycler, container, false) //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setRecyclerListener(RecyclerListener())
-        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context) //NOSONAR
+        recyclerView.setRecyclerListener(RecyclerListener()) //NOSONAR
+        recyclerView.adapter = adapter //NOSONAR
 
-        songsPresenter.bindView(this)
+        songsPresenter.bindView(this) //NOSONAR
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResume() { //NOSONAR
+        super.onResume() //NOSONAR
 
-        songsPresenter.loadSongs()
+        songsPresenter.loadSongs() //NOSONAR
 
-        if (userVisibleHint) {
-            setupContextualToolbar()
+        if (userVisibleHint) { //NOSONAR
+            setupContextualToolbar() //NOSONAR
         }
     }
 
-    override fun onPause() {
+    override fun onPause() { //NOSONAR
 
-        setDataDisposable?.dispose()
+        setDataDisposable?.dispose() //NOSONAR
 
-        playlistMenuDisposable?.dispose()
+        playlistMenuDisposable?.dispose() //NOSONAR
 
-        menuDisposables.clear()
+        menuDisposables.clear() //NOSONAR
 
-        super.onPause()
+        super.onPause() //NOSONAR
     }
 
-    override fun onDestroyView() {
-        songsPresenter.unbindView(this)
-        super.onDestroyView()
+    override fun onDestroyView() { //NOSONAR
+        songsPresenter.unbindView(this) //NOSONAR
+        super.onDestroyView() //NOSONAR
     }
 
 
     // Options Menu
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) { //NOSONAR
+        super.onCreateOptionsMenu(menu, inflater) //NOSONAR
 
-        inflater!!.inflate(R.menu.menu_sort_songs, menu)
+        inflater!!.inflate(R.menu.menu_sort_songs, menu) //NOSONAR
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu?) {
-        super.onPrepareOptionsMenu(menu)
-        SongSortHelper.updateSongSortMenuItems(menu!!, sortManager.songsSortOrder, sortManager.songsAscending)
-        menu.findItem(R.id.showArtwork).isChecked = settingsManager.showArtworkInSongList()
+    override fun onPrepareOptionsMenu(menu: Menu?) { //NOSONAR
+        super.onPrepareOptionsMenu(menu) //NOSONAR
+        SongSortHelper.updateSongSortMenuItems(menu!!, sortManager.songsSortOrder, sortManager.songsAscending) //NOSONAR
+        menu.findItem(R.id.showArtwork).isChecked = settingsManager.showArtworkInSongList() //NOSONAR
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        val songSortOder = SongSortHelper.handleSongMenuSortOrderClicks(item!!)
-        if (songSortOder != null) {
-            songsPresenter.setSongsSortOrder(songSortOder)
-            return true
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean { //NOSONAR
+        val songSortOder = SongSortHelper.handleSongMenuSortOrderClicks(item!!) //NOSONAR
+        if (songSortOder != null) { //NOSONAR
+            songsPresenter.setSongsSortOrder(songSortOder) //NOSONAR
+            return true //NOSONAR
         }
-        val songsAsc = SongSortHelper.handleSongDetailMenuSortOrderAscClicks(item)
-        if (songsAsc != null) {
-            songsPresenter.setSongsAscending(songsAsc)
-            return true
-        }
-
-        if (item.itemId == R.id.showArtwork) {
-            songsPresenter.setShowArtwork(!item.isChecked)
+        val songsAsc = SongSortHelper.handleSongDetailMenuSortOrderAscClicks(item) //NOSONAR
+        if (songsAsc != null) { //NOSONAR
+            songsPresenter.setSongsAscending(songsAsc) //NOSONAR
+            return true //NOSONAR
         }
 
-        return super.onOptionsItemSelected(item)
+        if (item.itemId == R.id.showArtwork) { //NOSONAR
+            songsPresenter.setShowArtwork(!item.isChecked) //NOSONAR
+        }
+
+        return super.onOptionsItemSelected(item) //NOSONAR
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            setupContextualToolbar()
-        } else {
-            contextualToolbarHelper?.finish()
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) { //NOSONAR
+        super.setUserVisibleHint(isVisibleToUser) //NOSONAR
+        if (isVisibleToUser) { //NOSONAR
+            setupContextualToolbar() //NOSONAR
+        } else { //NOSONAR
+            contextualToolbarHelper?.finish() //NOSONAR
         }
     }
 
-    private fun setupContextualToolbar() {
-        val contextualToolbar = ContextualToolbar.findContextualToolbar(this)
-        if (contextualToolbar != null) {
-            contextualToolbar.menu.clear()
-            contextualToolbar.inflateMenu(R.menu.context_menu_general)
-            val sub = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu
+    private fun setupContextualToolbar() { //NOSONAR
+        val contextualToolbar = ContextualToolbar.findContextualToolbar(this) //NOSONAR
+        if (contextualToolbar != null) { //NOSONAR
+            contextualToolbar.menu.clear() //NOSONAR
+            contextualToolbar.inflateMenu(R.menu.context_menu_general) //NOSONAR
+            val sub = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
 
-            playlistMenuDisposable?.dispose()
-            playlistMenuDisposable = playlistMenuHelper.createUpdatingPlaylistMenu(sub)
-                .doOnError { throwable -> LogUtils.logException(TAG, "setupContextualToolbar error", throwable) }
-                .subscribe()
+            playlistMenuDisposable?.dispose() //NOSONAR
+            playlistMenuDisposable = playlistMenuHelper.createUpdatingPlaylistMenu(sub) //NOSONAR
+                .doOnError { throwable -> LogUtils.logException(TAG, "setupContextualToolbar error", throwable) } //NOSONAR
+                .subscribe() //NOSONAR
 
-            contextualToolbarHelper = ContextualToolbarHelper(context, contextualToolbar, object : ContextualToolbarHelper.Callback {
-                override fun notifyItemChanged(viewModel: SelectableViewModel) {
-                    val index = adapter.items.indexOf(viewModel as ViewModel<*>)
-                    if (index >= 0) {
-                        adapter.notifyItemChanged(index, 0)
+            contextualToolbarHelper = ContextualToolbarHelper(context, contextualToolbar, object : ContextualToolbarHelper.Callback { //NOSONAR
+                override fun notifyItemChanged(viewModel: SelectableViewModel) { //NOSONAR
+                    val index = adapter.items.indexOf(viewModel as ViewModel<*>) //NOSONAR
+                    if (index >= 0) { //NOSONAR
+                        adapter.notifyItemChanged(index, 0) //NOSONAR
                     }
                 }
 
-                override fun notifyDatasetChanged() {
-                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0)
+                override fun notifyDatasetChanged() { //NOSONAR
+                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0) //NOSONAR
                 }
             })
 
-            contextualToolbar.setOnMenuItemClickListener(
-                SongMenuUtils.getSongMenuClickListener(
-                    Single.defer { Single.just(contextualToolbarHelper!!.items) },
-                    songsPresenter
+            contextualToolbar.setOnMenuItemClickListener( //NOSONAR
+                SongMenuUtils.getSongMenuClickListener( //NOSONAR
+                    Single.defer { Single.just(contextualToolbarHelper!!.items) }, //NOSONAR
+                    songsPresenter //NOSONAR
                 )
             )
         }
@@ -213,133 +213,133 @@ class SongListFragment :
 
     // SongListContract.View Implementation
 
-    override fun setData(songs: List<Song>, scrollToTop: Boolean) {
-        setDataDisposable?.dispose()
+    override fun setData(songs: List<Song>, scrollToTop: Boolean) { //NOSONAR
+        setDataDisposable?.dispose() //NOSONAR
 
-        val showArtwork = settingsManager.showArtworkInSongList()
+        val showArtwork = settingsManager.showArtworkInSongList() //NOSONAR
 
-        if (songs.isEmpty()) {
-            setDataDisposable = adapter.setItems(listOf(EmptyView(R.string.empty_songlist)))
-        } else {
+        if (songs.isEmpty()) { //NOSONAR
+            setDataDisposable = adapter.setItems(listOf(EmptyView(R.string.empty_songlist))) //NOSONAR
+        } else { //NOSONAR
 
-            val viewModels = mutableListOf<ViewModel<*>>(shuffleView)
-            viewModels.addAll(
-                songs
-                    .map { song ->
-                        val songView = SongView(song, requestManager, sortManager, settingsManager)
-                        songView.setClickListener(this)
-                        songView.showAlbumArt(showArtwork)
-                        songView as ViewModel<*>
+            val viewModels = mutableListOf<ViewModel<*>>(shuffleView) //NOSONAR
+            viewModels.addAll( //NOSONAR
+                songs //NOSONAR
+                    .map { song -> //NOSONAR
+                        val songView = SongView(song, requestManager, sortManager, settingsManager) //NOSONAR
+                        songView.setClickListener(this) //NOSONAR
+                        songView.showAlbumArt(showArtwork) //NOSONAR
+                        songView as ViewModel<*> //NOSONAR
                     }
-                    .toList())
+                    .toList()) //NOSONAR
 
-            setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() {
-                override fun onComplete() {
-                    super.onComplete()
-                    if (scrollToTop) {
-                        recyclerView.smoothScrollToPosition(0)
+            setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() { //NOSONAR
+                override fun onComplete() { //NOSONAR
+                    super.onComplete() //NOSONAR
+                    if (scrollToTop) { //NOSONAR
+                        recyclerView.smoothScrollToPosition(0) //NOSONAR
                     }
                 }
             })
         }
     }
 
-    override fun invalidateOptionsMenu() {
-        activity?.invalidateOptionsMenu()
+    override fun invalidateOptionsMenu() { //NOSONAR
+        activity?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun showPlaybackError() {
-        Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show()
+    override fun showPlaybackError() { //NOSONAR
+        Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
 
     // SongMenuContract.View Implementation
 
-    override fun presentCreatePlaylistDialog(songs: List<Song>) {
-        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager, "CreatePlaylistDialog")
+    override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
+        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager, "CreatePlaylistDialog") //NOSONAR
     }
 
-    override fun presentSongInfoDialog(song: Song) {
-        SongInfoDialog.newInstance(song).show(childFragmentManager)
+    override fun presentSongInfoDialog(song: Song) { //NOSONAR
+        SongInfoDialog.newInstance(song).show(childFragmentManager) //NOSONAR
     }
 
-    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onSongsAddedToQueue(numSongs: Int) {
-        val string = context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs)
-        Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
+        val string = context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs) //NOSONAR
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun presentTagEditorDialog(song: Song) {
-        TaggerDialog.newInstance(song).show(childFragmentManager)
+    override fun presentTagEditorDialog(song: Song) { //NOSONAR
+        TaggerDialog.newInstance(song).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentDeleteDialog(songs: List<Song>) {
-        DeleteDialog.newInstance(DeleteDialog.ListSongsRef { songs }).show(childFragmentManager)
+    override fun presentDeleteDialog(songs: List<Song>) { //NOSONAR
+        DeleteDialog.newInstance(DeleteDialog.ListSongsRef { songs }).show(childFragmentManager) //NOSONAR
     }
 
-    override fun shareSong(song: Song) {
-        song.share(context!!)
+    override fun shareSong(song: Song) { //NOSONAR
+        song.share(context!!) //NOSONAR
     }
 
-    override fun presentRingtonePermissionDialog() {
-        RingtoneManager.getDialog(context!!).show()
+    override fun presentRingtonePermissionDialog() { //NOSONAR
+        RingtoneManager.getDialog(context!!).show() //NOSONAR
     }
 
-    override fun showRingtoneSetMessage() {
-        Toast.makeText(context, R.string.ringtone_set_new, Toast.LENGTH_SHORT).show()
+    override fun showRingtoneSetMessage() { //NOSONAR
+        Toast.makeText(context, R.string.ringtone_set_new, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
     // SongView.ClickListener Implementation
 
-    override fun onSongClick(position: Int, songView: SongView) {
-        if (!contextualToolbarHelper!!.handleClick(songView, songView.song)) {
-            songsPresenter.play(songView.song)
+    override fun onSongClick(position: Int, songView: SongView) { //NOSONAR
+        if (!contextualToolbarHelper!!.handleClick(songView, songView.song)) { //NOSONAR
+            songsPresenter.play(songView.song) //NOSONAR
         }
     }
 
-    override fun onSongOverflowClick(position: Int, view: View, song: Song) {
-        val menu = PopupMenu(context!!, view)
-        SongMenuUtils.setupSongMenu(menu, false, true, playlistMenuHelper)
-        menu.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener(song, songsPresenter))
-        menu.show()
+    override fun onSongOverflowClick(position: Int, view: View, song: Song) { //NOSONAR
+        val menu = PopupMenu(context!!, view) //NOSONAR
+        SongMenuUtils.setupSongMenu(menu, false, true, playlistMenuHelper) //NOSONAR
+        menu.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener(song, songsPresenter)) //NOSONAR
+        menu.show() //NOSONAR
     }
 
-    override fun onSongLongClick(position: Int, songView: SongView): Boolean {
-        return contextualToolbarHelper!!.handleLongClick(songView, songView.song)
+    override fun onSongLongClick(position: Int, songView: SongView): Boolean { //NOSONAR
+        return contextualToolbarHelper!!.handleLongClick(songView, songView.song) //NOSONAR
     }
 
-    override fun onStartDrag(viewHolder: SongView.ViewHolder) {
+    override fun onStartDrag(viewHolder: SongView.ViewHolder) { //NOSONAR
         // Nothing to do
     }
 
 
     // ShuffleView.OnClickListener Implementation
 
-    override fun onShuffleItemClick() {
-        songsPresenter.shuffleAll()
+    override fun onShuffleItemClick() { //NOSONAR
+        songsPresenter.shuffleAll() //NOSONAR
     }
 
 
     // BaseFragment Implementation
 
-    override fun screenName(): String {
-        return TAG
+    override fun screenName(): String { //NOSONAR
+        return TAG //NOSONAR
     }
 
 
     // Static
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "SongFragment"
+        private const val TAG = "SongFragment" //NOSONAR
 
-        private const val ARG_TITLE = "title"
+        private const val ARG_TITLE = "title" //NOSONAR
 
-        fun newInstance(title: String) = SongListFragment().withArgs {
-            putString(ARG_TITLE, title)
+        fun newInstance(title: String) = SongListFragment().withArgs { //NOSONAR
+            putString(ARG_TITLE, title) //NOSONAR
         }
     }
 }

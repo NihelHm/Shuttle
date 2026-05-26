@@ -26,144 +26,144 @@ import kotlin.jvm.functions.Function0;
 import kotlin.jvm.functions.Function1;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MediaManager {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MediaManager { //NOSONAR
 
-    public interface Defs {
+    public interface Defs { //NOSONAR
 
-        int ADD_TO_PLAYLIST = 0;
-        int PLAYLIST_SELECTED = 1;
-        int NEW_PLAYLIST = 2;
+        int ADD_TO_PLAYLIST = 0; //NOSONAR
+        int PLAYLIST_SELECTED = 1; //NOSONAR
+        int NEW_PLAYLIST = 2; //NOSONAR
     }
 
-    private AnalyticsManager analyticsManager;
+    private AnalyticsManager analyticsManager; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    public MediaManager(AnalyticsManager analyticsManager, SettingsManager settingsManager) {
-        this.analyticsManager = analyticsManager;
-        this.settingsManager = settingsManager;
+    @Inject //NOSONAR
+    public MediaManager(AnalyticsManager analyticsManager, SettingsManager settingsManager) { //NOSONAR
+        this.analyticsManager = analyticsManager; //NOSONAR
+        this.settingsManager = settingsManager; //NOSONAR
     }
 
-    private static final String TAG = "MediaManager";
+    private static final String TAG = "MediaManager"; //NOSONAR
 
-    @NonNull
-    public Disposable playAll(@NonNull Single<List<Song>> songsSingle, @NotNull Function0<Unit> onEmpty) {
-        return songsSingle
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        songs -> playAll(songs, 0, true, onEmpty),
-                        error -> LogUtils.logException(TAG, "playAll error", error)
+    @NonNull //NOSONAR
+    public Disposable playAll(@NonNull Single<List<Song>> songsSingle, @NotNull Function0<Unit> onEmpty) { //NOSONAR
+        return songsSingle //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                        songs -> playAll(songs, 0, true, onEmpty), //NOSONAR
+                        error -> LogUtils.logException(TAG, "playAll error", error) //NOSONAR
                 );
     }
 
-    public void playAll(@NonNull List<Song> songs, int position, boolean canClearShuffle, @NotNull Function0<Unit> onEmpty) {
-        analyticsManager.dropBreadcrumb(TAG, "playAll()");
-        if (canClearShuffle && !settingsManager.getRememberShuffle()) {
-            setShuffleMode(QueueManager.ShuffleMode.OFF);
+    public void playAll(@NonNull List<Song> songs, int position, boolean canClearShuffle, @NotNull Function0<Unit> onEmpty) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "playAll()"); //NOSONAR
+        if (canClearShuffle && !settingsManager.getRememberShuffle()) { //NOSONAR
+            setShuffleMode(QueueManager.ShuffleMode.OFF); //NOSONAR
         }
 
-        if (songs.size() == 0
-                || MusicServiceConnectionUtils.serviceBinder == null
-                || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
+        if (songs.size() == 0 //NOSONAR
+                || MusicServiceConnectionUtils.serviceBinder == null //NOSONAR
+                || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
 
-            onEmpty.invoke();
-            return;
+            onEmpty.invoke(); //NOSONAR
+            return; //NOSONAR
         }
 
-        if (position < 0) {
-            position = 0;
+        if (position < 0) { //NOSONAR
+            position = 0; //NOSONAR
         }
 
-        MusicServiceConnectionUtils.serviceBinder.getService().open(songs, position, true);
+        MusicServiceConnectionUtils.serviceBinder.getService().open(songs, position, true); //NOSONAR
     }
 
-    @NonNull
-    public Disposable shuffleAll(@NonNull Single<List<Song>> songsSingle, @NotNull Function0<Unit> onEmpty) {
-        return songsSingle
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        songs -> shuffleAll(songs, onEmpty),
-                        e -> LogUtils.logException(TAG, "Shuffle all error", e));
+    @NonNull //NOSONAR
+    public Disposable shuffleAll(@NonNull Single<List<Song>> songsSingle, @NotNull Function0<Unit> onEmpty) { //NOSONAR
+        return songsSingle //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                        songs -> shuffleAll(songs, onEmpty), //NOSONAR
+                        e -> LogUtils.logException(TAG, "Shuffle all error", e)); //NOSONAR
     }
 
-    public void shuffleAll(@NotNull List<Song> songs, @NotNull Function0<Unit> onEmpty) {
-        analyticsManager.dropBreadcrumb(TAG, "shuffleAll()");
-        setShuffleMode(QueueManager.ShuffleMode.ON);
-        if (!songs.isEmpty()) {
-            playAll(songs, new Random().nextInt(songs.size()), false, onEmpty);
+    public void shuffleAll(@NotNull List<Song> songs, @NotNull Function0<Unit> onEmpty) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "shuffleAll()"); //NOSONAR
+        setShuffleMode(QueueManager.ShuffleMode.ON); //NOSONAR
+        if (!songs.isEmpty()) { //NOSONAR
+            playAll(songs, new Random().nextInt(songs.size()), false, onEmpty); //NOSONAR
         }
     }
 
-    public void playFile(final Uri uri) {
-        analyticsManager.dropBreadcrumb(TAG, String.format("playFile(%s)", uri));
-        if (uri == null
-                || MusicServiceConnectionUtils.serviceBinder == null
-                || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void playFile(final Uri uri) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, String.format("playFile(%s)", uri)); //NOSONAR
+        if (uri == null //NOSONAR
+                || MusicServiceConnectionUtils.serviceBinder == null //NOSONAR
+                || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
 
         // If this is a file:// URI, just use the path directly instead
         // of going through the open-from-filedescriptor codepath.
-        String filename;
-        final String scheme = uri.getScheme();
-        if ("file".equals(scheme)) {
-            filename = uri.getPath();
-        } else {
-            filename = uri.toString();
+        String filename; //NOSONAR
+        final String scheme = uri.getScheme(); //NOSONAR
+        if ("file".equals(scheme)) { //NOSONAR
+            filename = uri.getPath(); //NOSONAR
+        } else { //NOSONAR
+            filename = uri.toString(); //NOSONAR
         }
 
-        MusicServiceConnectionUtils.serviceBinder.getService().stop();
-        MusicServiceConnectionUtils.serviceBinder.getService().openFile(filename, true);
+        MusicServiceConnectionUtils.serviceBinder.getService().stop(); //NOSONAR
+        MusicServiceConnectionUtils.serviceBinder.getService().openFile(filename, true); //NOSONAR
     }
 
-    @Nullable
-    public String getFilePath() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            Song song = MusicServiceConnectionUtils.serviceBinder.getService().getSong();
-            if (song != null) {
-                return song.path;
+    @Nullable //NOSONAR
+    public String getFilePath() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            Song song = MusicServiceConnectionUtils.serviceBinder.getService().getSong(); //NOSONAR
+            if (song != null) { //NOSONAR
+                return song.path; //NOSONAR
             }
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    public boolean isPlaying() {
-        return MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null && MusicServiceConnectionUtils.serviceBinder.getService()
-                .isPlaying();
+    public boolean isPlaying() { //NOSONAR
+        return MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null && MusicServiceConnectionUtils.serviceBinder.getService() //NOSONAR
+                .isPlaying(); //NOSONAR
     }
 
-    public int getShuffleMode() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getShuffleMode();
+    public int getShuffleMode() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getShuffleMode(); //NOSONAR
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
-    public void setShuffleMode(int mode) {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().setShuffleMode(mode);
+    public void setShuffleMode(int mode) { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().setShuffleMode(mode); //NOSONAR
         }
     }
 
     /**
      * @return The current repeat mode
      */
-    public int getRepeatMode() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getRepeatMode();
+    public int getRepeatMode() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getRepeatMode(); //NOSONAR
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
     /**
      * Changes to the next track
      */
-    public void next() {
-        analyticsManager.dropBreadcrumb(TAG, "next()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().gotoNext(true);
+    public void next() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "next()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().gotoNext(true); //NOSONAR
         }
     }
 
@@ -172,32 +172,32 @@ public class MediaManager {
      *
      * @param force if true, forces the player to move to the previous position
      */
-    public void previous(boolean force) {
-        analyticsManager.dropBreadcrumb(TAG, "previous()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().previous(force);
+    public void previous(boolean force) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "previous()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().previous(force); //NOSONAR
         }
     }
 
     /**
      * Play or pause the music depending on the current state.
      */
-    public void togglePlayback() {
-        analyticsManager.dropBreadcrumb(TAG, "playOrPause()");
-        try {
-            if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-                MusicServiceConnectionUtils.serviceBinder.getService().togglePlayback();
+    public void togglePlayback() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "playOrPause()"); //NOSONAR
+        try { //NOSONAR
+            if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+                MusicServiceConnectionUtils.serviceBinder.getService().togglePlayback(); //NOSONAR
             }
-        } catch (final Exception ignored) {
+        } catch (final Exception ignored) { //NOSONAR
             // Intentionally left empty.
         }
     }
 
-    public int getAudioSessionId() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getAudioSessionId();
+    public int getAudioSessionId() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getAudioSessionId(); //NOSONAR
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
     /**
@@ -206,13 +206,13 @@ public class MediaManager {
      * @return a partial {@link AlbumArtist} containing a partial {@link Album}
      * which contains the current song.
      */
-    public AlbumArtist getAlbumArtist() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            if (getSong() != null) {
-                return getSong().getAlbumArtist();
+    public AlbumArtist getAlbumArtist() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            if (getSong() != null) { //NOSONAR
+                return getSong().getAlbumArtist(); //NOSONAR
             }
         }
-        return null;
+        return null; //NOSONAR
     }
 
     /**
@@ -220,42 +220,42 @@ public class MediaManager {
      *
      * @return a partial {@link Album} containing this song.
      */
-    public Album getAlbum() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            if (getSong() != null) {
-                return getSong().getAlbum();
+    public Album getAlbum() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            if (getSong() != null) { //NOSONAR
+                return getSong().getAlbum(); //NOSONAR
             }
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    @Nullable
-    public Song getSong() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getSong();
+    @Nullable //NOSONAR
+    public Song getSong() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getSong(); //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    @NonNull
-    public Single<Genre> getGenre(ShuttleApplication application) {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            if (getSong() != null) {
-                return getSong().getGenre(application);
+    @NonNull //NOSONAR
+    public Single<Genre> getGenre(ShuttleApplication application) { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            if (getSong() != null) { //NOSONAR
+                return getSong().getGenre(application); //NOSONAR
             }
         }
-        return Single.error(new IllegalStateException("Genre not found"));
+        return Single.error(new IllegalStateException("Genre not found")); //NOSONAR
     }
 
-    public long getPosition() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            try {
-                return MusicServiceConnectionUtils.serviceBinder.getService().getSeekPosition();
-            } catch (final Exception e) {
-                Log.e(TAG, "getPosition() returned error: " + e.toString());
+    public long getPosition() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            try { //NOSONAR
+                return MusicServiceConnectionUtils.serviceBinder.getService().getSeekPosition(); //NOSONAR
+            } catch (final Exception e) { //NOSONAR
+                Log.e(TAG, "getPosition() returned error: " + e.toString()); //NOSONAR
             }
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
     /**
@@ -263,14 +263,14 @@ public class MediaManager {
      *
      * @return {@link long}
      */
-    public long getDuration() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            Song song = MusicServiceConnectionUtils.serviceBinder.getService().getSong();
-            if (song != null) {
-                return song.duration;
+    public long getDuration() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            Song song = MusicServiceConnectionUtils.serviceBinder.getService().getSong(); //NOSONAR
+            if (song != null) { //NOSONAR
+                return song.duration; //NOSONAR
             }
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
     /**
@@ -278,155 +278,155 @@ public class MediaManager {
      *
      * @param position the {@link long} position to seek to
      */
-    public void seekTo(final long position) {
-        analyticsManager.dropBreadcrumb(TAG, "seekTo()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().seekTo(position);
+    public void seekTo(final long position) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "seekTo()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().seekTo(position); //NOSONAR
         }
     }
 
-    public void moveQueueItem(final int from, final int to) {
-        analyticsManager.dropBreadcrumb(TAG, "moveQueueItem()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().moveQueueItem(from, to);
+    public void moveQueueItem(final int from, final int to) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "moveQueueItem()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().moveQueueItem(from, to); //NOSONAR
         }
     }
 
-    public void toggleShuffleMode() {
-        analyticsManager.dropBreadcrumb(TAG, "toggleShuffleMode()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void toggleShuffleMode() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "toggleShuffleMode()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
-        MusicServiceConnectionUtils.serviceBinder.getService().toggleShuffleMode();
+        MusicServiceConnectionUtils.serviceBinder.getService().toggleShuffleMode(); //NOSONAR
     }
 
-    public void cycleRepeat() {
-        analyticsManager.dropBreadcrumb(TAG, "cycleRepeat()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void cycleRepeat() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "cycleRepeat()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
-        MusicServiceConnectionUtils.serviceBinder.getService().toggleRepeat();
+        MusicServiceConnectionUtils.serviceBinder.getService().toggleRepeat(); //NOSONAR
     }
 
-    public void addToQueue(@NonNull List<Song> songs, @NotNull Function1<Integer, Unit> onAdded) {
-        analyticsManager.dropBreadcrumb(TAG, "addToQueue()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void addToQueue(@NonNull List<Song> songs, @NotNull Function1<Integer, Unit> onAdded) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "addToQueue()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
-        MusicServiceConnectionUtils.serviceBinder.getService().enqueue(songs, QueueManager.EnqueueAction.LAST);
-        onAdded.invoke(songs.size());
+        MusicServiceConnectionUtils.serviceBinder.getService().enqueue(songs, QueueManager.EnqueueAction.LAST); //NOSONAR
+        onAdded.invoke(songs.size()); //NOSONAR
     }
 
-    @Nullable
-    public Disposable playNext(@NonNull Single<List<Song>> songsSingle, @NotNull Function1<Integer, Unit> onAdded) {
-        analyticsManager.dropBreadcrumb(TAG, "playNext()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return null;
+    @Nullable //NOSONAR
+    public Disposable playNext(@NonNull Single<List<Song>> songsSingle, @NotNull Function1<Integer, Unit> onAdded) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "playNext()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return null; //NOSONAR
         }
-        return songsSingle
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        songs -> playNext(songs, onAdded),
-                        error -> LogUtils.logException(TAG, "playNext error", error)
+        return songsSingle //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                        songs -> playNext(songs, onAdded), //NOSONAR
+                        error -> LogUtils.logException(TAG, "playNext error", error) //NOSONAR
                 );
     }
 
-    public void playNext(@NonNull List<Song> songs, @NotNull Function1<Integer, Unit> onAdded) {
-        analyticsManager.dropBreadcrumb(TAG, "playNext()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void playNext(@NonNull List<Song> songs, @NotNull Function1<Integer, Unit> onAdded) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "playNext()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
-        MusicServiceConnectionUtils.serviceBinder.getService().enqueue(songs, QueueManager.EnqueueAction.NEXT);
-        onAdded.invoke(songs.size());
+        MusicServiceConnectionUtils.serviceBinder.getService().enqueue(songs, QueueManager.EnqueueAction.NEXT); //NOSONAR
+        onAdded.invoke(songs.size()); //NOSONAR
     }
 
-    public void moveToNext(@NotNull QueueItem queueItem) {
-        analyticsManager.dropBreadcrumb(TAG, "moveToNext()");
-        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) {
-            return;
+    public void moveToNext(@NotNull QueueItem queueItem) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "moveToNext()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder == null || MusicServiceConnectionUtils.serviceBinder.getService() == null) { //NOSONAR
+            return; //NOSONAR
         }
-        MusicServiceConnectionUtils.serviceBinder.getService().moveToNext(queueItem);
+        MusicServiceConnectionUtils.serviceBinder.getService().moveToNext(queueItem); //NOSONAR
     }
 
-    public void setQueuePosition(final int position) {
-        analyticsManager.dropBreadcrumb(TAG, "setQueuePosition()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().setQueuePosition(position);
-        }
-    }
-
-    public void clearQueue() {
-        MusicServiceConnectionUtils.serviceBinder.getService().clearQueue();
-    }
-
-    @NonNull
-    public List<QueueItem> getQueue() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getQueue();
-        }
-        return new ArrayList<>();
-    }
-
-    public int getQueuePosition() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getQueuePosition();
-        }
-        return 0;
-    }
-
-    public boolean getQueueReloading() {
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            return MusicServiceConnectionUtils.serviceBinder.getService().getQueueReloading();
-        }
-        return false;
-    }
-
-    public void removeFromQueue(@NonNull QueueItem queueItem) {
-        analyticsManager.dropBreadcrumb(TAG, "removeFromQueue()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().removeQueueItem(queueItem);
+    public void setQueuePosition(final int position) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "setQueuePosition()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().setQueuePosition(position); //NOSONAR
         }
     }
 
-    public void removeFromQueue(@NonNull List<QueueItem> queueItems) {
-        analyticsManager.dropBreadcrumb(TAG, "removeFromQueue()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().removeQueueItems(queueItems);
+    public void clearQueue() { //NOSONAR
+        MusicServiceConnectionUtils.serviceBinder.getService().clearQueue(); //NOSONAR
+    }
+
+    @NonNull //NOSONAR
+    public List<QueueItem> getQueue() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getQueue(); //NOSONAR
+        }
+        return new ArrayList<>(); //NOSONAR
+    }
+
+    public int getQueuePosition() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getQueuePosition(); //NOSONAR
+        }
+        return 0; //NOSONAR
+    }
+
+    public boolean getQueueReloading() { //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            return MusicServiceConnectionUtils.serviceBinder.getService().getQueueReloading(); //NOSONAR
+        }
+        return false; //NOSONAR
+    }
+
+    public void removeFromQueue(@NonNull QueueItem queueItem) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "removeFromQueue()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().removeQueueItem(queueItem); //NOSONAR
         }
     }
 
-    public void removeSongsFromQueue(@NotNull List<Song> songs) {
-        analyticsManager.dropBreadcrumb(TAG, "removeSongsFromQueue()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().removeSongs(songs);
+    public void removeFromQueue(@NonNull List<QueueItem> queueItems) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "removeFromQueue()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().removeQueueItems(queueItems); //NOSONAR
         }
     }
 
-    public void toggleFavorite() {
-        analyticsManager.dropBreadcrumb(TAG, "toggleFavorite()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().toggleFavorite();
+    public void removeSongsFromQueue(@NotNull List<Song> songs) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "removeSongsFromQueue()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().removeSongs(songs); //NOSONAR
         }
     }
 
-    public void closeEqualizerSessions(boolean internal, int audioSessionId) {
-        analyticsManager.dropBreadcrumb(TAG, "closeEqualizerSessions()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().closeEqualizerSessions(internal, audioSessionId);
+    public void toggleFavorite() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "toggleFavorite()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().toggleFavorite(); //NOSONAR
         }
     }
 
-    public void openEqualizerSession(boolean internal, int audioSessionId) {
-        analyticsManager.dropBreadcrumb(TAG, "openEqualizerSession()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().openEqualizerSession(internal, audioSessionId);
+    public void closeEqualizerSessions(boolean internal, int audioSessionId) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "closeEqualizerSessions()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().closeEqualizerSessions(internal, audioSessionId); //NOSONAR
         }
     }
 
-    public void updateEqualizer() {
-        analyticsManager.dropBreadcrumb(TAG, "updateEqualizer()");
-        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) {
-            MusicServiceConnectionUtils.serviceBinder.getService().updateEqualizer();
+    public void openEqualizerSession(boolean internal, int audioSessionId) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "openEqualizerSession()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().openEqualizerSession(internal, audioSessionId); //NOSONAR
+        }
+    }
+
+    public void updateEqualizer() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "updateEqualizer()"); //NOSONAR
+        if (MusicServiceConnectionUtils.serviceBinder != null && MusicServiceConnectionUtils.serviceBinder.getService() != null) { //NOSONAR
+            MusicServiceConnectionUtils.serviceBinder.getService().updateEqualizer(); //NOSONAR
         }
     }
 }

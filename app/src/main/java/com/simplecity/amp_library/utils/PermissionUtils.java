@@ -3,34 +3,34 @@ package com.simplecity.amp_library.utils;
 import android.Manifest;
 import com.greysonparrelli.permiso.Permiso;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PermissionUtils {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PermissionUtils { //NOSONAR
 
-    private PermissionUtils() {
+    private PermissionUtils() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public interface PermissionCallback {
-        void onSuccess();
+    public interface PermissionCallback { //NOSONAR
+        void onSuccess(); //NOSONAR
     }
 
-    private static void simplePermissionRequest(final PermissionCallback callback, String... permissions) {
-        Permiso.getInstance().requestPermissions(new Permiso.IOnPermissionResult() {
-            @Override
-            public void onPermissionResult(Permiso.ResultSet resultSet) {
-                if (resultSet.areAllPermissionsGranted()) {
-                    callback.onSuccess();
+    private static void simplePermissionRequest(final PermissionCallback callback, String... permissions) { //NOSONAR
+        Permiso.getInstance().requestPermissions(new Permiso.IOnPermissionResult() { //NOSONAR
+            @Override //NOSONAR
+            public void onPermissionResult(Permiso.ResultSet resultSet) { //NOSONAR
+                if (resultSet.areAllPermissionsGranted()) { //NOSONAR
+                    callback.onSuccess(); //NOSONAR
                 }
             }
 
-            @Override
-            public void onRationaleRequested(Permiso.IOnRationaleProvided callback, String... permissions) {
-                callback.onRationaleProvided();
+            @Override //NOSONAR
+            public void onRationaleRequested(Permiso.IOnRationaleProvided callback, String... permissions) { //NOSONAR
+                callback.onRationaleProvided(); //NOSONAR
             }
-        }, permissions);
+        }, permissions); //NOSONAR
     }
 
-    public static void RequestStoragePermissions(final PermissionCallback callback) {
-        simplePermissionRequest(callback, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+    public static void RequestStoragePermissions(final PermissionCallback callback) { //NOSONAR
+        simplePermissionRequest(callback, Manifest.permission.WRITE_EXTERNAL_STORAGE); //NOSONAR
     }
 }

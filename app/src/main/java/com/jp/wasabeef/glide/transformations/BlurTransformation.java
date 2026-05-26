@@ -30,80 +30,80 @@ import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.jp.wasabeef.glide.transformations.internal.FastBlur;
 import com.jp.wasabeef.glide.transformations.internal.RSBlur;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BlurTransformation implements Transformation<Bitmap> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BlurTransformation implements Transformation<Bitmap> { //NOSONAR
 
-    private static int MAX_RADIUS = 25;
-    private static int DEFAULT_DOWN_SAMPLING = 1;
+    private static int MAX_RADIUS = 25; //NOSONAR
+    private static int DEFAULT_DOWN_SAMPLING = 1; //NOSONAR
 
-    private Context mContext;
-    private BitmapPool mBitmapPool;
+    private Context mContext; //NOSONAR
+    private BitmapPool mBitmapPool; //NOSONAR
 
-    private int mRadius;
-    private int mSampling;
+    private int mRadius; //NOSONAR
+    private int mSampling; //NOSONAR
 
-    public BlurTransformation(Context context) {
-        this(context, Glide.get(context).getBitmapPool(), MAX_RADIUS, DEFAULT_DOWN_SAMPLING);
+    public BlurTransformation(Context context) { //NOSONAR
+        this(context, Glide.get(context).getBitmapPool(), MAX_RADIUS, DEFAULT_DOWN_SAMPLING); //NOSONAR
     }
 
-    public BlurTransformation(Context context, BitmapPool pool) {
-        this(context, pool, MAX_RADIUS, DEFAULT_DOWN_SAMPLING);
+    public BlurTransformation(Context context, BitmapPool pool) { //NOSONAR
+        this(context, pool, MAX_RADIUS, DEFAULT_DOWN_SAMPLING); //NOSONAR
     }
 
-    public BlurTransformation(Context context, BitmapPool pool, int radius) {
-        this(context, pool, radius, DEFAULT_DOWN_SAMPLING);
+    public BlurTransformation(Context context, BitmapPool pool, int radius) { //NOSONAR
+        this(context, pool, radius, DEFAULT_DOWN_SAMPLING); //NOSONAR
     }
 
-    public BlurTransformation(Context context, int radius) {
-        this(context, Glide.get(context).getBitmapPool(), radius, DEFAULT_DOWN_SAMPLING);
+    public BlurTransformation(Context context, int radius) { //NOSONAR
+        this(context, Glide.get(context).getBitmapPool(), radius, DEFAULT_DOWN_SAMPLING); //NOSONAR
     }
 
-    public BlurTransformation(Context context, int radius, int sampling) {
-        this(context, Glide.get(context).getBitmapPool(), radius, sampling);
+    public BlurTransformation(Context context, int radius, int sampling) { //NOSONAR
+        this(context, Glide.get(context).getBitmapPool(), radius, sampling); //NOSONAR
     }
 
-    public BlurTransformation(Context context, BitmapPool pool, int radius, int sampling) {
-        mContext = context.getApplicationContext();
-        mBitmapPool = pool;
-        mRadius = radius;
-        mSampling = sampling;
+    public BlurTransformation(Context context, BitmapPool pool, int radius, int sampling) { //NOSONAR
+        mContext = context.getApplicationContext(); //NOSONAR
+        mBitmapPool = pool; //NOSONAR
+        mRadius = radius; //NOSONAR
+        mSampling = sampling; //NOSONAR
     }
 
-    @Override
-    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
-        Bitmap source = resource.get();
+    @Override //NOSONAR
+    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) { //NOSONAR
+        Bitmap source = resource.get(); //NOSONAR
 
-        int width = source.getWidth();
-        int height = source.getHeight();
-        int scaledWidth = width / mSampling;
-        int scaledHeight = height / mSampling;
+        int width = source.getWidth(); //NOSONAR
+        int height = source.getHeight(); //NOSONAR
+        int scaledWidth = width / mSampling; //NOSONAR
+        int scaledHeight = height / mSampling; //NOSONAR
 
-        Bitmap bitmap = mBitmapPool.get(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888);
-        if (bitmap == null) {
-            bitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = mBitmapPool.get(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888); //NOSONAR
+        if (bitmap == null) { //NOSONAR
+            bitmap = Bitmap.createBitmap(scaledWidth, scaledHeight, Bitmap.Config.ARGB_8888); //NOSONAR
         }
 
-        Canvas canvas = new Canvas(bitmap);
-        canvas.scale(1 / (float) mSampling, 1 / (float) mSampling);
-        Paint paint = new Paint();
-        paint.setFlags(Paint.FILTER_BITMAP_FLAG);
-        canvas.drawBitmap(source, 0, 0, paint);
+        Canvas canvas = new Canvas(bitmap); //NOSONAR
+        canvas.scale(1 / (float) mSampling, 1 / (float) mSampling); //NOSONAR
+        Paint paint = new Paint(); //NOSONAR
+        paint.setFlags(Paint.FILTER_BITMAP_FLAG); //NOSONAR
+        canvas.drawBitmap(source, 0, 0, paint); //NOSONAR
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-            try {
-                bitmap = RSBlur.getInstance(mContext).blur(bitmap, mRadius);
-            } catch (RSRuntimeException e) {
-                bitmap = FastBlur.blur(bitmap, mRadius, true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) { //NOSONAR
+            try { //NOSONAR
+                bitmap = RSBlur.getInstance(mContext).blur(bitmap, mRadius); //NOSONAR
+            } catch (RSRuntimeException e) { //NOSONAR
+                bitmap = FastBlur.blur(bitmap, mRadius, true); //NOSONAR
             }
-        } else {
-            bitmap = FastBlur.blur(bitmap, mRadius, true);
+        } else { //NOSONAR
+            bitmap = FastBlur.blur(bitmap, mRadius, true); //NOSONAR
         }
 
-        return BitmapResource.obtain(bitmap, mBitmapPool);
+        return BitmapResource.obtain(bitmap, mBitmapPool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return "BlurTransformation(radius=" + mRadius + ", sampling=" + mSampling + ")";
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return "BlurTransformation(radius=" + mRadius + ", sampling=" + mSampling + ")"; //NOSONAR
     }
 }

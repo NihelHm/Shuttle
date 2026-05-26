@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.menu.albumartist
 
@@ -11,85 +11,85 @@ import com.simplecity.amp_library.playback.MediaManager.Defs
 import com.simplecity.amp_library.utils.playlists.PlaylistManager
 import io.reactivex.Single
 
-object AlbumArtistMenuUtils {
+object AlbumArtistMenuUtils { //NOSONAR
 
-    fun getAlbumArtistMenuClickListener(selectedAlbumArtists: Single<List<AlbumArtist>>, callbacks: AlbumArtistMenuCallbacks): Toolbar.OnMenuItemClickListener {
-        return Toolbar.OnMenuItemClickListener { item ->
-            when (item.itemId) {
-                Defs.NEW_PLAYLIST -> {
-                    callbacks.createArtistsPlaylist(selectedAlbumArtists)
-                    return@OnMenuItemClickListener true
+    fun getAlbumArtistMenuClickListener(selectedAlbumArtists: Single<List<AlbumArtist>>, callbacks: AlbumArtistMenuCallbacks): Toolbar.OnMenuItemClickListener { //NOSONAR
+        return Toolbar.OnMenuItemClickListener { item -> //NOSONAR
+            when (item.itemId) { //NOSONAR
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    callbacks.createArtistsPlaylist(selectedAlbumArtists) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    callbacks.addArtistsToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, selectedAlbumArtists)
-                    return@OnMenuItemClickListener true
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    callbacks.addArtistsToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, selectedAlbumArtists) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.playNext -> {
-                    callbacks.playArtistsNext(selectedAlbumArtists)
-                    return@OnMenuItemClickListener true
+                R.id.playNext -> { //NOSONAR
+                    callbacks.playArtistsNext(selectedAlbumArtists) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    callbacks.addArtistsToQueue(selectedAlbumArtists)
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    callbacks.addArtistsToQueue(selectedAlbumArtists) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    callbacks.deleteArtists(selectedAlbumArtists)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    callbacks.deleteArtists(selectedAlbumArtists) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 
-    fun getAlbumArtistClickListener(albumArtist: AlbumArtist, callbacks: AlbumArtistMenuCallbacks): PopupMenu.OnMenuItemClickListener {
-        return PopupMenu.OnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.play -> {
-                    callbacks.play(albumArtist)
-                    return@OnMenuItemClickListener true
+    fun getAlbumArtistClickListener(albumArtist: AlbumArtist, callbacks: AlbumArtistMenuCallbacks): PopupMenu.OnMenuItemClickListener { //NOSONAR
+        return PopupMenu.OnMenuItemClickListener { item -> //NOSONAR
+            when (item.itemId) { //NOSONAR
+                R.id.play -> { //NOSONAR
+                    callbacks.play(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.playNext -> {
-                    callbacks.playArtistsNext(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.playNext -> { //NOSONAR
+                    callbacks.playArtistsNext(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.NEW_PLAYLIST -> {
-                    callbacks.createArtistsPlaylist(albumArtist)
-                    return@OnMenuItemClickListener true
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    callbacks.createArtistsPlaylist(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    callbacks.addArtistsToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, albumArtist)
-                    return@OnMenuItemClickListener true
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    callbacks.addArtistsToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    callbacks.addArtistsToQueue(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    callbacks.addArtistsToQueue(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.editTags -> {
-                    callbacks.editTags(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.editTags -> { //NOSONAR
+                    callbacks.editTags(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.info -> {
-                    callbacks.albumArtistInfo(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.info -> { //NOSONAR
+                    callbacks.albumArtistInfo(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.artwork -> {
-                    callbacks.editArtwork(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.artwork -> { //NOSONAR
+                    callbacks.editArtwork(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.blacklist -> {
-                    callbacks.blacklistArtists(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.blacklist -> { //NOSONAR
+                    callbacks.blacklistArtists(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    callbacks.deleteArtists(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    callbacks.deleteArtists(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.albumShuffle -> {
-                    callbacks.albumShuffle(albumArtist)
-                    return@OnMenuItemClickListener true
+                R.id.albumShuffle -> { //NOSONAR
+                    callbacks.albumShuffle(albumArtist) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 }

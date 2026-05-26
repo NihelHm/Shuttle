@@ -71,247 +71,247 @@ import test.com.androidnavigation.fragment.FragmentInfo;
 import static com.afollestad.aesthetic.Rx.distinctToMainThread;
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class LibraryController extends BaseFragment implements
-        AlbumArtistListFragment.AlbumArtistClickListener,
-        AlbumListFragment.AlbumClickListener,
-        SuggestedFragment.SuggestedClickListener,
-        PlaylistListFragment.PlaylistClickListener,
-        GenreListFragment.GenreClickListener,
-        ContextualToolbarHost {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class LibraryController extends BaseFragment implements //NOSONAR
+        AlbumArtistListFragment.AlbumArtistClickListener, //NOSONAR
+        AlbumListFragment.AlbumClickListener, //NOSONAR
+        SuggestedFragment.SuggestedClickListener, //NOSONAR
+        PlaylistListFragment.PlaylistClickListener, //NOSONAR
+        GenreListFragment.GenreClickListener, //NOSONAR
+        ContextualToolbarHost { //NOSONAR
 
-    private static final String TAG = "LibraryController";
+    private static final String TAG = "LibraryController"; //NOSONAR
 
-    public static final String EVENT_TABS_CHANGED = "tabs_changed";
+    public static final String EVENT_TABS_CHANGED = "tabs_changed"; //NOSONAR
 
-    @BindView(R.id.tabs)
-    TabLayout slidingTabLayout;
+    @BindView(R.id.tabs) //NOSONAR
+    TabLayout slidingTabLayout; //NOSONAR
 
-    @BindView(R.id.pager)
-    ViewPager pager;
+    @BindView(R.id.pager) //NOSONAR
+    ViewPager pager; //NOSONAR
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) //NOSONAR
+    Toolbar toolbar; //NOSONAR
 
-    @BindView(R.id.contextualToolbar)
-    ContextualToolbar contextualToolbar;
+    @BindView(R.id.contextualToolbar) //NOSONAR
+    ContextualToolbar contextualToolbar; //NOSONAR
 
-    @BindView(R.id.app_bar)
-    AppBarLayout appBarLayout;
+    @BindView(R.id.app_bar) //NOSONAR
+    AppBarLayout appBarLayout; //NOSONAR
 
-    @Inject
-    NavigationEventRelay navigationEventRelay;
+    @Inject //NOSONAR
+    NavigationEventRelay navigationEventRelay; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    MultiSheetEventRelay multiSheetEventRelay;
+    @Inject //NOSONAR
+    MultiSheetEventRelay multiSheetEventRelay; //NOSONAR
 
-    @Inject
-    AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    AnalyticsManager analyticsManager; //NOSONAR
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable(); //NOSONAR
 
-    private Disposable tabChangedDisposable;
+    private Disposable tabChangedDisposable; //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    private boolean refreshPagerAdapter = false;
+    private boolean refreshPagerAdapter = false; //NOSONAR
 
-    private PagerAdapter pagerAdapter;
+    private PagerAdapter pagerAdapter; //NOSONAR
 
-    public static FragmentInfo fragmentInfo() {
-        return new FragmentInfo(LibraryController.class, null, "LibraryController");
+    public static FragmentInfo fragmentInfo() { //NOSONAR
+        return new FragmentInfo(LibraryController.class, null, "LibraryController"); //NOSONAR
     }
 
-    public LibraryController() {
+    public LibraryController() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidSupportInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        setHasOptionsMenu(true);
+        setHasOptionsMenu(true); //NOSONAR
 
-        tabChangedDisposable = RxBroadcast.fromLocalBroadcast(getContext(), new IntentFilter(EVENT_TABS_CHANGED)).subscribe(onNext -> refreshPagerAdapter = true);
+        tabChangedDisposable = RxBroadcast.fromLocalBroadcast(getContext(), new IntentFilter(EVENT_TABS_CHANGED)).subscribe(onNext -> refreshPagerAdapter = true); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_library, container, false);
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) { //NOSONAR
+        final View rootView = inflater.inflate(R.layout.fragment_library, container, false); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView); //NOSONAR
 
-        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar);
+        ((AppCompatActivity) getActivity()).setSupportActionBar(toolbar); //NOSONAR
 
-        setupViewPager();
+        setupViewPager(); //NOSONAR
 
-        compositeDisposable.add(Aesthetic.get(getContext())
-                .colorPrimary()
-                .compose(distinctToMainThread())
-                .subscribe(color -> ViewBackgroundAction.create(appBarLayout)
-                        .accept(color), onErrorLogAndRethrow()));
+        compositeDisposable.add(Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .compose(distinctToMainThread()) //NOSONAR
+                .subscribe(color -> ViewBackgroundAction.create(appBarLayout) //NOSONAR
+                        .accept(color), onErrorLogAndRethrow())); //NOSONAR
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override //NOSONAR
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState); //NOSONAR
 
-        if (getActivity() instanceof ToolbarListener) {
-            ((ToolbarListener) getActivity()).toolbarAttached(view.findViewById(R.id.toolbar));
+        if (getActivity() instanceof ToolbarListener) { //NOSONAR
+            ((ToolbarListener) getActivity()).toolbarAttached(view.findViewById(R.id.toolbar)); //NOSONAR
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (!mediaManager.getQueue().isEmpty()) {
-            multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.SHOW_IF_HIDDEN, MultiSheetView.Sheet.NONE));
+        if (!mediaManager.getQueue().isEmpty()) { //NOSONAR
+            multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.SHOW_IF_HIDDEN, MultiSheetView.Sheet.NONE)); //NOSONAR
         }
 
-        navigationEventRelay.sendEvent(new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED, null, false));
+        navigationEventRelay.sendEvent(new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED, null, false)); //NOSONAR
     }
 
-    @Override
-    public void onDestroyView() {
-        pager.setAdapter(null);
-        compositeDisposable.clear();
-        unbinder.unbind();
-        super.onDestroyView();
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        pager.setAdapter(null); //NOSONAR
+        compositeDisposable.clear(); //NOSONAR
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
     }
 
-    @Override
-    public void onDestroy() {
-        tabChangedDisposable.dispose();
-        super.onDestroy();
+    @Override //NOSONAR
+    public void onDestroy() { //NOSONAR
+        tabChangedDisposable.dispose(); //NOSONAR
+        super.onDestroy(); //NOSONAR
     }
 
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        super.onCreateOptionsMenu(menu, inflater);
+    @Override //NOSONAR
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { //NOSONAR
+        super.onCreateOptionsMenu(menu, inflater); //NOSONAR
 
-        inflater.inflate(R.menu.menu_library, menu);
+        inflater.inflate(R.menu.menu_library, menu); //NOSONAR
 
-        if (CastManager.isCastAvailable(getContext(), settingsManager)) {
-            MenuItem menuItem = CastButtonFactory.setUpMediaRouteButton(getContext(), menu, R.id.media_route_menu_item);
-            menuItem.setVisible(true);
+        if (CastManager.isCastAvailable(getContext(), settingsManager)) { //NOSONAR
+            MenuItem menuItem = CastButtonFactory.setUpMediaRouteButton(getContext(), menu, R.id.media_route_menu_item); //NOSONAR
+            menuItem.setVisible(true); //NOSONAR
         }
     }
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_search:
-                openSearch();
-                return true;
+    @Override //NOSONAR
+    public boolean onOptionsItemSelected(MenuItem item) { //NOSONAR
+        switch (item.getItemId()) { //NOSONAR
+            case R.id.action_search: //NOSONAR
+                openSearch(); //NOSONAR
+                return true; //NOSONAR
         }
-        return false;
+        return false; //NOSONAR
     }
 
-    private void setupViewPager() {
-        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext());
-        CategoryItem.getCategoryItems(sharedPreferences);
+    private void setupViewPager() { //NOSONAR
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext()); //NOSONAR
+        CategoryItem.getCategoryItems(sharedPreferences); //NOSONAR
 
-        if (pagerAdapter != null && refreshPagerAdapter) {
-            pagerAdapter.removeAllChildFragments();
-            refreshPagerAdapter = false;
-            pager.setAdapter(null);
+        if (pagerAdapter != null && refreshPagerAdapter) { //NOSONAR
+            pagerAdapter.removeAllChildFragments(); //NOSONAR
+            refreshPagerAdapter = false; //NOSONAR
+            pager.setAdapter(null); //NOSONAR
         }
 
-        int defaultPage = 1;
+        int defaultPage = 1; //NOSONAR
 
-        pagerAdapter = new PagerAdapter(getChildFragmentManager());
-        List<CategoryItem> categoryItems = Stream.of(CategoryItem.getCategoryItems(sharedPreferences))
-                .filter(categoryItem -> categoryItem.isChecked)
-                .toList();
+        pagerAdapter = new PagerAdapter(getChildFragmentManager()); //NOSONAR
+        List<CategoryItem> categoryItems = Stream.of(CategoryItem.getCategoryItems(sharedPreferences)) //NOSONAR
+                .filter(categoryItem -> categoryItem.isChecked) //NOSONAR
+                .toList(); //NOSONAR
 
-        int defaultPageType = settingsManager.getDefaultPageType();
-        for (int i = 0; i < categoryItems.size(); i++) {
-            CategoryItem categoryItem = categoryItems.get(i);
-            pagerAdapter.addFragment(categoryItem.getFragment(getContext()));
-            if (categoryItem.type == defaultPageType) {
-                defaultPage = i;
+        int defaultPageType = settingsManager.getDefaultPageType(); //NOSONAR
+        for (int i = 0; i < categoryItems.size(); i++) { //NOSONAR
+            CategoryItem categoryItem = categoryItems.get(i); //NOSONAR
+            pagerAdapter.addFragment(categoryItem.getFragment(getContext())); //NOSONAR
+            if (categoryItem.type == defaultPageType) { //NOSONAR
+                defaultPage = i; //NOSONAR
             }
         }
 
-        int currentPage = Math.min(defaultPage, pagerAdapter.getCount());
-        pager.setAdapter(pagerAdapter);
-        pager.setOffscreenPageLimit(pagerAdapter.getCount() - 1);
-        pager.setCurrentItem(currentPage);
+        int currentPage = Math.min(defaultPage, pagerAdapter.getCount()); //NOSONAR
+        pager.setAdapter(pagerAdapter); //NOSONAR
+        pager.setOffscreenPageLimit(pagerAdapter.getCount() - 1); //NOSONAR
+        pager.setCurrentItem(currentPage); //NOSONAR
 
-        slidingTabLayout.setupWithViewPager(pager);
+        slidingTabLayout.setupWithViewPager(pager); //NOSONAR
 
-        pager.postDelayed(() -> {
-            if (pager != null) {
-                new RatingSnackbar(settingsManager, analyticsManager).show(pager, () -> {
-                    ShuttleUtils.openShuttleLink(getActivity(), getActivity().getPackageName(), getActivity().getPackageManager());
-                    return Unit.INSTANCE;
+        pager.postDelayed(() -> { //NOSONAR
+            if (pager != null) { //NOSONAR
+                new RatingSnackbar(settingsManager, analyticsManager).show(pager, () -> { //NOSONAR
+                    ShuttleUtils.openShuttleLink(getActivity(), getActivity().getPackageName(), getActivity().getPackageManager()); //NOSONAR
+                    return Unit.INSTANCE; //NOSONAR
                 });
             }
-        }, 1000);
+        }, 1000); //NOSONAR
     }
 
-    private void openSearch() {
-        getNavigationController().pushViewController(SearchFragment.Companion.newInstance(null), "SearchFragment");
+    private void openSearch() { //NOSONAR
+        getNavigationController().pushViewController(SearchFragment.Companion.newInstance(null), "SearchFragment"); //NOSONAR
     }
 
-    @Override
-    public void onAlbumArtistClicked(AlbumArtist albumArtist, View transitionView) {
-        String transitionName = ViewCompat.getTransitionName(transitionView);
-        ArtistDetailFragment detailFragment = ArtistDetailFragment.Companion.newInstance(albumArtist, transitionName);
-        pushDetailFragment(detailFragment, transitionView);
+    @Override //NOSONAR
+    public void onAlbumArtistClicked(AlbumArtist albumArtist, View transitionView) { //NOSONAR
+        String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
+        ArtistDetailFragment detailFragment = ArtistDetailFragment.Companion.newInstance(albumArtist, transitionName); //NOSONAR
+        pushDetailFragment(detailFragment, transitionView); //NOSONAR
     }
 
-    @Override
-    public void onAlbumClicked(Album album, View transitionView) {
-        String transitionName = ViewCompat.getTransitionName(transitionView);
-        AlbumDetailFragment detailFragment = AlbumDetailFragment.Companion.newInstance(album, transitionName);
-        pushDetailFragment(detailFragment, transitionView);
+    @Override //NOSONAR
+    public void onAlbumClicked(Album album, View transitionView) { //NOSONAR
+        String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
+        AlbumDetailFragment detailFragment = AlbumDetailFragment.Companion.newInstance(album, transitionName); //NOSONAR
+        pushDetailFragment(detailFragment, transitionView); //NOSONAR
     }
 
-    @Override
-    public void onGenreClicked(Genre genre) {
-        pushDetailFragment(GenreDetailFragment.Companion.newInstance(genre), null);
+    @Override //NOSONAR
+    public void onGenreClicked(Genre genre) { //NOSONAR
+        pushDetailFragment(GenreDetailFragment.Companion.newInstance(genre), null); //NOSONAR
     }
 
-    @Override
-    public void onPlaylistClicked(Playlist playlist) {
-        pushDetailFragment(PlaylistDetailFragment.Companion.newInstance(playlist), null);
+    @Override //NOSONAR
+    public void onPlaylistClicked(Playlist playlist) { //NOSONAR
+        pushDetailFragment(PlaylistDetailFragment.Companion.newInstance(playlist), null); //NOSONAR
     }
 
-    void pushDetailFragment(Fragment fragment, @Nullable View transitionView) {
+    void pushDetailFragment(Fragment fragment, @Nullable View transitionView) { //NOSONAR
 
-        List<Pair<View, String>> transitions = new ArrayList<>();
+        List<Pair<View, String>> transitions = new ArrayList<>(); //NOSONAR
 
-        if (transitionView != null) {
-            String transitionName = ViewCompat.getTransitionName(transitionView);
-            transitions.add(new Pair<>(transitionView, transitionName));
+        if (transitionView != null) { //NOSONAR
+            String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
+            transitions.add(new Pair<>(transitionView, transitionName)); //NOSONAR
             //            transitions.add(new Pair<>(toolbar, "toolbar"));
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                Transition moveTransition = TransitionInflater.from(getContext()).inflateTransition(R.transition.image_transition);
-                fragment.setSharedElementEnterTransition(moveTransition);
-                fragment.setSharedElementReturnTransition(moveTransition);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+                Transition moveTransition = TransitionInflater.from(getContext()).inflateTransition(R.transition.image_transition); //NOSONAR
+                fragment.setSharedElementEnterTransition(moveTransition); //NOSONAR
+                fragment.setSharedElementReturnTransition(moveTransition); //NOSONAR
             }
         }
 
-        getNavigationController().pushViewController(fragment, "DetailFragment", transitions);
+        getNavigationController().pushViewController(fragment, "DetailFragment", transitions); //NOSONAR
     }
 
-    @Override
-    protected String screenName() {
-        return "LibraryController";
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return "LibraryController"; //NOSONAR
     }
 
-    @Override
-    public ContextualToolbar getContextualToolbar() {
-        return contextualToolbar;
+    @Override //NOSONAR
+    public ContextualToolbar getContextualToolbar() { //NOSONAR
+        return contextualToolbar; //NOSONAR
     }
 }

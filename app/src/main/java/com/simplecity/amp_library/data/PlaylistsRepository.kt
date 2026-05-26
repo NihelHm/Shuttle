@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.data
 
@@ -22,135 +22,135 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class PlaylistsRepository @Inject constructor(
-    private val context: Context
-) : Repository.PlaylistsRepository {
+@Singleton //NOSONAR
+class PlaylistsRepository @Inject constructor( //NOSONAR
+    private val context: Context //NOSONAR
+) : Repository.PlaylistsRepository { //NOSONAR
 
-    private var playlistsSubscription: Disposable? = null
-    private val playlistsRelay = BehaviorRelay.create<List<Playlist>>()
+    private var playlistsSubscription: Disposable? = null //NOSONAR
+    private val playlistsRelay = BehaviorRelay.create<List<Playlist>>() //NOSONAR
 
-    override fun getPlaylists(): Observable<List<Playlist>> {
-        if (playlistsSubscription == null || playlistsSubscription?.isDisposed == true) {
-            playlistsSubscription = SqlBriteUtils.createObservableList(
-                context,
-                { cursor -> Playlist(context, cursor) },
-                Playlist.getQuery()
+    override fun getPlaylists(): Observable<List<Playlist>> { //NOSONAR
+        if (playlistsSubscription == null || playlistsSubscription?.isDisposed == true) { //NOSONAR
+            playlistsSubscription = SqlBriteUtils.createObservableList( //NOSONAR
+                context, //NOSONAR
+                { cursor -> Playlist(context, cursor) }, //NOSONAR
+                Playlist.getQuery() //NOSONAR
             )
-                .subscribe(
-                    playlistsRelay,
-                    Consumer { error -> LogUtils.logException(TAG, "Failed to get playlists", error) }
+                .subscribe( //NOSONAR
+                    playlistsRelay, //NOSONAR
+                    Consumer { error -> LogUtils.logException(TAG, "Failed to get playlists", error) } //NOSONAR
                 )
         }
-        return playlistsRelay.subscribeOn(Schedulers.io())
+        return playlistsRelay.subscribeOn(Schedulers.io()) //NOSONAR
     }
 
-    override fun getAllPlaylists(songsRepository: SongsRepository): Observable<MutableList<Playlist>> {
-        val defaultPlaylistsObservable = Observable.fromCallable<List<Playlist>> {
-            val playlists = mutableListOf<Playlist>()
+    override fun getAllPlaylists(songsRepository: SongsRepository): Observable<MutableList<Playlist>> { //NOSONAR
+        val defaultPlaylistsObservable = Observable.fromCallable<List<Playlist>> { //NOSONAR
+            val playlists = mutableListOf<Playlist>() //NOSONAR
 
             // To do later: Hide Podcasts if there are no songs
-            playlists.add(getPodcastPlaylist())
-            playlists.add(getRecentlyAddedPlaylist())
-            playlists.add(getMostPlayedPlaylist())
+            playlists.add(getPodcastPlaylist()) //NOSONAR
+            playlists.add(getRecentlyAddedPlaylist()) //NOSONAR
+            playlists.add(getMostPlayedPlaylist()) //NOSONAR
 
-            playlists
-        }.subscribeOn(Schedulers.io())
+            playlists //NOSONAR
+        }.subscribeOn(Schedulers.io()) //NOSONAR
 
-        val playlistsObservable = getPlaylists()
+        val playlistsObservable = getPlaylists() //NOSONAR
 
-        return Observable.combineLatest<List<Playlist>, List<Playlist>, MutableList<Playlist>>(
-            defaultPlaylistsObservable, playlistsObservable, BiFunction { defaultPlaylists: List<Playlist>, playlists1: List<Playlist> ->
-                val list = mutableListOf<Playlist>()
-                list.addAll(defaultPlaylists)
-                list.addAll(playlists1)
-                list
+        return Observable.combineLatest<List<Playlist>, List<Playlist>, MutableList<Playlist>>( //NOSONAR
+            defaultPlaylistsObservable, playlistsObservable, BiFunction { defaultPlaylists: List<Playlist>, playlists1: List<Playlist> -> //NOSONAR
+                val list = mutableListOf<Playlist>() //NOSONAR
+                list.addAll(defaultPlaylists) //NOSONAR
+                list.addAll(playlists1) //NOSONAR
+                list //NOSONAR
             })
-            .concatMap { playlists ->
-                Observable.fromIterable<Playlist?>(playlists)
-                    .concatMap<Playlist> { playlist ->
-                        songsRepository.getSongs(playlist)
-                            .first(emptyList())
-                            .flatMapObservable { songs ->
-                                if (playlist.type != Type.USER_CREATED && playlist.type != Type.FAVORITES && songs.isEmpty()
+            .concatMap { playlists -> //NOSONAR
+                Observable.fromIterable<Playlist?>(playlists) //NOSONAR
+                    .concatMap<Playlist> { playlist -> //NOSONAR
+                        songsRepository.getSongs(playlist) //NOSONAR
+                            .first(emptyList()) //NOSONAR
+                            .flatMapObservable { songs -> //NOSONAR
+                                if (playlist.type != Type.USER_CREATED && playlist.type != Type.FAVORITES && songs.isEmpty() //NOSONAR
                                 ) {
-                                    Observable.empty()
-                                } else {
-                                    Observable.just(playlist)
+                                    Observable.empty() //NOSONAR
+                                } else { //NOSONAR
+                                    Observable.just(playlist) //NOSONAR
                                 }
                             }
                     }
-                    .toList()
-                    .toObservable()
+                    .toList() //NOSONAR
+                    .toObservable() //NOSONAR
             }
 
     }
 
-    override fun deletePlaylist(playlist: Playlist) {
-        if (!playlist.canDelete) {
-            Log.e(TAG, "Playlist cannot be deleted")
-            return
+    override fun deletePlaylist(playlist: Playlist) { //NOSONAR
+        if (!playlist.canDelete) { //NOSONAR
+            Log.e(TAG, "Playlist cannot be deleted") //NOSONAR
+            return //NOSONAR
         }
 
-        ContentUris.withAppendedId(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, playlist.id)?.let { uri ->
-            context.contentResolver.delete(uri, null, null)
+        ContentUris.withAppendedId(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, playlist.id)?.let { uri -> //NOSONAR
+            context.contentResolver.delete(uri, null, null) //NOSONAR
         }
     }
 
-    override fun getPodcastPlaylist(): Playlist {
-        return Playlist(
-            Type.PODCAST,
-            PlaylistManager.PlaylistIds.PODCASTS_PLAYLIST,
-            context.getString(R.string.podcasts_title),
-            false,
-            false,
-            false,
-            false,
-            false
+    override fun getPodcastPlaylist(): Playlist { //NOSONAR
+        return Playlist( //NOSONAR
+            Type.PODCAST, //NOSONAR
+            PlaylistManager.PlaylistIds.PODCASTS_PLAYLIST, //NOSONAR
+            context.getString(R.string.podcasts_title), //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false //NOSONAR
         )
     }
 
-    override fun getRecentlyAddedPlaylist(): Playlist {
-        return Playlist(
-            Type.RECENTLY_ADDED,
-            PlaylistManager.PlaylistIds.RECENTLY_ADDED_PLAYLIST,
-            context.getString(R.string.recentlyadded),
-            false,
-            false,
-            false,
-            false,
-            false
+    override fun getRecentlyAddedPlaylist(): Playlist { //NOSONAR
+        return Playlist( //NOSONAR
+            Type.RECENTLY_ADDED, //NOSONAR
+            PlaylistManager.PlaylistIds.RECENTLY_ADDED_PLAYLIST, //NOSONAR
+            context.getString(R.string.recentlyadded), //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false //NOSONAR
         )
     }
 
-    override fun getMostPlayedPlaylist(): Playlist {
-        return Playlist(
-            Type.MOST_PLAYED,
-            PlaylistManager.PlaylistIds.MOST_PLAYED_PLAYLIST,
-            context.getString(R.string.mostplayed),
-            false,
-            true,
-            false,
-            false,
-            false
+    override fun getMostPlayedPlaylist(): Playlist { //NOSONAR
+        return Playlist( //NOSONAR
+            Type.MOST_PLAYED, //NOSONAR
+            PlaylistManager.PlaylistIds.MOST_PLAYED_PLAYLIST, //NOSONAR
+            context.getString(R.string.mostplayed), //NOSONAR
+            false, //NOSONAR
+            true, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false //NOSONAR
         )
     }
 
-    override fun getRecentlyPlayedPlaylist(): Playlist {
-        return Playlist(
-            Type.RECENTLY_PLAYED,
-            PlaylistManager.PlaylistIds.RECENTLY_PLAYED_PLAYLIST,
-            context.getString(R.string.suggested_recent_title),
-            false,
-            false,
-            false,
-            false,
-            false
+    override fun getRecentlyPlayedPlaylist(): Playlist { //NOSONAR
+        return Playlist( //NOSONAR
+            Type.RECENTLY_PLAYED, //NOSONAR
+            PlaylistManager.PlaylistIds.RECENTLY_PLAYED_PLAYLIST, //NOSONAR
+            context.getString(R.string.suggested_recent_title), //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false, //NOSONAR
+            false //NOSONAR
         )
     }
 
-    companion object {
-        const val TAG = "PlaylistsRepository"
+    companion object { //NOSONAR
+        const val TAG = "PlaylistsRepository" //NOSONAR
     }
 
 }

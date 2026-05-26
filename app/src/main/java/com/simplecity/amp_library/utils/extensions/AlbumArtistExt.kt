@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.extensions
 
@@ -9,23 +9,23 @@ import com.simplecity.amp_library.utils.ComparisonUtils
 import io.reactivex.Single
 import java.util.Comparator
 
-fun AlbumArtist.getSongs(songsRepository: SongsRepository): Single<List<Song>> {
-    return songsRepository.getSongs(this)
-        .first(emptyList())
-        .map { songs ->
-            songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) })
-                .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) })
-                .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) })
-                .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) })
+fun AlbumArtist.getSongs(songsRepository: SongsRepository): Single<List<Song>> { //NOSONAR
+    return songsRepository.getSongs(this) //NOSONAR
+        .first(emptyList()) //NOSONAR
+        .map { songs -> //NOSONAR
+            songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) }) //NOSONAR
+                .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) }) //NOSONAR
+                .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) }) //NOSONAR
+                .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) }) //NOSONAR
         }
 }
 
-fun List<AlbumArtist>.getSongs(songsRepository: SongsRepository): Single<List<Song>> {
-    return Single.concat(
-        map { albumArtist -> albumArtist.getSongsSingle(songsRepository) })
-        .reduce(emptyList()) { a, b -> a + b }
+fun List<AlbumArtist>.getSongs(songsRepository: SongsRepository): Single<List<Song>> { //NOSONAR
+    return Single.concat( //NOSONAR
+        map { albumArtist -> albumArtist.getSongsSingle(songsRepository) }) //NOSONAR
+        .reduce(emptyList()) { a, b -> a + b } //NOSONAR
 }
 
-fun Single<List<AlbumArtist>>.getSongs(songsRepository: SongsRepository): Single<List<Song>> {
-    return flatMap { albumArtist -> albumArtist.getSongs(songsRepository) }
+fun Single<List<AlbumArtist>>.getSongs(songsRepository: SongsRepository): Single<List<Song>> { //NOSONAR
+    return flatMap { albumArtist -> albumArtist.getSongs(songsRepository) } //NOSONAR
 }

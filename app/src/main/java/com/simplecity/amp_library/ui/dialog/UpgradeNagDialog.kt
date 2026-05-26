@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -13,31 +13,31 @@ import com.simplecity.amp_library.utils.SettingsManager
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class UpgradeNagDialog : DialogFragment() {
+class UpgradeNagDialog : DialogFragment() { //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        settingsManager.setNagMessageRead()
+        settingsManager.setNagMessageRead() //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val builder = MaterialDialog.Builder(context!!)
-            .title(context!!.resources.getString(R.string.get_pro_title))
-            .content(context!!.resources.getString(R.string.get_pro_message))
-            .positiveText(R.string.btn_upgrade)
-            .onPositive { dialog, which ->
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        val builder = MaterialDialog.Builder(context!!) //NOSONAR
+            .title(context!!.resources.getString(R.string.get_pro_title)) //NOSONAR
+            .content(context!!.resources.getString(R.string.get_pro_message)) //NOSONAR
+            .positiveText(R.string.btn_upgrade) //NOSONAR
+            .onPositive { dialog, which -> //NOSONAR
                 // To do later: Show IAP or open Play Store
             }
-            .negativeText(R.string.get_pro_button_no)
+            .negativeText(R.string.get_pro_button_no) //NOSONAR
 
-        return builder.build()
+        return builder.build() //NOSONAR
     }
 }

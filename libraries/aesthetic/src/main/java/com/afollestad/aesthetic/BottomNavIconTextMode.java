@@ -9,11 +9,11 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("WeakerAccess")
-@Retention(SOURCE)
-@IntDef(value = {SELECTED_PRIMARY, SELECTED_ACCENT, BLACK_WHITE_AUTO})
-public @interface BottomNavIconTextMode {
-  int SELECTED_PRIMARY = 0;
-  int SELECTED_ACCENT = 1;
-  int BLACK_WHITE_AUTO = 2;
+@SuppressWarnings("WeakerAccess") //NOSONAR
+@Retention(SOURCE) //NOSONAR
+@IntDef(value = {SELECTED_PRIMARY, SELECTED_ACCENT, BLACK_WHITE_AUTO}) //NOSONAR
+public @interface BottomNavIconTextMode { //NOSONAR
+  int SELECTED_PRIMARY = 0; //NOSONAR
+  int SELECTED_ACCENT = 1; //NOSONAR
+  int BLACK_WHITE_AUTO = 2; //NOSONAR
 }

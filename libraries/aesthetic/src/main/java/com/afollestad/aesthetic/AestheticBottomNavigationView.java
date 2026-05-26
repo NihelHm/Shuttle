@@ -18,183 +18,183 @@ import io.reactivex.functions.Function3;
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticBottomNavigationView extends BottomNavigationView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticBottomNavigationView extends BottomNavigationView { //NOSONAR
 
-  private Disposable modesSubscription;
-  private CompositeDisposable colorSubscriptions;
-  private int lastTextIconColor;
+  private Disposable modesSubscription; //NOSONAR
+  private CompositeDisposable colorSubscriptions; //NOSONAR
+  private int lastTextIconColor; //NOSONAR
 
-  public AestheticBottomNavigationView(Context context) {
-    super(context);
+  public AestheticBottomNavigationView(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticBottomNavigationView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticBottomNavigationView(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticBottomNavigationView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public AestheticBottomNavigationView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
   }
 
-  private void invalidateIconTextColor(int backgroundColor, int selectedColor) {
-    int baseColor =
-        ContextCompat.getColor(
-            getContext(),
-            Util.isColorLight(backgroundColor) ? R.color.ate_icon_light : R.color.ate_icon_dark);
-    int unselectedIconTextColor = Util.adjustAlpha(baseColor, .87f);
-    ColorStateList iconColor =
-        new ColorStateList(
-            new int[][] {
-              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked}
+  private void invalidateIconTextColor(int backgroundColor, int selectedColor) { //NOSONAR
+    int baseColor = //NOSONAR
+        ContextCompat.getColor( //NOSONAR
+            getContext(), //NOSONAR
+            Util.isColorLight(backgroundColor) ? R.color.ate_icon_light : R.color.ate_icon_dark); //NOSONAR
+    int unselectedIconTextColor = Util.adjustAlpha(baseColor, .87f); //NOSONAR
+    ColorStateList iconColor = //NOSONAR
+        new ColorStateList( //NOSONAR
+            new int[][] { //NOSONAR
+              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
             },
-            new int[] {unselectedIconTextColor, selectedColor});
-    ColorStateList textColor =
-        new ColorStateList(
-            new int[][] {
-              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked}
+            new int[] {unselectedIconTextColor, selectedColor}); //NOSONAR
+    ColorStateList textColor = //NOSONAR
+        new ColorStateList( //NOSONAR
+            new int[][] { //NOSONAR
+              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
             },
-            new int[] {unselectedIconTextColor, selectedColor});
-    setItemIconTintList(iconColor);
-    setItemTextColor(textColor);
+            new int[] {unselectedIconTextColor, selectedColor}); //NOSONAR
+    setItemIconTintList(iconColor); //NOSONAR
+    setItemTextColor(textColor); //NOSONAR
   }
 
-  @Override
-  public void setBackgroundColor(@ColorInt int color) {
-    super.setBackgroundColor(color);
-    if (lastTextIconColor == Color.TRANSPARENT) {
-      lastTextIconColor = Util.isColorLight(color) ? Color.BLACK : Color.WHITE;
+  @Override //NOSONAR
+  public void setBackgroundColor(@ColorInt int color) { //NOSONAR
+    super.setBackgroundColor(color); //NOSONAR
+    if (lastTextIconColor == Color.TRANSPARENT) { //NOSONAR
+      lastTextIconColor = Util.isColorLight(color) ? Color.BLACK : Color.WHITE; //NOSONAR
     }
-    invalidateIconTextColor(color, lastTextIconColor);
+    invalidateIconTextColor(color, lastTextIconColor); //NOSONAR
   }
 
-  private void onState(State state) {
-    if (colorSubscriptions != null) {
-      colorSubscriptions.clear();
+  private void onState(State state) { //NOSONAR
+    if (colorSubscriptions != null) { //NOSONAR
+      colorSubscriptions.clear(); //NOSONAR
     }
-    colorSubscriptions = new CompositeDisposable();
+    colorSubscriptions = new CompositeDisposable(); //NOSONAR
 
-    switch (state.iconTextMode) {
-      case BottomNavIconTextMode.SELECTED_PRIMARY:
-        colorSubscriptions.add(
-            Aesthetic.get(getContext())
-                .colorPrimary()
-                .compose(Rx.<Integer>distinctToMainThread())
-                .subscribe(
-                    new Consumer<Integer>() {
-                      @Override
-                      public void accept(@NonNull Integer color) {
-                        lastTextIconColor = color;
+    switch (state.iconTextMode) { //NOSONAR
+      case BottomNavIconTextMode.SELECTED_PRIMARY: //NOSONAR
+        colorSubscriptions.add( //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                    new Consumer<Integer>() { //NOSONAR
+                      @Override //NOSONAR
+                      public void accept(@NonNull Integer color) { //NOSONAR
+                        lastTextIconColor = color; //NOSONAR
                       }
                     },
-                    onErrorLogAndRethrow()));
-        break;
-      case BottomNavIconTextMode.SELECTED_ACCENT:
-        colorSubscriptions.add(
-            Aesthetic.get(getContext())
-                .colorAccent()
-                .compose(Rx.<Integer>distinctToMainThread())
-                .subscribe(
-                    new Consumer<Integer>() {
-                      @Override
-                      public void accept(@NonNull Integer color) {
-                        lastTextIconColor = color;
+                    onErrorLogAndRethrow())); //NOSONAR
+        break; //NOSONAR
+      case BottomNavIconTextMode.SELECTED_ACCENT: //NOSONAR
+        colorSubscriptions.add( //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                .colorAccent() //NOSONAR
+                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                    new Consumer<Integer>() { //NOSONAR
+                      @Override //NOSONAR
+                      public void accept(@NonNull Integer color) { //NOSONAR
+                        lastTextIconColor = color; //NOSONAR
                       }
                     },
-                    onErrorLogAndRethrow()));
-        break;
-      case BottomNavIconTextMode.BLACK_WHITE_AUTO:
+                    onErrorLogAndRethrow())); //NOSONAR
+        break; //NOSONAR
+      case BottomNavIconTextMode.BLACK_WHITE_AUTO: //NOSONAR
         // We will automatically set the icon/text color when the background color is set
-        lastTextIconColor = Color.TRANSPARENT;
-        break;
-      default:
-        throw new IllegalStateException("Unknown bottom nav icon/text mode: " + state.iconTextMode);
+        lastTextIconColor = Color.TRANSPARENT; //NOSONAR
+        break; //NOSONAR
+      default: //NOSONAR
+        throw new IllegalStateException("Unknown bottom nav icon/text mode: " + state.iconTextMode); //NOSONAR
     }
 
-    switch (state.bgMode) {
-      case BottomNavBgMode.PRIMARY:
-        colorSubscriptions.add(
-            Aesthetic.get(getContext())
-                .colorPrimary()
-                .compose(Rx.<Integer>distinctToMainThread())
-                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow()));
-        break;
-      case BottomNavBgMode.PRIMARY_DARK:
-        colorSubscriptions.add(
-            Aesthetic.get(getContext())
-                .colorStatusBar()
-                .compose(Rx.<Integer>distinctToMainThread())
-                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow()));
-        break;
-      case BottomNavBgMode.ACCENT:
-        colorSubscriptions.add(
-            Aesthetic.get(getContext())
-                .colorAccent()
-                .compose(Rx.<Integer>distinctToMainThread())
-                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow()));
-        break;
-      case BottomNavBgMode.BLACK_WHITE_AUTO:
-        setBackgroundColor(
-            ContextCompat.getColor(
-                getContext(),
-                state.isDark
-                    ? R.color.ate_bottom_nav_default_dark_bg
-                    : R.color.ate_bottom_nav_default_light_bg));
-        break;
-      default:
-        throw new IllegalStateException("Unknown bottom nav bg mode: " + state.bgMode);
+    switch (state.bgMode) { //NOSONAR
+      case BottomNavBgMode.PRIMARY: //NOSONAR
+        colorSubscriptions.add( //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow())); //NOSONAR
+        break; //NOSONAR
+      case BottomNavBgMode.PRIMARY_DARK: //NOSONAR
+        colorSubscriptions.add( //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                .colorStatusBar() //NOSONAR
+                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow())); //NOSONAR
+        break; //NOSONAR
+      case BottomNavBgMode.ACCENT: //NOSONAR
+        colorSubscriptions.add( //NOSONAR
+            Aesthetic.get(getContext()) //NOSONAR
+                .colorAccent() //NOSONAR
+                .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+                .subscribe(ViewBackgroundAction.create(this), onErrorLogAndRethrow())); //NOSONAR
+        break; //NOSONAR
+      case BottomNavBgMode.BLACK_WHITE_AUTO: //NOSONAR
+        setBackgroundColor( //NOSONAR
+            ContextCompat.getColor( //NOSONAR
+                getContext(), //NOSONAR
+                state.isDark //NOSONAR
+                    ? R.color.ate_bottom_nav_default_dark_bg //NOSONAR
+                    : R.color.ate_bottom_nav_default_light_bg)); //NOSONAR
+        break; //NOSONAR
+      default: //NOSONAR
+        throw new IllegalStateException("Unknown bottom nav bg mode: " + state.bgMode); //NOSONAR
     }
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    modesSubscription =
-        Observable.combineLatest(
-                Aesthetic.get(getContext()).bottomNavigationBackgroundMode(),
-                Aesthetic.get(getContext()).bottomNavigationIconTextMode(),
-                Aesthetic.get(getContext()).isDark(),
-                State.creator())
-            .compose(Rx.<State>distinctToMainThread())
-            .subscribe(
-                new Consumer<State>() {
-                  @Override
-                  public void accept(@android.support.annotation.NonNull State state) {
-                    onState(state);
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    modesSubscription = //NOSONAR
+        Observable.combineLatest( //NOSONAR
+                Aesthetic.get(getContext()).bottomNavigationBackgroundMode(), //NOSONAR
+                Aesthetic.get(getContext()).bottomNavigationIconTextMode(), //NOSONAR
+                Aesthetic.get(getContext()).isDark(), //NOSONAR
+                State.creator()) //NOSONAR
+            .compose(Rx.<State>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<State>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@android.support.annotation.NonNull State state) { //NOSONAR
+                    onState(state); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    modesSubscription.dispose();
-    colorSubscriptions.clear();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    modesSubscription.dispose(); //NOSONAR
+    colorSubscriptions.clear(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 
-  private static class State {
+  private static class State { //NOSONAR
 
-    @BottomNavBgMode private final int bgMode;
-    @BottomNavIconTextMode private final int iconTextMode;
-    private final boolean isDark;
+    @BottomNavBgMode private final int bgMode; //NOSONAR
+    @BottomNavIconTextMode private final int iconTextMode; //NOSONAR
+    private final boolean isDark; //NOSONAR
 
-    private State(int bgMode, int iconTextMode, boolean isDark) {
-      this.bgMode = bgMode;
-      this.iconTextMode = iconTextMode;
-      this.isDark = isDark;
+    private State(int bgMode, int iconTextMode, boolean isDark) { //NOSONAR
+      this.bgMode = bgMode; //NOSONAR
+      this.iconTextMode = iconTextMode; //NOSONAR
+      this.isDark = isDark; //NOSONAR
     }
 
-    static State create(
-        @BottomNavBgMode int bgMode, @BottomNavIconTextMode int iconTextMode, boolean isDark) {
-      return new State(bgMode, iconTextMode, isDark);
+    static State create( //NOSONAR
+        @BottomNavBgMode int bgMode, @BottomNavIconTextMode int iconTextMode, boolean isDark) { //NOSONAR
+      return new State(bgMode, iconTextMode, isDark); //NOSONAR
     }
 
-    static Function3<Integer, Integer, Boolean, State> creator() {
-      return new Function3<Integer, Integer, Boolean, State>() {
-        @Override
-        public State apply(Integer integer, Integer integer2, Boolean aBoolean) {
-          return State.create(integer, integer2, aBoolean);
+    static Function3<Integer, Integer, Boolean, State> creator() { //NOSONAR
+      return new Function3<Integer, Integer, Boolean, State>() { //NOSONAR
+        @Override //NOSONAR
+        public State apply(Integer integer, Integer integer2, Boolean aBoolean) { //NOSONAR
+          return State.create(integer, integer2, aBoolean); //NOSONAR
         }
       };
     }

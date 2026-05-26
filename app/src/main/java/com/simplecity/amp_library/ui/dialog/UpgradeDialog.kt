@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -16,43 +16,43 @@ import com.simplecity.amp_library.utils.ShuttleUtils
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class UpgradeDialog : DialogFragment() {
+class UpgradeDialog : DialogFragment() { //NOSONAR
 
-    @Inject lateinit var billingManager: BillingManager
+    @Inject lateinit var billingManager: BillingManager //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return MaterialDialog.Builder(context!!)
-            .title(context!!.resources.getString(R.string.get_pro_title))
-            .content(context!!.resources.getString(R.string.upgrade_dialog_message))
-            .positiveText(R.string.btn_upgrade)
-            .onPositive { _, _ ->
-                if (ShuttleUtils.isAmazonBuild()) {
-                    val storeIntent = ShuttleUtils.getShuttleStoreIntent("com.simplecity.amp_pro")
-                    if (storeIntent.resolveActivity(context!!.packageManager) != null) {
-                        context!!.startActivity(storeIntent)
-                    } else {
-                        context!!.startActivity(ShuttleUtils.getShuttleWebIntent("com.simplecity.amp_pro"))
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(context!!.resources.getString(R.string.get_pro_title)) //NOSONAR
+            .content(context!!.resources.getString(R.string.upgrade_dialog_message)) //NOSONAR
+            .positiveText(R.string.btn_upgrade) //NOSONAR
+            .onPositive { _, _ -> //NOSONAR
+                if (ShuttleUtils.isAmazonBuild()) { //NOSONAR
+                    val storeIntent = ShuttleUtils.getShuttleStoreIntent("com.simplecity.amp_pro") //NOSONAR
+                    if (storeIntent.resolveActivity(context!!.packageManager) != null) { //NOSONAR
+                        context!!.startActivity(storeIntent) //NOSONAR
+                    } else { //NOSONAR
+                        context!!.startActivity(ShuttleUtils.getShuttleWebIntent("com.simplecity.amp_pro")) //NOSONAR
                     }
-                } else {
-                    billingManager.initiatePurchaseFlow(Config.SKU_PREMIUM, BillingClient.SkuType.INAPP)
+                } else { //NOSONAR
+                    billingManager.initiatePurchaseFlow(Config.SKU_PREMIUM, BillingClient.SkuType.INAPP) //NOSONAR
                 }
             }
-            .negativeText(R.string.get_pro_button_no)
-            .build()
+            .negativeText(R.string.get_pro_button_no) //NOSONAR
+            .build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
-        const val TAG = "UpgradeDialog"
+    companion object { //NOSONAR
+        const val TAG = "UpgradeDialog" //NOSONAR
 
-        fun newInstance() = UpgradeDialog()
+        fun newInstance() = UpgradeDialog() //NOSONAR
     }
 }

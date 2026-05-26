@@ -10,36 +10,36 @@ import io.reactivex.exceptions.Exceptions;
 import io.reactivex.observers.DisposableObserver;
 
 /** @author Aidan Follestad (afollestad) */
-@RestrictTo(LIBRARY_GROUP)
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-final class ViewBackgroundSubscriber extends DisposableObserver<Integer> {
+@RestrictTo(LIBRARY_GROUP) //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+final class ViewBackgroundSubscriber extends DisposableObserver<Integer> { //NOSONAR
 
-  private final View view;
+  private final View view; //NOSONAR
 
-  private ViewBackgroundSubscriber(@NonNull View view) {
-    this.view = view;
+  private ViewBackgroundSubscriber(@NonNull View view) { //NOSONAR
+    this.view = view; //NOSONAR
   }
 
-  public static ViewBackgroundSubscriber create(@NonNull View view) {
-    return new ViewBackgroundSubscriber(view);
+  public static ViewBackgroundSubscriber create(@NonNull View view) { //NOSONAR
+    return new ViewBackgroundSubscriber(view); //NOSONAR
   }
 
-  @Override
-  public void onError(Throwable e) {
-    throw Exceptions.propagate(e);
+  @Override //NOSONAR
+  public void onError(Throwable e) { //NOSONAR
+    throw Exceptions.propagate(e); //NOSONAR
   }
 
-  @Override
-  public void onComplete() {
+  @Override //NOSONAR
+  public void onComplete() { //NOSONAR
       // Intentionally left empty.
   }
 
-  @Override
-  public void onNext(Integer color) {
-    if (view instanceof CardView) {
-      ((CardView) view).setCardBackgroundColor(color);
-    } else {
-      view.setBackgroundColor(color);
+  @Override //NOSONAR
+  public void onNext(Integer color) { //NOSONAR
+    if (view instanceof CardView) { //NOSONAR
+      ((CardView) view).setCardBackgroundColor(color); //NOSONAR
+    } else { //NOSONAR
+      view.setBackgroundColor(color); //NOSONAR
     }
   }
 }

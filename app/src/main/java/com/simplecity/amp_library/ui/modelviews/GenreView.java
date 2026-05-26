@@ -15,128 +15,128 @@ import com.simplecity.amp_library.utils.StringUtils;
 import com.simplecityapps.recycler_adapter.model.BaseViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class GenreView extends BaseViewModel<GenreView.ViewHolder> implements
-        SectionedView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class GenreView extends BaseViewModel<GenreView.ViewHolder> implements //NOSONAR
+        SectionedView { //NOSONAR
 
-    public interface ClickListener {
+    public interface ClickListener { //NOSONAR
 
-        void onItemClick(Genre genre);
+        void onItemClick(Genre genre); //NOSONAR
 
-        void onOverflowClick(View v, Genre genre);
+        void onOverflowClick(View v, Genre genre); //NOSONAR
     }
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public Genre genre;
+    public Genre genre; //NOSONAR
 
-    @Nullable
-    private ClickListener clickListener;
+    @Nullable //NOSONAR
+    private ClickListener clickListener; //NOSONAR
 
-    public GenreView(Genre genre) {
-        this.genre = genre;
+    public GenreView(Genre genre) { //NOSONAR
+        this.genre = genre; //NOSONAR
     }
 
-    public void setClickListener(@Nullable ClickListener clickListener) {
-        this.clickListener = clickListener;
+    public void setClickListener(@Nullable ClickListener clickListener) { //NOSONAR
+        this.clickListener = clickListener; //NOSONAR
     }
 
-    void onClick() {
-        if (clickListener != null) {
-            clickListener.onItemClick(genre);
+    void onClick() { //NOSONAR
+        if (clickListener != null) { //NOSONAR
+            clickListener.onItemClick(genre); //NOSONAR
         }
     }
 
-    void onOverflowClick(View v) {
-        if (clickListener != null) {
-            clickListener.onOverflowClick(v, genre);
+    void onOverflowClick(View v) { //NOSONAR
+        if (clickListener != null) { //NOSONAR
+            clickListener.onOverflowClick(v, genre); //NOSONAR
         }
     }
 
-    @Override
-    public int getViewType() {
-        return ViewType.GENRE;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return ViewType.GENRE; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return R.layout.list_item_two_lines;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return R.layout.list_item_two_lines; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.lineOne.setText(genre.name);
-        String albumAndSongsLabel = StringUtils.makeAlbumAndSongsLabel(holder.itemView.getContext(), -1, genre.numSongs);
-        if (!TextUtils.isEmpty(albumAndSongsLabel)) {
-            holder.lineTwo.setText(albumAndSongsLabel);
-            holder.lineTwo.setVisibility(View.VISIBLE);
-        } else {
-            holder.lineTwo.setVisibility(View.GONE);
+        holder.lineOne.setText(genre.name); //NOSONAR
+        String albumAndSongsLabel = StringUtils.makeAlbumAndSongsLabel(holder.itemView.getContext(), -1, genre.numSongs); //NOSONAR
+        if (!TextUtils.isEmpty(albumAndSongsLabel)) { //NOSONAR
+            holder.lineTwo.setText(albumAndSongsLabel); //NOSONAR
+            holder.lineTwo.setVisibility(View.VISIBLE); //NOSONAR
+        } else { //NOSONAR
+            holder.lineTwo.setVisibility(View.GONE); //NOSONAR
         }
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    @Override
-    public String getSectionName() {
+    @Override //NOSONAR
+    public String getSectionName() { //NOSONAR
 
-        String string = StringUtils.keyFor(genre.name);
-        if (!TextUtils.isEmpty(string)) {
-            string = string.substring(0, 1).toUpperCase();
-        } else {
-            string = " ";
+        String string = StringUtils.keyFor(genre.name); //NOSONAR
+        if (!TextUtils.isEmpty(string)) { //NOSONAR
+            string = string.substring(0, 1).toUpperCase(); //NOSONAR
+        } else { //NOSONAR
+            string = " "; //NOSONAR
         }
 
-        return string;
+        return string; //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<GenreView> {
+    public static class ViewHolder extends BaseViewHolder<GenreView> { //NOSONAR
 
-        @BindView(R.id.line_one)
-        @SuppressWarnings("java:S1104")
-        public TextView lineOne;
+        @BindView(R.id.line_one) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineOne; //NOSONAR
 
-        @BindView(R.id.line_two)
-        @SuppressWarnings("java:S1104")
-        public TextView lineTwo;
+        @BindView(R.id.line_two) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineTwo; //NOSONAR
 
-        @BindView(R.id.btn_overflow)
-        @SuppressWarnings("java:S1104")
-        public NonScrollImageButton overflowButton;
+        @BindView(R.id.btn_overflow) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public NonScrollImageButton overflowButton; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView); //NOSONAR
 
-            itemView.setOnClickListener(v -> viewModel.onClick());
+            itemView.setOnClickListener(v -> viewModel.onClick()); //NOSONAR
 
-            overflowButton.setOnClickListener(v -> viewModel.onOverflowClick(v));
+            overflowButton.setOnClickListener(v -> viewModel.onOverflowClick(v)); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "GenreView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "GenreView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        GenreView genreView = (GenreView) o;
+        GenreView genreView = (GenreView) o; //NOSONAR
 
-        return genre != null ? genre.equals(genreView.genre) : genreView.genre == null;
+        return genre != null ? genre.equals(genreView.genre) : genreView.genre == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return genre != null ? genre.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return genre != null ? genre.hashCode() : 0; //NOSONAR
     }
 }

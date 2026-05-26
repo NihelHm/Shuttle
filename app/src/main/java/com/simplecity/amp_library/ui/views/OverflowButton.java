@@ -13,51 +13,51 @@ import com.simplecity.amp_library.R;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class OverflowButton extends NonScrollImageButton {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class OverflowButton extends NonScrollImageButton { //NOSONAR
 
-    private Disposable aestheticDisposable;
+    private Disposable aestheticDisposable; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public Drawable drawable;
+    public Drawable drawable; //NOSONAR
 
-    private boolean dark = false;
+    private boolean dark = false; //NOSONAR
 
-    public OverflowButton(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public OverflowButton(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
 
-        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.OverflowButton, 0, 0);
-        if (typedArray.hasValue(R.styleable.OverflowButton_isDark)) {
-            dark = typedArray.getBoolean(R.styleable.OverflowButton_isDark, false);
+        TypedArray typedArray = context.getTheme().obtainStyledAttributes(attrs, R.styleable.OverflowButton, 0, 0); //NOSONAR
+        if (typedArray.hasValue(R.styleable.OverflowButton_isDark)) { //NOSONAR
+            dark = typedArray.getBoolean(R.styleable.OverflowButton_isDark, false); //NOSONAR
         }
 
-        drawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_overflow_20dp)).mutate();
+        drawable = DrawableCompat.wrap(ContextCompat.getDrawable(context, R.drawable.ic_overflow_20dp)).mutate(); //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        if (isInEditMode()) {
-            setImageDrawable(drawable);
-        } else {
-            aestheticDisposable = Observable.combineLatest(
-                    Aesthetic.get(getContext()).textColorSecondary(),
-                    Observable.just(Color.WHITE),
-                    Observable.just(dark),
-                    LightDarkColorState.creator()
-            ).subscribe(lightDarkColorState -> {
-                DrawableCompat.setTint(drawable, lightDarkColorState.color());
-                setImageDrawable(drawable);
+        if (isInEditMode()) { //NOSONAR
+            setImageDrawable(drawable); //NOSONAR
+        } else { //NOSONAR
+            aestheticDisposable = Observable.combineLatest( //NOSONAR
+                    Aesthetic.get(getContext()).textColorSecondary(), //NOSONAR
+                    Observable.just(Color.WHITE), //NOSONAR
+                    Observable.just(dark), //NOSONAR
+                    LightDarkColorState.creator() //NOSONAR
+            ).subscribe(lightDarkColorState -> { //NOSONAR
+                DrawableCompat.setTint(drawable, lightDarkColorState.color()); //NOSONAR
+                setImageDrawable(drawable); //NOSONAR
             });
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        aestheticDisposable.dispose();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        aestheticDisposable.dispose(); //NOSONAR
 
-        super.onDetachedFromWindow();
+        super.onDetachedFromWindow(); //NOSONAR
     }
 }

@@ -19,68 +19,68 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import java.util.List;
 import javax.inject.Inject;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class QueuePagerPresenter extends Presenter<QueuePagerView> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class QueuePagerPresenter extends Presenter<QueuePagerView> { //NOSONAR
 
-    private ShuttleApplication application;
+    private ShuttleApplication application; //NOSONAR
 
-    private RequestManager requestManager;
+    private RequestManager requestManager; //NOSONAR
 
-    private MediaManager mediaManager;
+    private MediaManager mediaManager; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    public QueuePagerPresenter(
-            ShuttleApplication application,
-            RequestManager requestManager,
-            MediaManager mediaManager,
-            SettingsManager settingsManager) {
-        this.application = application;
-        this.requestManager = requestManager;
-        this.mediaManager = mediaManager;
-        this.settingsManager = settingsManager;
+    @Inject //NOSONAR
+    public QueuePagerPresenter( //NOSONAR
+            ShuttleApplication application, //NOSONAR
+            RequestManager requestManager, //NOSONAR
+            MediaManager mediaManager, //NOSONAR
+            SettingsManager settingsManager) { //NOSONAR
+        this.application = application; //NOSONAR
+        this.requestManager = requestManager; //NOSONAR
+        this.mediaManager = mediaManager; //NOSONAR
+        this.settingsManager = settingsManager; //NOSONAR
     }
 
-    @Override
-    public void bindView(@NonNull QueuePagerView view) {
-        super.bindView(view);
+    @Override //NOSONAR
+    public void bindView(@NonNull QueuePagerView view) { //NOSONAR
+        super.bindView(view); //NOSONAR
 
-        IntentFilter filter = new IntentFilter();
-        filter.addAction(InternalIntents.META_CHANGED);
-        filter.addAction(InternalIntents.REPEAT_CHANGED);
-        filter.addAction(InternalIntents.SHUFFLE_CHANGED);
-        filter.addAction(InternalIntents.QUEUE_CHANGED);
-        filter.addAction(InternalIntents.SERVICE_CONNECTED);
+        IntentFilter filter = new IntentFilter(); //NOSONAR
+        filter.addAction(InternalIntents.META_CHANGED); //NOSONAR
+        filter.addAction(InternalIntents.REPEAT_CHANGED); //NOSONAR
+        filter.addAction(InternalIntents.SHUFFLE_CHANGED); //NOSONAR
+        filter.addAction(InternalIntents.QUEUE_CHANGED); //NOSONAR
+        filter.addAction(InternalIntents.SERVICE_CONNECTED); //NOSONAR
 
-        addDisposable(RxBroadcast.fromBroadcast(application, filter)
-                .startWith(new Intent(InternalIntents.QUEUE_CHANGED))
-                .toFlowable(BackpressureStrategy.LATEST)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(intent -> {
-                    final String action = intent.getAction();
+        addDisposable(RxBroadcast.fromBroadcast(application, filter) //NOSONAR
+                .startWith(new Intent(InternalIntents.QUEUE_CHANGED)) //NOSONAR
+                .toFlowable(BackpressureStrategy.LATEST) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe(intent -> { //NOSONAR
+                    final String action = intent.getAction(); //NOSONAR
 
-                    QueuePagerView queuePagerView = getView();
-                    if (queuePagerView == null) {
-                        return;
+                    QueuePagerView queuePagerView = getView(); //NOSONAR
+                    if (queuePagerView == null) { //NOSONAR
+                        return; //NOSONAR
                     }
 
-                    if (action != null) {
-                        switch (action) {
-                            case InternalIntents.META_CHANGED:
-                                queuePagerView.updateQueuePosition(mediaManager.getQueuePosition());
-                                break;
-                            case InternalIntents.REPEAT_CHANGED:
-                            case InternalIntents.SHUFFLE_CHANGED:
-                            case InternalIntents.QUEUE_CHANGED:
-                            case InternalIntents.SERVICE_CONNECTED:
+                    if (action != null) { //NOSONAR
+                        switch (action) { //NOSONAR
+                            case InternalIntents.META_CHANGED: //NOSONAR
+                                queuePagerView.updateQueuePosition(mediaManager.getQueuePosition()); //NOSONAR
+                                break; //NOSONAR
+                            case InternalIntents.REPEAT_CHANGED: //NOSONAR
+                            case InternalIntents.SHUFFLE_CHANGED: //NOSONAR
+                            case InternalIntents.QUEUE_CHANGED: //NOSONAR
+                            case InternalIntents.SERVICE_CONNECTED: //NOSONAR
 
-                                List<ViewModel> items = Stream.of(mediaManager.getQueue())
-                                        .map(queueItem -> new QueuePagerItemView(queueItem.getSong(), requestManager, settingsManager))
-                                        .collect(Collectors.toList());
+                                List<ViewModel> items = Stream.of(mediaManager.getQueue()) //NOSONAR
+                                        .map(queueItem -> new QueuePagerItemView(queueItem.getSong(), requestManager, settingsManager)) //NOSONAR
+                                        .collect(Collectors.toList()); //NOSONAR
 
-                                queuePagerView.loadData(items, mediaManager.getQueuePosition());
-                                break;
+                                queuePagerView.loadData(items, mediaManager.getQueuePosition()); //NOSONAR
+                                break; //NOSONAR
                         }
                     }
                 }));

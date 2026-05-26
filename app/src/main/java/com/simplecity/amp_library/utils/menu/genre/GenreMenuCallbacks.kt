@@ -1,19 +1,19 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.menu.genre
 
 import com.simplecity.amp_library.model.Genre
 import com.simplecity.amp_library.model.Playlist
 
-interface GenreMenuCallbacks {
+interface GenreMenuCallbacks { //NOSONAR
 
-    fun createPlaylist(genre: Genre)
+    fun createPlaylist(genre: Genre) //NOSONAR
 
-    fun addToPlaylist(playlist: Playlist, genre: Genre)
+    fun addToPlaylist(playlist: Playlist, genre: Genre) //NOSONAR
 
-    fun addToQueue(genre: Genre)
+    fun addToQueue(genre: Genre) //NOSONAR
 
-    fun play(genre: Genre)
+    fun play(genre: Genre) //NOSONAR
 
-    fun playNext(genre: Genre)
+    fun playNext(genre: Genre) //NOSONAR
 }

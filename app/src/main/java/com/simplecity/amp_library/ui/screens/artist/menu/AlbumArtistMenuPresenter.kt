@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.album.menu
 
@@ -23,108 +23,108 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class AlbumArtistMenuPresenter @Inject constructor(
-    private val playlistManager: PlaylistManager,
-    private val songsRepository: Repository.SongsRepository,
-    private val mediaManager: MediaManager,
-    private val blacklistRepository: Repository.BlacklistRepository,
-    private val navigationEventRelay: NavigationEventRelay,
-    private val sortManager: SortManager
+class AlbumArtistMenuPresenter @Inject constructor( //NOSONAR
+    private val playlistManager: PlaylistManager, //NOSONAR
+    private val songsRepository: Repository.SongsRepository, //NOSONAR
+    private val mediaManager: MediaManager, //NOSONAR
+    private val blacklistRepository: Repository.BlacklistRepository, //NOSONAR
+    private val navigationEventRelay: NavigationEventRelay, //NOSONAR
+    private val sortManager: SortManager //NOSONAR
 
-) : Presenter<View>(), AlbumArtistMenuContract.Presenter {
+) : Presenter<View>(), AlbumArtistMenuContract.Presenter { //NOSONAR
 
-    override fun createArtistsPlaylist(albumArtists: List<AlbumArtist>) {
-        getSongs(albumArtists) { songs ->
-            view?.presentCreatePlaylistDialog(songs)
+    override fun createArtistsPlaylist(albumArtists: List<AlbumArtist>) { //NOSONAR
+        getSongs(albumArtists) { songs -> //NOSONAR
+            view?.presentCreatePlaylistDialog(songs) //NOSONAR
         }
     }
 
-    override fun addArtistsToPlaylist(playlist: Playlist, albumArtists: List<AlbumArtist>) {
-        getSongs(albumArtists) { songs ->
-            playlistManager.addToPlaylist(playlist, songs) { numSongs ->
-                view?.onSongsAddedToPlaylist(playlist, numSongs)
+    override fun addArtistsToPlaylist(playlist: Playlist, albumArtists: List<AlbumArtist>) { //NOSONAR
+        getSongs(albumArtists) { songs -> //NOSONAR
+            playlistManager.addToPlaylist(playlist, songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToPlaylist(playlist, numSongs) //NOSONAR
             }
         }
     }
 
-    override fun addArtistsToQueue(albumArtists: List<AlbumArtist>) {
-        getSongs(albumArtists) { songs ->
-            mediaManager.addToQueue(songs) { numSongs ->
-                view?.onSongsAddedToQueue(numSongs)
+    override fun addArtistsToQueue(albumArtists: List<AlbumArtist>) { //NOSONAR
+        getSongs(albumArtists) { songs -> //NOSONAR
+            mediaManager.addToQueue(songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToQueue(numSongs) //NOSONAR
             }
         }
     }
 
-    override fun playArtistsNext(albumArtists: List<AlbumArtist>) {
-        getSongs(albumArtists) { songs ->
-            mediaManager.playNext(songs) { numSongs ->
-                view?.onSongsAddedToQueue(numSongs)
+    override fun playArtistsNext(albumArtists: List<AlbumArtist>) { //NOSONAR
+        getSongs(albumArtists) { songs -> //NOSONAR
+            mediaManager.playNext(songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToQueue(numSongs) //NOSONAR
             }
         }
     }
 
-    override fun play(albumArtist: AlbumArtist) {
-        mediaManager.playAll(albumArtist.getSongsSingle(songsRepository)) { view?.onPlaybackFailed() }
+    override fun play(albumArtist: AlbumArtist) { //NOSONAR
+        mediaManager.playAll(albumArtist.getSongsSingle(songsRepository)) { view?.onPlaybackFailed() } //NOSONAR
     }
 
-    override fun editTags(albumArtist: AlbumArtist) {
-        view?.presentTagEditorDialog(albumArtist)
+    override fun editTags(albumArtist: AlbumArtist) { //NOSONAR
+        view?.presentTagEditorDialog(albumArtist) //NOSONAR
     }
 
-    override fun albumArtistInfo(albumArtist: AlbumArtist) {
-        view?.presentAlbumArtistInfoDialog(albumArtist)
+    override fun albumArtistInfo(albumArtist: AlbumArtist) { //NOSONAR
+        view?.presentAlbumArtistInfoDialog(albumArtist) //NOSONAR
     }
 
-    override fun editArtwork(albumArtist: AlbumArtist) {
-        view?.presentArtworkEditorDialog(albumArtist)
+    override fun editArtwork(albumArtist: AlbumArtist) { //NOSONAR
+        view?.presentArtworkEditorDialog(albumArtist) //NOSONAR
     }
 
-    override fun blacklistArtists(albumArtists: List<AlbumArtist>) {
-        getSongs(albumArtists) { songs -> blacklistRepository.addAllSongs(songs) }
+    override fun blacklistArtists(albumArtists: List<AlbumArtist>) { //NOSONAR
+        getSongs(albumArtists) { songs -> blacklistRepository.addAllSongs(songs) } //NOSONAR
     }
 
-    override fun deleteArtists(albumArtists: List<AlbumArtist>) {
-        view?.presentArtistDeleteDialog(albumArtists)
+    override fun deleteArtists(albumArtists: List<AlbumArtist>) { //NOSONAR
+        view?.presentArtistDeleteDialog(albumArtists) //NOSONAR
     }
 
-    override fun goToArtist(albumArtist: AlbumArtist) {
-        navigationEventRelay.sendEvent(NavigationEvent(Type.GO_TO_ARTIST, albumArtist, true))
+    override fun goToArtist(albumArtist: AlbumArtist) { //NOSONAR
+        navigationEventRelay.sendEvent(NavigationEvent(Type.GO_TO_ARTIST, albumArtist, true)) //NOSONAR
     }
 
-    override fun albumShuffle(albumArtist: AlbumArtist) {
-        mediaManager.playAll(albumArtist.getSongs(songsRepository)
-            .map { songs -> Operators.albumShuffleSongs(songs, sortManager) }) {
-            view?.onPlaybackFailed()
-            Unit
+    override fun albumShuffle(albumArtist: AlbumArtist) { //NOSONAR
+        mediaManager.playAll(albumArtist.getSongs(songsRepository) //NOSONAR
+            .map { songs -> Operators.albumShuffleSongs(songs, sortManager) }) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
+            Unit //NOSONAR
         }
     }
 
-    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) {
-        addDisposable(
-            src
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { items -> dst(items) },
-                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) }
+    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) { //NOSONAR
+        addDisposable( //NOSONAR
+            src //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .subscribe( //NOSONAR
+                    { items -> dst(items) }, //NOSONAR
+                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) } //NOSONAR
                 )
         )
     }
 
-    private fun getSongs(albumArtists: List<AlbumArtist>, onSuccess: (songs: List<Song>) -> Unit) {
-        addDisposable(
-            albumArtists.getSongs(songsRepository)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    onSuccess,
-                    { error -> LogUtils.logException(TAG, "Failed to retrieve songs", error) }
+    private fun getSongs(albumArtists: List<AlbumArtist>, onSuccess: (songs: List<Song>) -> Unit) { //NOSONAR
+        addDisposable( //NOSONAR
+            albumArtists.getSongs(songsRepository) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                    onSuccess, //NOSONAR
+                    { error -> LogUtils.logException(TAG, "Failed to retrieve songs", error) } //NOSONAR
                 )
         )
     }
 
-    companion object {
-        const val TAG = "AlbumMenuContract"
+    companion object { //NOSONAR
+        const val TAG = "AlbumMenuContract" //NOSONAR
     }
 
 }

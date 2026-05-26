@@ -14,70 +14,70 @@ import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 import static com.afollestad.aesthetic.Util.resolveResId;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticSeekBar extends AppCompatSeekBar {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticSeekBar extends AppCompatSeekBar { //NOSONAR
 
-  @Nullable
-  private Disposable subscription;
+  @Nullable //NOSONAR
+  private Disposable subscription; //NOSONAR
 
-  private int backgroundResId;
+  private int backgroundResId; //NOSONAR
 
-  public AestheticSeekBar(Context context) {
-    super(context);
+  public AestheticSeekBar(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticSeekBar(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    init(context, attrs);
+  public AestheticSeekBar(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  public AestheticSeekBar(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    init(context, attrs);
+  public AestheticSeekBar(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  private void init(Context context, AttributeSet attrs) {
-    if (attrs != null) {
-      backgroundResId = resolveResId(context, attrs, android.R.attr.background);
+  private void init(Context context, AttributeSet attrs) { //NOSONAR
+    if (attrs != null) { //NOSONAR
+      backgroundResId = resolveResId(context, attrs, android.R.attr.background); //NOSONAR
     }
   }
 
-  public void invalidateColors(ColorIsDarkState state) {
-    TintHelper.setTint(this, state.color(), state.isDark());
+  public void invalidateColors(ColorIsDarkState state) { //NOSONAR
+    TintHelper.setTint(this, state.color(), state.isDark()); //NOSONAR
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
 
-    if(isInEditMode()) {
-      return;
+    if(isInEditMode()) { //NOSONAR
+      return; //NOSONAR
     }
 
     //noinspection ConstantConditions
-    if(!":aesthetic_ignore".equals(getTag())){
-      subscription =
-              Observable.combineLatest(
-                      ViewUtil.getObservableForResId(getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()),
-                      Aesthetic.get(getContext()).isDark(),
-                      ColorIsDarkState.creator())
-                      .compose(Rx.<ColorIsDarkState>distinctToMainThread())
-                      .subscribe(
-                              new Consumer<ColorIsDarkState>() {
-                                @Override
-                                public void accept(@NonNull ColorIsDarkState colorIsDarkState) {
-                                  invalidateColors(colorIsDarkState);
+    if(!":aesthetic_ignore".equals(getTag())){ //NOSONAR
+      subscription = //NOSONAR
+              Observable.combineLatest( //NOSONAR
+                      ViewUtil.getObservableForResId(getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()), //NOSONAR
+                      Aesthetic.get(getContext()).isDark(), //NOSONAR
+                      ColorIsDarkState.creator()) //NOSONAR
+                      .compose(Rx.<ColorIsDarkState>distinctToMainThread()) //NOSONAR
+                      .subscribe( //NOSONAR
+                              new Consumer<ColorIsDarkState>() { //NOSONAR
+                                @Override //NOSONAR
+                                public void accept(@NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
+                                  invalidateColors(colorIsDarkState); //NOSONAR
                                 }
                               },
-                              onErrorLogAndRethrow());
+                              onErrorLogAndRethrow()); //NOSONAR
     }
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    if (subscription!=null) {
-        subscription.dispose();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    if (subscription!=null) { //NOSONAR
+        subscription.dispose(); //NOSONAR
     }
-    super.onDetachedFromWindow();
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

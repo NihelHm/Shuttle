@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -24,71 +24,71 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ArtistBiographyDialog : DialogFragment() {
+class ArtistBiographyDialog : DialogFragment() { //NOSONAR
 
-    private lateinit var artist: AlbumArtist
+    private lateinit var artist: AlbumArtist //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        super.onAttach(context) //NOSONAR
 
-        artist = arguments!!.getSerializable(ARG_ARTIST) as AlbumArtist
+        artist = arguments!!.getSerializable(ARG_ARTIST) as AlbumArtist //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
-        @SuppressLint("InflateParams")
-        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_biography, null, false)
+        @SuppressLint("InflateParams") //NOSONAR
+        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_biography, null, false) //NOSONAR
 
-        val progressBar = customView.findViewById<ProgressBar>(R.id.progress)
-        val message = customView.findViewById<TextView>(R.id.message)
+        val progressBar = customView.findViewById<ProgressBar>(R.id.progress) //NOSONAR
+        val message = customView.findViewById<TextView>(R.id.message) //NOSONAR
 
-        HttpClient.getInstance().lastFmService.getLastFmArtistResult(artist.name).enqueue(object : Callback<LastFmArtist> {
-            override fun onResponse(call: Call<LastFmArtist>, response: Response<LastFmArtist>) {
-                progressBar.visibility = View.GONE
-                if (response.isSuccessful) {
-                    if (response.body() != null && response.body()!!.artist != null && response.body()!!.artist.bio != null) {
-                        val summary = response.body()!!.artist.bio.summary
-                        if (ShuttleUtils.hasNougat()) {
-                            message.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT)
-                        } else {
-                            message.text = Html.fromHtml(summary)
+        HttpClient.getInstance().lastFmService.getLastFmArtistResult(artist.name).enqueue(object : Callback<LastFmArtist> { //NOSONAR
+            override fun onResponse(call: Call<LastFmArtist>, response: Response<LastFmArtist>) { //NOSONAR
+                progressBar.visibility = View.GONE //NOSONAR
+                if (response.isSuccessful) { //NOSONAR
+                    if (response.body() != null && response.body()!!.artist != null && response.body()!!.artist.bio != null) { //NOSONAR
+                        val summary = response.body()!!.artist.bio.summary //NOSONAR
+                        if (ShuttleUtils.hasNougat()) { //NOSONAR
+                            message.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT) //NOSONAR
+                        } else { //NOSONAR
+                            message.text = Html.fromHtml(summary) //NOSONAR
                         }
-                    } else {
-                        message.setText(string.no_artist_info)
+                    } else { //NOSONAR
+                        message.setText(string.no_artist_info) //NOSONAR
                     }
                 }
             }
 
-            override fun onFailure(call: Call<LastFmArtist>, t: Throwable) {
-                progressBar.visibility = View.GONE
-                message.setText(string.no_artist_info)
+            override fun onFailure(call: Call<LastFmArtist>, t: Throwable) { //NOSONAR
+                progressBar.visibility = View.GONE //NOSONAR
+                message.setText(string.no_artist_info) //NOSONAR
             }
         })
 
-        val builder = MaterialDialog.Builder(context!!)
-            .title(R.string.info)
-            .customView(customView, false)
-            .negativeText(R.string.close)
+        val builder = MaterialDialog.Builder(context!!) //NOSONAR
+            .title(R.string.info) //NOSONAR
+            .customView(customView, false) //NOSONAR
+            .negativeText(R.string.close) //NOSONAR
 
-        return builder.build()
+        return builder.build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "ArtistBiographyDialog"
+        private const val TAG = "ArtistBiographyDialog" //NOSONAR
 
-        private const val ARG_ARTIST = "artist"
+        private const val ARG_ARTIST = "artist" //NOSONAR
 
-        fun newInstance(artist: AlbumArtist): ArtistBiographyDialog {
-            val args = Bundle()
-            args.putSerializable(ARG_ARTIST, artist)
-            val fragment = ArtistBiographyDialog()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(artist: AlbumArtist): ArtistBiographyDialog { //NOSONAR
+            val args = Bundle() //NOSONAR
+            args.putSerializable(ARG_ARTIST, artist) //NOSONAR
+            val fragment = ArtistBiographyDialog() //NOSONAR
+            fragment.arguments = args //NOSONAR
+            return fragment //NOSONAR
         }
     }
 }

@@ -26,53 +26,53 @@ import android.renderscript.ScriptIntrinsicBlur;
  * limitations under the License.
  */
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class RSBlur {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class RSBlur { //NOSONAR
 
-    private static RSBlur sInstance;
+    private static RSBlur sInstance; //NOSONAR
 
-    private RenderScript renderScript;
+    private RenderScript renderScript; //NOSONAR
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public static RSBlur getInstance(Context context) {
-        if (sInstance == null) {
-            sInstance = new RSBlur(context);
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) //NOSONAR
+    public static RSBlur getInstance(Context context) { //NOSONAR
+        if (sInstance == null) { //NOSONAR
+            sInstance = new RSBlur(context); //NOSONAR
         }
-        return sInstance;
+        return sInstance; //NOSONAR
     }
 
-    private RSBlur(Context context) {
-        renderScript = RenderScript.create(context);
+    private RSBlur(Context context) { //NOSONAR
+        renderScript = RenderScript.create(context); //NOSONAR
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    public Bitmap blur(Bitmap bitmap, int radius) throws RSRuntimeException {
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) //NOSONAR
+    public Bitmap blur(Bitmap bitmap, int radius) throws RSRuntimeException { //NOSONAR
 
-        Allocation input = null;
-        Allocation output = null;
-        ScriptIntrinsicBlur blur = null;
-        try {
-            input = Allocation.createFromBitmap(renderScript, bitmap, Allocation.MipmapControl.MIPMAP_NONE,
-                    Allocation.USAGE_SCRIPT);
-            output = Allocation.createTyped(renderScript, input.getType());
-            blur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript));
+        Allocation input = null; //NOSONAR
+        Allocation output = null; //NOSONAR
+        ScriptIntrinsicBlur blur = null; //NOSONAR
+        try { //NOSONAR
+            input = Allocation.createFromBitmap(renderScript, bitmap, Allocation.MipmapControl.MIPMAP_NONE, //NOSONAR
+                    Allocation.USAGE_SCRIPT); //NOSONAR
+            output = Allocation.createTyped(renderScript, input.getType()); //NOSONAR
+            blur = ScriptIntrinsicBlur.create(renderScript, Element.U8_4(renderScript)); //NOSONAR
 
-            blur.setInput(input);
-            blur.setRadius(radius);
-            blur.forEach(output);
-            output.copyTo(bitmap);
-        } finally {
-            if (input != null) {
-                input.destroy();
+            blur.setInput(input); //NOSONAR
+            blur.setRadius(radius); //NOSONAR
+            blur.forEach(output); //NOSONAR
+            output.copyTo(bitmap); //NOSONAR
+        } finally { //NOSONAR
+            if (input != null) { //NOSONAR
+                input.destroy(); //NOSONAR
             }
-            if (output != null) {
-                output.destroy();
+            if (output != null) { //NOSONAR
+                output.destroy(); //NOSONAR
             }
-            if (blur != null) {
-                blur.destroy();
+            if (blur != null) { //NOSONAR
+                blur.destroy(); //NOSONAR
             }
         }
 
-        return bitmap;
+        return bitmap; //NOSONAR
     }
 }

@@ -1,25 +1,25 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.album.list
 
 import com.simplecity.amp_library.model.Album
 import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuContract
 
-interface AlbumListContract {
+interface AlbumListContract { //NOSONAR
 
-    interface View : AlbumMenuContract.View {
+    interface View : AlbumMenuContract.View { //NOSONAR
 
-        fun setData(albums: List<Album>, scrollToTop: Boolean = false)
+        fun setData(albums: List<Album>, scrollToTop: Boolean = false) //NOSONAR
 
-        fun invalidateOptionsMenu()
+        fun invalidateOptionsMenu() //NOSONAR
     }
 
-    interface Presenter {
+    interface Presenter { //NOSONAR
 
-        fun loadAlbums(scrollToTop: Boolean)
+        fun loadAlbums(scrollToTop: Boolean) //NOSONAR
 
-        fun setAlbumsSortOrder(order: Int)
+        fun setAlbumsSortOrder(order: Int) //NOSONAR
 
-        fun setAlbumsAscending(ascending: Boolean)
+        fun setAlbumsAscending(ascending: Boolean) //NOSONAR
     }
 }

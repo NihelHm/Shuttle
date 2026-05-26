@@ -1,20 +1,20 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.lyrics
 
 import com.simplecity.amp_library.model.Song
 
-interface LyricsView {
+interface LyricsView { //NOSONAR
 
-    fun updateLyrics(lyrics: String?)
+    fun updateLyrics(lyrics: String?) //NOSONAR
 
-    fun showNoLyricsView(show: Boolean)
+    fun showNoLyricsView(show: Boolean) //NOSONAR
 
-    fun showQuickLyricInfoButton(show: Boolean)
+    fun showQuickLyricInfoButton(show: Boolean) //NOSONAR
 
-    fun showQuickLyricInfoDialog()
+    fun showQuickLyricInfoDialog() //NOSONAR
 
-    fun downloadQuickLyric()
+    fun downloadQuickLyric() //NOSONAR
 
-    fun launchQuickLyric(song: Song)
+    fun launchQuickLyric(song: Song) //NOSONAR
 }

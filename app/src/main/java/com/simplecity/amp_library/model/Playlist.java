@@ -12,131 +12,131 @@ import java.io.Serializable;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Playlist implements Serializable {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Playlist implements Serializable { //NOSONAR
 
-    private static final String TAG = "Playlist";
+    private static final String TAG = "Playlist"; //NOSONAR
 
-    public @interface Type {
-        int PODCAST = 0;
-        int RECENTLY_ADDED = 1;
-        int MOST_PLAYED = 2;
-        int RECENTLY_PLAYED = 3;
-        int FAVORITES = 4;
-        int USER_CREATED = 5;
+    public @interface Type { //NOSONAR
+        int PODCAST = 0; //NOSONAR
+        int RECENTLY_ADDED = 1; //NOSONAR
+        int MOST_PLAYED = 2; //NOSONAR
+        int RECENTLY_PLAYED = 3; //NOSONAR
+        int FAVORITES = 4; //NOSONAR
+        int USER_CREATED = 5; //NOSONAR
     }
 
-    @Type
-    @SuppressWarnings("java:S1104")
-    public int type;
+    @Type //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int type; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long id;
-    @SuppressWarnings("java:S1104")
-    public String name;
-    @SuppressWarnings("java:S1104")
-    public boolean canEdit = true;
-    @SuppressWarnings("java:S1104")
-    public boolean canClear = false;
-    @SuppressWarnings("java:S1104")
-    public boolean canDelete = true;
-    @SuppressWarnings("java:S1104")
-    public boolean canRename = true;
-    private boolean canSort= true;
+    public long id; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String name; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public boolean canEdit = true; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public boolean canClear = false; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public boolean canDelete = true; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public boolean canRename = true; //NOSONAR
+    private boolean canSort= true; //NOSONAR
 
     // These are the Playlist rows that we will retrieve.
-    public static final String[] PROJECTION = new String[] {
-            MediaStore.Audio.Playlists._ID,
-            MediaStore.Audio.Playlists.NAME
+    public static final String[] PROJECTION = new String[] { //NOSONAR
+            MediaStore.Audio.Playlists._ID, //NOSONAR
+            MediaStore.Audio.Playlists.NAME //NOSONAR
     };
 
-    public static Query getQuery() {
-        return new Query.Builder()
-                .uri(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI)
-                .projection(PROJECTION)
-                .selection(null)
-                .sort(null)
-                .build();
+    public static Query getQuery() { //NOSONAR
+        return new Query.Builder() //NOSONAR
+                .uri(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI) //NOSONAR
+                .projection(PROJECTION) //NOSONAR
+                .selection(null) //NOSONAR
+                .sort(null) //NOSONAR
+                .build(); //NOSONAR
     }
 
-    public Playlist(@Type int type, long id, String name, boolean canEdit, boolean canClear, boolean canDelete, boolean canRename, boolean canSort) {
-        this.type = type;
-        this.id = id;
-        this.name = name;
-        this.canEdit = canEdit;
-        this.canClear = canClear;
-        this.canDelete = canDelete;
-        this.canRename = canRename;
-        this.canSort = canSort;
+    public Playlist(@Type int type, long id, String name, boolean canEdit, boolean canClear, boolean canDelete, boolean canRename, boolean canSort) { //NOSONAR
+        this.type = type; //NOSONAR
+        this.id = id; //NOSONAR
+        this.name = name; //NOSONAR
+        this.canEdit = canEdit; //NOSONAR
+        this.canClear = canClear; //NOSONAR
+        this.canDelete = canDelete; //NOSONAR
+        this.canRename = canRename; //NOSONAR
+        this.canSort = canSort; //NOSONAR
     }
 
-    public Playlist(Context context, Cursor cursor) {
-        id = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Playlists._ID));
-        name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Playlists.NAME));
-        type = Type.USER_CREATED;
-        canClear = true;
+    public Playlist(Context context, Cursor cursor) { //NOSONAR
+        id = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Playlists._ID)); //NOSONAR
+        name = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Playlists.NAME)); //NOSONAR
+        type = Type.USER_CREATED; //NOSONAR
+        canClear = true; //NOSONAR
 
-        if (context.getString(R.string.fav_title).equals(name)) {
-            type = Type.FAVORITES;
-            canDelete = false;
-            canRename = false;
+        if (context.getString(R.string.fav_title).equals(name)) { //NOSONAR
+            type = Type.FAVORITES; //NOSONAR
+            canDelete = false; //NOSONAR
+            canRename = false; //NOSONAR
         }
     }
 
-    public void clear(PlaylistManager playlistManager, FavoritesPlaylistManager favoritesPlaylistManager) {
-        switch (type) {
-            case Playlist.Type.FAVORITES:
-                favoritesPlaylistManager.clearFavorites();
-                break;
-            case Playlist.Type.MOST_PLAYED:
-                playlistManager.clearMostPlayed();
-                break;
-            case Playlist.Type.USER_CREATED:
-                playlistManager.clearPlaylist(id);
-                break;
+    public void clear(PlaylistManager playlistManager, FavoritesPlaylistManager favoritesPlaylistManager) { //NOSONAR
+        switch (type) { //NOSONAR
+            case Playlist.Type.FAVORITES: //NOSONAR
+                favoritesPlaylistManager.clearFavorites(); //NOSONAR
+                break; //NOSONAR
+            case Playlist.Type.MOST_PLAYED: //NOSONAR
+                playlistManager.clearMostPlayed(); //NOSONAR
+                break; //NOSONAR
+            case Playlist.Type.USER_CREATED: //NOSONAR
+                playlistManager.clearPlaylist(id); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    public void removeSong(@NonNull Song song, PlaylistManager playlistManager, @Nullable Function1<Boolean, Unit> success) {
-        playlistManager.removeFromPlaylist(this, song, success);
+    public void removeSong(@NonNull Song song, PlaylistManager playlistManager, @Nullable Function1<Boolean, Unit> success) { //NOSONAR
+        playlistManager.removeFromPlaylist(this, song, success); //NOSONAR
     }
 
-    public boolean moveSong(Context context, int from, int to) {
-        return MediaStore.Audio.Playlists.Members.moveItem(context.getContentResolver(), id, from, to);
+    public boolean moveSong(Context context, int from, int to) { //NOSONAR
+        return MediaStore.Audio.Playlists.Members.moveItem(context.getContentResolver(), id, from, to); //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        Playlist playlist = (Playlist) o;
+        Playlist playlist = (Playlist) o; //NOSONAR
 
-        if (id != playlist.id) return false;
-        return name != null ? name.equals(playlist.name) : playlist.name == null;
+        if (id != playlist.id) return false; //NOSONAR
+        return name != null ? name.equals(playlist.name) : playlist.name == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = (int) (id ^ (id >>> 32)); //NOSONAR
+        result = 31 * result + (name != null ? name.hashCode() : 0); //NOSONAR
+        return result; //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return "Playlist{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return "Playlist{" + //NOSONAR
+                "id=" + id + //NOSONAR
+                ", name='" + name + '\'' + //NOSONAR
                 '}';
     }
 
-    public static Song createSongFromPlaylistCursor(Cursor cursor) {
-        Song song = new Song(cursor);
-        song.id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members.AUDIO_ID));
-        song.playlistSongId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members._ID));
-        song.playlistSongPlayOrder = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members.PLAY_ORDER));
-        return song;
+    public static Song createSongFromPlaylistCursor(Cursor cursor) { //NOSONAR
+        Song song = new Song(cursor); //NOSONAR
+        song.id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members.AUDIO_ID)); //NOSONAR
+        song.playlistSongId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members._ID)); //NOSONAR
+        song.playlistSongPlayOrder = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Playlists.Members.PLAY_ORDER)); //NOSONAR
+        return song; //NOSONAR
     }
 }

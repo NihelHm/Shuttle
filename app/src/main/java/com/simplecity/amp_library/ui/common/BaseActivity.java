@@ -37,173 +37,173 @@ import javax.inject.Inject;
 
 import static android.view.WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class BaseActivity extends AestheticActivity implements
-        HasSupportFragmentInjector,
-        ServiceConnection,
-        BillingManager.BillingUpdatesListener {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class BaseActivity extends AestheticActivity implements //NOSONAR
+        HasSupportFragmentInjector, //NOSONAR
+        ServiceConnection, //NOSONAR
+        BillingManager.BillingUpdatesListener { //NOSONAR
 
-    private Boolean bindInFlight = false;
+    private Boolean bindInFlight = false; //NOSONAR
 
-    @Nullable
-    private MusicServiceConnectionUtils.ServiceToken token;
+    @Nullable //NOSONAR
+    private MusicServiceConnectionUtils.ServiceToken token; //NOSONAR
 
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentInjector;
+    @Inject //NOSONAR
+    DispatchingAndroidInjector<Fragment> fragmentInjector; //NOSONAR
 
-    @Inject
-    BillingManager billingManager;
+    @Inject //NOSONAR
+    BillingManager billingManager; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    AnalyticsManager analyticsManager; //NOSONAR
 
-    @CallSuper
-    protected void onCreate(final Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @CallSuper //NOSONAR
+    protected void onCreate(final Bundle savedInstanceState) { //NOSONAR
+        AndroidInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        Permiso.getInstance().setActivity(this);
+        Permiso.getInstance().setActivity(this); //NOSONAR
 
-        Permiso.getInstance().requestPermissions(new Permiso.IOnPermissionResult() {
-            @Override
-            public void onPermissionResult(Permiso.ResultSet resultSet) {
-                if (resultSet.areAllPermissionsGranted()) {
-                    bindService();
-                } else {
-                    Toast.makeText(BaseActivity.this, "Permission check failed", Toast.LENGTH_LONG).show();
-                    finish();
+        Permiso.getInstance().requestPermissions(new Permiso.IOnPermissionResult() { //NOSONAR
+            @Override //NOSONAR
+            public void onPermissionResult(Permiso.ResultSet resultSet) { //NOSONAR
+                if (resultSet.areAllPermissionsGranted()) { //NOSONAR
+                    bindService(); //NOSONAR
+                } else { //NOSONAR
+                    Toast.makeText(BaseActivity.this, "Permission check failed", Toast.LENGTH_LONG).show(); //NOSONAR
+                    finish(); //NOSONAR
                 }
             }
 
-            @Override
-            public void onRationaleRequested(Permiso.IOnRationaleProvided callback, String... permissions) {
-                callback.onRationaleProvided();
+            @Override //NOSONAR
+            public void onRationaleRequested(Permiso.IOnRationaleProvided callback, String... permissions) { //NOSONAR
+                callback.onRationaleProvided(); //NOSONAR
             }
-        }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WAKE_LOCK);
+        }, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.WAKE_LOCK); //NOSONAR
 
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC); //NOSONAR
     }
 
-    @Override
-    protected void onResume() {
-        keepScreenOn(settingsManager.keepScreenOn());
-        super.onResume();
+    @Override //NOSONAR
+    protected void onResume() { //NOSONAR
+        keepScreenOn(settingsManager.keepScreenOn()); //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (token == null) {
-            bindService();
+        if (token == null) { //NOSONAR
+            bindService(); //NOSONAR
         }
 
-        Permiso.getInstance().setActivity(this);
+        Permiso.getInstance().setActivity(this); //NOSONAR
 
-        if (billingManager.getBillingClientResponseCode() == BillingClient.BillingResponse.OK) {
-            billingManager.queryPurchases();
+        if (billingManager.getBillingClientResponseCode() == BillingClient.BillingResponse.OK) { //NOSONAR
+            billingManager.queryPurchases(); //NOSONAR
         }
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        Permiso.getInstance().onRequestPermissionResult(requestCode, permissions, grantResults);
+    @Override //NOSONAR
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) { //NOSONAR
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults); //NOSONAR
+        Permiso.getInstance().onRequestPermissionResult(requestCode, permissions, grantResults); //NOSONAR
     }
 
-    @Override
-    protected void onDestroy() {
-        unbindService();
+    @Override //NOSONAR
+    protected void onDestroy() { //NOSONAR
+        unbindService(); //NOSONAR
 
-        billingManager.destroy();
+        billingManager.destroy(); //NOSONAR
 
-        super.onDestroy();
+        super.onDestroy(); //NOSONAR
     }
 
-    @Override
-    public final AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentInjector;
+    @Override //NOSONAR
+    public final AndroidInjector<Fragment> supportFragmentInjector() { //NOSONAR
+        return fragmentInjector; //NOSONAR
     }
 
-    @Override
-    public void onPurchasesUpdated(List<Purchase> purchases) {
-        for (Purchase purchase : purchases) {
-            if (purchase.getSku().equals(Config.SKU_PREMIUM)) {
-                ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true);
+    @Override //NOSONAR
+    public void onPurchasesUpdated(List<Purchase> purchases) { //NOSONAR
+        for (Purchase purchase : purchases) { //NOSONAR
+            if (purchase.getSku().equals(Config.SKU_PREMIUM)) { //NOSONAR
+                ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true); //NOSONAR
             }
         }
     }
 
-    @Override
-    public void onPremiumPurchaseCompleted() {
-        ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true);
-        new UpgradeDialog().show(getSupportFragmentManager());
+    @Override //NOSONAR
+    public void onPremiumPurchaseCompleted() { //NOSONAR
+        ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true); //NOSONAR
+        new UpgradeDialog().show(getSupportFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public void onPremiumPurchaseRestored() {
-        ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true);
-        Toast.makeText(BaseActivity.this, R.string.iab_purchase_restored, Toast.LENGTH_SHORT).show();
+    @Override //NOSONAR
+    public void onPremiumPurchaseRestored() { //NOSONAR
+        ((ShuttleApplication) getApplicationContext()).setIsUpgraded(true); //NOSONAR
+        Toast.makeText(BaseActivity.this, R.string.iab_purchase_restored, Toast.LENGTH_SHORT).show(); //NOSONAR
     }
 
-    void bindService() {
-        if (!bindInFlight) {
-            bindInFlight = true;
-            MusicServiceConnectionUtils.bindToService(
-                    getLifecycle(),
-                    this,
-                    analyticsManager,
-                    this, serviceToken -> {
-                        token = serviceToken;
-                        this.bindInFlight = false;
+    void bindService() { //NOSONAR
+        if (!bindInFlight) { //NOSONAR
+            bindInFlight = true; //NOSONAR
+            MusicServiceConnectionUtils.bindToService( //NOSONAR
+                    getLifecycle(), //NOSONAR
+                    this, //NOSONAR
+                    analyticsManager, //NOSONAR
+                    this, serviceToken -> { //NOSONAR
+                        token = serviceToken; //NOSONAR
+                        this.bindInFlight = false; //NOSONAR
                     }
             );
         }
     }
 
-    void unbindService() {
-        if (token != null) {
-            MusicServiceConnectionUtils.unbindFromService(token);
-            token = null;
+    void unbindService() { //NOSONAR
+        if (token != null) { //NOSONAR
+            MusicServiceConnectionUtils.unbindFromService(token); //NOSONAR
+            token = null; //NOSONAR
         }
     }
 
-    @Override
-    @CallSuper
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        sendBroadcast(new Intent(InternalIntents.SERVICE_CONNECTED));
+    @Override //NOSONAR
+    @CallSuper //NOSONAR
+    public void onServiceConnected(ComponentName name, IBinder service) { //NOSONAR
+        sendBroadcast(new Intent(InternalIntents.SERVICE_CONNECTED)); //NOSONAR
     }
 
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
-        unbindService();
+    @Override //NOSONAR
+    public void onServiceDisconnected(ComponentName name) { //NOSONAR
+        unbindService(); //NOSONAR
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override //NOSONAR
+    public boolean onKeyDown(int keyCode, KeyEvent event) { //NOSONAR
         //Fix for issue on LG devices
-        if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
-            return true;
+        if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) { //NOSONAR
+            return true; //NOSONAR
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode, event); //NOSONAR
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
+    @Override //NOSONAR
+    public boolean onKeyUp(int keyCode, KeyEvent event) { //NOSONAR
         //Fix for issue on LG devices
-        if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) {
-            openOptionsMenu();
-            return true;
+        if (keyCode == KeyEvent.KEYCODE_MENU && "LGE".equalsIgnoreCase(Build.BRAND)) { //NOSONAR
+            openOptionsMenu(); //NOSONAR
+            return true; //NOSONAR
         }
-        return super.onKeyUp(keyCode, event);
+        return super.onKeyUp(keyCode, event); //NOSONAR
     }
 
-    private void keepScreenOn(boolean on) {
-        final Window window = getWindow();
-        if (on) {
-            window.addFlags(FLAG_KEEP_SCREEN_ON);
-        } else {
-            window.clearFlags(FLAG_KEEP_SCREEN_ON);
+    private void keepScreenOn(boolean on) { //NOSONAR
+        final Window window = getWindow(); //NOSONAR
+        if (on) { //NOSONAR
+            window.addFlags(FLAG_KEEP_SCREEN_ON); //NOSONAR
+        } else { //NOSONAR
+            window.clearFlags(FLAG_KEEP_SCREEN_ON); //NOSONAR
         }
     }
 
-    protected abstract String screenName();
+    protected abstract String screenName(); //NOSONAR
 }

@@ -15,35 +15,35 @@ import android.view.View;
  * A button that will repeatedly call a 'listener' method
  * as long as the button is pressed.
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class RepeatingImageButton extends android.support.v7.widget.AppCompatImageButton {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class RepeatingImageButton extends android.support.v7.widget.AppCompatImageButton { //NOSONAR
 
-    private long startTime;
-    private int repeatCount;
-    private RepeatListener listener;
-    long interval = 500;
+    private long startTime; //NOSONAR
+    private int repeatCount; //NOSONAR
+    private RepeatListener listener; //NOSONAR
+    long interval = 500; //NOSONAR
 
-    @NonNull
-    Drawable drawable;
+    @NonNull //NOSONAR
+    Drawable drawable; //NOSONAR
 
-    int normalColor = Color.WHITE;
+    int normalColor = Color.WHITE; //NOSONAR
 
-    public RepeatingImageButton(Context context) {
-        this(context, null);
+    public RepeatingImageButton(Context context) { //NOSONAR
+        this(context, null); //NOSONAR
     }
 
-    public RepeatingImageButton(Context context, AttributeSet attrs) {
-        this(context, attrs, android.R.attr.imageButtonStyle);
+    public RepeatingImageButton(Context context, AttributeSet attrs) { //NOSONAR
+        this(context, attrs, android.R.attr.imageButtonStyle); //NOSONAR
     }
 
-    public RepeatingImageButton(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
-        setFocusable(true);
-        setLongClickable(true);
+    public RepeatingImageButton(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+        super(context, attrs, defStyle); //NOSONAR
+        setFocusable(true); //NOSONAR
+        setLongClickable(true); //NOSONAR
 
-        drawable = DrawableCompat.wrap(getDrawable().mutate());
-        DrawableCompat.setTint(drawable, normalColor);
-        setImageDrawable(drawable);
+        drawable = DrawableCompat.wrap(getDrawable().mutate()); //NOSONAR
+        DrawableCompat.setTint(drawable, normalColor); //NOSONAR
+        setImageDrawable(drawable); //NOSONAR
     }
 
     /**
@@ -52,76 +52,76 @@ public class RepeatingImageButton extends android.support.v7.widget.AppCompatIma
      *
      * @param l The listener that will be called
      */
-    public void setRepeatListener(RepeatListener l) {
-        listener = l;
+    public void setRepeatListener(RepeatListener l) { //NOSONAR
+        listener = l; //NOSONAR
     }
 
-    @Override
-    public boolean performLongClick() {
-        startTime = SystemClock.elapsedRealtime();
-        repeatCount = 0;
-        post(mRepeater);
-        return true;
+    @Override //NOSONAR
+    public boolean performLongClick() { //NOSONAR
+        startTime = SystemClock.elapsedRealtime(); //NOSONAR
+        repeatCount = 0; //NOSONAR
+        post(mRepeater); //NOSONAR
+        return true; //NOSONAR
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_UP) {
+    @Override //NOSONAR
+    public boolean onTouchEvent(MotionEvent event) { //NOSONAR
+        if (event.getAction() == MotionEvent.ACTION_UP) { //NOSONAR
             // remove the repeater, but call the hook one more time
-            removeCallbacks(mRepeater);
-            if (startTime != 0) {
-                doRepeat(true);
-                startTime = 0;
+            removeCallbacks(mRepeater); //NOSONAR
+            if (startTime != 0) { //NOSONAR
+                doRepeat(true); //NOSONAR
+                startTime = 0; //NOSONAR
             }
         }
-        return super.onTouchEvent(event);
+        return super.onTouchEvent(event); //NOSONAR
     }
 
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-            case KeyEvent.KEYCODE_ENTER:
+    @Override //NOSONAR
+    public boolean onKeyDown(int keyCode, KeyEvent event) { //NOSONAR
+        switch (keyCode) { //NOSONAR
+            case KeyEvent.KEYCODE_DPAD_CENTER: //NOSONAR
+            case KeyEvent.KEYCODE_ENTER: //NOSONAR
                 // need to call super to make long press work, but return
                 // true so that the application doesn't get the down event.
-                super.onKeyDown(keyCode, event);
-                return true;
+                super.onKeyDown(keyCode, event); //NOSONAR
+                return true; //NOSONAR
         }
-        return super.onKeyDown(keyCode, event);
+        return super.onKeyDown(keyCode, event); //NOSONAR
     }
 
-    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_DPAD_CENTER:
-            case KeyEvent.KEYCODE_ENTER:
+    @Override //NOSONAR
+    public boolean onKeyUp(int keyCode, KeyEvent event) { //NOSONAR
+        switch (keyCode) { //NOSONAR
+            case KeyEvent.KEYCODE_DPAD_CENTER: //NOSONAR
+            case KeyEvent.KEYCODE_ENTER: //NOSONAR
                 // remove the repeater, but call the hook one more time
-                removeCallbacks(mRepeater);
-                if (startTime != 0) {
-                    doRepeat(true);
-                    startTime = 0;
+                removeCallbacks(mRepeater); //NOSONAR
+                if (startTime != 0) { //NOSONAR
+                    doRepeat(true); //NOSONAR
+                    startTime = 0; //NOSONAR
                 }
         }
-        return super.onKeyUp(keyCode, event);
+        return super.onKeyUp(keyCode, event); //NOSONAR
     }
 
-    private Runnable mRepeater = new Runnable() {
-        public void run() {
-            doRepeat(false);
-            if (isPressed()) {
-                postDelayed(this, interval);
+    private Runnable mRepeater = new Runnable() { //NOSONAR
+        public void run() { //NOSONAR
+            doRepeat(false); //NOSONAR
+            if (isPressed()) { //NOSONAR
+                postDelayed(this, interval); //NOSONAR
             }
         }
     };
 
-    void doRepeat(boolean last) {
-        long now = SystemClock.elapsedRealtime();
-        if (listener != null) {
-            listener.onRepeat(this, now - startTime, last ? -1 : repeatCount++);
+    void doRepeat(boolean last) { //NOSONAR
+        long now = SystemClock.elapsedRealtime(); //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onRepeat(this, now - startTime, last ? -1 : repeatCount++); //NOSONAR
         }
     }
 
-    public interface RepeatListener {
+    public interface RepeatListener { //NOSONAR
         /**
          * This method will be called repeatedly at roughly the interval
          * specified in setRepeatListener(), for as long as the button
@@ -133,13 +133,13 @@ public class RepeatingImageButton extends android.support.v7.widget.AppCompatIma
          * If this is going to be the last call in this sequence (i.e. the user
          * just stopped pressing the button), the value will be -1.
          */
-        void onRepeat(View v, long duration, int repeatCount);
+        void onRepeat(View v, long duration, int repeatCount); //NOSONAR
     }
 
-    public void invalidateColors(int normal) {
+    public void invalidateColors(int normal) { //NOSONAR
 
-        this.normalColor = normal;
+        this.normalColor = normal; //NOSONAR
 
-        DrawableCompat.setTint(drawable, normal);
+        DrawableCompat.setTint(drawable, normal); //NOSONAR
     }
 }

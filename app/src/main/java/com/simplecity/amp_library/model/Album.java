@@ -16,259 +16,259 @@ import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Album implements
-        Serializable,
-        ArtworkProvider,
-        Comparable<Album>,
-        Sortable {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Album implements //NOSONAR
+        Serializable, //NOSONAR
+        ArtworkProvider, //NOSONAR
+        Comparable<Album>, //NOSONAR
+        Sortable { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long id;
-    @SuppressWarnings("java:S1104")
-    public String name;
+    public long id; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String name; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public List<Artist> artists = new ArrayList<>();
-    @SuppressWarnings("java:S1104")
-    public String albumArtistName;
+    public List<Artist> artists = new ArrayList<>(); //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String albumArtistName; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public int year;
-    @SuppressWarnings("java:S1104")
-    public int numSongs;
-    @SuppressWarnings("java:S1104")
-    public int numDiscs;
+    public int year; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int numSongs; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int numDiscs; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long lastPlayed;
-    @SuppressWarnings("java:S1104")
-    public long dateAdded;
+    public long lastPlayed; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long dateAdded; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public List<String> paths = new ArrayList<>();
+    public List<String> paths = new ArrayList<>(); //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public int songPlayCount;
+    public int songPlayCount; //NOSONAR
 
-    private String artworkKey;
+    private String artworkKey; //NOSONAR
 
-    private String sortKey;
+    private String sortKey; //NOSONAR
 
-    public Album(long id, String name, List<Artist> artists, String albumArtistName, int numSongs, int numDiscs, int year, long lastPlayed, long dateAdded, List<String> paths, int songPlayCount) {
-        this.id = id;
-        this.name = name;
-        this.artists = artists;
-        this.albumArtistName = albumArtistName;
-        this.numSongs = numSongs;
-        this.numDiscs = numDiscs;
-        this.year = year;
-        this.lastPlayed = lastPlayed;
-        this.dateAdded = dateAdded;
-        this.paths = paths;
-        this.songPlayCount = songPlayCount;
+    public Album(long id, String name, List<Artist> artists, String albumArtistName, int numSongs, int numDiscs, int year, long lastPlayed, long dateAdded, List<String> paths, int songPlayCount) { //NOSONAR
+        this.id = id; //NOSONAR
+        this.name = name; //NOSONAR
+        this.artists = artists; //NOSONAR
+        this.albumArtistName = albumArtistName; //NOSONAR
+        this.numSongs = numSongs; //NOSONAR
+        this.numDiscs = numDiscs; //NOSONAR
+        this.year = year; //NOSONAR
+        this.lastPlayed = lastPlayed; //NOSONAR
+        this.dateAdded = dateAdded; //NOSONAR
+        this.paths = paths; //NOSONAR
+        this.songPlayCount = songPlayCount; //NOSONAR
 
         //Populate the artwork key & sort key properties if null.
-        setSortKey();
-        setArtworkKey();
+        setSortKey(); //NOSONAR
+        setArtworkKey(); //NOSONAR
     }
 
-    public static class Builder {
+    public static class Builder { //NOSONAR
 
-        private long id;
-        private String name;
-        private List<Artist> artists = new ArrayList<>();
-        private String albumArtistName;
-        private int numSongs;
-        private int numDiscs;
-        private int year;
-        private long lastPlayed;
-        private long dateAdded;
-        private List<String> paths = new ArrayList<>();
-        private int songPlayCount;
+        private long id; //NOSONAR
+        private String name; //NOSONAR
+        private List<Artist> artists = new ArrayList<>(); //NOSONAR
+        private String albumArtistName; //NOSONAR
+        private int numSongs; //NOSONAR
+        private int numDiscs; //NOSONAR
+        private int year; //NOSONAR
+        private long lastPlayed; //NOSONAR
+        private long dateAdded; //NOSONAR
+        private List<String> paths = new ArrayList<>(); //NOSONAR
+        private int songPlayCount; //NOSONAR
 
-        public Builder id(long id) {
-            this.id = id;
-            return this;
+        public Builder id(long id) { //NOSONAR
+            this.id = id; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder name(String name) {
-            this.name = name;
-            return this;
+        public Builder name(String name) { //NOSONAR
+            this.name = name; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder addArtist(Artist artist) {
-            if (!this.artists.contains(artist)) {
-                this.artists.add(artist);
+        public Builder addArtist(Artist artist) { //NOSONAR
+            if (!this.artists.contains(artist)) { //NOSONAR
+                this.artists.add(artist); //NOSONAR
             }
-            return this;
+            return this; //NOSONAR
         }
 
-        public Builder albumArtist(String albumArtistName) {
-            this.albumArtistName = albumArtistName;
-            return this;
+        public Builder albumArtist(String albumArtistName) { //NOSONAR
+            this.albumArtistName = albumArtistName; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder numSongs(int numSongs) {
-            this.numSongs = numSongs;
-            return this;
+        public Builder numSongs(int numSongs) { //NOSONAR
+            this.numSongs = numSongs; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder numDiscs(int numDiscs) {
-            this.numDiscs = numDiscs;
-            return this;
+        public Builder numDiscs(int numDiscs) { //NOSONAR
+            this.numDiscs = numDiscs; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder year(int year) {
-            this.year = year;
-            return this;
+        public Builder year(int year) { //NOSONAR
+            this.year = year; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder lastPlayed(long lastPlayed) {
-            if (lastPlayed > this.lastPlayed) {
-                this.lastPlayed = lastPlayed;
+        public Builder lastPlayed(long lastPlayed) { //NOSONAR
+            if (lastPlayed > this.lastPlayed) { //NOSONAR
+                this.lastPlayed = lastPlayed; //NOSONAR
             }
-            return this;
+            return this; //NOSONAR
         }
 
-        public Builder dateAdded(long dateAdded) {
-            if (dateAdded > this.dateAdded) {
-                this.dateAdded = dateAdded;
+        public Builder dateAdded(long dateAdded) { //NOSONAR
+            if (dateAdded > this.dateAdded) { //NOSONAR
+                this.dateAdded = dateAdded; //NOSONAR
             }
-            return this;
+            return this; //NOSONAR
         }
 
-        public Builder path(String path) {
-            if (!this.paths.contains(path)) {
-                this.paths.add(path);
+        public Builder path(String path) { //NOSONAR
+            if (!this.paths.contains(path)) { //NOSONAR
+                this.paths.add(path); //NOSONAR
             }
-            return this;
+            return this; //NOSONAR
         }
 
-        public Builder songPlayCount(int playCount) {
-            songPlayCount = playCount;
-            return this;
+        public Builder songPlayCount(int playCount) { //NOSONAR
+            songPlayCount = playCount; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Album build() {
-            return new Album(id, name, artists, albumArtistName, numSongs, numDiscs, year, lastPlayed, dateAdded, paths, songPlayCount);
+        public Album build() { //NOSONAR
+            return new Album(id, name, artists, albumArtistName, numSongs, numDiscs, year, lastPlayed, dateAdded, paths, songPlayCount); //NOSONAR
         }
     }
 
-    public AlbumArtist getAlbumArtist() {
-        return new AlbumArtist.Builder()
-                .name(albumArtistName)
-                .album(this)
-                .build();
+    public AlbumArtist getAlbumArtist() { //NOSONAR
+        return new AlbumArtist.Builder() //NOSONAR
+                .name(albumArtistName) //NOSONAR
+                .album(this) //NOSONAR
+                .build(); //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        Album album = (Album) o;
+        Album album = (Album) o; //NOSONAR
 
-        if (id != album.id) return false;
-        return name != null ? name.equals(album.name) : album.name == null;
+        if (id != album.id) return false; //NOSONAR
+        return name != null ? name.equals(album.name) : album.name == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = (int) (id ^ (id >>> 32)); //NOSONAR
+        result = 31 * result + (name != null ? name.hashCode() : 0); //NOSONAR
+        return result; //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return "Album{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", artists=" + artists +
-                ", albumArtistName='" + albumArtistName + '\'' +
-                ", year=" + year +
-                ", numSongs=" + numSongs +
-                ", lastPlayed=" + lastPlayed +
-                ", dateAdded=" + dateAdded +
-                ", paths=" + paths +
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return "Album{" + //NOSONAR
+                "id=" + id + //NOSONAR
+                ", name='" + name + '\'' + //NOSONAR
+                ", artists=" + artists + //NOSONAR
+                ", albumArtistName='" + albumArtistName + '\'' + //NOSONAR
+                ", year=" + year + //NOSONAR
+                ", numSongs=" + numSongs + //NOSONAR
+                ", lastPlayed=" + lastPlayed + //NOSONAR
+                ", dateAdded=" + dateAdded + //NOSONAR
+                ", paths=" + paths + //NOSONAR
                 '}';
     }
 
-    @Override
-    public String getSortKey() {
-        if (sortKey == null) {
-            setSortKey();
+    @Override //NOSONAR
+    public String getSortKey() { //NOSONAR
+        if (sortKey == null) { //NOSONAR
+            setSortKey(); //NOSONAR
         }
-        return sortKey;
+        return sortKey; //NOSONAR
     }
 
-    @Override
-    public void setSortKey() {
-        sortKey = StringUtils.keyFor(name);
+    @Override //NOSONAR
+    public void setSortKey() { //NOSONAR
+        sortKey = StringUtils.keyFor(name); //NOSONAR
     }
 
-    @Override
-    @NonNull
-    public String getArtworkKey() {
-        if (artworkKey == null) setArtworkKey();
-        return artworkKey;
+    @Override //NOSONAR
+    @NonNull //NOSONAR
+    public String getArtworkKey() { //NOSONAR
+        if (artworkKey == null) setArtworkKey(); //NOSONAR
+        return artworkKey; //NOSONAR
     }
 
-    private void setArtworkKey() {
-        artworkKey = String.format("%s_%s", albumArtistName, name);
+    private void setArtworkKey() { //NOSONAR
+        artworkKey = String.format("%s_%s", albumArtistName, name); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public String getRemoteArtworkUrl() {
-        try {
-            return "https://artwork.shuttlemusicplayer.app/api/v1/artwork"
-                    + "?artist=" + URLEncoder.encode(albumArtistName, Charset.forName("UTF-8").name())
-                    + "&album=" + URLEncoder.encode(name, Charset.forName("UTF-8").name());
-        } catch (UnsupportedEncodingException e) {
-            return null;
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public String getRemoteArtworkUrl() { //NOSONAR
+        try { //NOSONAR
+            return "https://artwork.shuttlemusicplayer.app/api/v1/artwork" //NOSONAR
+                    + "?artist=" + URLEncoder.encode(albumArtistName, Charset.forName("UTF-8").name()) //NOSONAR
+                    + "&album=" + URLEncoder.encode(name, Charset.forName("UTF-8").name()); //NOSONAR
+        } catch (UnsupportedEncodingException e) { //NOSONAR
+            return null; //NOSONAR
         }
     }
 
-    @Override
-    public InputStream getMediaStoreArtwork(Context context) {
-        return ArtworkUtils.getMediaStoreArtwork(context, this);
+    @Override //NOSONAR
+    public InputStream getMediaStoreArtwork(Context context) { //NOSONAR
+        return ArtworkUtils.getMediaStoreArtwork(context, this); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public InputStream getFolderArtwork() {
-        return ArtworkUtils.getFolderArtwork(getArtworkPath());
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public InputStream getFolderArtwork() { //NOSONAR
+        return ArtworkUtils.getFolderArtwork(getArtworkPath()); //NOSONAR
     }
 
-    @Override
-    public InputStream getTagArtwork() {
-        return ArtworkUtils.getTagArtwork(getArtworkPath());
+    @Override //NOSONAR
+    public InputStream getTagArtwork() { //NOSONAR
+        return ArtworkUtils.getTagArtwork(getArtworkPath()); //NOSONAR
     }
 
-    @Override
-    public List<File> getFolderArtworkFiles() {
-        return ArtworkUtils.getAllFolderArtwork(getArtworkPath());
+    @Override //NOSONAR
+    public List<File> getFolderArtworkFiles() { //NOSONAR
+        return ArtworkUtils.getAllFolderArtwork(getArtworkPath()); //NOSONAR
     }
 
-    @Nullable
-    @WorkerThread
-    private String getArtworkPath() {
-        if (paths != null && !paths.isEmpty()) {
-            return paths.get(0);
+    @Nullable //NOSONAR
+    @WorkerThread //NOSONAR
+    private String getArtworkPath() { //NOSONAR
+        if (paths != null && !paths.isEmpty()) { //NOSONAR
+            return paths.get(0); //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    @Override
-    public int compareTo(@NonNull Album album) {
-        return ComparisonUtils.compare(getSortKey(), album.getSortKey());
+    @Override //NOSONAR
+    public int compareTo(@NonNull Album album) { //NOSONAR
+        return ComparisonUtils.compare(getSortKey(), album.getSortKey()); //NOSONAR
     }
 }

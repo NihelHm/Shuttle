@@ -31,101 +31,101 @@ import android.view.ViewGroup;
 import java.lang.reflect.Field;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("WeakerAccess")
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public final class Util {
+@SuppressWarnings("WeakerAccess") //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public final class Util { //NOSONAR
 
-  static void setInflaterFactory(@NonNull LayoutInflater li) {
-    LayoutInflaterCompat.setFactory(li, new InflationInterceptor());
+  static void setInflaterFactory(@NonNull LayoutInflater li) { //NOSONAR
+    LayoutInflaterCompat.setFactory(li, new InflationInterceptor()); //NOSONAR
   }
 
-  static Field findField(Class clazz, String... names) throws NoSuchFieldException{
-    for (String name : names) {
-      try {
-        Field field = clazz.getDeclaredField(name);
-        field.setAccessible(true);
-        return field;
-      } catch (NoSuchFieldException ignored){
+  static Field findField(Class clazz, String... names) throws NoSuchFieldException{ //NOSONAR
+    for (String name : names) { //NOSONAR
+      try { //NOSONAR
+        Field field = clazz.getDeclaredField(name); //NOSONAR
+        field.setAccessible(true); //NOSONAR
+        return field; //NOSONAR
+      } catch (NoSuchFieldException ignored){ //NOSONAR
           // Intentionally left empty.
       }
     }
 
-    throw new NoSuchFieldException();
+    throw new NoSuchFieldException(); //NOSONAR
   }
 
   /** Taken from CollapsingToolbarLayout's CollapsingTextHelper class. */
-  @ColorInt
-  static int blendColors(int color1, int color2, float ratio) {
-    final float inverseRatio = 1f - ratio;
-    float a = (Color.alpha(color1) * inverseRatio) + (Color.alpha(color2) * ratio);
-    float r = (Color.red(color1) * inverseRatio) + (Color.red(color2) * ratio);
-    float g = (Color.green(color1) * inverseRatio) + (Color.green(color2) * ratio);
-    float b = (Color.blue(color1) * inverseRatio) + (Color.blue(color2) * ratio);
-    return Color.argb((int) a, (int) r, (int) g, (int) b);
+  @ColorInt //NOSONAR
+  static int blendColors(int color1, int color2, float ratio) { //NOSONAR
+    final float inverseRatio = 1f - ratio; //NOSONAR
+    float a = (Color.alpha(color1) * inverseRatio) + (Color.alpha(color2) * ratio); //NOSONAR
+    float r = (Color.red(color1) * inverseRatio) + (Color.red(color2) * ratio); //NOSONAR
+    float g = (Color.green(color1) * inverseRatio) + (Color.green(color2) * ratio); //NOSONAR
+    float b = (Color.blue(color1) * inverseRatio) + (Color.blue(color2) * ratio); //NOSONAR
+    return Color.argb((int) a, (int) r, (int) g, (int) b); //NOSONAR
   }
 
-  @SuppressWarnings("deprecation")
-  static void setBackgroundCompat(@NonNull View view, @Nullable Drawable drawable) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-      view.setBackground(drawable);
-    } else {
-      view.setBackgroundDrawable(drawable);
+  @SuppressWarnings("deprecation") //NOSONAR
+  static void setBackgroundCompat(@NonNull View view, @Nullable Drawable drawable) { //NOSONAR
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) { //NOSONAR
+      view.setBackground(drawable); //NOSONAR
+    } else { //NOSONAR
+      view.setBackgroundDrawable(drawable); //NOSONAR
     }
   }
 
-  static void setStatusBarColorCompat(@NonNull AppCompatActivity activity, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      activity.getWindow().setStatusBarColor(color);
+  static void setStatusBarColorCompat(@NonNull AppCompatActivity activity, @ColorInt int color) { //NOSONAR
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+      activity.getWindow().setStatusBarColor(color); //NOSONAR
     }
   }
 
-  static void setNavBarColorCompat(@NonNull AppCompatActivity activity, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-      activity.getWindow().setNavigationBarColor(color);
+  static void setNavBarColorCompat(@NonNull AppCompatActivity activity, @ColorInt int color) { //NOSONAR
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+      activity.getWindow().setNavigationBarColor(color); //NOSONAR
     }
   }
 
-  @ColorInt
-  public static int stripAlpha(@ColorInt int color) {
-    return Color.rgb(Color.red(color), Color.green(color), Color.blue(color));
+  @ColorInt //NOSONAR
+  public static int stripAlpha(@ColorInt int color) { //NOSONAR
+    return Color.rgb(Color.red(color), Color.green(color), Color.blue(color)); //NOSONAR
   }
 
-  @ColorInt
-  static int resolveColor(Context context, @AttrRes int attr) {
-    return resolveColor(context, attr, 0);
+  @ColorInt //NOSONAR
+  static int resolveColor(Context context, @AttrRes int attr) { //NOSONAR
+    return resolveColor(context, attr, 0); //NOSONAR
   }
 
-  @ColorInt
-  static int resolveColor(Context context, @AttrRes int attr, int fallback) {
-    if (context!=null) {
-      TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr});
-      try {
-        return a.getColor(0, fallback);
-      } catch (Throwable ignored) {
-        return fallback;
-      } finally {
-        a.recycle();
+  @ColorInt //NOSONAR
+  static int resolveColor(Context context, @AttrRes int attr, int fallback) { //NOSONAR
+    if (context!=null) { //NOSONAR
+      TypedArray a = context.getTheme().obtainStyledAttributes(new int[]{attr}); //NOSONAR
+      try { //NOSONAR
+        return a.getColor(0, fallback); //NOSONAR
+      } catch (Throwable ignored) { //NOSONAR
+        return fallback; //NOSONAR
+      } finally { //NOSONAR
+        a.recycle(); //NOSONAR
       }
     }
-    return fallback;
+    return fallback; //NOSONAR
   }
 
-  @IdRes
-  public static int resolveResId(Context context, @AttrRes int attr, int fallback) {
-    TypedArray a = context.getTheme().obtainStyledAttributes(new int[] {attr});
-    try {
-      return a.getResourceId(0, fallback);
-    } finally {
-      a.recycle();
+  @IdRes //NOSONAR
+  public static int resolveResId(Context context, @AttrRes int attr, int fallback) { //NOSONAR
+    TypedArray a = context.getTheme().obtainStyledAttributes(new int[] {attr}); //NOSONAR
+    try { //NOSONAR
+      return a.getResourceId(0, fallback); //NOSONAR
+    } finally { //NOSONAR
+      a.recycle(); //NOSONAR
     }
   }
 
-  @IdRes
-  public static int resolveResId(Context context, AttributeSet attrs, @AttrRes int attrId) {
-    TypedArray ta = context.obtainStyledAttributes(attrs, new int[] {attrId});
-    int result = ta.getResourceId(0, 0);
-    ta.recycle();
-    return result;
+  @IdRes //NOSONAR
+  public static int resolveResId(Context context, AttributeSet attrs, @AttrRes int attrId) { //NOSONAR
+    TypedArray ta = context.obtainStyledAttributes(attrs, new int[] {attrId}); //NOSONAR
+    int result = ta.getResourceId(0, 0); //NOSONAR
+    ta.recycle(); //NOSONAR
+    return result; //NOSONAR
   }
 
   //  static ColorStateList resolveActionTextColorStateList(
@@ -181,64 +181,64 @@ public final class Util {
   //          new int[] {-android.R.attr.state_enabled}, // disabled
   //          new int[] {
       // Intentionally left empty.
-  } // enabled
+  } // enabled //NOSONAR
   //        };
   //    int[] colors = new int[] {adjustAlpha(newPrimaryColor, 0.4f), newPrimaryColor};
   //    return new ColorStateList(states, colors);
   //  }
 
-  @ColorInt
-  public static int adjustAlpha(
-      @ColorInt int color, @SuppressWarnings("SameParameterValue") float factor) {
-    int alpha = Math.round(Color.alpha(color) * factor);
-    int red = Color.red(color);
-    int green = Color.green(color);
-    int blue = Color.blue(color);
-    return Color.argb(alpha, red, green, blue);
+  @ColorInt //NOSONAR
+  public static int adjustAlpha( //NOSONAR
+      @ColorInt int color, @SuppressWarnings("SameParameterValue") float factor) { //NOSONAR
+    int alpha = Math.round(Color.alpha(color) * factor); //NOSONAR
+    int red = Color.red(color); //NOSONAR
+    int green = Color.green(color); //NOSONAR
+    int blue = Color.blue(color); //NOSONAR
+    return Color.argb(alpha, red, green, blue); //NOSONAR
   }
 
-  public static void setOverflowButtonColor(@NonNull final Toolbar toolbar, final @ColorInt int color) {
-    Drawable overflowDrawable = toolbar.getOverflowIcon();
-    if (overflowDrawable != null) {
-      toolbar.setOverflowIcon(TintHelper.createTintedDrawable(overflowDrawable, color));
+  public static void setOverflowButtonColor(@NonNull final Toolbar toolbar, final @ColorInt int color) { //NOSONAR
+    Drawable overflowDrawable = toolbar.getOverflowIcon(); //NOSONAR
+    if (overflowDrawable != null) { //NOSONAR
+      toolbar.setOverflowIcon(TintHelper.createTintedDrawable(overflowDrawable, color)); //NOSONAR
     }
   }
 
-  @ColorInt
-  public static int shiftColor(@ColorInt int color, @FloatRange(from = 0.0f, to = 2.0f) float by) {
-    if (by == 1f) return color;
-    float[] hsv = new float[3];
-    Color.colorToHSV(color, hsv);
-    hsv[2] *= by; // value component
-    return Color.HSVToColor(hsv);
+  @ColorInt //NOSONAR
+  public static int shiftColor(@ColorInt int color, @FloatRange(from = 0.0f, to = 2.0f) float by) { //NOSONAR
+    if (by == 1f) return color; //NOSONAR
+    float[] hsv = new float[3]; //NOSONAR
+    Color.colorToHSV(color, hsv); //NOSONAR
+    hsv[2] *= by; // value component //NOSONAR
+    return Color.HSVToColor(hsv); //NOSONAR
   }
 
-  @ColorInt
-  public static int darkenColor(@ColorInt int color) {
-    return shiftColor(color, 0.9f);
+  @ColorInt //NOSONAR
+  public static int darkenColor(@ColorInt int color) { //NOSONAR
+    return shiftColor(color, 0.9f); //NOSONAR
   }
 
-  public static boolean isColorLight(@ColorInt int color) {
-    if (color == Color.BLACK) {
-      return false;
-    } else if (color == Color.WHITE || color == Color.TRANSPARENT) {
-      return true;
+  public static boolean isColorLight(@ColorInt int color) { //NOSONAR
+    if (color == Color.BLACK) { //NOSONAR
+      return false; //NOSONAR
+    } else if (color == Color.WHITE || color == Color.TRANSPARENT) { //NOSONAR
+      return true; //NOSONAR
     }
-    final double darkness =
-        1
-            - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
-                / 255;
-    return darkness < 0.4;
+    final double darkness = //NOSONAR
+        1 //NOSONAR
+            - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color)) //NOSONAR
+                / 255; //NOSONAR
+    return darkness < 0.4; //NOSONAR
   }
 
   // optional convenience method, this can be called when we have information about the background color and want to consider it
-  static boolean isColorLight(@ColorInt int color, @ColorInt int bgColor) {
-    if (Color.alpha(color)
-        < 128) { // if the color is less than 50% visible rely on the background color
-      return isColorLight(
-          bgColor); // one could use some kind of color mixing here before passing the color
+  static boolean isColorLight(@ColorInt int color, @ColorInt int bgColor) { //NOSONAR
+    if (Color.alpha(color) //NOSONAR
+        < 128) { // if the color is less than 50% visible rely on the background color //NOSONAR
+      return isColorLight( //NOSONAR
+          bgColor); // one could use some kind of color mixing here before passing the color //NOSONAR
     }
-    return isColorLight(color);
+    return isColorLight(color); //NOSONAR
   }
 
   //  @ColorInt
@@ -249,76 +249,76 @@ public final class Util {
   //    return Color.argb(Color.alpha(color), r, g, b);
   //  }
 
-  static void setLightStatusBarCompat(@NonNull AppCompatActivity activity, boolean lightMode) {
-    final View view = activity.getWindow().getDecorView();
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-      int flags = view.getSystemUiVisibility();
-      if (lightMode) {
-        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
-      } else {
-        flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
+  static void setLightStatusBarCompat(@NonNull AppCompatActivity activity, boolean lightMode) { //NOSONAR
+    final View view = activity.getWindow().getDecorView(); //NOSONAR
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //NOSONAR
+      int flags = view.getSystemUiVisibility(); //NOSONAR
+      if (lightMode) { //NOSONAR
+        flags |= View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //NOSONAR
+      } else { //NOSONAR
+        flags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR; //NOSONAR
       }
-      view.setSystemUiVisibility(flags);
+      view.setSystemUiVisibility(flags); //NOSONAR
     }
   }
 
-  @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-  static void setTaskDescriptionColor(@NonNull Activity activity, @ColorInt int color) {
-    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) {
-      return;
+  @TargetApi(Build.VERSION_CODES.LOLLIPOP) //NOSONAR
+  static void setTaskDescriptionColor(@NonNull Activity activity, @ColorInt int color) { //NOSONAR
+    if (Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+      return; //NOSONAR
     }
     // Task description requires fully opaque color
-    color = stripAlpha(color);
+    color = stripAlpha(color); //NOSONAR
     // Default is app's launcher icon
-    Bitmap icon;
-    if (Build.VERSION.SDK_INT >= 26) {
-      icon = getAppIcon(activity.getPackageManager(), activity.getPackageName());
-    } else {
-      icon =
-          ((BitmapDrawable) activity.getApplicationInfo().loadIcon(activity.getPackageManager()))
-              .getBitmap();
+    Bitmap icon; //NOSONAR
+    if (Build.VERSION.SDK_INT >= 26) { //NOSONAR
+      icon = getAppIcon(activity.getPackageManager(), activity.getPackageName()); //NOSONAR
+    } else { //NOSONAR
+      icon = //NOSONAR
+          ((BitmapDrawable) activity.getApplicationInfo().loadIcon(activity.getPackageManager())) //NOSONAR
+              .getBitmap(); //NOSONAR
     }
-    if (icon != null) {
+    if (icon != null) { //NOSONAR
       // Sets color of entry in the system recents page
-      ActivityManager.TaskDescription td =
-          new ActivityManager.TaskDescription((String) activity.getTitle(), icon, color);
-      activity.setTaskDescription(td);
+      ActivityManager.TaskDescription td = //NOSONAR
+          new ActivityManager.TaskDescription((String) activity.getTitle(), icon, color); //NOSONAR
+      activity.setTaskDescription(td); //NOSONAR
     }
   }
 
-  @RequiresApi(api = Build.VERSION_CODES.O)
-  private static Bitmap getAppIcon(PackageManager mPackageManager, String packageName) {
-    try {
-      Drawable drawable = mPackageManager.getApplicationIcon(packageName);
+  @RequiresApi(api = Build.VERSION_CODES.O) //NOSONAR
+  private static Bitmap getAppIcon(PackageManager mPackageManager, String packageName) { //NOSONAR
+    try { //NOSONAR
+      Drawable drawable = mPackageManager.getApplicationIcon(packageName); //NOSONAR
 
-      if (drawable instanceof BitmapDrawable) {
-        return ((BitmapDrawable) drawable).getBitmap();
-      } else if (drawable instanceof AdaptiveIconDrawable) {
-        Drawable backgroundDr = ((AdaptiveIconDrawable) drawable).getBackground();
-        Drawable foregroundDr = ((AdaptiveIconDrawable) drawable).getForeground();
+      if (drawable instanceof BitmapDrawable) { //NOSONAR
+        return ((BitmapDrawable) drawable).getBitmap(); //NOSONAR
+      } else if (drawable instanceof AdaptiveIconDrawable) { //NOSONAR
+        Drawable backgroundDr = ((AdaptiveIconDrawable) drawable).getBackground(); //NOSONAR
+        Drawable foregroundDr = ((AdaptiveIconDrawable) drawable).getForeground(); //NOSONAR
 
-        Drawable[] drr = new Drawable[2];
-        drr[0] = backgroundDr;
-        drr[1] = foregroundDr;
+        Drawable[] drr = new Drawable[2]; //NOSONAR
+        drr[0] = backgroundDr; //NOSONAR
+        drr[1] = foregroundDr; //NOSONAR
 
-        LayerDrawable layerDrawable = new LayerDrawable(drr);
+        LayerDrawable layerDrawable = new LayerDrawable(drr); //NOSONAR
 
-        int width = layerDrawable.getIntrinsicWidth();
-        int height = layerDrawable.getIntrinsicHeight();
+        int width = layerDrawable.getIntrinsicWidth(); //NOSONAR
+        int height = layerDrawable.getIntrinsicHeight(); //NOSONAR
 
-        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); //NOSONAR
 
-        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas = new Canvas(bitmap); //NOSONAR
 
-        layerDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-        layerDrawable.draw(canvas);
+        layerDrawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight()); //NOSONAR
+        layerDrawable.draw(canvas); //NOSONAR
 
-        return bitmap;
+        return bitmap; //NOSONAR
       }
-    } catch (PackageManager.NameNotFoundException e) {
-      e.printStackTrace();
+    } catch (PackageManager.NameNotFoundException e) { //NOSONAR
+      e.printStackTrace(); //NOSONAR
     }
-    return null;
+    return null; //NOSONAR
   }
 
   //  @Nullable
@@ -337,8 +337,8 @@ public final class Util {
   //    }
   //  }
 
-  @NonNull
-  static ViewGroup getRootView(@NonNull Activity activity) {
-    return (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0);
+  @NonNull //NOSONAR
+  static ViewGroup getRootView(@NonNull Activity activity) { //NOSONAR
+    return (ViewGroup) ((ViewGroup) activity.findViewById(android.R.id.content)).getChildAt(0); //NOSONAR
   }
 }

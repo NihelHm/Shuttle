@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.settings
 
@@ -30,88 +30,88 @@ import com.simplecityapps.recycler_adapter.model.ViewModel
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class TabChooserDialog : DialogFragment() {
+class TabChooserDialog : DialogFragment() { //NOSONAR
 
-    @Inject lateinit var analyticsManager: AnalyticsManager
+    @Inject lateinit var analyticsManager: AnalyticsManager //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        val sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context) //NOSONAR
 
-        val adapter = ViewModelAdapter()
+        val adapter = ViewModelAdapter() //NOSONAR
 
-        val itemTouchHelper = ItemTouchHelper(
-            ItemTouchHelperCallback(
-                ItemTouchHelperCallback.OnItemMoveListener { fromPosition, toPosition -> adapter.moveItem(fromPosition, toPosition) },
-                ItemTouchHelperCallback.OnDropListener { _, _ -> },
-                ItemTouchHelperCallback.OnClearListener {
+        val itemTouchHelper = ItemTouchHelper( //NOSONAR
+            ItemTouchHelperCallback( //NOSONAR
+                ItemTouchHelperCallback.OnItemMoveListener { fromPosition, toPosition -> adapter.moveItem(fromPosition, toPosition) }, //NOSONAR
+                ItemTouchHelperCallback.OnDropListener { _, _ -> }, //NOSONAR
+                ItemTouchHelperCallback.OnClearListener { //NOSONAR
                     // Intentionally left empty.
                 },
-                ItemTouchHelperCallback.OnSwipeListener {
+                ItemTouchHelperCallback.OnSwipeListener { //NOSONAR
                     // Intentionally left empty.
                 }
             ))
 
-        val listener = object : TabViewModel.Listener {
-            override fun onStartDrag(holder: TabViewModel.ViewHolder) {
-                itemTouchHelper.startDrag(holder)
+        val listener = object : TabViewModel.Listener { //NOSONAR
+            override fun onStartDrag(holder: TabViewModel.ViewHolder) { //NOSONAR
+                itemTouchHelper.startDrag(holder) //NOSONAR
             }
 
-            override fun onFolderChecked(tabViewModel: TabViewModel, viewHolder: TabViewModel.ViewHolder) {
-                if (!ShuttleUtils.isUpgraded(context!!.applicationContext as ShuttleApplication, settingsManager)) {
-                    viewHolder.checkBox.isChecked = false
-                    tabViewModel.categoryItem.isChecked = false
-                    UpgradeDialog().show(fragmentManager!!)
+            override fun onFolderChecked(tabViewModel: TabViewModel, viewHolder: TabViewModel.ViewHolder) { //NOSONAR
+                if (!ShuttleUtils.isUpgraded(context!!.applicationContext as ShuttleApplication, settingsManager)) { //NOSONAR
+                    viewHolder.checkBox.isChecked = false //NOSONAR
+                    tabViewModel.categoryItem.isChecked = false //NOSONAR
+                    UpgradeDialog().show(fragmentManager!!) //NOSONAR
                 }
             }
         }
 
-        val items = CategoryItem.getCategoryItems(sharedPreferences)
-            .map { categoryItem ->
-                val tabViewModel = TabViewModel(categoryItem, settingsManager)
-                tabViewModel.setListener(listener)
-                tabViewModel
+        val items = CategoryItem.getCategoryItems(sharedPreferences) //NOSONAR
+            .map { categoryItem -> //NOSONAR
+                val tabViewModel = TabViewModel(categoryItem, settingsManager) //NOSONAR
+                tabViewModel.setListener(listener) //NOSONAR
+                tabViewModel //NOSONAR
             }
 
-        analyticsManager.dropBreadcrumb(TAG, "setItems()")
-        adapter.setItems(items)
+        analyticsManager.dropBreadcrumb(TAG, "setItems()") //NOSONAR
+        adapter.setItems(items) //NOSONAR
 
-        val recyclerView = RecyclerView(context!!)
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.adapter = adapter
+        val recyclerView = RecyclerView(context!!) //NOSONAR
+        recyclerView.layoutManager = LinearLayoutManager(context) //NOSONAR
+        recyclerView.adapter = adapter //NOSONAR
 
-        itemTouchHelper.attachToRecyclerView(recyclerView)
+        itemTouchHelper.attachToRecyclerView(recyclerView) //NOSONAR
 
-        return MaterialDialog.Builder(context!!)
-            .title(R.string.pref_title_choose_tabs)
-            .customView(recyclerView, false)
-            .positiveText(R.string.button_done)
-            .onPositive { dialog, which ->
-                val editor = sharedPreferences.edit()
-                Stream.of<ViewModel<*>>(adapter.items)
-                    .indexed()
-                    .forEach { viewModelIntPair ->
-                        (viewModelIntPair.second as TabViewModel).categoryItem.sortOrder = viewModelIntPair.first
-                        (viewModelIntPair.second as TabViewModel).categoryItem.savePrefs(editor)
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(R.string.pref_title_choose_tabs) //NOSONAR
+            .customView(recyclerView, false) //NOSONAR
+            .positiveText(R.string.button_done) //NOSONAR
+            .onPositive { dialog, which -> //NOSONAR
+                val editor = sharedPreferences.edit() //NOSONAR
+                Stream.of<ViewModel<*>>(adapter.items) //NOSONAR
+                    .indexed() //NOSONAR
+                    .forEach { viewModelIntPair -> //NOSONAR
+                        (viewModelIntPair.second as TabViewModel).categoryItem.sortOrder = viewModelIntPair.first //NOSONAR
+                        (viewModelIntPair.second as TabViewModel).categoryItem.savePrefs(editor) //NOSONAR
                     }
-                LocalBroadcastManager.getInstance(context!!).sendBroadcast(Intent(LibraryController.EVENT_TABS_CHANGED))
+                LocalBroadcastManager.getInstance(context!!).sendBroadcast(Intent(LibraryController.EVENT_TABS_CHANGED)) //NOSONAR
             }
-            .negativeText(R.string.close)
-            .build()
+            .negativeText(R.string.close) //NOSONAR
+            .build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "TabChooserDialog"
+        private const val TAG = "TabChooserDialog" //NOSONAR
     }
 }

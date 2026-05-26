@@ -12,70 +12,70 @@ import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticTextInputLayout extends TextInputLayout {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticTextInputLayout extends TextInputLayout { //NOSONAR
 
-  private CompositeDisposable subs;
-  private int backgroundResId;
+  private CompositeDisposable subs; //NOSONAR
+  private int backgroundResId; //NOSONAR
 
-  public AestheticTextInputLayout(Context context) {
-    super(context);
+  public AestheticTextInputLayout(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticTextInputLayout(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    init(context, attrs);
+  public AestheticTextInputLayout(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  public AestheticTextInputLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    init(context, attrs);
+  public AestheticTextInputLayout(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
+    init(context, attrs); //NOSONAR
   }
 
-  private void init(Context context, AttributeSet attrs) {
-    if (attrs != null) {
-      backgroundResId = resolveResId(context, attrs, android.R.attr.background);
+  private void init(Context context, AttributeSet attrs) { //NOSONAR
+    if (attrs != null) { //NOSONAR
+      backgroundResId = resolveResId(context, attrs, android.R.attr.background); //NOSONAR
     }
   }
 
-  private void invalidateColors(int color) {
-    TextInputLayoutUtil.setAccent(this, color);
+  private void invalidateColors(int color) { //NOSONAR
+    TextInputLayoutUtil.setAccent(this, color); //NOSONAR
   }
 
-  @SuppressWarnings("ConstantConditions")
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    subs = new CompositeDisposable();
-    subs.add(
-        Aesthetic.get(getContext())
-            .textColorSecondary()
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer color) {
-                    TextInputLayoutUtil.setHint(
-                        AestheticTextInputLayout.this, adjustAlpha(color, 0.7f));
+  @SuppressWarnings("ConstantConditions") //NOSONAR
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    subs = new CompositeDisposable(); //NOSONAR
+    subs.add( //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .textColorSecondary() //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer color) { //NOSONAR
+                    TextInputLayoutUtil.setHint( //NOSONAR
+                        AestheticTextInputLayout.this, adjustAlpha(color, 0.7f)); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow()));
-    subs.add(
-        ViewUtil.getObservableForResId(getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent())
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer color) {
-                    invalidateColors(color);
+                onErrorLogAndRethrow())); //NOSONAR
+    subs.add( //NOSONAR
+        ViewUtil.getObservableForResId(getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()) //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer color) { //NOSONAR
+                    invalidateColors(color); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow()));
+                onErrorLogAndRethrow())); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    subs.clear();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    subs.clear(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

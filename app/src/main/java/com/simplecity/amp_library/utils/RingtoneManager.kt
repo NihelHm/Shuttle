@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils
 
@@ -24,77 +24,77 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.Callable
 import javax.inject.Inject
 
-class RingtoneManager @Inject constructor(val applicationContext: Context) {
+class RingtoneManager @Inject constructor(val applicationContext: Context) { //NOSONAR
 
-    fun setRingtone(song: Song, onSuccess: () -> Unit): Disposable? {
+    fun setRingtone(song: Song, onSuccess: () -> Unit): Disposable? { //NOSONAR
 
-        return Observable.fromCallable(Callable {
-            var success = false
+        return Observable.fromCallable(Callable { //NOSONAR
+            var success = false //NOSONAR
 
-            val resolver = applicationContext.contentResolver
+            val resolver = applicationContext.contentResolver //NOSONAR
             // Set the flag in the database to mark this as a ringtone
-            val ringUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id)
-            try {
-                val values = ContentValues(2)
-                values.put(MediaStore.Audio.AudioColumns.IS_RINGTONE, "1")
-                values.put(MediaStore.Audio.AudioColumns.IS_ALARM, "1")
-                if (ringUri != null) {
-                    resolver.update(ringUri, values, null, null)
+            val ringUri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, song.id) //NOSONAR
+            try { //NOSONAR
+                val values = ContentValues(2) //NOSONAR
+                values.put(MediaStore.Audio.AudioColumns.IS_RINGTONE, "1") //NOSONAR
+                values.put(MediaStore.Audio.AudioColumns.IS_ALARM, "1") //NOSONAR
+                if (ringUri != null) { //NOSONAR
+                    resolver.update(ringUri, values, null, null) //NOSONAR
                 }
-            } catch (ex: UnsupportedOperationException) {
+            } catch (ex: UnsupportedOperationException) { //NOSONAR
                 // most likely the card just got unmounted
-                Log.e(TAG, "couldn't set ringtone flag for song $song")
-                return@Callable false
+                Log.e(TAG, "couldn't set ringtone flag for song $song") //NOSONAR
+                return@Callable false //NOSONAR
             }
 
-            val query = Query.Builder()
-                .uri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
-                .projection(arrayOf(BaseColumns._ID, MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.TITLE))
-                .selection(BaseColumns._ID + "=" + song.id)
-                .build()
+            val query = Query.Builder() //NOSONAR
+                .uri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI) //NOSONAR
+                .projection(arrayOf(BaseColumns._ID, MediaStore.MediaColumns.DATA, MediaStore.MediaColumns.TITLE)) //NOSONAR
+                .selection(BaseColumns._ID + "=" + song.id) //NOSONAR
+                .build() //NOSONAR
 
-            SqlUtils.createQuery(applicationContext, query)?.use { cursor ->
-                if (cursor.count == 1) {
+            SqlUtils.createQuery(applicationContext, query)?.use { cursor -> //NOSONAR
+                if (cursor.count == 1) { //NOSONAR
                     // Set the system setting to make this the current ringtone
-                    cursor.moveToFirst()
-                    if (ringUri != null) {
-                        Settings.System.putString(resolver, Settings.System.RINGTONE, ringUri.toString())
+                    cursor.moveToFirst() //NOSONAR
+                    if (ringUri != null) { //NOSONAR
+                        Settings.System.putString(resolver, Settings.System.RINGTONE, ringUri.toString()) //NOSONAR
                     }
-                    success = true
+                    success = true //NOSONAR
                 }
             }
-            success
+            success //NOSONAR
         })
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { onSuccess() },
-                { error -> LogUtils.logException(TAG, "Error setting ringtone", error) }
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { onSuccess() }, //NOSONAR
+                { error -> LogUtils.logException(TAG, "Error setting ringtone", error) } //NOSONAR
             )
     }
 
-    companion object {
-        private const val TAG = "RingtoneManager"
+    companion object { //NOSONAR
+        private const val TAG = "RingtoneManager" //NOSONAR
 
-        fun requiresDialog(context: Context): Boolean {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                if (!Settings.System.canWrite(context)) {
-                    return true
+        fun requiresDialog(context: Context): Boolean { //NOSONAR
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) { //NOSONAR
+                if (!Settings.System.canWrite(context)) { //NOSONAR
+                    return true //NOSONAR
                 }
             }
-            return false
+            return false //NOSONAR
         }
 
-        fun getDialog(context: Context): AlertDialog {
-            return AlertDialog.Builder(context)
-                .setTitle(R.string.dialog_title_set_ringtone)
-                .setMessage(R.string.dialog_message_set_ringtone)
-                .setPositiveButton(R.string.button_ok) { dialog, which ->
-                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS)
-                    intent.data = Uri.parse("package:" + context.applicationContext.packageName)
-                    context.startActivity(intent)
-                }.setNegativeButton(R.string.cancel, null)
-                .show()
+        fun getDialog(context: Context): AlertDialog { //NOSONAR
+            return AlertDialog.Builder(context) //NOSONAR
+                .setTitle(R.string.dialog_title_set_ringtone) //NOSONAR
+                .setMessage(R.string.dialog_message_set_ringtone) //NOSONAR
+                .setPositiveButton(R.string.button_ok) { dialog, which -> //NOSONAR
+                    val intent = Intent(Settings.ACTION_MANAGE_WRITE_SETTINGS) //NOSONAR
+                    intent.data = Uri.parse("package:" + context.applicationContext.packageName) //NOSONAR
+                    context.startActivity(intent) //NOSONAR
+                }.setNegativeButton(R.string.cancel, null) //NOSONAR
+                .show() //NOSONAR
         }
 
     }

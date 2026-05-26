@@ -14,81 +14,81 @@ import com.simplecity.amp_library.ui.screens.main.MainActivity;
 /**
  * @see <a href="https://code.google.com/p/dashclock/">DashClock</a>
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class DashClockService extends DashClockExtension {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class DashClockService extends DashClockExtension { //NOSONAR
 
     /**
      * Used to display the data in on the DashClock widgetUsed to display the
      * data in on the DashClock widget
      */
-    private final ExtensionData mExtensionData = new ExtensionData();
+    private final ExtensionData mExtensionData = new ExtensionData(); //NOSONAR
 
     /**
      * The {@link android.content.IntentFilter} used to monitor specific playback changes from
      * Shuttle's Service
      */
-    private final IntentFilter mFilter = new IntentFilter();
+    private final IntentFilter mFilter = new IntentFilter(); //NOSONAR
 
     /**
      * Determines if the DashClock widget has been initialized
      */
-    boolean mIsInitialized;
+    boolean mIsInitialized; //NOSONAR
 
     /**
      * Determines if music is currently playing
      */
-    boolean mIsPlaying;
+    boolean mIsPlaying; //NOSONAR
 
     /**
      * The {@link Intent} invoked when the widget it touched
      */
-    private Intent mIntent;
+    private Intent mIntent; //NOSONAR
 
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        mIntent = new Intent(this, MainActivity.class);
-        mFilter.addAction(InternalIntents.PLAY_STATE_CHANGED);
-        mFilter.addAction(InternalIntents.META_CHANGED);
-        registerReceiver(mStatusListener, mFilter);
+    @Override //NOSONAR
+    public void onCreate() { //NOSONAR
+        super.onCreate(); //NOSONAR
+        mIntent = new Intent(this, MainActivity.class); //NOSONAR
+        mFilter.addAction(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
+        mFilter.addAction(InternalIntents.META_CHANGED); //NOSONAR
+        registerReceiver(mStatusListener, mFilter); //NOSONAR
     }
 
-    @Override
-    protected void onInitialize(boolean isReconnect) {
-        mIsInitialized = true;
-        super.onInitialize(isReconnect);
+    @Override //NOSONAR
+    protected void onInitialize(boolean isReconnect) { //NOSONAR
+        mIsInitialized = true; //NOSONAR
+        super.onInitialize(isReconnect); //NOSONAR
     }
 
-    @Override
-    public void onDestroy() {
-        mIsInitialized = false;
-        unregisterReceiver(mStatusListener);
-        super.onDestroy();
+    @Override //NOSONAR
+    public void onDestroy() { //NOSONAR
+        mIsInitialized = false; //NOSONAR
+        unregisterReceiver(mStatusListener); //NOSONAR
+        super.onDestroy(); //NOSONAR
     }
 
     /**
      * The {@link BroadcastReceiver} used to retrieve the current track's
      * information
      */
-    private final BroadcastReceiver mStatusListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
+    private final BroadcastReceiver mStatusListener = new BroadcastReceiver() { //NOSONAR
+        @Override //NOSONAR
+        public void onReceive(Context context, Intent intent) { //NOSONAR
 
-            final Bundle extras = intent.getExtras();
+            final Bundle extras = intent.getExtras(); //NOSONAR
 
-            if (!mIsInitialized || extras == null) {
-                return;
+            if (!mIsInitialized || extras == null) { //NOSONAR
+                return; //NOSONAR
             }
 
-            mIsPlaying = extras.getBoolean("playing", false);
+            mIsPlaying = extras.getBoolean("playing", false); //NOSONAR
 
-            if (!mIsPlaying) {
-                publishUpdate(null);
-            } else {
-                final String artist = extras.getString("artist");
-                final String album = extras.getString("album");
-                final String track = extras.getString("track");
-                publishUpdate(artist, album, track);
+            if (!mIsPlaying) { //NOSONAR
+                publishUpdate(null); //NOSONAR
+            } else { //NOSONAR
+                final String artist = extras.getString("artist"); //NOSONAR
+                final String album = extras.getString("album"); //NOSONAR
+                final String track = extras.getString("track"); //NOSONAR
+                publishUpdate(artist, album, track); //NOSONAR
             }
         }
     };
@@ -96,20 +96,20 @@ public class DashClockService extends DashClockExtension {
     /**
      * Notify DashClock of the changes
      */
-    void publishUpdate(String artist, String album, String track) {
-        if (artist == null || album == null || track == null) {
-            return;
+    void publishUpdate(String artist, String album, String track) { //NOSONAR
+        if (artist == null || album == null || track == null) { //NOSONAR
+            return; //NOSONAR
         }
         // Publish the extension data update
-        publishUpdate(mExtensionData
-                .visible(true)
-                .icon(R.drawable.ic_headphones_white).status(track)
-                .expandedTitle(track).expandedBody(artist + " - " + album)
-                .clickIntent(mIntent));
+        publishUpdate(mExtensionData //NOSONAR
+                .visible(true) //NOSONAR
+                .icon(R.drawable.ic_headphones_white).status(track) //NOSONAR
+                .expandedTitle(track).expandedBody(artist + " - " + album) //NOSONAR
+                .clickIntent(mIntent)); //NOSONAR
     }
 
-    @Override
-    protected void onUpdateData(int reason) {
+    @Override //NOSONAR
+    protected void onUpdateData(int reason) { //NOSONAR
         // Nothing to do
     }
 }

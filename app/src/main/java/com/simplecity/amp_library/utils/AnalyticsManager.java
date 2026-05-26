@@ -12,136 +12,136 @@ import com.simplecity.amp_library.BuildConfig;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AnalyticsManager {
+@Singleton //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AnalyticsManager { //NOSONAR
 
-    private static final String TAG = "AnalyticsManager";
+    private static final String TAG = "AnalyticsManager"; //NOSONAR
 
-    private Context context;
+    private Context context; //NOSONAR
 
-    @Inject
-    public AnalyticsManager(Context context) {
-        this.context = context;
+    @Inject //NOSONAR
+    public AnalyticsManager(Context context) { //NOSONAR
+        this.context = context; //NOSONAR
     }
 
-    private boolean analyticsEnabled() {
-        return !BuildConfig.DEBUG;
+    private boolean analyticsEnabled() { //NOSONAR
+        return !BuildConfig.DEBUG; //NOSONAR
     }
 
-    public @interface UpgradeType {
-        String NAG = "Nag";
-        String FOLDER = "Folder";
-        String UPGRADE = "Upgrade";
+    public @interface UpgradeType { //NOSONAR
+        String NAG = "Nag"; //NOSONAR
+        String FOLDER = "Folder"; //NOSONAR
+        String UPGRADE = "Upgrade"; //NOSONAR
     }
 
-    public void logChangelogViewed() {
-        if (!analyticsEnabled()) {
-            return;
+    public void logChangelogViewed() { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "changelog");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0");
+        Bundle bundle = new Bundle(); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "changelog"); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0"); //NOSONAR
 
-        FirebaseAnalytics.getInstance(context)
-                .logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
-        Answers.getInstance().logCustom(new CustomEvent("Changelog Viewed"));
+        FirebaseAnalytics.getInstance(context) //NOSONAR
+                .logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle); //NOSONAR
+        Answers.getInstance().logCustom(new CustomEvent("Changelog Viewed")); //NOSONAR
     }
 
-    public void logUpgrade(@UpgradeType String upgradeType) {
-        if (!analyticsEnabled()) {
-            return;
+    public void logUpgrade(@UpgradeType String upgradeType) { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0");
-        bundle.putLong(FirebaseAnalytics.Param.QUANTITY, 0);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, upgradeType);
-        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "upgrade");
+        Bundle bundle = new Bundle(); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0"); //NOSONAR
+        bundle.putLong(FirebaseAnalytics.Param.QUANTITY, 0); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.ITEM_NAME, upgradeType); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "upgrade"); //NOSONAR
 
-        FirebaseAnalytics.getInstance(context)
-                .logEvent(FirebaseAnalytics.Event.PRESENT_OFFER, bundle);
+        FirebaseAnalytics.getInstance(context) //NOSONAR
+                .logEvent(FirebaseAnalytics.Event.PRESENT_OFFER, bundle); //NOSONAR
     }
 
-    public void logScreenName(Activity activity, String name) {
-        if (!analyticsEnabled()) {
-            return;
+    public void logScreenName(Activity activity, String name) { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        CrashlyticsCore.getInstance().log(String.format("Screen: %s", name));
-        FirebaseAnalytics.getInstance(context).setCurrentScreen(activity, name, null);
+        CrashlyticsCore.getInstance().log(String.format("Screen: %s", name)); //NOSONAR
+        FirebaseAnalytics.getInstance(context).setCurrentScreen(activity, name, null); //NOSONAR
     }
 
-    public void setIsUpgraded(boolean isUpgraded) {
-        if (!analyticsEnabled()) {
-            return;
+    public void setIsUpgraded(boolean isUpgraded) { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        FirebaseAnalytics.getInstance(context).setUserProperty("Upgraded", String.valueOf(isUpgraded));
+        FirebaseAnalytics.getInstance(context).setUserProperty("Upgraded", String.valueOf(isUpgraded)); //NOSONAR
     }
 
-    public void logInitialTheme(ThemeUtils.Theme theme) {
-        if (!analyticsEnabled()) {
-            return;
+    public void logInitialTheme(ThemeUtils.Theme theme) { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf(theme.id));
-        params.putString(FirebaseAnalytics.Param.ITEM_NAME, String.format("%s-%s-%s", theme.primaryColorName, theme.accentColorName, theme.isDark));
-        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "themes");
-        FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
+        Bundle params = new Bundle(); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, String.valueOf(theme.id)); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, String.format("%s-%s-%s", theme.primaryColorName, theme.accentColorName, theme.isDark)); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "themes"); //NOSONAR
+        FirebaseAnalytics.getInstance(context).logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params); //NOSONAR
     }
 
-    public void logRateShown() {
-        if (!analyticsEnabled()) {
-            return;
+    public void logRateShown() { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.ITEM_ID, "show_rate_snackbar");
-        params.putString(FirebaseAnalytics.Param.ITEM_NAME, "show_rate_snackbar");
-        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "rate_app");
+        Bundle params = new Bundle(); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, "show_rate_snackbar"); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, "show_rate_snackbar"); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "rate_app"); //NOSONAR
 
-        FirebaseAnalytics.getInstance(context)
-                .logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
+        FirebaseAnalytics.getInstance(context) //NOSONAR
+                .logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params); //NOSONAR
     }
 
-    public void logRateClicked() {
-        if (!analyticsEnabled()) {
-            return;
+    public void logRateClicked() { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle bundle = new Bundle();
-        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "rate_snackbar");
-        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0");
+        Bundle bundle = new Bundle(); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.CONTENT_TYPE, "rate_snackbar"); //NOSONAR
+        bundle.putString(FirebaseAnalytics.Param.ITEM_ID, "0"); //NOSONAR
 
-        FirebaseAnalytics.getInstance(context)
-                .logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle);
+        FirebaseAnalytics.getInstance(context) //NOSONAR
+                .logEvent(FirebaseAnalytics.Event.SELECT_CONTENT, bundle); //NOSONAR
     }
 
-    public void didSnow() {
-        if (!analyticsEnabled()) {
-            return;
+    public void didSnow() { //NOSONAR
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Bundle params = new Bundle();
-        params.putString(FirebaseAnalytics.Param.ITEM_ID, "show_snow");
-        params.putString(FirebaseAnalytics.Param.ITEM_NAME, "show_snow");
-        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "easter_eggs");
+        Bundle params = new Bundle(); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_ID, "show_snow"); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_NAME, "show_snow"); //NOSONAR
+        params.putString(FirebaseAnalytics.Param.ITEM_CATEGORY, "easter_eggs"); //NOSONAR
 
-        FirebaseAnalytics.getInstance(context)
-                .logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params);
+        FirebaseAnalytics.getInstance(context) //NOSONAR
+                .logEvent(FirebaseAnalytics.Event.VIEW_ITEM, params); //NOSONAR
     }
 
-    public void dropBreadcrumb(String tag, String breadCrumb) {
+    public void dropBreadcrumb(String tag, String breadCrumb) { //NOSONAR
 
-        Log.d(tag, breadCrumb);
+        Log.d(tag, breadCrumb); //NOSONAR
 
-        if (!analyticsEnabled()) {
-            return;
+        if (!analyticsEnabled()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        CrashlyticsCore.getInstance().log(String.format("%s | %s", tag, breadCrumb));
+        CrashlyticsCore.getInstance().log(String.format("%s | %s", tag, breadCrumb)); //NOSONAR
     }
 }

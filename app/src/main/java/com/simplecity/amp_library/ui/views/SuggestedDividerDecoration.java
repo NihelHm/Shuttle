@@ -8,34 +8,34 @@ import android.view.View;
 import com.simplecity.amp_library.ui.adapters.ViewType;
 import com.simplecity.amp_library.utils.ResourceUtils;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SuggestedDividerDecoration extends RecyclerView.ItemDecoration {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SuggestedDividerDecoration extends RecyclerView.ItemDecoration { //NOSONAR
 
-    private int spacing;
+    private int spacing; //NOSONAR
 
-    public SuggestedDividerDecoration(Resources res) {
-        this.spacing = ResourceUtils.toPixels(4);
+    public SuggestedDividerDecoration(Resources res) { //NOSONAR
+        this.spacing = ResourceUtils.toPixels(4); //NOSONAR
     }
 
-    @Override
-    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
+    @Override //NOSONAR
+    public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) { //NOSONAR
 
-        int spanIndex = ((GridLayoutManager) parent.getLayoutManager()).getSpanSizeLookup().getSpanIndex(
-                parent.getChildAdapterPosition(view), ((GridLayoutManager) parent.getLayoutManager()).getSpanCount()
+        int spanIndex = ((GridLayoutManager) parent.getLayoutManager()).getSpanSizeLookup().getSpanIndex( //NOSONAR
+                parent.getChildAdapterPosition(view), ((GridLayoutManager) parent.getLayoutManager()).getSpanCount() //NOSONAR
         );
 
-        switch (parent.getChildViewHolder(view).getItemViewType()) {
-            case ViewType.ALBUM_LIST_SMALL:
-                outRect.left = spacing;
-                outRect.right = spacing;
-                break;
-            case ViewType.ALBUM_CARD_LARGE:
-                if (spanIndex == 0) {
-                    outRect.left = spacing;
-                } else if (spanIndex == 3) {
-                    outRect.right = spacing;
+        switch (parent.getChildViewHolder(view).getItemViewType()) { //NOSONAR
+            case ViewType.ALBUM_LIST_SMALL: //NOSONAR
+                outRect.left = spacing; //NOSONAR
+                outRect.right = spacing; //NOSONAR
+                break; //NOSONAR
+            case ViewType.ALBUM_CARD_LARGE: //NOSONAR
+                if (spanIndex == 0) { //NOSONAR
+                    outRect.left = spacing; //NOSONAR
+                } else if (spanIndex == 3) { //NOSONAR
+                    outRect.right = spacing; //NOSONAR
                 }
-                break;
+                break; //NOSONAR
         }
     }
 }

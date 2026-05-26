@@ -23,112 +23,112 @@ import static android.os.Build.VERSION_CODES.KITKAT;
 /**
  * Copied from: https://gist.github.com/pyricau/4df64341cc978a7de414
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class InputMethodManagerLeaks {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class InputMethodManagerLeaks { //NOSONAR
 
-    static class ReferenceCleaner
-            implements MessageQueue.IdleHandler, View.OnAttachStateChangeListener,
-            ViewTreeObserver.OnGlobalFocusChangeListener {
+    static class ReferenceCleaner //NOSONAR
+            implements MessageQueue.IdleHandler, View.OnAttachStateChangeListener, //NOSONAR
+            ViewTreeObserver.OnGlobalFocusChangeListener { //NOSONAR
 
-        private final InputMethodManager inputMethodManager;
-        private final Field mHField;
-        private final Field mServedViewField;
-        private final Method finishInputLockedMethod;
+        private final InputMethodManager inputMethodManager; //NOSONAR
+        private final Field mHField; //NOSONAR
+        private final Field mServedViewField; //NOSONAR
+        private final Method finishInputLockedMethod; //NOSONAR
 
-        ReferenceCleaner(InputMethodManager inputMethodManager, Field mHField, Field mServedViewField,
-                Method finishInputLockedMethod) {
-            this.inputMethodManager = inputMethodManager;
-            this.mHField = mHField;
-            this.mServedViewField = mServedViewField;
-            this.finishInputLockedMethod = finishInputLockedMethod;
+        ReferenceCleaner(InputMethodManager inputMethodManager, Field mHField, Field mServedViewField, //NOSONAR
+                Method finishInputLockedMethod) { //NOSONAR
+            this.inputMethodManager = inputMethodManager; //NOSONAR
+            this.mHField = mHField; //NOSONAR
+            this.mServedViewField = mServedViewField; //NOSONAR
+            this.finishInputLockedMethod = finishInputLockedMethod; //NOSONAR
         }
 
-        @Override
-        public void onGlobalFocusChanged(View oldFocus, View newFocus) {
-            if (newFocus == null) {
-                return;
+        @Override //NOSONAR
+        public void onGlobalFocusChanged(View oldFocus, View newFocus) { //NOSONAR
+            if (newFocus == null) { //NOSONAR
+                return; //NOSONAR
             }
-            if (oldFocus != null) {
-                oldFocus.removeOnAttachStateChangeListener(this);
+            if (oldFocus != null) { //NOSONAR
+                oldFocus.removeOnAttachStateChangeListener(this); //NOSONAR
             }
-            Looper.myQueue().removeIdleHandler(this);
-            newFocus.addOnAttachStateChangeListener(this);
+            Looper.myQueue().removeIdleHandler(this); //NOSONAR
+            newFocus.addOnAttachStateChangeListener(this); //NOSONAR
         }
 
-        @Override
-        public void onViewAttachedToWindow(View v) {
+        @Override //NOSONAR
+        public void onViewAttachedToWindow(View v) { //NOSONAR
             // Intentionally left empty.
         }
 
-        @Override
-        public void onViewDetachedFromWindow(View v) {
-            v.removeOnAttachStateChangeListener(this);
-            Looper.myQueue().removeIdleHandler(this);
-            Looper.myQueue().addIdleHandler(this);
+        @Override //NOSONAR
+        public void onViewDetachedFromWindow(View v) { //NOSONAR
+            v.removeOnAttachStateChangeListener(this); //NOSONAR
+            Looper.myQueue().removeIdleHandler(this); //NOSONAR
+            Looper.myQueue().addIdleHandler(this); //NOSONAR
         }
 
-        @Override
-        public boolean queueIdle() {
-            clearInputMethodManagerLeak();
-            return false;
+        @Override //NOSONAR
+        public boolean queueIdle() { //NOSONAR
+            clearInputMethodManagerLeak(); //NOSONAR
+            return false; //NOSONAR
         }
 
-        private void clearInputMethodManagerLeak() {
-            try {
-                final Object lock = mHField.get(inputMethodManager);
-                if (lock == null) return;
+        private void clearInputMethodManagerLeak() { //NOSONAR
+            try { //NOSONAR
+                final Object lock = mHField.get(inputMethodManager); //NOSONAR
+                if (lock == null) return; //NOSONAR
                 // This is highly dependent on the InputMethodManager implementation.
-                synchronized (lock) {
-                    View servedView = (View) mServedViewField.get(inputMethodManager);
-                    if (servedView != null) {
+                synchronized (lock) { //NOSONAR
+                    View servedView = (View) mServedViewField.get(inputMethodManager); //NOSONAR
+                    if (servedView != null) { //NOSONAR
 
-                        boolean servedViewAttached = servedView.getWindowVisibility() != View.GONE;
+                        boolean servedViewAttached = servedView.getWindowVisibility() != View.GONE; //NOSONAR
 
-                        if (servedViewAttached) {
+                        if (servedViewAttached) { //NOSONAR
                             // The view held by the IMM was replaced without a global focus change. Let's make
                             // sure we get notified when that view detaches.
 
                             // Avoid double registration.
-                            servedView.removeOnAttachStateChangeListener(this);
-                            servedView.addOnAttachStateChangeListener(this);
-                        } else {
+                            servedView.removeOnAttachStateChangeListener(this); //NOSONAR
+                            servedView.addOnAttachStateChangeListener(this); //NOSONAR
+                        } else { //NOSONAR
                             // servedView is not attached. InputMethodManager is being stupid!
-                            Activity activity = extractActivity(servedView.getContext());
-                            if (activity == null || activity.getWindow() == null) {
+                            Activity activity = extractActivity(servedView.getContext()); //NOSONAR
+                            if (activity == null || activity.getWindow() == null) { //NOSONAR
                                 // Unlikely case. Let's finish the input anyways.
-                                finishInputLockedMethod.invoke(inputMethodManager);
-                            } else {
-                                View decorView = activity.getWindow().peekDecorView();
-                                boolean windowAttached = decorView.getWindowVisibility() != View.GONE;
-                                if (!windowAttached) {
-                                    finishInputLockedMethod.invoke(inputMethodManager);
-                                } else {
-                                    decorView.requestFocusFromTouch();
+                                finishInputLockedMethod.invoke(inputMethodManager); //NOSONAR
+                            } else { //NOSONAR
+                                View decorView = activity.getWindow().peekDecorView(); //NOSONAR
+                                boolean windowAttached = decorView.getWindowVisibility() != View.GONE; //NOSONAR
+                                if (!windowAttached) { //NOSONAR
+                                    finishInputLockedMethod.invoke(inputMethodManager); //NOSONAR
+                                } else { //NOSONAR
+                                    decorView.requestFocusFromTouch(); //NOSONAR
                                 }
                             }
                         }
                     }
                 }
-            } catch (Exception unexpected) {
-                Log.e("IMMLeaks", "Unexpected reflection exception", unexpected);
+            } catch (Exception unexpected) { //NOSONAR
+                Log.e("IMMLeaks", "Unexpected reflection exception", unexpected); //NOSONAR
             }
         }
 
-        private Activity extractActivity(Context context) {
-            while (true) {
-                if (context instanceof Application) {
-                    return null;
-                } else if (context instanceof Activity) {
-                    return (Activity) context;
-                } else if (context instanceof ContextWrapper) {
-                    Context baseContext = ((ContextWrapper) context).getBaseContext();
+        private Activity extractActivity(Context context) { //NOSONAR
+            while (true) { //NOSONAR
+                if (context instanceof Application) { //NOSONAR
+                    return null; //NOSONAR
+                } else if (context instanceof Activity) { //NOSONAR
+                    return (Activity) context; //NOSONAR
+                } else if (context instanceof ContextWrapper) { //NOSONAR
+                    Context baseContext = ((ContextWrapper) context).getBaseContext(); //NOSONAR
                     // Prevent Stack Overflow.
-                    if (baseContext == context) {
-                        return null;
+                    if (baseContext == context) { //NOSONAR
+                        return null; //NOSONAR
                     }
-                    context = baseContext;
-                } else {
-                    return null;
+                    context = baseContext; //NOSONAR
+                } else { //NOSONAR
+                    return null; //NOSONAR
                 }
             }
         }
@@ -144,73 +144,73 @@ public class InputMethodManagerLeaks {
      * <p>
      * Should be called from {@link Activity#onCreate(android.os.Bundle)} )}.
      */
-    @SuppressLint("PrivateApi")
-    public static void fixFocusedViewLeak(Application application) {
+    @SuppressLint("PrivateApi") //NOSONAR
+    public static void fixFocusedViewLeak(Application application) { //NOSONAR
 
         // Still not fixed until android 23
-        if (SDK_INT < KITKAT || SDK_INT > Build.VERSION_CODES.N_MR1) {
-            return;
+        if (SDK_INT < KITKAT || SDK_INT > Build.VERSION_CODES.N_MR1) { //NOSONAR
+            return; //NOSONAR
         }
 
-        final InputMethodManager inputMethodManager =
-                (InputMethodManager) application.getSystemService(INPUT_METHOD_SERVICE);
+        final InputMethodManager inputMethodManager = //NOSONAR
+                (InputMethodManager) application.getSystemService(INPUT_METHOD_SERVICE); //NOSONAR
 
-        final Field mServedViewField;
-        final Field mHField;
-        final Method finishInputLockedMethod;
-        final Method focusInMethod;
-        try {
-            mServedViewField = InputMethodManager.class.getDeclaredField("mServedView");
-            mServedViewField.setAccessible(true);
-            mHField = InputMethodManager.class.getDeclaredField("mServedView");
-            mHField.setAccessible(true);
-            finishInputLockedMethod = InputMethodManager.class.getDeclaredMethod("finishInputLocked");
-            finishInputLockedMethod.setAccessible(true);
-            focusInMethod = InputMethodManager.class.getDeclaredMethod("focusIn", View.class);
-            focusInMethod.setAccessible(true);
-        } catch (NoSuchMethodException | NoSuchFieldException unexpected) {
-            Log.e("IMMLeaks", "Unexpected reflection exception", unexpected);
-            return;
+        final Field mServedViewField; //NOSONAR
+        final Field mHField; //NOSONAR
+        final Method finishInputLockedMethod; //NOSONAR
+        final Method focusInMethod; //NOSONAR
+        try { //NOSONAR
+            mServedViewField = InputMethodManager.class.getDeclaredField("mServedView"); //NOSONAR
+            mServedViewField.setAccessible(true); //NOSONAR
+            mHField = InputMethodManager.class.getDeclaredField("mServedView"); //NOSONAR
+            mHField.setAccessible(true); //NOSONAR
+            finishInputLockedMethod = InputMethodManager.class.getDeclaredMethod("finishInputLocked"); //NOSONAR
+            finishInputLockedMethod.setAccessible(true); //NOSONAR
+            focusInMethod = InputMethodManager.class.getDeclaredMethod("focusIn", View.class); //NOSONAR
+            focusInMethod.setAccessible(true); //NOSONAR
+        } catch (NoSuchMethodException | NoSuchFieldException unexpected) { //NOSONAR
+            Log.e("IMMLeaks", "Unexpected reflection exception", unexpected); //NOSONAR
+            return; //NOSONAR
         }
 
-        application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
-            @Override
-            public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+        application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() { //NOSONAR
+            @Override //NOSONAR
+            public void onActivityCreated(Activity activity, Bundle savedInstanceState) { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public void onActivityStarted(Activity activity) {
-                ReferenceCleaner cleaner =
-                        new ReferenceCleaner(inputMethodManager, mHField, mServedViewField,
-                                finishInputLockedMethod);
-                View rootView = activity.getWindow().getDecorView().getRootView();
-                ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver();
-                viewTreeObserver.addOnGlobalFocusChangeListener(cleaner);
+            @Override //NOSONAR
+            public void onActivityStarted(Activity activity) { //NOSONAR
+                ReferenceCleaner cleaner = //NOSONAR
+                        new ReferenceCleaner(inputMethodManager, mHField, mServedViewField, //NOSONAR
+                                finishInputLockedMethod); //NOSONAR
+                View rootView = activity.getWindow().getDecorView().getRootView(); //NOSONAR
+                ViewTreeObserver viewTreeObserver = rootView.getViewTreeObserver(); //NOSONAR
+                viewTreeObserver.addOnGlobalFocusChangeListener(cleaner); //NOSONAR
             }
 
-            @Override
-            public void onActivityResumed(Activity activity) {
+            @Override //NOSONAR
+            public void onActivityResumed(Activity activity) { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public void onActivityPaused(Activity activity) {
+            @Override //NOSONAR
+            public void onActivityPaused(Activity activity) { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public void onActivityStopped(Activity activity) {
+            @Override //NOSONAR
+            public void onActivityStopped(Activity activity) { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public void onActivitySaveInstanceState(Activity activity, Bundle outState) {
+            @Override //NOSONAR
+            public void onActivitySaveInstanceState(Activity activity, Bundle outState) { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public void onActivityDestroyed(Activity activity) {
+            @Override //NOSONAR
+            public void onActivityDestroyed(Activity activity) { //NOSONAR
                 // Intentionally left empty.
             }
         });

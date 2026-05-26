@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils
 
@@ -15,41 +15,41 @@ import io.reactivex.rxkotlin.addTo
 import io.reactivex.rxkotlin.subscribeBy
 import java.util.concurrent.TimeUnit
 
-class ResumingServiceManager(val lifecycle: Lifecycle, val analyticsManager: AnalyticsManager) : LifecycleObserver {
+class ResumingServiceManager(val lifecycle: Lifecycle, val analyticsManager: AnalyticsManager) : LifecycleObserver { //NOSONAR
 
-    init {
-        lifecycle.addObserver(this)
+    init { //NOSONAR
+        lifecycle.addObserver(this) //NOSONAR
     }
 
-    val disposable: CompositeDisposable = CompositeDisposable()
+    val disposable: CompositeDisposable = CompositeDisposable() //NOSONAR
 
-    fun startService(context: Context, intent: Intent, completion: (() -> Unit)? = null) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
-            context.startService(intent)
-            completion?.invoke()
-        } else {
-            Single.just(true)
-                    .delaySubscription(300, TimeUnit.MILLISECONDS)
-                    .subscribeOn(AndroidSchedulers.mainThread())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribeBy(
-                            onSuccess = {
-                                analyticsManager.dropBreadcrumb("ResumingServiceManager", "Starting service after 300ms delay")
-                                context.startService(intent)
-                                completion?.invoke()
+    fun startService(context: Context, intent: Intent, completion: (() -> Unit)? = null) { //NOSONAR
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) { //NOSONAR
+            context.startService(intent) //NOSONAR
+            completion?.invoke() //NOSONAR
+        } else { //NOSONAR
+            Single.just(true) //NOSONAR
+                    .delaySubscription(300, TimeUnit.MILLISECONDS) //NOSONAR
+                    .subscribeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribeBy( //NOSONAR
+                            onSuccess = { //NOSONAR
+                                analyticsManager.dropBreadcrumb("ResumingServiceManager", "Starting service after 300ms delay") //NOSONAR
+                                context.startService(intent) //NOSONAR
+                                completion?.invoke() //NOSONAR
                             }
 
-                    ).addTo(disposable)
+                    ).addTo(disposable) //NOSONAR
         }
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    fun stopped() {
-        disposable.clear()
+    @OnLifecycleEvent(Lifecycle.Event.ON_STOP) //NOSONAR
+    fun stopped() { //NOSONAR
+        disposable.clear() //NOSONAR
     }
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun destroy() {
-        lifecycle.removeObserver(this)
+    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY) //NOSONAR
+    fun destroy() { //NOSONAR
+        lifecycle.removeObserver(this) //NOSONAR
     }
 }

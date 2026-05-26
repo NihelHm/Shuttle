@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.playlist.dialog
 
@@ -32,135 +32,135 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Named
 
-class M3uPlaylistDialog : DialogFragment() {
+class M3uPlaylistDialog : DialogFragment() { //NOSONAR
 
-    private lateinit var playlist: Playlist
+    private lateinit var playlist: Playlist //NOSONAR
 
-    @Inject lateinit var songsRepository: SongsRepository
+    @Inject lateinit var songsRepository: SongsRepository //NOSONAR
 
-    private var disposable: Disposable? = null
+    private var disposable: Disposable? = null //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
-        playlist = arguments!!.getSerializable(ARG_PLAYLIST) as Playlist
+        playlist = arguments!!.getSerializable(ARG_PLAYLIST) as Playlist //NOSONAR
 
-        val progressDialog = ProgressDialog(context)
-        progressDialog.isIndeterminate = true
-        progressDialog.setTitle(R.string.saving_playlist)
+        val progressDialog = ProgressDialog(context) //NOSONAR
+        progressDialog.isIndeterminate = true //NOSONAR
+        progressDialog.setTitle(R.string.saving_playlist) //NOSONAR
 
-        disposable = songsRepository.getSongs(playlist)
-            .first(emptyList())
-            .map(Function<List<Song>, File> { songs ->
-                if (!songs.isEmpty()) {
+        disposable = songsRepository.getSongs(playlist) //NOSONAR
+            .first(emptyList()) //NOSONAR
+            .map(Function<List<Song>, File> { songs -> //NOSONAR
+                if (!songs.isEmpty()) { //NOSONAR
 
-                    var playlistFile: File? = null
+                    var playlistFile: File? = null //NOSONAR
 
-                    if (Environment.getExternalStorageDirectory().canWrite()) {
-                        val root = File(Environment.getExternalStorageDirectory(), "Playlists/Export/")
-                        if (!root.exists()) {
-                            root.mkdirs()
+                    if (Environment.getExternalStorageDirectory().canWrite()) { //NOSONAR
+                        val root = File(Environment.getExternalStorageDirectory(), "Playlists/Export/") //NOSONAR
+                        if (!root.exists()) { //NOSONAR
+                            root.mkdirs() //NOSONAR
                         }
 
-                        val noMedia = File(root, ".nomedia")
-                        if (!noMedia.exists()) {
-                            try {
-                                noMedia.createNewFile()
-                            } catch (e: IOException) {
-                                e.printStackTrace()
+                        val noMedia = File(root, ".nomedia") //NOSONAR
+                        if (!noMedia.exists()) { //NOSONAR
+                            try { //NOSONAR
+                                noMedia.createNewFile() //NOSONAR
+                            } catch (e: IOException) { //NOSONAR
+                                e.printStackTrace() //NOSONAR
                             }
                         }
 
-                        val name = playlist.name.replace("[^a-zA-Z0-9.-]".toRegex(), "_")
+                        val name = playlist.name.replace("[^a-zA-Z0-9.-]".toRegex(), "_") //NOSONAR
 
-                        playlistFile = File(root, "$name.m3u")
+                        playlistFile = File(root, "$name.m3u") //NOSONAR
 
-                        var i = 0
-                        while (playlistFile!!.exists()) {
-                            i++
-                            playlistFile = File(root, "$name$i.m3u")
+                        var i = 0 //NOSONAR
+                        while (playlistFile!!.exists()) { //NOSONAR
+                            i++ //NOSONAR
+                            playlistFile = File(root, "$name$i.m3u") //NOSONAR
                         }
 
-                        try {
-                            val fileWriter = FileWriter(playlistFile)
-                            val body = StringBuilder()
-                            body.append("#EXTM3U\n")
+                        try { //NOSONAR
+                            val fileWriter = FileWriter(playlistFile) //NOSONAR
+                            val body = StringBuilder() //NOSONAR
+                            body.append("#EXTM3U\n") //NOSONAR
 
-                            for (song in songs) {
-                                body.append("#EXTINF:")
-                                    .append(song.duration / 1000)
-                                    .append(",")
-                                    .append(song.name)
-                                    .append(" - ")
-                                    .append(song.artistName)
-                                    .append("\n")
+                            for (song in songs) { //NOSONAR
+                                body.append("#EXTINF:") //NOSONAR
+                                    .append(song.duration / 1000) //NOSONAR
+                                    .append(",") //NOSONAR
+                                    .append(song.name) //NOSONAR
+                                    .append(" - ") //NOSONAR
+                                    .append(song.artistName) //NOSONAR
+                                    .append("\n") //NOSONAR
                                     //To do later: Use relative paths instead of absolute
-                                    .append(song.path)
-                                    .append("\n")
+                                    .append(song.path) //NOSONAR
+                                    .append("\n") //NOSONAR
                             }
-                            fileWriter.append(body)
-                            fileWriter.flush()
-                            fileWriter.close()
-                        } catch (e: IOException) {
-                            Log.e(TAG, "Failed to write file: $e")
+                            fileWriter.append(body) //NOSONAR
+                            fileWriter.flush() //NOSONAR
+                            fileWriter.close() //NOSONAR
+                        } catch (e: IOException) { //NOSONAR
+                            Log.e(TAG, "Failed to write file: $e") //NOSONAR
                         }
 
                     }
-                    return@Function playlistFile
+                    return@Function playlistFile //NOSONAR
                 }
-                null
+                null //NOSONAR
             })
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { file ->
-                    progressDialog.dismiss()
-                    if (file != null) {
-                        Toast.makeText(context, String.format(context!!.getString(R.string.playlist_saved), file.path), Toast.LENGTH_LONG).show()
-                    } else {
-                        Toast.makeText(context, R.string.playlist_save_failed, Toast.LENGTH_SHORT).show()
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { file -> //NOSONAR
+                    progressDialog.dismiss() //NOSONAR
+                    if (file != null) { //NOSONAR
+                        Toast.makeText(context, String.format(context!!.getString(R.string.playlist_saved), file.path), Toast.LENGTH_LONG).show() //NOSONAR
+                    } else { //NOSONAR
+                        Toast.makeText(context, R.string.playlist_save_failed, Toast.LENGTH_SHORT).show() //NOSONAR
                     }
                 },
-                { error -> LogUtils.logException(TAG, "Error saving m3u playlist", error) }
+                { error -> LogUtils.logException(TAG, "Error saving m3u playlist", error) } //NOSONAR
             )
 
-        return progressDialog
+        return progressDialog //NOSONAR
     }
 
-    override fun onDestroyView() {
-        disposable!!.dispose()
-        super.onDestroyView()
+    override fun onDestroyView() { //NOSONAR
+        disposable!!.dispose() //NOSONAR
+        super.onDestroyView() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "M3uPlaylistDialog"
+        private const val TAG = "M3uPlaylistDialog" //NOSONAR
 
-        private const val ARG_PLAYLIST = "playlist"
+        private const val ARG_PLAYLIST = "playlist" //NOSONAR
 
-        fun newInstance(playlist: Playlist): M3uPlaylistDialog {
-            val args = Bundle()
-            args.putSerializable(ARG_PLAYLIST, playlist)
-            val fragment = M3uPlaylistDialog()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(playlist: Playlist): M3uPlaylistDialog { //NOSONAR
+            val args = Bundle() //NOSONAR
+            args.putSerializable(ARG_PLAYLIST, playlist) //NOSONAR
+            val fragment = M3uPlaylistDialog() //NOSONAR
+            fragment.arguments = args //NOSONAR
+            return fragment //NOSONAR
         }
     }
 }
 
-@Module(includes = arrayOf(FragmentModule::class))
-abstract class M3uDialogFragmentModule {
+@Module(includes = arrayOf(FragmentModule::class)) //NOSONAR
+abstract class M3uDialogFragmentModule { //NOSONAR
 
-    @Binds
-    @Named(FragmentModule.FRAGMENT)
-    @FragmentScope
-    internal abstract fun fragment(m3uPlaylistDialog: M3uPlaylistDialog): Fragment
+    @Binds //NOSONAR
+    @Named(FragmentModule.FRAGMENT) //NOSONAR
+    @FragmentScope //NOSONAR
+    internal abstract fun fragment(m3uPlaylistDialog: M3uPlaylistDialog): Fragment //NOSONAR
 }

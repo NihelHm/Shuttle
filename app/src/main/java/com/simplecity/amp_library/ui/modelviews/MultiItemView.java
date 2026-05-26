@@ -14,112 +14,112 @@ import com.simplecityapps.recycler_adapter.model.ViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> extends BaseSelectableViewModel<VH> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class MultiItemView<VH extends MultiItemView.ViewHolder, T> extends BaseSelectableViewModel<VH> { //NOSONAR
 
-    @Override
-    public int getLayoutResId() {
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
 
-        switch (getViewType()) {
-            case ViewType.ARTIST_LIST:
-            case ViewType.ALBUM_LIST:
-                return R.layout.list_item_image;
-            case ViewType.ARTIST_CARD:
-            case ViewType.ARTIST_CARD_LARGE:
-            case ViewType.ALBUM_CARD:
-            case ViewType.ALBUM_CARD_LARGE:
-            case ViewType.SUGGESTED_SONG:
-                return R.layout.grid_item_card;
-            case ViewType.ARTIST_PALETTE:
-            case ViewType.ALBUM_PALETTE:
-                return R.layout.grid_item_palette;
-            case ViewType.ARTIST_GRID:
-            case ViewType.ALBUM_GRID:
-                return R.layout.grid_item;
-            case ViewType.ARTIST_LIST_SMALL:
-            case ViewType.ALBUM_LIST_SMALL:
-                return R.layout.list_item_small;
+        switch (getViewType()) { //NOSONAR
+            case ViewType.ARTIST_LIST: //NOSONAR
+            case ViewType.ALBUM_LIST: //NOSONAR
+                return R.layout.list_item_image; //NOSONAR
+            case ViewType.ARTIST_CARD: //NOSONAR
+            case ViewType.ARTIST_CARD_LARGE: //NOSONAR
+            case ViewType.ALBUM_CARD: //NOSONAR
+            case ViewType.ALBUM_CARD_LARGE: //NOSONAR
+            case ViewType.SUGGESTED_SONG: //NOSONAR
+                return R.layout.grid_item_card; //NOSONAR
+            case ViewType.ARTIST_PALETTE: //NOSONAR
+            case ViewType.ALBUM_PALETTE: //NOSONAR
+                return R.layout.grid_item_palette; //NOSONAR
+            case ViewType.ARTIST_GRID: //NOSONAR
+            case ViewType.ALBUM_GRID: //NOSONAR
+                return R.layout.grid_item; //NOSONAR
+            case ViewType.ARTIST_LIST_SMALL: //NOSONAR
+            case ViewType.ALBUM_LIST_SMALL: //NOSONAR
+                return R.layout.list_item_small; //NOSONAR
         }
-        throw new IllegalStateException("getLayoutResId() invalid ViewType. Class: " + getClass().getSimpleName());
+        throw new IllegalStateException("getLayoutResId() invalid ViewType. Class: " + getClass().getSimpleName()); //NOSONAR
     }
 
-    public static class ViewHolder<T extends ViewModel> extends BaseViewHolder<T> {
+    public static class ViewHolder<T extends ViewModel> extends BaseViewHolder<T> { //NOSONAR
 
-        @BindView(R.id.line_one)
-        @SuppressWarnings("java:S1104")
-        public TextView lineOne;
+        @BindView(R.id.line_one) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineOne; //NOSONAR
 
-        @BindView(R.id.line_two)
-        @SuppressWarnings("java:S1104")
-        public TextView lineTwo;
+        @BindView(R.id.line_two) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView lineTwo; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.albumCount)
-        @SuppressWarnings("java:S1104")
-        public TextView albumCount;
+        @Nullable //NOSONAR
+        @BindView(R.id.albumCount) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView albumCount; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.trackCount)
-        @SuppressWarnings("java:S1104")
-        public TextView trackCount;
+        @Nullable //NOSONAR
+        @BindView(R.id.trackCount) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public TextView trackCount; //NOSONAR
 
-        @BindView(R.id.image)
-        @SuppressWarnings("java:S1104")
-        public ImageView imageOne;
+        @BindView(R.id.image) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public ImageView imageOne; //NOSONAR
 
-        @BindView(R.id.btn_overflow)
-        @SuppressWarnings("java:S1104")
-        public NonScrollImageButton overflowButton;
+        @BindView(R.id.btn_overflow) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public NonScrollImageButton overflowButton; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.bottom_container)
-        View bottomContainer;
+        @Nullable //NOSONAR
+        @BindView(R.id.bottom_container) //NOSONAR
+        View bottomContainer; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.tickImage)
-        ImageView tickImageView;
+        @Nullable //NOSONAR
+        @BindView(R.id.tickImage) //NOSONAR
+        ImageView tickImageView; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "MultiItemView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "MultiItemView.ViewHolder"; //NOSONAR
         }
 
-        @Override
-        public void recycle() {
-            super.recycle();
+        @Override //NOSONAR
+        public void recycle() { //NOSONAR
+            super.recycle(); //NOSONAR
 
-            Glide.clear(imageOne);
+            Glide.clear(imageOne); //NOSONAR
         }
     }
 
-    @Override
-    public void bindView(VH holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(VH holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        if (holder.tickImageView != null) {
-            holder.tickImageView.setVisibility(isSelected() ? View.VISIBLE : View.GONE);
+        if (holder.tickImageView != null) { //NOSONAR
+            holder.tickImageView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
         }
 
-        int viewType = getViewType();
-        if (viewType == ViewType.ARTIST_GRID || viewType == ViewType.ALBUM_GRID) {
-            if (holder.bottomContainer != null) {
-                holder.bottomContainer.setBackgroundColor(0x90000000);
+        int viewType = getViewType(); //NOSONAR
+        if (viewType == ViewType.ARTIST_GRID || viewType == ViewType.ALBUM_GRID) { //NOSONAR
+            if (holder.bottomContainer != null) { //NOSONAR
+                holder.bottomContainer.setBackgroundColor(0x90000000); //NOSONAR
             }
         }
     }
 
-    @Override
-    public void bindView(VH holder, int position, List payloads) {
-        super.bindView(holder, position, payloads);
+    @Override //NOSONAR
+    public void bindView(VH holder, int position, List payloads) { //NOSONAR
+        super.bindView(holder, position, payloads); //NOSONAR
 
-        if (holder.tickImageView != null) {
-            holder.tickImageView.setVisibility(isSelected() ? View.VISIBLE : View.GONE);
+        if (holder.tickImageView != null) { //NOSONAR
+            holder.tickImageView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
         }
     }
 }

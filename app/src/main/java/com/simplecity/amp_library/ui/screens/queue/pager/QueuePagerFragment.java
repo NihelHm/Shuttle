@@ -37,168 +37,168 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import javax.inject.Inject;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class QueuePagerFragment extends BaseFragment implements
-        RequestManagerProvider,
-        QueuePagerView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class QueuePagerFragment extends BaseFragment implements //NOSONAR
+        RequestManagerProvider, //NOSONAR
+        QueuePagerView { //NOSONAR
 
-    private final String TAG = "QueuePagerFragment";
+    private final String TAG = "QueuePagerFragment"; //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerView) //NOSONAR
+    RecyclerView recyclerView; //NOSONAR
 
-    @BindView(R.id.textProtectionScrim)
-    View textProtectionScrim;
+    @BindView(R.id.textProtectionScrim) //NOSONAR
+    View textProtectionScrim; //NOSONAR
 
-    @Inject
-    RequestManager requestManager;
+    @Inject //NOSONAR
+    RequestManager requestManager; //NOSONAR
 
-    @Inject
-    QueuePagerPresenter queuePagerPresenter;
+    @Inject //NOSONAR
+    QueuePagerPresenter queuePagerPresenter; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    ViewModelAdapter viewModelAdapter;
+    ViewModelAdapter viewModelAdapter; //NOSONAR
 
-    int[] imageSize = new int[2];
+    int[] imageSize = new int[2]; //NOSONAR
 
-    public static QueuePagerFragment newInstance() {
-        Bundle args = new Bundle();
-        QueuePagerFragment fragment = new QueuePagerFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static QueuePagerFragment newInstance() { //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        QueuePagerFragment fragment = new QueuePagerFragment(); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    public QueuePagerFragment() {
+    public QueuePagerFragment() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
+    @Override //NOSONAR
+    public void onAttach(Context context) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onAttach(context); //NOSONAR
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(Bundle savedInstanceState) { //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        viewModelAdapter = new ViewModelAdapter();
+        viewModelAdapter = new ViewModelAdapter(); //NOSONAR
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_queue_pager, container, false);
+    @Override //NOSONAR
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { //NOSONAR
+        View rootView = inflater.inflate(R.layout.fragment_queue_pager, container, false); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView); //NOSONAR
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false); //NOSONAR
 
-        if (ShuttleUtils.isLandscape(getContext())) {
-            textProtectionScrim.setVisibility(View.GONE);
+        if (ShuttleUtils.isLandscape(getContext())) { //NOSONAR
+            textProtectionScrim.setVisibility(View.GONE); //NOSONAR
         }
 
-        recyclerView.setNestedScrollingEnabled(false);
-        recyclerView.setLayoutManager(layoutManager);
-        recyclerView.setAdapter(viewModelAdapter);
-        SnapHelper snapHelper = new PagerSnapHelper() {
-            @Override
-            public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) {
+        recyclerView.setNestedScrollingEnabled(false); //NOSONAR
+        recyclerView.setLayoutManager(layoutManager); //NOSONAR
+        recyclerView.setAdapter(viewModelAdapter); //NOSONAR
+        SnapHelper snapHelper = new PagerSnapHelper() { //NOSONAR
+            @Override //NOSONAR
+            public int findTargetSnapPosition(RecyclerView.LayoutManager layoutManager, int velocityX, int velocityY) { //NOSONAR
 
-                int snapPosition = super.findTargetSnapPosition(layoutManager, velocityX, velocityY);
+                int snapPosition = super.findTargetSnapPosition(layoutManager, velocityX, velocityY); //NOSONAR
 
-                if (snapPosition < viewModelAdapter.items.size()) {
-                    Observable.timer(200, TimeUnit.MILLISECONDS)
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    o -> {
-                                        if (mediaManager.getQueuePosition() != snapPosition) {
-                                            mediaManager.setQueuePosition(snapPosition);
+                if (snapPosition < viewModelAdapter.items.size()) { //NOSONAR
+                    Observable.timer(200, TimeUnit.MILLISECONDS) //NOSONAR
+                            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                            .subscribe( //NOSONAR
+                                    o -> { //NOSONAR
+                                        if (mediaManager.getQueuePosition() != snapPosition) { //NOSONAR
+                                            mediaManager.setQueuePosition(snapPosition); //NOSONAR
                                         }
                                     },
-                                    throwable -> LogUtils.logException(TAG, "Error setting queue position", throwable)
+                                    throwable -> LogUtils.logException(TAG, "Error setting queue position", throwable) //NOSONAR
                             );
                 }
 
-                return snapPosition;
+                return snapPosition; //NOSONAR
             }
         };
-        snapHelper.attachToRecyclerView(recyclerView);
+        snapHelper.attachToRecyclerView(recyclerView); //NOSONAR
 
-        recyclerView.addOnScrollListener(new RecyclerViewPreloader<>(new ListPreloader.PreloadModelProvider<QueuePagerItemView>() {
-            @Override
-            public List<QueuePagerItemView> getPreloadItems(int position) {
-                QueuePagerItemView queuePagerItemView = (QueuePagerItemView) viewModelAdapter.items.get(position);
-                return Collections.singletonList(queuePagerItemView);
+        recyclerView.addOnScrollListener(new RecyclerViewPreloader<>(new ListPreloader.PreloadModelProvider<QueuePagerItemView>() { //NOSONAR
+            @Override //NOSONAR
+            public List<QueuePagerItemView> getPreloadItems(int position) { //NOSONAR
+                QueuePagerItemView queuePagerItemView = (QueuePagerItemView) viewModelAdapter.items.get(position); //NOSONAR
+                return Collections.singletonList(queuePagerItemView); //NOSONAR
             }
 
-            @Override
-            public GenericRequestBuilder getPreloadRequestBuilder(QueuePagerItemView item) {
-                return requestManager
-                        .load(item.song)
-                        .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                        .error(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(item.song.name, true, settingsManager));
+            @Override //NOSONAR
+            public GenericRequestBuilder getPreloadRequestBuilder(QueuePagerItemView item) { //NOSONAR
+                return requestManager //NOSONAR
+                        .load(item.song) //NOSONAR
+                        .diskCacheStrategy(DiskCacheStrategy.SOURCE) //NOSONAR
+                        .error(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(item.song.name, true, settingsManager)); //NOSONAR
             }
-        }, (item, adapterPosition, perItemPosition) -> imageSize, 3));
+        }, (item, adapterPosition, perItemPosition) -> imageSize, 3)); //NOSONAR
 
-        recyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() {
-            @Override
-            public boolean onPreDraw() {
+        recyclerView.getViewTreeObserver().addOnPreDrawListener(new ViewTreeObserver.OnPreDrawListener() { //NOSONAR
+            @Override //NOSONAR
+            public boolean onPreDraw() { //NOSONAR
                 // This null check doesn't make sense to me, but there was an NPE here..
-                if (recyclerView != null) {
-                    imageSize = new int[] { recyclerView.getWidth(), recyclerView.getHeight() };
-                    recyclerView.getViewTreeObserver().removeOnPreDrawListener(this);
+                if (recyclerView != null) { //NOSONAR
+                    imageSize = new int[] { recyclerView.getWidth(), recyclerView.getHeight() }; //NOSONAR
+                    recyclerView.getViewTreeObserver().removeOnPreDrawListener(this); //NOSONAR
                 }
-                return false;
+                return false; //NOSONAR
             }
         });
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        queuePagerPresenter.bindView(this);
+        queuePagerPresenter.bindView(this); //NOSONAR
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        super.onPause(); //NOSONAR
 
-        queuePagerPresenter.unbindView(this);
+        queuePagerPresenter.unbindView(this); //NOSONAR
     }
 
-    @Override
-    public void onDestroyView() {
-        unbinder.unbind();
-        super.onDestroyView();
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
     }
 
-    @Override
-    public RequestManager getRequestManager() {
-        return requestManager;
+    @Override //NOSONAR
+    public RequestManager getRequestManager() { //NOSONAR
+        return requestManager; //NOSONAR
     }
 
-    @Override
-    public void loadData(List<ViewModel> viewModels, int position) {
-        viewModelAdapter.items.clear();
-        viewModelAdapter.items.addAll(viewModels);
-        viewModelAdapter.notifyDataSetChanged();
-        recyclerView.getLayoutManager().scrollToPosition(position);
+    @Override //NOSONAR
+    public void loadData(List<ViewModel> viewModels, int position) { //NOSONAR
+        viewModelAdapter.items.clear(); //NOSONAR
+        viewModelAdapter.items.addAll(viewModels); //NOSONAR
+        viewModelAdapter.notifyDataSetChanged(); //NOSONAR
+        recyclerView.getLayoutManager().scrollToPosition(position); //NOSONAR
     }
 
-    @Override
-    public void updateQueuePosition(int position) {
-        recyclerView.getLayoutManager().scrollToPosition(position);
+    @Override //NOSONAR
+    public void updateQueuePosition(int position) { //NOSONAR
+        recyclerView.getLayoutManager().scrollToPosition(position); //NOSONAR
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 }

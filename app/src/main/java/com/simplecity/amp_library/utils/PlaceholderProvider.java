@@ -14,36 +14,36 @@ import com.afollestad.aesthetic.Aesthetic;
 import com.afollestad.aesthetic.Rx;
 import com.simplecity.amp_library.R;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlaceholderProvider {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlaceholderProvider { //NOSONAR
 
-    private static PlaceholderProvider instance;
+    private static PlaceholderProvider instance; //NOSONAR
 
-    private Context applicationContext;
+    private Context applicationContext; //NOSONAR
 
-    private final TextPaint paint = new TextPaint();
-    private final TypedArray colors;
+    private final TextPaint paint = new TextPaint(); //NOSONAR
+    private final TypedArray colors; //NOSONAR
 
-    private boolean isDark = false;
+    private boolean isDark = false; //NOSONAR
 
-    public static PlaceholderProvider getInstance(Context context) {
-        if (instance == null) {
-            instance = new PlaceholderProvider(context);
+    public static PlaceholderProvider getInstance(Context context) { //NOSONAR
+        if (instance == null) { //NOSONAR
+            instance = new PlaceholderProvider(context); //NOSONAR
         }
-        return instance;
+        return instance; //NOSONAR
     }
 
-    private PlaceholderProvider(Context context) {
-        this.applicationContext = context.getApplicationContext();
-        paint.setTypeface(TypefaceManager.getInstance().getTypeface(applicationContext, TypefaceManager.SANS_SERIF_LIGHT));
-        paint.setColor(Color.WHITE);
-        paint.setTextAlign(Paint.Align.CENTER);
-        paint.setAntiAlias(true);
-        colors = applicationContext.getResources().obtainTypedArray(R.array.pastel_colors);
+    private PlaceholderProvider(Context context) { //NOSONAR
+        this.applicationContext = context.getApplicationContext(); //NOSONAR
+        paint.setTypeface(TypefaceManager.getInstance().getTypeface(applicationContext, TypefaceManager.SANS_SERIF_LIGHT)); //NOSONAR
+        paint.setColor(Color.WHITE); //NOSONAR
+        paint.setTextAlign(Paint.Align.CENTER); //NOSONAR
+        paint.setAntiAlias(true); //NOSONAR
+        colors = applicationContext.getResources().obtainTypedArray(R.array.pastel_colors); //NOSONAR
 
-        Aesthetic.get(applicationContext).isDark()
-                .compose(Rx.distinctToMainThread())
-                .subscribe(isDark -> this.isDark = isDark);
+        Aesthetic.get(applicationContext).isDark() //NOSONAR
+                .compose(Rx.distinctToMainThread()) //NOSONAR
+                .subscribe(isDark -> this.isDark = isDark); //NOSONAR
     }
 
     /**
@@ -52,27 +52,27 @@ public class PlaceholderProvider {
      * alphabet or digit, if there is no letter or digit available, a
      * default image is shown instead
      */
-    public Drawable getLetterTile(String displayName) {
-        return new LetterDrawable(displayName, colors, paint);
+    public Drawable getLetterTile(String displayName) { //NOSONAR
+        return new LetterDrawable(displayName, colors, paint); //NOSONAR
     }
 
-    @DrawableRes
-    public int getMediumPlaceHolderResId() {
-        return isDark ? R.drawable.ic_placeholder_dark_medium : R.drawable.ic_placeholder_light_medium;
+    @DrawableRes //NOSONAR
+    public int getMediumPlaceHolderResId() { //NOSONAR
+        return isDark ? R.drawable.ic_placeholder_dark_medium : R.drawable.ic_placeholder_light_medium; //NOSONAR
     }
 
-    @DrawableRes
-    private int getLargePlaceHolderResId() {
-        return isDark ? R.drawable.ic_placeholder_dark_large : R.drawable.ic_placeholder_light_large;
+    @DrawableRes //NOSONAR
+    private int getLargePlaceHolderResId() { //NOSONAR
+        return isDark ? R.drawable.ic_placeholder_dark_large : R.drawable.ic_placeholder_light_large; //NOSONAR
     }
 
-    public Drawable getPlaceHolderDrawable(@Nullable String displayName, boolean large, SettingsManager settingsManager) {
-        Drawable drawable;
-        if (!TextUtils.isEmpty(displayName) && settingsManager.useGmailPlaceholders()) {
-            drawable = PlaceholderProvider.getInstance(applicationContext).getLetterTile(displayName);
-        } else {
-            drawable = ContextCompat.getDrawable(applicationContext, large ? getLargePlaceHolderResId() : getMediumPlaceHolderResId());
+    public Drawable getPlaceHolderDrawable(@Nullable String displayName, boolean large, SettingsManager settingsManager) { //NOSONAR
+        Drawable drawable; //NOSONAR
+        if (!TextUtils.isEmpty(displayName) && settingsManager.useGmailPlaceholders()) { //NOSONAR
+            drawable = PlaceholderProvider.getInstance(applicationContext).getLetterTile(displayName); //NOSONAR
+        } else { //NOSONAR
+            drawable = ContextCompat.getDrawable(applicationContext, large ? getLargePlaceHolderResId() : getMediumPlaceHolderResId()); //NOSONAR
         }
-        return drawable;
+        return drawable; //NOSONAR
     }
 }

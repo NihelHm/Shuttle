@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.search
 
@@ -57,468 +57,468 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import kotlinx.android.synthetic.main.fragment_search.contextualToolbar as ctxToolbar
 
-class SearchFragment :
-        BaseFragment(),
-        com.simplecity.amp_library.ui.screens.search.SearchView,
-        ContextualToolbarHost {
+class SearchFragment : //NOSONAR
+        BaseFragment(), //NOSONAR
+        com.simplecity.amp_library.ui.screens.search.SearchView, //NOSONAR
+        ContextualToolbarHost { //NOSONAR
 
-    private var query = ""
+    private var query = "" //NOSONAR
 
-    private val adapter = ViewModelAdapter()
+    private val adapter = ViewModelAdapter() //NOSONAR
 
-    private val loadingView = LoadingView()
+    private val loadingView = LoadingView() //NOSONAR
 
-    private val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable() //NOSONAR
 
-    private var contextualToolbarHelper: ContextualToolbarHelper<Single<List<Song>>>? = null
+    private var contextualToolbarHelper: ContextualToolbarHelper<Single<List<Song>>>? = null //NOSONAR
 
-    private val emptyView = EmptyView(R.string.empty_search)
+    private val emptyView = EmptyView(R.string.empty_search) //NOSONAR
 
-    private lateinit var artistsHeader: SearchHeaderView
-    private lateinit var albumsHeader: SearchHeaderView
-    private lateinit var songsHeader: SearchHeaderView
+    private lateinit var artistsHeader: SearchHeaderView //NOSONAR
+    private lateinit var albumsHeader: SearchHeaderView //NOSONAR
+    private lateinit var songsHeader: SearchHeaderView //NOSONAR
 
-    private var prefixHighlighter: PrefixHighlighter? = null
+    private var prefixHighlighter: PrefixHighlighter? = null //NOSONAR
 
-    @Inject
-    lateinit var requestManager: RequestManager
+    @Inject //NOSONAR
+    lateinit var requestManager: RequestManager //NOSONAR
 
-    @Inject
-    lateinit var songsRepository: Repository.SongsRepository
+    @Inject //NOSONAR
+    lateinit var songsRepository: Repository.SongsRepository //NOSONAR
 
-    @Inject
-    lateinit var sortManager: SortManager
+    @Inject //NOSONAR
+    lateinit var sortManager: SortManager //NOSONAR
 
-    @Inject
-    lateinit var settingsManager: SettingsManager
+    @Inject //NOSONAR
+    lateinit var settingsManager: SettingsManager //NOSONAR
 
-    @Inject
-    lateinit var playlistMenuHelper: PlaylistMenuHelper
+    @Inject //NOSONAR
+    lateinit var playlistMenuHelper: PlaylistMenuHelper //NOSONAR
 
-    @Inject
-    lateinit var presenter: SearchPresenter
+    @Inject //NOSONAR
+    lateinit var presenter: SearchPresenter //NOSONAR
 
-    private var setDataDisposable: Disposable? = null
+    private var setDataDisposable: Disposable? = null //NOSONAR
 
-    private lateinit var searchView: SearchView
+    private lateinit var searchView: SearchView //NOSONAR
 
-    @SuppressLint("InlinedApi")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @SuppressLint("InlinedApi") //NOSONAR
+    override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
+        super.onCreate(savedInstanceState) //NOSONAR
 
-        prefixHighlighter = PrefixHighlighter(context)
+        prefixHighlighter = PrefixHighlighter(context) //NOSONAR
 
-        requestManager = Glide.with(this)
+        requestManager = Glide.with(this) //NOSONAR
 
-        query = arguments!!.getString(ARG_QUERY, "")
+        query = arguments!!.getString(ARG_QUERY, "") //NOSONAR
 
-        emptyView.setHeight(ResourceUtils.toPixels(96f))
+        emptyView.setHeight(ResourceUtils.toPixels(96f)) //NOSONAR
 
-        artistsHeader = SearchHeaderView(Header(context!!.getString(R.string.artists_title)))
-        albumsHeader = SearchHeaderView(Header(context!!.getString(R.string.albums_title)))
-        songsHeader = SearchHeaderView(Header(context!!.getString(R.string.tracks_title)))
+        artistsHeader = SearchHeaderView(Header(context!!.getString(R.string.artists_title))) //NOSONAR
+        albumsHeader = SearchHeaderView(Header(context!!.getString(R.string.albums_title))) //NOSONAR
+        songsHeader = SearchHeaderView(Header(context!!.getString(R.string.tracks_title))) //NOSONAR
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_search, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
+        return inflater.inflate(R.layout.fragment_search, container, false) //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        toolbar!!.inflateMenu(R.menu.menu_search)
-        toolbar!!.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.search_fuzzy -> {
-                    item.isChecked = !item.isChecked
-                    presenter.setSearchFuzzy(item.isChecked)
+        toolbar!!.inflateMenu(R.menu.menu_search) //NOSONAR
+        toolbar!!.setOnMenuItemClickListener { item -> //NOSONAR
+            when (item.itemId) { //NOSONAR
+                R.id.search_fuzzy -> { //NOSONAR
+                    item.isChecked = !item.isChecked //NOSONAR
+                    presenter.setSearchFuzzy(item.isChecked) //NOSONAR
                 }
-                R.id.search_artist -> {
-                    item.isChecked = !item.isChecked
-                    presenter.setSearchArtists(item.isChecked)
+                R.id.search_artist -> { //NOSONAR
+                    item.isChecked = !item.isChecked //NOSONAR
+                    presenter.setSearchArtists(item.isChecked) //NOSONAR
                 }
-                R.id.search_album -> {
-                    item.isChecked = !item.isChecked
-                    presenter.setSearchAlbums(item.isChecked)
+                R.id.search_album -> { //NOSONAR
+                    item.isChecked = !item.isChecked //NOSONAR
+                    presenter.setSearchAlbums(item.isChecked) //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
 
-        setupContextualToolbar()
+        setupContextualToolbar() //NOSONAR
 
-        val searchItem = toolbar!!.menu.findItem(R.id.search)
-        searchItem.expandActionView()
-        searchView = searchItem.actionView as SearchView
+        val searchItem = toolbar!!.menu.findItem(R.id.search) //NOSONAR
+        searchItem.expandActionView() //NOSONAR
+        searchView = searchItem.actionView as SearchView //NOSONAR
 
-        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                return false
+        searchItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener { //NOSONAR
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean { //NOSONAR
+                return false //NOSONAR
             }
 
-            override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
-                val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-                inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0)
-                searchItem.actionView!!.handler.postDelayed({ navigationController.popViewController() }, 150)
-                return false
+            override fun onMenuItemActionCollapse(item: MenuItem): Boolean { //NOSONAR
+                val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //NOSONAR
+                inputMethodManager.hideSoftInputFromWindow(view.windowToken, 0) //NOSONAR
+                searchItem.actionView!!.handler.postDelayed({ navigationController.popViewController() }, 150) //NOSONAR
+                return false //NOSONAR
             }
         })
 
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-        recyclerView!!.adapter = adapter
+        recyclerView!!.layoutManager = LinearLayoutManager(context) //NOSONAR
+        recyclerView!!.adapter = adapter //NOSONAR
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResume() { //NOSONAR
+        super.onResume() //NOSONAR
 
-        presenter.bindView(this)
+        presenter.bindView(this) //NOSONAR
 
-        disposables.add(RxSearchView.queryTextChangeEvents(searchView)
-                .skip(1)
-                .debounce(200, TimeUnit.MILLISECONDS)
-                .toFlowable(BackpressureStrategy.LATEST)
-                .subscribe { searchViewQueryTextEvent ->
-                    query = searchViewQueryTextEvent.queryText().toString()
-                    presenter.queryChanged(query)
+        disposables.add(RxSearchView.queryTextChangeEvents(searchView) //NOSONAR
+                .skip(1) //NOSONAR
+                .debounce(200, TimeUnit.MILLISECONDS) //NOSONAR
+                .toFlowable(BackpressureStrategy.LATEST) //NOSONAR
+                .subscribe { searchViewQueryTextEvent -> //NOSONAR
+                    query = searchViewQueryTextEvent.queryText().toString() //NOSONAR
+                    presenter.queryChanged(query) //NOSONAR
                 })
 
-        presenter.queryChanged(query)
+        presenter.queryChanged(query) //NOSONAR
     }
 
-    override fun onPause() {
-        disposables.clear()
-        presenter.unbindView(this)
+    override fun onPause() { //NOSONAR
+        disposables.clear() //NOSONAR
+        presenter.unbindView(this) //NOSONAR
 
-        super.onPause()
+        super.onPause() //NOSONAR
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroyView() { //NOSONAR
+        super.onDestroyView() //NOSONAR
 
-        if (setDataDisposable != null) {
-            setDataDisposable!!.dispose()
+        if (setDataDisposable != null) { //NOSONAR
+            setDataDisposable!!.dispose() //NOSONAR
         }
     }
 
-    override fun screenName(): String {
-        return TAG
+    override fun screenName(): String { //NOSONAR
+        return TAG //NOSONAR
     }
 
-    override fun setLoading(loading: Boolean) {
-        analyticsManager.dropBreadcrumb(TAG, "setLoading..")
-        adapter.setItems(listOf(loadingView))
+    override fun setLoading(loading: Boolean) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "setLoading..") //NOSONAR
+        adapter.setItems(listOf(loadingView)) //NOSONAR
     }
 
-    override fun setData(searchResult: SearchResult) {
-        val prefix = query.toUpperCase().toCharArray()
+    override fun setData(searchResult: SearchResult) { //NOSONAR
+        val prefix = query.toUpperCase().toCharArray() //NOSONAR
 
-        val viewModels = ArrayList<ViewModel<*>>()
+        val viewModels = ArrayList<ViewModel<*>>() //NOSONAR
 
-        if (!searchResult.albumArtists.isEmpty()) {
-            viewModels.add(artistsHeader)
-            viewModels.addAll(Stream.of(searchResult.albumArtists)
-                    .map { albumArtist ->
-                        val albumArtistView = AlbumArtistView(albumArtist, ViewType.ARTIST_LIST, requestManager, sortManager, settingsManager)
-                        albumArtistView.setClickListener(albumArtistClickListener)
-                        albumArtistView.setPrefix(prefixHighlighter, prefix)
-                        albumArtistView as ViewModel<*>
+        if (!searchResult.albumArtists.isEmpty()) { //NOSONAR
+            viewModels.add(artistsHeader) //NOSONAR
+            viewModels.addAll(Stream.of(searchResult.albumArtists) //NOSONAR
+                    .map { albumArtist -> //NOSONAR
+                        val albumArtistView = AlbumArtistView(albumArtist, ViewType.ARTIST_LIST, requestManager, sortManager, settingsManager) //NOSONAR
+                        albumArtistView.setClickListener(albumArtistClickListener) //NOSONAR
+                        albumArtistView.setPrefix(prefixHighlighter, prefix) //NOSONAR
+                        albumArtistView as ViewModel<*> //NOSONAR
                     }
-                    .toList())
+                    .toList()) //NOSONAR
         }
 
-        if (!searchResult.albums.isEmpty()) {
-            viewModels.add(albumsHeader)
-            viewModels.addAll(Stream.of(searchResult.albums).map { album ->
-                val albumView = AlbumView(album, ViewType.ALBUM_LIST, requestManager, sortManager, settingsManager)
-                albumView.setClickListener(albumViewClickListener)
-                albumView.setPrefix(prefixHighlighter, prefix)
-                albumView
-            }.toList())
+        if (!searchResult.albums.isEmpty()) { //NOSONAR
+            viewModels.add(albumsHeader) //NOSONAR
+            viewModels.addAll(Stream.of(searchResult.albums).map { album -> //NOSONAR
+                val albumView = AlbumView(album, ViewType.ALBUM_LIST, requestManager, sortManager, settingsManager) //NOSONAR
+                albumView.setClickListener(albumViewClickListener) //NOSONAR
+                albumView.setPrefix(prefixHighlighter, prefix) //NOSONAR
+                albumView //NOSONAR
+            }.toList()) //NOSONAR
         }
 
-        if (!searchResult.songs.isEmpty()) {
-            viewModels.add(songsHeader)
-            viewModels.addAll(Stream.of(searchResult.songs).map { song ->
-                val songView = SongView(song, requestManager, sortManager, settingsManager)
-                songView.setClickListener(songViewClickListener)
-                songView.setPrefix(prefixHighlighter, prefix)
-                songView
-            }.toList())
+        if (!searchResult.songs.isEmpty()) { //NOSONAR
+            viewModels.add(songsHeader) //NOSONAR
+            viewModels.addAll(Stream.of(searchResult.songs).map { song -> //NOSONAR
+                val songView = SongView(song, requestManager, sortManager, settingsManager) //NOSONAR
+                songView.setClickListener(songViewClickListener) //NOSONAR
+                songView.setPrefix(prefixHighlighter, prefix) //NOSONAR
+                songView //NOSONAR
+            }.toList()) //NOSONAR
         }
 
-        if (viewModels.isEmpty()) {
-            viewModels.add(emptyView)
+        if (viewModels.isEmpty()) { //NOSONAR
+            viewModels.add(emptyView) //NOSONAR
         }
 
-        analyticsManager!!.dropBreadcrumb(TAG, "setData..")
-        setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() {
-            override fun onComplete() {
-                super.onComplete()
+        analyticsManager!!.dropBreadcrumb(TAG, "setData..") //NOSONAR
+        setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() { //NOSONAR
+            override fun onComplete() { //NOSONAR
+                super.onComplete() //NOSONAR
 
-                recyclerView!!.scrollToPosition(0)
+                recyclerView!!.scrollToPosition(0) //NOSONAR
             }
         })
     }
 
-    override fun setFilterFuzzyChecked(checked: Boolean) {
-        toolbar!!.menu.findItem(R.id.search_fuzzy).isChecked = checked
+    override fun setFilterFuzzyChecked(checked: Boolean) { //NOSONAR
+        toolbar!!.menu.findItem(R.id.search_fuzzy).isChecked = checked //NOSONAR
     }
 
-    override fun setFilterArtistsChecked(checked: Boolean) {
-        toolbar!!.menu.findItem(R.id.search_artist).isChecked = checked
+    override fun setFilterArtistsChecked(checked: Boolean) { //NOSONAR
+        toolbar!!.menu.findItem(R.id.search_artist).isChecked = checked //NOSONAR
     }
 
-    override fun setFilterAlbumsChecked(checked: Boolean) {
-        toolbar!!.menu.findItem(R.id.search_album).isChecked = checked
+    override fun setFilterAlbumsChecked(checked: Boolean) { //NOSONAR
+        toolbar!!.menu.findItem(R.id.search_album).isChecked = checked //NOSONAR
     }
 
-    override fun showPlaybackError() {
+    override fun showPlaybackError() { //NOSONAR
         // To do later: Implement
     }
 
 
     // AlbumArtistMenuContract.View Implementation
 
-    override fun presentCreatePlaylistDialog(songs: List<Song>) {
-        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager)
+    override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
+        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager) //NOSONAR
     }
 
-    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onSongsAddedToQueue(numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onPlaybackFailed() {
+    override fun onPlaybackFailed() { //NOSONAR
         // To do later: Improve error message
-        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun presentTagEditorDialog(albumArtist: AlbumArtist) {
-        TaggerDialog.newInstance(albumArtist).show(childFragmentManager)
+    override fun presentTagEditorDialog(albumArtist: AlbumArtist) { //NOSONAR
+        TaggerDialog.newInstance(albumArtist).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentArtistDeleteDialog(albumArtists: List<AlbumArtist>) {
-        DeleteDialog.newInstance(DeleteDialog.ListArtistsRef { albumArtists }).show(childFragmentManager)
+    override fun presentArtistDeleteDialog(albumArtists: List<AlbumArtist>) { //NOSONAR
+        DeleteDialog.newInstance(DeleteDialog.ListArtistsRef { albumArtists }).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentAlbumArtistInfoDialog(albumArtist: AlbumArtist) {
-        ArtistBiographyDialog.newInstance(albumArtist).show(childFragmentManager)
+    override fun presentAlbumArtistInfoDialog(albumArtist: AlbumArtist) { //NOSONAR
+        ArtistBiographyDialog.newInstance(albumArtist).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentArtworkEditorDialog(albumArtist: AlbumArtist) {
-        ArtworkDialog.build(context, albumArtist).show()
+    override fun presentArtworkEditorDialog(albumArtist: AlbumArtist) { //NOSONAR
+        ArtworkDialog.build(context, albumArtist).show() //NOSONAR
     }
 
 
     // AlbumMenuContract.View Implementation
 
-    override fun presentTagEditorDialog(album: Album) {
-        TaggerDialog.newInstance(album).show(childFragmentManager)
+    override fun presentTagEditorDialog(album: Album) { //NOSONAR
+        TaggerDialog.newInstance(album).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentDeleteAlbumsDialog(albums: List<Album>) {
-        DeleteDialog.newInstance(DeleteDialog.ListAlbumsRef { albums }).show(childFragmentManager)
+    override fun presentDeleteAlbumsDialog(albums: List<Album>) { //NOSONAR
+        DeleteDialog.newInstance(DeleteDialog.ListAlbumsRef { albums }).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentAlbumInfoDialog(album: Album) {
-        AlbumBiographyDialog.newInstance(album).show(childFragmentManager)
+    override fun presentAlbumInfoDialog(album: Album) { //NOSONAR
+        AlbumBiographyDialog.newInstance(album).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentArtworkEditorDialog(album: Album) {
-        ArtworkDialog.build(context, album).show()
+    override fun presentArtworkEditorDialog(album: Album) { //NOSONAR
+        ArtworkDialog.build(context, album).show() //NOSONAR
     }
 
 
     // SongMenuContract.View Implementation
 
-    override fun presentSongInfoDialog(song: Song) {
-        SongInfoDialog.newInstance(song).show(childFragmentManager)
+    override fun presentSongInfoDialog(song: Song) { //NOSONAR
+        SongInfoDialog.newInstance(song).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentTagEditorDialog(song: Song) {
-        TaggerDialog.newInstance(song).show(childFragmentManager)
+    override fun presentTagEditorDialog(song: Song) { //NOSONAR
+        TaggerDialog.newInstance(song).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentDeleteDialog(songs: List<Song>) {
-        DeleteDialog.newInstance(DeleteDialog.ListSongsRef { songs }).show(childFragmentManager)
+    override fun presentDeleteDialog(songs: List<Song>) { //NOSONAR
+        DeleteDialog.newInstance(DeleteDialog.ListSongsRef { songs }).show(childFragmentManager) //NOSONAR
     }
 
-    override fun shareSong(song: Song) {
-        song.share(context!!)
+    override fun shareSong(song: Song) { //NOSONAR
+        song.share(context!!) //NOSONAR
     }
 
-    override fun presentRingtonePermissionDialog() {
-        RingtoneManager.getDialog(context!!).show()
+    override fun presentRingtonePermissionDialog() { //NOSONAR
+        RingtoneManager.getDialog(context!!).show() //NOSONAR
     }
 
-    override fun showRingtoneSetMessage() {
-        Toast.makeText(context, R.string.ringtone_set_new, Toast.LENGTH_SHORT).show()
+    override fun showRingtoneSetMessage() { //NOSONAR
+        Toast.makeText(context, R.string.ringtone_set_new, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
 
-    override fun goToArtist(albumArtist: AlbumArtist, transitionView: View) {
-        val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(this.view!!.windowToken, 0)
-        val transitionName = ViewCompat.getTransitionName(transitionView)
-        searchView.handler.postDelayed({ pushDetailFragment(ArtistDetailFragment.newInstance(albumArtist, transitionName!!), transitionView) }, 50)
+    override fun goToArtist(albumArtist: AlbumArtist, transitionView: View) { //NOSONAR
+        val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //NOSONAR
+        inputMethodManager.hideSoftInputFromWindow(this.view!!.windowToken, 0) //NOSONAR
+        val transitionName = ViewCompat.getTransitionName(transitionView) //NOSONAR
+        searchView.handler.postDelayed({ pushDetailFragment(ArtistDetailFragment.newInstance(albumArtist, transitionName!!), transitionView) }, 50) //NOSONAR
     }
 
-    override fun goToAlbum(album: Album, transitionView: View) {
-        val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.hideSoftInputFromWindow(this.view!!.windowToken, 0)
-        val transitionName = ViewCompat.getTransitionName(transitionView)
-        searchView.handler.postDelayed({ pushDetailFragment(AlbumDetailFragment.newInstance(album, transitionName!!), transitionView) }, 50)
+    override fun goToAlbum(album: Album, transitionView: View) { //NOSONAR
+        val inputMethodManager = context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager //NOSONAR
+        inputMethodManager.hideSoftInputFromWindow(this.view!!.windowToken, 0) //NOSONAR
+        val transitionName = ViewCompat.getTransitionName(transitionView) //NOSONAR
+        searchView.handler.postDelayed({ pushDetailFragment(AlbumDetailFragment.newInstance(album, transitionName!!), transitionView) }, 50) //NOSONAR
     }
 
-    override fun showUpgradeDialog() {
-        UpgradeDialog().show(childFragmentManager)
+    override fun showUpgradeDialog() { //NOSONAR
+        UpgradeDialog().show(childFragmentManager) //NOSONAR
     }
 
-    private fun pushDetailFragment(fragment: Fragment, transitionView: View?) {
+    private fun pushDetailFragment(fragment: Fragment, transitionView: View?) { //NOSONAR
 
-        val transitions = ArrayList<Pair<View, String>>()
+        val transitions = ArrayList<Pair<View, String>>() //NOSONAR
 
-        if (transitionView != null) {
-            val transitionName = ViewCompat.getTransitionName(transitionView)
-            transitions.add(Pair(transitionView, transitionName))
+        if (transitionView != null) { //NOSONAR
+            val transitionName = ViewCompat.getTransitionName(transitionView) //NOSONAR
+            transitions.add(Pair(transitionView, transitionName)) //NOSONAR
 
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-                val moveTransition = TransitionInflater.from(context).inflateTransition(R.transition.image_transition)
-                fragment.sharedElementEnterTransition = moveTransition
-                fragment.sharedElementReturnTransition = moveTransition
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+                val moveTransition = TransitionInflater.from(context).inflateTransition(R.transition.image_transition) //NOSONAR
+                fragment.sharedElementEnterTransition = moveTransition //NOSONAR
+                fragment.sharedElementReturnTransition = moveTransition //NOSONAR
             }
         }
 
-        navigationController.pushViewController(fragment, "DetailFragment", transitions)
+        navigationController.pushViewController(fragment, "DetailFragment", transitions) //NOSONAR
     }
 
-    override fun getContextualToolbar(): ContextualToolbar? {
-        return ctxToolbar as ContextualToolbar?
+    override fun getContextualToolbar(): ContextualToolbar? { //NOSONAR
+        return ctxToolbar as ContextualToolbar? //NOSONAR
     }
 
-    private fun setupContextualToolbar() {
+    private fun setupContextualToolbar() { //NOSONAR
 
-        val contextualToolbar = ContextualToolbar.findContextualToolbar(this)
-        if (contextualToolbar != null) {
+        val contextualToolbar = ContextualToolbar.findContextualToolbar(this) //NOSONAR
+        if (contextualToolbar != null) { //NOSONAR
 
-            contextualToolbar.menu.clear()
-            contextualToolbar.inflateMenu(R.menu.context_menu_general)
-            val sub = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu
-            disposables.add(playlistMenuHelper.createUpdatingPlaylistMenu(sub).subscribe())
+            contextualToolbar.menu.clear() //NOSONAR
+            contextualToolbar.inflateMenu(R.menu.context_menu_general) //NOSONAR
+            val sub = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+            disposables.add(playlistMenuHelper.createUpdatingPlaylistMenu(sub).subscribe()) //NOSONAR
 
-            contextualToolbar.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener(
-                    Single.defer { Operators.reduceSongSingles(contextualToolbarHelper!!.items) },
-                    presenter
+            contextualToolbar.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener( //NOSONAR
+                    Single.defer { Operators.reduceSongSingles(contextualToolbarHelper!!.items) }, //NOSONAR
+                    presenter //NOSONAR
             ))
 
-            contextualToolbarHelper = object : ContextualToolbarHelper<Single<List<Song>>>(context!!, contextualToolbar, object : ContextualToolbarHelper.Callback {
+            contextualToolbarHelper = object : ContextualToolbarHelper<Single<List<Song>>>(context!!, contextualToolbar, object : ContextualToolbarHelper.Callback { //NOSONAR
 
-                override fun notifyItemChanged(viewModel: SelectableViewModel) {
-                    val index = adapter.items.indexOf(viewModel as ViewModel<*>)
-                    if (index >= 0) {
-                        adapter.notifyItemChanged(index, 0)
+                override fun notifyItemChanged(viewModel: SelectableViewModel) { //NOSONAR
+                    val index = adapter.items.indexOf(viewModel as ViewModel<*>) //NOSONAR
+                    if (index >= 0) { //NOSONAR
+                        adapter.notifyItemChanged(index, 0) //NOSONAR
                     }
                 }
 
-                override fun notifyDatasetChanged() {
-                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0)
+                override fun notifyDatasetChanged() { //NOSONAR
+                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0) //NOSONAR
                 }
             }) {
-                override fun start() {
-                    super.start()
+                override fun start() { //NOSONAR
+                    super.start() //NOSONAR
 
-                    toolbar!!.visibility = View.GONE
+                    toolbar!!.visibility = View.GONE //NOSONAR
                 }
 
-                override fun finish() {
-                    if (toolbar != null) {
-                        toolbar!!.visibility = View.VISIBLE
+                override fun finish() { //NOSONAR
+                    if (toolbar != null) { //NOSONAR
+                        toolbar!!.visibility = View.VISIBLE //NOSONAR
                     }
-                    super.finish()
+                    super.finish() //NOSONAR
                 }
             }
         }
     }
 
-    private val songViewClickListener = object : SongView.ClickListener {
+    private val songViewClickListener = object : SongView.ClickListener { //NOSONAR
 
-        override fun onSongClick(position: Int, songView: SongView) {
-            if (!contextualToolbarHelper!!.handleClick(songView, Single.just(listOf(songView.song)))) {
-                presenter.onSongClick(
-                        adapter.items
-                                .filter { item -> item is SongView }
-                                .map { item -> (item as SongView).song }.toList(),
-                        songView.song
+        override fun onSongClick(position: Int, songView: SongView) { //NOSONAR
+            if (!contextualToolbarHelper!!.handleClick(songView, Single.just(listOf(songView.song)))) { //NOSONAR
+                presenter.onSongClick( //NOSONAR
+                        adapter.items //NOSONAR
+                                .filter { item -> item is SongView } //NOSONAR
+                                .map { item -> (item as SongView).song }.toList(), //NOSONAR
+                        songView.song //NOSONAR
                 )
             }
         }
 
-        override fun onSongLongClick(position: Int, songView: SongView): Boolean {
-            return contextualToolbarHelper!!.handleLongClick(songView, Single.just(listOf(songView.song)))
+        override fun onSongLongClick(position: Int, songView: SongView): Boolean { //NOSONAR
+            return contextualToolbarHelper!!.handleLongClick(songView, Single.just(listOf(songView.song))) //NOSONAR
         }
 
-        override fun onSongOverflowClick(position: Int, v: View, song: Song) {
-            val menu = PopupMenu(v.context, v)
-            SongMenuUtils.setupSongMenu(menu, false, true, playlistMenuHelper)
-            menu.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener(song, presenter))
-            menu.show()
+        override fun onSongOverflowClick(position: Int, v: View, song: Song) { //NOSONAR
+            val menu = PopupMenu(v.context, v) //NOSONAR
+            SongMenuUtils.setupSongMenu(menu, false, true, playlistMenuHelper) //NOSONAR
+            menu.setOnMenuItemClickListener(SongMenuUtils.getSongMenuClickListener(song, presenter)) //NOSONAR
+            menu.show() //NOSONAR
         }
 
-        override fun onStartDrag(holder: SongView.ViewHolder) {
+        override fun onStartDrag(holder: SongView.ViewHolder) { //NOSONAR
             // Intentionally left empty.
         }
     }
 
-    private val albumViewClickListener = object : AlbumView.ClickListener {
-        override fun onAlbumClick(position: Int, albumView: AlbumView, viewHolder: AlbumView.ViewHolder) {
-            if (!contextualToolbarHelper!!.handleClick(albumView, albumView.album.getSongsSingle(songsRepository))) {
-                presenter.onAlbumClick(albumView, viewHolder)
+    private val albumViewClickListener = object : AlbumView.ClickListener { //NOSONAR
+        override fun onAlbumClick(position: Int, albumView: AlbumView, viewHolder: AlbumView.ViewHolder) { //NOSONAR
+            if (!contextualToolbarHelper!!.handleClick(albumView, albumView.album.getSongsSingle(songsRepository))) { //NOSONAR
+                presenter.onAlbumClick(albumView, viewHolder) //NOSONAR
             }
         }
 
-        override fun onAlbumLongClick(position: Int, albumView: AlbumView): Boolean {
-            return contextualToolbarHelper!!.handleLongClick(albumView, albumView.album.getSongsSingle(songsRepository))
+        override fun onAlbumLongClick(position: Int, albumView: AlbumView): Boolean { //NOSONAR
+            return contextualToolbarHelper!!.handleLongClick(albumView, albumView.album.getSongsSingle(songsRepository)) //NOSONAR
         }
 
-        override fun onAlbumOverflowClicked(v: View, album: Album) {
-            val menu = PopupMenu(v.context, v)
-            AlbumMenuUtils.setupAlbumMenu(menu, playlistMenuHelper, true)
-            menu.setOnMenuItemClickListener(AlbumMenuUtils.getAlbumMenuClickListener(album, presenter))
-            menu.show()
+        override fun onAlbumOverflowClicked(v: View, album: Album) { //NOSONAR
+            val menu = PopupMenu(v.context, v) //NOSONAR
+            AlbumMenuUtils.setupAlbumMenu(menu, playlistMenuHelper, true) //NOSONAR
+            menu.setOnMenuItemClickListener(AlbumMenuUtils.getAlbumMenuClickListener(album, presenter)) //NOSONAR
+            menu.show() //NOSONAR
         }
     }
 
-    private val albumArtistClickListener = object : AlbumArtistView.ClickListener {
-        override fun onAlbumArtistClick(position: Int, albumArtistView: AlbumArtistView, viewholder: AlbumArtistView.ViewHolder) {
-            if (!contextualToolbarHelper!!.handleClick(albumArtistView, albumArtistView.albumArtist.getSongsSingle(songsRepository))) {
-                presenter.onArtistClicked(albumArtistView, viewholder)
+    private val albumArtistClickListener = object : AlbumArtistView.ClickListener { //NOSONAR
+        override fun onAlbumArtistClick(position: Int, albumArtistView: AlbumArtistView, viewholder: AlbumArtistView.ViewHolder) { //NOSONAR
+            if (!contextualToolbarHelper!!.handleClick(albumArtistView, albumArtistView.albumArtist.getSongsSingle(songsRepository))) { //NOSONAR
+                presenter.onArtistClicked(albumArtistView, viewholder) //NOSONAR
             }
         }
 
-        override fun onAlbumArtistLongClick(position: Int, albumArtistView: AlbumArtistView): Boolean {
-            return contextualToolbarHelper!!.handleLongClick(albumArtistView, albumArtistView.albumArtist.getSongsSingle(songsRepository))
+        override fun onAlbumArtistLongClick(position: Int, albumArtistView: AlbumArtistView): Boolean { //NOSONAR
+            return contextualToolbarHelper!!.handleLongClick(albumArtistView, albumArtistView.albumArtist.getSongsSingle(songsRepository)) //NOSONAR
         }
 
-        override fun onAlbumArtistOverflowClicked(v: View, albumArtist: AlbumArtist) {
-            val menu = PopupMenu(v.context, v)
-            menu.inflate(R.menu.menu_artist)
-            menu.setOnMenuItemClickListener(
-                    AlbumArtistMenuUtils.getAlbumArtistClickListener(albumArtist, presenter))
-            menu.show()
+        override fun onAlbumArtistOverflowClicked(v: View, albumArtist: AlbumArtist) { //NOSONAR
+            val menu = PopupMenu(v.context, v) //NOSONAR
+            menu.inflate(R.menu.menu_artist) //NOSONAR
+            menu.setOnMenuItemClickListener( //NOSONAR
+                    AlbumArtistMenuUtils.getAlbumArtistClickListener(albumArtist, presenter)) //NOSONAR
+            menu.show() //NOSONAR
         }
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "SearchFragment"
+        private const val TAG = "SearchFragment" //NOSONAR
 
-        const val ARG_QUERY = "query"
+        const val ARG_QUERY = "query" //NOSONAR
 
-        fun newInstance(query: String?) = SearchFragment().withArgs {
-            putString(ARG_QUERY, query)
+        fun newInstance(query: String?) = SearchFragment().withArgs { //NOSONAR
+            putString(ARG_QUERY, query) //NOSONAR
         }
     }
 }

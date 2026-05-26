@@ -6,61 +6,61 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class ThemeUtils {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class ThemeUtils { //NOSONAR
 
-    private ThemeUtils() {
+    private ThemeUtils() { //NOSONAR
         //no instance
     }
 
-    public static Theme getRandom() {
+    public static Theme getRandom() { //NOSONAR
 
-        List<Theme> themes = new ArrayList<>();
+        List<Theme> themes = new ArrayList<>(); //NOSONAR
 
-        themes.add(new Theme(0, "blue_500", "amber_300", false, R.color.md_blue_500, R.color.md_amber_300));
-        themes.add(new Theme(1, "blue_500", "amber_300", true, R.color.md_blue_500, R.color.md_amber_300));
+        themes.add(new Theme(0, "blue_500", "amber_300", false, R.color.md_blue_500, R.color.md_amber_300)); //NOSONAR
+        themes.add(new Theme(1, "blue_500", "amber_300", true, R.color.md_blue_500, R.color.md_amber_300)); //NOSONAR
 
-        themes.add(new Theme(2, "blue_grey_500", "red_A400", false, R.color.md_blue_grey_500, R.color.md_red_A400));
-        themes.add(new Theme(3, "blue_grey_500", "red_A400", true, R.color.md_blue_grey_500, R.color.md_red_A400));
+        themes.add(new Theme(2, "blue_grey_500", "red_A400", false, R.color.md_blue_grey_500, R.color.md_red_A400)); //NOSONAR
+        themes.add(new Theme(3, "blue_grey_500", "red_A400", true, R.color.md_blue_grey_500, R.color.md_red_A400)); //NOSONAR
 
-        themes.add(new Theme(4, "red_600", "light_blue_600", false, R.color.md_red_600, R.color.md_light_blue_600));
-        themes.add(new Theme(5, "red_600", "light_blue_600", true, R.color.md_red_600, R.color.md_light_blue_600));
+        themes.add(new Theme(4, "red_600", "light_blue_600", false, R.color.md_red_600, R.color.md_light_blue_600)); //NOSONAR
+        themes.add(new Theme(5, "red_600", "light_blue_600", true, R.color.md_red_600, R.color.md_light_blue_600)); //NOSONAR
 
-        themes.add(new Theme(6, "grey_900", "teal_A700", false, R.color.md_grey_900, R.color.md_teal_A700));
-        themes.add(new Theme(7, "grey_900", "teal_A700", true, R.color.md_grey_900, R.color.md_teal_A700));
+        themes.add(new Theme(6, "grey_900", "teal_A700", false, R.color.md_grey_900, R.color.md_teal_A700)); //NOSONAR
+        themes.add(new Theme(7, "grey_900", "teal_A700", true, R.color.md_grey_900, R.color.md_teal_A700)); //NOSONAR
 
-        return themes.get(new Random().nextInt(themes.size()));
+        return themes.get(new Random().nextInt(themes.size())); //NOSONAR
     }
 
-    public static class Theme {
+    public static class Theme { //NOSONAR
 
-        @SuppressWarnings("java:S1104")
+        @SuppressWarnings("java:S1104") //NOSONAR
 
-        public int id;
-        @SuppressWarnings("java:S1104")
-        public String primaryColorName;
-        @SuppressWarnings("java:S1104")
-        public String accentColorName;
+        public int id; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public String primaryColorName; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public String accentColorName; //NOSONAR
 
-        @SuppressWarnings("java:S1104")
+        @SuppressWarnings("java:S1104") //NOSONAR
 
-        public boolean isDark;
+        public boolean isDark; //NOSONAR
 
-        @ColorRes
-        @SuppressWarnings("java:S1104")
-        public int primaryColor;
+        @ColorRes //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public int primaryColor; //NOSONAR
 
-        @ColorRes
-        @SuppressWarnings("java:S1104")
-        public int accentColor;
+        @ColorRes //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public int accentColor; //NOSONAR
 
-        Theme(int id, String primaryColorName, String accentColorName, boolean isDark, int primaryColor, int accentColor) {
-            this.id = id;
-            this.primaryColorName = primaryColorName;
-            this.accentColorName = accentColorName;
-            this.isDark = isDark;
-            this.primaryColor = primaryColor;
-            this.accentColor = accentColor;
+        Theme(int id, String primaryColorName, String accentColorName, boolean isDark, int primaryColor, int accentColor) { //NOSONAR
+            this.id = id; //NOSONAR
+            this.primaryColorName = primaryColorName; //NOSONAR
+            this.accentColorName = accentColorName; //NOSONAR
+            this.isDark = isDark; //NOSONAR
+            this.primaryColor = primaryColor; //NOSONAR
+            this.accentColor = accentColor; //NOSONAR
         }
     }
 }

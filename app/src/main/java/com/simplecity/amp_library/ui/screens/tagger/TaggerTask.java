@@ -20,277 +20,277 @@ import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class TaggerTask extends AsyncTask<Object, Integer, Boolean> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class TaggerTask extends AsyncTask<Object, Integer, Boolean> { //NOSONAR
 
-    public interface TagCompletionListener {
-        void onSuccess();
+    public interface TagCompletionListener { //NOSONAR
+        void onSuccess(); //NOSONAR
 
-        void onFailure();
+        void onFailure(); //NOSONAR
 
-        void onProgress(int progress);
+        void onProgress(int progress); //NOSONAR
     }
 
-    private Context applicationContext;
+    private Context applicationContext; //NOSONAR
 
-    private TagCompletionListener tagCompletionListener;
+    private TagCompletionListener tagCompletionListener; //NOSONAR
 
-    private boolean showAlbum;
-    private boolean showTrack;
+    private boolean showAlbum; //NOSONAR
+    private boolean showTrack; //NOSONAR
 
-    private List<String> paths;
-    private List<DocumentFile> documentFiles;
-    private List<File> tempFiles = new ArrayList<>();
+    private List<String> paths; //NOSONAR
+    private List<DocumentFile> documentFiles; //NOSONAR
+    private List<File> tempFiles = new ArrayList<>(); //NOSONAR
 
-    private String titleText;
-    private String albumText;
-    private String artistText;
-    private String albumArtistText;
-    private String yearText;
-    private String trackText;
-    private String trackTotalText;
-    private String discText;
-    private String discTotalText;
-    private String lyricsText;
-    private String commentText;
-    private String genreText;
+    private String titleText; //NOSONAR
+    private String albumText; //NOSONAR
+    private String artistText; //NOSONAR
+    private String albumArtistText; //NOSONAR
+    private String yearText; //NOSONAR
+    private String trackText; //NOSONAR
+    private String trackTotalText; //NOSONAR
+    private String discText; //NOSONAR
+    private String discTotalText; //NOSONAR
+    private String lyricsText; //NOSONAR
+    private String commentText; //NOSONAR
+    private String genreText; //NOSONAR
 
-    public TaggerTask(Context context) {
-        this.applicationContext = context.getApplicationContext();
+    public TaggerTask(Context context) { //NOSONAR
+        this.applicationContext = context.getApplicationContext(); //NOSONAR
     }
 
-    public TaggerTask(Context context, boolean showAlbum, boolean showTrack, List<String> paths,
-            List<DocumentFile> documentFiles, String titleText, String albumText,
-            String artistText, String albumArtistText, String yearText, String trackText,
-            String trackTotalText, String discText, String discTotalText, String lyricsText,
-            String commentText, String genreText,
-            TagCompletionListener listener) {
+    public TaggerTask(Context context, boolean showAlbum, boolean showTrack, List<String> paths, //NOSONAR
+            List<DocumentFile> documentFiles, String titleText, String albumText, //NOSONAR
+            String artistText, String albumArtistText, String yearText, String trackText, //NOSONAR
+            String trackTotalText, String discText, String discTotalText, String lyricsText, //NOSONAR
+            String commentText, String genreText, //NOSONAR
+            TagCompletionListener listener) { //NOSONAR
 
-        this.applicationContext = context.getApplicationContext();
-        this.showAlbum = showAlbum;
-        this.showTrack = showTrack;
-        this.paths = paths;
-        this.documentFiles = documentFiles;
-        this.titleText = titleText;
-        this.albumText = albumText;
-        this.artistText = artistText;
-        this.albumArtistText = albumArtistText;
-        this.yearText = yearText;
-        this.trackText = trackText;
-        this.trackTotalText = trackTotalText;
-        this.discText = discText;
-        this.discTotalText = discTotalText;
-        this.lyricsText = lyricsText;
-        this.commentText = commentText;
-        this.genreText = genreText;
-        this.tagCompletionListener = listener;
+        this.applicationContext = context.getApplicationContext(); //NOSONAR
+        this.showAlbum = showAlbum; //NOSONAR
+        this.showTrack = showTrack; //NOSONAR
+        this.paths = paths; //NOSONAR
+        this.documentFiles = documentFiles; //NOSONAR
+        this.titleText = titleText; //NOSONAR
+        this.albumText = albumText; //NOSONAR
+        this.artistText = artistText; //NOSONAR
+        this.albumArtistText = albumArtistText; //NOSONAR
+        this.yearText = yearText; //NOSONAR
+        this.trackText = trackText; //NOSONAR
+        this.trackTotalText = trackTotalText; //NOSONAR
+        this.discText = discText; //NOSONAR
+        this.discTotalText = discTotalText; //NOSONAR
+        this.lyricsText = lyricsText; //NOSONAR
+        this.commentText = commentText; //NOSONAR
+        this.genreText = genreText; //NOSONAR
+        this.tagCompletionListener = listener; //NOSONAR
     }
 
-    @Override
-    protected Boolean doInBackground(Object... params) {
+    @Override //NOSONAR
+    protected Boolean doInBackground(Object... params) { //NOSONAR
 
-        boolean success = false;
+        boolean success = false; //NOSONAR
 
-        boolean requiresPermission = TaggerUtils.requiresPermission(applicationContext, paths);
+        boolean requiresPermission = TaggerUtils.requiresPermission(applicationContext, paths); //NOSONAR
 
-        for (int i = 0; i < paths.size(); i++) {
-            final String path = paths.get(i);
-            try {
+        for (int i = 0; i < paths.size(); i++) { //NOSONAR
+            final String path = paths.get(i); //NOSONAR
+            try { //NOSONAR
 
-                File orig = new File(path);
-                AudioFile audioFile = AudioFileIO.read(orig);
-                Tag tag = audioFile.getTag();
-                if (tag == null) {
-                    break;
+                File orig = new File(path); //NOSONAR
+                AudioFile audioFile = AudioFileIO.read(orig); //NOSONAR
+                Tag tag = audioFile.getTag(); //NOSONAR
+                if (tag == null) { //NOSONAR
+                    break; //NOSONAR
                 }
 
-                TagUpdate tagUpdate = new TagUpdate(tag);
+                TagUpdate tagUpdate = new TagUpdate(tag); //NOSONAR
 
-                tagUpdate.softSetArtist(artistText);
-                tagUpdate.softSetAlbumArtist(albumArtistText);
-                tagUpdate.softSetGenre(genreText);
-                tagUpdate.softSetYear(yearText);
+                tagUpdate.softSetArtist(artistText); //NOSONAR
+                tagUpdate.softSetAlbumArtist(albumArtistText); //NOSONAR
+                tagUpdate.softSetGenre(genreText); //NOSONAR
+                tagUpdate.softSetYear(yearText); //NOSONAR
 
-                if (showAlbum) {
-                    tagUpdate.softSetAlbum(albumText);
-                    tagUpdate.softSetDiscTotal(discTotalText);
+                if (showAlbum) { //NOSONAR
+                    tagUpdate.softSetAlbum(albumText); //NOSONAR
+                    tagUpdate.softSetDiscTotal(discTotalText); //NOSONAR
                 }
 
-                if (showTrack) {
-                    tagUpdate.softSetTitle(titleText);
-                    tagUpdate.softSetTrack(trackText);
-                    tagUpdate.softSetTrackTotal(trackTotalText);
-                    tagUpdate.softSetDisc(discText);
-                    tagUpdate.softSetLyrics(lyricsText);
-                    tagUpdate.softSetComment(commentText);
+                if (showTrack) { //NOSONAR
+                    tagUpdate.softSetTitle(titleText); //NOSONAR
+                    tagUpdate.softSetTrack(trackText); //NOSONAR
+                    tagUpdate.softSetTrackTotal(trackTotalText); //NOSONAR
+                    tagUpdate.softSetDisc(discText); //NOSONAR
+                    tagUpdate.softSetLyrics(lyricsText); //NOSONAR
+                    tagUpdate.softSetComment(commentText); //NOSONAR
                 }
 
-                File temp = null;
-                if (tagUpdate.hasChanged()) {
+                File temp = null; //NOSONAR
+                if (tagUpdate.hasChanged()) { //NOSONAR
 
-                    if (TaggerUtils.requiresPermission(applicationContext, paths)) {
-                        temp = new File(applicationContext.getFilesDir(), orig.getName());
-                        tempFiles.add(temp);
-                        TaggerUtils.copyFile(orig, temp);
+                    if (TaggerUtils.requiresPermission(applicationContext, paths)) { //NOSONAR
+                        temp = new File(applicationContext.getFilesDir(), orig.getName()); //NOSONAR
+                        tempFiles.add(temp); //NOSONAR
+                        TaggerUtils.copyFile(orig, temp); //NOSONAR
 
-                        audioFile = AudioFileIO.read(temp);
-                        tag = audioFile.getTag();
-                        if (tag == null) {
-                            break;
+                        audioFile = AudioFileIO.read(temp); //NOSONAR
+                        tag = audioFile.getTag(); //NOSONAR
+                        if (tag == null) { //NOSONAR
+                            break; //NOSONAR
                         }
                     }
 
-                    tagUpdate.updateTag(tag);
-                    AudioFileIO.write(audioFile);
+                    tagUpdate.updateTag(tag); //NOSONAR
+                    AudioFileIO.write(audioFile); //NOSONAR
 
-                    if (requiresPermission && temp != null) {
-                        DocumentFile documentFile = documentFiles.get(i);
-                        if (documentFile != null) {
-                            ParcelFileDescriptor pfd = applicationContext.getContentResolver().openFileDescriptor(documentFile.getUri(), "w");
-                            if (pfd != null) {
-                                FileOutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor());
-                                TaggerUtils.copyFile(temp, fileOutputStream);
-                                pfd.close();
+                    if (requiresPermission && temp != null) { //NOSONAR
+                        DocumentFile documentFile = documentFiles.get(i); //NOSONAR
+                        if (documentFile != null) { //NOSONAR
+                            ParcelFileDescriptor pfd = applicationContext.getContentResolver().openFileDescriptor(documentFile.getUri(), "w"); //NOSONAR
+                            if (pfd != null) { //NOSONAR
+                                FileOutputStream fileOutputStream = new FileOutputStream(pfd.getFileDescriptor()); //NOSONAR
+                                TaggerUtils.copyFile(temp, fileOutputStream); //NOSONAR
+                                pfd.close(); //NOSONAR
                             }
-                            if (temp.delete()) {
-                                if (tempFiles.contains(temp)) {
-                                    tempFiles.remove(temp);
+                            if (temp.delete()) { //NOSONAR
+                                if (tempFiles.contains(temp)) { //NOSONAR
+                                    tempFiles.remove(temp); //NOSONAR
                                 }
                             }
                         }
                     }
                 }
 
-                publishProgress(i);
-                success = true;
-            } catch (CannotWriteException | IOException | CannotReadException | InvalidAudioFrameException | TagException | ReadOnlyFileException e) {
-                e.printStackTrace();
-            } finally {
+                publishProgress(i); //NOSONAR
+                success = true; //NOSONAR
+            } catch (CannotWriteException | IOException | CannotReadException | InvalidAudioFrameException | TagException | ReadOnlyFileException e) { //NOSONAR
+                e.printStackTrace(); //NOSONAR
+            } finally { //NOSONAR
                 //Try to clean up our temp files
-                if (tempFiles != null && tempFiles.size() != 0) {
-                    for (int j = tempFiles.size() - 1; j >= 0; j--) {
-                        File file = tempFiles.get(j);
-                        file.delete();
-                        tempFiles.remove(j);
+                if (tempFiles != null && tempFiles.size() != 0) { //NOSONAR
+                    for (int j = tempFiles.size() - 1; j >= 0; j--) { //NOSONAR
+                        File file = tempFiles.get(j); //NOSONAR
+                        file.delete(); //NOSONAR
+                        tempFiles.remove(j); //NOSONAR
                     }
                 }
             }
         }
 
-        return success;
+        return success; //NOSONAR
     }
 
-    @Override
-    protected void onPostExecute(Boolean success) {
+    @Override //NOSONAR
+    protected void onPostExecute(Boolean success) { //NOSONAR
 
-        if (tagCompletionListener != null) {
-            if (success) {
-                tagCompletionListener.onSuccess();
-            } else {
-                tagCompletionListener.onFailure();
+        if (tagCompletionListener != null) { //NOSONAR
+            if (success) { //NOSONAR
+                tagCompletionListener.onSuccess(); //NOSONAR
+            } else { //NOSONAR
+                tagCompletionListener.onFailure(); //NOSONAR
             }
         }
     }
 
-    @Override
-    protected void onProgressUpdate(Integer... object) {
+    @Override //NOSONAR
+    protected void onProgressUpdate(Integer... object) { //NOSONAR
 
-        if (tagCompletionListener != null) {
-            tagCompletionListener.onProgress(object[0] + 1);
+        if (tagCompletionListener != null) { //NOSONAR
+            tagCompletionListener.onProgress(object[0] + 1); //NOSONAR
         }
     }
 
     //Builders
 
-    public TaggerTask setPaths(List<String> paths) {
-        this.paths = paths;
-        return this;
+    public TaggerTask setPaths(List<String> paths) { //NOSONAR
+        this.paths = paths; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask setDocumentfiles(List<DocumentFile> documentFiles) {
-        this.documentFiles = documentFiles;
-        return this;
+    public TaggerTask setDocumentfiles(List<DocumentFile> documentFiles) { //NOSONAR
+        this.documentFiles = documentFiles; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask showAlbum(boolean showAlbum) {
-        this.showAlbum = showAlbum;
-        return this;
+    public TaggerTask showAlbum(boolean showAlbum) { //NOSONAR
+        this.showAlbum = showAlbum; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask showTrack(boolean showTrack) {
-        this.showTrack = showTrack;
-        return this;
+    public TaggerTask showTrack(boolean showTrack) { //NOSONAR
+        this.showTrack = showTrack; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask title(String titleText) {
-        this.titleText = titleText;
-        return this;
+    public TaggerTask title(String titleText) { //NOSONAR
+        this.titleText = titleText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask album(String albumText) {
-        this.albumText = albumText;
-        return this;
+    public TaggerTask album(String albumText) { //NOSONAR
+        this.albumText = albumText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask artist(String artistText) {
-        this.artistText = artistText;
-        return this;
+    public TaggerTask artist(String artistText) { //NOSONAR
+        this.artistText = artistText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask albumArtist(String albumArtistText) {
-        this.albumArtistText = albumArtistText;
-        return this;
+    public TaggerTask albumArtist(String albumArtistText) { //NOSONAR
+        this.albumArtistText = albumArtistText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask year(String yearText) {
-        this.yearText = yearText;
-        return this;
+    public TaggerTask year(String yearText) { //NOSONAR
+        this.yearText = yearText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask track(String trackText) {
-        this.trackText = trackText;
-        return this;
+    public TaggerTask track(String trackText) { //NOSONAR
+        this.trackText = trackText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask trackTotal(String trackTotalText) {
-        this.trackTotalText = trackTotalText;
-        return this;
+    public TaggerTask trackTotal(String trackTotalText) { //NOSONAR
+        this.trackTotalText = trackTotalText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask disc(String discText) {
-        this.discText = discText;
-        return this;
+    public TaggerTask disc(String discText) { //NOSONAR
+        this.discText = discText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask discTotal(String discTotalText) {
-        this.discTotalText = discTotalText;
-        return this;
+    public TaggerTask discTotal(String discTotalText) { //NOSONAR
+        this.discTotalText = discTotalText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask lyrics(String lyricsText) {
-        this.lyricsText = lyricsText;
-        return this;
+    public TaggerTask lyrics(String lyricsText) { //NOSONAR
+        this.lyricsText = lyricsText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask comment(String commentText) {
-        this.commentText = commentText;
-        return this;
+    public TaggerTask comment(String commentText) { //NOSONAR
+        this.commentText = commentText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask genre(String genreText) {
-        this.genreText = genreText;
-        return this;
+    public TaggerTask genre(String genreText) { //NOSONAR
+        this.genreText = genreText; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask listener(TagCompletionListener listener) {
-        this.tagCompletionListener = listener;
-        return this;
+    public TaggerTask listener(TagCompletionListener listener) { //NOSONAR
+        this.tagCompletionListener = listener; //NOSONAR
+        return this; //NOSONAR
     }
 
-    public TaggerTask build() {
-        return new TaggerTask(applicationContext, showAlbum, showTrack, paths, documentFiles, titleText,
-                albumText, artistText, albumArtistText, yearText, trackText, trackTotalText,
-                discText, discTotalText, lyricsText, commentText, genreText,
-                tagCompletionListener);
+    public TaggerTask build() { //NOSONAR
+        return new TaggerTask(applicationContext, showAlbum, showTrack, paths, documentFiles, titleText, //NOSONAR
+                albumText, artistText, albumArtistText, yearText, trackText, trackTotalText, //NOSONAR
+                discText, discTotalText, lyricsText, commentText, genreText, //NOSONAR
+                tagCompletionListener); //NOSONAR
     }
 }

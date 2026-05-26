@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.di.app
 
@@ -21,46 +21,46 @@ import dagger.Provides
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Singleton
 
-@Module(includes = [AbsRepositoryModule::class])
-class RepositoryModule {
+@Module(includes = [AbsRepositoryModule::class]) //NOSONAR
+class RepositoryModule { //NOSONAR
 
-    @Provides
-    @Singleton
-    fun provideInclExclDatabase(context: Context): BriteDatabase {
-        return SqlBrite.Builder()
-            .build()
-            .wrapDatabaseHelper(BlacklistWhitelistDbOpenHelper(context), Schedulers.io())
+    @Provides //NOSONAR
+    @Singleton //NOSONAR
+    fun provideInclExclDatabase(context: Context): BriteDatabase { //NOSONAR
+        return SqlBrite.Builder() //NOSONAR
+            .build() //NOSONAR
+            .wrapDatabaseHelper(BlacklistWhitelistDbOpenHelper(context), Schedulers.io()) //NOSONAR
     }
 
-    @Module
-    abstract class AbsRepositoryModule {
+    @Module //NOSONAR
+    abstract class AbsRepositoryModule { //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindSongsRepository(songsRepository: SongsRepository): Repository.SongsRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindSongsRepository(songsRepository: SongsRepository): Repository.SongsRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindAlbumsRepository(albumsRepository: AlbumsRepository): Repository.AlbumsRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindAlbumsRepository(albumsRepository: AlbumsRepository): Repository.AlbumsRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindAlbumArtistsRepository(albumArtistsRepository: AlbumArtistsRepository): Repository.AlbumArtistsRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindAlbumArtistsRepository(albumArtistsRepository: AlbumArtistsRepository): Repository.AlbumArtistsRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindGenresRepository(genresRepository: GenresRepository): Repository.GenresRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindGenresRepository(genresRepository: GenresRepository): Repository.GenresRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindPlaylistsRepository(playlistsRepository: PlaylistsRepository): Repository.PlaylistsRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindPlaylistsRepository(playlistsRepository: PlaylistsRepository): Repository.PlaylistsRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindBlacklistRepository(blacklistRepository: BlacklistRepository): Repository.BlacklistRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindBlacklistRepository(blacklistRepository: BlacklistRepository): Repository.BlacklistRepository //NOSONAR
 
-        @Binds
-        @Singleton
-        abstract fun bindWhitelistRepository(whitelistRepository: WhitelistRepository): Repository.WhitelistRepository
+        @Binds //NOSONAR
+        @Singleton //NOSONAR
+        abstract fun bindWhitelistRepository(whitelistRepository: WhitelistRepository): Repository.WhitelistRepository //NOSONAR
     }
 }

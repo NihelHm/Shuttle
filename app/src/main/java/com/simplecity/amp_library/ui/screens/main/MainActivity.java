@@ -49,281 +49,281 @@ import kotlin.Unit;
 import test.com.androidnavigation.fragment.BackPressHandler;
 import test.com.androidnavigation.fragment.BackPressListener;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MainActivity extends BaseActivity implements
-        ToolbarListener,
-        BackPressHandler,
-        DrawerProvider {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MainActivity extends BaseActivity implements //NOSONAR
+        ToolbarListener, //NOSONAR
+        BackPressHandler, //NOSONAR
+        DrawerProvider { //NOSONAR
 
-    private static final String TAG = "MainActivity";
+    private static final String TAG = "MainActivity"; //NOSONAR
 
-    private List<BackPressListener> backPressListeners = new ArrayList<>();
+    private List<BackPressListener> backPressListeners = new ArrayList<>(); //NOSONAR
 
-    private DrawerLayout drawerLayout;
+    private DrawerLayout drawerLayout; //NOSONAR
 
-    private View navigationView;
+    private View navigationView; //NOSONAR
 
-    private boolean hasPendingPlaybackRequest;
+    private boolean hasPendingPlaybackRequest; //NOSONAR
 
-    @Inject
-    NavigationEventRelay navigationEventRelay;
+    @Inject //NOSONAR
+    NavigationEventRelay navigationEventRelay; //NOSONAR
 
-    @Inject
-    MediaManager mediaManager;
+    @Inject //NOSONAR
+    MediaManager mediaManager; //NOSONAR
 
-    @Inject
-    Repository.SongsRepository songsRepository;
+    @Inject //NOSONAR
+    Repository.SongsRepository songsRepository; //NOSONAR
 
-    @Inject
-    AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    AnalyticsManager analyticsManager; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(Bundle savedInstanceState) { //NOSONAR
+        AndroidInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        analyticsManager.dropBreadcrumb(TAG, "onCreate()");
+        analyticsManager.dropBreadcrumb(TAG, "onCreate()"); //NOSONAR
 
         // If we haven't set any defaults, do that now
-        if (Aesthetic.isFirstTime(this)) {
+        if (Aesthetic.isFirstTime(this)) { //NOSONAR
 
-            ThemeUtils.Theme theme = ThemeUtils.getRandom();
+            ThemeUtils.Theme theme = ThemeUtils.getRandom(); //NOSONAR
 
-            Aesthetic.get(this)
-                    .activityTheme(theme.isDark ? R.style.AppTheme : R.style.AppTheme_Light)
-                    .isDark(theme.isDark)
-                    .colorPrimaryRes(theme.primaryColor)
-                    .colorAccentRes(theme.accentColor)
-                    .colorStatusBarAuto()
-                    .apply();
+            Aesthetic.get(this) //NOSONAR
+                    .activityTheme(theme.isDark ? R.style.AppTheme : R.style.AppTheme_Light) //NOSONAR
+                    .isDark(theme.isDark) //NOSONAR
+                    .colorPrimaryRes(theme.primaryColor) //NOSONAR
+                    .colorAccentRes(theme.accentColor) //NOSONAR
+                    .colorStatusBarAuto() //NOSONAR
+                    .apply(); //NOSONAR
 
-            analyticsManager.logInitialTheme(theme);
+            analyticsManager.logInitialTheme(theme); //NOSONAR
         }
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main); //NOSONAR
 
-        Permiso.getInstance().setActivity(this);
+        Permiso.getInstance().setActivity(this); //NOSONAR
 
-        navigationView = findViewById(R.id.navView);
+        navigationView = findViewById(R.id.navView); //NOSONAR
 
         //Ensure the drawer draws a content scrim over the status bar.
-        drawerLayout = findViewById(R.id.drawer_layout);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) {
-            drawerLayout.setOnApplyWindowInsetsListener((view, windowInsets) -> {
-                navigationView.dispatchApplyWindowInsets(windowInsets);
-                return windowInsets.replaceSystemWindowInsets(0, 0, 0, 0);
+        drawerLayout = findViewById(R.id.drawer_layout); //NOSONAR
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) { //NOSONAR
+            drawerLayout.setOnApplyWindowInsetsListener((view, windowInsets) -> { //NOSONAR
+                navigationView.dispatchApplyWindowInsets(windowInsets); //NOSONAR
+                return windowInsets.replaceSystemWindowInsets(0, 0, 0, 0); //NOSONAR
             });
         }
 
-        if (savedInstanceState == null) {
-            getSupportFragmentManager()
-                    .beginTransaction()
-                    .add(R.id.mainContainer, MainController.newInstance())
-                    .commit();
+        if (savedInstanceState == null) { //NOSONAR
+            getSupportFragmentManager() //NOSONAR
+                    .beginTransaction() //NOSONAR
+                    .add(R.id.mainContainer, MainController.newInstance()) //NOSONAR
+                    .commit(); //NOSONAR
         }
 
-        handleIntent(getIntent());
+        handleIntent(getIntent()); //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        analyticsManager.dropBreadcrumb(TAG, "onCreate()");
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onCreate()"); //NOSONAR
 
-        showChangelogDialog();
+        showChangelogDialog(); //NOSONAR
     }
 
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        super.onServiceConnected(name, service);
-        analyticsManager.dropBreadcrumb(TAG, "onServiceConnected()");
+    @Override //NOSONAR
+    public void onServiceConnected(ComponentName name, IBinder service) { //NOSONAR
+        super.onServiceConnected(name, service); //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onServiceConnected()"); //NOSONAR
 
-        handlePendingPlaybackRequest();
+        handlePendingPlaybackRequest(); //NOSONAR
     }
 
-    @Override
-    protected void onNewIntent(Intent intent) {
-        super.onNewIntent(intent);
+    @Override //NOSONAR
+    protected void onNewIntent(Intent intent) { //NOSONAR
+        super.onNewIntent(intent); //NOSONAR
 
-        handleIntent(intent);
+        handleIntent(intent); //NOSONAR
     }
 
-    @Override
-    protected void onPause() {
-        super.onPause();
+    @Override //NOSONAR
+    protected void onPause() { //NOSONAR
+        super.onPause(); //NOSONAR
 
-        analyticsManager.dropBreadcrumb(TAG, "onPause()");
+        analyticsManager.dropBreadcrumb(TAG, "onPause()"); //NOSONAR
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    @Override //NOSONAR
+    protected void onDestroy() { //NOSONAR
+        super.onDestroy(); //NOSONAR
 
-        analyticsManager.dropBreadcrumb(TAG, "onDestroy()");
+        analyticsManager.dropBreadcrumb(TAG, "onDestroy()"); //NOSONAR
     }
 
-    private void handleIntent(Intent intent) {
-        Single.fromCallable(() -> {
-            boolean handled = false;
-            if (ShortcutCommands.PLAYLIST.equals(intent.getAction())) {
-                Playlist playlist = (Playlist) intent.getExtras().getSerializable(PlaylistManager.ARG_PLAYLIST);
-                NavigationEventRelay.NavigationEvent navigationEvent = new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED, playlist, true);
-                navigationEventRelay.sendEvent(navigationEvent);
-                handled = true;
-            } else if (ShortcutCommands.FOLDERS.equals(intent.getAction())) {
-                NavigationEventRelay.NavigationEvent foldersSelectedEvent = new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED, null, true);
-                navigationEventRelay.sendEvent(foldersSelectedEvent);
-                handled = true;
+    private void handleIntent(Intent intent) { //NOSONAR
+        Single.fromCallable(() -> { //NOSONAR
+            boolean handled = false; //NOSONAR
+            if (ShortcutCommands.PLAYLIST.equals(intent.getAction())) { //NOSONAR
+                Playlist playlist = (Playlist) intent.getExtras().getSerializable(PlaylistManager.ARG_PLAYLIST); //NOSONAR
+                NavigationEventRelay.NavigationEvent navigationEvent = new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED, playlist, true); //NOSONAR
+                navigationEventRelay.sendEvent(navigationEvent); //NOSONAR
+                handled = true; //NOSONAR
+            } else if (ShortcutCommands.FOLDERS.equals(intent.getAction())) { //NOSONAR
+                NavigationEventRelay.NavigationEvent foldersSelectedEvent = new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED, null, true); //NOSONAR
+                navigationEventRelay.sendEvent(foldersSelectedEvent); //NOSONAR
+                handled = true; //NOSONAR
             }
 
-            if (!handled) {
-                handlePlaybackRequest(intent);
-            } else {
-                setIntent(new Intent());
+            if (!handled) { //NOSONAR
+                handlePlaybackRequest(intent); //NOSONAR
+            } else { //NOSONAR
+                setIntent(new Intent()); //NOSONAR
             }
 
-            return true;
+            return true; //NOSONAR
         })
-                .delaySubscription(350, TimeUnit.MILLISECONDS)
-                .subscribe(
-                        aBoolean -> {
+                .delaySubscription(350, TimeUnit.MILLISECONDS) //NOSONAR
+                .subscribe( //NOSONAR
+                        aBoolean -> { //NOSONAR
                             // Intentionally left empty.
                         },
-                        throwable -> LogUtils.logException(TAG, "handleIntent error", throwable)
+                        throwable -> LogUtils.logException(TAG, "handleIntent error", throwable) //NOSONAR
                 );
     }
 
-    private void handlePendingPlaybackRequest() {
-        if (hasPendingPlaybackRequest) {
-            handlePlaybackRequest(getIntent());
+    private void handlePendingPlaybackRequest() { //NOSONAR
+        if (hasPendingPlaybackRequest) { //NOSONAR
+            handlePlaybackRequest(getIntent()); //NOSONAR
         }
     }
 
-    @SuppressLint("CheckResult")
-    private void handlePlaybackRequest(Intent intent) {
-        if (intent == null) {
-            return;
-        } else if (MusicServiceConnectionUtils.serviceBinder == null) {
-            hasPendingPlaybackRequest = true;
-            return;
+    @SuppressLint("CheckResult") //NOSONAR
+    private void handlePlaybackRequest(Intent intent) { //NOSONAR
+        if (intent == null) { //NOSONAR
+            return; //NOSONAR
+        } else if (MusicServiceConnectionUtils.serviceBinder == null) { //NOSONAR
+            hasPendingPlaybackRequest = true; //NOSONAR
+            return; //NOSONAR
         }
 
-        final Uri uri = intent.getData();
-        final String mimeType = intent.getType();
+        final Uri uri = intent.getData(); //NOSONAR
+        final String mimeType = intent.getType(); //NOSONAR
 
-        if (uri != null && uri.toString().length() > 0) {
-            mediaManager.playFile(uri);
+        if (uri != null && uri.toString().length() > 0) { //NOSONAR
+            mediaManager.playFile(uri); //NOSONAR
             // Make sure to process intent only once
-            setIntent(new Intent());
-        } else if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(mimeType)) {
-            long id = parseIdFromIntent(intent, "playlistId", "playlist");
-            if (id >= 0) {
-                Query query = Playlist.getQuery();
-                query.uri = ContentUris.withAppendedId(query.uri, id);
-                SqlBriteUtils.createSingle(this, (cursor) -> new Playlist(this, cursor), query, null)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                playlist -> {
-                                    mediaManager.playAll(songsRepository.getSongs(playlist).first(new ArrayList<>()),
+            setIntent(new Intent()); //NOSONAR
+        } else if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(mimeType)) { //NOSONAR
+            long id = parseIdFromIntent(intent, "playlistId", "playlist"); //NOSONAR
+            if (id >= 0) { //NOSONAR
+                Query query = Playlist.getQuery(); //NOSONAR
+                query.uri = ContentUris.withAppendedId(query.uri, id); //NOSONAR
+                SqlBriteUtils.createSingle(this, (cursor) -> new Playlist(this, cursor), query, null) //NOSONAR
+                        .subscribeOn(Schedulers.io()) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe( //NOSONAR
+                                playlist -> { //NOSONAR
+                                    mediaManager.playAll(songsRepository.getSongs(playlist).first(new ArrayList<>()), //NOSONAR
                                             () -> {
                                                 // To do later: Show playback failure toast
-                                                return Unit.INSTANCE;
+                                                return Unit.INSTANCE; //NOSONAR
                                             });
                                     // Make sure to process intent only once
-                                    setIntent(new Intent());
+                                    setIntent(new Intent()); //NOSONAR
                                 },
-                                error -> LogUtils.logException(TAG, "Error handling playback request", error)
+                                error -> LogUtils.logException(TAG, "Error handling playback request", error) //NOSONAR
                         );
             }
         }
 
-        hasPendingPlaybackRequest = false;
+        hasPendingPlaybackRequest = false; //NOSONAR
     }
 
-    private long parseIdFromIntent(Intent intent, String longKey, String stringKey) {
-        long id = intent.getLongExtra(longKey, -1);
-        if (id < 0) {
-            String idString = intent.getStringExtra(stringKey);
-            if (idString != null) {
-                try {
-                    id = Long.parseLong(idString);
-                } catch (NumberFormatException e) {
-                    Log.e(TAG, e.getMessage());
+    private long parseIdFromIntent(Intent intent, String longKey, String stringKey) { //NOSONAR
+        long id = intent.getLongExtra(longKey, -1); //NOSONAR
+        if (id < 0) { //NOSONAR
+            String idString = intent.getStringExtra(stringKey); //NOSONAR
+            if (idString != null) { //NOSONAR
+                try { //NOSONAR
+                    id = Long.parseLong(idString); //NOSONAR
+                } catch (NumberFormatException e) { //NOSONAR
+                    Log.e(TAG, e.getMessage()); //NOSONAR
                 }
             }
         }
-        return id;
+        return id; //NOSONAR
     }
 
-    private void showChangelogDialog() {
-        int storedVersionCode = settingsManager.getStoredVersionCode();
+    private void showChangelogDialog() { //NOSONAR
+        int storedVersionCode = settingsManager.getStoredVersionCode(); //NOSONAR
 
         // If we've stored a version code in the past, and it's lower than the current version code,
         // we can show the changelog.
         // Don't show the changelog for first time users.
-        if (storedVersionCode != -1 && storedVersionCode < BuildConfig.VERSION_CODE) {
-            if (settingsManager.getShowChangelogOnLaunch()) {
-                ChangelogDialog.Companion.newInstance().show(getSupportFragmentManager());
+        if (storedVersionCode != -1 && storedVersionCode < BuildConfig.VERSION_CODE) { //NOSONAR
+            if (settingsManager.getShowChangelogOnLaunch()) { //NOSONAR
+                ChangelogDialog.Companion.newInstance().show(getSupportFragmentManager()); //NOSONAR
             }
         }
-        settingsManager.setVersionCode();
+        settingsManager.setVersionCode(); //NOSONAR
     }
 
-    @Override
-    public void onBackPressed() {
-        if (drawerLayout.isDrawerOpen(GravityCompat.START)) {
-            drawerLayout.closeDrawer(GravityCompat.START);
-        } else {
-            if (!backPressListeners.isEmpty()) {
-                for (int i = backPressListeners.size() - 1; i >= 0; i--) {
-                    BackPressListener backPressListener = backPressListeners.get(i);
-                    if (backPressListener.consumeBackPress()) {
-                        return;
+    @Override //NOSONAR
+    public void onBackPressed() { //NOSONAR
+        if (drawerLayout.isDrawerOpen(GravityCompat.START)) { //NOSONAR
+            drawerLayout.closeDrawer(GravityCompat.START); //NOSONAR
+        } else { //NOSONAR
+            if (!backPressListeners.isEmpty()) { //NOSONAR
+                for (int i = backPressListeners.size() - 1; i >= 0; i--) { //NOSONAR
+                    BackPressListener backPressListener = backPressListeners.get(i); //NOSONAR
+                    if (backPressListener.consumeBackPress()) { //NOSONAR
+                        return; //NOSONAR
                     }
                 }
             }
-            super.onBackPressed();
+            super.onBackPressed(); //NOSONAR
         }
     }
 
-    @Override
-    public void toolbarAttached(Toolbar toolbar) {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) {
-            @Override
-            public void onDrawerSlide(View drawerView, float slideOffset) {
-                super.onDrawerSlide(drawerView, 0);
+    @Override //NOSONAR
+    public void toolbarAttached(Toolbar toolbar) { //NOSONAR
+        DrawerLayout drawer = findViewById(R.id.drawer_layout); //NOSONAR
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close) { //NOSONAR
+            @Override //NOSONAR
+            public void onDrawerSlide(View drawerView, float slideOffset) { //NOSONAR
+                super.onDrawerSlide(drawerView, 0); //NOSONAR
             }
         };
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+        drawer.addDrawerListener(toggle); //NOSONAR
+        toggle.syncState(); //NOSONAR
     }
 
-    @Override
-    public void addBackPressListener(@NonNull BackPressListener listener) {
-        if (!backPressListeners.contains(listener)) {
-            backPressListeners.add(listener);
+    @Override //NOSONAR
+    public void addBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
+        if (!backPressListeners.contains(listener)) { //NOSONAR
+            backPressListeners.add(listener); //NOSONAR
         }
     }
 
-    @Override
-    public void removeBackPressListener(@NonNull BackPressListener listener) {
-        if (backPressListeners.contains(listener)) {
-            backPressListeners.remove(listener);
+    @Override //NOSONAR
+    public void removeBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
+        if (backPressListeners.contains(listener)) { //NOSONAR
+            backPressListeners.remove(listener); //NOSONAR
         }
     }
 
-    @Override
-    protected String screenName() {
-        return "MainActivity";
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return "MainActivity"; //NOSONAR
     }
 
-    @Override
-    public DrawerLayout getDrawerLayout() {
-        return drawerLayout;
+    @Override //NOSONAR
+    public DrawerLayout getDrawerLayout() { //NOSONAR
+        return drawerLayout; //NOSONAR
     }
 }

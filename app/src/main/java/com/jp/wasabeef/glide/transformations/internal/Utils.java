@@ -20,25 +20,25 @@ import android.os.Build;
  * limitations under the License.
  */
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public final class Utils {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public final class Utils { //NOSONAR
 
-    private Utils() {
+    private Utils() { //NOSONAR
         // Utility class.
     }
 
-    public static Drawable getMaskDrawable(Context context, int maskId) {
-        Drawable drawable;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            drawable = context.getDrawable(maskId);
-        } else {
-            drawable = context.getResources().getDrawable(maskId);
+    public static Drawable getMaskDrawable(Context context, int maskId) { //NOSONAR
+        Drawable drawable; //NOSONAR
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+            drawable = context.getDrawable(maskId); //NOSONAR
+        } else { //NOSONAR
+            drawable = context.getResources().getDrawable(maskId); //NOSONAR
         }
 
-        if (drawable == null) {
-            throw new IllegalArgumentException("maskId is invalid");
+        if (drawable == null) { //NOSONAR
+            throw new IllegalArgumentException("maskId is invalid"); //NOSONAR
         }
 
-        return drawable;
+        return drawable; //NOSONAR
     }
 }

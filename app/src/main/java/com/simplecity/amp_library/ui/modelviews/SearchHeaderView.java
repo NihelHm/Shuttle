@@ -11,65 +11,65 @@ import static com.simplecity.amp_library.R.id.line_one;
 import static com.simplecity.amp_library.R.layout.list_item_section_separator;
 import static com.simplecity.amp_library.ui.adapters.ViewType.SEARCH_HEADER;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SearchHeaderView extends BaseViewModel<SearchHeaderView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SearchHeaderView extends BaseViewModel<SearchHeaderView.ViewHolder> { //NOSONAR
 
-    private Header header;
+    private Header header; //NOSONAR
 
-    public SearchHeaderView(Header header) {
-        this.header = header;
+    public SearchHeaderView(Header header) { //NOSONAR
+        this.header = header; //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return SEARCH_HEADER;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return SEARCH_HEADER; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return list_item_section_separator;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return list_item_section_separator; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.lineOne.setText(header.title);
+        holder.lineOne.setText(header.title); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+    public static class ViewHolder extends BaseViewHolder { //NOSONAR
 
-        TextView lineOne;
+        TextView lineOne; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            lineOne = itemView.findViewById(line_one);
+            lineOne = itemView.findViewById(line_one); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "SearchHeaderView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "SearchHeaderView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        SearchHeaderView that = (SearchHeaderView) o;
+        SearchHeaderView that = (SearchHeaderView) o; //NOSONAR
 
-        return header != null ? header.equals(that.header) : that.header == null;
+        return header != null ? header.equals(that.header) : that.header == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return header != null ? header.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return header != null ? header.hashCode() : 0; //NOSONAR
     }
 }

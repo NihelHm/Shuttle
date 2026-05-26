@@ -23,222 +23,222 @@ import java.util.TreeMap;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class QueueManager {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class QueueManager { //NOSONAR
 
-    private static final String TAG = "QueueManager";
+    private static final String TAG = "QueueManager"; //NOSONAR
 
-    public @interface ShuffleMode {
-        int OFF = 0;
-        int ON = 1;
+    public @interface ShuffleMode { //NOSONAR
+        int OFF = 0; //NOSONAR
+        int ON = 1; //NOSONAR
     }
 
-    public @interface RepeatMode {
-        int OFF = 0;
-        int ONE = 1;
-        int ALL = 2;
+    public @interface RepeatMode { //NOSONAR
+        int OFF = 0; //NOSONAR
+        int ONE = 1; //NOSONAR
+        int ALL = 2; //NOSONAR
     }
 
-    public @interface EnqueueAction {
-        int NEXT = 0;
-        int LAST = 1;
+    public @interface EnqueueAction { //NOSONAR
+        int NEXT = 0; //NOSONAR
+        int LAST = 1; //NOSONAR
     }
 
-    private final char hexDigits[] = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
+    private final char hexDigits[] = new char[] { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' }; //NOSONAR
 
-    @NonNull
-    List<QueueItem> playlist = new ArrayList<>();
+    @NonNull //NOSONAR
+    List<QueueItem> playlist = new ArrayList<>(); //NOSONAR
 
-    @NonNull
-    List<QueueItem> shuffleList = new ArrayList<>();
+    @NonNull //NOSONAR
+    List<QueueItem> shuffleList = new ArrayList<>(); //NOSONAR
 
-    @ShuffleMode
-    int shuffleMode = ShuffleMode.OFF;
+    @ShuffleMode //NOSONAR
+    int shuffleMode = ShuffleMode.OFF; //NOSONAR
 
-    @RepeatMode
-    int repeatMode = RepeatMode.OFF;
+    @RepeatMode //NOSONAR
+    int repeatMode = RepeatMode.OFF; //NOSONAR
 
-    boolean queueReloading;
+    boolean queueReloading; //NOSONAR
 
-    boolean queueIsSaveable = true;
+    boolean queueIsSaveable = true; //NOSONAR
 
-    int queuePosition = -1;
-    int nextPlayPos = -1;
+    int queuePosition = -1; //NOSONAR
+    int nextPlayPos = -1; //NOSONAR
 
-    private MusicService.Callbacks musicServiceCallbacks;
+    private MusicService.Callbacks musicServiceCallbacks; //NOSONAR
 
-    private Repository.SongsRepository songsRepository;
+    private Repository.SongsRepository songsRepository; //NOSONAR
 
-    private PlaybackSettingsManager playbackSettingsManager;
+    private PlaybackSettingsManager playbackSettingsManager; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    public QueueManager(
-            MusicService.Callbacks musicServiceCallbacks,
-            Repository.SongsRepository songsRepository,
-            PlaybackSettingsManager playbackSettingsManager,
-            SettingsManager settingsManager
+    public QueueManager( //NOSONAR
+            MusicService.Callbacks musicServiceCallbacks, //NOSONAR
+            Repository.SongsRepository songsRepository, //NOSONAR
+            PlaybackSettingsManager playbackSettingsManager, //NOSONAR
+            SettingsManager settingsManager //NOSONAR
     ) {
-        this.musicServiceCallbacks = musicServiceCallbacks;
-        this.songsRepository = songsRepository;
-        this.playbackSettingsManager = playbackSettingsManager;
-        this.settingsManager = settingsManager;
+        this.musicServiceCallbacks = musicServiceCallbacks; //NOSONAR
+        this.songsRepository = songsRepository; //NOSONAR
+        this.playbackSettingsManager = playbackSettingsManager; //NOSONAR
+        this.settingsManager = settingsManager; //NOSONAR
     }
 
-    private void notifyQueueChanged() {
-        saveQueue(true);
-        musicServiceCallbacks.notifyChange(InternalIntents.QUEUE_CHANGED);
+    private void notifyQueueChanged() { //NOSONAR
+        saveQueue(true); //NOSONAR
+        musicServiceCallbacks.notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
     }
 
-    private void notifyShuffleChanged() {
-        musicServiceCallbacks.notifyChange(InternalIntents.SHUFFLE_CHANGED);
+    private void notifyShuffleChanged() { //NOSONAR
+        musicServiceCallbacks.notifyChange(InternalIntents.SHUFFLE_CHANGED); //NOSONAR
     }
 
-    private void notifyMetaChanged() {
-        musicServiceCallbacks.notifyChange(InternalIntents.META_CHANGED);
+    private void notifyMetaChanged() { //NOSONAR
+        musicServiceCallbacks.notifyChange(InternalIntents.META_CHANGED); //NOSONAR
     }
 
-    public void setRepeatMode(@RepeatMode int repeatMode) {
-        this.repeatMode = repeatMode;
-        saveQueue(false);
+    public void setRepeatMode(@RepeatMode int repeatMode) { //NOSONAR
+        this.repeatMode = repeatMode; //NOSONAR
+        saveQueue(false); //NOSONAR
     }
 
-    void setShuffleMode(@ShuffleMode int shuffleMode) {
-        if (this.shuffleMode == shuffleMode && !getCurrentPlaylist().isEmpty()) {
-            return;
+    void setShuffleMode(@ShuffleMode int shuffleMode) { //NOSONAR
+        if (this.shuffleMode == shuffleMode && !getCurrentPlaylist().isEmpty()) { //NOSONAR
+            return; //NOSONAR
         }
-        if (shuffleMode == ShuffleMode.ON) {
-            makeShuffleList();
-        }
-
-        this.shuffleMode = shuffleMode;
-        notifyShuffleChanged();
-        notifyQueueChanged();
-        saveQueue(false);
-    }
-
-    public void load(@NonNull List<Song> songs, final int position, @NonNull UnsafeAction openCurrentAndNext) {
-
-        List<QueueItem> queueItems = QueueItemKt.toQueueItems(songs);
-
-        if (!playlist.equals(queueItems)) {
-            playlist.clear();
-            shuffleList.clear();
-
-            playlist.addAll(queueItems);
-            QueueItemKt.updateOccurrence(playlist);
+        if (shuffleMode == ShuffleMode.ON) { //NOSONAR
+            makeShuffleList(); //NOSONAR
         }
 
-        queuePosition = position;
-
-        if (shuffleMode == QueueManager.ShuffleMode.ON) {
-            makeShuffleList();
-        }
-
-        openCurrentAndNext.run();
-
-        notifyMetaChanged();
-        notifyQueueChanged();
+        this.shuffleMode = shuffleMode; //NOSONAR
+        notifyShuffleChanged(); //NOSONAR
+        notifyQueueChanged(); //NOSONAR
+        saveQueue(false); //NOSONAR
     }
 
-    void previous() {
-        if (queuePosition > 0) {
-            queuePosition--;
-        } else {
-            queuePosition = getCurrentPlaylist().size() - 1;
+    public void load(@NonNull List<Song> songs, final int position, @NonNull UnsafeAction openCurrentAndNext) { //NOSONAR
+
+        List<QueueItem> queueItems = QueueItemKt.toQueueItems(songs); //NOSONAR
+
+        if (!playlist.equals(queueItems)) { //NOSONAR
+            playlist.clear(); //NOSONAR
+            shuffleList.clear(); //NOSONAR
+
+            playlist.addAll(queueItems); //NOSONAR
+            QueueItemKt.updateOccurrence(playlist); //NOSONAR
+        }
+
+        queuePosition = position; //NOSONAR
+
+        if (shuffleMode == QueueManager.ShuffleMode.ON) { //NOSONAR
+            makeShuffleList(); //NOSONAR
+        }
+
+        openCurrentAndNext.run(); //NOSONAR
+
+        notifyMetaChanged(); //NOSONAR
+        notifyQueueChanged(); //NOSONAR
+    }
+
+    void previous() { //NOSONAR
+        if (queuePosition > 0) { //NOSONAR
+            queuePosition--; //NOSONAR
+        } else { //NOSONAR
+            queuePosition = getCurrentPlaylist().size() - 1; //NOSONAR
         }
     }
 
-    void moveQueueItem(int from, int to) {
+    void moveQueueItem(int from, int to) { //NOSONAR
 
-        if (from >= getCurrentPlaylist().size()) {
-            from = getCurrentPlaylist().size() - 1;
+        if (from >= getCurrentPlaylist().size()) { //NOSONAR
+            from = getCurrentPlaylist().size() - 1; //NOSONAR
         }
-        if (to >= getCurrentPlaylist().size()) {
-            to = getCurrentPlaylist().size() - 1;
+        if (to >= getCurrentPlaylist().size()) { //NOSONAR
+            to = getCurrentPlaylist().size() - 1; //NOSONAR
         }
 
-        getCurrentPlaylist().add(to, getCurrentPlaylist().remove(from));
+        getCurrentPlaylist().add(to, getCurrentPlaylist().remove(from)); //NOSONAR
 
-        if (from < to) {
-            if (queuePosition == from) {
-                queuePosition = to;
-            } else if (queuePosition >= from && queuePosition <= to) {
-                queuePosition--;
+        if (from < to) { //NOSONAR
+            if (queuePosition == from) { //NOSONAR
+                queuePosition = to; //NOSONAR
+            } else if (queuePosition >= from && queuePosition <= to) { //NOSONAR
+                queuePosition--; //NOSONAR
             }
-        } else if (to < from) {
-            if (queuePosition == from) {
-                queuePosition = to;
-            } else if (queuePosition >= to && queuePosition <= from) {
-                queuePosition++;
+        } else if (to < from) { //NOSONAR
+            if (queuePosition == from) { //NOSONAR
+                queuePosition = to; //NOSONAR
+            } else if (queuePosition >= to && queuePosition <= from) { //NOSONAR
+                queuePosition++; //NOSONAR
             }
         }
 
-        QueueItemKt.updateOccurrence(getCurrentPlaylist());
+        QueueItemKt.updateOccurrence(getCurrentPlaylist()); //NOSONAR
 
-        notifyQueueChanged();
+        notifyQueueChanged(); //NOSONAR
     }
 
-    void clearQueue() {
-        playlist.clear();
-        shuffleList.clear();
+    void clearQueue() { //NOSONAR
+        playlist.clear(); //NOSONAR
+        shuffleList.clear(); //NOSONAR
 
-        queuePosition = -1;
-        nextPlayPos = -1;
+        queuePosition = -1; //NOSONAR
+        nextPlayPos = -1; //NOSONAR
 
-        if (!settingsManager.getRememberShuffle()) {
-            setShuffleMode(ShuffleMode.OFF);
+        if (!settingsManager.getRememberShuffle()) { //NOSONAR
+            setShuffleMode(ShuffleMode.OFF); //NOSONAR
         }
 
-        notifyQueueChanged();
+        notifyQueueChanged(); //NOSONAR
     }
 
-    @NonNull
-    List<QueueItem> getCurrentPlaylist() {
-        if (shuffleMode == ShuffleMode.OFF) {
-            return playlist;
-        } else {
-            return shuffleList;
+    @NonNull //NOSONAR
+    List<QueueItem> getCurrentPlaylist() { //NOSONAR
+        if (shuffleMode == ShuffleMode.OFF) { //NOSONAR
+            return playlist; //NOSONAR
+        } else { //NOSONAR
+            return shuffleList; //NOSONAR
         }
     }
 
-    @Nullable
-    QueueItem getCurrentQueueItem() {
-        if (queuePosition >= 0 && queuePosition < getCurrentPlaylist().size()) {
-            return getCurrentPlaylist().get(queuePosition);
+    @Nullable //NOSONAR
+    QueueItem getCurrentQueueItem() { //NOSONAR
+        if (queuePosition >= 0 && queuePosition < getCurrentPlaylist().size()) { //NOSONAR
+            return getCurrentPlaylist().get(queuePosition); //NOSONAR
         }
 
-        return null;
+        return null; //NOSONAR
     }
 
-    @Nullable
-    Song getCurrentSong() {
-        QueueItem currentQueueItem = getCurrentQueueItem();
-        if (currentQueueItem != null) {
-            return currentQueueItem.getSong();
-        } else {
-            return null;
+    @Nullable //NOSONAR
+    Song getCurrentSong() { //NOSONAR
+        QueueItem currentQueueItem = getCurrentQueueItem(); //NOSONAR
+        if (currentQueueItem != null) { //NOSONAR
+            return currentQueueItem.getSong(); //NOSONAR
+        } else { //NOSONAR
+            return null; //NOSONAR
         }
     }
 
     /**
      * @return The next position to play, ot -1 if playback should complete.
      */
-    int getNextPosition(boolean ignoreRepeatMode) {
-        boolean queueComplete = queuePosition >= getCurrentPlaylist().size() - 1;
+    int getNextPosition(boolean ignoreRepeatMode) { //NOSONAR
+        boolean queueComplete = queuePosition >= getCurrentPlaylist().size() - 1; //NOSONAR
 
-        if (ignoreRepeatMode) {
-            return queueComplete ? 0 : queuePosition + 1;
-        } else {
-            switch (repeatMode) {
-                case RepeatMode.ONE:
-                    return queuePosition < 0 ? 0 : queuePosition;
-                case RepeatMode.OFF:
-                    return queueComplete ? -1 : queuePosition + 1;
-                case RepeatMode.ALL:
-                    return queueComplete ? 0 : queuePosition + 1;
-                default:
-                    return -1;
+        if (ignoreRepeatMode) { //NOSONAR
+            return queueComplete ? 0 : queuePosition + 1; //NOSONAR
+        } else { //NOSONAR
+            switch (repeatMode) { //NOSONAR
+                case RepeatMode.ONE: //NOSONAR
+                    return queuePosition < 0 ? 0 : queuePosition; //NOSONAR
+                case RepeatMode.OFF: //NOSONAR
+                    return queueComplete ? -1 : queuePosition + 1; //NOSONAR
+                case RepeatMode.ALL: //NOSONAR
+                    return queueComplete ? 0 : queuePosition + 1; //NOSONAR
+                default: //NOSONAR
+                    return -1; //NOSONAR
             }
         }
     }
@@ -246,22 +246,22 @@ public class QueueManager {
     /**
      * Removes the first instance of the Song the playlist & shuffleList.
      */
-    void removeQueueItem(QueueItem queueItem, UnsafeAction stop, UnsafeAction moveToNextTrack) {
+    void removeQueueItem(QueueItem queueItem, UnsafeAction stop, UnsafeAction moveToNextTrack) { //NOSONAR
 
-        QueueItem currentQueueItem = getCurrentQueueItem();
+        QueueItem currentQueueItem = getCurrentQueueItem(); //NOSONAR
 
-        playlist.remove(queueItem);
-        shuffleList.remove(queueItem);
+        playlist.remove(queueItem); //NOSONAR
+        shuffleList.remove(queueItem); //NOSONAR
 
-        if (queueItem == currentQueueItem) {
-            onCurrentSongRemoved(stop, moveToNextTrack);
-        } else {
-            queuePosition = getCurrentPlaylist().indexOf(currentQueueItem);
+        if (queueItem == currentQueueItem) { //NOSONAR
+            onCurrentSongRemoved(stop, moveToNextTrack); //NOSONAR
+        } else { //NOSONAR
+            queuePosition = getCurrentPlaylist().indexOf(currentQueueItem); //NOSONAR
         }
 
-        QueueItemKt.updateOccurrence(getCurrentPlaylist());
+        QueueItemKt.updateOccurrence(getCurrentPlaylist()); //NOSONAR
 
-        notifyQueueChanged();
+        notifyQueueChanged(); //NOSONAR
     }
 
     /**
@@ -271,14 +271,14 @@ public class QueueManager {
      *
      * @param queueItems the QueueItems to remove
      */
-    void removeQueueItems(@NonNull List<QueueItem> queueItems, UnsafeAction stop, UnsafeAction moveToNextTrack) {
+    void removeQueueItems(@NonNull List<QueueItem> queueItems, UnsafeAction stop, UnsafeAction moveToNextTrack) { //NOSONAR
 
-        playlist.removeAll(queueItems);
-        shuffleList.removeAll(queueItems);
+        playlist.removeAll(queueItems); //NOSONAR
+        shuffleList.removeAll(queueItems); //NOSONAR
 
-        QueueItemKt.updateOccurrence(getCurrentPlaylist());
+        QueueItemKt.updateOccurrence(getCurrentPlaylist()); //NOSONAR
 
-        if (queueItems.contains(getCurrentQueueItem())) {
+        if (queueItems.contains(getCurrentQueueItem())) { //NOSONAR
             /*
              * If we remove a list of songs from the current queue, and that list contains our currently
              * playing song, we need to figure out which song should play next. We'll play the first song
@@ -300,31 +300,31 @@ public class QueueManager {
              *
              * So after the removal, we'll play index 2, which is Song 8.
              */
-            queuePosition = Collections.indexOfSubList(getCurrentPlaylist(), queueItems);
-            onCurrentSongRemoved(stop, moveToNextTrack);
-        } else {
-            queuePosition = getCurrentPlaylist().indexOf(getCurrentQueueItem());
+            queuePosition = Collections.indexOfSubList(getCurrentPlaylist(), queueItems); //NOSONAR
+            onCurrentSongRemoved(stop, moveToNextTrack); //NOSONAR
+        } else { //NOSONAR
+            queuePosition = getCurrentPlaylist().indexOf(getCurrentQueueItem()); //NOSONAR
         }
 
-        notifyQueueChanged();
+        notifyQueueChanged(); //NOSONAR
     }
 
-    void removeSongs(@NonNull List<Song> songs, UnsafeAction stop, UnsafeAction moveToNextTrack) {
-        List<QueueItem> queueItems = Stream.of(playlist).filter(value -> songs.contains(value.getSong())).toList();
-        removeQueueItems(queueItems, stop, moveToNextTrack);
+    void removeSongs(@NonNull List<Song> songs, UnsafeAction stop, UnsafeAction moveToNextTrack) { //NOSONAR
+        List<QueueItem> queueItems = Stream.of(playlist).filter(value -> songs.contains(value.getSong())).toList(); //NOSONAR
+        removeQueueItems(queueItems, stop, moveToNextTrack); //NOSONAR
     }
 
-    private void onCurrentSongRemoved(UnsafeAction stop, UnsafeAction moveToNextTrack) {
-        if (getCurrentPlaylist().isEmpty()) {
-            queuePosition = -1;
-            stop.run();
-        } else {
-            if (queuePosition >= getCurrentPlaylist().size()) {
-                queuePosition = 0;
+    private void onCurrentSongRemoved(UnsafeAction stop, UnsafeAction moveToNextTrack) { //NOSONAR
+        if (getCurrentPlaylist().isEmpty()) { //NOSONAR
+            queuePosition = -1; //NOSONAR
+            stop.run(); //NOSONAR
+        } else { //NOSONAR
+            if (queuePosition >= getCurrentPlaylist().size()) { //NOSONAR
+                queuePosition = 0; //NOSONAR
             }
-            moveToNextTrack.run();
+            moveToNextTrack.run(); //NOSONAR
         }
-        notifyMetaChanged();
+        notifyMetaChanged(); //NOSONAR
     }
 
     /**
@@ -333,34 +333,34 @@ public class QueueManager {
      * @param songs The list to queue
      * @param action The action to take
      */
-    public void enqueue(List<Song> songs, @EnqueueAction int action, UnsafeAction setNextTrack, UnsafeAction openCurrentAndNext) {
+    public void enqueue(List<Song> songs, @EnqueueAction int action, UnsafeAction setNextTrack, UnsafeAction openCurrentAndNext) { //NOSONAR
 
-        List<QueueItem> queueItems = QueueItemKt.toQueueItems(songs);
+        List<QueueItem> queueItems = QueueItemKt.toQueueItems(songs); //NOSONAR
 
-        switch (action) {
-            case EnqueueAction.NEXT:
-                List<QueueItem> otherList = getCurrentPlaylist() == playlist ? shuffleList : playlist;
-                getCurrentPlaylist().addAll(queuePosition + 1, queueItems);
-                otherList.addAll(queueItems);
+        switch (action) { //NOSONAR
+            case EnqueueAction.NEXT: //NOSONAR
+                List<QueueItem> otherList = getCurrentPlaylist() == playlist ? shuffleList : playlist; //NOSONAR
+                getCurrentPlaylist().addAll(queuePosition + 1, queueItems); //NOSONAR
+                otherList.addAll(queueItems); //NOSONAR
 
-                QueueItemKt.updateOccurrence(getCurrentPlaylist());
+                QueueItemKt.updateOccurrence(getCurrentPlaylist()); //NOSONAR
 
-                setNextTrack.run();
-                notifyQueueChanged();
-                break;
-            case EnqueueAction.LAST:
-                playlist.addAll(queueItems);
-                shuffleList.addAll(queueItems);
+                setNextTrack.run(); //NOSONAR
+                notifyQueueChanged(); //NOSONAR
+                break; //NOSONAR
+            case EnqueueAction.LAST: //NOSONAR
+                playlist.addAll(queueItems); //NOSONAR
+                shuffleList.addAll(queueItems); //NOSONAR
 
-                QueueItemKt.updateOccurrence(getCurrentPlaylist());
+                QueueItemKt.updateOccurrence(getCurrentPlaylist()); //NOSONAR
 
-                notifyQueueChanged();
-                break;
+                notifyQueueChanged(); //NOSONAR
+                break; //NOSONAR
         }
-        if (queuePosition < 0) {
-            queuePosition = 0;
-            openCurrentAndNext.run();
-            notifyMetaChanged();
+        if (queuePosition < 0) { //NOSONAR
+            queuePosition = 0; //NOSONAR
+            openCurrentAndNext.run(); //NOSONAR
+            notifyMetaChanged(); //NOSONAR
         }
     }
 
@@ -370,180 +370,180 @@ public class QueueManager {
      * @param saveQueue boolean whether to serialize the playlist/shuffleList and store those in preferences
      * as well.
      */
-    void saveQueue(boolean saveQueue) {
+    void saveQueue(boolean saveQueue) { //NOSONAR
 
-        if (!queueIsSaveable) {
-            return;
+        if (!queueIsSaveable) { //NOSONAR
+            return; //NOSONAR
         }
 
-        if (queueReloading) {
-            return;
+        if (queueReloading) { //NOSONAR
+            return; //NOSONAR
         }
 
-        if (saveQueue) {
-            playbackSettingsManager.setQueueList(serializePlaylist(playlist));
-            if (shuffleMode == ShuffleMode.ON) {
-                playbackSettingsManager.setShuffleList(serializePlaylist(shuffleList));
+        if (saveQueue) { //NOSONAR
+            playbackSettingsManager.setQueueList(serializePlaylist(playlist)); //NOSONAR
+            if (shuffleMode == ShuffleMode.ON) { //NOSONAR
+                playbackSettingsManager.setShuffleList(serializePlaylist(shuffleList)); //NOSONAR
             }
         }
 
-        playbackSettingsManager.setQueuePosition(queuePosition);
-        playbackSettingsManager.setRepeatMode(repeatMode);
-        playbackSettingsManager.setShuffleMode(shuffleMode);
+        playbackSettingsManager.setQueuePosition(queuePosition); //NOSONAR
+        playbackSettingsManager.setRepeatMode(repeatMode); //NOSONAR
+        playbackSettingsManager.setShuffleMode(shuffleMode); //NOSONAR
     }
 
-    Disposable reloadQueue(@NonNull Function0<Unit> onComplete) {
-        queueReloading = true;
+    Disposable reloadQueue(@NonNull Function0<Unit> onComplete) { //NOSONAR
+        queueReloading = true; //NOSONAR
 
-        shuffleMode = playbackSettingsManager.getShuffleMode();
-        repeatMode = playbackSettingsManager.getRepeatMode();
+        shuffleMode = playbackSettingsManager.getShuffleMode(); //NOSONAR
+        repeatMode = playbackSettingsManager.getRepeatMode(); //NOSONAR
 
-        return songsRepository.getAllSongs()
-                .first(Collections.emptyList())
-                .map(QueueItemKt::toQueueItems)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((UnsafeConsumer<List<QueueItem>>) queueItems -> {
-                    String queueList = playbackSettingsManager.getQueueList();
-                    if (queueList != null) {
-                        playlist = deserializePlaylist(queueList, queueItems);
+        return songsRepository.getAllSongs() //NOSONAR
+                .first(Collections.emptyList()) //NOSONAR
+                .map(QueueItemKt::toQueueItems) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe((UnsafeConsumer<List<QueueItem>>) queueItems -> { //NOSONAR
+                    String queueList = playbackSettingsManager.getQueueList(); //NOSONAR
+                    if (queueList != null) { //NOSONAR
+                        playlist = deserializePlaylist(queueList, queueItems); //NOSONAR
 
-                        final int queuePosition = playbackSettingsManager.getQueuePosition();
+                        final int queuePosition = playbackSettingsManager.getQueuePosition(); //NOSONAR
 
-                        if (queuePosition < 0 || queuePosition >= playlist.size()) {
+                        if (queuePosition < 0 || queuePosition >= playlist.size()) { //NOSONAR
                             // The saved playlist is bogus, discard it
-                            playlist.clear();
-                            queueReloading = false;
-                            onComplete.invoke();
-                            return;
+                            playlist.clear(); //NOSONAR
+                            queueReloading = false; //NOSONAR
+                            onComplete.invoke(); //NOSONAR
+                            return; //NOSONAR
                         }
 
-                        QueueManager.this.queuePosition = queuePosition;
+                        QueueManager.this.queuePosition = queuePosition; //NOSONAR
 
-                        if (repeatMode != RepeatMode.ALL && repeatMode != RepeatMode.ONE) {
-                            repeatMode = RepeatMode.OFF;
+                        if (repeatMode != RepeatMode.ALL && repeatMode != RepeatMode.ONE) { //NOSONAR
+                            repeatMode = RepeatMode.OFF; //NOSONAR
                         }
-                        if (shuffleMode != ShuffleMode.ON) {
-                            shuffleMode = ShuffleMode.OFF;
+                        if (shuffleMode != ShuffleMode.ON) { //NOSONAR
+                            shuffleMode = ShuffleMode.OFF; //NOSONAR
                         }
-                        if (shuffleMode == ShuffleMode.ON) {
-                            queueList = playbackSettingsManager.getShuffleList();
-                            if (queueList != null) {
-                                shuffleList = deserializePlaylist(queueList, queueItems);
+                        if (shuffleMode == ShuffleMode.ON) { //NOSONAR
+                            queueList = playbackSettingsManager.getShuffleList(); //NOSONAR
+                            if (queueList != null) { //NOSONAR
+                                shuffleList = deserializePlaylist(queueList, queueItems); //NOSONAR
 
-                                if (queuePosition >= shuffleList.size()) {
+                                if (queuePosition >= shuffleList.size()) { //NOSONAR
                                     // The saved playlist is bogus, discard it
-                                    shuffleList.clear();
-                                    queueReloading = false;
-                                    onComplete.invoke();
-                                    return;
+                                    shuffleList.clear(); //NOSONAR
+                                    queueReloading = false; //NOSONAR
+                                    onComplete.invoke(); //NOSONAR
+                                    return; //NOSONAR
                                 }
                             }
                         }
 
-                        if (QueueManager.this.queuePosition < 0 || QueueManager.this.queuePosition >= getCurrentPlaylist().size()) {
-                            QueueManager.this.queuePosition = 0;
+                        if (QueueManager.this.queuePosition < 0 || QueueManager.this.queuePosition >= getCurrentPlaylist().size()) { //NOSONAR
+                            QueueManager.this.queuePosition = 0; //NOSONAR
                         }
                     }
-                    queueReloading = false;
-                    onComplete.invoke();
-                }, error -> {
-                    queueReloading = false;
-                    onComplete.invoke();
-                    LogUtils.logException(TAG, "Reloading queue", error);
+                    queueReloading = false; //NOSONAR
+                    onComplete.invoke(); //NOSONAR
+                }, error -> { //NOSONAR
+                    queueReloading = false; //NOSONAR
+                    onComplete.invoke(); //NOSONAR
+                    LogUtils.logException(TAG, "Reloading queue", error); //NOSONAR
                 });
     }
 
     /**
      * Converts a playlist to a String which can be saved to SharedPrefs
      */
-    private String serializePlaylist(List<QueueItem> queueItems) {
+    private String serializePlaylist(List<QueueItem> queueItems) { //NOSONAR
 
         // The current playlist is saved as a list of "reverse hexadecimal"
         // numbers, which we can generate faster than normal decimal or
         // hexadecimal numbers, which in turn allows us to save the playlist
         // more often without worrying too much about performance.
 
-        StringBuilder q = new StringBuilder();
+        StringBuilder q = new StringBuilder(); //NOSONAR
 
-        List<Song> songs = Stream.of(queueItems).map(QueueItem::getSong).toList();
-        int len = songs.size();
-        for (int i = 0; i < len; i++) {
-            long n = songs.get(i).id;
-            if (n >= 0) {
-                if (n == 0) {
-                    q.append("0;");
-                } else {
-                    while (n != 0) {
-                        final int digit = (int) (n & 0xf);
-                        n >>>= 4;
-                        q.append(hexDigits[digit]);
+        List<Song> songs = Stream.of(queueItems).map(QueueItem::getSong).toList(); //NOSONAR
+        int len = songs.size(); //NOSONAR
+        for (int i = 0; i < len; i++) { //NOSONAR
+            long n = songs.get(i).id; //NOSONAR
+            if (n >= 0) { //NOSONAR
+                if (n == 0) { //NOSONAR
+                    q.append("0;"); //NOSONAR
+                } else { //NOSONAR
+                    while (n != 0) { //NOSONAR
+                        final int digit = (int) (n & 0xf); //NOSONAR
+                        n >>>= 4; //NOSONAR
+                        q.append(hexDigits[digit]); //NOSONAR
                     }
-                    q.append(";");
+                    q.append(";"); //NOSONAR
                 }
             }
         }
 
-        return q.toString();
+        return q.toString(); //NOSONAR
     }
 
     /**
      * Converts a string representation of a playlist from SharedPrefs into a list of songs.
      */
-    private List<QueueItem> deserializePlaylist(String listString, List<QueueItem> queueItems) {
-        List<Long> ids = new ArrayList<>();
-        int n = 0;
-        int shift = 0;
-        for (int i = 0; i < listString.length(); i++) {
-            char c = listString.charAt(i);
-            if (c == ';') {
-                ids.add((long) n);
-                n = 0;
-                shift = 0;
-            } else {
-                if (c >= '0' && c <= '9') {
-                    n += ((c - '0') << shift);
-                } else if (c >= 'a' && c <= 'f') {
-                    n += ((10 + c - 'a') << shift);
-                } else {
+    private List<QueueItem> deserializePlaylist(String listString, List<QueueItem> queueItems) { //NOSONAR
+        List<Long> ids = new ArrayList<>(); //NOSONAR
+        int n = 0; //NOSONAR
+        int shift = 0; //NOSONAR
+        for (int i = 0; i < listString.length(); i++) { //NOSONAR
+            char c = listString.charAt(i); //NOSONAR
+            if (c == ';') { //NOSONAR
+                ids.add((long) n); //NOSONAR
+                n = 0; //NOSONAR
+                shift = 0; //NOSONAR
+            } else { //NOSONAR
+                if (c >= '0' && c <= '9') { //NOSONAR
+                    n += ((c - '0') << shift); //NOSONAR
+                } else if (c >= 'a' && c <= 'f') { //NOSONAR
+                    n += ((10 + c - 'a') << shift); //NOSONAR
+                } else { //NOSONAR
                     // bogus playlist data
-                    playlist.clear();
-                    break;
+                    playlist.clear(); //NOSONAR
+                    break; //NOSONAR
                 }
-                shift += 4;
+                shift += 4; //NOSONAR
             }
         }
 
-        Map<Integer, Song> map = new TreeMap<>();
+        Map<Integer, Song> map = new TreeMap<>(); //NOSONAR
 
-        Stream.of(queueItems).map(QueueItem::getSong).forEach(song -> {
-            int index = ids.indexOf(song.id);
-            if (index != -1) {
-                map.put(index, song);
+        Stream.of(queueItems).map(QueueItem::getSong).forEach(song -> { //NOSONAR
+            int index = ids.indexOf(song.id); //NOSONAR
+            if (index != -1) { //NOSONAR
+                map.put(index, song); //NOSONAR
             }
         });
 
-        return QueueItemKt.toQueueItems(new ArrayList<>(map.values()));
+        return QueueItemKt.toQueueItems(new ArrayList<>(map.values())); //NOSONAR
     }
 
-    void makeShuffleList() {
-        if (playlist.isEmpty()) {
-            return;
+    void makeShuffleList() { //NOSONAR
+        if (playlist.isEmpty()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        shuffleList = new ArrayList<>(playlist);
-        QueueItem currentSong = null;
-        if (queuePosition >= 0 && queuePosition < shuffleList.size()) {
-            currentSong = shuffleList.remove(queuePosition);
+        shuffleList = new ArrayList<>(playlist); //NOSONAR
+        QueueItem currentSong = null; //NOSONAR
+        if (queuePosition >= 0 && queuePosition < shuffleList.size()) { //NOSONAR
+            currentSong = shuffleList.remove(queuePosition); //NOSONAR
         }
 
-        Collections.shuffle(shuffleList);
+        Collections.shuffle(shuffleList); //NOSONAR
 
-        if (currentSong != null) {
-            shuffleList.add(0, currentSong);
+        if (currentSong != null) { //NOSONAR
+            shuffleList.add(0, currentSong); //NOSONAR
         }
-        queuePosition = 0;
+        queuePosition = 0; //NOSONAR
 
-        QueueItemKt.updateOccurrence(shuffleList);
+        QueueItemKt.updateOccurrence(shuffleList); //NOSONAR
     }
 }

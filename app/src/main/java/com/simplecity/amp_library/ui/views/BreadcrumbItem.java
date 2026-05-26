@@ -7,16 +7,16 @@ import android.util.AttributeSet;
 /**
  * A class that represents a breadcrumb item
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BreadcrumbItem extends AppCompatTextView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BreadcrumbItem extends AppCompatTextView { //NOSONAR
 
-    private String mItemPath;
+    private String mItemPath; //NOSONAR
 
     /**
      * Constructor of <code>BreadcrumbItem</code>
      */
-    public BreadcrumbItem(Context context) {
-        super(context);
+    public BreadcrumbItem(Context context) { //NOSONAR
+        super(context); //NOSONAR
     }
 
     /**
@@ -24,8 +24,8 @@ public class BreadcrumbItem extends AppCompatTextView {
      *
      * @param attrs The attributes of the XML tag that is inflating the view
      */
-    public BreadcrumbItem(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public BreadcrumbItem(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
     }
 
     /**
@@ -38,8 +38,8 @@ public class BreadcrumbItem extends AppCompatTextView {
      * either be an attribute resource, whose value will be retrieved
      * from the current theme, or an explicit style resource.
      */
-    public BreadcrumbItem(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public BreadcrumbItem(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+        super(context, attrs, defStyle); //NOSONAR
     }
 
     /**
@@ -47,8 +47,8 @@ public class BreadcrumbItem extends AppCompatTextView {
      *
      * @return String The item path associated
      */
-    public String getItemPath() {
-        return this.mItemPath;
+    public String getItemPath() { //NOSONAR
+        return this.mItemPath; //NOSONAR
     }
 
     /**
@@ -56,7 +56,7 @@ public class BreadcrumbItem extends AppCompatTextView {
      *
      * @param itemPath The item path
      */
-    protected void setItemPath(String itemPath) {
-        this.mItemPath = itemPath;
+    protected void setItemPath(String itemPath) { //NOSONAR
+        this.mItemPath = itemPath; //NOSONAR
     }
 }

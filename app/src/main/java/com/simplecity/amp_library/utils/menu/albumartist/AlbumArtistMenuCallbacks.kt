@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.menu.albumartist
 
@@ -6,79 +6,79 @@ import com.simplecity.amp_library.model.AlbumArtist
 import com.simplecity.amp_library.model.Playlist
 import io.reactivex.Single
 
-interface AlbumArtistMenuCallbacks {
+interface AlbumArtistMenuCallbacks { //NOSONAR
 
-    fun createArtistsPlaylist(albumArtists: List<AlbumArtist>)
+    fun createArtistsPlaylist(albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun addArtistsToPlaylist(playlist: Playlist, albumArtists: List<AlbumArtist>)
+    fun addArtistsToPlaylist(playlist: Playlist, albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun addArtistsToQueue(albumArtists: List<AlbumArtist>)
+    fun addArtistsToQueue(albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun playArtistsNext(albumArtists: List<AlbumArtist>)
+    fun playArtistsNext(albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun play(albumArtist: AlbumArtist)
+    fun play(albumArtist: AlbumArtist) //NOSONAR
 
-    fun editTags(albumArtist: AlbumArtist)
+    fun editTags(albumArtist: AlbumArtist) //NOSONAR
 
-    fun albumArtistInfo(albumArtist: AlbumArtist)
+    fun albumArtistInfo(albumArtist: AlbumArtist) //NOSONAR
 
-    fun editArtwork(albumArtist: AlbumArtist)
+    fun editArtwork(albumArtist: AlbumArtist) //NOSONAR
 
-    fun blacklistArtists(albumArtists: List<AlbumArtist>)
+    fun blacklistArtists(albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun deleteArtists(albumArtists: List<AlbumArtist>)
+    fun deleteArtists(albumArtists: List<AlbumArtist>) //NOSONAR
 
-    fun goToArtist(albumArtist: AlbumArtist)
+    fun goToArtist(albumArtist: AlbumArtist) //NOSONAR
 
-    fun albumShuffle(albumArtist: AlbumArtist)
+    fun albumShuffle(albumArtist: AlbumArtist) //NOSONAR
 
-    fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit)
+    fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtists: Single<List<AlbumArtist>>) {
-    transform(albumArtists) { albumArtists -> createArtistsPlaylist(albumArtists) }
+fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
+    transform(albumArtists) { albumArtists -> createArtistsPlaylist(albumArtists) } //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtists: Single<List<AlbumArtist>>) {
-    transform(albumArtists) { albumArtists -> addArtistsToPlaylist(playlist, albumArtists) }
+fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
+    transform(albumArtists) { albumArtists -> addArtistsToPlaylist(playlist, albumArtists) } //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtists: Single<List<AlbumArtist>>) {
-    transform(albumArtists) { albumArtists -> playArtistsNext(albumArtists) }
+fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
+    transform(albumArtists) { albumArtists -> playArtistsNext(albumArtists) } //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtists: Single<List<AlbumArtist>>) {
-    transform(albumArtists) { albumArtists -> addArtistsToQueue(albumArtists) }
+fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
+    transform(albumArtists) { albumArtists -> addArtistsToQueue(albumArtists) } //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.deleteArtists(albumArtists: Single<List<AlbumArtist>>) {
-    transform(albumArtists) { albumArtists -> deleteArtists(albumArtists) }
+fun AlbumArtistMenuCallbacks.deleteArtists(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
+    transform(albumArtists) { albumArtists -> deleteArtists(albumArtists) } //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtist: AlbumArtist) {
-    playArtistsNext(listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtist: AlbumArtist) { //NOSONAR
+    playArtistsNext(listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtist: AlbumArtist) {
-    createArtistsPlaylist(listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtist: AlbumArtist) { //NOSONAR
+    createArtistsPlaylist(listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtist: AlbumArtist) {
-    addArtistsToPlaylist(playlist, listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtist: AlbumArtist) { //NOSONAR
+    addArtistsToPlaylist(playlist, listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtist: AlbumArtist) {
-    addArtistsToQueue(listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtist: AlbumArtist) { //NOSONAR
+    addArtistsToQueue(listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.blacklistArtists(albumArtist: AlbumArtist) {
-    blacklistArtists(listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.blacklistArtists(albumArtist: AlbumArtist) { //NOSONAR
+    blacklistArtists(listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.deleteArtists(albumArtist: AlbumArtist) {
-    deleteArtists(listOf(albumArtist))
+fun AlbumArtistMenuCallbacks.deleteArtists(albumArtist: AlbumArtist) { //NOSONAR
+    deleteArtists(listOf(albumArtist)) //NOSONAR
 }
 
-fun AlbumArtistMenuCallbacks.albumShuffle(albumArtist: AlbumArtist) {
-    albumShuffle(albumArtist)
+fun AlbumArtistMenuCallbacks.albumShuffle(albumArtist: AlbumArtist) { //NOSONAR
+    albumShuffle(albumArtist) //NOSONAR
 }

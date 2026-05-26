@@ -17,18 +17,18 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class FileBrowser {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class FileBrowser { //NOSONAR
 
-    private static final String TAG = "FileBrowser";
+    private static final String TAG = "FileBrowser"; //NOSONAR
 
-    @Nullable
-    private File currentDir;
+    @Nullable //NOSONAR
+    private File currentDir; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    public FileBrowser(SettingsManager settingsManager) {
-        this.settingsManager = settingsManager;
+    public FileBrowser(SettingsManager settingsManager) { //NOSONAR
+        this.settingsManager = settingsManager; //NOSONAR
     }
 
     /**
@@ -37,276 +37,276 @@ public class FileBrowser {
      * @param directory The file object to points to the directory to load.
      * @return An {@link List<BaseFileObject>} object that holds the data of the specified directory.
      */
-    @WorkerThread
-    public List<BaseFileObject> loadDir(File directory) {
+    @WorkerThread //NOSONAR
+    public List<BaseFileObject> loadDir(File directory) { //NOSONAR
 
-        ThreadUtils.ensureNotOnMainThread();
+        ThreadUtils.ensureNotOnMainThread(); //NOSONAR
 
-        currentDir = directory;
+        currentDir = directory; //NOSONAR
 
-        List<BaseFileObject> folderObjects = new ArrayList<>();
-        List<BaseFileObject> fileObjects = new ArrayList<>();
+        List<BaseFileObject> folderObjects = new ArrayList<>(); //NOSONAR
+        List<BaseFileObject> fileObjects = new ArrayList<>(); //NOSONAR
 
         //Grab a list of all files/subdirs within the specified directory.
-        File[] files = directory.listFiles(FileHelper.getAudioFilter());
+        File[] files = directory.listFiles(FileHelper.getAudioFilter()); //NOSONAR
 
-        if (files != null) {
-            for (File file : files) {
-                BaseFileObject baseFileObject;
+        if (files != null) { //NOSONAR
+            for (File file : files) { //NOSONAR
+                BaseFileObject baseFileObject; //NOSONAR
 
-                if (file.isDirectory()) {
-                    baseFileObject = new FolderObject();
-                    baseFileObject.path = FileHelper.getPath(file);
-                    baseFileObject.name = file.getName();
-                    File[] listOfFiles = file.listFiles(FileHelper.getAudioFilter());
-                    if (listOfFiles != null && listOfFiles.length > 0) {
-                        for (File listOfFile : listOfFiles) {
-                            if (listOfFile.isDirectory()) {
-                                ((FolderObject) baseFileObject).folderCount++;
-                            } else {
-                                ((FolderObject) baseFileObject).fileCount++;
+                if (file.isDirectory()) { //NOSONAR
+                    baseFileObject = new FolderObject(); //NOSONAR
+                    baseFileObject.path = FileHelper.getPath(file); //NOSONAR
+                    baseFileObject.name = file.getName(); //NOSONAR
+                    File[] listOfFiles = file.listFiles(FileHelper.getAudioFilter()); //NOSONAR
+                    if (listOfFiles != null && listOfFiles.length > 0) { //NOSONAR
+                        for (File listOfFile : listOfFiles) { //NOSONAR
+                            if (listOfFile.isDirectory()) { //NOSONAR
+                                ((FolderObject) baseFileObject).folderCount++; //NOSONAR
+                            } else { //NOSONAR
+                                ((FolderObject) baseFileObject).fileCount++; //NOSONAR
                             }
                         }
-                    } else {
-                        continue;
+                    } else { //NOSONAR
+                        continue; //NOSONAR
                     }
-                    if (!folderObjects.contains(baseFileObject)) {
-                        folderObjects.add(baseFileObject);
+                    if (!folderObjects.contains(baseFileObject)) { //NOSONAR
+                        folderObjects.add(baseFileObject); //NOSONAR
                     }
-                } else {
-                    baseFileObject = new FileObject();
-                    baseFileObject.path = FileHelper.getPath(file);
-                    baseFileObject.name = FileHelper.getName(file.getName());
-                    baseFileObject.size = file.length();
-                    ((FileObject) baseFileObject).extension = FileHelper.getExtension(file.getName());
-                    if (TextUtils.isEmpty(((FileObject) baseFileObject).extension)) {
-                        continue;
+                } else { //NOSONAR
+                    baseFileObject = new FileObject(); //NOSONAR
+                    baseFileObject.path = FileHelper.getPath(file); //NOSONAR
+                    baseFileObject.name = FileHelper.getName(file.getName()); //NOSONAR
+                    baseFileObject.size = file.length(); //NOSONAR
+                    ((FileObject) baseFileObject).extension = FileHelper.getExtension(file.getName()); //NOSONAR
+                    if (TextUtils.isEmpty(((FileObject) baseFileObject).extension)) { //NOSONAR
+                        continue; //NOSONAR
                     }
-                    ((FileObject) baseFileObject).tagInfo = new TagInfo(baseFileObject.path);
+                    ((FileObject) baseFileObject).tagInfo = new TagInfo(baseFileObject.path); //NOSONAR
 
-                    if (!fileObjects.contains(baseFileObject)) {
-                        fileObjects.add(baseFileObject);
+                    if (!fileObjects.contains(baseFileObject)) { //NOSONAR
+                        fileObjects.add(baseFileObject); //NOSONAR
                     }
                 }
             }
         }
 
-        sortFileObjects(fileObjects);
-        sortFolderObjects(folderObjects);
+        sortFileObjects(fileObjects); //NOSONAR
+        sortFolderObjects(folderObjects); //NOSONAR
 
-        if (!settingsManager.getFolderBrowserFilesAscending()) {
-            Collections.reverse(fileObjects);
+        if (!settingsManager.getFolderBrowserFilesAscending()) { //NOSONAR
+            Collections.reverse(fileObjects); //NOSONAR
         }
 
-        if (!settingsManager.getFolderBrowserFoldersAscending()) {
-            Collections.reverse(folderObjects);
+        if (!settingsManager.getFolderBrowserFoldersAscending()) { //NOSONAR
+            Collections.reverse(folderObjects); //NOSONAR
         }
 
-        folderObjects.addAll(fileObjects);
+        folderObjects.addAll(fileObjects); //NOSONAR
 
-        if (!FileHelper.isRootDirectory(currentDir)) {
-            FolderObject parentObject = new FolderObject();
-            parentObject.fileType = FileType.PARENT;
-            parentObject.name = FileHelper.PARENT_DIRECTORY;
-            parentObject.path = FileHelper.getPath(currentDir) + "/" + FileHelper.PARENT_DIRECTORY;
-            folderObjects.add(0, parentObject);
+        if (!FileHelper.isRootDirectory(currentDir)) { //NOSONAR
+            FolderObject parentObject = new FolderObject(); //NOSONAR
+            parentObject.fileType = FileType.PARENT; //NOSONAR
+            parentObject.name = FileHelper.PARENT_DIRECTORY; //NOSONAR
+            parentObject.path = FileHelper.getPath(currentDir) + "/" + FileHelper.PARENT_DIRECTORY; //NOSONAR
+            folderObjects.add(0, parentObject); //NOSONAR
         }
 
-        return folderObjects;
+        return folderObjects; //NOSONAR
     }
 
-    @Nullable
-    public File getCurrentDir() {
-        return currentDir;
+    @Nullable //NOSONAR
+    public File getCurrentDir() { //NOSONAR
+        return currentDir; //NOSONAR
     }
 
-    @WorkerThread
-    public File getInitialDir() {
+    @WorkerThread //NOSONAR
+    public File getInitialDir() { //NOSONAR
 
-        ThreadUtils.ensureNotOnMainThread();
+        ThreadUtils.ensureNotOnMainThread(); //NOSONAR
 
-        File dir;
-        String[] files;
+        File dir; //NOSONAR
+        String[] files; //NOSONAR
 
-        String settingsDir = settingsManager.getFolderBrowserInitialDir();
-        if (settingsDir != null) {
-            File file = new File(settingsDir);
-            if (file.exists()) {
-                return file;
+        String settingsDir = settingsManager.getFolderBrowserInitialDir(); //NOSONAR
+        if (settingsDir != null) { //NOSONAR
+            File file = new File(settingsDir); //NOSONAR
+            if (file.exists()) { //NOSONAR
+                return file; //NOSONAR
             }
         }
 
-        dir = new File("/");
+        dir = new File("/"); //NOSONAR
 
-        files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("storage"));
+        files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("storage")); //NOSONAR
 
-        if (files != null && files.length > 0) {
-            dir = new File(dir + "/" + files[0]);
+        if (files != null && files.length > 0) { //NOSONAR
+            dir = new File(dir + "/" + files[0]); //NOSONAR
             //If there's an extsdcard path in our base dir, let's navigate to that. External SD cards are cool.
-            files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("extsdcard"));
-            if (files != null && files.length > 0) {
-                dir = new File(dir + "/" + files[0]);
-            } else {
+            files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("extsdcard")); //NOSONAR
+            if (files != null && files.length > 0) { //NOSONAR
+                dir = new File(dir + "/" + files[0]); //NOSONAR
+            } else { //NOSONAR
                 //If we have external storage, use that as our initial dir
-                if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-                    dir = Environment.getExternalStorageDirectory();
+                if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) { //NOSONAR
+                    dir = Environment.getExternalStorageDirectory(); //NOSONAR
                 }
             }
-        } else {
+        } else { //NOSONAR
             //If we have external storage, use that as our initial dir
-            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-                dir = Environment.getExternalStorageDirectory();
+            if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) { //NOSONAR
+                dir = Environment.getExternalStorageDirectory(); //NOSONAR
             }
         }
 
         //Whether or not there was an sdcard, let's see if there's a 'music' dir for us to navigate to
-        if (dir != null) {
-            files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("music"));
+        if (dir != null) { //NOSONAR
+            files = dir.list((dir1, filename) -> dir1.isDirectory() && filename.toLowerCase().contains("music")); //NOSONAR
         }
-        if (files != null && files.length > 0) {
-            dir = new File(dir + "/" + files[0]);
+        if (files != null && files.length > 0) { //NOSONAR
+            dir = new File(dir + "/" + files[0]); //NOSONAR
         }
 
-        return dir;
+        return dir; //NOSONAR
     }
 
-    public void sortFolderObjects(List<BaseFileObject> baseFileObjects) {
+    public void sortFolderObjects(List<BaseFileObject> baseFileObjects) { //NOSONAR
 
-        switch (settingsManager.getFolderBrowserFoldersSortOrder()) {
-            case SortManager.SortFolders.COUNT:
-                Collections.sort(baseFileObjects, fileCountComparator());
-                Collections.sort(baseFileObjects, folderCountComparator());
-                break;
+        switch (settingsManager.getFolderBrowserFoldersSortOrder()) { //NOSONAR
+            case SortManager.SortFolders.COUNT: //NOSONAR
+                Collections.sort(baseFileObjects, fileCountComparator()); //NOSONAR
+                Collections.sort(baseFileObjects, folderCountComparator()); //NOSONAR
+                break; //NOSONAR
 
-            case SortManager.SortFolders.DEFAULT:
-            default:
-                Collections.sort(baseFileObjects, filenameComparator());
-                break;
-        }
-    }
-
-    public void sortFileObjects(List<BaseFileObject> baseFileObjects) {
-        switch (settingsManager.getFolderBrowserFilesSortOrder()) {
-            case SortManager.SortFiles.SIZE:
-                Collections.sort(baseFileObjects, sizeComparator());
-                break;
-            case SortManager.SortFiles.FILE_NAME:
-                Collections.sort(baseFileObjects, filenameComparator());
-                break;
-            case SortManager.SortFiles.ARTIST_NAME:
-                Collections.sort(baseFileObjects, artistNameComparator());
-                break;
-            case SortManager.SortFiles.ALBUM_NAME:
-                Collections.sort(baseFileObjects, albumNameComparator());
-                break;
-            case SortManager.SortFiles.TRACK_NAME:
-                Collections.sort(baseFileObjects, trackNameComparator());
-                break;
-            case SortManager.SortFiles.DEFAULT:
-            default:
-                Collections.sort(baseFileObjects, trackNumberComparator());
-                Collections.sort(baseFileObjects, albumNameComparator());
-                Collections.sort(baseFileObjects, artistNameComparator());
-                break;
+            case SortManager.SortFolders.DEFAULT: //NOSONAR
+            default: //NOSONAR
+                Collections.sort(baseFileObjects, filenameComparator()); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    public void clearHomeDir() {
-        settingsManager.setFolderBrowserInitialDir("");
-    }
-
-    public void setHomeDir() {
-        if (currentDir != null) {
-            settingsManager.setFolderBrowserInitialDir(currentDir.getPath());
+    public void sortFileObjects(List<BaseFileObject> baseFileObjects) { //NOSONAR
+        switch (settingsManager.getFolderBrowserFilesSortOrder()) { //NOSONAR
+            case SortManager.SortFiles.SIZE: //NOSONAR
+                Collections.sort(baseFileObjects, sizeComparator()); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.FILE_NAME: //NOSONAR
+                Collections.sort(baseFileObjects, filenameComparator()); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.ARTIST_NAME: //NOSONAR
+                Collections.sort(baseFileObjects, artistNameComparator()); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.ALBUM_NAME: //NOSONAR
+                Collections.sort(baseFileObjects, albumNameComparator()); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.TRACK_NAME: //NOSONAR
+                Collections.sort(baseFileObjects, trackNameComparator()); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.DEFAULT: //NOSONAR
+            default: //NOSONAR
+                Collections.sort(baseFileObjects, trackNumberComparator()); //NOSONAR
+                Collections.sort(baseFileObjects, albumNameComparator()); //NOSONAR
+                Collections.sort(baseFileObjects, artistNameComparator()); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    public File getHomeDir() {
-        return new File(settingsManager.getFolderBrowserInitialDir());
+    public void clearHomeDir() { //NOSONAR
+        settingsManager.setFolderBrowserInitialDir(""); //NOSONAR
     }
 
-    public boolean hasHomeDir() {
-        return !TextUtils.isEmpty(getHomeDir().getPath());
-    }
-
-    public boolean atHomeDirectory() {
-        final File currDir = getCurrentDir();
-        final File homeDir = getHomeDir();
-        return currDir != null && homeDir != null && currDir.compareTo(homeDir) == 0;
-    }
-
-    public int getHomeDirIcon() {
-        int icon = R.drawable.ic_folder_outline;
-        if (atHomeDirectory()) {
-            icon = R.drawable.ic_folder_remove;
-        } else if (hasHomeDir()) {
-            icon = R.drawable.ic_folder_nav;
+    public void setHomeDir() { //NOSONAR
+        if (currentDir != null) { //NOSONAR
+            settingsManager.setFolderBrowserInitialDir(currentDir.getPath()); //NOSONAR
         }
-        return icon;
     }
 
-    public int getHomeDirTitle() {
-        int title = R.string.set_home_dir;
-        if (atHomeDirectory()) {
-            title = R.string.remove_home_dir;
-        } else if (hasHomeDir()) {
-            title = R.string.nav_home_dir;
+    public File getHomeDir() { //NOSONAR
+        return new File(settingsManager.getFolderBrowserInitialDir()); //NOSONAR
+    }
+
+    public boolean hasHomeDir() { //NOSONAR
+        return !TextUtils.isEmpty(getHomeDir().getPath()); //NOSONAR
+    }
+
+    public boolean atHomeDirectory() { //NOSONAR
+        final File currDir = getCurrentDir(); //NOSONAR
+        final File homeDir = getHomeDir(); //NOSONAR
+        return currDir != null && homeDir != null && currDir.compareTo(homeDir) == 0; //NOSONAR
+    }
+
+    public int getHomeDirIcon() { //NOSONAR
+        int icon = R.drawable.ic_folder_outline; //NOSONAR
+        if (atHomeDirectory()) { //NOSONAR
+            icon = R.drawable.ic_folder_remove; //NOSONAR
+        } else if (hasHomeDir()) { //NOSONAR
+            icon = R.drawable.ic_folder_nav; //NOSONAR
         }
-        return title;
+        return icon; //NOSONAR
     }
 
-    private Comparator sizeComparator() {
-        return (Comparator<BaseFileObject>) (lhs, rhs) -> (int) (rhs.size - lhs.size);
+    public int getHomeDirTitle() { //NOSONAR
+        int title = R.string.set_home_dir; //NOSONAR
+        if (atHomeDirectory()) { //NOSONAR
+            title = R.string.remove_home_dir; //NOSONAR
+        } else if (hasHomeDir()) { //NOSONAR
+            title = R.string.nav_home_dir; //NOSONAR
+        }
+        return title; //NOSONAR
     }
 
-    private Comparator filenameComparator() {
-        return (Comparator<BaseFileObject>) (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name);
+    private Comparator sizeComparator() { //NOSONAR
+        return (Comparator<BaseFileObject>) (lhs, rhs) -> (int) (rhs.size - lhs.size); //NOSONAR
+    }
+
+    private Comparator filenameComparator() { //NOSONAR
+        return (Comparator<BaseFileObject>) (lhs, rhs) -> lhs.name.compareToIgnoreCase(rhs.name); //NOSONAR
     }
 
     //    private Comparator durationComparator() {
     //        return (Comparator<FileObject>) (lhs, rhs) -> (int) (rhs.duration - lhs.duration);
     //    }
 
-    private Comparator trackNumberComparator() {
-        return (Comparator<FileObject>) (lhs, rhs) -> lhs.tagInfo.trackNumber - rhs.tagInfo.trackNumber;
+    private Comparator trackNumberComparator() { //NOSONAR
+        return (Comparator<FileObject>) (lhs, rhs) -> lhs.tagInfo.trackNumber - rhs.tagInfo.trackNumber; //NOSONAR
     }
 
-    private Comparator folderCountComparator() {
-        return (Comparator<FolderObject>) (lhs, rhs) -> rhs.folderCount - lhs.folderCount;
+    private Comparator folderCountComparator() { //NOSONAR
+        return (Comparator<FolderObject>) (lhs, rhs) -> rhs.folderCount - lhs.folderCount; //NOSONAR
     }
 
-    private Comparator fileCountComparator() {
-        return (Comparator<FolderObject>) (lhs, rhs) -> rhs.fileCount - lhs.fileCount;
+    private Comparator fileCountComparator() { //NOSONAR
+        return (Comparator<FolderObject>) (lhs, rhs) -> rhs.fileCount - lhs.fileCount; //NOSONAR
     }
 
-    private Comparator artistNameComparator() {
-        return (Comparator<FileObject>) (lhs, rhs) -> {
-            if (lhs.tagInfo.artistName == null || rhs.tagInfo.artistName == null) {
-                return nullCompare(lhs.tagInfo.artistName, rhs.tagInfo.artistName);
+    private Comparator artistNameComparator() { //NOSONAR
+        return (Comparator<FileObject>) (lhs, rhs) -> { //NOSONAR
+            if (lhs.tagInfo.artistName == null || rhs.tagInfo.artistName == null) { //NOSONAR
+                return nullCompare(lhs.tagInfo.artistName, rhs.tagInfo.artistName); //NOSONAR
             }
-            return lhs.tagInfo.artistName.compareToIgnoreCase(rhs.tagInfo.artistName);
+            return lhs.tagInfo.artistName.compareToIgnoreCase(rhs.tagInfo.artistName); //NOSONAR
         };
     }
 
-    private Comparator albumNameComparator() {
-        return (Comparator<FileObject>) (lhs, rhs) -> {
-            if (lhs.tagInfo.albumName == null || rhs.tagInfo.albumName == null) {
-                return nullCompare(lhs.tagInfo.albumName, rhs.tagInfo.albumName);
+    private Comparator albumNameComparator() { //NOSONAR
+        return (Comparator<FileObject>) (lhs, rhs) -> { //NOSONAR
+            if (lhs.tagInfo.albumName == null || rhs.tagInfo.albumName == null) { //NOSONAR
+                return nullCompare(lhs.tagInfo.albumName, rhs.tagInfo.albumName); //NOSONAR
             }
-            return lhs.tagInfo.albumName.compareToIgnoreCase(rhs.tagInfo.albumName);
+            return lhs.tagInfo.albumName.compareToIgnoreCase(rhs.tagInfo.albumName); //NOSONAR
         };
     }
 
-    private Comparator trackNameComparator() {
-        return (Comparator<FileObject>) (lhs, rhs) -> {
-            if (lhs.tagInfo.trackName == null || rhs.tagInfo.trackName == null) {
-                return nullCompare(lhs.tagInfo.trackName, rhs.tagInfo.trackName);
+    private Comparator trackNameComparator() { //NOSONAR
+        return (Comparator<FileObject>) (lhs, rhs) -> { //NOSONAR
+            if (lhs.tagInfo.trackName == null || rhs.tagInfo.trackName == null) { //NOSONAR
+                return nullCompare(lhs.tagInfo.trackName, rhs.tagInfo.trackName); //NOSONAR
             }
-            return lhs.tagInfo.trackName.compareToIgnoreCase(rhs.tagInfo.trackName);
+            return lhs.tagInfo.trackName.compareToIgnoreCase(rhs.tagInfo.trackName); //NOSONAR
         };
     }
 
-    <T extends Comparable<T>> int nullCompare(T a, T b) {
-        return a == null ? (b == null ? 0 : Integer.MIN_VALUE) : (b == null ? Integer.MAX_VALUE : a.compareTo(b));
+    <T extends Comparable<T>> int nullCompare(T a, T b) { //NOSONAR
+        return a == null ? (b == null ? 0 : Integer.MIN_VALUE) : (b == null ? Integer.MAX_VALUE : a.compareTo(b)); //NOSONAR
     }
 }

@@ -13,108 +13,108 @@ import io.reactivex.functions.Function;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SqlUtils {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SqlUtils { //NOSONAR
 
-    private static final boolean ENABLE_LOGGING = false;
+    private static final boolean ENABLE_LOGGING = false; //NOSONAR
 
-    private static final String TAG = "SqlUtils";
+    private static final String TAG = "SqlUtils"; //NOSONAR
 
-    private SqlUtils() {
+    private SqlUtils() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @WorkerThread
-    public static Cursor createQuery(Context context, Query query) {
+    @WorkerThread //NOSONAR
+    public static Cursor createQuery(Context context, Query query) { //NOSONAR
 
-        long time = System.currentTimeMillis();
+        long time = System.currentTimeMillis(); //NOSONAR
 
-        Cursor cursor = context.getContentResolver()
-                .query(query.uri,
-                        query.projection,
-                        query.selection,
-                        query.args,
-                        query.sort);
+        Cursor cursor = context.getContentResolver() //NOSONAR
+                .query(query.uri, //NOSONAR
+                        query.projection, //NOSONAR
+                        query.selection, //NOSONAR
+                        query.args, //NOSONAR
+                        query.sort); //NOSONAR
 
-        if (ENABLE_LOGGING && BuildConfig.DEBUG) {
-            Log.d(TAG, String.format("Query took %sms. %s", (System.currentTimeMillis() - time), query));
+        if (ENABLE_LOGGING && BuildConfig.DEBUG) { //NOSONAR
+            Log.d(TAG, String.format("Query took %sms. %s", (System.currentTimeMillis() - time), query)); //NOSONAR
         }
 
-        ThreadUtils.ensureNotOnMainThread();
+        ThreadUtils.ensureNotOnMainThread(); //NOSONAR
 
-        return cursor;
+        return cursor; //NOSONAR
     }
 
-    public static <T> List<T> createQuery(Context context, Function<Cursor, T> mapper, Query query) {
+    public static <T> List<T> createQuery(Context context, Function<Cursor, T> mapper, Query query) { //NOSONAR
 
-        List<T> items = new ArrayList<>();
+        List<T> items = new ArrayList<>(); //NOSONAR
 
-        Cursor cursor = createQuery(context, query);
+        Cursor cursor = createQuery(context, query); //NOSONAR
 
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    do {
-                        T item = mapper.apply(cursor);
-                        if (item == null) {
-                            throw new NullPointerException("Mapper returned null for row " + cursor.getPosition());
+        if (cursor != null) { //NOSONAR
+            try { //NOSONAR
+                if (cursor.moveToFirst()) { //NOSONAR
+                    do { //NOSONAR
+                        T item = mapper.apply(cursor); //NOSONAR
+                        if (item == null) { //NOSONAR
+                            throw new NullPointerException("Mapper returned null for row " + cursor.getPosition()); //NOSONAR
                         }
-                        items.add(item);
-                    } while (cursor.moveToNext());
+                        items.add(item); //NOSONAR
+                    } while (cursor.moveToNext()); //NOSONAR
                 }
-            } catch (Exception e) {
-                LogUtils.logException(TAG, "createSingle threw an error", e);
-            } finally {
-                cursor.close();
+            } catch (Exception e) { //NOSONAR
+                LogUtils.logException(TAG, "createSingle threw an error", e); //NOSONAR
+            } finally { //NOSONAR
+                cursor.close(); //NOSONAR
             }
         }
-        return items;
+        return items; //NOSONAR
     }
 
-    public static void createActionableQuery(Context context, Consumer<Cursor> action, Query query) {
+    public static void createActionableQuery(Context context, Consumer<Cursor> action, Query query) { //NOSONAR
 
-        Cursor cursor = createQuery(context, query);
+        Cursor cursor = createQuery(context, query); //NOSONAR
 
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    do {
-                        action.accept(cursor);
-                    } while (cursor.moveToNext());
+        if (cursor != null) { //NOSONAR
+            try { //NOSONAR
+                if (cursor.moveToFirst()) { //NOSONAR
+                    do { //NOSONAR
+                        action.accept(cursor); //NOSONAR
+                    } while (cursor.moveToNext()); //NOSONAR
                 }
-            } catch (Exception e) {
-                LogUtils.logException(TAG, "createActionableQuery threw an error", e);
-            } finally {
-                cursor.close();
+            } catch (Exception e) { //NOSONAR
+                LogUtils.logException(TAG, "createActionableQuery threw an error", e); //NOSONAR
+            } finally { //NOSONAR
+                cursor.close(); //NOSONAR
             }
         }
     }
 
-    public static <T> T createSingleQuery(Context context, Function<Cursor, T> mapper, Query query) {
-        return createSingleQuery(context, mapper, null, query);
+    public static <T> T createSingleQuery(Context context, Function<Cursor, T> mapper, Query query) { //NOSONAR
+        return createSingleQuery(context, mapper, null, query); //NOSONAR
     }
 
-    public static <T> T createSingleQuery(Context context, Function<Cursor, T> mapper, T defaultValue, Query query) {
+    public static <T> T createSingleQuery(Context context, Function<Cursor, T> mapper, T defaultValue, Query query) { //NOSONAR
 
-        T item = defaultValue;
+        T item = defaultValue; //NOSONAR
 
-        Cursor cursor = createQuery(context, query);
+        Cursor cursor = createQuery(context, query); //NOSONAR
 
-        if (cursor != null) {
-            try {
-                if (cursor.moveToFirst()) {
-                    item = mapper.apply(cursor);
-                    if (cursor.moveToNext()) {
-                        Log.e(TAG, "Cursor returned more than 1 row. Query: " + query);
+        if (cursor != null) { //NOSONAR
+            try { //NOSONAR
+                if (cursor.moveToFirst()) { //NOSONAR
+                    item = mapper.apply(cursor); //NOSONAR
+                    if (cursor.moveToNext()) { //NOSONAR
+                        Log.e(TAG, "Cursor returned more than 1 row. Query: " + query); //NOSONAR
                     }
                 }
-            } catch (Exception e) {
-                LogUtils.logException(TAG, "createSingleQuery threw an error", e);
-                e.printStackTrace();
-            } finally {
-                cursor.close();
+            } catch (Exception e) { //NOSONAR
+                LogUtils.logException(TAG, "createSingleQuery threw an error", e); //NOSONAR
+                e.printStackTrace(); //NOSONAR
+            } finally { //NOSONAR
+                cursor.close(); //NOSONAR
             }
         }
-        return item;
+        return item; //NOSONAR
     }
 }

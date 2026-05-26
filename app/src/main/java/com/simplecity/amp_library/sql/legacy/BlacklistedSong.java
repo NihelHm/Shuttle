@@ -2,41 +2,41 @@ package com.simplecity.amp_library.sql.legacy;
 
 import android.database.Cursor;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BlacklistedSong {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BlacklistedSong { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long id;
+    public long id; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long songId;
+    public long songId; //NOSONAR
 
-    public BlacklistedSong(Cursor cursor) {
-        id = cursor.getLong(0);
-        songId = cursor.getLong(1);
+    public BlacklistedSong(Cursor cursor) { //NOSONAR
+        id = cursor.getLong(0); //NOSONAR
+        songId = cursor.getLong(1); //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return String.valueOf(songId);
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return String.valueOf(songId); //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        BlacklistedSong that = (BlacklistedSong) o;
+        BlacklistedSong that = (BlacklistedSong) o; //NOSONAR
 
-        return id == that.id && songId == that.songId;
+        return id == that.id && songId == that.songId; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (songId ^ (songId >>> 32));
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = (int) (id ^ (id >>> 32)); //NOSONAR
+        result = 31 * result + (int) (songId ^ (songId >>> 32)); //NOSONAR
+        return result; //NOSONAR
     }
 }

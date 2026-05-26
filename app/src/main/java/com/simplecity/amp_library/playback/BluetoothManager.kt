@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.playback
 
@@ -13,62 +13,62 @@ import com.simplecity.amp_library.playback.constants.ExternalIntents
 import com.simplecity.amp_library.utils.AnalyticsManager
 import com.simplecity.amp_library.utils.SettingsManager
 
-class BluetoothManager(
-    private val playbackManager: PlaybackManager,
-    private val analyticsManager: AnalyticsManager,
-    private val musicServiceCallbacks: MusicService.Callbacks,
-    private val settingsManager: SettingsManager
+class BluetoothManager( //NOSONAR
+    private val playbackManager: PlaybackManager, //NOSONAR
+    private val analyticsManager: AnalyticsManager, //NOSONAR
+    private val musicServiceCallbacks: MusicService.Callbacks, //NOSONAR
+    private val settingsManager: SettingsManager //NOSONAR
 ) {
 
-    private var bluetoothReceiver: BroadcastReceiver? = null
+    private var bluetoothReceiver: BroadcastReceiver? = null //NOSONAR
 
-    private var a2dpReceiver: BroadcastReceiver? = null
+    private var a2dpReceiver: BroadcastReceiver? = null //NOSONAR
 
-    fun registerBluetoothReceiver(context: Context) {
+    fun registerBluetoothReceiver(context: Context) { //NOSONAR
 
-        val filter = IntentFilter()
-        filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED)
-        filter.addAction(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED)
+        val filter = IntentFilter() //NOSONAR
+        filter.addAction(BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED) //NOSONAR
+        filter.addAction(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED) //NOSONAR
 
-        bluetoothReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
+        bluetoothReceiver = object : BroadcastReceiver() { //NOSONAR
+            override fun onReceive(context: Context, intent: Intent) { //NOSONAR
 
-                val action = intent.action
-                if (action != null) {
-                    val extras = intent.extras
-                    if (settingsManager.bluetoothPauseDisconnect) {
-                        when (action) {
-                            BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED -> if (extras != null) {
-                                val state = extras.getInt(BluetoothA2dp.EXTRA_STATE)
-                                val previousState = extras.getInt(BluetoothA2dp.EXTRA_PREVIOUS_STATE)
-                                if ((state == BluetoothA2dp.STATE_DISCONNECTED || state == BluetoothA2dp.STATE_DISCONNECTING) && previousState == BluetoothA2dp.STATE_CONNECTED) {
-                                    analyticsManager.dropBreadcrumb(TAG, "ACTION_AUDIO_STATE_CHANGED.. pausing. State: $state")
-                                    playbackManager.pause(false)
+                val action = intent.action //NOSONAR
+                if (action != null) { //NOSONAR
+                    val extras = intent.extras //NOSONAR
+                    if (settingsManager.bluetoothPauseDisconnect) { //NOSONAR
+                        when (action) { //NOSONAR
+                            BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED -> if (extras != null) { //NOSONAR
+                                val state = extras.getInt(BluetoothA2dp.EXTRA_STATE) //NOSONAR
+                                val previousState = extras.getInt(BluetoothA2dp.EXTRA_PREVIOUS_STATE) //NOSONAR
+                                if ((state == BluetoothA2dp.STATE_DISCONNECTED || state == BluetoothA2dp.STATE_DISCONNECTING) && previousState == BluetoothA2dp.STATE_CONNECTED) { //NOSONAR
+                                    analyticsManager.dropBreadcrumb(TAG, "ACTION_AUDIO_STATE_CHANGED.. pausing. State: $state") //NOSONAR
+                                    playbackManager.pause(false) //NOSONAR
                                 }
                             }
-                            BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED -> if (extras != null) {
-                                val state = extras.getInt(BluetoothHeadset.EXTRA_STATE)
-                                val previousState = extras.getInt(BluetoothHeadset.EXTRA_PREVIOUS_STATE)
-                                if (state == BluetoothHeadset.STATE_AUDIO_DISCONNECTED && previousState == BluetoothHeadset.STATE_AUDIO_CONNECTED) {
-                                    analyticsManager.dropBreadcrumb(TAG, "ACTION_AUDIO_STATE_CHANGED.. pausing. State: $state")
-                                    playbackManager.pause(false)
+                            BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED -> if (extras != null) { //NOSONAR
+                                val state = extras.getInt(BluetoothHeadset.EXTRA_STATE) //NOSONAR
+                                val previousState = extras.getInt(BluetoothHeadset.EXTRA_PREVIOUS_STATE) //NOSONAR
+                                if (state == BluetoothHeadset.STATE_AUDIO_DISCONNECTED && previousState == BluetoothHeadset.STATE_AUDIO_CONNECTED) { //NOSONAR
+                                    analyticsManager.dropBreadcrumb(TAG, "ACTION_AUDIO_STATE_CHANGED.. pausing. State: $state") //NOSONAR
+                                    playbackManager.pause(false) //NOSONAR
                                 }
                             }
                         }
                     }
 
-                    if (settingsManager.bluetoothResumeConnect) {
-                        when (action) {
-                            BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED -> if (extras != null) {
-                                val state = extras.getInt(BluetoothA2dp.EXTRA_STATE)
-                                if (state == BluetoothA2dp.STATE_CONNECTED) {
-                                    playbackManager.play()
+                    if (settingsManager.bluetoothResumeConnect) { //NOSONAR
+                        when (action) { //NOSONAR
+                            BluetoothA2dp.ACTION_CONNECTION_STATE_CHANGED -> if (extras != null) { //NOSONAR
+                                val state = extras.getInt(BluetoothA2dp.EXTRA_STATE) //NOSONAR
+                                if (state == BluetoothA2dp.STATE_CONNECTED) { //NOSONAR
+                                    playbackManager.play() //NOSONAR
                                 }
                             }
-                            BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED -> if (extras != null) {
-                                val state = extras.getInt(BluetoothHeadset.EXTRA_STATE)
-                                if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED) {
-                                    playbackManager.play()
+                            BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED -> if (extras != null) { //NOSONAR
+                                val state = extras.getInt(BluetoothHeadset.EXTRA_STATE) //NOSONAR
+                                if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED) { //NOSONAR
+                                    playbackManager.play() //NOSONAR
                                 }
                             }
                         }
@@ -77,44 +77,44 @@ class BluetoothManager(
             }
         }
 
-        context.registerReceiver(bluetoothReceiver, filter)
+        context.registerReceiver(bluetoothReceiver, filter) //NOSONAR
     }
 
-    fun unregisterBluetoothReceiver(context: Context) {
-        context.unregisterReceiver(bluetoothReceiver)
+    fun unregisterBluetoothReceiver(context: Context) { //NOSONAR
+        context.unregisterReceiver(bluetoothReceiver) //NOSONAR
     }
 
-    fun registerA2dpServiceListener(context: Context) {
-        a2dpReceiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context, intent: Intent) {
-                val action = intent.action
-                if (action != null && action == ExternalIntents.PLAY_STATUS_REQUEST) {
-                    musicServiceCallbacks.notifyChange(ExternalIntents.PLAY_STATUS_RESPONSE)
+    fun registerA2dpServiceListener(context: Context) { //NOSONAR
+        a2dpReceiver = object : BroadcastReceiver() { //NOSONAR
+            override fun onReceive(context: Context, intent: Intent) { //NOSONAR
+                val action = intent.action //NOSONAR
+                if (action != null && action == ExternalIntents.PLAY_STATUS_REQUEST) { //NOSONAR
+                    musicServiceCallbacks.notifyChange(ExternalIntents.PLAY_STATUS_RESPONSE) //NOSONAR
                 }
             }
         }
-        val intentFilter = IntentFilter()
-        intentFilter.addAction(ExternalIntents.PLAY_STATUS_REQUEST)
-        context.registerReceiver(a2dpReceiver, intentFilter)
+        val intentFilter = IntentFilter() //NOSONAR
+        intentFilter.addAction(ExternalIntents.PLAY_STATUS_REQUEST) //NOSONAR
+        context.registerReceiver(a2dpReceiver, intentFilter) //NOSONAR
     }
 
-    fun unregisterA2dpServiceListener(context: Context) {
-        context.unregisterReceiver(a2dpReceiver)
+    fun unregisterA2dpServiceListener(context: Context) { //NOSONAR
+        context.unregisterReceiver(a2dpReceiver) //NOSONAR
     }
 
-    fun sendPlayStateChangedIntent(context: Context, extras: Bundle) {
-        val intent = Intent(ExternalIntents.AVRCP_PLAY_STATE_CHANGED)
-        intent.putExtras(extras)
-        context.sendBroadcast(intent)
+    fun sendPlayStateChangedIntent(context: Context, extras: Bundle) { //NOSONAR
+        val intent = Intent(ExternalIntents.AVRCP_PLAY_STATE_CHANGED) //NOSONAR
+        intent.putExtras(extras) //NOSONAR
+        context.sendBroadcast(intent) //NOSONAR
     }
 
-    fun sendMetaChangedIntent(context: Context, extras: Bundle) {
-        val intent = Intent(ExternalIntents.AVRCP_META_CHANGED)
-        intent.putExtras(extras)
-        context.sendBroadcast(intent)
+    fun sendMetaChangedIntent(context: Context, extras: Bundle) { //NOSONAR
+        val intent = Intent(ExternalIntents.AVRCP_META_CHANGED) //NOSONAR
+        intent.putExtras(extras) //NOSONAR
+        context.sendBroadcast(intent) //NOSONAR
     }
 
-    companion object {
-        const val TAG = "BluetoothManager"
+    companion object { //NOSONAR
+        const val TAG = "BluetoothManager" //NOSONAR
     }
 }

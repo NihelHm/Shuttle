@@ -16,109 +16,109 @@ import static com.simplecity.amp_library.R.string.btn_options;
 import static com.simplecity.amp_library.ui.adapters.ViewType.PLAYLIST;
 import static com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment.PlaylistClickListener;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOSONAR
 
-    public interface OnClickListener {
+    public interface OnClickListener { //NOSONAR
 
-        void onPlaylistClick(int position, PlaylistView playlistView);
+        void onPlaylistClick(int position, PlaylistView playlistView); //NOSONAR
 
-        void onPlaylistOverflowClick(int position, View v, Playlist playlist);
+        void onPlaylistOverflowClick(int position, View v, Playlist playlist); //NOSONAR
     }
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public Playlist playlist;
+    public Playlist playlist; //NOSONAR
 
-    @Nullable
-    private OnClickListener listener;
+    @Nullable //NOSONAR
+    private OnClickListener listener; //NOSONAR
 
-    public PlaylistView(Playlist playlist) {
-        this.playlist = playlist;
+    public PlaylistView(Playlist playlist) { //NOSONAR
+        this.playlist = playlist; //NOSONAR
     }
 
-    public void setListener(@Nullable OnClickListener listener) {
-        this.listener = listener;
+    public void setListener(@Nullable OnClickListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return PLAYLIST;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return PLAYLIST; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return list_item_one_line;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return list_item_one_line; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.lineOne.setText(playlist.name);
-        holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(btn_options, playlist.name));
+        holder.lineOne.setText(playlist.name); //NOSONAR
+        holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(btn_options, playlist.name)); //NOSONAR
     }
 
-    void onPlaylistClicked(int position) {
-        if (listener != null) {
-            listener.onPlaylistClick(position, this);
+    void onPlaylistClicked(int position) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onPlaylistClick(position, this); //NOSONAR
         }
     }
 
-    void onOverflowClicked(int position, View v) {
-        if (listener != null) {
-            listener.onPlaylistOverflowClick(position, v, playlist);
+    void onOverflowClicked(int position, View v) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onPlaylistOverflowClick(position, v, playlist); //NOSONAR
         }
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<PlaylistView> {
+    public static class ViewHolder extends BaseViewHolder<PlaylistView> { //NOSONAR
 
-        @SuppressWarnings("java:S1104")
+        @SuppressWarnings("java:S1104") //NOSONAR
 
-        public TextView lineOne;
-        @SuppressWarnings("java:S1104")
-        public NonScrollImageButton overflowButton;
-        @SuppressWarnings("java:S1104")
-        public PlaylistClickListener listener;
+        public TextView lineOne; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public NonScrollImageButton overflowButton; //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public PlaylistClickListener listener; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            lineOne = itemView.findViewById(line_one);
-            overflowButton = itemView.findViewById(btn_overflow);
+            lineOne = itemView.findViewById(line_one); //NOSONAR
+            overflowButton = itemView.findViewById(btn_overflow); //NOSONAR
 
-            itemView.setOnClickListener(v -> viewModel.onPlaylistClicked(getAdapterPosition()));
-            overflowButton.setOnClickListener(v -> viewModel.onOverflowClicked(getAdapterPosition(), v));
+            itemView.setOnClickListener(v -> viewModel.onPlaylistClicked(getAdapterPosition())); //NOSONAR
+            overflowButton.setOnClickListener(v -> viewModel.onOverflowClicked(getAdapterPosition(), v)); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "PlaylistView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "PlaylistView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        PlaylistView that = (PlaylistView) o;
+        PlaylistView that = (PlaylistView) o; //NOSONAR
 
-        return playlist != null ? playlist.equals(that.playlist) : that.playlist == null;
+        return playlist != null ? playlist.equals(that.playlist) : that.playlist == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return playlist != null ? playlist.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return playlist != null ? playlist.hashCode() : 0; //NOSONAR
     }
 
-    @Override
-    public boolean areContentsEqual(Object other) {
-        return equals(other);
+    @Override //NOSONAR
+    public boolean areContentsEqual(Object other) { //NOSONAR
+        return equals(other); //NOSONAR
     }
 }

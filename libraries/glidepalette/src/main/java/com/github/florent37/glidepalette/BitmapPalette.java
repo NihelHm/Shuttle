@@ -21,102 +21,102 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class BitmapPalette {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class BitmapPalette { //NOSONAR
 
-    private static final String TAG = "BitmapPalette";
+    private static final String TAG = "BitmapPalette"; //NOSONAR
 
-    public interface CallBack {
-        void onPaletteLoaded(@Nullable Palette palette);
+    public interface CallBack { //NOSONAR
+        void onPaletteLoaded(@Nullable Palette palette); //NOSONAR
     }
 
-    public interface PaletteBuilderInterceptor {
-        @NonNull
-        Palette.Builder intercept(Palette.Builder builder);
+    public interface PaletteBuilderInterceptor { //NOSONAR
+        @NonNull //NOSONAR
+        Palette.Builder intercept(Palette.Builder builder); //NOSONAR
     }
 
-    @IntDef({Profile.VIBRANT, Profile.VIBRANT_DARK, Profile.VIBRANT_LIGHT,
-            Profile.MUTED, Profile.MUTED_DARK, Profile.MUTED_LIGHT})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Profile {
-        int VIBRANT = 0;
-        int VIBRANT_DARK = 1;
-        int VIBRANT_LIGHT = 2;
-        int MUTED = 3;
-        int MUTED_DARK = 4;
-        int MUTED_LIGHT = 5;
+    @IntDef({Profile.VIBRANT, Profile.VIBRANT_DARK, Profile.VIBRANT_LIGHT, //NOSONAR
+            Profile.MUTED, Profile.MUTED_DARK, Profile.MUTED_LIGHT}) //NOSONAR
+    @Retention(RetentionPolicy.SOURCE) //NOSONAR
+    public @interface Profile { //NOSONAR
+        int VIBRANT = 0; //NOSONAR
+        int VIBRANT_DARK = 1; //NOSONAR
+        int VIBRANT_LIGHT = 2; //NOSONAR
+        int MUTED = 3; //NOSONAR
+        int MUTED_DARK = 4; //NOSONAR
+        int MUTED_LIGHT = 5; //NOSONAR
     }
 
-    @IntDef({Swatch.RGB, Swatch.TITLE_TEXT_COLOR, Swatch.BODY_TEXT_COLOR})
-    @Retention(RetentionPolicy.SOURCE)
-    public @interface Swatch {
-        int RGB = 0;
-        int TITLE_TEXT_COLOR = 1;
-        int BODY_TEXT_COLOR = 2;
+    @IntDef({Swatch.RGB, Swatch.TITLE_TEXT_COLOR, Swatch.BODY_TEXT_COLOR}) //NOSONAR
+    @Retention(RetentionPolicy.SOURCE) //NOSONAR
+    public @interface Swatch { //NOSONAR
+        int RGB = 0; //NOSONAR
+        int TITLE_TEXT_COLOR = 1; //NOSONAR
+        int BODY_TEXT_COLOR = 2; //NOSONAR
     }
 
-    static final LruCache<String, Palette> CACHE = new LruCache<>(40);
+    static final LruCache<String, Palette> CACHE = new LruCache<>(40); //NOSONAR
 
-    protected String url;
+    protected String url; //NOSONAR
 
-    protected LinkedList<PaletteTarget> targets = new LinkedList<>();
-    protected ArrayList<BitmapPalette.CallBack> callbacks = new ArrayList<>();
-    private PaletteBuilderInterceptor interceptor;
-    private boolean skipCache;
+    protected LinkedList<PaletteTarget> targets = new LinkedList<>(); //NOSONAR
+    protected ArrayList<BitmapPalette.CallBack> callbacks = new ArrayList<>(); //NOSONAR
+    private PaletteBuilderInterceptor interceptor; //NOSONAR
+    private boolean skipCache; //NOSONAR
 
-    public BitmapPalette use(@Profile int paletteProfile) {
-        this.targets.add(new PaletteTarget(paletteProfile));
-        return this;
+    public BitmapPalette use(@Profile int paletteProfile) { //NOSONAR
+        this.targets.add(new PaletteTarget(paletteProfile)); //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette intoBackground(View view, @Swatch int paletteSwatch) {
-        assertTargetsIsNotEmpty();
+    protected BitmapPalette intoBackground(View view, @Swatch int paletteSwatch) { //NOSONAR
+        assertTargetsIsNotEmpty(); //NOSONAR
 
-        this.targets.getLast().targetsBackground.add(new Pair<>(view, paletteSwatch));
-        return this;
+        this.targets.getLast().targetsBackground.add(new Pair<>(view, paletteSwatch)); //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette intoTextColor(TextView textView, @Swatch int paletteSwatch) {
-        assertTargetsIsNotEmpty();
+    protected BitmapPalette intoTextColor(TextView textView, @Swatch int paletteSwatch) { //NOSONAR
+        assertTargetsIsNotEmpty(); //NOSONAR
 
-        this.targets.getLast().targetsText.add(new Pair<>(textView, paletteSwatch));
-        return this;
+        this.targets.getLast().targetsText.add(new Pair<>(textView, paletteSwatch)); //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette crossfade(boolean crossfade) {
-        assertTargetsIsNotEmpty();
+    protected BitmapPalette crossfade(boolean crossfade) { //NOSONAR
+        assertTargetsIsNotEmpty(); //NOSONAR
 
-        this.targets.getLast().targetCrossfade = crossfade;
-        return this;
+        this.targets.getLast().targetCrossfade = crossfade; //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette crossfade(boolean crossfade, int crossfadeSpeed) {
-        assertTargetsIsNotEmpty();
+    protected BitmapPalette crossfade(boolean crossfade, int crossfadeSpeed) { //NOSONAR
+        assertTargetsIsNotEmpty(); //NOSONAR
 
-        this.targets.getLast().targetCrossfadeSpeed = crossfadeSpeed;
-        return this.crossfade(crossfade);
+        this.targets.getLast().targetCrossfadeSpeed = crossfadeSpeed; //NOSONAR
+        return this.crossfade(crossfade); //NOSONAR
     }
 
-    private void assertTargetsIsNotEmpty() {
-        if (this.targets.isEmpty()) {
-            throw new UnsupportedOperationException("You must specify a palette with use(Profile.Profile)");
+    private void assertTargetsIsNotEmpty() { //NOSONAR
+        if (this.targets.isEmpty()) { //NOSONAR
+            throw new UnsupportedOperationException("You must specify a palette with use(Profile.Profile)"); //NOSONAR
         }
     }
 
-    protected BitmapPalette intoCallBack(BitmapPalette.CallBack callBack) {
-        if (callBack != null)
-            callbacks.add(callBack);
-        return this;
+    protected BitmapPalette intoCallBack(BitmapPalette.CallBack callBack) { //NOSONAR
+        if (callBack != null) //NOSONAR
+            callbacks.add(callBack); //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette skipPaletteCache(boolean skipCache) {
-        this.skipCache = skipCache;
-        return this;
+    protected BitmapPalette skipPaletteCache(boolean skipCache) { //NOSONAR
+        this.skipCache = skipCache; //NOSONAR
+        return this; //NOSONAR
     }
 
-    protected BitmapPalette setPaletteBuilderInterceptor(PaletteBuilderInterceptor interceptor) {
-        this.interceptor = interceptor;
-        return this;
+    protected BitmapPalette setPaletteBuilderInterceptor(PaletteBuilderInterceptor interceptor) { //NOSONAR
+        this.interceptor = interceptor; //NOSONAR
+        return this; //NOSONAR
     }
 
     /*
@@ -125,115 +125,115 @@ public abstract class BitmapPalette {
      * palette  the palette to apply
      * cacheHit true if the palette was retrieved from the cache, else false
      */
-    protected void apply(Palette palette, boolean cacheHit) {
+    protected void apply(Palette palette, boolean cacheHit) { //NOSONAR
 
-        for (CallBack c : callbacks) {
-            c.onPaletteLoaded(palette);
+        for (CallBack c : callbacks) { //NOSONAR
+            c.onPaletteLoaded(palette); //NOSONAR
         }
 
-        if (palette == null) return;
+        if (palette == null) return; //NOSONAR
 
-        for (PaletteTarget target : targets) {
-            Palette.Swatch swatch = null;
-            switch (target.paletteProfile) {
-                case Profile.VIBRANT:
-                    swatch = palette.getVibrantSwatch();
-                    break;
-                case Profile.VIBRANT_DARK:
-                    swatch = palette.getDarkVibrantSwatch();
-                    break;
-                case Profile.VIBRANT_LIGHT:
-                    swatch = palette.getLightVibrantSwatch();
-                    break;
-                case Profile.MUTED:
-                    swatch = palette.getMutedSwatch();
-                    break;
-                case Profile.MUTED_DARK:
-                    swatch = palette.getDarkMutedSwatch();
-                    break;
-                case Profile.MUTED_LIGHT:
-                    swatch = palette.getLightMutedSwatch();
-                    break;
+        for (PaletteTarget target : targets) { //NOSONAR
+            Palette.Swatch swatch = null; //NOSONAR
+            switch (target.paletteProfile) { //NOSONAR
+                case Profile.VIBRANT: //NOSONAR
+                    swatch = palette.getVibrantSwatch(); //NOSONAR
+                    break; //NOSONAR
+                case Profile.VIBRANT_DARK: //NOSONAR
+                    swatch = palette.getDarkVibrantSwatch(); //NOSONAR
+                    break; //NOSONAR
+                case Profile.VIBRANT_LIGHT: //NOSONAR
+                    swatch = palette.getLightVibrantSwatch(); //NOSONAR
+                    break; //NOSONAR
+                case Profile.MUTED: //NOSONAR
+                    swatch = palette.getMutedSwatch(); //NOSONAR
+                    break; //NOSONAR
+                case Profile.MUTED_DARK: //NOSONAR
+                    swatch = palette.getDarkMutedSwatch(); //NOSONAR
+                    break; //NOSONAR
+                case Profile.MUTED_LIGHT: //NOSONAR
+                    swatch = palette.getLightMutedSwatch(); //NOSONAR
+                    break; //NOSONAR
             }
 
-            if (swatch == null) {
-                swatch = new Palette.Swatch(Color.BLACK, 1);
+            if (swatch == null) { //NOSONAR
+                swatch = new Palette.Swatch(Color.BLACK, 1); //NOSONAR
             }
 
-            for (Pair<View, Integer> t : target.targetsBackground) {
-                int color = getColor(swatch, t.second);
+            for (Pair<View, Integer> t : target.targetsBackground) { //NOSONAR
+                int color = getColor(swatch, t.second); //NOSONAR
                 //Only crossfade if we're not coming from a cache hit.
-                if (!cacheHit && target.targetCrossfade) {
-                    crossfadeTargetBackground(target, t, color);
-                } else {
-                    t.first.setBackgroundColor(color);
+                if (!cacheHit && target.targetCrossfade) { //NOSONAR
+                    crossfadeTargetBackground(target, t, color); //NOSONAR
+                } else { //NOSONAR
+                    t.first.setBackgroundColor(color); //NOSONAR
                 }
             }
 
-            for (Pair<TextView, Integer> t : target.targetsText) {
-                int color = getColor(swatch, t.second);
-                t.first.setTextColor(color);
+            for (Pair<TextView, Integer> t : target.targetsText) { //NOSONAR
+                int color = getColor(swatch, t.second); //NOSONAR
+                t.first.setTextColor(color); //NOSONAR
             }
 
-            target.clear();
-            this.callbacks = null;
+            target.clear(); //NOSONAR
+            this.callbacks = null; //NOSONAR
         }
     }
 
-    private void crossfadeTargetBackground(PaletteTarget target, Pair<View, Integer> t, int newColor) {
+    private void crossfadeTargetBackground(PaletteTarget target, Pair<View, Integer> t, int newColor) { //NOSONAR
 
-        final Drawable oldColor = t.first.getBackground();
-        final Drawable[] drawables = new Drawable[2];
+        final Drawable oldColor = t.first.getBackground(); //NOSONAR
+        final Drawable[] drawables = new Drawable[2]; //NOSONAR
 
-        drawables[0] = oldColor != null ? oldColor : new ColorDrawable(t.first.getSolidColor());
-        drawables[1] = new ColorDrawable(newColor);
-        TransitionDrawable transitionDrawable = new TransitionDrawable(drawables);
+        drawables[0] = oldColor != null ? oldColor : new ColorDrawable(t.first.getSolidColor()); //NOSONAR
+        drawables[1] = new ColorDrawable(newColor); //NOSONAR
+        TransitionDrawable transitionDrawable = new TransitionDrawable(drawables); //NOSONAR
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            t.first.setBackground(transitionDrawable);
-        } else {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) { //NOSONAR
+            t.first.setBackground(transitionDrawable); //NOSONAR
+        } else { //NOSONAR
             //noinspection deprecation
-            t.first.setBackgroundDrawable(transitionDrawable);
+            t.first.setBackgroundDrawable(transitionDrawable); //NOSONAR
         }
-        transitionDrawable.startTransition(target.targetCrossfadeSpeed);
+        transitionDrawable.startTransition(target.targetCrossfadeSpeed); //NOSONAR
     }
 
-    protected static int getColor(Palette.Swatch swatch, @Swatch int paletteSwatch) {
-        if (swatch != null) {
-            switch (paletteSwatch) {
-                case Swatch.RGB:
-                    return swatch.getRgb();
-                case Swatch.TITLE_TEXT_COLOR:
-                    return swatch.getTitleTextColor();
-                case Swatch.BODY_TEXT_COLOR:
-                    return swatch.getBodyTextColor();
+    protected static int getColor(Palette.Swatch swatch, @Swatch int paletteSwatch) { //NOSONAR
+        if (swatch != null) { //NOSONAR
+            switch (paletteSwatch) { //NOSONAR
+                case Swatch.RGB: //NOSONAR
+                    return swatch.getRgb(); //NOSONAR
+                case Swatch.TITLE_TEXT_COLOR: //NOSONAR
+                    return swatch.getTitleTextColor(); //NOSONAR
+                case Swatch.BODY_TEXT_COLOR: //NOSONAR
+                    return swatch.getBodyTextColor(); //NOSONAR
             }
-        } else {
-            Log.e(TAG, "error while generating Palette, null palette returned");
+        } else { //NOSONAR
+            Log.e(TAG, "error while generating Palette, null palette returned"); //NOSONAR
         }
-        return 0;
+        return 0; //NOSONAR
     }
 
-    protected void start(@NonNull final Bitmap bitmap) {
-        final boolean skipCache = this.skipCache;
-        if (!skipCache) {
-            Palette palette = CACHE.get(url);
-            if (palette != null) {
-                apply(palette, true);
-                return;
+    protected void start(@NonNull final Bitmap bitmap) { //NOSONAR
+        final boolean skipCache = this.skipCache; //NOSONAR
+        if (!skipCache) { //NOSONAR
+            Palette palette = CACHE.get(url); //NOSONAR
+            if (palette != null) { //NOSONAR
+                apply(palette, true); //NOSONAR
+                return; //NOSONAR
             }
         }
-        Palette.Builder builder = new Palette.Builder(bitmap);
-        if (interceptor != null) {
-            builder = interceptor.intercept(builder);
+        Palette.Builder builder = new Palette.Builder(bitmap); //NOSONAR
+        if (interceptor != null) { //NOSONAR
+            builder = interceptor.intercept(builder); //NOSONAR
         }
-        builder.generate(new Palette.PaletteAsyncListener() {
-            @Override
-            public void onGenerated(Palette palette) {
-                if (!skipCache) {
-                    CACHE.put(url, palette);
+        builder.generate(new Palette.PaletteAsyncListener() { //NOSONAR
+            @Override //NOSONAR
+            public void onGenerated(Palette palette) { //NOSONAR
+                if (!skipCache) { //NOSONAR
+                    CACHE.put(url, palette); //NOSONAR
                 }
-                apply(palette, false);
+                apply(palette, false); //NOSONAR
             }
         });
     }

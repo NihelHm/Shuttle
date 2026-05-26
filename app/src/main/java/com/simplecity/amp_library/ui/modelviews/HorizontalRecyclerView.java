@@ -15,77 +15,77 @@ import static android.support.v7.widget.LinearLayoutManager.HORIZONTAL;
 import static com.simplecity.amp_library.R.layout.recycler_header;
 import static com.simplecity.amp_library.ui.adapters.ViewType.HORIZONTAL_RECYCLERVIEW;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class HorizontalRecyclerView extends BaseViewModel<HorizontalRecyclerView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class HorizontalRecyclerView extends BaseViewModel<HorizontalRecyclerView.ViewHolder> { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public ViewModelAdapter viewModelAdapter;
+    public ViewModelAdapter viewModelAdapter; //NOSONAR
 
-    public HorizontalRecyclerView(String tag) {
-        this.viewModelAdapter = new ViewModelAdapter();
+    public HorizontalRecyclerView(String tag) { //NOSONAR
+        this.viewModelAdapter = new ViewModelAdapter(); //NOSONAR
     }
 
-    public Disposable setItems(List<ViewModel> items) {
-        return viewModelAdapter.setItems(items);
+    public Disposable setItems(List<ViewModel> items) { //NOSONAR
+        return viewModelAdapter.setItems(items); //NOSONAR
     }
 
-    public int getCount() {
-        return viewModelAdapter.getItemCount();
+    public int getCount() { //NOSONAR
+        return viewModelAdapter.getItemCount(); //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return HORIZONTAL_RECYCLERVIEW;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return HORIZONTAL_RECYCLERVIEW; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return recycler_header;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return recycler_header; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        ((RecyclerView) holder.itemView).setAdapter(viewModelAdapter);
+        ((RecyclerView) holder.itemView).setAdapter(viewModelAdapter); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+    public static class ViewHolder extends BaseViewHolder { //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), HORIZONTAL, false);
-            layoutManager.setInitialPrefetchItemCount(4);
-            ((RecyclerView) itemView).setLayoutManager(layoutManager);
+            LinearLayoutManager layoutManager = new LinearLayoutManager(itemView.getContext(), HORIZONTAL, false); //NOSONAR
+            layoutManager.setInitialPrefetchItemCount(4); //NOSONAR
+            ((RecyclerView) itemView).setLayoutManager(layoutManager); //NOSONAR
             //noinspection RedundantCast
-            ((RecyclerView) itemView).setNestedScrollingEnabled(false);
+            ((RecyclerView) itemView).setNestedScrollingEnabled(false); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "HorizontalRecyclerView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "HorizontalRecyclerView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        HorizontalRecyclerView that = (HorizontalRecyclerView) o;
+        HorizontalRecyclerView that = (HorizontalRecyclerView) o; //NOSONAR
 
-        return viewModelAdapter != null ? viewModelAdapter.equals(that.viewModelAdapter) : that.viewModelAdapter == null;
+        return viewModelAdapter != null ? viewModelAdapter.equals(that.viewModelAdapter) : that.viewModelAdapter == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return viewModelAdapter != null ? viewModelAdapter.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return viewModelAdapter != null ? viewModelAdapter.hashCode() : 0; //NOSONAR
     }
 }

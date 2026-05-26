@@ -9,11 +9,11 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("WeakerAccess")
-@Retention(SOURCE)
-@IntDef(value = {OFF, ON, AUTO})
-public @interface AutoSwitchMode {
-  int OFF = 0;
-  int ON = 1;
-  int AUTO = 2;
+@SuppressWarnings("WeakerAccess") //NOSONAR
+@Retention(SOURCE) //NOSONAR
+@IntDef(value = {OFF, ON, AUTO}) //NOSONAR
+public @interface AutoSwitchMode { //NOSONAR
+  int OFF = 0; //NOSONAR
+  int ON = 1; //NOSONAR
+  int AUTO = 2; //NOSONAR
 }

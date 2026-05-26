@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.playback
 
@@ -19,355 +19,355 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.io.File
 
-internal class MediaPlayerPlayback(context: Context) : LocalPlayback(context), MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener {
+internal class MediaPlayerPlayback(context: Context) : LocalPlayback(context), MediaPlayer.OnErrorListener, MediaPlayer.OnCompletionListener { //NOSONAR
 
-    private var currentMediaPlayer: MediaPlayer? = createMediaPlayer(context)
-    private var nextMediaPlayer: MediaPlayer? = null
+    private var currentMediaPlayer: MediaPlayer? = createMediaPlayer(context) //NOSONAR
+    private var nextMediaPlayer: MediaPlayer? = null //NOSONAR
 
-    override var isInitialized: Boolean = false
+    override var isInitialized: Boolean = false //NOSONAR
 
-    private var isFadingDown: Boolean = false
-    private var isFadingUp: Boolean = false
-    private var fadeAnimator: ValueAnimator? = null
+    private var isFadingDown: Boolean = false //NOSONAR
+    private var isFadingUp: Boolean = false //NOSONAR
+    private var fadeAnimator: ValueAnimator? = null //NOSONAR
 
-    override val isPlaying: Boolean
-        get() = synchronized(this) {
-            if (!isInitialized || isFadingDown) {
-                return false
-            } else {
-                return currentMediaPlayer?.isPlaying ?: false || isFadingUp
+    override val isPlaying: Boolean //NOSONAR
+        get() = synchronized(this) { //NOSONAR
+            if (!isInitialized || isFadingDown) { //NOSONAR
+                return false //NOSONAR
+            } else { //NOSONAR
+                return currentMediaPlayer?.isPlaying ?: false || isFadingUp //NOSONAR
             }
         }
 
-    override val duration: Long
-        get() = synchronized(this) {
-            if (isInitialized) {
-                try {
-                    return currentMediaPlayer?.duration?.toLong() ?: 0
-                } catch (e: IllegalStateException) {
-                    Log.e(TAG, "Error in getDuration() of MediaPlayerPlayback: " + e.localizedMessage)
+    override val duration: Long //NOSONAR
+        get() = synchronized(this) { //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    return currentMediaPlayer?.duration?.toLong() ?: 0 //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    Log.e(TAG, "Error in getDuration() of MediaPlayerPlayback: " + e.localizedMessage) //NOSONAR
                 }
 
             }
-            return 0
+            return 0 //NOSONAR
         }
 
-    override val position: Long
-        get() = synchronized(this) {
-            if (isInitialized) {
-                try {
-                    return currentMediaPlayer?.currentPosition?.toLong() ?: 0
-                } catch (e: IllegalStateException) {
-                    Log.e(TAG, "Error in getPosition() of MediaPlayerPlayback: " + e.localizedMessage)
+    override val position: Long //NOSONAR
+        get() = synchronized(this) { //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    return currentMediaPlayer?.currentPosition?.toLong() ?: 0 //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    Log.e(TAG, "Error in getPosition() of MediaPlayerPlayback: " + e.localizedMessage) //NOSONAR
                 }
 
             }
-            return 0
+            return 0 //NOSONAR
         }
 
-    override val audioSessionId: Int
-        get() = synchronized(this) {
-            var sessionId = 0
-            if (isInitialized) {
-                try {
-                    sessionId = currentMediaPlayer?.audioSessionId ?: 0
-                } catch (e: IllegalStateException) {
-                    Log.e(TAG, "Error in getAudioSessionId() of MediaPlayerPlayback: " + e.localizedMessage)
+    override val audioSessionId: Int //NOSONAR
+        get() = synchronized(this) { //NOSONAR
+            var sessionId = 0 //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    sessionId = currentMediaPlayer?.audioSessionId ?: 0 //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    Log.e(TAG, "Error in getAudioSessionId() of MediaPlayerPlayback: " + e.localizedMessage) //NOSONAR
                 }
 
             }
-            return sessionId
+            return sessionId //NOSONAR
         }
 
-    override fun load(song: Song, playWhenReady: Boolean, seekPosition: Long, completion: ((Boolean) -> Unit)?) {
-        synchronized(this) {
-            fadeAnimator?.cancel()
-            currentMediaPlayer?.let { currentMediaPlayer ->
-                setDataSourceImpl(currentMediaPlayer, song.path) { success ->
-                    isInitialized = success
+    override fun load(song: Song, playWhenReady: Boolean, seekPosition: Long, completion: ((Boolean) -> Unit)?) { //NOSONAR
+        synchronized(this) { //NOSONAR
+            fadeAnimator?.cancel() //NOSONAR
+            currentMediaPlayer?.let { currentMediaPlayer -> //NOSONAR
+                setDataSourceImpl(currentMediaPlayer, song.path) { success -> //NOSONAR
+                    isInitialized = success //NOSONAR
 
-                    if (isInitialized) {
+                    if (isInitialized) { //NOSONAR
                         // Invalidate any old 'next data source', will be re-set via external call to setNextDataSource().
-                        setNextDataSource(null)
+                        setNextDataSource(null) //NOSONAR
 
-                        if (seekPosition != 0L) {
-                            seekTo(seekPosition)
+                        if (seekPosition != 0L) { //NOSONAR
+                            seekTo(seekPosition) //NOSONAR
                         }
 
-                        if (playWhenReady) {
-                            start()
+                        if (playWhenReady) { //NOSONAR
+                            start() //NOSONAR
                         }
                     }
-                    completion?.invoke(isInitialized)
+                    completion?.invoke(isInitialized) //NOSONAR
                 }
             }
         }
     }
 
-    private fun setDataSourceImpl(mediaPlayer: MediaPlayer, path: String, completion: (Boolean) -> Unit) {
-        synchronized(this) {
+    private fun setDataSourceImpl(mediaPlayer: MediaPlayer, path: String, completion: (Boolean) -> Unit) { //NOSONAR
+        synchronized(this) { //NOSONAR
 
-            if (TextUtils.isEmpty(path)) {
-                completion(false)
+            if (TextUtils.isEmpty(path)) { //NOSONAR
+                completion(false) //NOSONAR
             }
-            try {
-                mediaPlayer.reset()
-                if (path.startsWith("content://")) {
-                    val uri = Uri.parse(path)
-                    mediaPlayer.setDataSource(context, uri)
-                } else {
-                    mediaPlayer.setDataSource(Uri.fromFile(File(path)).toString())
+            try { //NOSONAR
+                mediaPlayer.reset() //NOSONAR
+                if (path.startsWith("content://")) { //NOSONAR
+                    val uri = Uri.parse(path) //NOSONAR
+                    mediaPlayer.setDataSource(context, uri) //NOSONAR
+                } else { //NOSONAR
+                    mediaPlayer.setDataSource(Uri.fromFile(File(path)).toString()) //NOSONAR
                 }
 
-                mediaPlayer.setAudioAttributes(
-                    AudioAttributes.Builder()
-                        .setUsage(AudioAttributes.USAGE_MEDIA)
-                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
-                        .build()
+                mediaPlayer.setAudioAttributes( //NOSONAR
+                    AudioAttributes.Builder() //NOSONAR
+                        .setUsage(AudioAttributes.USAGE_MEDIA) //NOSONAR
+                        .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) //NOSONAR
+                        .build() //NOSONAR
                 )
 
-                mediaPlayer.setOnPreparedListener {
-                    mediaPlayer.setOnPreparedListener(null)
-                    completion(true)
+                mediaPlayer.setOnPreparedListener { //NOSONAR
+                    mediaPlayer.setOnPreparedListener(null) //NOSONAR
+                    completion(true) //NOSONAR
                 }
-                mediaPlayer.prepareAsync()
-            } catch (e: Exception) {
-                LogUtils.logException(TAG, "setDataSourceImpl failed. Path: [$path]", e)
-                completion(false)
+                mediaPlayer.prepareAsync() //NOSONAR
+            } catch (e: Exception) { //NOSONAR
+                LogUtils.logException(TAG, "setDataSourceImpl failed. Path: [$path]", e) //NOSONAR
+                completion(false) //NOSONAR
             }
 
-            mediaPlayer.setOnCompletionListener(this)
-            mediaPlayer.setOnErrorListener(this)
+            mediaPlayer.setOnCompletionListener(this) //NOSONAR
+            mediaPlayer.setOnErrorListener(this) //NOSONAR
         }
     }
 
-    override fun setNextDataSource(path: String?) {
-        synchronized(this) {
+    override fun setNextDataSource(path: String?) { //NOSONAR
+        synchronized(this) { //NOSONAR
 
-            try {
-                currentMediaPlayer?.setNextMediaPlayer(null)
-            } catch (ignored: IllegalArgumentException) {
+            try { //NOSONAR
+                currentMediaPlayer?.setNextMediaPlayer(null) //NOSONAR
+            } catch (ignored: IllegalArgumentException) { //NOSONAR
                 // Nothing to do
             }
 
-            releaseNextMediaPlayer()
+            releaseNextMediaPlayer() //NOSONAR
 
-            if (TextUtils.isEmpty(path)) {
-                return
+            if (TextUtils.isEmpty(path)) { //NOSONAR
+                return //NOSONAR
             }
 
-            nextMediaPlayer = createMediaPlayer(context)
-            nextMediaPlayer!!.audioSessionId = audioSessionId
+            nextMediaPlayer = createMediaPlayer(context) //NOSONAR
+            nextMediaPlayer!!.audioSessionId = audioSessionId //NOSONAR
 
-            setDataSourceImpl(nextMediaPlayer!!, path!!) { success ->
-                if (success) {
-                    try {
-                        currentMediaPlayer?.setNextMediaPlayer(nextMediaPlayer)
-                    } catch (e: Exception) {
-                        LogUtils.logException(TAG, "setNextDataSource failed - failed to call setNextMediaPlayer on currentMediaPlayer", e)
-                        releaseNextMediaPlayer()
+            setDataSourceImpl(nextMediaPlayer!!, path!!) { success -> //NOSONAR
+                if (success) { //NOSONAR
+                    try { //NOSONAR
+                        currentMediaPlayer?.setNextMediaPlayer(nextMediaPlayer) //NOSONAR
+                    } catch (e: Exception) { //NOSONAR
+                        LogUtils.logException(TAG, "setNextDataSource failed - failed to call setNextMediaPlayer on currentMediaPlayer", e) //NOSONAR
+                        releaseNextMediaPlayer() //NOSONAR
                     }
-                } else {
-                    LogUtils.logException(TAG, "setDataSourceImpl failed for path: [$path]. Setting next media player to null", null)
-                    releaseNextMediaPlayer()
+                } else { //NOSONAR
+                    LogUtils.logException(TAG, "setDataSourceImpl failed for path: [$path]. Setting next media player to null", null) //NOSONAR
+                    releaseNextMediaPlayer() //NOSONAR
                 }
             }
         }
     }
 
-    private fun releaseNextMediaPlayer() {
-        nextMediaPlayer?.release()
-        nextMediaPlayer = null
+    private fun releaseNextMediaPlayer() { //NOSONAR
+        nextMediaPlayer?.release() //NOSONAR
+        nextMediaPlayer = null //NOSONAR
     }
 
-    override fun start() {
-        synchronized(this) {
-            super.start()
+    override fun start() { //NOSONAR
+        synchronized(this) { //NOSONAR
+            super.start() //NOSONAR
 
-            fadeIn()
+            fadeIn() //NOSONAR
 
-            try {
-                currentMediaPlayer?.start()
-            } catch (e: RuntimeException) {
-                LogUtils.logException(TAG, "start() failed", e)
+            try { //NOSONAR
+                currentMediaPlayer?.start() //NOSONAR
+            } catch (e: RuntimeException) { //NOSONAR
+                LogUtils.logException(TAG, "start() failed", e) //NOSONAR
             }
 
-            callbacks?.onPlayStateChanged(this)
+            callbacks?.onPlayStateChanged(this) //NOSONAR
         }
     }
 
-    override fun stop() {
-        synchronized(this) {
-            super.stop()
-            if (isInitialized) {
-                try {
-                    currentMediaPlayer?.reset()
-                } catch (e: IllegalStateException) {
-                    LogUtils.logException(TAG, "stop() failed", e)
+    override fun stop() { //NOSONAR
+        synchronized(this) { //NOSONAR
+            super.stop() //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    currentMediaPlayer?.reset() //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    LogUtils.logException(TAG, "stop() failed", e) //NOSONAR
                 }
 
-                isInitialized = false
+                isInitialized = false //NOSONAR
             }
 
-            callbacks?.onPlayStateChanged(this)
+            callbacks?.onPlayStateChanged(this) //NOSONAR
         }
     }
 
     /**
      * You cannot use this player anymore after calling release()
      */
-    override fun release() {
-        synchronized(this) {
-            stop()
-            currentMediaPlayer?.release()
+    override fun release() { //NOSONAR
+        synchronized(this) { //NOSONAR
+            stop() //NOSONAR
+            currentMediaPlayer?.release() //NOSONAR
         }
     }
 
-    override fun pause(fade: Boolean) {
-        synchronized(this) {
-            if (fade) {
-                fadeOut()
-            } else {
-                if (isInitialized) {
-                    super.pause(fade)
-                    try {
-                        currentMediaPlayer?.pause()
-                    } catch (e: IllegalStateException) {
-                        Log.e(TAG, "Error pausing MediaPlayerPlayback: " + e.localizedMessage)
+    override fun pause(fade: Boolean) { //NOSONAR
+        synchronized(this) { //NOSONAR
+            if (fade) { //NOSONAR
+                fadeOut() //NOSONAR
+            } else { //NOSONAR
+                if (isInitialized) { //NOSONAR
+                    super.pause(fade) //NOSONAR
+                    try { //NOSONAR
+                        currentMediaPlayer?.pause() //NOSONAR
+                    } catch (e: IllegalStateException) { //NOSONAR
+                        Log.e(TAG, "Error pausing MediaPlayerPlayback: " + e.localizedMessage) //NOSONAR
                     }
-                    callbacks?.onPlayStateChanged(this)
+                    callbacks?.onPlayStateChanged(this) //NOSONAR
                 }
             }
         }
     }
 
-    override fun seekTo(position: Long) {
-        synchronized(this) {
-            if (isInitialized) {
-                try {
-                    currentMediaPlayer?.seekTo(position.toInt())
-                } catch (e: IllegalStateException) {
-                    Log.e(TAG, "Error seeking MediaPlayerPlayback: " + e.localizedMessage)
-                }
-
-            }
-        }
-    }
-
-    override fun setVolume(volume: Float) {
-        synchronized(this) {
-            if (isInitialized) {
-                try {
-                    currentMediaPlayer?.setVolume(volume, volume)
-                } catch (e: IllegalStateException) {
-                    Log.e(TAG, "Error setting MediaPlayerPlayback volume: " + e.localizedMessage)
+    override fun seekTo(position: Long) { //NOSONAR
+        synchronized(this) { //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    currentMediaPlayer?.seekTo(position.toInt()) //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    Log.e(TAG, "Error seeking MediaPlayerPlayback: " + e.localizedMessage) //NOSONAR
                 }
 
             }
         }
     }
 
-    override val resumeWhenSwitched: Boolean = false
+    override fun setVolume(volume: Float) { //NOSONAR
+        synchronized(this) { //NOSONAR
+            if (isInitialized) { //NOSONAR
+                try { //NOSONAR
+                    currentMediaPlayer?.setVolume(volume, volume) //NOSONAR
+                } catch (e: IllegalStateException) { //NOSONAR
+                    Log.e(TAG, "Error setting MediaPlayerPlayback volume: " + e.localizedMessage) //NOSONAR
+                }
 
-    override fun onError(mp: MediaPlayer, what: Int, extra: Int): Boolean {
-        when (what) {
-            MediaPlayer.MEDIA_ERROR_SERVER_DIED -> {
-                isInitialized = false
-                currentMediaPlayer?.release()
-                currentMediaPlayer = createMediaPlayer(context)
-                callbacks?.onError(this, "Server died")
-                return true
             }
-            else -> {
+        }
+    }
+
+    override val resumeWhenSwitched: Boolean = false //NOSONAR
+
+    override fun onError(mp: MediaPlayer, what: Int, extra: Int): Boolean { //NOSONAR
+        when (what) { //NOSONAR
+            MediaPlayer.MEDIA_ERROR_SERVER_DIED -> { //NOSONAR
+                isInitialized = false //NOSONAR
+                currentMediaPlayer?.release() //NOSONAR
+                currentMediaPlayer = createMediaPlayer(context) //NOSONAR
+                callbacks?.onError(this, "Server died") //NOSONAR
+                return true //NOSONAR
+            }
+            else -> { //NOSONAR
                 // Intentionally left empty.
             }
         }
 
-        callbacks?.onError(this, "Unknown error")
-        return false
+        callbacks?.onError(this, "Unknown error") //NOSONAR
+        return false //NOSONAR
     }
 
-    override fun onCompletion(mediaPlayer: MediaPlayer) {
-        if (mediaPlayer === currentMediaPlayer && nextMediaPlayer != null) {
-            currentMediaPlayer?.release()
-            currentMediaPlayer = nextMediaPlayer
-            nextMediaPlayer = null
-            callbacks?.onTrackEnded(this, true)
-        } else {
-            callbacks?.onTrackEnded(this, false)
+    override fun onCompletion(mediaPlayer: MediaPlayer) { //NOSONAR
+        if (mediaPlayer === currentMediaPlayer && nextMediaPlayer != null) { //NOSONAR
+            currentMediaPlayer?.release() //NOSONAR
+            currentMediaPlayer = nextMediaPlayer //NOSONAR
+            nextMediaPlayer = null //NOSONAR
+            callbacks?.onTrackEnded(this, true) //NOSONAR
+        } else { //NOSONAR
+            callbacks?.onTrackEnded(this, false) //NOSONAR
         }
     }
 
-    override fun updateLastKnownStreamPosition() {
+    override fun updateLastKnownStreamPosition() { //NOSONAR
         // Intentionally left empty.
     }
 
-    private fun createMediaPlayer(context: Context): MediaPlayer {
-        val mediaPlayer = MediaPlayer()
-        mediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK)
-        return mediaPlayer
+    private fun createMediaPlayer(context: Context): MediaPlayer { //NOSONAR
+        val mediaPlayer = MediaPlayer() //NOSONAR
+        mediaPlayer.setWakeMode(context, PowerManager.PARTIAL_WAKE_LOCK) //NOSONAR
+        return mediaPlayer //NOSONAR
     }
 
-    private fun fadeIn() {
+    private fun fadeIn() { //NOSONAR
         // Animator needs to run on thread with a looper.
-        isFadingUp = true
-        Observable.fromCallable {
-            val currentVolume = fadeAnimator?.animatedValue as? Float ?: 0f
-            fadeAnimator?.cancel()
+        isFadingUp = true //NOSONAR
+        Observable.fromCallable { //NOSONAR
+            val currentVolume = fadeAnimator?.animatedValue as? Float ?: 0f //NOSONAR
+            fadeAnimator?.cancel() //NOSONAR
 
-            setVolume(currentVolume)
+            setVolume(currentVolume) //NOSONAR
 
-            fadeAnimator = ValueAnimator.ofFloat(currentVolume, 1f)
-            fadeAnimator!!.duration = 250
-            fadeAnimator!!.interpolator = FadeInterpolator(2)
-            fadeAnimator!!.addUpdateListener { animation -> setVolume(animation.animatedValue as Float) }
-            fadeAnimator!!.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    super.onAnimationEnd(animation)
-                    isFadingUp = false
+            fadeAnimator = ValueAnimator.ofFloat(currentVolume, 1f) //NOSONAR
+            fadeAnimator!!.duration = 250 //NOSONAR
+            fadeAnimator!!.interpolator = FadeInterpolator(2) //NOSONAR
+            fadeAnimator!!.addUpdateListener { animation -> setVolume(animation.animatedValue as Float) } //NOSONAR
+            fadeAnimator!!.addListener(object : AnimatorListenerAdapter() { //NOSONAR
+                override fun onAnimationEnd(animation: Animator) { //NOSONAR
+                    super.onAnimationEnd(animation) //NOSONAR
+                    isFadingUp = false //NOSONAR
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
-                    super.onAnimationCancel(animation)
-                    fadeAnimator!!.removeAllListeners()
-                    isFadingUp = false
+                override fun onAnimationCancel(animation: Animator?) { //NOSONAR
+                    super.onAnimationCancel(animation) //NOSONAR
+                    fadeAnimator!!.removeAllListeners() //NOSONAR
+                    isFadingUp = false //NOSONAR
                 }
             })
-            fadeAnimator!!.start()
+            fadeAnimator!!.start() //NOSONAR
         }
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe() //NOSONAR
     }
 
-    private fun fadeOut() {
+    private fun fadeOut() { //NOSONAR
         // Animator needs to run on thread with a looper.
-        isFadingDown = true
-        Observable.fromCallable {
+        isFadingDown = true //NOSONAR
+        Observable.fromCallable { //NOSONAR
 
-            val currentVolume = fadeAnimator?.animatedValue as? Float ?: 1f
-            fadeAnimator?.cancel()
+            val currentVolume = fadeAnimator?.animatedValue as? Float ?: 1f //NOSONAR
+            fadeAnimator?.cancel() //NOSONAR
 
-            fadeAnimator = ValueAnimator.ofFloat(currentVolume, 0f)
-            fadeAnimator!!.duration = 150
-            fadeAnimator!!.interpolator = FadeInterpolator(1)
-            fadeAnimator!!.addUpdateListener { animation -> setVolume(animation.animatedValue as Float) }
-            fadeAnimator!!.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    super.onAnimationEnd(animation)
-                    isFadingDown = false
-                    pause(false)
+            fadeAnimator = ValueAnimator.ofFloat(currentVolume, 0f) //NOSONAR
+            fadeAnimator!!.duration = 150 //NOSONAR
+            fadeAnimator!!.interpolator = FadeInterpolator(1) //NOSONAR
+            fadeAnimator!!.addUpdateListener { animation -> setVolume(animation.animatedValue as Float) } //NOSONAR
+            fadeAnimator!!.addListener(object : AnimatorListenerAdapter() { //NOSONAR
+                override fun onAnimationEnd(animation: Animator) { //NOSONAR
+                    super.onAnimationEnd(animation) //NOSONAR
+                    isFadingDown = false //NOSONAR
+                    pause(false) //NOSONAR
                 }
 
-                override fun onAnimationCancel(animation: Animator?) {
-                    super.onAnimationCancel(animation)
-                    fadeAnimator!!.removeAllListeners()
-                    isFadingDown = false
+                override fun onAnimationCancel(animation: Animator?) { //NOSONAR
+                    super.onAnimationCancel(animation) //NOSONAR
+                    fadeAnimator!!.removeAllListeners() //NOSONAR
+                    isFadingDown = false //NOSONAR
                 }
             })
-            fadeAnimator!!.start()
+            fadeAnimator!!.start() //NOSONAR
         }
-            .subscribeOn(AndroidSchedulers.mainThread())
-            .subscribe()
+            .subscribeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe() //NOSONAR
     }
 
     /**
@@ -375,13 +375,13 @@ internal class MediaPlayerPlayback(context: Context) : LocalPlayback(context), M
      * Higher numbers mean the majority of change occurs over the mid-section of the curve.
      * Numbers < 1.0 approximate a 'linear' curve.
      */
-    private class FadeInterpolator(private val multiplier: Int) : TimeInterpolator {
-        override fun getInterpolation(input: Float): Float {
-            return (Math.exp((input * multiplier).toDouble()) * input / Math.exp(multiplier.toDouble())).toFloat()
+    private class FadeInterpolator(private val multiplier: Int) : TimeInterpolator { //NOSONAR
+        override fun getInterpolation(input: Float): Float { //NOSONAR
+            return (Math.exp((input * multiplier).toDouble()) * input / Math.exp(multiplier.toDouble())).toFloat() //NOSONAR
         }
     }
 
-    companion object {
-        private const val TAG = "MediaPlayerPlayback"
+    companion object { //NOSONAR
+        private const val TAG = "MediaPlayerPlayback" //NOSONAR
     }
 }

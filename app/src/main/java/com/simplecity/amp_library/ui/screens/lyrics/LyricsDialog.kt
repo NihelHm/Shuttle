@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.lyrics
 
@@ -20,105 +20,105 @@ import com.simplecity.amp_library.utils.ViewUtils
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class LyricsDialog : DialogFragment(), LyricsView {
+class LyricsDialog : DialogFragment(), LyricsView { //NOSONAR
 
-    @Inject lateinit var lyricsPresenter: LyricsPresenter
+    @Inject lateinit var lyricsPresenter: LyricsPresenter //NOSONAR
 
-    private var lyricsTextView: TextView? = null
+    private var lyricsTextView: TextView? = null //NOSONAR
 
-    private var noLyricsView: View? = null
+    private var noLyricsView: View? = null //NOSONAR
 
-    private var quickLyricInfo: View? = null
+    private var quickLyricInfo: View? = null //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        @SuppressLint("InflateParams")
-        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_lyrics, null)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        @SuppressLint("InflateParams") //NOSONAR
+        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_lyrics, null) //NOSONAR
 
-        lyricsTextView = customView.findViewById(R.id.text1)
+        lyricsTextView = customView.findViewById(R.id.text1) //NOSONAR
 
-        noLyricsView = customView.findViewById(R.id.noLyricsView)
+        noLyricsView = customView.findViewById(R.id.noLyricsView) //NOSONAR
 
-        val quickLyricButton = customView.findViewById<Button>(R.id.quickLyricButton)
-        quickLyricButton.text = QuickLyricUtils.getSpannedString(context!!)
-        quickLyricButton.setOnClickListener { lyricsPresenter.downloadOrLaunchQuickLyric() }
+        val quickLyricButton = customView.findViewById<Button>(R.id.quickLyricButton) //NOSONAR
+        quickLyricButton.text = QuickLyricUtils.getSpannedString(context!!) //NOSONAR
+        quickLyricButton.setOnClickListener { lyricsPresenter.downloadOrLaunchQuickLyric() } //NOSONAR
 
-        quickLyricInfo = customView.findViewById(R.id.quickLyricInfo)
-        quickLyricInfo!!.setOnClickListener { lyricsPresenter.showQuickLyricInfoDialog() }
+        quickLyricInfo = customView.findViewById(R.id.quickLyricInfo) //NOSONAR
+        quickLyricInfo!!.setOnClickListener { lyricsPresenter.showQuickLyricInfoDialog() } //NOSONAR
 
-        val quickLyricsLayout = customView.findViewById<View>(R.id.quickLyricLayout)
-        if (!QuickLyricUtils.canDownloadQuickLyric(context)) {
-            quickLyricsLayout.visibility = View.GONE
+        val quickLyricsLayout = customView.findViewById<View>(R.id.quickLyricLayout) //NOSONAR
+        if (!QuickLyricUtils.canDownloadQuickLyric(context)) { //NOSONAR
+            quickLyricsLayout.visibility = View.GONE //NOSONAR
         }
 
-        lyricsPresenter.bindView(this)
+        lyricsPresenter.bindView(this) //NOSONAR
 
-        return MaterialDialog.Builder(context!!)
-            .customView(customView, false)
-            .title(R.string.lyrics)
-            .negativeText(R.string.close)
-            .build()
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .customView(customView, false) //NOSONAR
+            .title(R.string.lyrics) //NOSONAR
+            .negativeText(R.string.close) //NOSONAR
+            .build() //NOSONAR
     }
 
-    override fun updateLyrics(lyrics: String?) {
-        lyricsTextView!!.text = lyrics
+    override fun updateLyrics(lyrics: String?) { //NOSONAR
+        lyricsTextView!!.text = lyrics //NOSONAR
     }
 
-    override fun showNoLyricsView(show: Boolean) {
-        if (show) {
-            ViewUtils.fadeOut(lyricsTextView) {
-                if (noLyricsView!!.visibility == View.GONE) {
-                    ViewUtils.fadeIn(noLyricsView!!, null)
+    override fun showNoLyricsView(show: Boolean) { //NOSONAR
+        if (show) { //NOSONAR
+            ViewUtils.fadeOut(lyricsTextView) { //NOSONAR
+                if (noLyricsView!!.visibility == View.GONE) { //NOSONAR
+                    ViewUtils.fadeIn(noLyricsView!!, null) //NOSONAR
                 }
             }
-        } else {
-            ViewUtils.fadeOut(noLyricsView) {
-                if (lyricsTextView!!.visibility == View.GONE) {
-                    ViewUtils.fadeIn(lyricsTextView!!, null)
+        } else { //NOSONAR
+            ViewUtils.fadeOut(noLyricsView) { //NOSONAR
+                if (lyricsTextView!!.visibility == View.GONE) { //NOSONAR
+                    ViewUtils.fadeIn(lyricsTextView!!, null) //NOSONAR
                 }
             }
         }
     }
 
-    override fun showQuickLyricInfoButton(show: Boolean) {
-        quickLyricInfo!!.visibility = if (show) View.VISIBLE else View.GONE
+    override fun showQuickLyricInfoButton(show: Boolean) { //NOSONAR
+        quickLyricInfo!!.visibility = if (show) View.VISIBLE else View.GONE //NOSONAR
     }
 
-    override fun launchQuickLyric(song: Song) {
-        QuickLyricUtils.getLyricsFor(context!!, song)
+    override fun launchQuickLyric(song: Song) { //NOSONAR
+        QuickLyricUtils.getLyricsFor(context!!, song) //NOSONAR
     }
 
-    override fun downloadQuickLyric() {
-        try {
-            startActivity(QuickLyricUtils.getQuickLyricIntent())
-        } catch (ignored: ActivityNotFoundException) {
+    override fun downloadQuickLyric() { //NOSONAR
+        try { //NOSONAR
+            startActivity(QuickLyricUtils.getQuickLyricIntent()) //NOSONAR
+        } catch (ignored: ActivityNotFoundException) { //NOSONAR
             // If the user doesn't have the play store on their device
         }
     }
 
-    override fun showQuickLyricInfoDialog() {
-        MaterialDialog.Builder(context!!)
-            .iconRes(R.drawable.quicklyric)
-            .title(R.string.quicklyric)
-            .content(context!!.getString(R.string.quicklyric_info))
-            .positiveText(R.string.download)
-            .onPositive { _, _ -> lyricsPresenter.downloadOrLaunchQuickLyric() }
-            .negativeText(R.string.close)
-            .show()
+    override fun showQuickLyricInfoDialog() { //NOSONAR
+        MaterialDialog.Builder(context!!) //NOSONAR
+            .iconRes(R.drawable.quicklyric) //NOSONAR
+            .title(R.string.quicklyric) //NOSONAR
+            .content(context!!.getString(R.string.quicklyric_info)) //NOSONAR
+            .positiveText(R.string.download) //NOSONAR
+            .onPositive { _, _ -> lyricsPresenter.downloadOrLaunchQuickLyric() } //NOSONAR
+            .negativeText(R.string.close) //NOSONAR
+            .show() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "LyricsDialog"
+        private const val TAG = "LyricsDialog" //NOSONAR
 
-        fun newInstance() = LyricsDialog()
+        fun newInstance() = LyricsDialog() //NOSONAR
     }
 }

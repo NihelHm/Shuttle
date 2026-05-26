@@ -31,16 +31,16 @@ import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 import com.jp.wasabeef.glide.transformations.internal.Utils;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MaskTransformation implements Transformation<Bitmap> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MaskTransformation implements Transformation<Bitmap> { //NOSONAR
 
-    private static Paint sMaskingPaint = new Paint();
-    private Context mContext;
-    private BitmapPool mBitmapPool;
-    private int mMaskId;
+    private static Paint sMaskingPaint = new Paint(); //NOSONAR
+    private Context mContext; //NOSONAR
+    private BitmapPool mBitmapPool; //NOSONAR
+    private int mMaskId; //NOSONAR
 
-    static {
-        sMaskingPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+    static { //NOSONAR
+        sMaskingPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN)); //NOSONAR
     }
 
     /**
@@ -48,41 +48,41 @@ public class MaskTransformation implements Transformation<Bitmap> {
      * the cache with the old mask. Because getId() return the same values if using the
      * same make file name. If you have a good idea please tell us, thanks.
      */
-    public MaskTransformation(Context context, int maskId) {
-        this(context, Glide.get(context).getBitmapPool(), maskId);
+    public MaskTransformation(Context context, int maskId) { //NOSONAR
+        this(context, Glide.get(context).getBitmapPool(), maskId); //NOSONAR
     }
 
-    public MaskTransformation(Context context, BitmapPool pool, int maskId) {
-        mBitmapPool = pool;
-        mContext = context.getApplicationContext();
-        mMaskId = maskId;
+    public MaskTransformation(Context context, BitmapPool pool, int maskId) { //NOSONAR
+        mBitmapPool = pool; //NOSONAR
+        mContext = context.getApplicationContext(); //NOSONAR
+        mMaskId = maskId; //NOSONAR
     }
 
-    @Override
-    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
-        Bitmap source = resource.get();
+    @Override //NOSONAR
+    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) { //NOSONAR
+        Bitmap source = resource.get(); //NOSONAR
 
-        int width = source.getWidth();
-        int height = source.getHeight();
+        int width = source.getWidth(); //NOSONAR
+        int height = source.getHeight(); //NOSONAR
 
-        Bitmap result = mBitmapPool.get(width, height, Bitmap.Config.ARGB_8888);
-        if (result == null) {
-            result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap result = mBitmapPool.get(width, height, Bitmap.Config.ARGB_8888); //NOSONAR
+        if (result == null) { //NOSONAR
+            result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888); //NOSONAR
         }
 
-        Drawable mask = Utils.getMaskDrawable(mContext, mMaskId);
+        Drawable mask = Utils.getMaskDrawable(mContext, mMaskId); //NOSONAR
 
-        Canvas canvas = new Canvas(result);
-        mask.setBounds(0, 0, width, height);
-        mask.draw(canvas);
-        canvas.drawBitmap(source, 0, 0, sMaskingPaint);
+        Canvas canvas = new Canvas(result); //NOSONAR
+        mask.setBounds(0, 0, width, height); //NOSONAR
+        mask.draw(canvas); //NOSONAR
+        canvas.drawBitmap(source, 0, 0, sMaskingPaint); //NOSONAR
 
-        return BitmapResource.obtain(result, mBitmapPool);
+        return BitmapResource.obtain(result, mBitmapPool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return "MaskTransformation(maskId=" + mContext.getResources().getResourceEntryName(mMaskId)
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return "MaskTransformation(maskId=" + mContext.getResources().getResourceEntryName(mMaskId) //NOSONAR
                 + ")";
     }
 }

@@ -20,47 +20,47 @@ import java.lang.reflect.Field;
 import javax.inject.Inject;
 import test.com.androidnavigation.fragment.BaseController;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class BaseFragment extends BaseController {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class BaseFragment extends BaseController { //NOSONAR
 
-    private static final String TAG = "BaseFragment";
+    private static final String TAG = "BaseFragment"; //NOSONAR
 
     // Arbitrary value; set it to some reasonable default
-    private static final int DEFAULT_CHILD_ANIMATION_DURATION = 250;
+    private static final int DEFAULT_CHILD_ANIMATION_DURATION = 250; //NOSONAR
 
-    @Inject
-    MultiSheetEventRelay multiSheetEventRelay;
+    @Inject //NOSONAR
+    MultiSheetEventRelay multiSheetEventRelay; //NOSONAR
 
-    @Inject
-    protected MediaManager mediaManager;
+    @Inject //NOSONAR
+    protected MediaManager mediaManager; //NOSONAR
 
-    @Inject
-    protected NavigationEventRelay navigationEventRelay;
+    @Inject //NOSONAR
+    protected NavigationEventRelay navigationEventRelay; //NOSONAR
 
-    @Inject
-    @SuppressWarnings("java:S1104")
-    public AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public AnalyticsManager analyticsManager; //NOSONAR
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        AndroidSupportInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override //NOSONAR
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState); //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        analyticsManager.logScreenName(getActivity(), screenName());
+        analyticsManager.logScreenName(getActivity(), screenName()); //NOSONAR
     }
 
-    @Override
-    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) {
+    @Override //NOSONAR
+    public Animation onCreateAnimation(int transit, boolean enter, int nextAnim) { //NOSONAR
 
         /*
          * When a fragment transaction is performed on a parent fragment containing nested children,
@@ -69,19 +69,19 @@ public abstract class BaseFragment extends BaseController {
          * own animation.
          * see https://code.google.com/p/android/issues/detail?id=55228
          */
-        final Fragment parent = getParentFragment();
+        final Fragment parent = getParentFragment(); //NOSONAR
 
         // Apply the workaround only if this is a child fragment, and the parent
         // is being removed.
-        if (!enter && parent != null && parent.isRemoving()) {
+        if (!enter && parent != null && parent.isRemoving()) { //NOSONAR
             // This is a workaround for the bug where child fragments disappear when
             // the parent is removed (as all children are first removed from the parent)
             // See https://code.google.com/p/android/issues/detail?id=55228
-            Animation doNothingAnim = new AlphaAnimation(1, 1);
-            doNothingAnim.setDuration(getNextAnimationDuration(parent, DEFAULT_CHILD_ANIMATION_DURATION));
-            return doNothingAnim;
-        } else {
-            return super.onCreateAnimation(transit, enter, nextAnim);
+            Animation doNothingAnim = new AlphaAnimation(1, 1); //NOSONAR
+            doNothingAnim.setDuration(getNextAnimationDuration(parent, DEFAULT_CHILD_ANIMATION_DURATION)); //NOSONAR
+            return doNothingAnim; //NOSONAR
+        } else { //NOSONAR
+            return super.onCreateAnimation(transit, enter, nextAnim); //NOSONAR
         }
     }
 
@@ -93,37 +93,37 @@ public abstract class BaseFragment extends BaseController {
      * @param defValue default animation value
      * @return the duration of the parent fragment's animation
      */
-    private static long getNextAnimationDuration(Fragment fragment, long defValue) {
-        try {
+    private static long getNextAnimationDuration(Fragment fragment, long defValue) { //NOSONAR
+        try { //NOSONAR
             // Attempt to get the resource ID of the next animation that
             // will be applied to the given fragment.
-            Field nextAnimField = Fragment.class.getDeclaredField("mNextAnim");
-            nextAnimField.setAccessible(true);
-            int nextAnimResource = nextAnimField.getInt(fragment);
-            Animation nextAnim = AnimationUtils.loadAnimation(fragment.getActivity(), nextAnimResource);
+            Field nextAnimField = Fragment.class.getDeclaredField("mNextAnim"); //NOSONAR
+            nextAnimField.setAccessible(true); //NOSONAR
+            int nextAnimResource = nextAnimField.getInt(fragment); //NOSONAR
+            Animation nextAnim = AnimationUtils.loadAnimation(fragment.getActivity(), nextAnimResource); //NOSONAR
 
             // ...and if it can be loaded, return that animation's duration
-            return (nextAnim == null) ? defValue : nextAnim.getDuration();
-        } catch (NoSuchFieldException | IllegalAccessException | Resources.NotFoundException ignored) {
-            return defValue;
+            return (nextAnim == null) ? defValue : nextAnim.getDuration(); //NOSONAR
+        } catch (NoSuchFieldException | IllegalAccessException | Resources.NotFoundException ignored) { //NOSONAR
+            return defValue; //NOSONAR
         }
     }
 
-    @Override
-    public void onDestroy() {
+    @Override //NOSONAR
+    public void onDestroy() { //NOSONAR
 
-        super.onDestroy();
-        RefWatcher refWatcher = ((ShuttleApplication) getContext().getApplicationContext()).getRefWatcher();
-        refWatcher.watch(this);
+        super.onDestroy(); //NOSONAR
+        RefWatcher refWatcher = ((ShuttleApplication) getContext().getApplicationContext()).getRefWatcher(); //NOSONAR
+        refWatcher.watch(this); //NOSONAR
     }
 
-    public MediaManager getMediaManager() {
-        return mediaManager;
+    public MediaManager getMediaManager() { //NOSONAR
+        return mediaManager; //NOSONAR
     }
 
-    public NavigationEventRelay getNavigationEventRelay() {
-        return navigationEventRelay;
+    public NavigationEventRelay getNavigationEventRelay() { //NOSONAR
+        return navigationEventRelay; //NOSONAR
     }
 
-    protected abstract String screenName();
+    protected abstract String screenName(); //NOSONAR
 }

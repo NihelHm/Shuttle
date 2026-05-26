@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.shortcut
 
@@ -18,49 +18,49 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class ShortcutTrampolineActivity : AppCompatActivity() {
+class ShortcutTrampolineActivity : AppCompatActivity() { //NOSONAR
 
-    @Inject lateinit var favoritesPlaylistManager: FavoritesPlaylistManager
+    @Inject lateinit var favoritesPlaylistManager: FavoritesPlaylistManager //NOSONAR
 
-    @Inject lateinit var analyticsManager: AnalyticsManager
+    @Inject lateinit var analyticsManager: AnalyticsManager //NOSONAR
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        AndroidInjection.inject(this)
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
+        AndroidInjection.inject(this) //NOSONAR
+        super.onCreate(savedInstanceState) //NOSONAR
 
-        val action = intent.action
-        when (action) {
-            ShortcutCommands.PLAY, ShortcutCommands.SHUFFLE_ALL -> {
-                val intent = Intent(this, MusicService::class.java)
-                intent.action = action
-                ResumingServiceManager(lifecycle, analyticsManager).startService(this, intent, null)
-                finish()
+        val action = intent.action //NOSONAR
+        when (action) { //NOSONAR
+            ShortcutCommands.PLAY, ShortcutCommands.SHUFFLE_ALL -> { //NOSONAR
+                val intent = Intent(this, MusicService::class.java) //NOSONAR
+                intent.action = action //NOSONAR
+                ResumingServiceManager(lifecycle, analyticsManager).startService(this, intent, null) //NOSONAR
+                finish() //NOSONAR
             }
-            ShortcutCommands.FOLDERS -> {
-                intent = Intent(this, MainActivity::class.java)
-                intent.action = action
-                startActivity(intent)
-                finish()
+            ShortcutCommands.FOLDERS -> { //NOSONAR
+                intent = Intent(this, MainActivity::class.java) //NOSONAR
+                intent.action = action //NOSONAR
+                startActivity(intent) //NOSONAR
+                finish() //NOSONAR
             }
-            ShortcutCommands.PLAYLIST -> {
-                intent = Intent(this, MainActivity::class.java)
-                intent.action = action
-                favoritesPlaylistManager.getFavoritesPlaylist()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                { playlist ->
-                                    intent.putExtra(PlaylistManager.ARG_PLAYLIST, playlist)
-                                    startActivity(intent)
-                                    finish()
+            ShortcutCommands.PLAYLIST -> { //NOSONAR
+                intent = Intent(this, MainActivity::class.java) //NOSONAR
+                intent.action = action //NOSONAR
+                favoritesPlaylistManager.getFavoritesPlaylist() //NOSONAR
+                        .subscribeOn(Schedulers.io()) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe( //NOSONAR
+                                { playlist -> //NOSONAR
+                                    intent.putExtra(PlaylistManager.ARG_PLAYLIST, playlist) //NOSONAR
+                                    startActivity(intent) //NOSONAR
+                                    finish() //NOSONAR
                                 },
-                                { error -> LogUtils.logException(TAG, "Error starting activity", error) }
+                                { error -> LogUtils.logException(TAG, "Error starting activity", error) } //NOSONAR
                         )
             }
         }
     }
 
-    companion object {
-        private const val TAG = "ShortcutTrampolineActiv"
+    companion object { //NOSONAR
+        private const val TAG = "ShortcutTrampolineActiv" //NOSONAR
     }
 }

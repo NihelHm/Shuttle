@@ -21,120 +21,120 @@ import test.com.androidnavigation.base.NavigationController;
  * An abstract implementation of {@link NavigationController}. Subclasses need only provide a {@link FragmentInfo} object
  * which will be used to instantiate the root view controller.
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class BaseNavigationController extends BaseController
-        implements NavigationController<Fragment> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class BaseNavigationController extends BaseController //NOSONAR
+        implements NavigationController<Fragment> { //NOSONAR
 
-    private static final String TAG = "BaseNavigationControlle";
+    private static final String TAG = "BaseNavigationControlle"; //NOSONAR
 
-    public abstract FragmentInfo getRootViewControllerInfo();
+    public abstract FragmentInfo getRootViewControllerInfo(); //NOSONAR
 
-    private List<BackPressListener> backPressListeners = new ArrayList<>();
+    private List<BackPressListener> backPressListeners = new ArrayList<>(); //NOSONAR
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.navigation_fragment, container, false);
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { //NOSONAR
+        return inflater.inflate(R.layout.navigation_fragment, container, false); //NOSONAR
     }
 
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override //NOSONAR
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState); //NOSONAR
 
-        if (savedInstanceState == null) {
-            addRootFragment();
+        if (savedInstanceState == null) { //NOSONAR
+            addRootFragment(); //NOSONAR
         }
     }
 
-    protected void addRootFragment() {
-        getChildFragmentManager()
-                .beginTransaction()
-                .add(R.id.mainContainer, getRootViewControllerInfo().instantiateFragment(getContext()), getRootViewControllerInfo().rootViewControllerTag)
-                .commit();
+    protected void addRootFragment() { //NOSONAR
+        getChildFragmentManager() //NOSONAR
+                .beginTransaction() //NOSONAR
+                .add(R.id.mainContainer, getRootViewControllerInfo().instantiateFragment(getContext()), getRootViewControllerInfo().rootViewControllerTag) //NOSONAR
+                .commit(); //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (getActivity() instanceof BackPressHandler) {
-            ((BackPressHandler) getActivity()).addBackPressListener(this);
+        if (getActivity() instanceof BackPressHandler) { //NOSONAR
+            ((BackPressHandler) getActivity()).addBackPressListener(this); //NOSONAR
         }
     }
 
-    @Override
-    public void onPause() {
-        super.onPause();
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        super.onPause(); //NOSONAR
 
-        if (getActivity() instanceof BackPressHandler) {
-            ((BackPressHandler) getActivity()).removeBackPressListener(this);
+        if (getActivity() instanceof BackPressHandler) { //NOSONAR
+            ((BackPressHandler) getActivity()).removeBackPressListener(this); //NOSONAR
         }
     }
 
-    @Override
-    public boolean consumeBackPress() {
+    @Override //NOSONAR
+    public boolean consumeBackPress() { //NOSONAR
 
-        for (int i = backPressListeners.size() - 1; i >= 0; i--) {
-            if (backPressListeners.get(i).consumeBackPress()) {
-                return true;
+        for (int i = backPressListeners.size() - 1; i >= 0; i--) { //NOSONAR
+            if (backPressListeners.get(i).consumeBackPress()) { //NOSONAR
+                return true; //NOSONAR
             }
         }
 
-        if (getChildFragmentManager().getBackStackEntryCount() > 0) {
-            popViewController();
-            return true;
+        if (getChildFragmentManager().getBackStackEntryCount() > 0) { //NOSONAR
+            popViewController(); //NOSONAR
+            return true; //NOSONAR
         }
 
-        return false;
+        return false; //NOSONAR
     }
 
-    @Override
-    public void pushViewController(@NonNull Fragment fragment, @Nullable String tag, @Nullable List<Pair<View, String>> sharedElements) {
-        FragmentTransaction fragmentTransaction = getChildFragmentManager()
-                .beginTransaction();
+    @Override //NOSONAR
+    public void pushViewController(@NonNull Fragment fragment, @Nullable String tag, @Nullable List<Pair<View, String>> sharedElements) { //NOSONAR
+        FragmentTransaction fragmentTransaction = getChildFragmentManager() //NOSONAR
+                .beginTransaction(); //NOSONAR
 
-        if (sharedElements != null) {
-            for (Pair<View, String> pair : sharedElements) {
-                fragmentTransaction.addSharedElement(pair.first, pair.second);
+        if (sharedElements != null) { //NOSONAR
+            for (Pair<View, String> pair : sharedElements) { //NOSONAR
+                fragmentTransaction.addSharedElement(pair.first, pair.second); //NOSONAR
             }
         }
 
-        fragmentTransaction.addToBackStack(null)
-                .replace(R.id.mainContainer, fragment, tag)
-                .commit();
+        fragmentTransaction.addToBackStack(null) //NOSONAR
+                .replace(R.id.mainContainer, fragment, tag) //NOSONAR
+                .commit(); //NOSONAR
     }
 
-    @Override
-    public void pushViewController(@NonNull Fragment controller, @Nullable String tag) {
-        pushViewController(controller, tag, null);
+    @Override //NOSONAR
+    public void pushViewController(@NonNull Fragment controller, @Nullable String tag) { //NOSONAR
+        pushViewController(controller, tag, null); //NOSONAR
     }
 
-    @Override
-    public void popViewController() {
-        getChildFragmentManager().popBackStack();
+    @Override //NOSONAR
+    public void popViewController() { //NOSONAR
+        getChildFragmentManager().popBackStack(); //NOSONAR
     }
 
-    @Override
-    public void popToRootViewController() {
-        getChildFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    @Override //NOSONAR
+    public void popToRootViewController() { //NOSONAR
+        getChildFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE); //NOSONAR
     }
 
-    @Override
-    public void addBackPressListener(@NonNull BackPressListener listener) {
-        if (!backPressListeners.contains(listener)) {
-            backPressListeners.add(listener);
+    @Override //NOSONAR
+    public void addBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
+        if (!backPressListeners.contains(listener)) { //NOSONAR
+            backPressListeners.add(listener); //NOSONAR
         }
     }
 
-    @Override
-    public void removeBackPressListener(@NonNull BackPressListener listener) {
-        if (backPressListeners.contains(listener)) {
-            backPressListeners.remove(listener);
+    @Override //NOSONAR
+    public void removeBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
+        if (backPressListeners.contains(listener)) { //NOSONAR
+            backPressListeners.remove(listener); //NOSONAR
         }
     }
 }

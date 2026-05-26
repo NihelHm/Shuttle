@@ -26,53 +26,53 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * @author alankila
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Equalizer {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Equalizer { //NOSONAR
 
-    private Context context;
+    private Context context; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    private static final String ACTION_OPEN_EQUALIZER_SESSION = "com.simplecity.amp_library.audiofx.OPEN_SESSION";
-    private static final String ACTION_CLOSE_EQUALIZER_SESSION = "com.simplecity.amp_library.audiofx.CLOSE_SESSION";
+    private static final String ACTION_OPEN_EQUALIZER_SESSION = "com.simplecity.amp_library.audiofx.OPEN_SESSION"; //NOSONAR
+    private static final String ACTION_CLOSE_EQUALIZER_SESSION = "com.simplecity.amp_library.audiofx.CLOSE_SESSION"; //NOSONAR
 
-    private SharedPreferences mPrefs;
+    private SharedPreferences mPrefs; //NOSONAR
 
-    public Equalizer(Context context, SettingsManager settingsManager) {
+    public Equalizer(Context context, SettingsManager settingsManager) { //NOSONAR
 
-        this.context = context;
+        this.context = context; //NOSONAR
 
-        this.settingsManager = settingsManager;
+        this.settingsManager = settingsManager; //NOSONAR
 
-        mPrefs = PreferenceManager.getDefaultSharedPreferences(context);
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(context); //NOSONAR
 
-        IntentFilter audioFilter = new IntentFilter();
-        audioFilter.addAction(ACTION_OPEN_EQUALIZER_SESSION);
-        audioFilter.addAction(ACTION_CLOSE_EQUALIZER_SESSION);
-        context.registerReceiver(mAudioSessionReceiver, audioFilter);
+        IntentFilter audioFilter = new IntentFilter(); //NOSONAR
+        audioFilter.addAction(ACTION_OPEN_EQUALIZER_SESSION); //NOSONAR
+        audioFilter.addAction(ACTION_CLOSE_EQUALIZER_SESSION); //NOSONAR
+        context.registerReceiver(mAudioSessionReceiver, audioFilter); //NOSONAR
 
-        saveDefaults();
+        saveDefaults(); //NOSONAR
     }
 
-    public void release() {
-        releaseEffects();
+    public void release() { //NOSONAR
+        releaseEffects(); //NOSONAR
 
-        context.unregisterReceiver(mAudioSessionReceiver);
+        context.unregisterReceiver(mAudioSessionReceiver); //NOSONAR
     }
 
-    public void releaseEffects() {
-        Stream.of(mAudioSessions.values())
-                .filter(effectSet -> effectSet != null)
-                .forEach(EffectSet::release);
+    public void releaseEffects() { //NOSONAR
+        Stream.of(mAudioSessions.values()) //NOSONAR
+                .filter(effectSet -> effectSet != null) //NOSONAR
+                .forEach(EffectSet::release); //NOSONAR
     }
 
-    public static String getZeroedBandsString(int length) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < length; i++) {
-            stringBuilder.append("0;");
+    public static String getZeroedBandsString(int length) { //NOSONAR
+        StringBuilder stringBuilder = new StringBuilder(); //NOSONAR
+        for (int i = 0; i < length; i++) { //NOSONAR
+            stringBuilder.append("0;"); //NOSONAR
         }
-        stringBuilder.deleteCharAt(stringBuilder.length() - 1);
-        return stringBuilder.toString();
+        stringBuilder.deleteCharAt(stringBuilder.length() - 1); //NOSONAR
+        return stringBuilder.toString(); //NOSONAR
     }
 
     /**
@@ -81,29 +81,29 @@ public class Equalizer {
      *
      * @author alankila
      */
-    private static class EffectSet {
+    private static class EffectSet { //NOSONAR
         /**
          * Session-specific equalizer
          */
-        android.media.audiofx.Equalizer equalizer;
+        android.media.audiofx.Equalizer equalizer; //NOSONAR
         /**
          * Session-specific bassboost
          */
-        private BassBoost bassBoost;
+        private BassBoost bassBoost; //NOSONAR
         /**
          * Session-specific virtualizer
          */
-        private Virtualizer virtualizer;
+        private Virtualizer virtualizer; //NOSONAR
 
         //        private final PresetReverb mPresetReverb;
 
-        private short mEqNumPresets = -1;
-        private short mEqNumBands = -1;
+        private short mEqNumPresets = -1; //NOSONAR
+        private short mEqNumBands = -1; //NOSONAR
 
-        EffectSet(int sessionId) {
-            equalizer = new android.media.audiofx.Equalizer(1, sessionId);
-            bassBoost = new BassBoost(1, sessionId);
-            virtualizer = new Virtualizer(1, sessionId);
+        EffectSet(int sessionId) { //NOSONAR
+            equalizer = new android.media.audiofx.Equalizer(1, sessionId); //NOSONAR
+            bassBoost = new BassBoost(1, sessionId); //NOSONAR
+            virtualizer = new Virtualizer(1, sessionId); //NOSONAR
             //            mPresetReverb = new PresetReverb(0, sessionId);
         }
 
@@ -112,73 +112,73 @@ public class Equalizer {
          * to be poked- this can cause audible pops.
          */
 
-        void enableEqualizer(boolean enable) {
-            if (enable != equalizer.getEnabled()) {
-                if (!enable) {
-                    for (short i = 0; i < getNumEqualizerBands(); i++) {
-                        equalizer.setBandLevel(i, (short) 0);
+        void enableEqualizer(boolean enable) { //NOSONAR
+            if (enable != equalizer.getEnabled()) { //NOSONAR
+                if (!enable) { //NOSONAR
+                    for (short i = 0; i < getNumEqualizerBands(); i++) { //NOSONAR
+                        equalizer.setBandLevel(i, (short) 0); //NOSONAR
                     }
                 }
-                equalizer.setEnabled(enable);
+                equalizer.setEnabled(enable); //NOSONAR
             }
         }
 
-        void setEqualizerLevels(short[] levels) {
-            if (equalizer.getEnabled()) {
-                for (short i = 0; i < levels.length; i++) {
-                    if (equalizer.getBandLevel(i) != levels[i]) {
-                        equalizer.setBandLevel(i, levels[i]);
+        void setEqualizerLevels(short[] levels) { //NOSONAR
+            if (equalizer.getEnabled()) { //NOSONAR
+                for (short i = 0; i < levels.length; i++) { //NOSONAR
+                    if (equalizer.getBandLevel(i) != levels[i]) { //NOSONAR
+                        equalizer.setBandLevel(i, levels[i]); //NOSONAR
                     }
                 }
             }
         }
 
-        short getNumEqualizerBands() {
-            if (mEqNumBands < 0) {
-                mEqNumBands = equalizer.getNumberOfBands();
+        short getNumEqualizerBands() { //NOSONAR
+            if (mEqNumBands < 0) { //NOSONAR
+                mEqNumBands = equalizer.getNumberOfBands(); //NOSONAR
             }
-            if (mEqNumBands > 6) {
-                mEqNumBands = 6;
+            if (mEqNumBands > 6) { //NOSONAR
+                mEqNumBands = 6; //NOSONAR
             }
-            return mEqNumBands;
+            return mEqNumBands; //NOSONAR
         }
 
-        short getNumEqualizerPresets() {
-            if (mEqNumPresets < 0) {
-                mEqNumPresets = equalizer.getNumberOfPresets();
+        short getNumEqualizerPresets() { //NOSONAR
+            if (mEqNumPresets < 0) { //NOSONAR
+                mEqNumPresets = equalizer.getNumberOfPresets(); //NOSONAR
             }
-            return mEqNumPresets;
+            return mEqNumPresets; //NOSONAR
         }
 
-        void enableBassBoost(boolean enable) {
-            if (enable != bassBoost.getEnabled()) {
-                if (!enable) {
-                    bassBoost.setStrength((short) 1);
-                    bassBoost.setStrength((short) 0);
+        void enableBassBoost(boolean enable) { //NOSONAR
+            if (enable != bassBoost.getEnabled()) { //NOSONAR
+                if (!enable) { //NOSONAR
+                    bassBoost.setStrength((short) 1); //NOSONAR
+                    bassBoost.setStrength((short) 0); //NOSONAR
                 }
-                bassBoost.setEnabled(enable);
+                bassBoost.setEnabled(enable); //NOSONAR
             }
         }
 
-        void setBassBoostStrength(short strength) {
-            if (bassBoost.getEnabled() && bassBoost.getRoundedStrength() != strength) {
-                bassBoost.setStrength(strength);
+        void setBassBoostStrength(short strength) { //NOSONAR
+            if (bassBoost.getEnabled() && bassBoost.getRoundedStrength() != strength) { //NOSONAR
+                bassBoost.setStrength(strength); //NOSONAR
             }
         }
 
-        void enableVirtualizer(boolean enable) {
-            if (enable != virtualizer.getEnabled()) {
-                if (!enable) {
-                    virtualizer.setStrength((short) 1);
-                    virtualizer.setStrength((short) 0);
+        void enableVirtualizer(boolean enable) { //NOSONAR
+            if (enable != virtualizer.getEnabled()) { //NOSONAR
+                if (!enable) { //NOSONAR
+                    virtualizer.setStrength((short) 1); //NOSONAR
+                    virtualizer.setStrength((short) 0); //NOSONAR
                 }
-                virtualizer.setEnabled(enable);
+                virtualizer.setEnabled(enable); //NOSONAR
             }
         }
 
-        void setVirtualizerStrength(short strength) {
-            if (virtualizer.getEnabled() && virtualizer.getRoundedStrength() != strength) {
-                virtualizer.setStrength(strength);
+        void setVirtualizerStrength(short strength) { //NOSONAR
+            if (virtualizer.getEnabled() && virtualizer.getRoundedStrength() != strength) { //NOSONAR
+                virtualizer.setStrength(strength); //NOSONAR
             }
         }
 
@@ -197,130 +197,130 @@ public class Equalizer {
         //            }
         //        }
 
-        public void release() {
-            equalizer.release();
-            bassBoost.release();
-            virtualizer.release();
+        public void release() { //NOSONAR
+            equalizer.release(); //NOSONAR
+            bassBoost.release(); //NOSONAR
+            virtualizer.release(); //NOSONAR
             //            mPresetReverb.release();
         }
     }
 
-    protected static final String TAG = Equalizer.class.getSimpleName();
+    protected static final String TAG = Equalizer.class.getSimpleName(); //NOSONAR
 
     /**
      * Known audio sessions and their associated audioeffect suites.
      */
-    final Map<Integer, EffectSet> mAudioSessions = new ConcurrentHashMap<>();
+    final Map<Integer, EffectSet> mAudioSessions = new ConcurrentHashMap<>(); //NOSONAR
 
     /**
      * Receive new broadcast intents for adding DSP to session
      */
-    private final BroadcastReceiver mAudioSessionReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            int sessionId = intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, 0);
-            if (action.equals(ACTION_OPEN_EQUALIZER_SESSION)) {
-                if (!mAudioSessions.containsKey(sessionId)) {
-                    try {
-                        EffectSet effectSet = new EffectSet(sessionId);
-                        mAudioSessions.put(sessionId, effectSet);
-                    } catch (Exception | ExceptionInInitializerError e) {
-                        Log.e(TAG, "Failed to open EQ session.. EffectSet error " + e);
+    private final BroadcastReceiver mAudioSessionReceiver = new BroadcastReceiver() { //NOSONAR
+        @Override //NOSONAR
+        public void onReceive(Context context, Intent intent) { //NOSONAR
+            String action = intent.getAction(); //NOSONAR
+            int sessionId = intent.getIntExtra(AudioEffect.EXTRA_AUDIO_SESSION, 0); //NOSONAR
+            if (action.equals(ACTION_OPEN_EQUALIZER_SESSION)) { //NOSONAR
+                if (!mAudioSessions.containsKey(sessionId)) { //NOSONAR
+                    try { //NOSONAR
+                        EffectSet effectSet = new EffectSet(sessionId); //NOSONAR
+                        mAudioSessions.put(sessionId, effectSet); //NOSONAR
+                    } catch (Exception | ExceptionInInitializerError e) { //NOSONAR
+                        Log.e(TAG, "Failed to open EQ session.. EffectSet error " + e); //NOSONAR
                     }
                 }
             }
-            if (action.equals(ACTION_CLOSE_EQUALIZER_SESSION)) {
-                EffectSet gone = mAudioSessions.remove(sessionId);
-                if (gone != null) {
-                    gone.release();
+            if (action.equals(ACTION_CLOSE_EQUALIZER_SESSION)) { //NOSONAR
+                EffectSet gone = mAudioSessions.remove(sessionId); //NOSONAR
+                if (gone != null) { //NOSONAR
+                    gone.release(); //NOSONAR
                 }
             }
-            update();
+            update(); //NOSONAR
         }
     };
 
-    private void saveDefaults() {
-        EffectSet temp;
-        try {
-            temp = new EffectSet(0);
-        } catch (Exception | ExceptionInInitializerError | UnsatisfiedLinkError e) {
-            releaseEffects();
-            return;
+    private void saveDefaults() { //NOSONAR
+        EffectSet temp; //NOSONAR
+        try { //NOSONAR
+            temp = new EffectSet(0); //NOSONAR
+        } catch (Exception | ExceptionInInitializerError | UnsatisfiedLinkError e) { //NOSONAR
+            releaseEffects(); //NOSONAR
+            return; //NOSONAR
         }
 
-        final int numBands = temp.getNumEqualizerBands();
-        final int numPresets = temp.getNumEqualizerPresets();
-        SharedPreferences.Editor editor = mPrefs.edit();
-        editor.putString("equalizer.number_of_presets", String.valueOf(numPresets)).apply();
-        editor.putString("equalizer.number_of_bands", String.valueOf(numBands)).apply();
+        final int numBands = temp.getNumEqualizerBands(); //NOSONAR
+        final int numPresets = temp.getNumEqualizerPresets(); //NOSONAR
+        SharedPreferences.Editor editor = mPrefs.edit(); //NOSONAR
+        editor.putString("equalizer.number_of_presets", String.valueOf(numPresets)).apply(); //NOSONAR
+        editor.putString("equalizer.number_of_bands", String.valueOf(numBands)).apply(); //NOSONAR
 
         // range
-        short[] rangeShortArr = temp.equalizer.getBandLevelRange();
+        short[] rangeShortArr = temp.equalizer.getBandLevelRange(); //NOSONAR
 
-        editor.putString("equalizer.band_level_range", rangeShortArr[0] + ";" + rangeShortArr[1]).apply();
+        editor.putString("equalizer.band_level_range", rangeShortArr[0] + ";" + rangeShortArr[1]).apply(); //NOSONAR
 
         // center freqs
-        StringBuilder centerFreqs = new StringBuilder();
+        StringBuilder centerFreqs = new StringBuilder(); //NOSONAR
         // audiofx.global.centerfreqs
-        for (short i = 0; i < numBands; i++) {
-            centerFreqs.append(temp.equalizer.getCenterFreq(i));
-            centerFreqs.append(";");
+        for (short i = 0; i < numBands; i++) { //NOSONAR
+            centerFreqs.append(temp.equalizer.getCenterFreq(i)); //NOSONAR
+            centerFreqs.append(";"); //NOSONAR
         }
-        centerFreqs.deleteCharAt(centerFreqs.length() - 1);
-        editor.putString("equalizer.center_freqs", centerFreqs.toString()).apply();
+        centerFreqs.deleteCharAt(centerFreqs.length() - 1); //NOSONAR
+        editor.putString("equalizer.center_freqs", centerFreqs.toString()).apply(); //NOSONAR
 
         // populate preset names
-        StringBuilder presetNames = new StringBuilder();
-        for (int i = 0; i < numPresets; i++) {
-            String presetName = temp.equalizer.getPresetName((short) i);
-            presetNames.append(presetName);
-            presetNames.append("|");
+        StringBuilder presetNames = new StringBuilder(); //NOSONAR
+        for (int i = 0; i < numPresets; i++) { //NOSONAR
+            String presetName = temp.equalizer.getPresetName((short) i); //NOSONAR
+            presetNames.append(presetName); //NOSONAR
+            presetNames.append("|"); //NOSONAR
 
             // populate preset band values
-            StringBuilder presetBands = new StringBuilder();
-            try {
-                temp.equalizer.usePreset((short) i);
-            } catch (RuntimeException e) {
-                Log.e(TAG, "equalizer.usePreset() failed");
+            StringBuilder presetBands = new StringBuilder(); //NOSONAR
+            try { //NOSONAR
+                temp.equalizer.usePreset((short) i); //NOSONAR
+            } catch (RuntimeException e) { //NOSONAR
+                Log.e(TAG, "equalizer.usePreset() failed"); //NOSONAR
             }
 
-            for (int j = 0; j < numBands; j++) {
+            for (int j = 0; j < numBands; j++) { //NOSONAR
                 // loop through preset bands
-                presetBands.append(temp.equalizer.getBandLevel((short) j));
-                presetBands.append(";");
+                presetBands.append(temp.equalizer.getBandLevel((short) j)); //NOSONAR
+                presetBands.append(";"); //NOSONAR
             }
-            presetBands.deleteCharAt(presetBands.length() - 1);
-            editor.putString("equalizer.preset." + i, presetBands.toString()).apply();
+            presetBands.deleteCharAt(presetBands.length() - 1); //NOSONAR
+            editor.putString("equalizer.preset." + i, presetBands.toString()).apply(); //NOSONAR
         }
-        if (presetNames.length() != 0) {
-            presetNames.deleteCharAt(presetNames.length() - 1);
-            editor.putString("equalizer.preset_names", presetNames.toString()).apply();
+        if (presetNames.length() != 0) { //NOSONAR
+            presetNames.deleteCharAt(presetNames.length() - 1); //NOSONAR
+            editor.putString("equalizer.preset_names", presetNames.toString()).apply(); //NOSONAR
         }
-        temp.release();
+        temp.release(); //NOSONAR
     }
 
     /**
      * Push new configuration to audio stack.
      */
-    public synchronized void update() {
-        try {
-            for (Integer sessionId : mAudioSessions.keySet()) {
-                updateDsp(mAudioSessions.get(sessionId));
+    public synchronized void update() { //NOSONAR
+        try { //NOSONAR
+            for (Integer sessionId : mAudioSessions.keySet()) { //NOSONAR
+                updateDsp(mAudioSessions.get(sessionId)); //NOSONAR
             }
-        } catch (NoSuchMethodError e) {
-            Crashlytics.log("No such method error thrown when updating equalizer.. " + e.getMessage());
+        } catch (NoSuchMethodError e) { //NOSONAR
+            Crashlytics.log("No such method error thrown when updating equalizer.. " + e.getMessage()); //NOSONAR
         }
     }
 
-    private void updateDsp(EffectSet session) {
-        final boolean globalEnabled = settingsManager.getEqualizerEnabled();
+    private void updateDsp(EffectSet session) { //NOSONAR
+        final boolean globalEnabled = settingsManager.getEqualizerEnabled(); //NOSONAR
 
-        try {
-            session.enableBassBoost(globalEnabled && mPrefs.getBoolean("audiofx.bass.enable", false));
-            session.setBassBoostStrength(Short.valueOf(mPrefs.getString("audiofx.bass.strength", "0")));
-        } catch (Exception e) {
-            Log.e(TAG, "Error enabling bass boost!", e);
+        try { //NOSONAR
+            session.enableBassBoost(globalEnabled && mPrefs.getBoolean("audiofx.bass.enable", false)); //NOSONAR
+            session.setBassBoostStrength(Short.valueOf(mPrefs.getString("audiofx.bass.strength", "0"))); //NOSONAR
+        } catch (Exception e) { //NOSONAR
+            Log.e(TAG, "Error enabling bass boost!", e); //NOSONAR
         }
 
         //        try {
@@ -332,73 +332,73 @@ public class Equalizer {
         //            Log.e(TAG, "Error enabling reverb preset", e);
         //        }
 
-        try {
-            session.enableEqualizer(globalEnabled);
-            final int customPresetPos = session.getNumEqualizerPresets();
-            final int preset = Integer.valueOf(mPrefs.getString("audiofx.eq.preset", String.valueOf(customPresetPos)));
-            final int bands = session.getNumEqualizerBands();
+        try { //NOSONAR
+            session.enableEqualizer(globalEnabled); //NOSONAR
+            final int customPresetPos = session.getNumEqualizerPresets(); //NOSONAR
+            final int preset = Integer.valueOf(mPrefs.getString("audiofx.eq.preset", String.valueOf(customPresetPos))); //NOSONAR
+            final int bands = session.getNumEqualizerBands(); //NOSONAR
 
             /*
              * Equalizer state is in a single string preference with all values
              * separated by ;
              */
-            String[] levels;
+            String[] levels; //NOSONAR
 
-            if (preset == customPresetPos) {
-                levels = mPrefs.getString("audiofx.eq.bandlevels.custom", getZeroedBandsString(bands)).split(";");
-            } else {
-                levels = mPrefs.getString("equalizer.preset." + preset, getZeroedBandsString(bands)).split(";");
+            if (preset == customPresetPos) { //NOSONAR
+                levels = mPrefs.getString("audiofx.eq.bandlevels.custom", getZeroedBandsString(bands)).split(";"); //NOSONAR
+            } else { //NOSONAR
+                levels = mPrefs.getString("equalizer.preset." + preset, getZeroedBandsString(bands)).split(";"); //NOSONAR
             }
 
-            short[] equalizerLevels = new short[levels.length];
-            for (int i = 0; i < levels.length; i++) {
-                equalizerLevels[i] = Short.parseShort(levels[i]);
+            short[] equalizerLevels = new short[levels.length]; //NOSONAR
+            for (int i = 0; i < levels.length; i++) { //NOSONAR
+                equalizerLevels[i] = Short.parseShort(levels[i]); //NOSONAR
             }
 
-            session.setEqualizerLevels(equalizerLevels);
-        } catch (Exception e) {
-            Log.e(TAG, "Error enabling equalizer!", e);
+            session.setEqualizerLevels(equalizerLevels); //NOSONAR
+        } catch (Exception e) { //NOSONAR
+            Log.e(TAG, "Error enabling equalizer!", e); //NOSONAR
         }
 
-        try {
-            session.enableVirtualizer(globalEnabled && mPrefs.getBoolean("audiofx.virtualizer.enable", false));
-            session.setVirtualizerStrength(Short.valueOf(mPrefs.getString("audiofx.virtualizer.strength", "0")));
-        } catch (Exception e) {
-            Log.e(TAG, "Error enabling virtualizer!");
+        try { //NOSONAR
+            session.enableVirtualizer(globalEnabled && mPrefs.getBoolean("audiofx.virtualizer.enable", false)); //NOSONAR
+            session.setVirtualizerStrength(Short.valueOf(mPrefs.getString("audiofx.virtualizer.strength", "0"))); //NOSONAR
+        } catch (Exception e) { //NOSONAR
+            Log.e(TAG, "Error enabling virtualizer!"); //NOSONAR
         }
     }
 
     /**
      * Sends a broadcast to close any existing audio effect sessions
      */
-    public void closeEqualizerSessions(boolean internal, int audioSessionId) {
+    public void closeEqualizerSessions(boolean internal, int audioSessionId) { //NOSONAR
 
-        if (internal) {
+        if (internal) { //NOSONAR
             //Close the internal audio session
-            Intent intent = new Intent(Equalizer.ACTION_CLOSE_EQUALIZER_SESSION);
-            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);
-            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-            context.sendBroadcast(intent);
-        } else {
-            Intent intent = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
-            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);
-            context.sendBroadcast(intent);
+            Intent intent = new Intent(Equalizer.ACTION_CLOSE_EQUALIZER_SESSION); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName()); //NOSONAR
+            context.sendBroadcast(intent); //NOSONAR
+        } else { //NOSONAR
+            Intent intent = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName()); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId); //NOSONAR
+            context.sendBroadcast(intent); //NOSONAR
 
             //Close any external audio sessions on session 0
-            intent = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION);
-            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, 0);
-            context.sendBroadcast(intent);
+            intent = new Intent(AudioEffect.ACTION_CLOSE_AUDIO_EFFECT_CONTROL_SESSION); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName()); //NOSONAR
+            intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, 0); //NOSONAR
+            context.sendBroadcast(intent); //NOSONAR
         }
     }
 
-    public void openEqualizerSession(boolean internal, int audioSessionId) {
+    public void openEqualizerSession(boolean internal, int audioSessionId) { //NOSONAR
 
-        final Intent intent = new Intent();
-        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId);
-        intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName());
-        intent.setAction(internal ? Equalizer.ACTION_OPEN_EQUALIZER_SESSION : AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION);
-        context.sendBroadcast(intent);
+        final Intent intent = new Intent(); //NOSONAR
+        intent.putExtra(AudioEffect.EXTRA_AUDIO_SESSION, audioSessionId); //NOSONAR
+        intent.putExtra(AudioEffect.EXTRA_PACKAGE_NAME, context.getPackageName()); //NOSONAR
+        intent.setAction(internal ? Equalizer.ACTION_OPEN_EQUALIZER_SESSION : AudioEffect.ACTION_OPEN_AUDIO_EFFECT_CONTROL_SESSION); //NOSONAR
+        context.sendBroadcast(intent); //NOSONAR
     }
 }

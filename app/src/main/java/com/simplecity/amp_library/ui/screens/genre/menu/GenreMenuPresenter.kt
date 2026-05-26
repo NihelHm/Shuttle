@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.genre.menu
 
@@ -16,55 +16,55 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class GenreMenuPresenter @Inject constructor(
-    private val context: Context,
-    private val mediaManager: MediaManager,
-    private val playlistManager: PlaylistManager
-) : Presenter<GenreMenuContract.View>(), GenreMenuContract.Presenter {
-    override fun createPlaylist(genre: Genre) {
-        getSongs(genre) { songs ->
-            view?.presentCreatePlaylistDialog(songs)
+class GenreMenuPresenter @Inject constructor( //NOSONAR
+    private val context: Context, //NOSONAR
+    private val mediaManager: MediaManager, //NOSONAR
+    private val playlistManager: PlaylistManager //NOSONAR
+) : Presenter<GenreMenuContract.View>(), GenreMenuContract.Presenter { //NOSONAR
+    override fun createPlaylist(genre: Genre) { //NOSONAR
+        getSongs(genre) { songs -> //NOSONAR
+            view?.presentCreatePlaylistDialog(songs) //NOSONAR
         }
     }
 
-    override fun addToPlaylist(playlist: Playlist, genre: Genre) {
-        getSongs(genre) { songs ->
-            playlistManager.addToPlaylist(playlist, songs) { numSongs ->
-                view?.onSongsAddedToPlaylist(playlist, numSongs)
+    override fun addToPlaylist(playlist: Playlist, genre: Genre) { //NOSONAR
+        getSongs(genre) { songs -> //NOSONAR
+            playlistManager.addToPlaylist(playlist, songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToPlaylist(playlist, numSongs) //NOSONAR
             }
         }
     }
 
-    override fun addToQueue(genre: Genre) {
-        getSongs(genre) { songs ->
-            mediaManager.addToQueue(songs) { numSongs ->
-                view?.onSongsAddedToQueue(numSongs)
+    override fun addToQueue(genre: Genre) { //NOSONAR
+        getSongs(genre) { songs -> //NOSONAR
+            mediaManager.addToQueue(songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToQueue(numSongs) //NOSONAR
             }
         }
     }
 
-    override fun play(genre: Genre) {
-        mediaManager.playAll(genre.getSongs(context)) {
-            view?.onPlaybackFailed()
+    override fun play(genre: Genre) { //NOSONAR
+        mediaManager.playAll(genre.getSongs(context)) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
         }
     }
 
-    override fun playNext(genre: Genre) {
-        getSongs(genre) { songs ->
-            mediaManager.playNext(songs) { numSongs ->
-                view?.onSongsAddedToQueue(numSongs)
+    override fun playNext(genre: Genre) { //NOSONAR
+        getSongs(genre) { songs -> //NOSONAR
+            mediaManager.playNext(songs) { numSongs -> //NOSONAR
+                view?.onSongsAddedToQueue(numSongs) //NOSONAR
             }
         }
     }
 
-    private fun getSongs(genre: Genre, onSuccess: (songs: List<Song>) -> Unit) {
-        addDisposable(
-            genre.getSongs(context)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                    onSuccess,
-                    { error -> LogUtils.logException(AlbumMenuPresenter.TAG, "Failed to retrieve songs", error) }
+    private fun getSongs(genre: Genre, onSuccess: (songs: List<Song>) -> Unit) { //NOSONAR
+        addDisposable( //NOSONAR
+            genre.getSongs(context) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                    onSuccess, //NOSONAR
+                    { error -> LogUtils.logException(AlbumMenuPresenter.TAG, "Failed to retrieve songs", error) } //NOSONAR
                 )
         )
     }

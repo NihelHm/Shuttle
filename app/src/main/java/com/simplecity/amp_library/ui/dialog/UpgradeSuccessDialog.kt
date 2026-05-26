@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -10,19 +10,19 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.simplecity.amp_library.R
 import com.simplecity.amp_library.ui.screens.main.MainActivity
 
-class UpgradeSuccessDialog : DialogFragment() {
+class UpgradeSuccessDialog : DialogFragment() { //NOSONAR
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return MaterialDialog.Builder(context!!)
-            .title(context!!.resources.getString(R.string.upgraded_title))
-            .content(context!!.resources.getString(R.string.upgraded_message))
-            .positiveText(R.string.restart_button)
-            .onPositive { _, _ ->
-                val intent = Intent(context, MainActivity::class.java)
-                val componentName = intent.component
-                val mainIntent = Intent.makeRestartActivityTask(componentName)
-                startActivity(mainIntent)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(context!!.resources.getString(R.string.upgraded_title)) //NOSONAR
+            .content(context!!.resources.getString(R.string.upgraded_message)) //NOSONAR
+            .positiveText(R.string.restart_button) //NOSONAR
+            .onPositive { _, _ -> //NOSONAR
+                val intent = Intent(context, MainActivity::class.java) //NOSONAR
+                val componentName = intent.component //NOSONAR
+                val mainIntent = Intent.makeRestartActivityTask(componentName) //NOSONAR
+                startActivity(mainIntent) //NOSONAR
             }
-            .build()
+            .build() //NOSONAR
     }
 }

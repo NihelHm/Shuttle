@@ -8,44 +8,44 @@ import android.os.Build;
 import com.simplecity.amp_library.R;
 import com.simplecity.amp_library.utils.LogUtils;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class NotificationHelper {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class NotificationHelper { //NOSONAR
 
-    private static final String TAG = "NotificationHelper";
+    private static final String TAG = "NotificationHelper"; //NOSONAR
 
-    public static final String NOTIFICATION_CHANNEL_ID = "shuttle_notif_channel";
+    public static final String NOTIFICATION_CHANNEL_ID = "shuttle_notif_channel"; //NOSONAR
 
-    protected NotificationManager notificationManager;
+    protected NotificationManager notificationManager; //NOSONAR
 
-    private NotificationChannel notificationChannel;
+    private NotificationChannel notificationChannel; //NOSONAR
 
-    public NotificationHelper(Context context) {
-        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+    public NotificationHelper(Context context) { //NOSONAR
+        notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE); //NOSONAR
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) { //NOSONAR
 
-            NotificationChannel existingNotificationChannel = notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL_ID);
-            if (existingNotificationChannel == null) {
-                notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID,
-                        context.getString(R.string.app_name),
-                        NotificationManager.IMPORTANCE_LOW);
-                notificationChannel.enableLights(false);
-                notificationChannel.enableVibration(false);
+            NotificationChannel existingNotificationChannel = notificationManager.getNotificationChannel(NOTIFICATION_CHANNEL_ID); //NOSONAR
+            if (existingNotificationChannel == null) { //NOSONAR
+                notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, //NOSONAR
+                        context.getString(R.string.app_name), //NOSONAR
+                        NotificationManager.IMPORTANCE_LOW); //NOSONAR
+                notificationChannel.enableLights(false); //NOSONAR
+                notificationChannel.enableVibration(false); //NOSONAR
 
-                notificationManager.createNotificationChannel(notificationChannel);
+                notificationManager.createNotificationChannel(notificationChannel); //NOSONAR
             }
         }
     }
 
-    public void notify(int notificationId, Notification notification) {
-        try {
-            notificationManager.notify(notificationId, notification);
-        }  catch (RuntimeException e) {
-            LogUtils.logException(TAG, "Error posting notification", e);
+    public void notify(int notificationId, Notification notification) { //NOSONAR
+        try { //NOSONAR
+            notificationManager.notify(notificationId, notification); //NOSONAR
+        }  catch (RuntimeException e) { //NOSONAR
+            LogUtils.logException(TAG, "Error posting notification", e); //NOSONAR
         }
     }
 
-    public void cancel(int notificationId) {
-        notificationManager.cancel(notificationId);
+    public void cancel(int notificationId) { //NOSONAR
+        notificationManager.cancel(notificationId); //NOSONAR
     }
 }

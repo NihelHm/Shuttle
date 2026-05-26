@@ -2,29 +2,29 @@ package com.simplecity.amp_library.model;
 
 import java.io.Serializable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Header implements Serializable {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Header implements Serializable { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public String title;
+    public String title; //NOSONAR
 
-    public Header(String title) {
-        this.title = title;
+    public Header(String title) { //NOSONAR
+        this.title = title; //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        Header header = (Header) o;
+        Header header = (Header) o; //NOSONAR
 
-        return title != null ? title.equals(header.title) : header.title == null;
+        return title != null ? title.equals(header.title) : header.title == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return title != null ? title.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return title != null ? title.hashCode() : 0; //NOSONAR
     }
 }

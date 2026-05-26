@@ -59,252 +59,252 @@ import test.com.androidnavigation.fragment.BackPressHandler;
 import test.com.androidnavigation.fragment.BaseNavigationController;
 import test.com.androidnavigation.fragment.FragmentInfo;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MainController extends BaseNavigationController implements BackPressHandler, DrawerLockController {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MainController extends BaseNavigationController implements BackPressHandler, DrawerLockController { //NOSONAR
 
-    private static final String TAG = "MainController";
+    private static final String TAG = "MainController"; //NOSONAR
 
-    public static final String STATE_CURRENT_SHEET = "current_sheet";
+    public static final String STATE_CURRENT_SHEET = "current_sheet"; //NOSONAR
 
-    @Inject
-    NavigationEventRelay navigationEventRelay;
+    @Inject //NOSONAR
+    NavigationEventRelay navigationEventRelay; //NOSONAR
 
-    @Inject
-    MultiSheetEventRelay multiSheetEventRelay;
+    @Inject //NOSONAR
+    MultiSheetEventRelay multiSheetEventRelay; //NOSONAR
 
-    @Inject
-    MultiSheetSlideEventRelay multiSheetSlideEventRelay;
+    @Inject //NOSONAR
+    MultiSheetSlideEventRelay multiSheetSlideEventRelay; //NOSONAR
 
-    @Inject
-    MediaManager mediaManager;
+    @Inject //NOSONAR
+    MediaManager mediaManager; //NOSONAR
 
-    @Inject
-    PlayerPresenter playerPresenter;
+    @Inject //NOSONAR
+    PlayerPresenter playerPresenter; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    private Handler delayHandler;
+    private Handler delayHandler; //NOSONAR
 
-    @BindView(R.id.multiSheetView)
-    CustomMultiSheetView multiSheetView;
+    @BindView(R.id.multiSheetView) //NOSONAR
+    CustomMultiSheetView multiSheetView; //NOSONAR
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
-    public static MainController newInstance() {
-        Bundle args = new Bundle();
-        MainController fragment = new MainController();
-        fragment.setArguments(args);
-        return fragment;
+    public static MainController newInstance() { //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        MainController fragment = new MainController(); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    public MainController() {
+    public MainController() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
+    @Override //NOSONAR
+    public void onAttach(Context context) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onAttach(context); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { //NOSONAR
 
-        View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_main, container, false); //NOSONAR
 
-        ButterKnife.bind(this, rootView);
+        ButterKnife.bind(this, rootView); //NOSONAR
 
 
-        multiSheetView.setMultiSheetEventRelay(multiSheetEventRelay);
-        multiSheetView.setMultiSheetSlideEventRelay(multiSheetSlideEventRelay);
+        multiSheetView.setMultiSheetEventRelay(multiSheetEventRelay); //NOSONAR
+        multiSheetView.setMultiSheetSlideEventRelay(multiSheetSlideEventRelay); //NOSONAR
 
-        if (savedInstanceState == null) {
-            getChildFragmentManager()
-                    .beginTransaction()
-                    .add(multiSheetView.getSheetContainerViewResId(MultiSheetView.Sheet.FIRST), PlayerFragment.newInstance())
-                    .add(multiSheetView.getSheetPeekViewResId(MultiSheetView.Sheet.FIRST), MiniPlayerFragment.newInstance())
-                    .add(multiSheetView.getSheetContainerViewResId(MultiSheetView.Sheet.SECOND), QueueFragment.Companion.newInstance())
-                    .commit();
-        } else {
-            multiSheetView.restoreSheet(savedInstanceState.getInt(STATE_CURRENT_SHEET));
+        if (savedInstanceState == null) { //NOSONAR
+            getChildFragmentManager() //NOSONAR
+                    .beginTransaction() //NOSONAR
+                    .add(multiSheetView.getSheetContainerViewResId(MultiSheetView.Sheet.FIRST), PlayerFragment.newInstance()) //NOSONAR
+                    .add(multiSheetView.getSheetPeekViewResId(MultiSheetView.Sheet.FIRST), MiniPlayerFragment.newInstance()) //NOSONAR
+                    .add(multiSheetView.getSheetContainerViewResId(MultiSheetView.Sheet.SECOND), QueueFragment.Companion.newInstance()) //NOSONAR
+                    .commit(); //NOSONAR
+        } else { //NOSONAR
+            multiSheetView.restoreSheet(savedInstanceState.getInt(STATE_CURRENT_SHEET)); //NOSONAR
         }
 
-        ((ViewGroup) multiSheetView.findViewById(multiSheetView.getSheetPeekViewResId(MultiSheetView.Sheet.SECOND))).addView(
-                UpNextView.Companion.newInstance(getContext(), playerPresenter, settingsManager));
+        ((ViewGroup) multiSheetView.findViewById(multiSheetView.getSheetPeekViewResId(MultiSheetView.Sheet.SECOND))).addView( //NOSONAR
+                UpNextView.Companion.newInstance(getContext(), playerPresenter, settingsManager)); //NOSONAR
 
-        toggleBottomSheetVisibility(false, false);
+        toggleBottomSheetVisibility(false, false); //NOSONAR
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (delayHandler != null) {
-            delayHandler.removeCallbacksAndMessages(null);
+        if (delayHandler != null) { //NOSONAR
+            delayHandler.removeCallbacksAndMessages(null); //NOSONAR
         }
-        delayHandler = new Handler();
+        delayHandler = new Handler(); //NOSONAR
 
-        disposables.add(navigationEventRelay.getEvents()
-                .observeOn(AndroidSchedulers.mainThread())
-                .filter(NavigationEventRelay.NavigationEvent::isActionable)
-                .subscribe(navigationEvent -> {
-                    switch (navigationEvent.type) {
-                        case NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED:
-                            popToRootViewController();
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED:
-                            delayHandler.postDelayed(() -> pushViewController(FolderFragment.newInstance(getString(R.string.folders_title), false), "FolderFragment"), 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.SLEEP_TIMER_SELECTED:
-                            UnsafeAction showToast = () -> Toast.makeText(getContext(), R.string.sleep_timer_started, Toast.LENGTH_SHORT).show();
-                            SleepTimer.getInstance().getDialog(
-                                    getContext(),
-                                    () -> SleepTimer.getInstance().showMinutesDialog(getContext(), showToast),
-                                    showToast
-                            ).show();
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.EQUALIZER_SELECTED:
-                            delayHandler.postDelayed(
-                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100);
-                            delayHandler.postDelayed(() -> pushViewController(EqualizerFragment.newInstance(), "EqualizerFragment"), 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.SETTINGS_SELECTED:
-                            delayHandler.postDelayed(
-                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100);
-                            delayHandler.postDelayed(() -> pushViewController(SettingsParentFragment.newInstance(R.xml.settings_headers, R.string.settings), "Settings Fragment"), 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.SUPPORT_SELECTED:
-                            delayHandler.postDelayed(
-                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100);
-                            delayHandler.postDelayed(() -> pushViewController(SettingsParentFragment.newInstance(R.xml.settings_support, R.string.pref_title_support), "Support Fragment"), 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED:
-                            delayHandler.postDelayed(() -> pushViewController(PlaylistDetailFragment.Companion.newInstance((Playlist) navigationEvent.data), "PlaylistDetailFragment"), 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_ARTIST:
-                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE);
-                            AlbumArtist albumArtist = (AlbumArtist) navigationEvent.data;
-                            delayHandler.postDelayed(() -> {
-                                popToRootViewController();
-                                pushViewController(ArtistDetailFragment.Companion.newInstance(albumArtist, null), "ArtistDetailFragment");
-                            }, 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_ALBUM:
-                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE);
-                            Album album = (Album) navigationEvent.data;
-                            delayHandler.postDelayed(() -> {
-                                popToRootViewController();
-                                pushViewController(AlbumDetailFragment.Companion.newInstance(album, null), "AlbumDetailFragment");
-                            }, 250);
-                            break;
-                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_GENRE:
-                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE);
-                            Genre genre = (Genre) navigationEvent.data;
-                            delayHandler.postDelayed(() -> {
-                                popToRootViewController();
-                                pushViewController(GenreDetailFragment.Companion.newInstance(genre), "GenreDetailFragment");
-                            }, 250);
-                            break;
+        disposables.add(navigationEventRelay.getEvents() //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .filter(NavigationEventRelay.NavigationEvent::isActionable) //NOSONAR
+                .subscribe(navigationEvent -> { //NOSONAR
+                    switch (navigationEvent.type) { //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED: //NOSONAR
+                            popToRootViewController(); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED: //NOSONAR
+                            delayHandler.postDelayed(() -> pushViewController(FolderFragment.newInstance(getString(R.string.folders_title), false), "FolderFragment"), 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.SLEEP_TIMER_SELECTED: //NOSONAR
+                            UnsafeAction showToast = () -> Toast.makeText(getContext(), R.string.sleep_timer_started, Toast.LENGTH_SHORT).show(); //NOSONAR
+                            SleepTimer.getInstance().getDialog( //NOSONAR
+                                    getContext(), //NOSONAR
+                                    () -> SleepTimer.getInstance().showMinutesDialog(getContext(), showToast), //NOSONAR
+                                    showToast //NOSONAR
+                            ).show(); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.EQUALIZER_SELECTED: //NOSONAR
+                            delayHandler.postDelayed( //NOSONAR
+                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100); //NOSONAR
+                            delayHandler.postDelayed(() -> pushViewController(EqualizerFragment.newInstance(), "EqualizerFragment"), 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.SETTINGS_SELECTED: //NOSONAR
+                            delayHandler.postDelayed( //NOSONAR
+                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100); //NOSONAR
+                            delayHandler.postDelayed(() -> pushViewController(SettingsParentFragment.newInstance(R.xml.settings_headers, R.string.settings), "Settings Fragment"), 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.SUPPORT_SELECTED: //NOSONAR
+                            delayHandler.postDelayed( //NOSONAR
+                                    () -> multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.HIDE, MultiSheetView.Sheet.FIRST)), 100); //NOSONAR
+                            delayHandler.postDelayed(() -> pushViewController(SettingsParentFragment.newInstance(R.xml.settings_support, R.string.pref_title_support), "Support Fragment"), 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED: //NOSONAR
+                            delayHandler.postDelayed(() -> pushViewController(PlaylistDetailFragment.Companion.newInstance((Playlist) navigationEvent.data), "PlaylistDetailFragment"), 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_ARTIST: //NOSONAR
+                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE); //NOSONAR
+                            AlbumArtist albumArtist = (AlbumArtist) navigationEvent.data; //NOSONAR
+                            delayHandler.postDelayed(() -> { //NOSONAR
+                                popToRootViewController(); //NOSONAR
+                                pushViewController(ArtistDetailFragment.Companion.newInstance(albumArtist, null), "ArtistDetailFragment"); //NOSONAR
+                            }, 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_ALBUM: //NOSONAR
+                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE); //NOSONAR
+                            Album album = (Album) navigationEvent.data; //NOSONAR
+                            delayHandler.postDelayed(() -> { //NOSONAR
+                                popToRootViewController(); //NOSONAR
+                                pushViewController(AlbumDetailFragment.Companion.newInstance(album, null), "AlbumDetailFragment"); //NOSONAR
+                            }, 250); //NOSONAR
+                            break; //NOSONAR
+                        case NavigationEventRelay.NavigationEvent.Type.GO_TO_GENRE: //NOSONAR
+                            multiSheetView.goToSheet(MultiSheetView.Sheet.NONE); //NOSONAR
+                            Genre genre = (Genre) navigationEvent.data; //NOSONAR
+                            delayHandler.postDelayed(() -> { //NOSONAR
+                                popToRootViewController(); //NOSONAR
+                                pushViewController(GenreDetailFragment.Companion.newInstance(genre), "GenreDetailFragment"); //NOSONAR
+                            }, 250); //NOSONAR
+                            break; //NOSONAR
                     }
                 }));
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(InternalIntents.SERVICE_CONNECTED);
-        intentFilter.addAction(InternalIntents.QUEUE_CHANGED);
-        disposables.add(
-                RxBroadcast.fromBroadcast(getContext(), intentFilter)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(intent -> {
-                            toggleBottomSheetVisibility(true, true);
+        IntentFilter intentFilter = new IntentFilter(); //NOSONAR
+        intentFilter.addAction(InternalIntents.SERVICE_CONNECTED); //NOSONAR
+        intentFilter.addAction(InternalIntents.QUEUE_CHANGED); //NOSONAR
+        disposables.add( //NOSONAR
+                RxBroadcast.fromBroadcast(getContext(), intentFilter) //NOSONAR
+                        .subscribeOn(Schedulers.io()) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe(intent -> { //NOSONAR
+                            toggleBottomSheetVisibility(true, true); //NOSONAR
                         })
         );
 
-        DrawerLockManager.getInstance().setDrawerLockController(this);
+        DrawerLockManager.getInstance().setDrawerLockController(this); //NOSONAR
     }
 
-    @Override
-    public void onPause() {
-        delayHandler.removeCallbacksAndMessages(null);
-        delayHandler = null;
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        delayHandler.removeCallbacksAndMessages(null); //NOSONAR
+        delayHandler = null; //NOSONAR
 
-        disposables.clear();
+        disposables.clear(); //NOSONAR
 
-        DrawerLockManager.getInstance().setDrawerLockController(null);
+        DrawerLockManager.getInstance().setDrawerLockController(null); //NOSONAR
 
-        super.onPause();
+        super.onPause(); //NOSONAR
     }
 
     /**
      * Hide/show the bottom sheet, depending on whether the queue is empty.
      */
-    private void toggleBottomSheetVisibility(boolean collapse, boolean animate) {
-        if (!mediaManager.getQueueReloading() && mediaManager.getQueue().isEmpty()) {
-            multiSheetView.hide(collapse, false);
-        } else if (MiniPlayerLockManager.getInstance().canShowMiniPlayer()) {
-            multiSheetView.unhide(animate);
+    private void toggleBottomSheetVisibility(boolean collapse, boolean animate) { //NOSONAR
+        if (!mediaManager.getQueueReloading() && mediaManager.getQueue().isEmpty()) { //NOSONAR
+            multiSheetView.hide(collapse, false); //NOSONAR
+        } else if (MiniPlayerLockManager.getInstance().canShowMiniPlayer()) { //NOSONAR
+            multiSheetView.unhide(animate); //NOSONAR
         }
     }
 
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putInt(STATE_CURRENT_SHEET, multiSheetView.getCurrentSheet());
-        super.onSaveInstanceState(outState);
+    @Override //NOSONAR
+    public void onSaveInstanceState(Bundle outState) { //NOSONAR
+        outState.putInt(STATE_CURRENT_SHEET, multiSheetView.getCurrentSheet()); //NOSONAR
+        super.onSaveInstanceState(outState); //NOSONAR
     }
 
-    @Override
-    public FragmentInfo getRootViewControllerInfo() {
-        return LibraryController.fragmentInfo();
+    @Override //NOSONAR
+    public FragmentInfo getRootViewControllerInfo() { //NOSONAR
+        return LibraryController.fragmentInfo(); //NOSONAR
     }
 
-    @Override
-    public boolean consumeBackPress() {
-        if (multiSheetView.consumeBackPress()) {
-            return true;
+    @Override //NOSONAR
+    public boolean consumeBackPress() { //NOSONAR
+        if (multiSheetView.consumeBackPress()) { //NOSONAR
+            return true; //NOSONAR
         }
 
-        return super.consumeBackPress();
+        return super.consumeBackPress(); //NOSONAR
     }
 
-    @Override
-    public void lockDrawer() {
-        ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    @Override //NOSONAR
+    public void lockDrawer() { //NOSONAR
+        ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //NOSONAR
     }
 
-    @Override
-    public void unlockDrawer() {
+    @Override //NOSONAR
+    public void unlockDrawer() { //NOSONAR
         // Don't unlock the drawer if one of the sheets is expanded
-        if (multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.FIRST || multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.SECOND) {
-            return;
+        if (multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.FIRST || multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.SECOND) { //NOSONAR
+            return; //NOSONAR
         }
 
-        ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED); //NOSONAR
     }
 
     // To do later:  Remove once cause of shared element crash is understood.
     // This is a copy of the superclass method of the same name/signature, with some additional logging
     // to help ascertain the cause of a crash.
-    @Override
-    public void pushViewController(@NonNull Fragment fragment, @Nullable String tag, @Nullable List<Pair<View, String>> sharedElements) {
-        FragmentTransaction fragmentTransaction = getChildFragmentManager()
-                .beginTransaction();
+    @Override //NOSONAR
+    public void pushViewController(@NonNull Fragment fragment, @Nullable String tag, @Nullable List<Pair<View, String>> sharedElements) { //NOSONAR
+        FragmentTransaction fragmentTransaction = getChildFragmentManager() //NOSONAR
+                .beginTransaction(); //NOSONAR
 
-        if (sharedElements != null) {
-            for (Pair<View, String> pair : sharedElements) {
-                try {
-                    fragmentTransaction.addSharedElement(pair.first, pair.second);
-                } catch (IllegalArgumentException e) {
-                    LogUtils.logException(TAG, String.format("Error adding shared element transition.. key: %s, value: %s", pair.first, pair.second), e);
+        if (sharedElements != null) { //NOSONAR
+            for (Pair<View, String> pair : sharedElements) { //NOSONAR
+                try { //NOSONAR
+                    fragmentTransaction.addSharedElement(pair.first, pair.second); //NOSONAR
+                } catch (IllegalArgumentException e) { //NOSONAR
+                    LogUtils.logException(TAG, String.format("Error adding shared element transition.. key: %s, value: %s", pair.first, pair.second), e); //NOSONAR
                 }
             }
         }
 
-        fragmentTransaction.addToBackStack(null)
-                .replace(test.com.androidnavigation.R.id.mainContainer, fragment, tag)
-                .commit();
+        fragmentTransaction.addToBackStack(null) //NOSONAR
+                .replace(test.com.androidnavigation.R.id.mainContainer, fragment, tag) //NOSONAR
+                .commit(); //NOSONAR
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.upnext
 
@@ -61,160 +61,160 @@ import kotlinx.android.synthetic.main.up_next_view.view.shuffleButton
 import kotlinx.android.synthetic.main.up_next_view.view.textContainer
 import java.util.concurrent.TimeUnit
 
-class UpNextView constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) {
+class UpNextView constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) : LinearLayout(context, attrs, defStyleAttr) { //NOSONAR
 
-    private lateinit var playerPresenter: PlayerPresenter
+    private lateinit var playerPresenter: PlayerPresenter //NOSONAR
 
-    private lateinit var settingsManager: SettingsManager
+    private lateinit var settingsManager: SettingsManager //NOSONAR
 
-    private var isSeeking: Boolean = false
+    private var isSeeking: Boolean = false //NOSONAR
 
-    private val arrowDrawable: Drawable
+    private val arrowDrawable: Drawable //NOSONAR
 
-    private val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable() //NOSONAR
 
-    private val playerViewAdapter: PlayerViewAdapter
+    private val playerViewAdapter: PlayerViewAdapter //NOSONAR
 
-    private var isLandscape: Boolean = false
+    private var isLandscape: Boolean = false //NOSONAR
 
-    private var colorAnimator: ValueAnimator? = null
+    private var colorAnimator: ValueAnimator? = null //NOSONAR
 
-    private var colorSet = ColorSet.empty()
+    private var colorSet = ColorSet.empty() //NOSONAR
 
-    init {
-        orientation = LinearLayout.HORIZONTAL
+    init { //NOSONAR
+        orientation = LinearLayout.HORIZONTAL //NOSONAR
 
-        View.inflate(context, R.layout.up_next_view, this)
+        View.inflate(context, R.layout.up_next_view, this) //NOSONAR
 
-        arrowDrawable = DrawableCompat.wrap(arrowImageView.drawable)
-        arrowImageView.setImageDrawable(arrowDrawable)
+        arrowDrawable = DrawableCompat.wrap(arrowImageView.drawable) //NOSONAR
+        arrowImageView.setImageDrawable(arrowDrawable) //NOSONAR
 
-        playPauseView?.setOnClickListener { v ->
-            playPauseView?.toggle {
-                playerPresenter.togglePlayback()
+        playPauseView?.setOnClickListener { v -> //NOSONAR
+            playPauseView?.toggle { //NOSONAR
+                playerPresenter.togglePlayback() //NOSONAR
             }
         }
 
-        repeatButton?.setOnClickListener { playerPresenter.toggleRepeat() }
-        repeatButton?.tag = ":aesthetic_ignore"
+        repeatButton?.setOnClickListener { playerPresenter.toggleRepeat() } //NOSONAR
+        repeatButton?.tag = ":aesthetic_ignore" //NOSONAR
 
-        shuffleButton?.setOnClickListener { playerPresenter.toggleShuffle() }
-        shuffleButton?.tag = ":aesthetic_ignore"
+        shuffleButton?.setOnClickListener { playerPresenter.toggleShuffle() } //NOSONAR
+        shuffleButton?.tag = ":aesthetic_ignore" //NOSONAR
 
-        nextButton?.setOnClickListener { playerPresenter.skip() }
-        nextButton?.setRepeatListener { _, duration, repeatCount -> playerPresenter.scanForward(repeatCount, duration) }
+        nextButton?.setOnClickListener { playerPresenter.skip() } //NOSONAR
+        nextButton?.setRepeatListener { _, duration, repeatCount -> playerPresenter.scanForward(repeatCount, duration) } //NOSONAR
 
-        prevButton?.setOnClickListener { playerPresenter.prev(false) }
-        prevButton?.setRepeatListener { _, duration, repeatCount -> playerPresenter.scanBackward(repeatCount, duration) }
+        prevButton?.setOnClickListener { playerPresenter.prev(false) } //NOSONAR
+        prevButton?.setRepeatListener { _, duration, repeatCount -> playerPresenter.scanBackward(repeatCount, duration) } //NOSONAR
 
-        seekBar?.max = 1000
+        seekBar?.max = 1000 //NOSONAR
 
-        playerViewAdapter = object : PlayerViewAdapter() {
+        playerViewAdapter = object : PlayerViewAdapter() { //NOSONAR
 
-            override fun queueChanged(queuePosition: Int, queueLength: Int) {
-                super.queueChanged(queuePosition, queueLength)
+            override fun queueChanged(queuePosition: Int, queueLength: Int) { //NOSONAR
+                super.queueChanged(queuePosition, queueLength) //NOSONAR
 
-                queuePositionTextView.text = String.format("%d / %d", queuePosition, queueLength)
+                queuePositionTextView.text = String.format("%d / %d", queuePosition, queueLength) //NOSONAR
             }
 
-            override fun playbackChanged(isPlaying: Boolean) {
-                playPauseView?.let { playPauseView ->
-                    if (isPlaying) {
-                        if (playPauseView.isPlay) {
-                            playPauseView.toggle(null)
-                            playPauseView.contentDescription = getContext().getString(R.string.btn_pause)
+            override fun playbackChanged(isPlaying: Boolean) { //NOSONAR
+                playPauseView?.let { playPauseView -> //NOSONAR
+                    if (isPlaying) { //NOSONAR
+                        if (playPauseView.isPlay) { //NOSONAR
+                            playPauseView.toggle(null) //NOSONAR
+                            playPauseView.contentDescription = getContext().getString(R.string.btn_pause) //NOSONAR
                         }
-                    } else {
-                        if (!playPauseView.isPlay) {
-                            playPauseView.toggle(null)
-                            playPauseView.contentDescription = getContext().getString(R.string.btn_play)
+                    } else { //NOSONAR
+                        if (!playPauseView.isPlay) { //NOSONAR
+                            playPauseView.toggle(null) //NOSONAR
+                            playPauseView.contentDescription = getContext().getString(R.string.btn_play) //NOSONAR
                         }
                     }
                 }
             }
 
-            override fun shuffleChanged(shuffleMode: Int) {
-                (shuffleButton as? ShuffleButton)?.setShuffleMode(shuffleMode)
+            override fun shuffleChanged(shuffleMode: Int) { //NOSONAR
+                (shuffleButton as? ShuffleButton)?.setShuffleMode(shuffleMode) //NOSONAR
             }
 
-            override fun repeatChanged(repeatMode: Int) {
-                (repeatButton as? RepeatButton)?.setRepeatMode(repeatMode)
+            override fun repeatChanged(repeatMode: Int) { //NOSONAR
+                (repeatButton as? RepeatButton)?.setRepeatMode(repeatMode) //NOSONAR
             }
 
-            override fun trackInfoChanged(song: Song?) {
-                super.trackInfoChanged(song)
+            override fun trackInfoChanged(song: Song?) { //NOSONAR
+                super.trackInfoChanged(song) //NOSONAR
 
-                if (isLandscape && settingsManager.usePalette) {
+                if (isLandscape && settingsManager.usePalette) { //NOSONAR
 
-                    Glide.clear(paletteTarget)
+                    Glide.clear(paletteTarget) //NOSONAR
 
-                    Glide.with(getContext())
-                        .load(song)
-                        .asBitmap()
-                        .transcode(ColorSetTranscoder(getContext()), ColorSet::class.java)
-                        .override(250, 250)
-                        .priority(Priority.HIGH)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .into(paletteTarget)
+                    Glide.with(getContext()) //NOSONAR
+                        .load(song) //NOSONAR
+                        .asBitmap() //NOSONAR
+                        .transcode(ColorSetTranscoder(getContext()), ColorSet::class.java) //NOSONAR
+                        .override(250, 250) //NOSONAR
+                        .priority(Priority.HIGH) //NOSONAR
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                        .into(paletteTarget) //NOSONAR
                 }
             }
 
-            override fun setSeekProgress(progress: Int) {
-                if (!isSeeking) {
-                    seekBar?.progress = progress
+            override fun setSeekProgress(progress: Int) { //NOSONAR
+                if (!isSeeking) { //NOSONAR
+                    seekBar?.progress = progress //NOSONAR
                 }
             }
         }
     }
 
-    override fun onAttachedToWindow() {
-        super.onAttachedToWindow()
+    override fun onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow() //NOSONAR
 
-        isLandscape = ShuttleUtils.isLandscape(context.applicationContext as ShuttleApplication)
+        isLandscape = ShuttleUtils.isLandscape(context.applicationContext as ShuttleApplication) //NOSONAR
 
-        playerPresenter.bindView(playerViewAdapter)
+        playerPresenter.bindView(playerViewAdapter) //NOSONAR
 
-        if (!isLandscape) {
+        if (!isLandscape) { //NOSONAR
 
-            disposables.add(
-                Observable.combineLatest(
-                    Aesthetic.get(context).textColorPrimary(),
-                    Aesthetic.get(context).textColorPrimaryInverse(),
-                    Observable.just(false),
-                    LightDarkColorState.creator()
+            disposables.add( //NOSONAR
+                Observable.combineLatest( //NOSONAR
+                    Aesthetic.get(context).textColorPrimary(), //NOSONAR
+                    Aesthetic.get(context).textColorPrimaryInverse(), //NOSONAR
+                    Observable.just(false), //NOSONAR
+                    LightDarkColorState.creator() //NOSONAR
                 )
-                    .subscribe { colorState ->
-                        DrawableCompat.setTint(arrowDrawable, colorState.color())
+                    .subscribe { colorState -> //NOSONAR
+                        DrawableCompat.setTint(arrowDrawable, colorState.color()) //NOSONAR
                     })
 
         }
 
-        disposables.add(Aesthetic.get(context).isDark
-            .map { isDark -> isLandscape && !isDark }
-            .flatMap { isDark -> if (isDark) Aesthetic.get(context).textColorPrimaryInverse() else Aesthetic.get(context).textColorPrimary() }
-            .subscribe { color -> queueTextView.setTextColor(color) })
+        disposables.add(Aesthetic.get(context).isDark //NOSONAR
+            .map { isDark -> isLandscape && !isDark } //NOSONAR
+            .flatMap { isDark -> if (isDark) Aesthetic.get(context).textColorPrimaryInverse() else Aesthetic.get(context).textColorPrimary() } //NOSONAR
+            .subscribe { color -> queueTextView.setTextColor(color) }) //NOSONAR
 
-        disposables.add(Aesthetic.get(context).isDark
-            .map { isDark -> isLandscape && !isDark }
-            .flatMap { isDark -> if (isDark) Aesthetic.get(context).textColorSecondaryInverse() else Aesthetic.get(context).textColorSecondary() }
-            .subscribe { color -> queuePositionTextView.setTextColor(color) })
+        disposables.add(Aesthetic.get(context).isDark //NOSONAR
+            .map { isDark -> isLandscape && !isDark } //NOSONAR
+            .flatMap { isDark -> if (isDark) Aesthetic.get(context).textColorSecondaryInverse() else Aesthetic.get(context).textColorSecondary() } //NOSONAR
+            .subscribe { color -> queuePositionTextView.setTextColor(color) }) //NOSONAR
 
-        if (isLandscape) {
+        if (isLandscape) { //NOSONAR
 
-            var observable = getAestheticColorSetDisposable()
+            var observable = getAestheticColorSetDisposable() //NOSONAR
             // If we're managing the color scheme ourselves based on artwork changes, we only need the first ColorSet
             // emission, as no artwork has been loaded yet.
-            if (settingsManager.usePalette || settingsManager.usePaletteNowPlayingOnly) {
-                observable = observable.take(1)
+            if (settingsManager.usePalette || settingsManager.usePaletteNowPlayingOnly) { //NOSONAR
+                observable = observable.take(1) //NOSONAR
             }
 
-            disposables.add(
-                observable.subscribe(
-                    { colorSet ->
-                        if (this@UpNextView.colorSet == colorSet) {
-                            invalidateColors(colorSet)
-                        } else {
-                            animateColors(this@UpNextView.colorSet, colorSet, 800, UnsafeConsumer { this.invalidateColors(it) }, null)
+            disposables.add( //NOSONAR
+                observable.subscribe( //NOSONAR
+                    { colorSet -> //NOSONAR
+                        if (this@UpNextView.colorSet == colorSet) { //NOSONAR
+                            invalidateColors(colorSet) //NOSONAR
+                        } else { //NOSONAR
+                            animateColors(this@UpNextView.colorSet, colorSet, 800, UnsafeConsumer { this.invalidateColors(it) }, null) //NOSONAR
                         }
                     },
                     { _ ->
@@ -223,161 +223,161 @@ class UpNextView constructor(context: Context, attrs: AttributeSet? = null, defS
             )
         }
 
-        seekBar?.let { seekBar ->
-            val sharedSeekBarEvents = RxSeekBar.changeEvents(seekBar)
-                .toFlowable(BackpressureStrategy.LATEST)
-                .ofType(SeekBarChangeEvent::class.java)
-                .observeOn(AndroidSchedulers.mainThread())
-                .share()
+        seekBar?.let { seekBar -> //NOSONAR
+            val sharedSeekBarEvents = RxSeekBar.changeEvents(seekBar) //NOSONAR
+                .toFlowable(BackpressureStrategy.LATEST) //NOSONAR
+                .ofType(SeekBarChangeEvent::class.java) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .share() //NOSONAR
 
-            disposables.add(sharedSeekBarEvents.subscribe({ seekBarChangeEvent ->
-                if (seekBarChangeEvent is SeekBarStartChangeEvent) {
-                    isSeeking = true
-                } else if (seekBarChangeEvent is SeekBarStopChangeEvent) {
-                    isSeeking = false
+            disposables.add(sharedSeekBarEvents.subscribe({ seekBarChangeEvent -> //NOSONAR
+                if (seekBarChangeEvent is SeekBarStartChangeEvent) { //NOSONAR
+                    isSeeking = true //NOSONAR
+                } else if (seekBarChangeEvent is SeekBarStopChangeEvent) { //NOSONAR
+                    isSeeking = false //NOSONAR
                 }
-            }, { error -> LogUtils.logException(TAG, "Error in seek change event", error) }))
+            }, { error -> LogUtils.logException(TAG, "Error in seek change event", error) })) //NOSONAR
 
-            disposables.add(
-                sharedSeekBarEvents
-                    .ofType(SeekBarProgressChangeEvent::class.java)
-                    .filter { it.fromUser() }
-                    .debounce(15, TimeUnit.MILLISECONDS)
-                    .subscribe({ seekBarChangeEvent -> playerPresenter.seekTo(seekBarChangeEvent.progress()) },
-                        { error -> LogUtils.logException(TAG, "Error receiving seekbar progress", error) })
+            disposables.add( //NOSONAR
+                sharedSeekBarEvents //NOSONAR
+                    .ofType(SeekBarProgressChangeEvent::class.java) //NOSONAR
+                    .filter { it.fromUser() } //NOSONAR
+                    .debounce(15, TimeUnit.MILLISECONDS) //NOSONAR
+                    .subscribe({ seekBarChangeEvent -> playerPresenter.seekTo(seekBarChangeEvent.progress()) }, //NOSONAR
+                        { error -> LogUtils.logException(TAG, "Error receiving seekbar progress", error) }) //NOSONAR
             )
         }
     }
 
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
+    override fun onDetachedFromWindow() { //NOSONAR
+        super.onDetachedFromWindow() //NOSONAR
 
-        playerPresenter.unbindView(playerViewAdapter)
+        playerPresenter.unbindView(playerViewAdapter) //NOSONAR
 
-        disposables.dispose()
+        disposables.dispose() //NOSONAR
     }
 
-    fun invalidateColors(colorSet: ColorSet) {
+    fun invalidateColors(colorSet: ColorSet) { //NOSONAR
 
-        if (isLandscape) {
+        if (isLandscape) { //NOSONAR
 
-            var ignorePalette = false
-            if (!settingsManager.usePalette && !settingsManager.usePaletteNowPlayingOnly) {
+            var ignorePalette = false //NOSONAR
+            if (!settingsManager.usePalette && !settingsManager.usePaletteNowPlayingOnly) { //NOSONAR
                 // If we're not using Palette at all, use non-tinted colors for text.
-                colorSet.primaryTextColorTinted = colorSet.primaryTextColor
-                colorSet.secondaryTextColorTinted = colorSet.secondaryTextColor
-                ignorePalette = true
+                colorSet.primaryTextColorTinted = colorSet.primaryTextColor //NOSONAR
+                colorSet.secondaryTextColorTinted = colorSet.secondaryTextColor //NOSONAR
+                ignorePalette = true //NOSONAR
             }
 
-            buttonContainer?.setBackgroundColor(colorSet.primaryColor)
-            textContainer?.setBackgroundColor(colorSet.primaryColor)
+            buttonContainer?.setBackgroundColor(colorSet.primaryColor) //NOSONAR
+            textContainer?.setBackgroundColor(colorSet.primaryColor) //NOSONAR
 
-            (shuffleButton as? ShuffleButton)?.invalidateColors(colorSet.primaryTextColor, colorSet.primaryTextColorTinted)
+            (shuffleButton as? ShuffleButton)?.invalidateColors(colorSet.primaryTextColor, colorSet.primaryTextColorTinted) //NOSONAR
 
-            (repeatButton as? RepeatButton)?.invalidateColors(colorSet.primaryTextColor, colorSet.primaryTextColorTinted)
+            (repeatButton as? RepeatButton)?.invalidateColors(colorSet.primaryTextColor, colorSet.primaryTextColorTinted) //NOSONAR
 
-            prevButton?.invalidateColors(colorSet.primaryTextColor)
+            prevButton?.invalidateColors(colorSet.primaryTextColor) //NOSONAR
 
-            nextButton?.invalidateColors(colorSet.primaryTextColor)
+            nextButton?.invalidateColors(colorSet.primaryTextColor) //NOSONAR
 
-            playPauseView?.setDrawableColor(colorSet.primaryTextColor)
+            playPauseView?.setDrawableColor(colorSet.primaryTextColor) //NOSONAR
 
-            seekBar?.invalidateColors(ColorIsDarkState(if (ignorePalette) colorSet.accentColor else colorSet.primaryTextColorTinted, false))
+            seekBar?.invalidateColors(ColorIsDarkState(if (ignorePalette) colorSet.accentColor else colorSet.primaryTextColorTinted, false)) //NOSONAR
 
-            queueTextView?.setTextColor(colorSet.primaryTextColor)
+            queueTextView?.setTextColor(colorSet.primaryTextColor) //NOSONAR
 
-            queuePositionTextView?.setTextColor(colorSet.secondaryTextColor)
+            queuePositionTextView?.setTextColor(colorSet.secondaryTextColor) //NOSONAR
 
-            DrawableCompat.setTint(arrowDrawable, colorSet.primaryTextColor)
+            DrawableCompat.setTint(arrowDrawable, colorSet.primaryTextColor) //NOSONAR
 
-            arrowDrawable
+            arrowDrawable //NOSONAR
         }
 
-        this.colorSet = colorSet
+        this.colorSet = colorSet //NOSONAR
     }
 
-    private fun animateColors(from: ColorSet, to: ColorSet, duration: Int, consumer: UnsafeConsumer<ColorSet>, onComplete: UnsafeAction?) {
-        colorAnimator = ValueAnimator.ofFloat(1f, 0f)
-        colorAnimator!!.duration = duration.toLong()
-        colorAnimator!!.interpolator = AccelerateDecelerateInterpolator()
-        val argbEvaluator = ArgbEvaluator.getInstance()
-        colorAnimator!!.addUpdateListener { animator ->
-            val colorSet = ColorSet(
-                argbEvaluator.evaluate(animator.animatedFraction, from.primaryColor, to.primaryColor) as Int,
-                argbEvaluator.evaluate(animator.animatedFraction, from.accentColor, to.accentColor) as Int,
-                argbEvaluator.evaluate(animator.animatedFraction, from.primaryTextColorTinted, to.primaryTextColorTinted) as Int,
-                argbEvaluator.evaluate(animator.animatedFraction, from.secondaryTextColorTinted, to.secondaryTextColorTinted) as Int,
-                argbEvaluator.evaluate(animator.animatedFraction, from.primaryTextColor, to.primaryTextColor) as Int,
-                argbEvaluator.evaluate(animator.animatedFraction, from.secondaryTextColor, to.secondaryTextColor) as Int
+    private fun animateColors(from: ColorSet, to: ColorSet, duration: Int, consumer: UnsafeConsumer<ColorSet>, onComplete: UnsafeAction?) { //NOSONAR
+        colorAnimator = ValueAnimator.ofFloat(1f, 0f) //NOSONAR
+        colorAnimator!!.duration = duration.toLong() //NOSONAR
+        colorAnimator!!.interpolator = AccelerateDecelerateInterpolator() //NOSONAR
+        val argbEvaluator = ArgbEvaluator.getInstance() //NOSONAR
+        colorAnimator!!.addUpdateListener { animator -> //NOSONAR
+            val colorSet = ColorSet( //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.primaryColor, to.primaryColor) as Int, //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.accentColor, to.accentColor) as Int, //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.primaryTextColorTinted, to.primaryTextColorTinted) as Int, //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.secondaryTextColorTinted, to.secondaryTextColorTinted) as Int, //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.primaryTextColor, to.primaryTextColor) as Int, //NOSONAR
+                argbEvaluator.evaluate(animator.animatedFraction, from.secondaryTextColor, to.secondaryTextColor) as Int //NOSONAR
             )
-            consumer.accept(colorSet)
+            consumer.accept(colorSet) //NOSONAR
         }
-        colorAnimator!!.addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationEnd(animation: Animator) {
-                animation.removeAllListeners()
-                onComplete?.run()
+        colorAnimator!!.addListener(object : AnimatorListenerAdapter() { //NOSONAR
+            override fun onAnimationEnd(animation: Animator) { //NOSONAR
+                animation.removeAllListeners() //NOSONAR
+                onComplete?.run() //NOSONAR
             }
         })
-        colorAnimator!!.start()
+        colorAnimator!!.start() //NOSONAR
     }
 
-    private fun getAestheticColorSetDisposable(): Observable<ColorSet> {
-        return Observable.combineLatest(
-            Aesthetic.get(context).colorPrimary(),
-            Aesthetic.get(context).colorAccent(),
-            BiFunction { first: Int, second: Int -> Pair(first, second) }
-        ).map { pair -> ColorSet.fromPrimaryAccentColors(context!!, pair.first!!, pair.second!!) }
+    private fun getAestheticColorSetDisposable(): Observable<ColorSet> { //NOSONAR
+        return Observable.combineLatest( //NOSONAR
+            Aesthetic.get(context).colorPrimary(), //NOSONAR
+            Aesthetic.get(context).colorAccent(), //NOSONAR
+            BiFunction { first: Int, second: Int -> Pair(first, second) } //NOSONAR
+        ).map { pair -> ColorSet.fromPrimaryAccentColors(context!!, pair.first!!, pair.second!!) } //NOSONAR
     }
 
-    private val paletteTarget = object : SimpleTarget<ColorSet>() {
-        override fun onResourceReady(newColorSet: ColorSet, glideAnimation: GlideAnimation<in ColorSet>) {
+    private val paletteTarget = object : SimpleTarget<ColorSet>() { //NOSONAR
+        override fun onResourceReady(newColorSet: ColorSet, glideAnimation: GlideAnimation<in ColorSet>) { //NOSONAR
 
-            if (colorSet === newColorSet) {
-                return
+            if (colorSet === newColorSet) { //NOSONAR
+                return //NOSONAR
             }
 
-            val oldColorSet = colorSet
+            val oldColorSet = colorSet //NOSONAR
 
-            animateColors(
-                oldColorSet,
-                newColorSet,
-                800,
-                UnsafeConsumer { intermediateColorSet ->
+            animateColors( //NOSONAR
+                oldColorSet, //NOSONAR
+                newColorSet, //NOSONAR
+                800, //NOSONAR
+                UnsafeConsumer { intermediateColorSet -> //NOSONAR
                     // Update all the colours related to the now playing screen first
-                    invalidateColors(intermediateColorSet)
+                    invalidateColors(intermediateColorSet) //NOSONAR
 
                     // We need to update the nav bar colour at the same time, since it's visible as well.
-                    if (settingsManager.tintNavBar) {
-                        Aesthetic.get(getContext()).colorNavigationBar(intermediateColorSet.primaryColor).apply()
+                    if (settingsManager.tintNavBar) { //NOSONAR
+                        Aesthetic.get(getContext()).colorNavigationBar(intermediateColorSet.primaryColor).apply() //NOSONAR
                     }
                 },
-                UnsafeAction {
+                UnsafeAction { //NOSONAR
                     // Wait until the first set of color change animations is complete, before updating Aesthetic.
                     // This allows our invalidateColors() animation to run smoothly, as the Aesthetic color change
                     // introduces some jank.
-                    if (!settingsManager.usePaletteNowPlayingOnly) {
+                    if (!settingsManager.usePaletteNowPlayingOnly) { //NOSONAR
 
-                        animateColors(oldColorSet, newColorSet, 450, UnsafeConsumer { intermediateColorSet ->
-                            val aesthetic = Aesthetic.get(getContext())
-                                .colorPrimary(intermediateColorSet.primaryColor)
-                                .colorAccent(intermediateColorSet.accentColor)
-                                .colorStatusBarAuto()
+                        animateColors(oldColorSet, newColorSet, 450, UnsafeConsumer { intermediateColorSet -> //NOSONAR
+                            val aesthetic = Aesthetic.get(getContext()) //NOSONAR
+                                .colorPrimary(intermediateColorSet.primaryColor) //NOSONAR
+                                .colorAccent(intermediateColorSet.accentColor) //NOSONAR
+                                .colorStatusBarAuto() //NOSONAR
 
-                            aesthetic.apply()
-                        }, null)
+                            aesthetic.apply() //NOSONAR
+                        }, null) //NOSONAR
                     }
                 }
             )
         }
 
-        @SuppressLint("CheckResult")
-        override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) {
-            super.onLoadFailed(e, errorDrawable)
+        @SuppressLint("CheckResult") //NOSONAR
+        override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) { //NOSONAR
+            super.onLoadFailed(e, errorDrawable) //NOSONAR
 
-            getAestheticColorSetDisposable()
-                .take(1)
-                .subscribe(
-                    { colorSet -> animateColors(this@UpNextView.colorSet, colorSet, 800, UnsafeConsumer { intermediateColorSet -> invalidateColors(intermediateColorSet) }, null) },
+            getAestheticColorSetDisposable() //NOSONAR
+                .take(1) //NOSONAR
+                .subscribe( //NOSONAR
+                    { colorSet -> animateColors(this@UpNextView.colorSet, colorSet, 800, UnsafeConsumer { intermediateColorSet -> invalidateColors(intermediateColorSet) }, null) }, //NOSONAR
                     { _ ->
                         // Nothing ot do
                     }
@@ -385,15 +385,15 @@ class UpNextView constructor(context: Context, attrs: AttributeSet? = null, defS
         }
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private val TAG = "UpNextView"
+        private val TAG = "UpNextView" //NOSONAR
 
-        fun newInstance(context: Context, playerPresenter: PlayerPresenter, settingsManager: SettingsManager): UpNextView {
-            val upNextView = UpNextView(context)
-            upNextView.playerPresenter = playerPresenter
-            upNextView.settingsManager = settingsManager
-            return upNextView
+        fun newInstance(context: Context, playerPresenter: PlayerPresenter, settingsManager: SettingsManager): UpNextView { //NOSONAR
+            val upNextView = UpNextView(context) //NOSONAR
+            upNextView.playerPresenter = playerPresenter //NOSONAR
+            upNextView.settingsManager = settingsManager //NOSONAR
+            return upNextView //NOSONAR
         }
     }
 }

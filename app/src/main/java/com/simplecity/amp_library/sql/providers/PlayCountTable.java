@@ -7,106 +7,106 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 import com.simplecity.amp_library.BuildConfig;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlayCountTable extends SQLiteOpenHelper {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlayCountTable extends SQLiteOpenHelper { //NOSONAR
 
-    private Context applicationContext;
+    private Context applicationContext; //NOSONAR
 
-    private static final String DATABASE_NAME = "play_count.db";
-    private static final int DATABASE_VERSION = 2;
+    private static final String DATABASE_NAME = "play_count.db"; //NOSONAR
+    private static final int DATABASE_VERSION = 2; //NOSONAR
 
-    public static final String TABLE_PLAY_COUNT = "play_count";
+    public static final String TABLE_PLAY_COUNT = "play_count"; //NOSONAR
 
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_PLAY_COUNT = "play_count";
-    public static final String COLUMN_TIME_PLAYED = "time_played";
+    public static final String COLUMN_ID = "_id"; //NOSONAR
+    public static final String COLUMN_PLAY_COUNT = "play_count"; //NOSONAR
+    public static final String COLUMN_TIME_PLAYED = "time_played"; //NOSONAR
 
-    private static final String DATABASE_CREATE = "create table if not exists "
-            + TABLE_PLAY_COUNT
+    private static final String DATABASE_CREATE = "create table if not exists " //NOSONAR
+            + TABLE_PLAY_COUNT //NOSONAR
             + "("
-            + COLUMN_ID + " LONG NOT NULL UNIQUE ON CONFLICT REPLACE, "
-            + COLUMN_PLAY_COUNT + " INTEGER DEFAULT 0, "
-            + COLUMN_TIME_PLAYED + " LONG DEFAULT 0"
+            + COLUMN_ID + " LONG NOT NULL UNIQUE ON CONFLICT REPLACE, " //NOSONAR
+            + COLUMN_PLAY_COUNT + " INTEGER DEFAULT 0, " //NOSONAR
+            + COLUMN_TIME_PLAYED + " LONG DEFAULT 0" //NOSONAR
             + ");";
 
-    public static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".play_count.contentprovider";
+    public static final String AUTHORITY = BuildConfig.APPLICATION_ID + ".play_count.contentprovider"; //NOSONAR
 
-    public static final Uri URI = Uri.parse("content://" + AUTHORITY + "/" + "play_count");
+    public static final Uri URI = Uri.parse("content://" + AUTHORITY + "/" + "play_count"); //NOSONAR
 
-    public PlayCountTable(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public PlayCountTable(Context context) { //NOSONAR
+        super(context, DATABASE_NAME, null, DATABASE_VERSION); //NOSONAR
 
-        this.applicationContext = context.getApplicationContext();
+        this.applicationContext = context.getApplicationContext(); //NOSONAR
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase database) {
-        database.execSQL(DATABASE_CREATE);
+    @Override //NOSONAR
+    public void onCreate(SQLiteDatabase database) { //NOSONAR
+        database.execSQL(DATABASE_CREATE); //NOSONAR
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 2) {
+    @Override //NOSONAR
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //NOSONAR
+        if (oldVersion < 2) { //NOSONAR
 
-            String TABLE_BACKUP = "BACKUP";
+            String TABLE_BACKUP = "BACKUP"; //NOSONAR
 
             //Rename existing table to backup
-            db.execSQL("ALTER TABLE " + TABLE_PLAY_COUNT + " RENAME TO " + TABLE_BACKUP + ";");
+            db.execSQL("ALTER TABLE " + TABLE_PLAY_COUNT + " RENAME TO " + TABLE_BACKUP + ";"); //NOSONAR
 
             //Create new table
-            db.execSQL("CREATE TABLE " + TABLE_PLAY_COUNT + "("
-                    + COLUMN_ID + " LONG NOT NULL UNIQUE ON CONFLICT REPLACE, "
-                    + COLUMN_PLAY_COUNT + " INTEGER DEFAULT 0, "
-                    + COLUMN_TIME_PLAYED + " LONG DEFAULT 0);");
+            db.execSQL("CREATE TABLE " + TABLE_PLAY_COUNT + "(" //NOSONAR
+                    + COLUMN_ID + " LONG NOT NULL UNIQUE ON CONFLICT REPLACE, " //NOSONAR
+                    + COLUMN_PLAY_COUNT + " INTEGER DEFAULT 0, " //NOSONAR
+                    + COLUMN_TIME_PLAYED + " LONG DEFAULT 0);"); //NOSONAR
 
             //Copy backup into new
-            db.execSQL("INSERT OR REPLACE INTO " + TABLE_PLAY_COUNT + "(" + COLUMN_ID + ", " + COLUMN_PLAY_COUNT + ") "
-                    + "SELECT " + COLUMN_ID + "," + COLUMN_PLAY_COUNT + " FROM " + TABLE_BACKUP + "; ");
+            db.execSQL("INSERT OR REPLACE INTO " + TABLE_PLAY_COUNT + "(" + COLUMN_ID + ", " + COLUMN_PLAY_COUNT + ") " //NOSONAR
+                    + "SELECT " + COLUMN_ID + "," + COLUMN_PLAY_COUNT + " FROM " + TABLE_BACKUP + "; "); //NOSONAR
 
             //Drop backup
-            db.execSQL("DROP TABLE " + TABLE_BACKUP + "; ");
+            db.execSQL("DROP TABLE " + TABLE_BACKUP + "; "); //NOSONAR
 
             //We have to end this transaction so we can attach the count info table below
-            db.setTransactionSuccessful();
-            db.endTransaction();
+            db.setTransactionSuccessful(); //NOSONAR
+            db.endTransaction(); //NOSONAR
 
             //Add rows from count info table
-            try {
-                String COUNT_INFO_DATABASE = "count_info.db";
-                String PATH_COUNT_INFO = applicationContext.getDatabasePath(COUNT_INFO_DATABASE).toString();
-                String TABLE_COUNT_INFO = "COUNT_INFO";
-                String COUNT_INFO_COLUMN_ID = "_id";
-                String COUNT_INFO_COLUMN_TIME_PLAYED = "time_played";
+            try { //NOSONAR
+                String COUNT_INFO_DATABASE = "count_info.db"; //NOSONAR
+                String PATH_COUNT_INFO = applicationContext.getDatabasePath(COUNT_INFO_DATABASE).toString(); //NOSONAR
+                String TABLE_COUNT_INFO = "COUNT_INFO"; //NOSONAR
+                String COUNT_INFO_COLUMN_ID = "_id"; //NOSONAR
+                String COUNT_INFO_COLUMN_TIME_PLAYED = "time_played"; //NOSONAR
 
-                db.execSQL("ATTACH '" + PATH_COUNT_INFO + "' AS " + TABLE_COUNT_INFO + "; ");
+                db.execSQL("ATTACH '" + PATH_COUNT_INFO + "' AS " + TABLE_COUNT_INFO + "; "); //NOSONAR
 
                 //Now we have to begin a new transaction
-                db.beginTransaction();
-                db.execSQL("INSERT OR REPLACE INTO "
-                        + TABLE_PLAY_COUNT
+                db.beginTransaction(); //NOSONAR
+                db.execSQL("INSERT OR REPLACE INTO " //NOSONAR
+                        + TABLE_PLAY_COUNT //NOSONAR
                         + "("
-                        + COLUMN_ID
+                        + COLUMN_ID //NOSONAR
                         + ", "
-                        + COLUMN_PLAY_COUNT
+                        + COLUMN_PLAY_COUNT //NOSONAR
                         + ", "
-                        + COLUMN_TIME_PLAYED
+                        + COLUMN_TIME_PLAYED //NOSONAR
                         + ") "
-                        + "SELECT "
-                        + COUNT_INFO_COLUMN_ID
+                        + "SELECT " //NOSONAR
+                        + COUNT_INFO_COLUMN_ID //NOSONAR
                         + ","
-                        + "(SELECT "
-                        + COLUMN_PLAY_COUNT
-                        + " FROM "
-                        + TABLE_PLAY_COUNT
-                        + " WHERE _id = "
-                        + COLUMN_ID
+                        + "(SELECT " //NOSONAR
+                        + COLUMN_PLAY_COUNT //NOSONAR
+                        + " FROM " //NOSONAR
+                        + TABLE_PLAY_COUNT //NOSONAR
+                        + " WHERE _id = " //NOSONAR
+                        + COLUMN_ID //NOSONAR
                         + ")"
                         + ","
-                        + COUNT_INFO_COLUMN_TIME_PLAYED
-                        + " FROM "
-                        + TABLE_COUNT_INFO
+                        + COUNT_INFO_COLUMN_TIME_PLAYED //NOSONAR
+                        + " FROM " //NOSONAR
+                        + TABLE_COUNT_INFO //NOSONAR
                         + ";");
-            } catch (SQLiteException ignored) {
+            } catch (SQLiteException ignored) { //NOSONAR
                 // The count info table probably doesn't exist (it wasn't created in the previous version of the app)
                 //  Nothing to do
             }

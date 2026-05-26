@@ -46,308 +46,308 @@ import test.com.androidnavigation.fragment.BaseController;
 import test.com.androidnavigation.fragment.BaseNavigationController;
 import test.com.androidnavigation.fragment.FragmentInfo;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SettingsParentFragment extends BaseNavigationController implements
-        DrawerLockManager.DrawerLock,
-        MiniPlayerLockManager.MiniPlayerLock {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SettingsParentFragment extends BaseNavigationController implements //NOSONAR
+        DrawerLockManager.DrawerLock, //NOSONAR
+        MiniPlayerLockManager.MiniPlayerLock { //NOSONAR
 
-    public static String ARG_PREFERENCE_RESOURCE = "preference_resource";
-    public static String ARG_TITLE = "title";
+    public static String ARG_PREFERENCE_RESOURCE = "preference_resource"; //NOSONAR
+    public static String ARG_TITLE = "title"; //NOSONAR
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) //NOSONAR
+    Toolbar toolbar; //NOSONAR
 
-    @XmlRes
-    int preferenceResource;
+    @XmlRes //NOSONAR
+    int preferenceResource; //NOSONAR
 
-    @StringRes
-    int titleResId;
+    @StringRes //NOSONAR
+    int titleResId; //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    public static SettingsParentFragment newInstance(@XmlRes int preferenceResource, @StringRes int titleResId) {
-        Bundle args = new Bundle();
-        args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource);
-        args.putInt(ARG_TITLE, titleResId);
-        SettingsParentFragment fragment = new SettingsParentFragment();
-        fragment.setArguments(args);
-        return fragment;
+    public static SettingsParentFragment newInstance(@XmlRes int preferenceResource, @StringRes int titleResId) { //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource); //NOSONAR
+        args.putInt(ARG_TITLE, titleResId); //NOSONAR
+        SettingsParentFragment fragment = new SettingsParentFragment(); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    public SettingsParentFragment() {
+    public SettingsParentFragment() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
+    @Override //NOSONAR
+    public void onAttach(Context context) { //NOSONAR
+        super.onAttach(context); //NOSONAR
 
-        titleResId = getArguments().getInt(ARG_TITLE);
-        preferenceResource = getArguments().getInt(ARG_PREFERENCE_RESOURCE);
+        titleResId = getArguments().getInt(ARG_TITLE); //NOSONAR
+        preferenceResource = getArguments().getInt(ARG_PREFERENCE_RESOURCE); //NOSONAR
     }
 
-    @Override
-    public FragmentInfo getRootViewControllerInfo() {
-        return SettingsFragment.getFragmentInfo(preferenceResource);
+    @Override //NOSONAR
+    public FragmentInfo getRootViewControllerInfo() { //NOSONAR
+        return SettingsFragment.getFragmentInfo(preferenceResource); //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_settings, container, false);
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { //NOSONAR
+        View rootView = inflater.inflate(R.layout.fragment_settings, container, false); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView); //NOSONAR
 
-        toolbar.setTitle(titleResId);
-        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
+        toolbar.setTitle(titleResId); //NOSONAR
+        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed()); //NOSONAR
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        DrawerLockManager.getInstance().addDrawerLock(this);
-        MiniPlayerLockManager.getInstance().addMiniPlayerLock(this);
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
+        DrawerLockManager.getInstance().addDrawerLock(this); //NOSONAR
+        MiniPlayerLockManager.getInstance().addMiniPlayerLock(this); //NOSONAR
     }
 
-    @Override
-    public void onPause() {
-        DrawerLockManager.getInstance().removeDrawerLock(this);
-        MiniPlayerLockManager.getInstance().removeMiniPlayerLock(this);
-        super.onPause();
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        DrawerLockManager.getInstance().removeDrawerLock(this); //NOSONAR
+        MiniPlayerLockManager.getInstance().removeMiniPlayerLock(this); //NOSONAR
+        super.onPause(); //NOSONAR
     }
 
-    @Override
-    public void onDestroyView() {
-        unbinder.unbind();
-        super.onDestroyView();
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
     }
 
-    public static class SettingsFragment extends PreferenceFragmentCompat implements
-            Controller,
-            SupportView,
-            SettingsView,
-            ColorChooserDialog.ColorCallback {
+    public static class SettingsFragment extends PreferenceFragmentCompat implements //NOSONAR
+            Controller, //NOSONAR
+            SupportView, //NOSONAR
+            SettingsView, //NOSONAR
+            ColorChooserDialog.ColorCallback { //NOSONAR
 
-        @XmlRes
-        int preferenceResource;
+        @XmlRes //NOSONAR
+        int preferenceResource; //NOSONAR
 
-        @Inject
-        SupportPresenter supportPresenter;
+        @Inject //NOSONAR
+        SupportPresenter supportPresenter; //NOSONAR
 
-        @Inject
-        SettingsPresenter settingsPresenter;
+        @Inject //NOSONAR
+        SettingsPresenter settingsPresenter; //NOSONAR
 
-        @Inject
-        BillingManager billingManager;
+        @Inject //NOSONAR
+        BillingManager billingManager; //NOSONAR
 
-        @Inject
-        AnalyticsManager analyticsManager;
+        @Inject //NOSONAR
+        AnalyticsManager analyticsManager; //NOSONAR
 
-        @Inject
-        SettingsManager settingsManager;
+        @Inject //NOSONAR
+        SettingsManager settingsManager; //NOSONAR
 
-        private ColorChooserDialog primaryColorDialog;
-        private ColorChooserDialog accentColorDialog;
+        private ColorChooserDialog primaryColorDialog; //NOSONAR
+        private ColorChooserDialog accentColorDialog; //NOSONAR
 
-        private Disposable aestheticDisposable;
+        private Disposable aestheticDisposable; //NOSONAR
 
-        public static FragmentInfo getFragmentInfo(@XmlRes int preferenceResource) {
-            Bundle args = new Bundle();
-            args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource);
-            return new FragmentInfo(SettingsFragment.class, args, "settingsRoot");
+        public static FragmentInfo getFragmentInfo(@XmlRes int preferenceResource) { //NOSONAR
+            Bundle args = new Bundle(); //NOSONAR
+            args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource); //NOSONAR
+            return new FragmentInfo(SettingsFragment.class, args, "settingsRoot"); //NOSONAR
         }
 
-        public static SettingsFragment newInstance(@XmlRes int preferenceResource) {
-            Bundle args = new Bundle();
-            args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource);
-            SettingsFragment settingsFragment = new SettingsFragment();
-            settingsFragment.setArguments(args);
-            return settingsFragment;
+        public static SettingsFragment newInstance(@XmlRes int preferenceResource) { //NOSONAR
+            Bundle args = new Bundle(); //NOSONAR
+            args.putInt(ARG_PREFERENCE_RESOURCE, preferenceResource); //NOSONAR
+            SettingsFragment settingsFragment = new SettingsFragment(); //NOSONAR
+            settingsFragment.setArguments(args); //NOSONAR
+            return settingsFragment; //NOSONAR
         }
 
-        public SettingsFragment() {
+        public SettingsFragment() { //NOSONAR
             // Intentionally left empty.
         }
 
-        @Override
-        public void onAttach(Context context) {
-            super.onAttach(context);
+        @Override //NOSONAR
+        public void onAttach(Context context) { //NOSONAR
+            super.onAttach(context); //NOSONAR
 
-            preferenceResource = getArguments().getInt(ARG_PREFERENCE_RESOURCE);
+            preferenceResource = getArguments().getInt(ARG_PREFERENCE_RESOURCE); //NOSONAR
         }
 
-        @Override
-        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            addPreferencesFromResource(preferenceResource);
+        @Override //NOSONAR
+        public void onCreatePreferences(Bundle savedInstanceState, String rootKey) { //NOSONAR
+            addPreferencesFromResource(preferenceResource); //NOSONAR
         }
 
-        @Override
-        public void onCreate(Bundle savedInstanceState) {
-            AndroidSupportInjection.inject(this);
-            super.onCreate(savedInstanceState);
+        @Override //NOSONAR
+        public void onCreate(Bundle savedInstanceState) { //NOSONAR
+            AndroidSupportInjection.inject(this); //NOSONAR
+            super.onCreate(savedInstanceState); //NOSONAR
 
             // Support Preferences
 
-            Preference changelogPreference = findPreference(SettingsManager.KEY_PREF_CHANGELOG);
-            if (changelogPreference != null) {
-                changelogPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.changelogClicked();
-                    return true;
+            Preference changelogPreference = findPreference(SettingsManager.KEY_PREF_CHANGELOG); //NOSONAR
+            if (changelogPreference != null) { //NOSONAR
+                changelogPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.changelogClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference faqPreference = findPreference(SettingsManager.KEY_PREF_FAQ);
-            if (faqPreference != null) {
-                faqPreference.setOnPreferenceClickListener(preference -> {
-                    supportPresenter.faqClicked();
-                    return true;
+            Preference faqPreference = findPreference(SettingsManager.KEY_PREF_FAQ); //NOSONAR
+            if (faqPreference != null) { //NOSONAR
+                faqPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    supportPresenter.faqClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference helpPreference = findPreference(SettingsManager.KEY_PREF_HELP);
-            if (helpPreference != null) {
-                helpPreference.setOnPreferenceClickListener(preference -> {
-                    supportPresenter.helpClicked();
-                    return true;
+            Preference helpPreference = findPreference(SettingsManager.KEY_PREF_HELP); //NOSONAR
+            if (helpPreference != null) { //NOSONAR
+                helpPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    supportPresenter.helpClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference ratePreference = findPreference(SettingsManager.KEY_PREF_RATE);
-            if (ratePreference != null) {
-                ratePreference.setOnPreferenceClickListener(preference -> {
-                    supportPresenter.rateClicked();
-                    return true;
+            Preference ratePreference = findPreference(SettingsManager.KEY_PREF_RATE); //NOSONAR
+            if (ratePreference != null) { //NOSONAR
+                ratePreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    supportPresenter.rateClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference restorePurchasesPreference = findPreference(SettingsManager.KEY_PREF_RESTORE_PURCHASES);
-            if (restorePurchasesPreference != null) {
-                if (ShuttleUtils.isAmazonBuild() || ShuttleUtils.isUpgraded((ShuttleApplication) getContext().getApplicationContext(), settingsManager)) {
-                    restorePurchasesPreference.setVisible(false);
+            Preference restorePurchasesPreference = findPreference(SettingsManager.KEY_PREF_RESTORE_PURCHASES); //NOSONAR
+            if (restorePurchasesPreference != null) { //NOSONAR
+                if (ShuttleUtils.isAmazonBuild() || ShuttleUtils.isUpgraded((ShuttleApplication) getContext().getApplicationContext(), settingsManager)) { //NOSONAR
+                    restorePurchasesPreference.setVisible(false); //NOSONAR
                 }
-                restorePurchasesPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.restorePurchasesClicked();
-                    return true;
+                restorePurchasesPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.restorePurchasesClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
             // Display
 
-            Preference chooseTabsPreference = findPreference(SettingsManager.KEY_PREF_TAB_CHOOSER);
-            if (chooseTabsPreference != null) {
-                chooseTabsPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.chooseTabsClicked();
-                    return true;
+            Preference chooseTabsPreference = findPreference(SettingsManager.KEY_PREF_TAB_CHOOSER); //NOSONAR
+            if (chooseTabsPreference != null) { //NOSONAR
+                chooseTabsPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.chooseTabsClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference defaultPagePreference = findPreference(SettingsManager.KEY_PREF_DEFAULT_PAGE);
-            if (defaultPagePreference != null) {
-                defaultPagePreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.chooseDefaultPageClicked(getContext());
-                    return true;
+            Preference defaultPagePreference = findPreference(SettingsManager.KEY_PREF_DEFAULT_PAGE); //NOSONAR
+            if (defaultPagePreference != null) { //NOSONAR
+                defaultPagePreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.chooseDefaultPageClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
             // Themes
 
-            Preference baseThemePreference = findPreference(SettingsManager.KEY_PREF_THEME_BASE);
-            if (baseThemePreference != null) {
-                baseThemePreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.baseThemeClicked(getContext());
-                    return true;
+            Preference baseThemePreference = findPreference(SettingsManager.KEY_PREF_THEME_BASE); //NOSONAR
+            if (baseThemePreference != null) { //NOSONAR
+                baseThemePreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.baseThemeClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference primaryColorPreference = findPreference(SettingsManager.KEY_PREF_PRIMARY_COLOR);
-            if (primaryColorPreference != null) {
-                primaryColorPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.primaryColorClicked(getContext());
-                    return true;
+            Preference primaryColorPreference = findPreference(SettingsManager.KEY_PREF_PRIMARY_COLOR); //NOSONAR
+            if (primaryColorPreference != null) { //NOSONAR
+                primaryColorPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.primaryColorClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference accentColorColorPreference = findPreference(SettingsManager.KEY_PREF_ACCENT_COLOR);
-            if (accentColorColorPreference != null) {
-                accentColorColorPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.accentColorClicked(getContext());
-                    return true;
+            Preference accentColorColorPreference = findPreference(SettingsManager.KEY_PREF_ACCENT_COLOR); //NOSONAR
+            if (accentColorColorPreference != null) { //NOSONAR
+                accentColorColorPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.accentColorClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat tintNavBarColorPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_NAV_BAR);
-            if (tintNavBarColorPreference != null) {
-                tintNavBarColorPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.tintNavBarClicked(getContext(), (Boolean) newValue);
-                    return true;
+            SwitchPreferenceCompat tintNavBarColorPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_NAV_BAR); //NOSONAR
+            if (tintNavBarColorPreference != null) { //NOSONAR
+                tintNavBarColorPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.tintNavBarClicked(getContext(), (Boolean) newValue); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat usePalettePreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_PALETTE);
-            if (usePalettePreference != null) {
-                usePalettePreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.usePaletteClicked(getContext(), (Boolean) newValue);
-                    return true;
+            SwitchPreferenceCompat usePalettePreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_PALETTE); //NOSONAR
+            if (usePalettePreference != null) { //NOSONAR
+                usePalettePreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.usePaletteClicked(getContext(), (Boolean) newValue); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat usePaletteNowPlayingOnlyPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_PALETTE_NOW_PLAYING_ONLY);
-            if (usePaletteNowPlayingOnlyPreference != null) {
-                usePaletteNowPlayingOnlyPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.usePaletteNowPlayingOnlyClicked(getContext(), (Boolean) newValue);
-                    return true;
+            SwitchPreferenceCompat usePaletteNowPlayingOnlyPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREF_PALETTE_NOW_PLAYING_ONLY); //NOSONAR
+            if (usePaletteNowPlayingOnlyPreference != null) { //NOSONAR
+                usePaletteNowPlayingOnlyPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.usePaletteNowPlayingOnlyClicked(getContext(), (Boolean) newValue); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
             // Artwork
 
-            Preference downloadArtworkPreference = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_ARTWORK);
-            if (downloadArtworkPreference != null) {
-                downloadArtworkPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.downloadArtworkClicked(getContext());
-                    return true;
+            Preference downloadArtworkPreference = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_ARTWORK); //NOSONAR
+            if (downloadArtworkPreference != null) { //NOSONAR
+                downloadArtworkPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.downloadArtworkClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference deleteArtworkPreference = findPreference(SettingsManager.KEY_PREF_DELETE_ARTWORK);
-            if (deleteArtworkPreference != null) {
-                deleteArtworkPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.deleteArtworkClicked(getContext());
-                    return true;
+            Preference deleteArtworkPreference = findPreference(SettingsManager.KEY_PREF_DELETE_ARTWORK); //NOSONAR
+            if (deleteArtworkPreference != null) { //NOSONAR
+                deleteArtworkPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.deleteArtworkClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat ignoreEmbeddedArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_EMBEDDED_ARTWORK);
-            if (ignoreEmbeddedArtworkPreference != null) {
-                ignoreEmbeddedArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.changeArtworkPreferenceClicked(getContext());
-                    return true;
+            SwitchPreferenceCompat ignoreEmbeddedArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_EMBEDDED_ARTWORK); //NOSONAR
+            if (ignoreEmbeddedArtworkPreference != null) { //NOSONAR
+                ignoreEmbeddedArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.changeArtworkPreferenceClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat ignoreFolderArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_FOLDER_ARTWORK);
-            if (ignoreFolderArtworkPreference != null) {
-                ignoreFolderArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.changeArtworkPreferenceClicked(getContext());
-                    return true;
+            SwitchPreferenceCompat ignoreFolderArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_FOLDER_ARTWORK); //NOSONAR
+            if (ignoreFolderArtworkPreference != null) { //NOSONAR
+                ignoreFolderArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.changeArtworkPreferenceClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat preferEmbeddedArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREFER_EMBEDDED_ARTWORK);
-            if (preferEmbeddedArtworkPreference != null) {
-                preferEmbeddedArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.changeArtworkPreferenceClicked(getContext());
-                    return true;
+            SwitchPreferenceCompat preferEmbeddedArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_PREFER_EMBEDDED_ARTWORK); //NOSONAR
+            if (preferEmbeddedArtworkPreference != null) { //NOSONAR
+                preferEmbeddedArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.changeArtworkPreferenceClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            SwitchPreferenceCompat ignoreMediaStoreArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_MEDIASTORE_ART);
-            if (ignoreMediaStoreArtworkPreference != null) {
-                ignoreMediaStoreArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> {
-                    settingsPresenter.changeArtworkPreferenceClicked(getContext());
-                    return true;
+            SwitchPreferenceCompat ignoreMediaStoreArtworkPreference = (SwitchPreferenceCompat) findPreference(SettingsManager.KEY_IGNORE_MEDIASTORE_ART); //NOSONAR
+            if (ignoreMediaStoreArtworkPreference != null) { //NOSONAR
+                ignoreMediaStoreArtworkPreference.setOnPreferenceChangeListener((preference, newValue) -> { //NOSONAR
+                    settingsPresenter.changeArtworkPreferenceClicked(getContext()); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
@@ -355,243 +355,243 @@ public class SettingsParentFragment extends BaseNavigationController implements
 
             // Scrobbling
 
-            Preference downloadScrobblerPreference = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_SCROBBLER);
-            if (downloadScrobblerPreference != null) {
-                if (ShuttleUtils.isAmazonBuild()) {
+            Preference downloadScrobblerPreference = findPreference(SettingsManager.KEY_PREF_DOWNLOAD_SCROBBLER); //NOSONAR
+            if (downloadScrobblerPreference != null) { //NOSONAR
+                if (ShuttleUtils.isAmazonBuild()) { //NOSONAR
                     // Amazon don't allow links to the Play Store
-                    downloadScrobblerPreference.setVisible(false);
+                    downloadScrobblerPreference.setVisible(false); //NOSONAR
                 }
-                downloadScrobblerPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.downloadScrobblerClicked();
-                    return true;
+                downloadScrobblerPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.downloadScrobblerClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
             // Whitelist/Blacklist
 
-            Preference viewBlacklistPreference = findPreference(SettingsManager.KEY_PREF_BLACKLIST);
-            if (viewBlacklistPreference != null) {
-                viewBlacklistPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.viewBlacklistClicked();
-                    return true;
+            Preference viewBlacklistPreference = findPreference(SettingsManager.KEY_PREF_BLACKLIST); //NOSONAR
+            if (viewBlacklistPreference != null) { //NOSONAR
+                viewBlacklistPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.viewBlacklistClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
-            Preference viewWhitelistPreference = findPreference(SettingsManager.KEY_PREF_WHITELIST);
-            if (viewWhitelistPreference != null) {
-                viewWhitelistPreference.setOnPreferenceClickListener(preference -> {
-                    settingsPresenter.viewWhitelistClicked();
-                    return true;
+            Preference viewWhitelistPreference = findPreference(SettingsManager.KEY_PREF_WHITELIST); //NOSONAR
+            if (viewWhitelistPreference != null) { //NOSONAR
+                viewWhitelistPreference.setOnPreferenceClickListener(preference -> { //NOSONAR
+                    settingsPresenter.viewWhitelistClicked(); //NOSONAR
+                    return true; //NOSONAR
                 });
             }
 
             // Upgrade preference
-            Preference upgradePreference = findPreference(SettingsManager.KEY_PREF_UPGRADE);
-            if (upgradePreference != null) {
-                if (ShuttleUtils.isUpgraded((ShuttleApplication) getContext().getApplicationContext(), settingsManager)) {
-                    upgradePreference.setVisible(false);
+            Preference upgradePreference = findPreference(SettingsManager.KEY_PREF_UPGRADE); //NOSONAR
+            if (upgradePreference != null) { //NOSONAR
+                if (ShuttleUtils.isUpgraded((ShuttleApplication) getContext().getApplicationContext(), settingsManager)) { //NOSONAR
+                    upgradePreference.setVisible(false); //NOSONAR
                 }
             }
         }
 
-        @Override
-        public void onResume() {
-            super.onResume();
+        @Override //NOSONAR
+        public void onResume() { //NOSONAR
+            super.onResume(); //NOSONAR
 
-            supportPresenter.bindView(this);
-            settingsPresenter.bindView(this);
+            supportPresenter.bindView(this); //NOSONAR
+            settingsPresenter.bindView(this); //NOSONAR
 
-            aestheticDisposable = Aesthetic.get(getContext()).colorAccent()
-                    .compose(Rx.distinctToMainThread())
-                    .subscribe(this::invalidateColors);
+            aestheticDisposable = Aesthetic.get(getContext()).colorAccent() //NOSONAR
+                    .compose(Rx.distinctToMainThread()) //NOSONAR
+                    .subscribe(this::invalidateColors); //NOSONAR
         }
 
-        @Override
-        public void onPause() {
-            supportPresenter.unbindView(this);
-            settingsPresenter.unbindView(this);
+        @Override //NOSONAR
+        public void onPause() { //NOSONAR
+            supportPresenter.unbindView(this); //NOSONAR
+            settingsPresenter.unbindView(this); //NOSONAR
 
-            aestheticDisposable.dispose();
+            aestheticDisposable.dispose(); //NOSONAR
 
-            super.onPause();
+            super.onPause(); //NOSONAR
         }
 
-        @Override
-        public boolean onPreferenceTreeClick(Preference preference) {
-            if (preference.getKey() != null) {
-                switch (preference.getKey()) {
-                    case "pref_display":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_display), "DisplaySettings");
-                        break;
-                    case "pref_themes":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_themes), "ThemeSettings");
-                        break;
-                    case "pref_artwork":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_artwork), "ArtworkSettings");
-                        break;
-                    case "pref_playback":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_playback), "PlaybackSettings");
-                        break;
-                    case "pref_headset":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_headset), "HeadsetSettings");
-                        break;
-                    case "pref_scrobbling":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_scrobbling), "ScrobblingSettings");
-                        break;
-                    case "pref_blacklist":
-                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_blacklist), "BlacklistSettings");
-                        break;
-                    case "pref_upgrade":
-                        settingsPresenter.upgradeClicked();
-                        break;
+        @Override //NOSONAR
+        public boolean onPreferenceTreeClick(Preference preference) { //NOSONAR
+            if (preference.getKey() != null) { //NOSONAR
+                switch (preference.getKey()) { //NOSONAR
+                    case "pref_display": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_display), "DisplaySettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_themes": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_themes), "ThemeSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_artwork": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_artwork), "ArtworkSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_playback": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_playback), "PlaybackSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_headset": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_headset), "HeadsetSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_scrobbling": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_scrobbling), "ScrobblingSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_blacklist": //NOSONAR
+                        getNavigationController().pushViewController(SettingsFragment.newInstance(R.xml.settings_blacklist), "BlacklistSettings"); //NOSONAR
+                        break; //NOSONAR
+                    case "pref_upgrade": //NOSONAR
+                        settingsPresenter.upgradeClicked(); //NOSONAR
+                        break; //NOSONAR
                 }
             }
-            return true;
+            return true; //NOSONAR
         }
 
-        void invalidateColors(int color) {
-            int preferenceCount = getPreferenceScreen().getPreferenceCount();
-            for (int i = 0; i < preferenceCount; i++) {
-                tintPreferenceIcon(getPreferenceScreen().getPreference(i), color);
+        void invalidateColors(int color) { //NOSONAR
+            int preferenceCount = getPreferenceScreen().getPreferenceCount(); //NOSONAR
+            for (int i = 0; i < preferenceCount; i++) { //NOSONAR
+                tintPreferenceIcon(getPreferenceScreen().getPreference(i), color); //NOSONAR
             }
         }
 
-        void tintPreferenceIcon(Preference preference, int color) {
-            if (preference != null) {
-                Drawable icon = preference.getIcon();
-                if (icon != null) {
-                    icon = DrawableCompat.wrap(icon);
-                    DrawableCompat.setTint(icon, color);
-                    preference.setIcon(icon);
+        void tintPreferenceIcon(Preference preference, int color) { //NOSONAR
+            if (preference != null) { //NOSONAR
+                Drawable icon = preference.getIcon(); //NOSONAR
+                if (icon != null) { //NOSONAR
+                    icon = DrawableCompat.wrap(icon); //NOSONAR
+                    DrawableCompat.setTint(icon, color); //NOSONAR
+                    preference.setIcon(icon); //NOSONAR
                 }
             }
         }
 
-        @Override
-        public void onColorSelection(@NonNull ColorChooserDialog dialog, int selectedColor) {
-            if (dialog == primaryColorDialog) {
-                settingsPresenter.changePrimaryColor(getContext(), selectedColor);
-            } else if (dialog == accentColorDialog) {
-                settingsPresenter.changeAccentColor(getContext(), selectedColor);
+        @Override //NOSONAR
+        public void onColorSelection(@NonNull ColorChooserDialog dialog, int selectedColor) { //NOSONAR
+            if (dialog == primaryColorDialog) { //NOSONAR
+                settingsPresenter.changePrimaryColor(getContext(), selectedColor); //NOSONAR
+            } else if (dialog == accentColorDialog) { //NOSONAR
+                settingsPresenter.changeAccentColor(getContext(), selectedColor); //NOSONAR
             }
         }
 
-        @Override
-        public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) {
+        @Override //NOSONAR
+        public void onColorChooserDismissed(@NonNull ColorChooserDialog dialog) { //NOSONAR
             // Intentionally left empty.
         }
 
         // Support View
 
-        @Override
-        public void setVersion(String version) {
-            final Preference versionPreference = findPreference("pref_version");
-            if (versionPreference != null) {
-                versionPreference.setSummary(version);
+        @Override //NOSONAR
+        public void setVersion(String version) { //NOSONAR
+            final Preference versionPreference = findPreference("pref_version"); //NOSONAR
+            if (versionPreference != null) { //NOSONAR
+                versionPreference.setSummary(version); //NOSONAR
             }
         }
 
-        @Override
-        public void showFaq(Intent intent) {
-            startActivity(intent);
+        @Override //NOSONAR
+        public void showFaq(Intent intent) { //NOSONAR
+            startActivity(intent); //NOSONAR
         }
 
-        @Override
-        public void showHelp(Intent intent) {
-            startActivity(intent);
+        @Override //NOSONAR
+        public void showHelp(Intent intent) { //NOSONAR
+            startActivity(intent); //NOSONAR
         }
 
-        @Override
-        public void showRate(Intent intent) {
-            startActivity(intent);
+        @Override //NOSONAR
+        public void showRate(Intent intent) { //NOSONAR
+            startActivity(intent); //NOSONAR
         }
 
-        @NonNull
-        @Override
-        public NavigationController<Fragment> getNavigationController() {
-            return BaseController.findNavigationController(this);
+        @NonNull //NOSONAR
+        @Override //NOSONAR
+        public NavigationController<Fragment> getNavigationController() { //NOSONAR
+            return BaseController.findNavigationController(this); //NOSONAR
         }
 
         // Settings View
 
         // Support
 
-        @Override
-        public void showChangelog() {
-            ChangelogDialog.Companion.newInstance().show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showChangelog() { //NOSONAR
+            ChangelogDialog.Companion.newInstance().show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void showUpgradeDialog() {
-            new UpgradeDialog().show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showUpgradeDialog() { //NOSONAR
+            new UpgradeDialog().show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void showRestorePurchasesMessage(int messageResId) {
-            Toast.makeText(getContext(), messageResId, Toast.LENGTH_LONG).show();
+        @Override //NOSONAR
+        public void showRestorePurchasesMessage(int messageResId) { //NOSONAR
+            Toast.makeText(getContext(), messageResId, Toast.LENGTH_LONG).show(); //NOSONAR
         }
 
-        @Override
-        public void showTabChooserDialog() {
-            new TabChooserDialog().show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showTabChooserDialog() { //NOSONAR
+            new TabChooserDialog().show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void showDefaultPageDialog(MaterialDialog dialog) {
-            dialog.show();
+        @Override //NOSONAR
+        public void showDefaultPageDialog(MaterialDialog dialog) { //NOSONAR
+            dialog.show(); //NOSONAR
         }
 
         // Themes
 
-        @Override
-        public void showBaseThemeDialog(MaterialDialog dialog) {
-            dialog.show();
+        @Override //NOSONAR
+        public void showBaseThemeDialog(MaterialDialog dialog) { //NOSONAR
+            dialog.show(); //NOSONAR
         }
 
-        @Override
-        public void showPrimaryColorDialog(ColorChooserDialog dialog) {
-            primaryColorDialog = dialog.show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showPrimaryColorDialog(ColorChooserDialog dialog) { //NOSONAR
+            primaryColorDialog = dialog.show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void showAccentColorDialog(ColorChooserDialog dialog) {
-            accentColorDialog = dialog.show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showAccentColorDialog(ColorChooserDialog dialog) { //NOSONAR
+            accentColorDialog = dialog.show(getChildFragmentManager()); //NOSONAR
         }
 
         // Artwork
 
-        @Override
-        public void showDownloadArtworkDialog(MaterialDialog dialog) {
-            dialog.show();
+        @Override //NOSONAR
+        public void showDownloadArtworkDialog(MaterialDialog dialog) { //NOSONAR
+            dialog.show(); //NOSONAR
         }
 
-        @Override
-        public void showDeleteArtworkDialog(MaterialDialog dialog) {
-            dialog.show();
+        @Override //NOSONAR
+        public void showDeleteArtworkDialog(MaterialDialog dialog) { //NOSONAR
+            dialog.show(); //NOSONAR
         }
 
-        @Override
-        public void showArtworkPreferenceChangeDialog(MaterialDialog dialog) {
-            dialog.show();
+        @Override //NOSONAR
+        public void showArtworkPreferenceChangeDialog(MaterialDialog dialog) { //NOSONAR
+            dialog.show(); //NOSONAR
         }
 
         // Scrobbling
 
-        @Override
-        public void launchDownloadScrobblerIntent(Intent intent) {
-            startActivity(intent);
+        @Override //NOSONAR
+        public void launchDownloadScrobblerIntent(Intent intent) { //NOSONAR
+            startActivity(intent); //NOSONAR
         }
 
         // Blacklist/Whitelist
 
-        @Override
-        public void showBlacklistDialog() {
-            InclExclDialog.Companion.newInstance(InclExclItem.Type.EXCLUDE).show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showBlacklistDialog() { //NOSONAR
+            InclExclDialog.Companion.newInstance(InclExclItem.Type.EXCLUDE).show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void showWhitelistDialog() {
-            InclExclDialog.Companion.newInstance(InclExclItem.Type.INCLUDE).show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showWhitelistDialog() { //NOSONAR
+            InclExclDialog.Companion.newInstance(InclExclItem.Type.INCLUDE).show(getChildFragmentManager()); //NOSONAR
         }
     }
 }

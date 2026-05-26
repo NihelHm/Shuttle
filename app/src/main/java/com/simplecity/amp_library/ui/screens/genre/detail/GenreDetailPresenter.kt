@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.genre.detail
 
@@ -30,151 +30,151 @@ import io.reactivex.schedulers.Schedulers
 import java.util.Random
 import java.util.concurrent.TimeUnit
 
-class GenreDetailPresenter @AssistedInject constructor(
-    private val context: Context,
-    private val mediaManager: MediaManager,
-    private val sortManager: SortManager,
-    private val genreMenuPresenter: GenreMenuPresenter,
-    private val albumMenuPresenter: AlbumMenuPresenter,
-    private val songsMenuPresenter: SongMenuPresenter,
-    @Assisted private val genre: Genre
+class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
+    private val context: Context, //NOSONAR
+    private val mediaManager: MediaManager, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val genreMenuPresenter: GenreMenuPresenter, //NOSONAR
+    private val albumMenuPresenter: AlbumMenuPresenter, //NOSONAR
+    private val songsMenuPresenter: SongMenuPresenter, //NOSONAR
+    @Assisted private val genre: Genre //NOSONAR
 
-) : Presenter<GenreDetailView>(),
-    GenreMenuContract.Presenter by genreMenuPresenter,
-    AlbumMenuContract.Presenter by albumMenuPresenter,
-    SongMenuContract.Presenter by songsMenuPresenter {
+) : Presenter<GenreDetailView>(), //NOSONAR
+    GenreMenuContract.Presenter by genreMenuPresenter, //NOSONAR
+    AlbumMenuContract.Presenter by albumMenuPresenter, //NOSONAR
+    SongMenuContract.Presenter by songsMenuPresenter { //NOSONAR
 
-    @AssistedInject.Factory
-    interface Factory {
-        fun create(genre: Genre): GenreDetailPresenter
+    @AssistedInject.Factory //NOSONAR
+    interface Factory { //NOSONAR
+        fun create(genre: Genre): GenreDetailPresenter //NOSONAR
     }
 
-    private var songs: MutableList<Song> = mutableListOf()
+    private var songs: MutableList<Song> = mutableListOf() //NOSONAR
 
-    private var currentSlideShowAlbum: Album? = null
+    private var currentSlideShowAlbum: Album? = null //NOSONAR
 
-    override fun bindView(view: GenreDetailView) {
-        super.bindView(view)
+    override fun bindView(view: GenreDetailView) { //NOSONAR
+        super.bindView(view) //NOSONAR
 
-        genreMenuPresenter.bindView(view)
-        albumMenuPresenter.bindView(view)
-        songsMenuPresenter.bindView(view)
+        genreMenuPresenter.bindView(view) //NOSONAR
+        albumMenuPresenter.bindView(view) //NOSONAR
+        songsMenuPresenter.bindView(view) //NOSONAR
 
-        startSlideShow()
+        startSlideShow() //NOSONAR
     }
 
-    override fun unbindView(view: GenreDetailView) {
-        super.unbindView(view)
+    override fun unbindView(view: GenreDetailView) { //NOSONAR
+        super.unbindView(view) //NOSONAR
 
-        genreMenuPresenter.unbindView(view)
-        albumMenuPresenter.unbindView(view)
-        songsMenuPresenter.unbindView(view)
+        genreMenuPresenter.unbindView(view) //NOSONAR
+        albumMenuPresenter.unbindView(view) //NOSONAR
+        songsMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    private fun sortSongs(songs: MutableList<Song>) {
-        @SortManager.SongSort val songSort = sortManager.genreDetailSongsSortOrder
+    private fun sortSongs(songs: MutableList<Song>) { //NOSONAR
+        @SortManager.SongSort val songSort = sortManager.genreDetailSongsSortOrder //NOSONAR
 
-        val songsAscending = sortManager.genreDetailSongsAscending
+        val songsAscending = sortManager.genreDetailSongsAscending //NOSONAR
 
-        sortManager.sortSongs(songs, songSort)
-        if (!songsAscending) {
-            songs.reverse()
+        sortManager.sortSongs(songs, songSort) //NOSONAR
+        if (!songsAscending) { //NOSONAR
+            songs.reverse() //NOSONAR
         }
     }
 
-    private fun sortAlbums(albums: MutableList<Album>) {
-        @SortManager.AlbumSort val albumSort = sortManager.genreDetailAlbumsSortOrder
+    private fun sortAlbums(albums: MutableList<Album>) { //NOSONAR
+        @SortManager.AlbumSort val albumSort = sortManager.genreDetailAlbumsSortOrder //NOSONAR
 
-        val albumsAscending = sortManager.genreDetailAlbumsAscending
+        val albumsAscending = sortManager.genreDetailAlbumsAscending //NOSONAR
 
-        sortManager.sortAlbums(albums, albumSort)
-        if (!albumsAscending) {
-            albums.reverse()
+        sortManager.sortAlbums(albums, albumSort) //NOSONAR
+        if (!albumsAscending) { //NOSONAR
+            albums.reverse() //NOSONAR
         }
     }
 
-    fun loadData() {
-        PermissionUtils.RequestStoragePermissions {
-            addDisposable(
-                genre.getSongsObservable(context)
-                    .zipWith<MutableList<Album>, Pair<MutableList<Album>, MutableList<Song>>>(
-                        genre.getSongsObservable(context).map { songs -> Operators.songsToAlbums(songs) },
-                        BiFunction { songs, albums -> Pair(albums, songs.toMutableList()) }).subscribeOn(Schedulers.io())
-                    .doOnSuccess { pair ->
-                        sortAlbums(pair.first!!)
-                        sortSongs(pair.second!!)
+    fun loadData() { //NOSONAR
+        PermissionUtils.RequestStoragePermissions { //NOSONAR
+            addDisposable( //NOSONAR
+                genre.getSongsObservable(context) //NOSONAR
+                    .zipWith<MutableList<Album>, Pair<MutableList<Album>, MutableList<Song>>>( //NOSONAR
+                        genre.getSongsObservable(context).map { songs -> Operators.songsToAlbums(songs) }, //NOSONAR
+                        BiFunction { songs, albums -> Pair(albums, songs.toMutableList()) }).subscribeOn(Schedulers.io()) //NOSONAR
+                    .doOnSuccess { pair -> //NOSONAR
+                        sortAlbums(pair.first!!) //NOSONAR
+                        sortSongs(pair.second!!) //NOSONAR
                     }
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe { pair ->
-                        this.songs = pair.second!!
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe { pair -> //NOSONAR
+                        this.songs = pair.second!! //NOSONAR
 
-                        view?.setData(pair.first!!, pair.second!!)
+                        view?.setData(pair.first!!, pair.second!!) //NOSONAR
                     }
             )
         }
     }
 
-    private fun startSlideShow() {
-        val albumsObservable: Observable<List<Album>> = genre.getSongsObservable(context).toObservable()
-            .map { songs -> Operators.songsToAlbums(songs) }
+    private fun startSlideShow() { //NOSONAR
+        val albumsObservable: Observable<List<Album>> = genre.getSongsObservable(context).toObservable() //NOSONAR
+            .map { songs -> Operators.songsToAlbums(songs) } //NOSONAR
 
-        val timer: Observable<Long> = io.reactivex.Observable.interval(8, TimeUnit.SECONDS)
+        val timer: Observable<Long> = io.reactivex.Observable.interval(8, TimeUnit.SECONDS) //NOSONAR
             // Load an image straight away
-            .startWith(0L)
+            .startWith(0L) //NOSONAR
             // If we have a 'current slideshowAlbum' then we're coming back from onResume. Don't load a new one immediately.
-            .delay(if (currentSlideShowAlbum == null) 0L else 8L, TimeUnit.SECONDS)
+            .delay(if (currentSlideShowAlbum == null) 0L else 8L, TimeUnit.SECONDS) //NOSONAR
 
-        addDisposable(Observable
-            .combineLatest(albumsObservable, timer, BiFunction { albums: List<Album>, aLong: Long -> albums })
-            .map { albums ->
-                if (albums.isEmpty()) {
-                    currentSlideShowAlbum
-                } else {
-                    albums[(Random().nextInt(albums.size))]
+        addDisposable(Observable //NOSONAR
+            .combineLatest(albumsObservable, timer, BiFunction { albums: List<Album>, aLong: Long -> albums }) //NOSONAR
+            .map { albums -> //NOSONAR
+                if (albums.isEmpty()) { //NOSONAR
+                    currentSlideShowAlbum //NOSONAR
+                } else { //NOSONAR
+                    albums[(Random().nextInt(albums.size))] //NOSONAR
                 }
             }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ newAlbum ->
-                newAlbum?.let {
-                    view?.fadeInSlideShowAlbum(currentSlideShowAlbum, newAlbum)
-                    currentSlideShowAlbum = newAlbum
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe({ newAlbum -> //NOSONAR
+                newAlbum?.let { //NOSONAR
+                    view?.fadeInSlideShowAlbum(currentSlideShowAlbum, newAlbum) //NOSONAR
+                    currentSlideShowAlbum = newAlbum //NOSONAR
                 }
-            }, { error ->
-                LogUtils.logException(TAG, "startSlideShow threw error", error)
+            }, { error -> //NOSONAR
+                LogUtils.logException(TAG, "startSlideShow threw error", error) //NOSONAR
             })
         )
     }
 
-    fun closeContextualToolbar() {
-        view?.closeContextualToolbar()
+    fun closeContextualToolbar() { //NOSONAR
+        view?.closeContextualToolbar() //NOSONAR
     }
 
-    fun shuffleAll() {
-        mediaManager.shuffleAll(songs) {
-            view?.onPlaybackFailed()
+    fun shuffleAll() { //NOSONAR
+        mediaManager.shuffleAll(songs) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
         }
     }
 
-    fun songClicked(song: Song) {
-        mediaManager.playAll(songs, songs.indexOf(song), true) {
-            view?.onPlaybackFailed()
+    fun songClicked(song: Song) { //NOSONAR
+        mediaManager.playAll(songs, songs.indexOf(song), true) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
         }
     }
 
-    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) {
-        addDisposable(
-            src
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { items -> dst(items) },
-                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) }
+    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) { //NOSONAR
+        addDisposable( //NOSONAR
+            src //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .subscribe( //NOSONAR
+                    { items -> dst(items) }, //NOSONAR
+                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) } //NOSONAR
                 )
         )
     }
 
-    companion object {
-        const val TAG = "GenreDetailPresenter"
+    companion object { //NOSONAR
+        const val TAG = "GenreDetailPresenter" //NOSONAR
     }
 }

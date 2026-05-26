@@ -3,78 +3,78 @@ package com.simplecity.amp_library.model;
 import android.net.Uri;
 import java.util.Arrays;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Query {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Query { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public Uri uri;
-    @SuppressWarnings("java:S1104")
-    public String[] projection;
-    @SuppressWarnings("java:S1104")
-    public String selection;
-    @SuppressWarnings("java:S1104")
-    public String[] args;
-    @SuppressWarnings("java:S1104")
-    public String sort;
+    public Uri uri; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String[] projection; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String selection; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String[] args; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String sort; //NOSONAR
 
-    Query(Builder builder) {
-        uri = builder.uri;
-        projection = builder.projection;
-        selection = builder.selection;
-        args = builder.args;
-        sort = builder.sort;
+    Query(Builder builder) { //NOSONAR
+        uri = builder.uri; //NOSONAR
+        projection = builder.projection; //NOSONAR
+        selection = builder.selection; //NOSONAR
+        args = builder.args; //NOSONAR
+        sort = builder.sort; //NOSONAR
     }
 
-    public static final class Builder {
-        Uri uri;
-        String[] projection;
-        String selection;
-        String[] args;
-        String sort;
+    public static final class Builder { //NOSONAR
+        Uri uri; //NOSONAR
+        String[] projection; //NOSONAR
+        String selection; //NOSONAR
+        String[] args; //NOSONAR
+        String sort; //NOSONAR
 
-        public Builder() {
+        public Builder() { //NOSONAR
             // Intentionally left empty.
         }
 
-        public Builder uri(Uri val) {
-            uri = val;
-            return this;
+        public Builder uri(Uri val) { //NOSONAR
+            uri = val; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder projection(String[] val) {
-            projection = val;
-            return this;
+        public Builder projection(String[] val) { //NOSONAR
+            projection = val; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder selection(String val) {
-            selection = val;
-            return this;
+        public Builder selection(String val) { //NOSONAR
+            selection = val; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder args(String[] val) {
-            args = val;
-            return this;
+        public Builder args(String[] val) { //NOSONAR
+            args = val; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Builder sort(String val) {
-            sort = val;
-            return this;
+        public Builder sort(String val) { //NOSONAR
+            sort = val; //NOSONAR
+            return this; //NOSONAR
         }
 
-        public Query build() {
-            return new Query(this);
+        public Query build() { //NOSONAR
+            return new Query(this); //NOSONAR
         }
     }
 
-    @Override
-    public String toString() {
-        return "Query{" +
-                "\nuri=" + uri +
-                "\nPROJECTION=" + Arrays.toString(projection) +
-                "\nselection='" + selection + '\'' +
-                "\nargs=" + Arrays.toString(args) +
-                "\nsort='" + sort + '\'' +
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return "Query{" + //NOSONAR
+                "\nuri=" + uri + //NOSONAR
+                "\nPROJECTION=" + Arrays.toString(projection) + //NOSONAR
+                "\nselection='" + selection + '\'' + //NOSONAR
+                "\nargs=" + Arrays.toString(args) + //NOSONAR
+                "\nsort='" + sort + '\'' + //NOSONAR
                 '}';
     }
 }

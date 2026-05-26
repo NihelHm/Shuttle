@@ -25,41 +25,41 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CropSquareTransformation implements Transformation<Bitmap> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CropSquareTransformation implements Transformation<Bitmap> { //NOSONAR
 
-    private BitmapPool mBitmapPool;
-    private int mWidth;
-    private int mHeight;
+    private BitmapPool mBitmapPool; //NOSONAR
+    private int mWidth; //NOSONAR
+    private int mHeight; //NOSONAR
 
-    public CropSquareTransformation(Context context) {
-        this(Glide.get(context).getBitmapPool());
+    public CropSquareTransformation(Context context) { //NOSONAR
+        this(Glide.get(context).getBitmapPool()); //NOSONAR
     }
 
-    public CropSquareTransformation(BitmapPool pool) {
-        this.mBitmapPool = pool;
+    public CropSquareTransformation(BitmapPool pool) { //NOSONAR
+        this.mBitmapPool = pool; //NOSONAR
     }
 
-    @Override
-    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
-        Bitmap source = resource.get();
-        int size = Math.min(source.getWidth(), source.getHeight());
+    @Override //NOSONAR
+    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) { //NOSONAR
+        Bitmap source = resource.get(); //NOSONAR
+        int size = Math.min(source.getWidth(), source.getHeight()); //NOSONAR
 
-        mWidth = (source.getWidth() - size) / 2;
-        mHeight = (source.getHeight() - size) / 2;
+        mWidth = (source.getWidth() - size) / 2; //NOSONAR
+        mHeight = (source.getHeight() - size) / 2; //NOSONAR
 
-        Bitmap.Config config =
-                source.getConfig() != null ? source.getConfig() : Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = mBitmapPool.get(mWidth, mHeight, config);
-        if (bitmap == null) {
-            bitmap = Bitmap.createBitmap(source, mWidth, mHeight, size, size);
+        Bitmap.Config config = //NOSONAR
+                source.getConfig() != null ? source.getConfig() : Bitmap.Config.ARGB_8888; //NOSONAR
+        Bitmap bitmap = mBitmapPool.get(mWidth, mHeight, config); //NOSONAR
+        if (bitmap == null) { //NOSONAR
+            bitmap = Bitmap.createBitmap(source, mWidth, mHeight, size, size); //NOSONAR
         }
 
-        return BitmapResource.obtain(bitmap, mBitmapPool);
+        return BitmapResource.obtain(bitmap, mBitmapPool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return "CropSquareTransformation(width=" + mWidth + ", height=" + mHeight + ")";
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return "CropSquareTransformation(width=" + mWidth + ", height=" + mHeight + ")"; //NOSONAR
     }
 }

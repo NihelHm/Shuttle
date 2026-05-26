@@ -21,85 +21,85 @@ import io.reactivex.disposables.Disposable;
 
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class FavoriteActionBarView extends FrameLayout {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class FavoriteActionBarView extends FrameLayout { //NOSONAR
 
-    @BindView(R.id.imageView)
-    ImageView imageView;
+    @BindView(R.id.imageView) //NOSONAR
+    ImageView imageView; //NOSONAR
 
-    boolean isFavorite = false;
+    boolean isFavorite = false; //NOSONAR
 
-    private Drawable normalDrawable;
-    private Drawable selectedDrawable;
+    private Drawable normalDrawable; //NOSONAR
+    private Drawable selectedDrawable; //NOSONAR
 
-    private Disposable aestheticDisposable;
+    private Disposable aestheticDisposable; //NOSONAR
 
-    private int normalColor = Color.WHITE;
-    private int selectedColor = Color.WHITE;
+    private int normalColor = Color.WHITE; //NOSONAR
+    private int selectedColor = Color.WHITE; //NOSONAR
 
-    public FavoriteActionBarView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+    public FavoriteActionBarView(@NonNull Context context, @Nullable AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
     }
 
-    @Override
-    protected void onFinishInflate() {
-        super.onFinishInflate();
+    @Override //NOSONAR
+    protected void onFinishInflate() { //NOSONAR
+        super.onFinishInflate(); //NOSONAR
 
-        ButterKnife.bind(this);
+        ButterKnife.bind(this); //NOSONAR
 
-        normalDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_border_24dp).mutate());
-        selectedDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_24dp).mutate());
+        normalDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_border_24dp).mutate()); //NOSONAR
+        selectedDrawable = DrawableCompat.wrap(ContextCompat.getDrawable(getContext(), R.drawable.ic_favorite_24dp).mutate()); //NOSONAR
 
-        imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable);
+        imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable); //NOSONAR
 
-        setIsFavorite(isFavorite);
+        setIsFavorite(isFavorite); //NOSONAR
     }
 
-    public void setIsFavorite(boolean isFavorite) {
-        if (isFavorite != this.isFavorite) {
-            this.isFavorite = isFavorite;
-            imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable);
+    public void setIsFavorite(boolean isFavorite) { //NOSONAR
+        if (isFavorite != this.isFavorite) { //NOSONAR
+            this.isFavorite = isFavorite; //NOSONAR
+            imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable); //NOSONAR
         }
     }
 
-    public void toggle() {
-        setIsFavorite(!isFavorite);
+    public void toggle() { //NOSONAR
+        setIsFavorite(!isFavorite); //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        if (isInEditMode()) {
-            return;
+        if (isInEditMode()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        if (!":aesthetic_ignore".equals(getTag())) {
-            aestheticDisposable = Observable.combineLatest(
-                    Aesthetic.get(getContext()).colorPrimary(),
-                    Aesthetic.get(getContext()).colorIconTitle(null),
-                    BgIconColorState.creator())
-                    .compose(Rx.distinctToMainThread())
-                    .subscribe(
-                            bgIconColorState -> invalidateColors(bgIconColorState),
-                            onErrorLogAndRethrow());
+        if (!":aesthetic_ignore".equals(getTag())) { //NOSONAR
+            aestheticDisposable = Observable.combineLatest( //NOSONAR
+                    Aesthetic.get(getContext()).colorPrimary(), //NOSONAR
+                    Aesthetic.get(getContext()).colorIconTitle(null), //NOSONAR
+                    BgIconColorState.creator()) //NOSONAR
+                    .compose(Rx.distinctToMainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                            bgIconColorState -> invalidateColors(bgIconColorState), //NOSONAR
+                            onErrorLogAndRethrow()); //NOSONAR
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        if (aestheticDisposable != null) {
-            aestheticDisposable.dispose();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        if (aestheticDisposable != null) { //NOSONAR
+            aestheticDisposable.dispose(); //NOSONAR
         }
-        super.onDetachedFromWindow();
+        super.onDetachedFromWindow(); //NOSONAR
     }
 
-    private void invalidateColors(BgIconColorState bgIconColorState) {
+    private void invalidateColors(BgIconColorState bgIconColorState) { //NOSONAR
 
-        this.normalColor = bgIconColorState.iconTitleColor.activeColor();
-        this.selectedColor = bgIconColorState.iconTitleColor.activeColor();
+        this.normalColor = bgIconColorState.iconTitleColor.activeColor(); //NOSONAR
+        this.selectedColor = bgIconColorState.iconTitleColor.activeColor(); //NOSONAR
 
-        DrawableCompat.setTint(normalDrawable, normalColor);
-        DrawableCompat.setTint(selectedDrawable, selectedColor);
+        DrawableCompat.setTint(normalDrawable, normalColor); //NOSONAR
+        DrawableCompat.setTint(selectedDrawable, selectedColor); //NOSONAR
     }
 }

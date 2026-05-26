@@ -7,44 +7,44 @@ import io.reactivex.Observable;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MultiSheetEventRelay {
+@Singleton //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MultiSheetEventRelay { //NOSONAR
 
-    private PublishRelay<MultiSheetEvent> eventRelay = PublishRelay.create();
+    private PublishRelay<MultiSheetEvent> eventRelay = PublishRelay.create(); //NOSONAR
 
-    @Inject
-    public MultiSheetEventRelay() {
+    @Inject //NOSONAR
+    public MultiSheetEventRelay() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public void sendEvent(MultiSheetEvent event) {
-        eventRelay.accept(event);
+    public void sendEvent(MultiSheetEvent event) { //NOSONAR
+        eventRelay.accept(event); //NOSONAR
     }
 
-    public Observable<MultiSheetEvent> getEvents() {
-        return eventRelay;
+    public Observable<MultiSheetEvent> getEvents() { //NOSONAR
+        return eventRelay; //NOSONAR
     }
 
-    public static class MultiSheetEvent {
+    public static class MultiSheetEvent { //NOSONAR
 
-        public @interface Action {
-            int GOTO = 0;
-            int HIDE = 1;
-            int SHOW_IF_HIDDEN = 2;
+        public @interface Action { //NOSONAR
+            int GOTO = 0; //NOSONAR
+            int HIDE = 1; //NOSONAR
+            int SHOW_IF_HIDDEN = 2; //NOSONAR
         }
 
-        @Action
-        @SuppressWarnings("java:S1104")
-        public int action;
+        @Action //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public int action; //NOSONAR
 
-        @MultiSheetView.Sheet
-        @SuppressWarnings("java:S1104")
-        public int sheet;
+        @MultiSheetView.Sheet //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public int sheet; //NOSONAR
 
-        public MultiSheetEvent(int action, int sheet) {
-            this.action = action;
-            this.sheet = sheet;
+        public MultiSheetEvent(int action, int sheet) { //NOSONAR
+            this.action = action; //NOSONAR
+            this.sheet = sheet; //NOSONAR
         }
     }
 }

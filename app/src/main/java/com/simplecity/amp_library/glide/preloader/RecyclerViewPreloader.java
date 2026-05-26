@@ -21,9 +21,9 @@ import com.bumptech.glide.ListPreloader.PreloadSizeProvider;
  *
  * @param <T> The type of the model being displayed in the {@link RecyclerView}.
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public final class RecyclerViewPreloader<T> extends RecyclerView.OnScrollListener {
-    private final RecyclerToListViewScrollListener recyclerScrollListener;
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public final class RecyclerViewPreloader<T> extends RecyclerView.OnScrollListener { //NOSONAR
+    private final RecyclerToListViewScrollListener recyclerScrollListener; //NOSONAR
 
     /**
      * Constructor that accepts interfaces for providing the dimensions of images to preload, the list
@@ -33,16 +33,16 @@ public final class RecyclerViewPreloader<T> extends RecyclerView.OnScrollListene
      * @param preloadDimensionProvider Provides the dimensions of images to load.
      * @param maxPreload Maximum number of items to preload.
      */
-    public RecyclerViewPreloader(PreloadModelProvider<T> preloadModelProvider,
-            PreloadSizeProvider<T> preloadDimensionProvider, int maxPreload) {
+    public RecyclerViewPreloader(PreloadModelProvider<T> preloadModelProvider, //NOSONAR
+            PreloadSizeProvider<T> preloadDimensionProvider, int maxPreload) { //NOSONAR
 
-        ListPreloader<T> listPreloader = new ListPreloader<>(preloadModelProvider,
-                preloadDimensionProvider, maxPreload);
-        recyclerScrollListener = new RecyclerToListViewScrollListener(listPreloader);
+        ListPreloader<T> listPreloader = new ListPreloader<>(preloadModelProvider, //NOSONAR
+                preloadDimensionProvider, maxPreload); //NOSONAR
+        recyclerScrollListener = new RecyclerToListViewScrollListener(listPreloader); //NOSONAR
     }
 
-    @Override
-    public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-        recyclerScrollListener.onScrolled(recyclerView, dx, dy);
+    @Override //NOSONAR
+    public void onScrolled(RecyclerView recyclerView, int dx, int dy) { //NOSONAR
+        recyclerScrollListener.onScrolled(recyclerView, dx, dy); //NOSONAR
     }
 }

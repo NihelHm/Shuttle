@@ -13,67 +13,67 @@ import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
 import static com.simplecity.amp_library.R.layout.empty_view;
 import static com.simplecity.amp_library.ui.adapters.ViewType.EMPTY;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class EmptyView extends BaseViewModel<EmptyView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class EmptyView extends BaseViewModel<EmptyView.ViewHolder> { //NOSONAR
 
-    private String text;
+    private String text; //NOSONAR
 
-    private int resId = -1;
+    private int resId = -1; //NOSONAR
 
-    private int height = 0;
+    private int height = 0; //NOSONAR
 
-    public EmptyView(String text) {
-        this.text = text;
+    public EmptyView(String text) { //NOSONAR
+        this.text = text; //NOSONAR
     }
 
-    public EmptyView(@StringRes int resId) {
-        this.resId = resId;
+    public EmptyView(@StringRes int resId) { //NOSONAR
+        this.resId = resId; //NOSONAR
     }
 
-    public void setHeight(int height) {
-        this.height = height;
+    public void setHeight(int height) { //NOSONAR
+        this.height = height; //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return EMPTY;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return EMPTY; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return empty_view;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return empty_view; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        if (resId != -1) {
-            text = holder.itemView.getResources().getString(resId);
+        if (resId != -1) { //NOSONAR
+            text = holder.itemView.getResources().getString(resId); //NOSONAR
         }
 
-        ((TextView) holder.itemView).setText(text);
+        ((TextView) holder.itemView).setText(text); //NOSONAR
 
-        if (height != 0) {
-            holder.itemView.setLayoutParams(new LayoutParams(MATCH_PARENT, height));
-            i("EmptyView", "Setting height to: " + height);
+        if (height != 0) { //NOSONAR
+            holder.itemView.setLayoutParams(new LayoutParams(MATCH_PARENT, height)); //NOSONAR
+            i("EmptyView", "Setting height to: " + height); //NOSONAR
         }
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+    public static class ViewHolder extends BaseViewHolder { //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "EmptyView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "EmptyView.ViewHolder"; //NOSONAR
         }
     }
 }

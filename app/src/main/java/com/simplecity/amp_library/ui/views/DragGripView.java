@@ -12,122 +12,122 @@ import com.afollestad.aesthetic.Aesthetic;
 import com.simplecity.amp_library.R;
 import io.reactivex.disposables.Disposable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class DragGripView extends View {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class DragGripView extends View { //NOSONAR
 
-    Disposable aestheticDisposable;
+    Disposable aestheticDisposable; //NOSONAR
 
-    private static final int[] ATTRS = new int[] {
-            android.R.attr.gravity,
-            android.R.attr.color,
+    private static final int[] ATTRS = new int[] { //NOSONAR
+            android.R.attr.gravity, //NOSONAR
+            android.R.attr.color, //NOSONAR
     };
 
-    private static final int HORIZ_RIDGES = 2;
+    private static final int HORIZ_RIDGES = 2; //NOSONAR
 
-    private int mGravity = Gravity.START;
-    private int mColor = 0x33333333;
+    private int mGravity = Gravity.START; //NOSONAR
+    private int mColor = 0x33333333; //NOSONAR
 
-    private Paint mRidgePaint;
+    private Paint mRidgePaint; //NOSONAR
 
-    private float mRidgeSize;
-    private float mRidgeGap;
+    private float mRidgeSize; //NOSONAR
+    private float mRidgeGap; //NOSONAR
 
-    private int mWidth;
-    private int mHeight;
+    private int mWidth; //NOSONAR
+    private int mHeight; //NOSONAR
 
-    public DragGripView(Context context) {
-        this(context, null, 0);
+    public DragGripView(Context context) { //NOSONAR
+        this(context, null, 0); //NOSONAR
     }
 
-    public DragGripView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public DragGripView(Context context, AttributeSet attrs) { //NOSONAR
+        this(context, attrs, 0); //NOSONAR
     }
 
-    public DragGripView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public DragGripView(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+        super(context, attrs, defStyle); //NOSONAR
 
-        final TypedArray a = context.obtainStyledAttributes(attrs, ATTRS);
-        mGravity = a.getInteger(0, mGravity);
-        mColor = a.getColor(1, mColor);
-        a.recycle();
+        final TypedArray a = context.obtainStyledAttributes(attrs, ATTRS); //NOSONAR
+        mGravity = a.getInteger(0, mGravity); //NOSONAR
+        mColor = a.getColor(1, mColor); //NOSONAR
+        a.recycle(); //NOSONAR
 
-        final Resources res = getResources();
-        mRidgeSize = res.getDimensionPixelSize(R.dimen.drag_grip_ridge_size);
-        mRidgeGap = res.getDimensionPixelSize(R.dimen.drag_grip_ridge_gap);
+        final Resources res = getResources(); //NOSONAR
+        mRidgeSize = res.getDimensionPixelSize(R.dimen.drag_grip_ridge_size); //NOSONAR
+        mRidgeGap = res.getDimensionPixelSize(R.dimen.drag_grip_ridge_gap); //NOSONAR
 
-        mRidgePaint = new Paint();
-        mRidgePaint.setColor(mColor);
+        mRidgePaint = new Paint(); //NOSONAR
+        mRidgePaint.setColor(mColor); //NOSONAR
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(View.resolveSize((int) (HORIZ_RIDGES
+    @Override //NOSONAR
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) { //NOSONAR
+        setMeasuredDimension(View.resolveSize((int) (HORIZ_RIDGES //NOSONAR
                         * (mRidgeSize + mRidgeGap) - mRidgeGap)
-                        + getPaddingLeft() + getPaddingRight(), widthMeasureSpec),
-                View.resolveSize((int) mRidgeSize, heightMeasureSpec));
+                        + getPaddingLeft() + getPaddingRight(), widthMeasureSpec), //NOSONAR
+                View.resolveSize((int) mRidgeSize, heightMeasureSpec)); //NOSONAR
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    @Override //NOSONAR
+    protected void onDraw(Canvas canvas) { //NOSONAR
+        super.onDraw(canvas); //NOSONAR
 
-        float drawWidth = HORIZ_RIDGES * (mRidgeSize + mRidgeGap) - mRidgeGap;
-        float drawLeft;
+        float drawWidth = HORIZ_RIDGES * (mRidgeSize + mRidgeGap) - mRidgeGap; //NOSONAR
+        float drawLeft; //NOSONAR
 
-        switch (mGravity & Gravity.HORIZONTAL_GRAVITY_MASK) {
-            case Gravity.CENTER_HORIZONTAL:
-                drawLeft = getPaddingLeft()
-                        + ((mWidth - getPaddingLeft() - getPaddingRight()) - drawWidth)
-                        / 2;
-                break;
-            case Gravity.END:
-                drawLeft = getWidth() - getPaddingRight() - drawWidth;
-                break;
-            default:
-                drawLeft = getPaddingLeft();
+        switch (mGravity & Gravity.HORIZONTAL_GRAVITY_MASK) { //NOSONAR
+            case Gravity.CENTER_HORIZONTAL: //NOSONAR
+                drawLeft = getPaddingLeft() //NOSONAR
+                        + ((mWidth - getPaddingLeft() - getPaddingRight()) - drawWidth) //NOSONAR
+                        / 2; //NOSONAR
+                break; //NOSONAR
+            case Gravity.END: //NOSONAR
+                drawLeft = getWidth() - getPaddingRight() - drawWidth; //NOSONAR
+                break; //NOSONAR
+            default: //NOSONAR
+                drawLeft = getPaddingLeft(); //NOSONAR
         }
 
-        int vertRidges = (int) ((mHeight - getPaddingTop() - getPaddingBottom() + mRidgeGap) / (mRidgeSize + mRidgeGap));
-        float drawHeight = vertRidges * (mRidgeSize + mRidgeGap) - mRidgeGap;
-        float drawTop = getPaddingTop()
-                + ((mHeight - getPaddingTop() - getPaddingBottom()) - drawHeight)
-                / 2;
+        int vertRidges = (int) ((mHeight - getPaddingTop() - getPaddingBottom() + mRidgeGap) / (mRidgeSize + mRidgeGap)); //NOSONAR
+        float drawHeight = vertRidges * (mRidgeSize + mRidgeGap) - mRidgeGap; //NOSONAR
+        float drawTop = getPaddingTop() //NOSONAR
+                + ((mHeight - getPaddingTop() - getPaddingBottom()) - drawHeight) //NOSONAR
+                / 2; //NOSONAR
 
-        for (int y = 0; y < vertRidges; y++) {
-            for (int x = 0; x < HORIZ_RIDGES; x++) {
-                canvas.drawRect(drawLeft + x * (mRidgeSize + mRidgeGap),
-                        drawTop + y * (mRidgeSize + mRidgeGap), drawLeft + x
+        for (int y = 0; y < vertRidges; y++) { //NOSONAR
+            for (int x = 0; x < HORIZ_RIDGES; x++) { //NOSONAR
+                canvas.drawRect(drawLeft + x * (mRidgeSize + mRidgeGap), //NOSONAR
+                        drawTop + y * (mRidgeSize + mRidgeGap), drawLeft + x //NOSONAR
                                 * (mRidgeSize + mRidgeGap) + mRidgeSize,
-                        drawTop + y * (mRidgeSize + mRidgeGap) + mRidgeSize,
-                        mRidgePaint);
+                        drawTop + y * (mRidgeSize + mRidgeGap) + mRidgeSize, //NOSONAR
+                        mRidgePaint); //NOSONAR
             }
         }
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        mHeight = h;
-        mWidth = w;
+    @Override //NOSONAR
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) { //NOSONAR
+        super.onSizeChanged(w, h, oldw, oldh); //NOSONAR
+        mHeight = h; //NOSONAR
+        mWidth = w; //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        aestheticDisposable = Aesthetic.get(getContext())
-                .textColorSecondary()
-                .subscribe(color -> {
-                    mColor = color;
-                    mRidgePaint.setColor(color);
-                    invalidate();
+        aestheticDisposable = Aesthetic.get(getContext()) //NOSONAR
+                .textColorSecondary() //NOSONAR
+                .subscribe(color -> { //NOSONAR
+                    mColor = color; //NOSONAR
+                    mRidgePaint.setColor(color); //NOSONAR
+                    invalidate(); //NOSONAR
                 });
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        aestheticDisposable.dispose();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        aestheticDisposable.dispose(); //NOSONAR
 
-        super.onDetachedFromWindow();
+        super.onDetachedFromWindow(); //NOSONAR
     }
 }

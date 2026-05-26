@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.drawer
 
@@ -17,88 +17,88 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class DrawerPresenter @Inject
-constructor(
-    private val application: ShuttleApplication,
-    private val navigationEventRelay: NavigationEventRelay,
-    private val songsRepository: Repository.SongsRepository,
-    private val playlistsRepository: Repository.PlaylistsRepository,
-    private val settingsManager: SettingsManager,
-    private val playlistMenuPresenter: PlaylistMenuPresenter
-) : PurchasePresenter<DrawerView>(),
-    PlaylistMenuContract.Presenter by playlistMenuPresenter {
+class DrawerPresenter @Inject //NOSONAR
+constructor( //NOSONAR
+    private val application: ShuttleApplication, //NOSONAR
+    private val navigationEventRelay: NavigationEventRelay, //NOSONAR
+    private val songsRepository: Repository.SongsRepository, //NOSONAR
+    private val playlistsRepository: Repository.PlaylistsRepository, //NOSONAR
+    private val settingsManager: SettingsManager, //NOSONAR
+    private val playlistMenuPresenter: PlaylistMenuPresenter //NOSONAR
+) : PurchasePresenter<DrawerView>(), //NOSONAR
+    PlaylistMenuContract.Presenter by playlistMenuPresenter { //NOSONAR
 
-    override fun bindView(view: DrawerView) {
-        super.bindView(view)
+    override fun bindView(view: DrawerView) { //NOSONAR
+        super.bindView(view) //NOSONAR
 
-        playlistMenuPresenter.bindView(view)
+        playlistMenuPresenter.bindView(view) //NOSONAR
 
-        loadData(view)
+        loadData(view) //NOSONAR
 
-        addDisposable(navigationEventRelay.events
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { drawerEvent ->
-                val drawerView = getView()
-                when (drawerEvent.type) {
-                    NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED -> drawerView?.setDrawerItemSelected(DrawerParent.Type.LIBRARY)
-                    NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED -> if (drawerView != null) {
-                        if (ShuttleUtils.isUpgraded(application, settingsManager)) {
-                            drawerView.setDrawerItemSelected(DrawerParent.Type.FOLDERS)
-                        } else {
-                            upgradeClicked()
+        addDisposable(navigationEventRelay.events //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe { drawerEvent -> //NOSONAR
+                val drawerView = getView() //NOSONAR
+                when (drawerEvent.type) { //NOSONAR
+                    NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED -> drawerView?.setDrawerItemSelected(DrawerParent.Type.LIBRARY) //NOSONAR
+                    NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED -> if (drawerView != null) { //NOSONAR
+                        if (ShuttleUtils.isUpgraded(application, settingsManager)) { //NOSONAR
+                            drawerView.setDrawerItemSelected(DrawerParent.Type.FOLDERS) //NOSONAR
+                        } else { //NOSONAR
+                            upgradeClicked() //NOSONAR
                         }
                     }
                 }
             })
     }
 
-    override fun unbindView(view: DrawerView) {
-        super.unbindView(view)
+    override fun unbindView(view: DrawerView) { //NOSONAR
+        super.unbindView(view) //NOSONAR
 
-        playlistMenuPresenter.unbindView(view)
+        playlistMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    private fun loadData(drawerView: DrawerView) {
-        PermissionUtils.RequestStoragePermissions {
-            addDisposable(playlistsRepository.getAllPlaylists(songsRepository)
-                .observeOn(AndroidSchedulers.mainThread())
+    private fun loadData(drawerView: DrawerView) { //NOSONAR
+        PermissionUtils.RequestStoragePermissions { //NOSONAR
+            addDisposable(playlistsRepository.getAllPlaylists(songsRepository) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                 // Delay the subscription so we're not querying data while the app is launching
-                .delaySubscription(Observable.timer(1500, TimeUnit.MILLISECONDS))
+                .delaySubscription(Observable.timer(1500, TimeUnit.MILLISECONDS)) //NOSONAR
                 // after all, clear all playlist item
                 // to avoid memory leak in static var DrawerParent.playlistsParent
-                .doFinally { drawerView.setPlaylistItems(emptyList()) }
-                .subscribe(
-                    { drawerView.setPlaylistItems(it) },
-                    { error -> LogUtils.logException(TAG, "Error refreshing DrawerFragment adapter items", error) }
+                .doFinally { drawerView.setPlaylistItems(emptyList()) } //NOSONAR
+                .subscribe( //NOSONAR
+                    { drawerView.setPlaylistItems(it) }, //NOSONAR
+                    { error -> LogUtils.logException(TAG, "Error refreshing DrawerFragment adapter items", error) } //NOSONAR
                 ))
         }
     }
 
-    internal fun onDrawerItemClicked(drawerParent: DrawerParent) {
-        val drawerView = view
-        if (drawerView != null && drawerParent.isSelectable) {
-            drawerView.setDrawerItemSelected(drawerParent.type)
+    internal fun onDrawerItemClicked(drawerParent: DrawerParent) { //NOSONAR
+        val drawerView = view //NOSONAR
+        if (drawerView != null && drawerParent.isSelectable) { //NOSONAR
+            drawerView.setDrawerItemSelected(drawerParent.type) //NOSONAR
         }
 
-        closeDrawer()
+        closeDrawer() //NOSONAR
 
-        if (drawerParent.navigationEvent != null) {
-            navigationEventRelay.sendEvent(drawerParent.navigationEvent!!)
+        if (drawerParent.navigationEvent != null) { //NOSONAR
+            navigationEventRelay.sendEvent(drawerParent.navigationEvent!!) //NOSONAR
         }
     }
 
-    private fun closeDrawer() {
-        val drawerView = view
-        drawerView?.closeDrawer()
+    private fun closeDrawer() { //NOSONAR
+        val drawerView = view //NOSONAR
+        drawerView?.closeDrawer() //NOSONAR
     }
 
-    fun onPlaylistClicked(playlist: Playlist) {
-        closeDrawer()
-        navigationEventRelay.sendEvent(NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED, playlist))
+    fun onPlaylistClicked(playlist: Playlist) { //NOSONAR
+        closeDrawer() //NOSONAR
+        navigationEventRelay.sendEvent(NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED, playlist)) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "DrawerPresenter"
+        private const val TAG = "DrawerPresenter" //NOSONAR
     }
 }

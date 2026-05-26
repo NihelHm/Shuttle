@@ -63,158 +63,158 @@ import dagger.Module;
 import dagger.Provides;
 import dagger.android.ContributesAndroidInjector;
 
-@Module(includes = ActivityModule.class)
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public abstract class MainActivityModule {
+@Module(includes = ActivityModule.class) //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public abstract class MainActivityModule { //NOSONAR
 
-    @Binds
-    @ActivityScope
-    abstract AppCompatActivity appCompatActivity(MainActivity mainActivity);
+    @Binds //NOSONAR
+    @ActivityScope //NOSONAR
+    abstract AppCompatActivity appCompatActivity(MainActivity mainActivity); //NOSONAR
 
-    @Provides
-    static BillingManager.BillingUpdatesListener provideBillingUpdatesListener(MainActivity mainActivity) {
-        return mainActivity;
+    @Provides //NOSONAR
+    static BillingManager.BillingUpdatesListener provideBillingUpdatesListener(MainActivity mainActivity) { //NOSONAR
+        return mainActivity; //NOSONAR
     }
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = LibraryFragmentModule.class)
-    abstract LibraryController libraryControllerInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = LibraryFragmentModule.class) //NOSONAR
+    abstract LibraryController libraryControllerInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DrawerFragmentModule.class)
-    abstract DrawerFragment drawerFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DrawerFragmentModule.class) //NOSONAR
+    abstract DrawerFragment drawerFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = MainControllerModule.class)
-    abstract MainController mainControllerInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = MainControllerModule.class) //NOSONAR
+    abstract MainController mainControllerInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = AlbumArtistListFragmentModule.class)
-    abstract AlbumArtistListFragment artistsFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = AlbumArtistListFragmentModule.class) //NOSONAR
+    abstract AlbumArtistListFragment artistsFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = AlbumListFragmentModule.class)
-    abstract AlbumListFragment albumsFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = AlbumListFragmentModule.class) //NOSONAR
+    abstract AlbumListFragment albumsFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = SongsListFragmentModule.class)
-    abstract SongListFragment songsFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = SongsListFragmentModule.class) //NOSONAR
+    abstract SongListFragment songsFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = PlayerFragmentModule.class)
-    abstract PlayerFragment playerFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = PlayerFragmentModule.class) //NOSONAR
+    abstract PlayerFragment playerFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = QueueFragmentModule.class)
-    abstract QueueFragment queueFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = QueueFragmentModule.class) //NOSONAR
+    abstract QueueFragment queueFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = QueuePagerFragmentModule.class)
-    abstract QueuePagerFragment queuePagerFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = QueuePagerFragmentModule.class) //NOSONAR
+    abstract QueuePagerFragment queuePagerFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = FragmentModule.class)
-    abstract MiniPlayerFragment miniPlayerFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = FragmentModule.class) //NOSONAR
+    abstract MiniPlayerFragment miniPlayerFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = SuggestedFragmentModule.class)
-    abstract SuggestedFragment suggestedFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = SuggestedFragmentModule.class) //NOSONAR
+    abstract SuggestedFragment suggestedFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = FolderFragmentModule.class)
-    abstract FolderFragment folderFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = FolderFragmentModule.class) //NOSONAR
+    abstract FolderFragment folderFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = AlbumsDetailFragmentModule.class)
-    abstract AlbumDetailFragment albumDetailFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = AlbumsDetailFragmentModule.class) //NOSONAR
+    abstract AlbumDetailFragment albumDetailFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = ArtistsDetailFragmentModule.class)
-    abstract ArtistDetailFragment artistDetailFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = ArtistsDetailFragmentModule.class) //NOSONAR
+    abstract ArtistDetailFragment artistDetailFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = PlaylistListFragmentModule.class)
-    abstract PlaylistListFragment playlistFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = PlaylistListFragmentModule.class) //NOSONAR
+    abstract PlaylistListFragment playlistFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = PlaylistDetailFragmentModule.class)
-    abstract PlaylistDetailFragment playlistDetailFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = PlaylistDetailFragmentModule.class) //NOSONAR
+    abstract PlaylistDetailFragment playlistDetailFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = GenreListFragmentModule.class)
-    abstract GenreListFragment genresFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = GenreListFragmentModule.class) //NOSONAR
+    abstract GenreListFragment genresFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = GenreDetailFragmentModule.class)
-    abstract GenreDetailFragment genreDetailFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = GenreDetailFragmentModule.class) //NOSONAR
+    abstract GenreDetailFragment genreDetailFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = SettingsParentFragmentModule.class)
-    abstract SettingsParentFragment settingsParentFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = SettingsParentFragmentModule.class) //NOSONAR
+    abstract SettingsParentFragment settingsParentFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = SettingsFragmentModule.class)
-    abstract SettingsParentFragment.SettingsFragment settingsFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = SettingsFragmentModule.class) //NOSONAR
+    abstract SettingsParentFragment.SettingsFragment settingsFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = SearchFragmentModule.class)
-    abstract SearchFragment searchFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = SearchFragmentModule.class) //NOSONAR
+    abstract SearchFragment searchFragmentInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = EqualizerModule.class)
-    abstract EqualizerFragment equalizerFragmentInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = EqualizerModule.class) //NOSONAR
+    abstract EqualizerFragment equalizerFragmentInjector(); //NOSONAR
 
     // Dialog fragments
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract CreatePlaylistDialog createPlaylistdialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract CreatePlaylistDialog createPlaylistdialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract DeletePlaylistConfirmationDialog deletePlaylistConfirmationDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract DeletePlaylistConfirmationDialog deletePlaylistConfirmationDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract M3uPlaylistDialog m3uPlaylistDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract M3uPlaylistDialog m3uPlaylistDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract TaggerDialog taggerDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract TaggerDialog taggerDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract DeleteDialog deleteDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract DeleteDialog deleteDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract InclExclDialog inclExclDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract InclExclDialog inclExclDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract UpgradeDialog upgradeDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract UpgradeDialog upgradeDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract UpgradeNagDialog UpgradeNagDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract UpgradeNagDialog UpgradeNagDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract WeekSelectorDialog weekSelectorDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract WeekSelectorDialog weekSelectorDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract ChangelogDialog changelogDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract ChangelogDialog changelogDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract TabChooserDialog tabChooseerDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract TabChooserDialog tabChooseerDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract LyricsDialog lyricsDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract LyricsDialog lyricsDialogInjector(); //NOSONAR
 
-    @FragmentScope
-    @ContributesAndroidInjector(modules = DialogFragmentModule.class)
-    abstract SafManager.SafDialog safDialogInjector();
+    @FragmentScope //NOSONAR
+    @ContributesAndroidInjector(modules = DialogFragmentModule.class) //NOSONAR
+    abstract SafManager.SafDialog safDialogInjector(); //NOSONAR
 }

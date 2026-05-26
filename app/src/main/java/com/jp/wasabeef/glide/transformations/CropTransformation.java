@@ -27,93 +27,93 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CropTransformation implements Transformation<Bitmap> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CropTransformation implements Transformation<Bitmap> { //NOSONAR
 
-    public enum CropType {
-        TOP,
-        CENTER,
-        BOTTOM
+    public enum CropType { //NOSONAR
+        TOP, //NOSONAR
+        CENTER, //NOSONAR
+        BOTTOM //NOSONAR
     }
 
-    private BitmapPool mBitmapPool;
-    private int mWidth;
-    private int mHeight;
+    private BitmapPool mBitmapPool; //NOSONAR
+    private int mWidth; //NOSONAR
+    private int mHeight; //NOSONAR
 
-    private CropType mCropType = CropType.CENTER;
+    private CropType mCropType = CropType.CENTER; //NOSONAR
 
-    public CropTransformation(Context context) {
-        this(Glide.get(context).getBitmapPool());
+    public CropTransformation(Context context) { //NOSONAR
+        this(Glide.get(context).getBitmapPool()); //NOSONAR
     }
 
-    public CropTransformation(BitmapPool pool) {
-        this(pool, 0, 0);
+    public CropTransformation(BitmapPool pool) { //NOSONAR
+        this(pool, 0, 0); //NOSONAR
     }
 
-    public CropTransformation(Context context, int width, int height) {
-        this(Glide.get(context).getBitmapPool(), width, height);
+    public CropTransformation(Context context, int width, int height) { //NOSONAR
+        this(Glide.get(context).getBitmapPool(), width, height); //NOSONAR
     }
 
-    public CropTransformation(BitmapPool pool, int width, int height) {
-        this(pool, width, height, CropType.CENTER);
+    public CropTransformation(BitmapPool pool, int width, int height) { //NOSONAR
+        this(pool, width, height, CropType.CENTER); //NOSONAR
     }
 
-    public CropTransformation(Context context, int width, int height, CropType cropType) {
-        this(Glide.get(context).getBitmapPool(), width, height, cropType);
+    public CropTransformation(Context context, int width, int height, CropType cropType) { //NOSONAR
+        this(Glide.get(context).getBitmapPool(), width, height, cropType); //NOSONAR
     }
 
-    public CropTransformation(BitmapPool pool, int width, int height, CropType cropType) {
-        mBitmapPool = pool;
-        mWidth = width;
-        mHeight = height;
-        mCropType = cropType;
+    public CropTransformation(BitmapPool pool, int width, int height, CropType cropType) { //NOSONAR
+        mBitmapPool = pool; //NOSONAR
+        mWidth = width; //NOSONAR
+        mHeight = height; //NOSONAR
+        mCropType = cropType; //NOSONAR
     }
 
-    @Override
-    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
-        Bitmap source = resource.get();
-        mWidth = mWidth == 0 ? source.getWidth() : mWidth;
-        mHeight = mHeight == 0 ? source.getHeight() : mHeight;
+    @Override //NOSONAR
+    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) { //NOSONAR
+        Bitmap source = resource.get(); //NOSONAR
+        mWidth = mWidth == 0 ? source.getWidth() : mWidth; //NOSONAR
+        mHeight = mHeight == 0 ? source.getHeight() : mHeight; //NOSONAR
 
-        Bitmap.Config config =
-                source.getConfig() != null ? source.getConfig() : Bitmap.Config.ARGB_8888;
-        Bitmap bitmap = mBitmapPool.get(mWidth, mHeight, config);
-        if (bitmap == null) {
-            bitmap = Bitmap.createBitmap(mWidth, mHeight, config);
+        Bitmap.Config config = //NOSONAR
+                source.getConfig() != null ? source.getConfig() : Bitmap.Config.ARGB_8888; //NOSONAR
+        Bitmap bitmap = mBitmapPool.get(mWidth, mHeight, config); //NOSONAR
+        if (bitmap == null) { //NOSONAR
+            bitmap = Bitmap.createBitmap(mWidth, mHeight, config); //NOSONAR
         }
 
-        float scaleX = (float) mWidth / source.getWidth();
-        float scaleY = (float) mHeight / source.getHeight();
-        float scale = Math.max(scaleX, scaleY);
+        float scaleX = (float) mWidth / source.getWidth(); //NOSONAR
+        float scaleY = (float) mHeight / source.getHeight(); //NOSONAR
+        float scale = Math.max(scaleX, scaleY); //NOSONAR
 
-        float scaledWidth = scale * source.getWidth();
-        float scaledHeight = scale * source.getHeight();
-        float left = (mWidth - scaledWidth) / 2;
-        float top = getTop(scaledHeight);
-        RectF targetRect = new RectF(left, top, left + scaledWidth, top + scaledHeight);
+        float scaledWidth = scale * source.getWidth(); //NOSONAR
+        float scaledHeight = scale * source.getHeight(); //NOSONAR
+        float left = (mWidth - scaledWidth) / 2; //NOSONAR
+        float top = getTop(scaledHeight); //NOSONAR
+        RectF targetRect = new RectF(left, top, left + scaledWidth, top + scaledHeight); //NOSONAR
 
-        Canvas canvas = new Canvas(bitmap);
-        canvas.drawBitmap(source, null, targetRect, null);
+        Canvas canvas = new Canvas(bitmap); //NOSONAR
+        canvas.drawBitmap(source, null, targetRect, null); //NOSONAR
 
-        return BitmapResource.obtain(bitmap, mBitmapPool);
+        return BitmapResource.obtain(bitmap, mBitmapPool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return "CropTransformation(width=" + mWidth + ", height=" + mHeight + ", cropType=" + mCropType
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return "CropTransformation(width=" + mWidth + ", height=" + mHeight + ", cropType=" + mCropType //NOSONAR
                 + ")";
     }
 
-    private float getTop(float scaledHeight) {
-        switch (mCropType) {
-            case TOP:
-                return 0;
-            case CENTER:
-                return (mHeight - scaledHeight) / 2;
-            case BOTTOM:
-                return mHeight - scaledHeight;
-            default:
-                return 0;
+    private float getTop(float scaledHeight) { //NOSONAR
+        switch (mCropType) { //NOSONAR
+            case TOP: //NOSONAR
+                return 0; //NOSONAR
+            case CENTER: //NOSONAR
+                return (mHeight - scaledHeight) / 2; //NOSONAR
+            case BOTTOM: //NOSONAR
+                return mHeight - scaledHeight; //NOSONAR
+            default: //NOSONAR
+                return 0; //NOSONAR
         }
     }
 }

@@ -4,25 +4,25 @@ import android.content.Context;
 import com.simplecity.amp_library.model.ArtworkProvider;
 import java.io.InputStream;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MediaStoreFetcher extends BaseFetcher {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MediaStoreFetcher extends BaseFetcher { //NOSONAR
 
-    String TAG = "MediaStoreFetcher";
+    String TAG = "MediaStoreFetcher"; //NOSONAR
 
-    private Context applicationContext;
+    private Context applicationContext; //NOSONAR
 
-    public MediaStoreFetcher(Context context, ArtworkProvider artworkProvider) {
-        super(artworkProvider);
-        applicationContext = context.getApplicationContext();
+    public MediaStoreFetcher(Context context, ArtworkProvider artworkProvider) { //NOSONAR
+        super(artworkProvider); //NOSONAR
+        applicationContext = context.getApplicationContext(); //NOSONAR
     }
 
-    @Override
-    protected String getTag() {
-        return TAG;
+    @Override //NOSONAR
+    protected String getTag() { //NOSONAR
+        return TAG; //NOSONAR
     }
 
-    @Override
-    protected InputStream getStream() {
-        return artworkProvider.getMediaStoreArtwork(applicationContext);
+    @Override //NOSONAR
+    protected InputStream getStream() { //NOSONAR
+        return artworkProvider.getMediaStoreArtwork(applicationContext); //NOSONAR
     }
 }

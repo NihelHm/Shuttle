@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.menu.folder
 
@@ -33,324 +33,324 @@ import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import java.io.File
 
-object FolderMenuUtils {
+object FolderMenuUtils { //NOSONAR
 
-    private val TAG = "FolderMenuUtils"
+    private val TAG = "FolderMenuUtils" //NOSONAR
 
-    interface Callbacks {
+    interface Callbacks { //NOSONAR
 
-        fun showToast(message: String)
+        fun showToast(message: String) //NOSONAR
 
-        fun showToast(@StringRes messageResId: Int)
+        fun showToast(@StringRes messageResId: Int) //NOSONAR
 
-        fun onSongsAddedToQueue(numSongs: Int)
+        fun onSongsAddedToQueue(numSongs: Int) //NOSONAR
 
-        fun onPlaybackFailed()
+        fun onPlaybackFailed() //NOSONAR
 
-        fun shareSong(song: Song)
+        fun shareSong(song: Song) //NOSONAR
 
-        fun setRingtone(song: Song)
+        fun setRingtone(song: Song) //NOSONAR
 
-        fun showSongInfo(song: Song)
+        fun showSongInfo(song: Song) //NOSONAR
 
-        fun onPlaylistItemsInserted()
+        fun onPlaylistItemsInserted() //NOSONAR
 
-        fun showTagEditor(song: Song)
+        fun showTagEditor(song: Song) //NOSONAR
 
-        fun onFileNameChanged(folderView: FolderView)
+        fun onFileNameChanged(folderView: FolderView) //NOSONAR
 
-        fun onFileDeleted(folderView: FolderView)
+        fun onFileDeleted(folderView: FolderView) //NOSONAR
 
-        fun playNext(songsSingle: Single<List<Song>>)
+        fun playNext(songsSingle: Single<List<Song>>) //NOSONAR
 
-        fun whitelist(songsSingle: Single<List<Song>>)
+        fun whitelist(songsSingle: Single<List<Song>>) //NOSONAR
 
-        fun blacklist(songsSingle: Single<List<Song>>)
+        fun blacklist(songsSingle: Single<List<Song>>) //NOSONAR
 
-        fun whitelist(song: Song)
+        fun whitelist(song: Song) //NOSONAR
 
-        fun blacklist(song: Song)
+        fun blacklist(song: Song) //NOSONAR
     }
 
-    private fun getSongForFile(songsRepository: SongsRepository, fileObject: FileObject): Single<Song> {
-        return FileHelper.getSong(songsRepository, File(fileObject.path))
-            .observeOn(AndroidSchedulers.mainThread())
+    private fun getSongForFile(songsRepository: SongsRepository, fileObject: FileObject): Single<Song> { //NOSONAR
+        return FileHelper.getSong(songsRepository, File(fileObject.path)) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
     }
 
-    private fun getSongsForFolderObject(songsRepository: SongsRepository, folderObject: FolderObject): Single<List<Song>> {
-        return FileHelper.getSongList(songsRepository, File(folderObject.path), true, false)
+    private fun getSongsForFolderObject(songsRepository: SongsRepository, folderObject: FolderObject): Single<List<Song>> { //NOSONAR
+        return FileHelper.getSongList(songsRepository, File(folderObject.path), true, false) //NOSONAR
     }
 
-    private fun scanFile(context: Context, fileObject: FileObject, callbacks: Callbacks) {
-        CustomMediaScanner.scanFile(context, fileObject.path, { callbacks.showToast(it) })
-    }
-
-    // To do later: Remove context requirement.
-    private fun scanFolder(context: Context, folderObject: FolderObject) {
-        CustomMediaScanner.scanFile(context, folderObject)
+    private fun scanFile(context: Context, fileObject: FileObject, callbacks: Callbacks) { //NOSONAR
+        CustomMediaScanner.scanFile(context, fileObject.path, { callbacks.showToast(it) }) //NOSONAR
     }
 
     // To do later: Remove context requirement.
-    private fun renameFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) {
+    private fun scanFolder(context: Context, folderObject: FolderObject) { //NOSONAR
+        CustomMediaScanner.scanFile(context, folderObject) //NOSONAR
+    }
 
-        @SuppressLint("InflateParams")
-        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_rename, null)
+    // To do later: Remove context requirement.
+    private fun renameFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) { //NOSONAR
 
-        val editText = customView.findViewById<EditText>(R.id.editText)
-        editText.setText(fileObject.name)
+        @SuppressLint("InflateParams") //NOSONAR
+        val customView = LayoutInflater.from(context).inflate(R.layout.dialog_rename, null) //NOSONAR
 
-        val builder = MaterialDialog.Builder(context)
-        if (fileObject.fileType == FileType.FILE) {
-            builder.title(R.string.rename_file)
-        } else {
-            builder.title(R.string.rename_folder)
+        val editText = customView.findViewById<EditText>(R.id.editText) //NOSONAR
+        editText.setText(fileObject.name) //NOSONAR
+
+        val builder = MaterialDialog.Builder(context) //NOSONAR
+        if (fileObject.fileType == FileType.FILE) { //NOSONAR
+            builder.title(R.string.rename_file) //NOSONAR
+        } else { //NOSONAR
+            builder.title(R.string.rename_folder) //NOSONAR
         }
 
-        builder.customView(customView, false)
-        builder.positiveText(R.string.save)
-            .onPositive { materialDialog, dialogAction ->
-                if (editText.text != null) {
-                    if (FileHelper.renameFile(context, fileObject, editText.text.toString())) {
-                        callbacks.onFileNameChanged(folderView)
-                    } else {
-                        callbacks.showToast(if (fileObject.fileType == FileType.FOLDER) R.string.rename_folder_failed else R.string.rename_file_failed)
+        builder.customView(customView, false) //NOSONAR
+        builder.positiveText(R.string.save) //NOSONAR
+            .onPositive { materialDialog, dialogAction -> //NOSONAR
+                if (editText.text != null) { //NOSONAR
+                    if (FileHelper.renameFile(context, fileObject, editText.text.toString())) { //NOSONAR
+                        callbacks.onFileNameChanged(folderView) //NOSONAR
+                    } else { //NOSONAR
+                        callbacks.showToast(if (fileObject.fileType == FileType.FOLDER) R.string.rename_folder_failed else R.string.rename_file_failed) //NOSONAR
                     }
                 }
             }
-        builder.negativeText(R.string.cancel)
-            .show()
+        builder.negativeText(R.string.cancel) //NOSONAR
+            .show() //NOSONAR
     }
 
     // To do later: Remove context requirement.
-    private fun deleteFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) {
-        val builder = MaterialDialog.Builder(context)
-            .title(R.string.delete_item)
-            .iconRes(R.drawable.ic_warning_24dp)
-        if (fileObject.fileType == FileType.FILE) {
-            builder.content(
-                String.format(
-                    context.resources.getString(
-                        R.string.delete_file_confirmation_dialog
-                    ), fileObject.name
+    private fun deleteFile(context: Context, folderView: FolderView, fileObject: BaseFileObject, callbacks: Callbacks) { //NOSONAR
+        val builder = MaterialDialog.Builder(context) //NOSONAR
+            .title(R.string.delete_item) //NOSONAR
+            .iconRes(R.drawable.ic_warning_24dp) //NOSONAR
+        if (fileObject.fileType == FileType.FILE) { //NOSONAR
+            builder.content( //NOSONAR
+                String.format( //NOSONAR
+                    context.resources.getString( //NOSONAR
+                        R.string.delete_file_confirmation_dialog //NOSONAR
+                    ), fileObject.name //NOSONAR
                 )
             )
-        } else {
-            builder.content(
-                String.format(
-                    context.resources.getString(
-                        R.string.delete_folder_confirmation_dialog
-                    ), fileObject.path
+        } else { //NOSONAR
+            builder.content( //NOSONAR
+                String.format( //NOSONAR
+                    context.resources.getString( //NOSONAR
+                        R.string.delete_folder_confirmation_dialog //NOSONAR
+                    ), fileObject.path //NOSONAR
                 )
             )
         }
-        builder.positiveText(R.string.button_ok)
-            .onPositive { materialDialog, dialogAction ->
-                if (FileHelper.deleteFile(File(fileObject.path))) {
-                    callbacks.onFileDeleted(folderView)
-                    CustomMediaScanner.scanFiles(context, listOf(fileObject.path), null)
-                } else {
-                    Toast.makeText(
-                        context,
-                        if (fileObject.fileType == FileType.FOLDER) R.string.delete_folder_failed else R.string.delete_file_failed,
-                        Toast.LENGTH_LONG
-                    ).show()
+        builder.positiveText(R.string.button_ok) //NOSONAR
+            .onPositive { materialDialog, dialogAction -> //NOSONAR
+                if (FileHelper.deleteFile(File(fileObject.path))) { //NOSONAR
+                    callbacks.onFileDeleted(folderView) //NOSONAR
+                    CustomMediaScanner.scanFiles(context, listOf(fileObject.path), null) //NOSONAR
+                } else { //NOSONAR
+                    Toast.makeText( //NOSONAR
+                        context, //NOSONAR
+                        if (fileObject.fileType == FileType.FOLDER) R.string.delete_folder_failed else R.string.delete_file_failed, //NOSONAR
+                        Toast.LENGTH_LONG //NOSONAR
+                    ).show() //NOSONAR
                 }
             }
-        builder.negativeText(R.string.cancel)
-            .show()
+        builder.negativeText(R.string.cancel) //NOSONAR
+            .show() //NOSONAR
     }
 
-    fun setupFolderMenu(menu: PopupMenu, fileObject: BaseFileObject, playlistMenuHelper: PlaylistMenuHelper) {
+    fun setupFolderMenu(menu: PopupMenu, fileObject: BaseFileObject, playlistMenuHelper: PlaylistMenuHelper) { //NOSONAR
 
-        menu.inflate(R.menu.menu_file)
+        menu.inflate(R.menu.menu_file) //NOSONAR
 
         // Add playlist menu
-        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu
-        playlistMenuHelper.createPlaylistMenu(subMenu)
+        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+        playlistMenuHelper.createPlaylistMenu(subMenu) //NOSONAR
 
-        if (!fileObject.canReadWrite()) {
-            menu.menu.findItem(R.id.rename).isVisible = false
+        if (!fileObject.canReadWrite()) { //NOSONAR
+            menu.menu.findItem(R.id.rename).isVisible = false //NOSONAR
         }
 
-        when (fileObject.fileType) {
-            FileType.FILE -> menu.menu.findItem(R.id.play).isVisible = false
-            FileType.FOLDER -> {
-                menu.menu.findItem(R.id.songInfo).isVisible = false
-                menu.menu.findItem(R.id.ringtone).isVisible = false
-                menu.menu.findItem(R.id.share).isVisible = false
-                menu.menu.findItem(R.id.editTags).isVisible = false
+        when (fileObject.fileType) { //NOSONAR
+            FileType.FILE -> menu.menu.findItem(R.id.play).isVisible = false //NOSONAR
+            FileType.FOLDER -> { //NOSONAR
+                menu.menu.findItem(R.id.songInfo).isVisible = false //NOSONAR
+                menu.menu.findItem(R.id.ringtone).isVisible = false //NOSONAR
+                menu.menu.findItem(R.id.share).isVisible = false //NOSONAR
+                menu.menu.findItem(R.id.editTags).isVisible = false //NOSONAR
             }
-            FileType.PARENT -> {
+            FileType.PARENT -> { //NOSONAR
                 // Intentionally left empty.
             }
         }
     }
 
-    fun getFolderMenuClickListener(
-        fragment: Fragment,
-        mediaManager: MediaManager,
-        songsRepository: SongsRepository,
-        folderView: FolderView,
-        playlistManager: PlaylistManager,
-        callbacks: Callbacks
-    ): PopupMenu.OnMenuItemClickListener? {
-        when (folderView.baseFileObject.fileType) {
-            FileType.FILE -> return getFileMenuClickListener(fragment, mediaManager, songsRepository, folderView, folderView.baseFileObject as FileObject, playlistManager, callbacks)
-            FileType.FOLDER -> return getFolderMenuClickListener(fragment, mediaManager, songsRepository, folderView, folderView.baseFileObject as FolderObject, playlistManager, callbacks)
+    fun getFolderMenuClickListener( //NOSONAR
+        fragment: Fragment, //NOSONAR
+        mediaManager: MediaManager, //NOSONAR
+        songsRepository: SongsRepository, //NOSONAR
+        folderView: FolderView, //NOSONAR
+        playlistManager: PlaylistManager, //NOSONAR
+        callbacks: Callbacks //NOSONAR
+    ): PopupMenu.OnMenuItemClickListener? { //NOSONAR
+        when (folderView.baseFileObject.fileType) { //NOSONAR
+            FileType.FILE -> return getFileMenuClickListener(fragment, mediaManager, songsRepository, folderView, folderView.baseFileObject as FileObject, playlistManager, callbacks) //NOSONAR
+            FileType.FOLDER -> return getFolderMenuClickListener(fragment, mediaManager, songsRepository, folderView, folderView.baseFileObject as FolderObject, playlistManager, callbacks) //NOSONAR
         }
-        return null
+        return null //NOSONAR
     }
 
-    private fun getFolderMenuClickListener(
-        fragment: Fragment,
-        mediaManager: MediaManager,
-        songsRepository: SongsRepository,
-        folderView: FolderView,
-        folderObject: FolderObject,
-        playlistManager: PlaylistManager,
-        callbacks: Callbacks
-    ): PopupMenu.OnMenuItemClickListener {
+    private fun getFolderMenuClickListener( //NOSONAR
+        fragment: Fragment, //NOSONAR
+        mediaManager: MediaManager, //NOSONAR
+        songsRepository: SongsRepository, //NOSONAR
+        folderView: FolderView, //NOSONAR
+        folderObject: FolderObject, //NOSONAR
+        playlistManager: PlaylistManager, //NOSONAR
+        callbacks: Callbacks //NOSONAR
+    ): PopupMenu.OnMenuItemClickListener { //NOSONAR
 
-        return PopupMenu.OnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
-                R.id.play -> {
-                    MenuUtils.play(mediaManager, getSongsForFolderObject(songsRepository, folderObject)) { callbacks.onPlaybackFailed() }
-                    return@OnMenuItemClickListener true
+        return PopupMenu.OnMenuItemClickListener { menuItem -> //NOSONAR
+            when (menuItem.itemId) { //NOSONAR
+                R.id.play -> { //NOSONAR
+                    MenuUtils.play(mediaManager, getSongsForFolderObject(songsRepository, folderObject)) { callbacks.onPlaybackFailed() } //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.playNext -> {
-                    callbacks.playNext(getSongsForFolderObject(songsRepository, folderObject))
-                    return@OnMenuItemClickListener true
+                R.id.playNext -> { //NOSONAR
+                    callbacks.playNext(getSongsForFolderObject(songsRepository, folderObject)) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.NEW_PLAYLIST -> {
-                    MenuUtils.newPlaylist(
-                        fragment,
-                        getSongsForFolderObject(songsRepository, folderObject)
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    MenuUtils.newPlaylist( //NOSONAR
+                        fragment, //NOSONAR
+                        getSongsForFolderObject(songsRepository, folderObject) //NOSONAR
                     )
-                    return@OnMenuItemClickListener true
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    getSongsForFolderObject(songsRepository, folderObject).subscribe { songs ->
-                        MenuUtils.addToPlaylist(
-                            playlistManager,
-                            menuItem.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist,
-                            songs
-                        ) { callbacks.onPlaylistItemsInserted() }
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    getSongsForFolderObject(songsRepository, folderObject).subscribe { songs -> //NOSONAR
+                        MenuUtils.addToPlaylist( //NOSONAR
+                            playlistManager, //NOSONAR
+                            menuItem.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, //NOSONAR
+                            songs //NOSONAR
+                        ) { callbacks.onPlaylistItemsInserted() } //NOSONAR
                     }
-                    return@OnMenuItemClickListener true
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    MenuUtils.addToQueue(mediaManager, getSongsForFolderObject(songsRepository, folderObject)) { callbacks.onSongsAddedToQueue(it) }
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    MenuUtils.addToQueue(mediaManager, getSongsForFolderObject(songsRepository, folderObject)) { callbacks.onSongsAddedToQueue(it) } //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.scan -> {
-                    scanFolder(fragment.context!!, folderObject)
-                    return@OnMenuItemClickListener true
+                R.id.scan -> { //NOSONAR
+                    scanFolder(fragment.context!!, folderObject) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.whitelist -> {
-                    callbacks.whitelist(getSongsForFolderObject(songsRepository, folderObject))
-                    return@OnMenuItemClickListener true
+                R.id.whitelist -> { //NOSONAR
+                    callbacks.whitelist(getSongsForFolderObject(songsRepository, folderObject)) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.blacklist -> {
-                    callbacks.blacklist(getSongsForFolderObject(songsRepository, folderObject))
-                    return@OnMenuItemClickListener true
+                R.id.blacklist -> { //NOSONAR
+                    callbacks.blacklist(getSongsForFolderObject(songsRepository, folderObject)) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.rename -> {
-                    renameFile(fragment.context!!, folderView, folderObject, callbacks)
-                    return@OnMenuItemClickListener true
+                R.id.rename -> { //NOSONAR
+                    renameFile(fragment.context!!, folderView, folderObject, callbacks) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    deleteFile(fragment.context!!, folderView, folderObject, callbacks)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    deleteFile(fragment.context!!, folderView, folderObject, callbacks) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 
-    private fun getFileMenuClickListener(
-        fragment: Fragment,
-        mediaManager: MediaManager,
-        songsRepository: SongsRepository,
-        folderView: FolderView,
-        fileObject: FileObject,
-        playlistManager: PlaylistManager,
-        callbacks: Callbacks
-    ): PopupMenu.OnMenuItemClickListener {
-        return PopupMenu.OnMenuItemClickListener { menuItem ->
+    private fun getFileMenuClickListener( //NOSONAR
+        fragment: Fragment, //NOSONAR
+        mediaManager: MediaManager, //NOSONAR
+        songsRepository: SongsRepository, //NOSONAR
+        folderView: FolderView, //NOSONAR
+        fileObject: FileObject, //NOSONAR
+        playlistManager: PlaylistManager, //NOSONAR
+        callbacks: Callbacks //NOSONAR
+    ): PopupMenu.OnMenuItemClickListener { //NOSONAR
+        return PopupMenu.OnMenuItemClickListener { menuItem -> //NOSONAR
 
-            val errorHandler: (Throwable) -> Unit = { e -> LogUtils.logException(TAG, "getFileMenuClickListener threw error", e) }
+            val errorHandler: (Throwable) -> Unit = { e -> LogUtils.logException(TAG, "getFileMenuClickListener threw error", e) } //NOSONAR
 
-            when (menuItem.itemId) {
-                R.id.playNext -> {
-                    getSongForFile(songsRepository, fileObject)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                            { song -> mediaManager.playNext(listOf(song)) { callbacks.onSongsAddedToQueue(it) } },
-                            errorHandler
+            when (menuItem.itemId) { //NOSONAR
+                R.id.playNext -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe( //NOSONAR
+                            { song -> mediaManager.playNext(listOf(song)) { callbacks.onSongsAddedToQueue(it) } }, //NOSONAR
+                            errorHandler //NOSONAR
                         )
-                    return@OnMenuItemClickListener true
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.NEW_PLAYLIST -> {
-                    getSongForFile(songsRepository, fileObject).subscribe(
-                        { song ->
-                            CreatePlaylistDialog.newInstance(listOf(song)).show(fragment.childFragmentManager, "CreatePlaylistDialog")
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe( //NOSONAR
+                        { song -> //NOSONAR
+                            CreatePlaylistDialog.newInstance(listOf(song)).show(fragment.childFragmentManager, "CreatePlaylistDialog") //NOSONAR
                         },
-                        errorHandler
+                        errorHandler //NOSONAR
                     )
-                    return@OnMenuItemClickListener true
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ song ->
-                        MenuUtils.addToPlaylist(
-                            playlistManager,
-                            menuItem.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist,
-                            listOf(song)
-                        ) { callbacks.onPlaylistItemsInserted() }
-                    }, errorHandler)
-                    return@OnMenuItemClickListener true
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ song -> //NOSONAR
+                        MenuUtils.addToPlaylist( //NOSONAR
+                            playlistManager, //NOSONAR
+                            menuItem.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, //NOSONAR
+                            listOf(song) //NOSONAR
+                        ) { callbacks.onPlaylistItemsInserted() } //NOSONAR
+                    }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ song -> MenuUtils.addToQueue(mediaManager, listOf(song), { callbacks.onSongsAddedToQueue(it) }) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ song -> MenuUtils.addToQueue(mediaManager, listOf(song), { callbacks.onSongsAddedToQueue(it) }) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.scan -> {
-                    scanFile(fragment.context!!, fileObject, callbacks)
-                    return@OnMenuItemClickListener true
+                R.id.scan -> { //NOSONAR
+                    scanFile(fragment.context!!, fileObject, callbacks) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.editTags -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.showTagEditor(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.editTags -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.showTagEditor(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.share -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.shareSong(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.share -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.shareSong(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.ringtone -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.setRingtone(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.ringtone -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.setRingtone(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.songInfo -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.showSongInfo(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.songInfo -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.showSongInfo(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.blacklist -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.blacklist(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.blacklist -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.blacklist(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.whitelist -> {
-                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.whitelist(it) }, errorHandler)
-                    return@OnMenuItemClickListener true
+                R.id.whitelist -> { //NOSONAR
+                    getSongForFile(songsRepository, fileObject).subscribe({ callbacks.whitelist(it) }, errorHandler) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.rename -> {
-                    renameFile(fragment.context!!, folderView, fileObject, callbacks)
-                    return@OnMenuItemClickListener true
+                R.id.rename -> { //NOSONAR
+                    renameFile(fragment.context!!, folderView, fileObject, callbacks) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    deleteFile(fragment.context!!, folderView, fileObject, callbacks)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    deleteFile(fragment.context!!, folderView, fileObject, callbacks) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 }

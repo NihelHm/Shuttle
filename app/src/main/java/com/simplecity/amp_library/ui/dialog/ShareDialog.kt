@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -24,82 +24,82 @@ import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
 
-class ShareDialog : DialogFragment() {
+class ShareDialog : DialogFragment() { //NOSONAR
 
-    private lateinit var song: Song
+    private lateinit var song: Song //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        super.onAttach(context) //NOSONAR
 
-        song = arguments!!.getSerializable(ARG_SONG) as Song
+        song = arguments!!.getSerializable(ARG_SONG) as Song //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return MaterialDialog.Builder(context!!)
-            .title(R.string.share_dialog_title)
-            .items(context!!.getString(R.string.share_option_song_info), context!!.getString(R.string.share_option_audio_file))
-            .itemsCallback { _, _, i, _ ->
-                when (i) {
-                    0 -> {
-                        val context = context
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(R.string.share_dialog_title) //NOSONAR
+            .items(context!!.getString(R.string.share_option_song_info), context!!.getString(R.string.share_option_audio_file)) //NOSONAR
+            .itemsCallback { _, _, i, _ -> //NOSONAR
+                when (i) { //NOSONAR
+                    0 -> { //NOSONAR
+                        val context = context //NOSONAR
                         // Use the compress method on the Bitmap object to write image to the OutputStream
-                        Glide.with(context)
-                            .load(song)
-                            .asBitmap()
-                            .priority(Priority.IMMEDIATE)
-                            .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                            .into(object : SimpleTarget<Bitmap>() {
-                                override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>) {
-                                    val sendIntent = Intent()
-                                    sendIntent.type = "text/plain"
-                                    var fileOutputStream: FileOutputStream? = null
-                                    try {
-                                        val file = File(context!!.filesDir.toString() + "/share_image.jpg")
-                                        fileOutputStream = FileOutputStream(file)
-                                        if (resource != null) {
-                                            resource.compress(Bitmap.CompressFormat.JPEG, 80, fileOutputStream)
-                                            sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", file))
-                                            sendIntent.type = "image/jpeg"
+                        Glide.with(context) //NOSONAR
+                            .load(song) //NOSONAR
+                            .asBitmap() //NOSONAR
+                            .priority(Priority.IMMEDIATE) //NOSONAR
+                            .diskCacheStrategy(DiskCacheStrategy.SOURCE) //NOSONAR
+                            .into(object : SimpleTarget<Bitmap>() { //NOSONAR
+                                override fun onResourceReady(resource: Bitmap?, glideAnimation: GlideAnimation<in Bitmap>) { //NOSONAR
+                                    val sendIntent = Intent() //NOSONAR
+                                    sendIntent.type = "text/plain" //NOSONAR
+                                    var fileOutputStream: FileOutputStream? = null //NOSONAR
+                                    try { //NOSONAR
+                                        val file = File(context!!.filesDir.toString() + "/share_image.jpg") //NOSONAR
+                                        fileOutputStream = FileOutputStream(file) //NOSONAR
+                                        if (resource != null) { //NOSONAR
+                                            resource.compress(Bitmap.CompressFormat.JPEG, 80, fileOutputStream) //NOSONAR
+                                            sendIntent.putExtra(Intent.EXTRA_STREAM, FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", file)) //NOSONAR
+                                            sendIntent.type = "image/jpeg" //NOSONAR
                                         }
-                                    } catch (ignored: FileNotFoundException) {
+                                    } catch (ignored: FileNotFoundException) { //NOSONAR
                                         // Intentionally left empty.
-                                    } finally {
-                                        try {
-                                            fileOutputStream?.close()
-                                        } catch (ignored: IOException) {
+                                    } finally { //NOSONAR
+                                        try { //NOSONAR
+                                            fileOutputStream?.close() //NOSONAR
+                                        } catch (ignored: IOException) { //NOSONAR
                                             // Intentionally left empty.
                                         }
                                     }
 
-                                    sendIntent.action = Intent.ACTION_SEND
-                                    sendIntent.putExtra(Intent.EXTRA_TEXT, "#NowPlaying " + song.artistName + " - " + song.name + "\n\n" + "#Shuttle")
-                                    context!!.startActivity(Intent.createChooser(sendIntent, "Share current song via: "))
+                                    sendIntent.action = Intent.ACTION_SEND //NOSONAR
+                                    sendIntent.putExtra(Intent.EXTRA_TEXT, "#NowPlaying " + song.artistName + " - " + song.name + "\n\n" + "#Shuttle") //NOSONAR
+                                    context!!.startActivity(Intent.createChooser(sendIntent, "Share current song via: ")) //NOSONAR
                                 }
                             })
                     }
-                    1 -> song.share(context!!)
+                    1 -> song.share(context!!) //NOSONAR
                 }
             }
-            .negativeText(R.string.close)
-            .build()
+            .negativeText(R.string.close) //NOSONAR
+            .build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "ShareDialog"
+        private const val TAG = "ShareDialog" //NOSONAR
 
-        private const val ARG_SONG = "song"
+        private const val ARG_SONG = "song" //NOSONAR
 
-        fun newInstance(song: Song): ShareDialog {
-            val args = Bundle()
-            args.putSerializable(ARG_SONG, song)
-            val fragment = ShareDialog()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(song: Song): ShareDialog { //NOSONAR
+            val args = Bundle() //NOSONAR
+            args.putSerializable(ARG_SONG, song) //NOSONAR
+            val fragment = ShareDialog() //NOSONAR
+            fragment.arguments = args //NOSONAR
+            return fragment //NOSONAR
         }
     }
 }

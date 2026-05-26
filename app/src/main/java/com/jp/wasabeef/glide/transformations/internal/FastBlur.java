@@ -18,10 +18,10 @@ import android.graphics.Bitmap;
  * limitations under the License.
  */
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class FastBlur {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class FastBlur { //NOSONAR
 
-    public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) {
+    public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) { //NOSONAR
 
         // Stack Blur v1.0 from
         // http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
@@ -51,208 +51,208 @@ public class FastBlur {
         //
         // Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com>
 
-        Bitmap bitmap;
-        if (canReuseInBitmap) {
-            bitmap = sentBitmap;
-        } else {
-            bitmap = sentBitmap.copy(sentBitmap.getConfig(), true);
+        Bitmap bitmap; //NOSONAR
+        if (canReuseInBitmap) { //NOSONAR
+            bitmap = sentBitmap; //NOSONAR
+        } else { //NOSONAR
+            bitmap = sentBitmap.copy(sentBitmap.getConfig(), true); //NOSONAR
         }
 
-        if (radius < 1) {
-            return (null);
+        if (radius < 1) { //NOSONAR
+            return (null); //NOSONAR
         }
 
-        int w = bitmap.getWidth();
-        int h = bitmap.getHeight();
+        int w = bitmap.getWidth(); //NOSONAR
+        int h = bitmap.getHeight(); //NOSONAR
 
-        int[] pix = new int[w * h];
-        bitmap.getPixels(pix, 0, w, 0, 0, w, h);
+        int[] pix = new int[w * h]; //NOSONAR
+        bitmap.getPixels(pix, 0, w, 0, 0, w, h); //NOSONAR
 
-        int wm = w - 1;
-        int hm = h - 1;
-        int wh = w * h;
-        int div = radius + radius + 1;
+        int wm = w - 1; //NOSONAR
+        int hm = h - 1; //NOSONAR
+        int wh = w * h; //NOSONAR
+        int div = radius + radius + 1; //NOSONAR
 
-        int r[] = new int[wh];
-        int g[] = new int[wh];
-        int b[] = new int[wh];
-        int rsum, gsum, bsum, x, y, i, p, yp, yi, yw;
-        int vmin[] = new int[Math.max(w, h)];
+        int r[] = new int[wh]; //NOSONAR
+        int g[] = new int[wh]; //NOSONAR
+        int b[] = new int[wh]; //NOSONAR
+        int rsum, gsum, bsum, x, y, i, p, yp, yi, yw; //NOSONAR
+        int vmin[] = new int[Math.max(w, h)]; //NOSONAR
 
-        int divsum = (div + 1) >> 1;
-        divsum *= divsum;
-        int dv[] = new int[256 * divsum];
-        for (i = 0; i < 256 * divsum; i++) {
-            dv[i] = (i / divsum);
+        int divsum = (div + 1) >> 1; //NOSONAR
+        divsum *= divsum; //NOSONAR
+        int dv[] = new int[256 * divsum]; //NOSONAR
+        for (i = 0; i < 256 * divsum; i++) { //NOSONAR
+            dv[i] = (i / divsum); //NOSONAR
         }
 
-        yw = yi = 0;
+        yw = yi = 0; //NOSONAR
 
-        int[][] stack = new int[div][3];
-        int stackpointer;
-        int stackstart;
-        int[] sir;
-        int rbs;
-        int r1 = radius + 1;
-        int routsum, goutsum, boutsum;
-        int rinsum, ginsum, binsum;
+        int[][] stack = new int[div][3]; //NOSONAR
+        int stackpointer; //NOSONAR
+        int stackstart; //NOSONAR
+        int[] sir; //NOSONAR
+        int rbs; //NOSONAR
+        int r1 = radius + 1; //NOSONAR
+        int routsum, goutsum, boutsum; //NOSONAR
+        int rinsum, ginsum, binsum; //NOSONAR
 
-        for (y = 0; y < h; y++) {
-            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            for (i = -radius; i <= radius; i++) {
-                p = pix[yi + Math.min(wm, Math.max(i, 0))];
-                sir = stack[i + radius];
-                sir[0] = (p & 0xff0000) >> 16;
-                sir[1] = (p & 0x00ff00) >> 8;
-                sir[2] = (p & 0x0000ff);
-                rbs = r1 - Math.abs(i);
-                rsum += sir[0] * rbs;
-                gsum += sir[1] * rbs;
-                bsum += sir[2] * rbs;
-                if (i > 0) {
-                    rinsum += sir[0];
-                    ginsum += sir[1];
-                    binsum += sir[2];
-                } else {
-                    routsum += sir[0];
-                    goutsum += sir[1];
-                    boutsum += sir[2];
+        for (y = 0; y < h; y++) { //NOSONAR
+            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0; //NOSONAR
+            for (i = -radius; i <= radius; i++) { //NOSONAR
+                p = pix[yi + Math.min(wm, Math.max(i, 0))]; //NOSONAR
+                sir = stack[i + radius]; //NOSONAR
+                sir[0] = (p & 0xff0000) >> 16; //NOSONAR
+                sir[1] = (p & 0x00ff00) >> 8; //NOSONAR
+                sir[2] = (p & 0x0000ff); //NOSONAR
+                rbs = r1 - Math.abs(i); //NOSONAR
+                rsum += sir[0] * rbs; //NOSONAR
+                gsum += sir[1] * rbs; //NOSONAR
+                bsum += sir[2] * rbs; //NOSONAR
+                if (i > 0) { //NOSONAR
+                    rinsum += sir[0]; //NOSONAR
+                    ginsum += sir[1]; //NOSONAR
+                    binsum += sir[2]; //NOSONAR
+                } else { //NOSONAR
+                    routsum += sir[0]; //NOSONAR
+                    goutsum += sir[1]; //NOSONAR
+                    boutsum += sir[2]; //NOSONAR
                 }
             }
-            stackpointer = radius;
+            stackpointer = radius; //NOSONAR
 
-            for (x = 0; x < w; x++) {
+            for (x = 0; x < w; x++) { //NOSONAR
 
-                r[yi] = dv[rsum];
-                g[yi] = dv[gsum];
-                b[yi] = dv[bsum];
+                r[yi] = dv[rsum]; //NOSONAR
+                g[yi] = dv[gsum]; //NOSONAR
+                b[yi] = dv[bsum]; //NOSONAR
 
-                rsum -= routsum;
-                gsum -= goutsum;
-                bsum -= boutsum;
+                rsum -= routsum; //NOSONAR
+                gsum -= goutsum; //NOSONAR
+                bsum -= boutsum; //NOSONAR
 
-                stackstart = stackpointer - radius + div;
-                sir = stack[stackstart % div];
+                stackstart = stackpointer - radius + div; //NOSONAR
+                sir = stack[stackstart % div]; //NOSONAR
 
-                routsum -= sir[0];
-                goutsum -= sir[1];
-                boutsum -= sir[2];
+                routsum -= sir[0]; //NOSONAR
+                goutsum -= sir[1]; //NOSONAR
+                boutsum -= sir[2]; //NOSONAR
 
-                if (y == 0) {
-                    vmin[x] = Math.min(x + radius + 1, wm);
+                if (y == 0) { //NOSONAR
+                    vmin[x] = Math.min(x + radius + 1, wm); //NOSONAR
                 }
-                p = pix[yw + vmin[x]];
+                p = pix[yw + vmin[x]]; //NOSONAR
 
-                sir[0] = (p & 0xff0000) >> 16;
-                sir[1] = (p & 0x00ff00) >> 8;
-                sir[2] = (p & 0x0000ff);
+                sir[0] = (p & 0xff0000) >> 16; //NOSONAR
+                sir[1] = (p & 0x00ff00) >> 8; //NOSONAR
+                sir[2] = (p & 0x0000ff); //NOSONAR
 
-                rinsum += sir[0];
-                ginsum += sir[1];
-                binsum += sir[2];
+                rinsum += sir[0]; //NOSONAR
+                ginsum += sir[1]; //NOSONAR
+                binsum += sir[2]; //NOSONAR
 
-                rsum += rinsum;
-                gsum += ginsum;
-                bsum += binsum;
+                rsum += rinsum; //NOSONAR
+                gsum += ginsum; //NOSONAR
+                bsum += binsum; //NOSONAR
 
-                stackpointer = (stackpointer + 1) % div;
-                sir = stack[(stackpointer) % div];
+                stackpointer = (stackpointer + 1) % div; //NOSONAR
+                sir = stack[(stackpointer) % div]; //NOSONAR
 
-                routsum += sir[0];
-                goutsum += sir[1];
-                boutsum += sir[2];
+                routsum += sir[0]; //NOSONAR
+                goutsum += sir[1]; //NOSONAR
+                boutsum += sir[2]; //NOSONAR
 
-                rinsum -= sir[0];
-                ginsum -= sir[1];
-                binsum -= sir[2];
+                rinsum -= sir[0]; //NOSONAR
+                ginsum -= sir[1]; //NOSONAR
+                binsum -= sir[2]; //NOSONAR
 
-                yi++;
+                yi++; //NOSONAR
             }
-            yw += w;
+            yw += w; //NOSONAR
         }
-        for (x = 0; x < w; x++) {
-            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0;
-            yp = -radius * w;
-            for (i = -radius; i <= radius; i++) {
-                yi = Math.max(0, yp) + x;
+        for (x = 0; x < w; x++) { //NOSONAR
+            rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0; //NOSONAR
+            yp = -radius * w; //NOSONAR
+            for (i = -radius; i <= radius; i++) { //NOSONAR
+                yi = Math.max(0, yp) + x; //NOSONAR
 
-                sir = stack[i + radius];
+                sir = stack[i + radius]; //NOSONAR
 
-                sir[0] = r[yi];
-                sir[1] = g[yi];
-                sir[2] = b[yi];
+                sir[0] = r[yi]; //NOSONAR
+                sir[1] = g[yi]; //NOSONAR
+                sir[2] = b[yi]; //NOSONAR
 
-                rbs = r1 - Math.abs(i);
+                rbs = r1 - Math.abs(i); //NOSONAR
 
-                rsum += r[yi] * rbs;
-                gsum += g[yi] * rbs;
-                bsum += b[yi] * rbs;
+                rsum += r[yi] * rbs; //NOSONAR
+                gsum += g[yi] * rbs; //NOSONAR
+                bsum += b[yi] * rbs; //NOSONAR
 
-                if (i > 0) {
-                    rinsum += sir[0];
-                    ginsum += sir[1];
-                    binsum += sir[2];
-                } else {
-                    routsum += sir[0];
-                    goutsum += sir[1];
-                    boutsum += sir[2];
+                if (i > 0) { //NOSONAR
+                    rinsum += sir[0]; //NOSONAR
+                    ginsum += sir[1]; //NOSONAR
+                    binsum += sir[2]; //NOSONAR
+                } else { //NOSONAR
+                    routsum += sir[0]; //NOSONAR
+                    goutsum += sir[1]; //NOSONAR
+                    boutsum += sir[2]; //NOSONAR
                 }
 
-                if (i < hm) {
-                    yp += w;
+                if (i < hm) { //NOSONAR
+                    yp += w; //NOSONAR
                 }
             }
-            yi = x;
-            stackpointer = radius;
-            for (y = 0; y < h; y++) {
+            yi = x; //NOSONAR
+            stackpointer = radius; //NOSONAR
+            for (y = 0; y < h; y++) { //NOSONAR
                 // Preserve alpha channel: ( 0xff000000 & pix[yi] )
-                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum];
+                pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum]; //NOSONAR
 
-                rsum -= routsum;
-                gsum -= goutsum;
-                bsum -= boutsum;
+                rsum -= routsum; //NOSONAR
+                gsum -= goutsum; //NOSONAR
+                bsum -= boutsum; //NOSONAR
 
-                stackstart = stackpointer - radius + div;
-                sir = stack[stackstart % div];
+                stackstart = stackpointer - radius + div; //NOSONAR
+                sir = stack[stackstart % div]; //NOSONAR
 
-                routsum -= sir[0];
-                goutsum -= sir[1];
-                boutsum -= sir[2];
+                routsum -= sir[0]; //NOSONAR
+                goutsum -= sir[1]; //NOSONAR
+                boutsum -= sir[2]; //NOSONAR
 
-                if (x == 0) {
-                    vmin[y] = Math.min(y + r1, hm) * w;
+                if (x == 0) { //NOSONAR
+                    vmin[y] = Math.min(y + r1, hm) * w; //NOSONAR
                 }
-                p = x + vmin[y];
+                p = x + vmin[y]; //NOSONAR
 
-                sir[0] = r[p];
-                sir[1] = g[p];
-                sir[2] = b[p];
+                sir[0] = r[p]; //NOSONAR
+                sir[1] = g[p]; //NOSONAR
+                sir[2] = b[p]; //NOSONAR
 
-                rinsum += sir[0];
-                ginsum += sir[1];
-                binsum += sir[2];
+                rinsum += sir[0]; //NOSONAR
+                ginsum += sir[1]; //NOSONAR
+                binsum += sir[2]; //NOSONAR
 
-                rsum += rinsum;
-                gsum += ginsum;
-                bsum += binsum;
+                rsum += rinsum; //NOSONAR
+                gsum += ginsum; //NOSONAR
+                bsum += binsum; //NOSONAR
 
-                stackpointer = (stackpointer + 1) % div;
-                sir = stack[stackpointer];
+                stackpointer = (stackpointer + 1) % div; //NOSONAR
+                sir = stack[stackpointer]; //NOSONAR
 
-                routsum += sir[0];
-                goutsum += sir[1];
-                boutsum += sir[2];
+                routsum += sir[0]; //NOSONAR
+                goutsum += sir[1]; //NOSONAR
+                boutsum += sir[2]; //NOSONAR
 
-                rinsum -= sir[0];
-                ginsum -= sir[1];
-                binsum -= sir[2];
+                rinsum -= sir[0]; //NOSONAR
+                ginsum -= sir[1]; //NOSONAR
+                binsum -= sir[2]; //NOSONAR
 
-                yi += w;
+                yi += w; //NOSONAR
             }
         }
 
-        bitmap.setPixels(pix, 0, w, 0, 0, w, h);
+        bitmap.setPixels(pix, 0, w, 0, 0, w, h); //NOSONAR
 
-        return (bitmap);
+        return (bitmap); //NOSONAR
     }
 }

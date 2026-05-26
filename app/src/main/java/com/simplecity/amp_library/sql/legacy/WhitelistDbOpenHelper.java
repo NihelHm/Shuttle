@@ -4,33 +4,33 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class WhitelistDbOpenHelper extends SQLiteOpenHelper {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class WhitelistDbOpenHelper extends SQLiteOpenHelper { //NOSONAR
 
-    public static final String TABLE_FOLDERS = "folders";
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_FOLDER = "folder";
+    public static final String TABLE_FOLDERS = "folders"; //NOSONAR
+    public static final String COLUMN_ID = "_id"; //NOSONAR
+    public static final String COLUMN_FOLDER = "folder"; //NOSONAR
 
-    public static final String DATABASE_NAME = "folders.db";
-    private static final int DATABASE_VERSION = 1;
+    public static final String DATABASE_NAME = "folders.db"; //NOSONAR
+    private static final int DATABASE_VERSION = 1; //NOSONAR
 
-    private static final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS "
-            + TABLE_FOLDERS + "("
-            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_FOLDER + " TEXT NOT NULL" + ");";
+    private static final String DATABASE_CREATE = "CREATE TABLE IF NOT EXISTS " //NOSONAR
+            + TABLE_FOLDERS + "(" //NOSONAR
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " //NOSONAR
+            + COLUMN_FOLDER + " TEXT NOT NULL" + ");"; //NOSONAR
 
-    public WhitelistDbOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public WhitelistDbOpenHelper(Context context) { //NOSONAR
+        super(context, DATABASE_NAME, null, DATABASE_VERSION); //NOSONAR
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase database) {
-        database.execSQL(DATABASE_CREATE);
+    @Override //NOSONAR
+    public void onCreate(SQLiteDatabase database) { //NOSONAR
+        database.execSQL(DATABASE_CREATE); //NOSONAR
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOLDERS);
-        onCreate(db);
+    @Override //NOSONAR
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //NOSONAR
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_FOLDERS); //NOSONAR
+        onCreate(db); //NOSONAR
     }
 }

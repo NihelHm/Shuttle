@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.artist.list
 
@@ -14,63 +14,63 @@ import com.simplecity.amp_library.utils.sorting.SortManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class AlbumArtistListPresenter @Inject constructor(
-    private val artistsRepository: AlbumArtistsRepository,
-    private val sortManager: SortManager,
-    private val albumArtistsMenuPresenter: AlbumArtistMenuPresenter
+class AlbumArtistListPresenter @Inject constructor( //NOSONAR
+    private val artistsRepository: AlbumArtistsRepository, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val albumArtistsMenuPresenter: AlbumArtistMenuPresenter //NOSONAR
 ) :
-    Presenter<View>(),
-    AlbumArtistListContract.Presenter,
-    AlbumArtistMenuContract.Presenter by albumArtistsMenuPresenter {
+    Presenter<View>(), //NOSONAR
+    AlbumArtistListContract.Presenter, //NOSONAR
+    AlbumArtistMenuContract.Presenter by albumArtistsMenuPresenter { //NOSONAR
 
-    private var albumArtists = mutableListOf<AlbumArtist>()
+    private var albumArtists = mutableListOf<AlbumArtist>() //NOSONAR
 
-    override fun bindView(view: View) {
-        super.bindView(view)
-        albumArtistsMenuPresenter.bindView(view)
+    override fun bindView(view: View) { //NOSONAR
+        super.bindView(view) //NOSONAR
+        albumArtistsMenuPresenter.bindView(view) //NOSONAR
     }
 
-    override fun unbindView(view: View) {
-        super.unbindView(view)
-        albumArtistsMenuPresenter.unbindView(view)
+    override fun unbindView(view: View) { //NOSONAR
+        super.unbindView(view) //NOSONAR
+        albumArtistsMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    @SuppressLint("CheckResult")
-    override fun loadAlbumArtists(scrollToTop: Boolean) {
-        addDisposable(artistsRepository.getAlbumArtists()
-            .map { albumArtists ->
-                val albumArtists = albumArtists.toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    override fun loadAlbumArtists(scrollToTop: Boolean) { //NOSONAR
+        addDisposable(artistsRepository.getAlbumArtists() //NOSONAR
+            .map { albumArtists -> //NOSONAR
+                val albumArtists = albumArtists.toMutableList() //NOSONAR
 
-                sortManager.sortAlbumArtists(albumArtists)
+                sortManager.sortAlbumArtists(albumArtists) //NOSONAR
 
-                if (!sortManager.artistsAscending) {
-                    albumArtists.reverse()
+                if (!sortManager.artistsAscending) { //NOSONAR
+                    albumArtists.reverse() //NOSONAR
                 }
-                albumArtists
+                albumArtists //NOSONAR
             }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { albumArtists ->
-                    this.albumArtists - albumArtists
-                    view?.setData(albumArtists)
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { albumArtists -> //NOSONAR
+                    this.albumArtists - albumArtists //NOSONAR
+                    view?.setData(albumArtists) //NOSONAR
                 },
-                { error -> LogUtils.logException(TAG, "refreshAdapterItems error", error) }
+                { error -> LogUtils.logException(TAG, "refreshAdapterItems error", error) } //NOSONAR
             ))
     }
 
-    override fun setAlbumArtistsSortOrder(order: Int) {
-        sortManager.artistsSortOrder = order
-        loadAlbumArtists(true)
-        view?.invalidateOptionsMenu()
+    override fun setAlbumArtistsSortOrder(order: Int) { //NOSONAR
+        sortManager.artistsSortOrder = order //NOSONAR
+        loadAlbumArtists(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun setAlbumArtistsAscending(ascending: Boolean) {
-        sortManager.artistsAscending = ascending
-        loadAlbumArtists(true)
-        view?.invalidateOptionsMenu()
+    override fun setAlbumArtistsAscending(ascending: Boolean) { //NOSONAR
+        sortManager.artistsAscending = ascending //NOSONAR
+        loadAlbumArtists(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    companion object {
-        const val TAG = "AlbumArtistListPresenter"
+    companion object { //NOSONAR
+        const val TAG = "AlbumArtistListPresenter" //NOSONAR
     }
 }

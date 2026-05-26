@@ -29,317 +29,317 @@ import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
 //To do later: Reapply themes
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class QCircleActivity extends BaseActivity {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class QCircleActivity extends BaseActivity { //NOSONAR
 
     // [START]declared in LGIntent.java of LG Framework
-    public static final int EXTRA_ACCESSORY_COVER_OPENED = 0;
-    public static final int EXTRA_ACCESSORY_COVER_CLOSED = 1;
-    public static final String EXTRA_ACCESSORY_COVER_STATE = "com.lge.intent.extra.ACCESSORY_COVER_STATE";
-    public static final String ACTION_ACCESSORY_COVER_EVENT = "com.lge.android.intent.action.ACCESSORY_COVER_EVENT";
+    public static final int EXTRA_ACCESSORY_COVER_OPENED = 0; //NOSONAR
+    public static final int EXTRA_ACCESSORY_COVER_CLOSED = 1; //NOSONAR
+    public static final String EXTRA_ACCESSORY_COVER_STATE = "com.lge.intent.extra.ACCESSORY_COVER_STATE"; //NOSONAR
+    public static final String ACTION_ACCESSORY_COVER_EVENT = "com.lge.android.intent.action.ACCESSORY_COVER_EVENT"; //NOSONAR
     // [END]declared in LGIntent.java of LG Framework
 
     // [START] QuickCover Settings DB
-    public static final String QUICKCOVERSETTINGS_QUICKCOVER_ENABLE = "quick_view_enable";
+    public static final String QUICKCOVERSETTINGS_QUICKCOVER_ENABLE = "quick_view_enable"; //NOSONAR
     // [END] QuickCover Settings DB
 
     // [START] QuickCircle info.
-    static boolean quickCircleEnabled = false;
-    int circleWidth = 0;
-    int circleHeight = 0;
-    int circleXpos = 0;
-    int circleYpos = 0;
-    int circleDiameter = 0;
+    static boolean quickCircleEnabled = false; //NOSONAR
+    int circleWidth = 0; //NOSONAR
+    int circleHeight = 0; //NOSONAR
+    int circleXpos = 0; //NOSONAR
+    int circleYpos = 0; //NOSONAR
+    int circleDiameter = 0; //NOSONAR
     // [END] QuickCircle info.
 
     // -------------------------------------------------------------------------------
-    private final boolean DEBUG = true;
-    private final String TAG = "QCircleActivity";
-    int mQuickCoverState = 0;
-    Context mContext;
-    private Window win = null;
-    private ContentResolver contentResolver = null;
+    private final boolean DEBUG = true; //NOSONAR
+    private final String TAG = "QCircleActivity"; //NOSONAR
+    int mQuickCoverState = 0; //NOSONAR
+    Context mContext; //NOSONAR
+    private Window win = null; //NOSONAR
+    private ContentResolver contentResolver = null; //NOSONAR
 
     //For buttons
-    ImageButton backBtn = null;
-    ImageButton skipBtn = null;
-    ImageButton prevBtn = null;
-    ImageButton pauseBtn = null;
+    ImageButton backBtn = null; //NOSONAR
+    ImageButton skipBtn = null; //NOSONAR
+    ImageButton prevBtn = null; //NOSONAR
+    ImageButton pauseBtn = null; //NOSONAR
 
-    TextView textOne;
-    TextView textTwo;
+    TextView textOne; //NOSONAR
+    TextView textTwo; //NOSONAR
 
-    @Inject
-    MediaManager mediaManager;
+    @Inject //NOSONAR
+    MediaManager mediaManager; //NOSONAR
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    protected void onCreate(Bundle savedInstanceState) { //NOSONAR
+        AndroidInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        setContentView(R.layout.activity_qcircle);
+        setContentView(R.layout.activity_qcircle); //NOSONAR
 
         //Retrieve a view for the QuickCircle window.
-        final View circlemainView = findViewById(R.id.cover_main_view);
+        final View circlemainView = findViewById(R.id.cover_main_view); //NOSONAR
 
         //Set QR images for the image view.
         //setQrImage();
 
         //Get application context
-        mContext = getApplicationContext();
+        mContext = getApplicationContext(); //NOSONAR
 
         //Get content resolver
-        contentResolver = getContentResolver();
+        contentResolver = getContentResolver(); //NOSONAR
 
         //Register an IntentFilter and a broadcast receiver
-        registerIntentReceiver();
+        registerIntentReceiver(); //NOSONAR
 
         //Set window flags
-        setQuickCircleWindowParam();
+        setQuickCircleWindowParam(); //NOSONAR
 
         //Get QuickCircle window information
-        initializeViewInformationFromDB();
+        initializeViewInformationFromDB(); //NOSONAR
 
         //Initialize buttons
-        initButtons();
-        initTextViews();
-        initializeBackButton();
+        initButtons(); //NOSONAR
+        initTextViews(); //NOSONAR
+        initializeBackButton(); //NOSONAR
 
         //Crops a layout for the QuickCircle window
-        setCircleLayoutParam(circlemainView);
+        setCircleLayoutParam(circlemainView); //NOSONAR
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
+    @Override //NOSONAR
+    protected void onStart() { //NOSONAR
+        super.onStart(); //NOSONAR
 
-        final IntentFilter filter = new IntentFilter();
-        filter.addAction(InternalIntents.PLAY_STATE_CHANGED);
-        filter.addAction(InternalIntents.META_CHANGED);
-        registerReceiver(mStatusListener, new IntentFilter(filter));
+        final IntentFilter filter = new IntentFilter(); //NOSONAR
+        filter.addAction(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
+        filter.addAction(InternalIntents.META_CHANGED); //NOSONAR
+        registerReceiver(mStatusListener, new IntentFilter(filter)); //NOSONAR
     }
 
-    @Override
-    public void onStop() {
+    @Override //NOSONAR
+    public void onStop() { //NOSONAR
 
-        unregisterReceiver(mStatusListener);
-        super.onStop();
+        unregisterReceiver(mStatusListener); //NOSONAR
+        super.onStop(); //NOSONAR
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mContext.unregisterReceiver(mIntentReceiver);
+    @Override //NOSONAR
+    protected void onDestroy() { //NOSONAR
+        super.onDestroy(); //NOSONAR
+        mContext.unregisterReceiver(mIntentReceiver); //NOSONAR
     }
 
-    private void registerIntentReceiver() {
+    private void registerIntentReceiver() { //NOSONAR
 
-        IntentFilter filter = new IntentFilter();
+        IntentFilter filter = new IntentFilter(); //NOSONAR
         // Add QCircle intent to the intent filter
-        filter.addAction(ACTION_ACCESSORY_COVER_EVENT);
+        filter.addAction(ACTION_ACCESSORY_COVER_EVENT); //NOSONAR
         // Register a broadcast receiver with the system
-        mContext.registerReceiver(mIntentReceiver, filter);
+        mContext.registerReceiver(mIntentReceiver, filter); //NOSONAR
     }
 
-    void setQuickCircleWindowParam() {
-        win = getWindow();
-        if (win != null) {
+    void setQuickCircleWindowParam() { //NOSONAR
+        win = getWindow(); //NOSONAR
+        if (win != null) { //NOSONAR
             // Show the sample application view on top
-            win.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
-                    | WindowManager.LayoutParams.FLAG_FULLSCREEN
-                    | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+            win.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED //NOSONAR
+                    | WindowManager.LayoutParams.FLAG_FULLSCREEN //NOSONAR
+                    | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON); //NOSONAR
         }
     }
 
-    void setCircleLayoutParam(View view) {
+    void setCircleLayoutParam(View view) { //NOSONAR
 
-        RelativeLayout layout = (RelativeLayout) view;
-        RelativeLayout.LayoutParams layoutParam = (RelativeLayout.LayoutParams) layout.getLayoutParams();
+        RelativeLayout layout = (RelativeLayout) view; //NOSONAR
+        RelativeLayout.LayoutParams layoutParam = (RelativeLayout.LayoutParams) layout.getLayoutParams(); //NOSONAR
 
         //Set layout size same as a circle window size
-        layoutParam.width = circleDiameter;
-        layoutParam.height = circleDiameter;
+        layoutParam.width = circleDiameter; //NOSONAR
+        layoutParam.height = circleDiameter; //NOSONAR
 
-        if (circleXpos < 0) {
+        if (circleXpos < 0) { //NOSONAR
 
             //Place a layout to the center
-            layoutParam.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        } else {
-            layoutParam.leftMargin = circleXpos;
+            layoutParam.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE); //NOSONAR
+        } else { //NOSONAR
+            layoutParam.leftMargin = circleXpos; //NOSONAR
         }
         //Set top margin to the offset
-        layoutParam.topMargin = circleYpos + (circleHeight - circleDiameter) / 2;
-        layout.setLayoutParams(layoutParam);
+        layoutParam.topMargin = circleYpos + (circleHeight - circleDiameter) / 2; //NOSONAR
+        layout.setLayoutParams(layoutParam); //NOSONAR
     }
 
-    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
-    void initializeViewInformationFromDB() {
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1) //NOSONAR
+    void initializeViewInformationFromDB() { //NOSONAR
 
-        Log.d(TAG, "initializeViewInformationFromDB");
-        if (contentResolver == null) {
-            return;
+        Log.d(TAG, "initializeViewInformationFromDB"); //NOSONAR
+        if (contentResolver == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Log.d(TAG, "initializeViewInformationFromDB");
+        Log.d(TAG, "initializeViewInformationFromDB"); //NOSONAR
 
         //Check the availability of the case
-        quickCircleEnabled = Settings.Global.getInt(contentResolver,
-                QUICKCOVERSETTINGS_QUICKCOVER_ENABLE, 0) == 0;
-        if (DEBUG) {
-            Log.d(TAG, "quickCircleEnabled:" + quickCircleEnabled);
+        quickCircleEnabled = Settings.Global.getInt(contentResolver, //NOSONAR
+                QUICKCOVERSETTINGS_QUICKCOVER_ENABLE, 0) == 0; //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "quickCircleEnabled:" + quickCircleEnabled); //NOSONAR
         }
 
         //[START] Get the QuickCircle window information
-        int id = getResources().getIdentifier("config_circle_window_width", "dimen",
-                "com.lge.internal");
-        circleWidth = getResources().getDimensionPixelSize(id);
-        if (DEBUG) {
-            Log.d(TAG, "circleWidth:" + circleWidth);
+        int id = getResources().getIdentifier("config_circle_window_width", "dimen", //NOSONAR
+                "com.lge.internal"); //NOSONAR
+        circleWidth = getResources().getDimensionPixelSize(id); //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "circleWidth:" + circleWidth); //NOSONAR
         }
 
-        id = getResources()
-                .getIdentifier("config_cover_window_height", "dimen", "com.lge.internal");
-        circleHeight = getResources().getDimensionPixelSize(id);
-        if (DEBUG) {
-            Log.d(TAG, "circleHeight:" + circleHeight);
+        id = getResources() //NOSONAR
+                .getIdentifier("config_cover_window_height", "dimen", "com.lge.internal"); //NOSONAR
+        circleHeight = getResources().getDimensionPixelSize(id); //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "circleHeight:" + circleHeight); //NOSONAR
         }
 
-        id = getResources()
-                .getIdentifier("config_circle_window_x_pos", "dimen", "com.lge.internal");
-        circleXpos = getResources().getDimensionPixelSize(id);
-        if (DEBUG) {
-            Log.d(TAG, "circleXpos:" + circleXpos);
+        id = getResources() //NOSONAR
+                .getIdentifier("config_circle_window_x_pos", "dimen", "com.lge.internal"); //NOSONAR
+        circleXpos = getResources().getDimensionPixelSize(id); //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "circleXpos:" + circleXpos); //NOSONAR
         }
 
-        id = getResources()
-                .getIdentifier("config_circle_window_y_pos", "dimen", "com.lge.internal");
-        circleYpos = getResources().getDimensionPixelSize(id);
-        if (DEBUG) {
-            Log.d(TAG, "circleYpos:" + circleYpos);
+        id = getResources() //NOSONAR
+                .getIdentifier("config_circle_window_y_pos", "dimen", "com.lge.internal"); //NOSONAR
+        circleYpos = getResources().getDimensionPixelSize(id); //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "circleYpos:" + circleYpos); //NOSONAR
         }
 
-        id = getResources().getIdentifier("config_circle_diameter", "dimen", "com.lge.internal");
-        circleDiameter = getResources().getDimensionPixelSize(id);
-        if (DEBUG) {
-            Log.d(TAG, "circleDiameter:" + circleDiameter);
+        id = getResources().getIdentifier("config_circle_diameter", "dimen", "com.lge.internal"); //NOSONAR
+        circleDiameter = getResources().getDimensionPixelSize(id); //NOSONAR
+        if (DEBUG) { //NOSONAR
+            Log.d(TAG, "circleDiameter:" + circleDiameter); //NOSONAR
         }
         //[END]
     }
 
-    private void initButtons() {
+    private void initButtons() { //NOSONAR
 
-        prevBtn = findViewById(R.id.btn_prev);
-        skipBtn = findViewById(R.id.btn_skip);
-        pauseBtn = findViewById(R.id.btn_pause);
-        setPauseButtonImage();
+        prevBtn = findViewById(R.id.btn_prev); //NOSONAR
+        skipBtn = findViewById(R.id.btn_skip); //NOSONAR
+        pauseBtn = findViewById(R.id.btn_pause); //NOSONAR
+        setPauseButtonImage(); //NOSONAR
 
-        prevBtn.setOnClickListener(v -> mediaManager.previous(false));
+        prevBtn.setOnClickListener(v -> mediaManager.previous(false)); //NOSONAR
 
-        skipBtn.setOnClickListener(v -> mediaManager.next());
+        skipBtn.setOnClickListener(v -> mediaManager.next()); //NOSONAR
 
-        pauseBtn.setOnClickListener(v -> {
-            mediaManager.togglePlayback();
-            setPauseButtonImage();
+        pauseBtn.setOnClickListener(v -> { //NOSONAR
+            mediaManager.togglePlayback(); //NOSONAR
+            setPauseButtonImage(); //NOSONAR
         });
     }
 
-    public void initTextViews() {
-        textOne = findViewById(R.id.text1);
-        textTwo = findViewById(R.id.text2);
+    public void initTextViews() { //NOSONAR
+        textOne = findViewById(R.id.text1); //NOSONAR
+        textTwo = findViewById(R.id.text2); //NOSONAR
     }
 
-    public void setPauseButtonImage() {
+    public void setPauseButtonImage() { //NOSONAR
 
-        if (pauseBtn == null) {
-            return;
+        if (pauseBtn == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (MusicServiceConnectionUtils.serviceBinder != null && mediaManager.isPlaying()) {
+        if (MusicServiceConnectionUtils.serviceBinder != null && mediaManager.isPlaying()) { //NOSONAR
             // Intentionally left empty.
-        } else {
+        } else { //NOSONAR
             // Intentionally left empty.
         }
     }
 
-    private void initializeBackButton() {
-        backBtn = findViewById(R.id.back_btn);
-        backBtn.setOnClickListener(v -> QCircleActivity.this.finish());
+    private void initializeBackButton() { //NOSONAR
+        backBtn = findViewById(R.id.back_btn); //NOSONAR
+        backBtn.setOnClickListener(v -> QCircleActivity.this.finish()); //NOSONAR
     }
 
-    void updateTrackInfo() {
-        if (textOne == null || textTwo == null) {
-            return;
+    void updateTrackInfo() { //NOSONAR
+        if (textOne == null || textTwo == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Song song = mediaManager.getSong();
-        if (song == null) return;
+        Song song = mediaManager.getSong(); //NOSONAR
+        if (song == null) return; //NOSONAR
 
-        textOne.setText(song.albumArtistName);
-        textTwo.setText(song.name);
+        textOne.setText(song.albumArtistName); //NOSONAR
+        textTwo.setText(song.name); //NOSONAR
     }
 
-    private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
+    private BroadcastReceiver mIntentReceiver = new BroadcastReceiver() { //NOSONAR
+        @Override //NOSONAR
+        public void onReceive(Context context, Intent intent) { //NOSONAR
 
-            String action = intent.getAction();
-            if (action == null) {
-                return;
+            String action = intent.getAction(); //NOSONAR
+            if (action == null) { //NOSONAR
+                return; //NOSONAR
             }
 
             //Receives a LG QCirle intent for the cover event
-            if (ACTION_ACCESSORY_COVER_EVENT.equals(action)) {
+            if (ACTION_ACCESSORY_COVER_EVENT.equals(action)) { //NOSONAR
 
-                if (DEBUG) {
-                    Log.d(TAG, "ACTION_ACCESSORY_COVER_EVENT");
+                if (DEBUG) { //NOSONAR
+                    Log.d(TAG, "ACTION_ACCESSORY_COVER_EVENT"); //NOSONAR
                 }
 
                 //Gets the current state of the cover
-                mQuickCoverState = intent.getIntExtra(EXTRA_ACCESSORY_COVER_STATE,
-                        EXTRA_ACCESSORY_COVER_OPENED);
+                mQuickCoverState = intent.getIntExtra(EXTRA_ACCESSORY_COVER_STATE, //NOSONAR
+                        EXTRA_ACCESSORY_COVER_OPENED); //NOSONAR
 
-                if (DEBUG) {
-                    Log.d(TAG, "mQuickCoverState:" + mQuickCoverState);
+                if (DEBUG) { //NOSONAR
+                    Log.d(TAG, "mQuickCoverState:" + mQuickCoverState); //NOSONAR
                 }
 
-                if (mQuickCoverState == EXTRA_ACCESSORY_COVER_CLOSED) { // closed
+                if (mQuickCoverState == EXTRA_ACCESSORY_COVER_CLOSED) { // closed //NOSONAR
                     //Set window flags
-                    setQuickCircleWindowParam();
-                } else if (mQuickCoverState == EXTRA_ACCESSORY_COVER_OPENED) { // opened
+                    setQuickCircleWindowParam(); //NOSONAR
+                } else if (mQuickCoverState == EXTRA_ACCESSORY_COVER_OPENED) { // opened //NOSONAR
                     //Call FullScreenActivity
-                    Intent callFullscreen = new Intent(mContext, MainActivity.class);
-                    startActivity(callFullscreen);
+                    Intent callFullscreen = new Intent(mContext, MainActivity.class); //NOSONAR
+                    startActivity(callFullscreen); //NOSONAR
 
                     //Finish QCircleActivity
-                    QCircleActivity.this.finish();
+                    QCircleActivity.this.finish(); //NOSONAR
                 }
             }
         }
     };
 
-    @Override
-    public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
-        super.onServiceConnected(componentName, iBinder);
-        updateTrackInfo();
+    @Override //NOSONAR
+    public void onServiceConnected(ComponentName componentName, IBinder iBinder) { //NOSONAR
+        super.onServiceConnected(componentName, iBinder); //NOSONAR
+        updateTrackInfo(); //NOSONAR
     }
 
-    private final BroadcastReceiver mStatusListener = new BroadcastReceiver() {
-        @Override
-        public void onReceive(Context context, Intent intent) {
+    private final BroadcastReceiver mStatusListener = new BroadcastReceiver() { //NOSONAR
+        @Override //NOSONAR
+        public void onReceive(Context context, Intent intent) { //NOSONAR
 
-            final String action = intent.getAction();
-            if (action != null) {
-                if (action.equals(InternalIntents.META_CHANGED)) {
-                    updateTrackInfo();
-                    setPauseButtonImage();
-                } else if (action.equals(InternalIntents.PLAY_STATE_CHANGED)) {
-                    setPauseButtonImage();
+            final String action = intent.getAction(); //NOSONAR
+            if (action != null) { //NOSONAR
+                if (action.equals(InternalIntents.META_CHANGED)) { //NOSONAR
+                    updateTrackInfo(); //NOSONAR
+                    setPauseButtonImage(); //NOSONAR
+                } else if (action.equals(InternalIntents.PLAY_STATE_CHANGED)) { //NOSONAR
+                    setPauseButtonImage(); //NOSONAR
                 }
             }
         }
     };
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 }

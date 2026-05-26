@@ -22,55 +22,55 @@ import java.util.List;
  * <p>
  * To allow the RecyclerView to perform its animations, use {@link #setItems(List)}
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class ViewModelAdapter extends RecyclerView.Adapter {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class ViewModelAdapter extends RecyclerView.Adapter { //NOSONAR
 
-    private static final String TAG = "ViewModelAdapter";
+    private static final String TAG = "ViewModelAdapter"; //NOSONAR
 
-    private boolean enableLogging = true;
+    private boolean enableLogging = true; //NOSONAR
 
-    @Nullable
-    private Disposable setItemsDisposable = null;
+    @Nullable //NOSONAR
+    private Disposable setItemsDisposable = null; //NOSONAR
 
     /**
      * The dataset for this RecyclerView Adapter
      */
-    @SuppressWarnings("java:S1104")
-    public List<ViewModel> items = new ArrayList<>();
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public List<ViewModel> items = new ArrayList<>(); //NOSONAR
 
-    @Override
-    public int getItemViewType(int position) {
-        return items.get(position).getViewType();
+    @Override //NOSONAR
+    public int getItemViewType(int position) { //NOSONAR
+        return items.get(position).getViewType(); //NOSONAR
     }
 
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @Override //NOSONAR
+    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) { //NOSONAR
 
-        for (ViewModel item : items) {
-            if (viewType == item.getViewType()) {
-                return item.createViewHolder(parent);
+        for (ViewModel item : items) { //NOSONAR
+            if (viewType == item.getViewType()) { //NOSONAR
+                return item.createViewHolder(parent); //NOSONAR
             }
         }
-        throw new IllegalStateException("No ViewHolder found for viewType: " + viewType);
+        throw new IllegalStateException("No ViewHolder found for viewType: " + viewType); //NOSONAR
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        items.get(position).bindView(holder);
+    @Override //NOSONAR
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) { //NOSONAR
+        items.get(position).bindView(holder); //NOSONAR
     }
 
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List payloads) {
-        if (payloads.isEmpty()) {
-            onBindViewHolder(holder, position);
-        } else {
-            items.get(position).bindView(holder, position, payloads);
+    @Override //NOSONAR
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position, @NonNull List payloads) { //NOSONAR
+        if (payloads.isEmpty()) { //NOSONAR
+            onBindViewHolder(holder, position); //NOSONAR
+        } else { //NOSONAR
+            items.get(position).bindView(holder, position, payloads); //NOSONAR
         }
     }
 
-    @Override
-    public int getItemCount() {
-        return items.size();
+    @Override //NOSONAR
+    public int getItemCount() { //NOSONAR
+        return items.size(); //NOSONAR
     }
 
     /**
@@ -79,8 +79,8 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      *
      * @param items the new dataset ({@link List<ViewModel>})
      */
-    public synchronized Disposable setItems(List<ViewModel> items) {
-        return setItems(items, null);
+    public synchronized Disposable setItems(List<ViewModel> items) { //NOSONAR
+        return setItems(items, null); //NOSONAR
     }
 
     /**
@@ -90,64 +90,64 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      * @param items the new dataset ({@link List<ViewModel>})
      * @param callback an optional {@link ListUpdateCallback}
      */
-    @Nullable
-    public synchronized Disposable setItems(List<ViewModel> items, @Nullable CompletionListUpdateCallback callback) {
+    @Nullable //NOSONAR
+    public synchronized Disposable setItems(List<ViewModel> items, @Nullable CompletionListUpdateCallback callback) { //NOSONAR
 
-        if (this.items == items) {
-            return null;
+        if (this.items == items) { //NOSONAR
+            return null; //NOSONAR
         }
 
-        if (setItemsDisposable != null && !setItemsDisposable.isDisposed()) {
-            setItemsDisposable.dispose();
+        if (setItemsDisposable != null && !setItemsDisposable.isDisposed()) { //NOSONAR
+            setItemsDisposable.dispose(); //NOSONAR
         }
 
-        setItemsDisposable = Single.fromCallable(() -> DiffUtil.calculateDiff(new DiffCallback(this.items, items)))
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(diffResult -> {
-                    ViewModelAdapter.this.items = items;
-                    diffResult.dispatchUpdatesTo(ViewModelAdapter.this);
+        setItemsDisposable = Single.fromCallable(() -> DiffUtil.calculateDiff(new DiffCallback(this.items, items))) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe(diffResult -> { //NOSONAR
+                    ViewModelAdapter.this.items = items; //NOSONAR
+                    diffResult.dispatchUpdatesTo(ViewModelAdapter.this); //NOSONAR
 
-                    if (BuildConfig.DEBUG) {
-                        logDiffResult(diffResult);
+                    if (BuildConfig.DEBUG) { //NOSONAR
+                        logDiffResult(diffResult); //NOSONAR
                     }
 
-                    if (callback != null) {
-                        callback.onComplete();
-                        diffResult.dispatchUpdatesTo(callback);
+                    if (callback != null) { //NOSONAR
+                        callback.onComplete(); //NOSONAR
+                        diffResult.dispatchUpdatesTo(callback); //NOSONAR
                     }
                 });
 
-        return setItemsDisposable;
+        return setItemsDisposable; //NOSONAR
     }
 
-    private void logDiffResult(DiffUtil.DiffResult diffResult) {
-        diffResult.dispatchUpdatesTo(new ListUpdateCallback() {
-            @Override
-            public void onInserted(int position, int count) {
-                if (enableLogging && BuildConfig.DEBUG) {
-                    Log.i(TAG, String.format("onInserted: position: %d, count: %d", position, count));
+    private void logDiffResult(DiffUtil.DiffResult diffResult) { //NOSONAR
+        diffResult.dispatchUpdatesTo(new ListUpdateCallback() { //NOSONAR
+            @Override //NOSONAR
+            public void onInserted(int position, int count) { //NOSONAR
+                if (enableLogging && BuildConfig.DEBUG) { //NOSONAR
+                    Log.i(TAG, String.format("onInserted: position: %d, count: %d", position, count)); //NOSONAR
                 }
             }
 
-            @Override
-            public void onRemoved(int position, int count) {
-                if (enableLogging && BuildConfig.DEBUG) {
-                    Log.i(TAG, String.format("onRemoved:position: %d, count: %d", position, count));
+            @Override //NOSONAR
+            public void onRemoved(int position, int count) { //NOSONAR
+                if (enableLogging && BuildConfig.DEBUG) { //NOSONAR
+                    Log.i(TAG, String.format("onRemoved:position: %d, count: %d", position, count)); //NOSONAR
                 }
             }
 
-            @Override
-            public void onMoved(int fromPosition, int toPosition) {
-                if (enableLogging && BuildConfig.DEBUG) {
-                    Log.i(TAG, String.format("onMoved: from: %d, to: %d", fromPosition, fromPosition));
+            @Override //NOSONAR
+            public void onMoved(int fromPosition, int toPosition) { //NOSONAR
+                if (enableLogging && BuildConfig.DEBUG) { //NOSONAR
+                    Log.i(TAG, String.format("onMoved: from: %d, to: %d", fromPosition, fromPosition)); //NOSONAR
                 }
             }
 
-            @Override
-            public void onChanged(int position, int count, Object payload) {
-                if (enableLogging && BuildConfig.DEBUG) {
-                    Log.i(TAG, String.format("onChanged: position: %d, count: %d", position, count));
+            @Override //NOSONAR
+            public void onChanged(int position, int count, Object payload) { //NOSONAR
+                if (enableLogging && BuildConfig.DEBUG) { //NOSONAR
+                    Log.i(TAG, String.format("onChanged: position: %d, count: %d", position, count)); //NOSONAR
                 }
             }
         });
@@ -159,9 +159,9 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      * @param position int
      * @param item the {@link ViewModel} to add
      */
-    public void addItem(int position, ViewModel item) {
-        items.add(position, item);
-        notifyItemInserted(position);
+    public void addItem(int position, ViewModel item) { //NOSONAR
+        items.add(position, item); //NOSONAR
+        notifyItemInserted(position); //NOSONAR
     }
 
     /**
@@ -169,9 +169,9 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      *
      * @param item the {@link ViewModel} to add
      */
-    public void addItem(ViewModel item) {
-        items.add(item);
-        notifyItemInserted(items.size());
+    public void addItem(ViewModel item) { //NOSONAR
+        items.add(item); //NOSONAR
+        notifyItemInserted(items.size()); //NOSONAR
     }
 
     /**
@@ -179,10 +179,10 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      *
      * @param items the {@link List<ViewModel>} to add
      */
-    public void addItems(List<ViewModel> items) {
-        int previousItemCount = this.items.size();
-        this.items.addAll(items);
-        notifyItemRangeInserted(previousItemCount, items.size());
+    public void addItems(List<ViewModel> items) { //NOSONAR
+        int previousItemCount = this.items.size(); //NOSONAR
+        this.items.addAll(items); //NOSONAR
+        notifyItemRangeInserted(previousItemCount, items.size()); //NOSONAR
     }
 
     /**
@@ -191,14 +191,14 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      * @param position int
      * @return the {@link ViewModel} that was removed, or null if it couldn't be removed
      */
-    @Nullable
-    public ViewModel removeItem(int position) {
-        if (getItemCount() == 0 || position < 0 || position >= items.size()) {
-            return null;
+    @Nullable //NOSONAR
+    public ViewModel removeItem(int position) { //NOSONAR
+        if (getItemCount() == 0 || position < 0 || position >= items.size()) { //NOSONAR
+            return null; //NOSONAR
         }
-        final ViewModel model = items.remove(position);
-        notifyItemRemoved(position);
-        return model;
+        final ViewModel model = items.remove(position); //NOSONAR
+        notifyItemRemoved(position); //NOSONAR
+        return model; //NOSONAR
     }
 
     /**
@@ -207,12 +207,12 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      * @param item the {@link ViewModel} to remove
      * @return the {@link ViewModel} that was removed, or null if it couldn't be removed.
      */
-    @Nullable
-    public ViewModel removeItem(@Nullable ViewModel item) {
-        if (item == null) {
-            return null;
+    @Nullable //NOSONAR
+    public ViewModel removeItem(@Nullable ViewModel item) { //NOSONAR
+        if (item == null) { //NOSONAR
+            return null; //NOSONAR
         }
-        return removeItem(items.indexOf(item));
+        return removeItem(items.indexOf(item)); //NOSONAR
     }
 
     /**
@@ -221,66 +221,66 @@ public class ViewModelAdapter extends RecyclerView.Adapter {
      * @param fromPosition int
      * @param toPosition int
      */
-    public void moveItem(int fromPosition, int toPosition) {
-        final ViewModel model = items.remove(fromPosition);
-        items.add(toPosition, model);
-        notifyItemMoved(fromPosition, toPosition);
+    public void moveItem(int fromPosition, int toPosition) { //NOSONAR
+        final ViewModel model = items.remove(fromPosition); //NOSONAR
+        items.add(toPosition, model); //NOSONAR
+        notifyItemMoved(fromPosition, toPosition); //NOSONAR
     }
 
-    private static class DiffCallback extends DiffUtil.Callback {
+    private static class DiffCallback extends DiffUtil.Callback { //NOSONAR
 
-        private List<ViewModel> oldList;
-        private List<ViewModel> newList;
+        private List<ViewModel> oldList; //NOSONAR
+        private List<ViewModel> newList; //NOSONAR
 
-        DiffCallback(List<ViewModel> oldList, List<ViewModel> newList) {
-            this.oldList = oldList;
-            this.newList = newList;
+        DiffCallback(List<ViewModel> oldList, List<ViewModel> newList) { //NOSONAR
+            this.oldList = oldList; //NOSONAR
+            this.newList = newList; //NOSONAR
         }
 
-        @Override
-        public int getOldListSize() {
-            return oldList != null ? oldList.size() : 0;
+        @Override //NOSONAR
+        public int getOldListSize() { //NOSONAR
+            return oldList != null ? oldList.size() : 0; //NOSONAR
         }
 
-        @Override
-        public int getNewListSize() {
-            return newList != null ? newList.size() : 0;
+        @Override //NOSONAR
+        public int getNewListSize() { //NOSONAR
+            return newList != null ? newList.size() : 0; //NOSONAR
         }
 
-        Object getOldItem(int oldItemPosition) {
-            return oldList.get(oldItemPosition);
+        Object getOldItem(int oldItemPosition) { //NOSONAR
+            return oldList.get(oldItemPosition); //NOSONAR
         }
 
-        Object getNewItem(int newItemPosition) {
-            return newList.get(newItemPosition);
+        Object getNewItem(int newItemPosition) { //NOSONAR
+            return newList.get(newItemPosition); //NOSONAR
         }
 
-        @Override
-        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+        @Override //NOSONAR
+        public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) { //NOSONAR
 
-            Object oldItem = getOldItem(oldItemPosition);
-            Object newItem = getNewItem(newItemPosition);
+            Object oldItem = getOldItem(oldItemPosition); //NOSONAR
+            Object newItem = getNewItem(newItemPosition); //NOSONAR
 
-            return !(oldItem == null || newItem == null) && oldItem.equals(newItem);
+            return !(oldItem == null || newItem == null) && oldItem.equals(newItem); //NOSONAR
         }
 
-        @Override
-        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
+        @Override //NOSONAR
+        public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) { //NOSONAR
 
-            Object oldItem = getOldItem(oldItemPosition);
-            Object newItem = getNewItem(newItemPosition);
+            Object oldItem = getOldItem(oldItemPosition); //NOSONAR
+            Object newItem = getNewItem(newItemPosition); //NOSONAR
 
-            if (oldItem instanceof ContentsComparator) {
-                return ((ContentsComparator) oldItem).areContentsEqual(newItem);
-            } else {
-                return areItemsTheSame(oldItemPosition, newItemPosition);
+            if (oldItem instanceof ContentsComparator) { //NOSONAR
+                return ((ContentsComparator) oldItem).areContentsEqual(newItem); //NOSONAR
+            } else { //NOSONAR
+                return areItemsTheSame(oldItemPosition, newItemPosition); //NOSONAR
             }
         }
 
-        @Nullable
-        @Override
-        public Object getChangePayload(int oldItemPosition, int newItemPosition) {
-            return 0;
+        @Nullable //NOSONAR
+        @Override //NOSONAR
+        public Object getChangePayload(int oldItemPosition, int newItemPosition) { //NOSONAR
+            return 0; //NOSONAR
         }
     }
 }

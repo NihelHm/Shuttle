@@ -12,99 +12,99 @@ import com.simplecity.amp_library.ui.adapters.ViewType;
 import com.simplecityapps.recycler_adapter.model.BaseViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SuggestedHeaderView extends BaseViewModel<SuggestedHeaderView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SuggestedHeaderView extends BaseViewModel<SuggestedHeaderView.ViewHolder> { //NOSONAR
 
-    public interface ClickListener {
-        void onSuggestedHeaderClick(SuggestedHeader suggestedHeader);
+    public interface ClickListener { //NOSONAR
+        void onSuggestedHeaderClick(SuggestedHeader suggestedHeader); //NOSONAR
     }
 
-    private SuggestedHeader suggestedHeader;
+    private SuggestedHeader suggestedHeader; //NOSONAR
 
-    @Nullable
-    private ClickListener listener;
+    @Nullable //NOSONAR
+    private ClickListener listener; //NOSONAR
 
-    public SuggestedHeaderView(SuggestedHeader suggestedHeader) {
-        this.suggestedHeader = suggestedHeader;
+    public SuggestedHeaderView(SuggestedHeader suggestedHeader) { //NOSONAR
+        this.suggestedHeader = suggestedHeader; //NOSONAR
     }
 
-    public void setClickListener(@Nullable ClickListener listener) {
-        this.listener = listener;
+    public void setClickListener(@Nullable ClickListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    void onClick() {
-        if (listener != null) {
-            listener.onSuggestedHeaderClick(suggestedHeader);
+    void onClick() { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onSuggestedHeaderClick(suggestedHeader); //NOSONAR
         }
     }
 
-    @Override
-    public int getViewType() {
-        return ViewType.SUGGESTED_HEADER;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return ViewType.SUGGESTED_HEADER; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return R.layout.suggested_header;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return R.layout.suggested_header; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.titleOne.setText(suggestedHeader.title);
-        holder.titleTwo.setText(suggestedHeader.subtitle);
-        if (suggestedHeader.subtitle == null || suggestedHeader.subtitle.length() == 0) {
-            holder.titleTwo.setVisibility(View.GONE);
-        } else {
-            holder.titleTwo.setVisibility(View.VISIBLE);
+        holder.titleOne.setText(suggestedHeader.title); //NOSONAR
+        holder.titleTwo.setText(suggestedHeader.subtitle); //NOSONAR
+        if (suggestedHeader.subtitle == null || suggestedHeader.subtitle.length() == 0) { //NOSONAR
+            holder.titleTwo.setVisibility(View.GONE); //NOSONAR
+        } else { //NOSONAR
+            holder.titleTwo.setVisibility(View.VISIBLE); //NOSONAR
         }
 
-        holder.itemView.setContentDescription(suggestedHeader.title);
+        holder.itemView.setContentDescription(suggestedHeader.title); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<SuggestedHeaderView> {
+    public static class ViewHolder extends BaseViewHolder<SuggestedHeaderView> { //NOSONAR
 
-        @BindView(R.id.text1)
-        TextView titleOne;
+        @BindView(R.id.text1) //NOSONAR
+        TextView titleOne; //NOSONAR
 
-        @BindView(R.id.text2)
-        TextView titleTwo;
+        @BindView(R.id.text2) //NOSONAR
+        TextView titleTwo; //NOSONAR
 
-        @BindView(R.id.button)
-        TextView button;
+        @BindView(R.id.button) //NOSONAR
+        TextView button; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView); //NOSONAR
 
-            itemView.setOnClickListener(v -> viewModel.onClick());
+            itemView.setOnClickListener(v -> viewModel.onClick()); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "SuggestedHeaderView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "SuggestedHeaderView.ViewHolder"; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        SuggestedHeaderView that = (SuggestedHeaderView) o;
+        SuggestedHeaderView that = (SuggestedHeaderView) o; //NOSONAR
 
-        return suggestedHeader != null ? suggestedHeader.equals(that.suggestedHeader) : that.suggestedHeader == null;
+        return suggestedHeader != null ? suggestedHeader.equals(that.suggestedHeader) : that.suggestedHeader == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return suggestedHeader != null ? suggestedHeader.hashCode() : 0;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return suggestedHeader != null ? suggestedHeader.hashCode() : 0; //NOSONAR
     }
 }

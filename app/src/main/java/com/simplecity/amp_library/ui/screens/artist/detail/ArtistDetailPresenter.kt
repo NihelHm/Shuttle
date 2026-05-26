@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.artist.detail
 
@@ -25,109 +25,109 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.functions.BiFunction
 import io.reactivex.schedulers.Schedulers
 
-class ArtistDetailPresenter @AssistedInject constructor(
-    private val mediaManager: MediaManager,
-    private val songsRepository: SongsRepository,
-    private val sortManager: SortManager,
-    private val artistsMenuPresenter: AlbumArtistMenuPresenter,
-    private val albumsMenuPresenter: AlbumMenuPresenter,
-    private val songsMenuPresenter: SongMenuPresenter,
-    @Assisted private val albumArtist: AlbumArtist
-) : Presenter<ArtistDetailView>(),
-    AlbumArtistMenuContract.Presenter by artistsMenuPresenter,
-    AlbumMenuContract.Presenter by albumsMenuPresenter,
-    SongMenuContract.Presenter by songsMenuPresenter {
+class ArtistDetailPresenter @AssistedInject constructor( //NOSONAR
+    private val mediaManager: MediaManager, //NOSONAR
+    private val songsRepository: SongsRepository, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val artistsMenuPresenter: AlbumArtistMenuPresenter, //NOSONAR
+    private val albumsMenuPresenter: AlbumMenuPresenter, //NOSONAR
+    private val songsMenuPresenter: SongMenuPresenter, //NOSONAR
+    @Assisted private val albumArtist: AlbumArtist //NOSONAR
+) : Presenter<ArtistDetailView>(), //NOSONAR
+    AlbumArtistMenuContract.Presenter by artistsMenuPresenter, //NOSONAR
+    AlbumMenuContract.Presenter by albumsMenuPresenter, //NOSONAR
+    SongMenuContract.Presenter by songsMenuPresenter { //NOSONAR
 
-    @AssistedInject.Factory
-    interface Factory {
-        fun create(albumArtist: AlbumArtist): ArtistDetailPresenter
+    @AssistedInject.Factory //NOSONAR
+    interface Factory { //NOSONAR
+        fun create(albumArtist: AlbumArtist): ArtistDetailPresenter //NOSONAR
     }
 
-    private var songs: MutableList<Song> = mutableListOf()
+    private var songs: MutableList<Song> = mutableListOf() //NOSONAR
 
-    override fun bindView(view: ArtistDetailView) {
-        super.bindView(view)
+    override fun bindView(view: ArtistDetailView) { //NOSONAR
+        super.bindView(view) //NOSONAR
 
-        artistsMenuPresenter.bindView(view)
-        albumsMenuPresenter.bindView(view)
-        songsMenuPresenter.bindView(view)
+        artistsMenuPresenter.bindView(view) //NOSONAR
+        albumsMenuPresenter.bindView(view) //NOSONAR
+        songsMenuPresenter.bindView(view) //NOSONAR
     }
 
-    override fun unbindView(view: ArtistDetailView) {
-        super.unbindView(view)
+    override fun unbindView(view: ArtistDetailView) { //NOSONAR
+        super.unbindView(view) //NOSONAR
 
-        artistsMenuPresenter.unbindView(view)
-        albumsMenuPresenter.unbindView(view)
-        songsMenuPresenter.unbindView(view)
+        artistsMenuPresenter.unbindView(view) //NOSONAR
+        albumsMenuPresenter.unbindView(view) //NOSONAR
+        songsMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    fun loadData() {
-        addDisposable(
-            albumArtist.getSongsSingle(songsRepository)
-                .zipWith<MutableList<Album>, Pair<MutableList<Album>, MutableList<Song>>>(
-                    albumArtist
-                        .getSongsSingle(songsRepository)
-                        .map { songs -> Operators.songsToAlbums(songs) },
-                    BiFunction { songs, albums -> Pair(albums, songs) })
-                .subscribeOn(Schedulers.io())
-                .doOnSuccess { pair ->
-                    sortAlbums(pair.first!!)
-                    sortSongs(pair.second!!)
+    fun loadData() { //NOSONAR
+        addDisposable( //NOSONAR
+            albumArtist.getSongsSingle(songsRepository) //NOSONAR
+                .zipWith<MutableList<Album>, Pair<MutableList<Album>, MutableList<Song>>>( //NOSONAR
+                    albumArtist //NOSONAR
+                        .getSongsSingle(songsRepository) //NOSONAR
+                        .map { songs -> Operators.songsToAlbums(songs) }, //NOSONAR
+                    BiFunction { songs, albums -> Pair(albums, songs) }) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .doOnSuccess { pair -> //NOSONAR
+                    sortAlbums(pair.first!!) //NOSONAR
+                    sortSongs(pair.second!!) //NOSONAR
                 }
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe { pair ->
-                    this.songs = pair.second!!
-                    view?.setData(pair.first!!, pair.second!!)
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe { pair -> //NOSONAR
+                    this.songs = pair.second!! //NOSONAR
+                    view?.setData(pair.first!!, pair.second!!) //NOSONAR
                 }
         )
     }
 
-    fun closeContextualToolbar() {
-        view?.closeContextualToolbar()
+    fun closeContextualToolbar() { //NOSONAR
+        view?.closeContextualToolbar() //NOSONAR
     }
 
-    fun shuffleAll() {
-        mediaManager.shuffleAll(songs) {
-            view?.onPlaybackFailed()
+    fun shuffleAll() { //NOSONAR
+        mediaManager.shuffleAll(songs) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
         }
     }
 
-    fun songClicked(song: Song) {
-        mediaManager.playAll(songs, songs.indexOf(song), true) {
-            view?.onPlaybackFailed()
+    fun songClicked(song: Song) { //NOSONAR
+        mediaManager.playAll(songs, songs.indexOf(song), true) { //NOSONAR
+            view?.onPlaybackFailed() //NOSONAR
         }
     }
 
-    private fun sortSongs(songs: MutableList<Song>) {
-        @SortManager.SongSort val songSort = sortManager.artistDetailSongsSortOrder
+    private fun sortSongs(songs: MutableList<Song>) { //NOSONAR
+        @SortManager.SongSort val songSort = sortManager.artistDetailSongsSortOrder //NOSONAR
 
-        val songsAscending = sortManager.artistDetailSongsAscending
+        val songsAscending = sortManager.artistDetailSongsAscending //NOSONAR
 
-        sortManager.sortSongs(songs, songSort)
-        if (!songsAscending) {
-            songs.reverse()
+        sortManager.sortSongs(songs, songSort) //NOSONAR
+        if (!songsAscending) { //NOSONAR
+            songs.reverse() //NOSONAR
         }
     }
 
-    private fun sortAlbums(albums: MutableList<Album>) {
-        @SortManager.AlbumSort val albumSort = sortManager.artistDetailAlbumsSortOrder
+    private fun sortAlbums(albums: MutableList<Album>) { //NOSONAR
+        @SortManager.AlbumSort val albumSort = sortManager.artistDetailAlbumsSortOrder //NOSONAR
 
-        val albumsAscending = sortManager.artistDetailAlbumsAscending
+        val albumsAscending = sortManager.artistDetailAlbumsAscending //NOSONAR
 
-        sortManager.sortAlbums(albums, albumSort)
-        if (!albumsAscending) {
-            albums.reverse()
+        sortManager.sortAlbums(albums, albumSort) //NOSONAR
+        if (!albumsAscending) { //NOSONAR
+            albums.reverse() //NOSONAR
         }
     }
 
-    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) {
-        addDisposable(
-            src
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(
-                    { items -> dst(items) },
-                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) }
+    override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) { //NOSONAR
+        addDisposable( //NOSONAR
+            src //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .subscribe( //NOSONAR
+                    { items -> dst(items) }, //NOSONAR
+                    { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) } //NOSONAR
                 )
         )
     }

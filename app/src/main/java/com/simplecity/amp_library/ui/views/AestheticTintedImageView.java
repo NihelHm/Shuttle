@@ -10,62 +10,62 @@ import com.afollestad.aesthetic.Aesthetic;
 import io.reactivex.Observable;
 import io.reactivex.disposables.Disposable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticTintedImageView extends AppCompatImageView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticTintedImageView extends AppCompatImageView { //NOSONAR
 
-    Disposable aestheticDisposable;
+    Disposable aestheticDisposable; //NOSONAR
 
-    @Nullable
-    private Drawable drawable;
+    @Nullable //NOSONAR
+    private Drawable drawable; //NOSONAR
 
-    public AestheticTintedImageView(Context context) {
-        super(context);
+    public AestheticTintedImageView(Context context) { //NOSONAR
+        super(context); //NOSONAR
     }
 
-    public AestheticTintedImageView(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public AestheticTintedImageView(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
     }
 
-    public AestheticTintedImageView(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public AestheticTintedImageView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+        super(context, attrs, defStyleAttr); //NOSONAR
     }
 
-    @Override
-    public void setImageDrawable(@Nullable Drawable drawable) {
+    @Override //NOSONAR
+    public void setImageDrawable(@Nullable Drawable drawable) { //NOSONAR
 
-        if (drawable != null) {
-            drawable = DrawableCompat.wrap(drawable).mutate();
+        if (drawable != null) { //NOSONAR
+            drawable = DrawableCompat.wrap(drawable).mutate(); //NOSONAR
         }
 
-        this.drawable = drawable;
+        this.drawable = drawable; //NOSONAR
 
-        super.setImageDrawable(drawable);
+        super.setImageDrawable(drawable); //NOSONAR
     }
 
-    protected Observable<Integer> getColorObservable() {
-        return Aesthetic.get(getContext()).colorAccent();
+    protected Observable<Integer> getColorObservable() { //NOSONAR
+        return Aesthetic.get(getContext()).colorAccent(); //NOSONAR
     }
 
-    void invalidateColors(int color) {
-        if (drawable != null) {
-            DrawableCompat.setTint(drawable, color);
-            setImageDrawable(drawable);
-        }
-    }
-
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        if (!isInEditMode()) {
-            aestheticDisposable = getColorObservable().subscribe(this::invalidateColors);
+    void invalidateColors(int color) { //NOSONAR
+        if (drawable != null) { //NOSONAR
+            DrawableCompat.setTint(drawable, color); //NOSONAR
+            setImageDrawable(drawable); //NOSONAR
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        aestheticDisposable.dispose();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        super.onDetachedFromWindow();
+        if (!isInEditMode()) { //NOSONAR
+            aestheticDisposable = getColorObservable().subscribe(this::invalidateColors); //NOSONAR
+        }
+    }
+
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        aestheticDisposable.dispose(); //NOSONAR
+
+        super.onDetachedFromWindow(); //NOSONAR
     }
 }

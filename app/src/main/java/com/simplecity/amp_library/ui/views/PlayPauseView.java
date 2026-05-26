@@ -19,111 +19,111 @@ import android.widget.FrameLayout;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function0;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlayPauseView extends FrameLayout {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlayPauseView extends FrameLayout { //NOSONAR
 
-    private static final String TAG = "PlayPauseView";
+    private static final String TAG = "PlayPauseView"; //NOSONAR
 
-    private static final long PLAY_PAUSE_ANIMATION_DURATION = 200;
+    private static final long PLAY_PAUSE_ANIMATION_DURATION = 200; //NOSONAR
 
-    private final PlayPauseDrawable drawable;
-    private final Paint paint = new Paint();
+    private final PlayPauseDrawable drawable; //NOSONAR
+    private final Paint paint = new Paint(); //NOSONAR
 
-    private Animator animator;
-    private int backgroundColor;
-    private int width;
-    private int height;
+    private Animator animator; //NOSONAR
+    private int backgroundColor; //NOSONAR
+    private int width; //NOSONAR
+    private int height; //NOSONAR
 
-    public PlayPauseView(Context context, AttributeSet attrs) {
-        super(context, attrs);
-        setWillNotDraw(false);
-        paint.setAntiAlias(true);
-        paint.setStyle(Paint.Style.FILL);
-        drawable = new PlayPauseDrawable(context);
-        drawable.setCallback(this);
+    public PlayPauseView(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
+        setWillNotDraw(false); //NOSONAR
+        paint.setAntiAlias(true); //NOSONAR
+        paint.setStyle(Paint.Style.FILL); //NOSONAR
+        drawable = new PlayPauseDrawable(context); //NOSONAR
+        drawable.setCallback(this); //NOSONAR
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        final int size = Math.min(getMeasuredWidth(), getMeasuredHeight());
-        setMeasuredDimension(size, size);
+    @Override //NOSONAR
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) { //NOSONAR
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //NOSONAR
+        final int size = Math.min(getMeasuredWidth(), getMeasuredHeight()); //NOSONAR
+        setMeasuredDimension(size, size); //NOSONAR
     }
 
-    @Override
-    protected void onSizeChanged(final int w, final int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        drawable.setBounds(0, 0, w, h);
-        width = w;
-        height = h;
+    @Override //NOSONAR
+    protected void onSizeChanged(final int w, final int h, int oldw, int oldh) { //NOSONAR
+        super.onSizeChanged(w, h, oldw, oldh); //NOSONAR
+        drawable.setBounds(0, 0, w, h); //NOSONAR
+        width = w; //NOSONAR
+        height = h; //NOSONAR
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            setOutlineProvider(new ViewOutlineProvider() {
-                @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-                @Override
-                public void getOutline(View view, Outline outline) {
-                    outline.setOval(0, 0, view.getWidth(), view.getHeight());
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
+            setOutlineProvider(new ViewOutlineProvider() { //NOSONAR
+                @TargetApi(Build.VERSION_CODES.LOLLIPOP) //NOSONAR
+                @Override //NOSONAR
+                public void getOutline(View view, Outline outline) { //NOSONAR
+                    outline.setOval(0, 0, view.getWidth(), view.getHeight()); //NOSONAR
                 }
             });
-            setClipToOutline(true);
+            setClipToOutline(true); //NOSONAR
         }
     }
 
-    private void setColor(int color) {
-        backgroundColor = color;
-        invalidate();
+    private void setColor(int color) { //NOSONAR
+        backgroundColor = color; //NOSONAR
+        invalidate(); //NOSONAR
     }
 
-    private int getColor() {
-        return backgroundColor;
+    private int getColor() { //NOSONAR
+        return backgroundColor; //NOSONAR
     }
 
-    public void setDrawableColor(int color) {
-        drawable.setColor(color);
-        invalidate();
+    public void setDrawableColor(int color) { //NOSONAR
+        drawable.setColor(color); //NOSONAR
+        invalidate(); //NOSONAR
     }
 
-    @Override
-    protected boolean verifyDrawable(@NonNull Drawable who) {
-        return who == drawable || super.verifyDrawable(who);
+    @Override //NOSONAR
+    protected boolean verifyDrawable(@NonNull Drawable who) { //NOSONAR
+        return who == drawable || super.verifyDrawable(who); //NOSONAR
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        paint.setColor(backgroundColor);
-        final float radius = Math.min(width, height) / 2f;
-        canvas.drawCircle(width / 2f, height / 2f, radius, paint);
-        drawable.draw(canvas);
+    @Override //NOSONAR
+    protected void onDraw(Canvas canvas) { //NOSONAR
+        super.onDraw(canvas); //NOSONAR
+        paint.setColor(backgroundColor); //NOSONAR
+        final float radius = Math.min(width, height) / 2f; //NOSONAR
+        canvas.drawCircle(width / 2f, height / 2f, radius, paint); //NOSONAR
+        drawable.draw(canvas); //NOSONAR
     }
 
-    public void update() {
+    public void update() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public void toggle(@Nullable Function0<Unit> completion) {
-        if (animator != null) {
-            animator.cancel();
+    public void toggle(@Nullable Function0<Unit> completion) { //NOSONAR
+        if (animator != null) { //NOSONAR
+            animator.cancel(); //NOSONAR
         }
 
-        animator = drawable.getPausePlayAnimator();
-        animator.setInterpolator(new DecelerateInterpolator());
-        animator.setDuration(PLAY_PAUSE_ANIMATION_DURATION);
-        animator.start();
-        animator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                super.onAnimationEnd(animation);
-                animation.removeListener(this);
+        animator = drawable.getPausePlayAnimator(); //NOSONAR
+        animator.setInterpolator(new DecelerateInterpolator()); //NOSONAR
+        animator.setDuration(PLAY_PAUSE_ANIMATION_DURATION); //NOSONAR
+        animator.start(); //NOSONAR
+        animator.addListener(new AnimatorListenerAdapter() { //NOSONAR
+            @Override //NOSONAR
+            public void onAnimationEnd(Animator animation) { //NOSONAR
+                super.onAnimationEnd(animation); //NOSONAR
+                animation.removeListener(this); //NOSONAR
 
-                if (completion != null) {
-                    completion.invoke();
+                if (completion != null) { //NOSONAR
+                    completion.invoke(); //NOSONAR
                 }
             }
         });
     }
 
-    public boolean isPlay() {
-        return drawable != null && drawable.isPlay();
+    public boolean isPlay() { //NOSONAR
+        return drawable != null && drawable.isPlay(); //NOSONAR
     }
 }

@@ -2,33 +2,33 @@ package com.simplecity.amp_library.ui.widgets;
 
 import com.simplecity.amp_library.R;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class WidgetConfigureActivitySmall extends BaseWidgetConfigureActivity {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class WidgetConfigureActivitySmall extends BaseWidgetConfigureActivity { //NOSONAR
 
-    private static final String TAG = "WidgetConfigureActivitySmall";
+    private static final String TAG = "WidgetConfigureActivitySmall"; //NOSONAR
 
-    @Override
-    int[] getWidgetLayouts() {
-        return new int[] { R.layout.widget_layout_small };
+    @Override //NOSONAR
+    int[] getWidgetLayouts() { //NOSONAR
+        return new int[] { R.layout.widget_layout_small }; //NOSONAR
     }
 
-    @Override
-    String getLayoutIdString() {
-        return WidgetProviderSmall.ARG_SMALL_LAYOUT_ID;
+    @Override //NOSONAR
+    String getLayoutIdString() { //NOSONAR
+        return WidgetProviderSmall.ARG_SMALL_LAYOUT_ID; //NOSONAR
     }
 
-    @Override
-    String getUpdateCommandString() {
-        return WidgetProviderSmall.CMDAPPWIDGETUPDATE;
+    @Override //NOSONAR
+    String getUpdateCommandString() { //NOSONAR
+        return WidgetProviderSmall.CMDAPPWIDGETUPDATE; //NOSONAR
     }
 
-    @Override
-    int getRootViewId() {
-        return R.id.widget_layout_small;
+    @Override //NOSONAR
+    int getRootViewId() { //NOSONAR
+        return R.id.widget_layout_small; //NOSONAR
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 }

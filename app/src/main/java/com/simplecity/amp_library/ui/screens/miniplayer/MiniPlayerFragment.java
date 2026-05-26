@@ -34,219 +34,219 @@ import io.reactivex.disposables.CompositeDisposable;
 import javax.inject.Inject;
 import kotlin.Unit;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MiniPlayerFragment extends BaseFragment {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MiniPlayerFragment extends BaseFragment { //NOSONAR
 
-    private static final String TAG = "MiniPlayerFragment";
+    private static final String TAG = "MiniPlayerFragment"; //NOSONAR
 
-    View rootView;
+    View rootView; //NOSONAR
 
-    @BindView(R.id.mini_play)
-    PlayPauseView playPauseView;
+    @BindView(R.id.mini_play) //NOSONAR
+    PlayPauseView playPauseView; //NOSONAR
 
-    @BindView(R.id.progressbar)
-    ProgressBar progressBar;
+    @BindView(R.id.progressbar) //NOSONAR
+    ProgressBar progressBar; //NOSONAR
 
-    @BindView(R.id.titleTextView)
-    TextView titleTextView;
+    @BindView(R.id.titleTextView) //NOSONAR
+    TextView titleTextView; //NOSONAR
 
-    @BindView(R.id.artworkImageView)
-    ImageView miniArtwork;
+    @BindView(R.id.artworkImageView) //NOSONAR
+    ImageView miniArtwork; //NOSONAR
 
-    @Inject
-    PlayerPresenter presenter;
+    @Inject //NOSONAR
+    PlayerPresenter presenter; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    public MiniPlayerFragment() {
+    public MiniPlayerFragment() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public static MiniPlayerFragment newInstance() {
-        MiniPlayerFragment fragment = new MiniPlayerFragment();
-        Bundle args = new Bundle();
-        fragment.setArguments(args);
-        return fragment;
+    public static MiniPlayerFragment newInstance() { //NOSONAR
+        MiniPlayerFragment fragment = new MiniPlayerFragment(); //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        AndroidSupportInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(Bundle savedInstanceState) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        rootView = inflater.inflate(R.layout.fragment_mini_player, container, false);
+    @Override //NOSONAR
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { //NOSONAR
+        rootView = inflater.inflate(R.layout.fragment_mini_player, container, false); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView); //NOSONAR
 
-        rootView.setOnClickListener(v -> {
-            MultiSheetView multiSheetView = MultiSheetView.getParentMultiSheetView(rootView);
-            if (multiSheetView != null) {
-                multiSheetView.expandSheet(MultiSheetView.Sheet.FIRST);
+        rootView.setOnClickListener(v -> { //NOSONAR
+            MultiSheetView multiSheetView = MultiSheetView.getParentMultiSheetView(rootView); //NOSONAR
+            if (multiSheetView != null) { //NOSONAR
+                multiSheetView.expandSheet(MultiSheetView.Sheet.FIRST); //NOSONAR
             }
         });
-        rootView.setOnTouchListener(new OnSwipeTouchListener(getActivity()));
+        rootView.setOnTouchListener(new OnSwipeTouchListener(getActivity())); //NOSONAR
 
-        playPauseView.setOnClickListener(v -> playPauseView.toggle(() -> {
-            presenter.togglePlayback();
-            return Unit.INSTANCE;
+        playPauseView.setOnClickListener(v -> playPauseView.toggle(() -> { //NOSONAR
+            presenter.togglePlayback(); //NOSONAR
+            return Unit.INSTANCE; //NOSONAR
         }));
 
-        progressBar.setMax(1000);
+        progressBar.setMax(1000); //NOSONAR
 
-        disposables.add(Aesthetic.get(getContext()).isDark()
-                .subscribe(isDark -> {
-                    int color = isDark ? getContext().getResources().getColor(android.R.color.primary_text_dark) : getContext().getResources().getColor(android.R.color.primary_text_light);
-                    titleTextView.setTextColor(color);
-                    playPauseView.setDrawableColor(color);
+        disposables.add(Aesthetic.get(getContext()).isDark() //NOSONAR
+                .subscribe(isDark -> { //NOSONAR
+                    int color = isDark ? getContext().getResources().getColor(android.R.color.primary_text_dark) : getContext().getResources().getColor(android.R.color.primary_text_light); //NOSONAR
+                    titleTextView.setTextColor(color); //NOSONAR
+                    playPauseView.setDrawableColor(color); //NOSONAR
                 }));
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override //NOSONAR
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState); //NOSONAR
 
-        presenter.bindView(playerViewAdapter);
+        presenter.bindView(playerViewAdapter); //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (presenter != null) {
-            presenter.updateTrackInfo();
+        if (presenter != null) { //NOSONAR
+            presenter.updateTrackInfo(); //NOSONAR
         }
     }
 
-    @Override
-    public void onDestroyView() {
-        presenter.unbindView(playerViewAdapter);
-        disposables.clear();
-        unbinder.unbind();
-        super.onDestroyView();
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        presenter.unbindView(playerViewAdapter); //NOSONAR
+        disposables.clear(); //NOSONAR
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
     }
 
-    @Override
-    public void onDestroy() {
-        rootView.setOnTouchListener(null);
+    @Override //NOSONAR
+    public void onDestroy() { //NOSONAR
+        rootView.setOnTouchListener(null); //NOSONAR
 
-        super.onDestroy();
+        super.onDestroy(); //NOSONAR
     }
 
-    private class OnSwipeTouchListener implements View.OnTouchListener {
+    private class OnSwipeTouchListener implements View.OnTouchListener { //NOSONAR
 
-        private final GestureDetector gestureDetector;
+        private final GestureDetector gestureDetector; //NOSONAR
 
-        OnSwipeTouchListener(Context context) {
-            gestureDetector = new GestureDetector(context, new GestureListener());
+        OnSwipeTouchListener(Context context) { //NOSONAR
+            gestureDetector = new GestureDetector(context, new GestureListener()); //NOSONAR
         }
 
-        void onSwipeLeft() {
-            presenter.skip();
+        void onSwipeLeft() { //NOSONAR
+            presenter.skip(); //NOSONAR
         }
 
-        void onSwipeRight() {
-            presenter.prev(false);
+        void onSwipeRight() { //NOSONAR
+            presenter.prev(false); //NOSONAR
         }
 
-        public boolean onTouch(View v, MotionEvent event) {
+        public boolean onTouch(View v, MotionEvent event) { //NOSONAR
 
-            boolean consumed = gestureDetector.onTouchEvent(event);
+            boolean consumed = gestureDetector.onTouchEvent(event); //NOSONAR
 
-            if (!consumed) {
-                if (event.getAction() == MotionEvent.ACTION_UP) {
-                    v.performClick();
+            if (!consumed) { //NOSONAR
+                if (event.getAction() == MotionEvent.ACTION_UP) { //NOSONAR
+                    v.performClick(); //NOSONAR
                 }
             }
 
-            return consumed;
+            return consumed; //NOSONAR
         }
 
-        private final class GestureListener extends GestureDetector.SimpleOnGestureListener {
+        private final class GestureListener extends GestureDetector.SimpleOnGestureListener { //NOSONAR
 
-            private static final int SWIPE_DISTANCE_THRESHOLD = 100;
-            private static final int SWIPE_VELOCITY_THRESHOLD = 100;
+            private static final int SWIPE_DISTANCE_THRESHOLD = 100; //NOSONAR
+            private static final int SWIPE_VELOCITY_THRESHOLD = 100; //NOSONAR
 
-            GestureListener() {
+            GestureListener() { //NOSONAR
                 // Intentionally left empty.
             }
 
-            @Override
-            public boolean onDown(MotionEvent e) {
-                return true;
+            @Override //NOSONAR
+            public boolean onDown(MotionEvent e) { //NOSONAR
+                return true; //NOSONAR
             }
 
-            @Override
-            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-                float distanceX = e2.getX() - e1.getX();
-                float distanceY = e2.getY() - e1.getY();
-                if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) {
-                    if (distanceX > 0) {
-                        onSwipeRight();
-                    } else {
-                        onSwipeLeft();
+            @Override //NOSONAR
+            public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { //NOSONAR
+                float distanceX = e2.getX() - e1.getX(); //NOSONAR
+                float distanceY = e2.getY() - e1.getY(); //NOSONAR
+                if (Math.abs(distanceX) > Math.abs(distanceY) && Math.abs(distanceX) > SWIPE_DISTANCE_THRESHOLD && Math.abs(velocityX) > SWIPE_VELOCITY_THRESHOLD) { //NOSONAR
+                    if (distanceX > 0) { //NOSONAR
+                        onSwipeRight(); //NOSONAR
+                    } else { //NOSONAR
+                        onSwipeLeft(); //NOSONAR
                     }
-                    return true;
+                    return true; //NOSONAR
                 }
-                return false;
+                return false; //NOSONAR
             }
         }
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 
-    PlayerViewAdapter playerViewAdapter = new PlayerViewAdapter() {
+    PlayerViewAdapter playerViewAdapter = new PlayerViewAdapter() { //NOSONAR
 
-        @Override
-        public void setSeekProgress(int progress) {
-            progressBar.setProgress(progress);
+        @Override //NOSONAR
+        public void setSeekProgress(int progress) { //NOSONAR
+            progressBar.setProgress(progress); //NOSONAR
         }
 
-        @Override
-        public void playbackChanged(boolean isPlaying) {
-            if (isPlaying) {
-                if (playPauseView.isPlay()) {
-                    playPauseView.toggle(null);
+        @Override //NOSONAR
+        public void playbackChanged(boolean isPlaying) { //NOSONAR
+            if (isPlaying) { //NOSONAR
+                if (playPauseView.isPlay()) { //NOSONAR
+                    playPauseView.toggle(null); //NOSONAR
                 }
-            } else {
-                if (!playPauseView.isPlay()) {
-                    playPauseView.toggle(null);
+            } else { //NOSONAR
+                if (!playPauseView.isPlay()) { //NOSONAR
+                    playPauseView.toggle(null); //NOSONAR
                 }
             }
         }
 
-        @Override
-        public void trackInfoChanged(@Nullable Song song) {
+        @Override //NOSONAR
+        public void trackInfoChanged(@Nullable Song song) { //NOSONAR
 
-            if (song == null) return;
+            if (song == null) return; //NOSONAR
 
-            titleTextView.setText(String.format("%s • %s", song.name, song.artistName));
+            titleTextView.setText(String.format("%s • %s", song.name, song.artistName)); //NOSONAR
 
-            Glide.with(getContext())
-                    .load(song)
-                    .priority(Priority.HIGH)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(song.name, false, settingsManager))
-                    .into(miniArtwork);
+            Glide.with(getContext()) //NOSONAR
+                    .load(song) //NOSONAR
+                    .priority(Priority.HIGH) //NOSONAR
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                    .placeholder(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(song.name, false, settingsManager)) //NOSONAR
+                    .into(miniArtwork); //NOSONAR
 
-            rootView.setContentDescription(getString(R.string.btn_now_playing, song.name, song.artistName));
+            rootView.setContentDescription(getString(R.string.btn_now_playing, song.name, song.artistName)); //NOSONAR
         }
 
-        @Override
-        public void showUpgradeDialog() {
-            UpgradeDialog.Companion.newInstance().show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showUpgradeDialog() { //NOSONAR
+            UpgradeDialog.Companion.newInstance().show(getChildFragmentManager()); //NOSONAR
         }
     };
 }

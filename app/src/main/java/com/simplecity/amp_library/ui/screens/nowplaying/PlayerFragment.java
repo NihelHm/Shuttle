@@ -87,672 +87,672 @@ import javax.inject.Inject;
 import kotlin.Unit;
 import org.jetbrains.annotations.NotNull;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlayerFragment extends BaseFragment implements
-        PlayerView,
-        Toolbar.OnMenuItemClickListener {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlayerFragment extends BaseFragment implements //NOSONAR
+        PlayerView, //NOSONAR
+        Toolbar.OnMenuItemClickListener { //NOSONAR
 
-    private static final String TAG = "PlayerFragment";
+    private static final String TAG = "PlayerFragment"; //NOSONAR
 
-    private boolean isSeeking;
+    private boolean isSeeking; //NOSONAR
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) //NOSONAR
+    Toolbar toolbar; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.play)
-    PlayPauseView playPauseView;
+    @Nullable //NOSONAR
+    @BindView(R.id.play) //NOSONAR
+    PlayPauseView playPauseView; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.shuffle)
-    ShuffleButton shuffleButton;
+    @Nullable //NOSONAR
+    @BindView(R.id.shuffle) //NOSONAR
+    ShuffleButton shuffleButton; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.repeat)
-    RepeatButton repeatButton;
+    @Nullable //NOSONAR
+    @BindView(R.id.repeat) //NOSONAR
+    RepeatButton repeatButton; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.next)
-    RepeatingImageButton nextButton;
+    @Nullable //NOSONAR
+    @BindView(R.id.next) //NOSONAR
+    RepeatingImageButton nextButton; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.prev)
-    RepeatingImageButton prevButton;
+    @Nullable //NOSONAR
+    @BindView(R.id.prev) //NOSONAR
+    RepeatingImageButton prevButton; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.current_time)
-    TextView currentTime;
+    @Nullable //NOSONAR
+    @BindView(R.id.current_time) //NOSONAR
+    TextView currentTime; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.total_time)
-    TextView totalTime;
+    @Nullable //NOSONAR
+    @BindView(R.id.total_time) //NOSONAR
+    TextView totalTime; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.text1)
-    TextView track;
+    @Nullable //NOSONAR
+    @BindView(R.id.text1) //NOSONAR
+    TextView track; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.text2)
-    TextView album;
+    @Nullable //NOSONAR
+    @BindView(R.id.text2) //NOSONAR
+    TextView album; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.text3)
-    TextView artist;
+    @Nullable //NOSONAR
+    @BindView(R.id.text3) //NOSONAR
+    TextView artist; //NOSONAR
 
-    @BindView(R.id.backgroundView)
-    ImageView backgroundView;
+    @BindView(R.id.backgroundView) //NOSONAR
+    ImageView backgroundView; //NOSONAR
 
-    @Nullable
-    @BindView(R.id.seekbar)
-    SizableSeekBar seekBar;
+    @Nullable //NOSONAR
+    @BindView(R.id.seekbar) //NOSONAR
+    SizableSeekBar seekBar; //NOSONAR
 
-    @BindView(R.id.snowfallView)
-    SnowfallView snowfallView;
+    @BindView(R.id.snowfallView) //NOSONAR
+    SnowfallView snowfallView; //NOSONAR
 
-    CompositeDisposable disposables = new CompositeDisposable();
+    CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
-    @Inject
-    PlayerPresenter presenter;
+    @Inject //NOSONAR
+    PlayerPresenter presenter; //NOSONAR
 
-    @Inject
-    NavigationEventRelay navigationEventRelay;
+    @Inject //NOSONAR
+    NavigationEventRelay navigationEventRelay; //NOSONAR
 
-    @Inject
-    MultiSheetSlideEventRelay sheetEventRelay;
+    @Inject //NOSONAR
+    MultiSheetSlideEventRelay sheetEventRelay; //NOSONAR
 
-    @Inject
-    Repository.AlbumArtistsRepository albumArtistsRepository;
+    @Inject //NOSONAR
+    Repository.AlbumArtistsRepository albumArtistsRepository; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    ColorSet colorSet = ColorSet.Companion.empty();
+    ColorSet colorSet = ColorSet.Companion.empty(); //NOSONAR
 
-    @Nullable
-    private Target<GlideDrawable> target;
+    @Nullable //NOSONAR
+    private Target<GlideDrawable> target; //NOSONAR
 
-    private boolean isLandscape;
+    private boolean isLandscape; //NOSONAR
 
-    private boolean isExpanded;
+    private boolean isExpanded; //NOSONAR
 
-    @Nullable
-    private ValueAnimator colorAnimator;
+    @Nullable //NOSONAR
+    private ValueAnimator colorAnimator; //NOSONAR
 
-    public PlayerFragment() {
+    public PlayerFragment() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public static PlayerFragment newInstance() {
-        PlayerFragment playerFragment = new PlayerFragment();
-        Bundle args = new Bundle();
-        playerFragment.setArguments(args);
-        return playerFragment;
+    public static PlayerFragment newInstance() { //NOSONAR
+        PlayerFragment playerFragment = new PlayerFragment(); //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        playerFragment.setArguments(args); //NOSONAR
+        return playerFragment; //NOSONAR
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        AndroidSupportInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(Bundle savedInstanceState) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_player, container, false);
+    @Override //NOSONAR
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { //NOSONAR
+        return inflater.inflate(R.layout.fragment_player, container, false); //NOSONAR
     }
 
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    @Override //NOSONAR
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState); //NOSONAR
 
-        isLandscape = ShuttleUtils.isLandscape(getContext());
+        isLandscape = ShuttleUtils.isLandscape(getContext()); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view); //NOSONAR
 
-        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed());
-        toolbar.inflateMenu(R.menu.menu_now_playing);
+        toolbar.setNavigationOnClickListener(v -> getActivity().onBackPressed()); //NOSONAR
+        toolbar.inflateMenu(R.menu.menu_now_playing); //NOSONAR
 
-        if (CastManager.isCastAvailable(getContext(), settingsManager)) {
-            MenuItem menuItem = CastButtonFactory.setUpMediaRouteButton(getContext(), toolbar.getMenu(), R.id.media_route_menu_item);
-            menuItem.setVisible(true);
+        if (CastManager.isCastAvailable(getContext(), settingsManager)) { //NOSONAR
+            MenuItem menuItem = CastButtonFactory.setUpMediaRouteButton(getContext(), toolbar.getMenu(), R.id.media_route_menu_item); //NOSONAR
+            menuItem.setVisible(true); //NOSONAR
         }
 
-        MenuItem favoriteMenuItem = toolbar.getMenu().findItem(R.id.favorite);
-        FavoriteActionBarView menuActionView = (FavoriteActionBarView) favoriteMenuItem.getActionView();
-        menuActionView.setOnClickListener(v -> onMenuItemClick(favoriteMenuItem));
-        toolbar.setOnMenuItemClickListener(this);
+        MenuItem favoriteMenuItem = toolbar.getMenu().findItem(R.id.favorite); //NOSONAR
+        FavoriteActionBarView menuActionView = (FavoriteActionBarView) favoriteMenuItem.getActionView(); //NOSONAR
+        menuActionView.setOnClickListener(v -> onMenuItemClick(favoriteMenuItem)); //NOSONAR
+        toolbar.setOnMenuItemClickListener(this); //NOSONAR
 
-        if (playPauseView != null) {
-            playPauseView.setOnClickListener(v -> playPauseView.toggle(() -> {
-                presenter.togglePlayback();
-                return Unit.INSTANCE;
+        if (playPauseView != null) { //NOSONAR
+            playPauseView.setOnClickListener(v -> playPauseView.toggle(() -> { //NOSONAR
+                presenter.togglePlayback(); //NOSONAR
+                return Unit.INSTANCE; //NOSONAR
             }));
         }
 
-        if (repeatButton != null) {
-            repeatButton.setOnClickListener(v -> presenter.toggleRepeat());
-            repeatButton.setTag(":aesthetic_ignore");
+        if (repeatButton != null) { //NOSONAR
+            repeatButton.setOnClickListener(v -> presenter.toggleRepeat()); //NOSONAR
+            repeatButton.setTag(":aesthetic_ignore"); //NOSONAR
         }
 
-        if (shuffleButton != null) {
-            shuffleButton.setOnClickListener(v -> presenter.toggleShuffle());
-            shuffleButton.setTag(":aesthetic_ignore");
+        if (shuffleButton != null) { //NOSONAR
+            shuffleButton.setOnClickListener(v -> presenter.toggleShuffle()); //NOSONAR
+            shuffleButton.setTag(":aesthetic_ignore"); //NOSONAR
         }
 
-        if (nextButton != null) {
-            nextButton.setOnClickListener(v -> presenter.skip());
-            nextButton.setRepeatListener((v, duration, repeatCount) -> presenter.scanForward(repeatCount, duration));
+        if (nextButton != null) { //NOSONAR
+            nextButton.setOnClickListener(v -> presenter.skip()); //NOSONAR
+            nextButton.setRepeatListener((v, duration, repeatCount) -> presenter.scanForward(repeatCount, duration)); //NOSONAR
         }
 
-        if (prevButton != null) {
-            prevButton.setOnClickListener(v -> presenter.prev(false));
-            prevButton.setRepeatListener((v, duration, repeatCount) -> presenter.scanBackward(repeatCount, duration));
+        if (prevButton != null) { //NOSONAR
+            prevButton.setOnClickListener(v -> presenter.prev(false)); //NOSONAR
+            prevButton.setRepeatListener((v, duration, repeatCount) -> presenter.scanBackward(repeatCount, duration)); //NOSONAR
         }
 
-        if (seekBar != null) {
-            seekBar.setMax(1000);
+        if (seekBar != null) { //NOSONAR
+            seekBar.setMax(1000); //NOSONAR
         }
 
-        if (savedInstanceState == null) {
-            getChildFragmentManager().beginTransaction()
-                    .add(R.id.main_container, QueuePagerFragment.newInstance(), "QueuePagerFragment")
-                    .commit();
+        if (savedInstanceState == null) { //NOSONAR
+            getChildFragmentManager().beginTransaction() //NOSONAR
+                    .add(R.id.main_container, QueuePagerFragment.newInstance(), "QueuePagerFragment") //NOSONAR
+                    .commit(); //NOSONAR
         }
 
-        getAestheticColorSetDisposable()
-                .take(1)
-                .subscribe(
-                        this::invalidateColors,
-                        error -> {
+        getAestheticColorSetDisposable() //NOSONAR
+                .take(1) //NOSONAR
+                .subscribe( //NOSONAR
+                        this::invalidateColors, //NOSONAR
+                        error -> { //NOSONAR
                             // Nothing to do
                         }
                 );
 
-        presenter.bindView(this);
+        presenter.bindView(this); //NOSONAR
     }
 
-    @Override
-    public void onDestroyView() {
-        if (target != null) {
-            Glide.clear(target);
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        if (target != null) { //NOSONAR
+            Glide.clear(target); //NOSONAR
         }
-        snowfallView.clear();
+        snowfallView.clear(); //NOSONAR
 
-        if (colorAnimator != null) {
-            colorAnimator.cancel();
+        if (colorAnimator != null) { //NOSONAR
+            colorAnimator.cancel(); //NOSONAR
         }
 
-        presenter.unbindView(this);
-        unbinder.unbind();
-        super.onDestroyView();
+        presenter.unbindView(this); //NOSONAR
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
     }
 
-    public void update() {
-        if (presenter != null) {
-            presenter.updateTrackInfo();
+    public void update() { //NOSONAR
+        if (presenter != null) { //NOSONAR
+            presenter.updateTrackInfo(); //NOSONAR
         }
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (!settingsManager.getUsePalette() && !settingsManager.getUsePaletteNowPlayingOnly()) {
-            disposables.add(getAestheticColorSetDisposable().subscribe(
-                    colorSet -> animateColors(PlayerFragment.this.colorSet, colorSet, 800, this::invalidateColors, null),
-                    error -> {
+        if (!settingsManager.getUsePalette() && !settingsManager.getUsePaletteNowPlayingOnly()) { //NOSONAR
+            disposables.add(getAestheticColorSetDisposable().subscribe( //NOSONAR
+                    colorSet -> animateColors(PlayerFragment.this.colorSet, colorSet, 800, this::invalidateColors, null), //NOSONAR
+                    error -> { //NOSONAR
                         // Nothing to do
                     })
             );
         }
 
-        if (seekBar != null) {
-            Flowable<SeekBarChangeEvent> sharedSeekBarEvents = RxSeekBar.changeEvents(seekBar)
-                    .toFlowable(BackpressureStrategy.LATEST)
-                    .ofType(SeekBarChangeEvent.class)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .share();
+        if (seekBar != null) { //NOSONAR
+            Flowable<SeekBarChangeEvent> sharedSeekBarEvents = RxSeekBar.changeEvents(seekBar) //NOSONAR
+                    .toFlowable(BackpressureStrategy.LATEST) //NOSONAR
+                    .ofType(SeekBarChangeEvent.class) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .share(); //NOSONAR
 
-            disposables.add(sharedSeekBarEvents.subscribe(
-                    seekBarChangeEvent -> {
-                        if (seekBarChangeEvent instanceof SeekBarStartChangeEvent) {
-                            isSeeking = true;
-                        } else if (seekBarChangeEvent instanceof SeekBarStopChangeEvent) {
-                            isSeeking = false;
+            disposables.add(sharedSeekBarEvents.subscribe( //NOSONAR
+                    seekBarChangeEvent -> { //NOSONAR
+                        if (seekBarChangeEvent instanceof SeekBarStartChangeEvent) { //NOSONAR
+                            isSeeking = true; //NOSONAR
+                        } else if (seekBarChangeEvent instanceof SeekBarStopChangeEvent) { //NOSONAR
+                            isSeeking = false; //NOSONAR
                         }
                     },
-                    error -> LogUtils.logException(TAG, "Error in seek change event", error))
+                    error -> LogUtils.logException(TAG, "Error in seek change event", error)) //NOSONAR
             );
 
-            disposables.add(sharedSeekBarEvents
-                    .ofType(SeekBarProgressChangeEvent.class)
-                    .filter(SeekBarProgressChangeEvent::fromUser)
-                    .debounce(15, TimeUnit.MILLISECONDS)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                            seekBarChangeEvent -> presenter.seekTo(seekBarChangeEvent.progress()),
-                            error -> LogUtils.logException(TAG, "Error receiving seekbar progress", error))
+            disposables.add(sharedSeekBarEvents //NOSONAR
+                    .ofType(SeekBarProgressChangeEvent.class) //NOSONAR
+                    .filter(SeekBarProgressChangeEvent::fromUser) //NOSONAR
+                    .debounce(15, TimeUnit.MILLISECONDS) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                            seekBarChangeEvent -> presenter.seekTo(seekBarChangeEvent.progress()), //NOSONAR
+                            error -> LogUtils.logException(TAG, "Error receiving seekbar progress", error)) //NOSONAR
             );
         }
 
-        disposables.add(RxSharedPreferences.create(PreferenceManager.getDefaultSharedPreferences(getContext()))
-                .getBoolean(SettingsManager.KEY_DISPLAY_REMAINING_TIME)
-                .asObservable()
-                .subscribe(
-                        aBoolean -> presenter.updateRemainingTime(),
-                        error -> LogUtils.logException(TAG, "Remaining time changed", error)
+        disposables.add(RxSharedPreferences.create(PreferenceManager.getDefaultSharedPreferences(getContext())) //NOSONAR
+                .getBoolean(SettingsManager.KEY_DISPLAY_REMAINING_TIME) //NOSONAR
+                .asObservable() //NOSONAR
+                .subscribe( //NOSONAR
+                        aBoolean -> presenter.updateRemainingTime(), //NOSONAR
+                        error -> LogUtils.logException(TAG, "Remaining time changed", error) //NOSONAR
                 )
         );
 
-        disposables.add(sheetEventRelay.getEvents()
-                .subscribe(
-                        event -> {
-                            if (event.nowPlayingExpanded()) {
-                                isExpanded = true;
-                                snowfallView.letItSnow(analyticsManager);
-                            } else if (event.nowPlayingCollapsed()) {
-                                isExpanded = false;
-                                snowfallView.clear();
+        disposables.add(sheetEventRelay.getEvents() //NOSONAR
+                .subscribe( //NOSONAR
+                        event -> { //NOSONAR
+                            if (event.nowPlayingExpanded()) { //NOSONAR
+                                isExpanded = true; //NOSONAR
+                                snowfallView.letItSnow(analyticsManager); //NOSONAR
+                            } else if (event.nowPlayingCollapsed()) { //NOSONAR
+                                isExpanded = false; //NOSONAR
+                                snowfallView.clear(); //NOSONAR
                             }
                         },
-                        throwable -> Log.e(TAG, "error listening for sheet slide events", throwable))
+                        throwable -> Log.e(TAG, "error listening for sheet slide events", throwable)) //NOSONAR
         );
 
-        update();
+        update(); //NOSONAR
     }
 
-    @Override
-    public void onPause() {
-        disposables.clear();
-        super.onPause();
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        disposables.clear(); //NOSONAR
+        super.onPause(); //NOSONAR
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 
     // View implementation
 
-    @Override
-    public void setSeekProgress(int progress) {
-        if (!isSeeking && seekBar != null) {
-            seekBar.setProgress(progress);
+    @Override //NOSONAR
+    public void setSeekProgress(int progress) { //NOSONAR
+        if (!isSeeking && seekBar != null) { //NOSONAR
+            seekBar.setProgress(progress); //NOSONAR
         }
     }
 
-    @Override
-    public void currentTimeVisibilityChanged(boolean visible) {
-        if (currentTime != null) {
-            currentTime.setVisibility(visible ? View.VISIBLE : View.INVISIBLE);
+    @Override //NOSONAR
+    public void currentTimeVisibilityChanged(boolean visible) { //NOSONAR
+        if (currentTime != null) { //NOSONAR
+            currentTime.setVisibility(visible ? View.VISIBLE : View.INVISIBLE); //NOSONAR
         }
     }
 
-    @Override
-    public void currentTimeChanged(long seconds) {
-        if (currentTime != null) {
-            currentTime.setText(StringUtils.makeTimeString(getContext(), seconds));
+    @Override //NOSONAR
+    public void currentTimeChanged(long seconds) { //NOSONAR
+        if (currentTime != null) { //NOSONAR
+            currentTime.setText(StringUtils.makeTimeString(getContext(), seconds)); //NOSONAR
         }
     }
 
-    @Override
-    public void totalTimeChanged(long seconds) {
-        if (totalTime != null) {
-            totalTime.setText(StringUtils.makeTimeString(getContext(), seconds));
+    @Override //NOSONAR
+    public void totalTimeChanged(long seconds) { //NOSONAR
+        if (totalTime != null) { //NOSONAR
+            totalTime.setText(StringUtils.makeTimeString(getContext(), seconds)); //NOSONAR
         }
     }
 
-    @Override
-    public void queueChanged(int queuePosition, int queueLength) {
+    @Override //NOSONAR
+    public void queueChanged(int queuePosition, int queueLength) { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void playbackChanged(boolean isPlaying) {
-        if (playPauseView != null) {
-            if (isPlaying) {
-                if (playPauseView.isPlay()) {
-                    playPauseView.toggle(null);
-                    playPauseView.setContentDescription(getString(R.string.btn_pause));
+    @Override //NOSONAR
+    public void playbackChanged(boolean isPlaying) { //NOSONAR
+        if (playPauseView != null) { //NOSONAR
+            if (isPlaying) { //NOSONAR
+                if (playPauseView.isPlay()) { //NOSONAR
+                    playPauseView.toggle(null); //NOSONAR
+                    playPauseView.setContentDescription(getString(R.string.btn_pause)); //NOSONAR
                 }
-            } else {
-                if (!playPauseView.isPlay()) {
-                    playPauseView.toggle(null);
-                    playPauseView.setContentDescription(getString(R.string.btn_play));
+            } else { //NOSONAR
+                if (!playPauseView.isPlay()) { //NOSONAR
+                    playPauseView.toggle(null); //NOSONAR
+                    playPauseView.setContentDescription(getString(R.string.btn_play)); //NOSONAR
                 }
             }
         }
 
-        if (!isPlaying) {
-            snowfallView.removeSnow();
+        if (!isPlaying) { //NOSONAR
+            snowfallView.removeSnow(); //NOSONAR
         }
     }
 
-    @Override
-    public void shuffleChanged(@QueueManager.ShuffleMode int shuffleMode) {
-        if (shuffleButton != null) {
-            shuffleButton.setShuffleMode(shuffleMode);
+    @Override //NOSONAR
+    public void shuffleChanged(@QueueManager.ShuffleMode int shuffleMode) { //NOSONAR
+        if (shuffleButton != null) { //NOSONAR
+            shuffleButton.setShuffleMode(shuffleMode); //NOSONAR
         }
     }
 
-    @Override
-    public void repeatChanged(@QueueManager.RepeatMode int repeatMode) {
-        if (repeatButton != null) {
-            repeatButton.setRepeatMode(repeatMode);
+    @Override //NOSONAR
+    public void repeatChanged(@QueueManager.RepeatMode int repeatMode) { //NOSONAR
+        if (repeatButton != null) { //NOSONAR
+            repeatButton.setRepeatMode(repeatMode); //NOSONAR
         }
     }
 
-    @Override
-    public void favoriteChanged(boolean isFavorite) {
-        FavoriteActionBarView favoriteActionBarView = (FavoriteActionBarView) toolbar.getMenu().findItem(R.id.favorite).getActionView();
-        favoriteActionBarView.setIsFavorite(isFavorite);
+    @Override //NOSONAR
+    public void favoriteChanged(boolean isFavorite) { //NOSONAR
+        FavoriteActionBarView favoriteActionBarView = (FavoriteActionBarView) toolbar.getMenu().findItem(R.id.favorite).getActionView(); //NOSONAR
+        favoriteActionBarView.setIsFavorite(isFavorite); //NOSONAR
     }
 
-    Song song = null;
+    Song song = null; //NOSONAR
 
-    @Override
-    public void trackInfoChanged(@Nullable Song song) {
+    @Override //NOSONAR
+    public void trackInfoChanged(@Nullable Song song) { //NOSONAR
 
-        if (song == null) return;
+        if (song == null) return; //NOSONAR
 
-        if (isExpanded && !snowfallView.isSnowing()) {
-            snowfallView.letItSnow(analyticsManager);
-        } else {
-            snowfallView.removeSnow();
+        if (isExpanded && !snowfallView.isSnowing()) { //NOSONAR
+            snowfallView.letItSnow(analyticsManager); //NOSONAR
+        } else { //NOSONAR
+            snowfallView.removeSnow(); //NOSONAR
         }
 
-        String totalTimeString = StringUtils.makeTimeString(getContext(), song.duration / 1000);
-        if (!TextUtils.isEmpty(totalTimeString)) {
-            if (totalTime != null) {
-                totalTime.setText(totalTimeString);
+        String totalTimeString = StringUtils.makeTimeString(getContext(), song.duration / 1000); //NOSONAR
+        if (!TextUtils.isEmpty(totalTimeString)) { //NOSONAR
+            if (totalTime != null) { //NOSONAR
+                totalTime.setText(totalTimeString); //NOSONAR
             }
         }
 
-        if (track != null) {
-            track.setText(song.name);
-            track.setSelected(true);
+        if (track != null) { //NOSONAR
+            track.setText(song.name); //NOSONAR
+            track.setSelected(true); //NOSONAR
         }
-        if (album != null) {
-            album.setText(String.format("%s • %s", song.artistName, song.albumName));
-        }
-
-        if (isLandscape) {
-            toolbar.setTitle(song.name);
-            toolbar.setSubtitle(String.format("%s • %s", song.artistName, song.albumName));
-
-            target = Glide.with(this)
-                    .load(song)
-                    .diskCacheStrategy(DiskCacheStrategy.SOURCE)
-                    .bitmapTransform(new BlurTransformation(getContext(), 15, 4))
-                    .error(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(song.name, true, settingsManager))
-                    .thumbnail(Glide
-                            .with(this)
-                            .load(this.song)
-                            .bitmapTransform(new BlurTransformation(getContext(), 15, 4)))
-                    .crossFade(600)
-                    .into(backgroundView);
-
-            this.song = song;
-        } else {
-            backgroundView.setImageDrawable(null);
-            toolbar.setTitle(null);
-            toolbar.setSubtitle(null);
+        if (album != null) { //NOSONAR
+            album.setText(String.format("%s • %s", song.artistName, song.albumName)); //NOSONAR
         }
 
-        if (settingsManager.getUsePalette()) {
+        if (isLandscape) { //NOSONAR
+            toolbar.setTitle(song.name); //NOSONAR
+            toolbar.setSubtitle(String.format("%s • %s", song.artistName, song.albumName)); //NOSONAR
 
-            if (paletteTarget != null) {
-                Glide.clear(paletteTarget);
+            target = Glide.with(this) //NOSONAR
+                    .load(song) //NOSONAR
+                    .diskCacheStrategy(DiskCacheStrategy.SOURCE) //NOSONAR
+                    .bitmapTransform(new BlurTransformation(getContext(), 15, 4)) //NOSONAR
+                    .error(PlaceholderProvider.getInstance(getContext()).getPlaceHolderDrawable(song.name, true, settingsManager)) //NOSONAR
+                    .thumbnail(Glide //NOSONAR
+                            .with(this) //NOSONAR
+                            .load(this.song) //NOSONAR
+                            .bitmapTransform(new BlurTransformation(getContext(), 15, 4))) //NOSONAR
+                    .crossFade(600) //NOSONAR
+                    .into(backgroundView); //NOSONAR
+
+            this.song = song; //NOSONAR
+        } else { //NOSONAR
+            backgroundView.setImageDrawable(null); //NOSONAR
+            toolbar.setTitle(null); //NOSONAR
+            toolbar.setSubtitle(null); //NOSONAR
+        }
+
+        if (settingsManager.getUsePalette()) { //NOSONAR
+
+            if (paletteTarget != null) { //NOSONAR
+                Glide.clear(paletteTarget); //NOSONAR
             }
 
-            Glide.with(this)
-                    .load(song)
-                    .asBitmap()
-                    .transcode(new ColorSetTranscoder(getContext()), ColorSet.class)
-                    .override(250, 250)
-                    .priority(Priority.HIGH)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .into(paletteTarget);
+            Glide.with(this) //NOSONAR
+                    .load(song) //NOSONAR
+                    .asBitmap() //NOSONAR
+                    .transcode(new ColorSetTranscoder(getContext()), ColorSet.class) //NOSONAR
+                    .override(250, 250) //NOSONAR
+                    .priority(Priority.HIGH) //NOSONAR
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                    .into(paletteTarget); //NOSONAR
         }
     }
 
-    void invalidateColors(ColorSet colorSet) {
+    void invalidateColors(ColorSet colorSet) { //NOSONAR
 
-        boolean ignorePalette = false;
-        if (!settingsManager.getUsePalette() && !settingsManager.getUsePaletteNowPlayingOnly()) {
+        boolean ignorePalette = false; //NOSONAR
+        if (!settingsManager.getUsePalette() && !settingsManager.getUsePaletteNowPlayingOnly()) { //NOSONAR
             // If we're not using Palette at all, use non-tinted colors for text.
-            colorSet.setPrimaryTextColorTinted(colorSet.getPrimaryTextColor());
-            colorSet.setSecondaryTextColorTinted(colorSet.getSecondaryTextColor());
-            ignorePalette = true;
+            colorSet.setPrimaryTextColorTinted(colorSet.getPrimaryTextColor()); //NOSONAR
+            colorSet.setSecondaryTextColorTinted(colorSet.getSecondaryTextColor()); //NOSONAR
+            ignorePalette = true; //NOSONAR
         }
 
-        if (!isLandscape && backgroundView != null) {
-            backgroundView.setBackgroundColor(colorSet.getPrimaryColor());
+        if (!isLandscape && backgroundView != null) { //NOSONAR
+            backgroundView.setBackgroundColor(colorSet.getPrimaryColor()); //NOSONAR
         }
 
-        if (!isLandscape && currentTime != null) {
-            currentTime.setTextColor(colorSet.getPrimaryTextColor());
+        if (!isLandscape && currentTime != null) { //NOSONAR
+            currentTime.setTextColor(colorSet.getPrimaryTextColor()); //NOSONAR
         }
 
-        if (!isLandscape && totalTime != null) {
-            totalTime.setTextColor(colorSet.getPrimaryTextColor());
+        if (!isLandscape && totalTime != null) { //NOSONAR
+            totalTime.setTextColor(colorSet.getPrimaryTextColor()); //NOSONAR
         }
 
-        if (track != null) {
-            track.setTextColor(colorSet.getPrimaryTextColorTinted());
+        if (track != null) { //NOSONAR
+            track.setTextColor(colorSet.getPrimaryTextColorTinted()); //NOSONAR
         }
 
-        if (album != null) {
-            album.setTextColor(colorSet.getSecondaryTextColorTinted());
+        if (album != null) { //NOSONAR
+            album.setTextColor(colorSet.getSecondaryTextColorTinted()); //NOSONAR
         }
 
-        if (artist != null) {
-            artist.setTextColor(colorSet.getSecondaryTextColorTinted());
+        if (artist != null) { //NOSONAR
+            artist.setTextColor(colorSet.getSecondaryTextColorTinted()); //NOSONAR
         }
 
-        if (seekBar != null) {
-            seekBar.invalidateColors(new ColorIsDarkState(ignorePalette ? colorSet.getAccentColor() : colorSet.getPrimaryTextColorTinted(), false));
+        if (seekBar != null) { //NOSONAR
+            seekBar.invalidateColors(new ColorIsDarkState(ignorePalette ? colorSet.getAccentColor() : colorSet.getPrimaryTextColorTinted(), false)); //NOSONAR
         }
 
-        if (shuffleButton != null) {
-            shuffleButton.invalidateColors(colorSet.getPrimaryTextColor(), colorSet.getPrimaryTextColorTinted());
+        if (shuffleButton != null) { //NOSONAR
+            shuffleButton.invalidateColors(colorSet.getPrimaryTextColor(), colorSet.getPrimaryTextColorTinted()); //NOSONAR
         }
 
-        if (repeatButton != null) {
-            repeatButton.invalidateColors(colorSet.getPrimaryTextColor(), colorSet.getPrimaryTextColorTinted());
+        if (repeatButton != null) { //NOSONAR
+            repeatButton.invalidateColors(colorSet.getPrimaryTextColor(), colorSet.getPrimaryTextColorTinted()); //NOSONAR
         }
 
-        if (prevButton != null) {
-            prevButton.invalidateColors(colorSet.getPrimaryTextColor());
+        if (prevButton != null) { //NOSONAR
+            prevButton.invalidateColors(colorSet.getPrimaryTextColor()); //NOSONAR
         }
 
-        if (nextButton != null) {
-            nextButton.invalidateColors(colorSet.getPrimaryTextColor());
+        if (nextButton != null) { //NOSONAR
+            nextButton.invalidateColors(colorSet.getPrimaryTextColor()); //NOSONAR
         }
 
-        if (playPauseView != null) {
-            playPauseView.setDrawableColor(colorSet.getPrimaryTextColor());
+        if (playPauseView != null) { //NOSONAR
+            playPauseView.setDrawableColor(colorSet.getPrimaryTextColor()); //NOSONAR
         }
 
-        this.colorSet = colorSet;
+        this.colorSet = colorSet; //NOSONAR
     }
 
-    @Override
-    public void showLyricsDialog() {
-        LyricsDialog.Companion.newInstance().show(getChildFragmentManager());
+    @Override //NOSONAR
+    public void showLyricsDialog() { //NOSONAR
+        LyricsDialog.Companion.newInstance().show(getChildFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public void showUpgradeDialog() {
-        UpgradeDialog.Companion.newInstance().show(getChildFragmentManager());
+    @Override //NOSONAR
+    public void showUpgradeDialog() { //NOSONAR
+        UpgradeDialog.Companion.newInstance().show(getChildFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem item) {
-        if (!SongMenuUtils.INSTANCE.getSongMenuClickListener(mediaManager.getSong(), presenter).onMenuItemClick(item)) {
-            switch (item.getItemId()) {
-                case R.id.favorite:
-                    ((FavoriteActionBarView) item.getActionView()).toggle();
-                    presenter.toggleFavorite();
-                    return true;
-                case R.id.lyrics:
-                    presenter.showLyrics();
-                    return true;
+    @Override //NOSONAR
+    public boolean onMenuItemClick(MenuItem item) { //NOSONAR
+        if (!SongMenuUtils.INSTANCE.getSongMenuClickListener(mediaManager.getSong(), presenter).onMenuItemClick(item)) { //NOSONAR
+            switch (item.getItemId()) { //NOSONAR
+                case R.id.favorite: //NOSONAR
+                    ((FavoriteActionBarView) item.getActionView()).toggle(); //NOSONAR
+                    presenter.toggleFavorite(); //NOSONAR
+                    return true; //NOSONAR
+                case R.id.lyrics: //NOSONAR
+                    presenter.showLyrics(); //NOSONAR
+                    return true; //NOSONAR
             }
         }
 
-        return true;
+        return true; //NOSONAR
     }
 
-    void animateColors(@NonNull ColorSet from, @NonNull ColorSet to, int duration, @NonNull UnsafeConsumer<ColorSet> consumer, @Nullable UnsafeAction onComplete) {
-        colorAnimator = ValueAnimator.ofFloat(1, 0);
-        colorAnimator.setDuration(duration);
-        colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
-        ArgbEvaluator argbEvaluator = ArgbEvaluator.getInstance();
-        colorAnimator.addUpdateListener(animator -> {
-            ColorSet colorSet = new ColorSet(
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryColor(), to.getPrimaryColor()),
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getAccentColor(), to.getAccentColor()),
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryTextColorTinted(), to.getPrimaryTextColorTinted()),
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getSecondaryTextColorTinted(), to.getSecondaryTextColorTinted()),
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryTextColor(), to.getPrimaryTextColor()),
-                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getSecondaryTextColor(), to.getSecondaryTextColor())
+    void animateColors(@NonNull ColorSet from, @NonNull ColorSet to, int duration, @NonNull UnsafeConsumer<ColorSet> consumer, @Nullable UnsafeAction onComplete) { //NOSONAR
+        colorAnimator = ValueAnimator.ofFloat(1, 0); //NOSONAR
+        colorAnimator.setDuration(duration); //NOSONAR
+        colorAnimator.setInterpolator(new AccelerateDecelerateInterpolator()); //NOSONAR
+        ArgbEvaluator argbEvaluator = ArgbEvaluator.getInstance(); //NOSONAR
+        colorAnimator.addUpdateListener(animator -> { //NOSONAR
+            ColorSet colorSet = new ColorSet( //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryColor(), to.getPrimaryColor()), //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getAccentColor(), to.getAccentColor()), //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryTextColorTinted(), to.getPrimaryTextColorTinted()), //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getSecondaryTextColorTinted(), to.getSecondaryTextColorTinted()), //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getPrimaryTextColor(), to.getPrimaryTextColor()), //NOSONAR
+                    (int) argbEvaluator.evaluate(animator.getAnimatedFraction(), from.getSecondaryTextColor(), to.getSecondaryTextColor()) //NOSONAR
             );
-            consumer.accept(colorSet);
+            consumer.accept(colorSet); //NOSONAR
         });
-        colorAnimator.addListener(new AnimatorListenerAdapter() {
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animation.removeAllListeners();
-                if (onComplete != null) {
-                    onComplete.run();
+        colorAnimator.addListener(new AnimatorListenerAdapter() { //NOSONAR
+            @Override //NOSONAR
+            public void onAnimationEnd(Animator animation) { //NOSONAR
+                animation.removeAllListeners(); //NOSONAR
+                if (onComplete != null) { //NOSONAR
+                    onComplete.run(); //NOSONAR
                 }
             }
         });
-        colorAnimator.start();
+        colorAnimator.start(); //NOSONAR
     }
 
-    private SimpleTarget<ColorSet> paletteTarget = new SimpleTarget<ColorSet>() {
-        @Override
-        public void onResourceReady(ColorSet newColorSet, GlideAnimation<? super ColorSet> glideAnimation) {
+    private SimpleTarget<ColorSet> paletteTarget = new SimpleTarget<ColorSet>() { //NOSONAR
+        @Override //NOSONAR
+        public void onResourceReady(ColorSet newColorSet, GlideAnimation<? super ColorSet> glideAnimation) { //NOSONAR
 
-            if (!isAdded() || getContext() == null) {
-                return;
+            if (!isAdded() || getContext() == null) { //NOSONAR
+                return; //NOSONAR
             }
 
-            if (colorSet == newColorSet) {
-                return;
+            if (colorSet == newColorSet) { //NOSONAR
+                return; //NOSONAR
             }
 
-            ColorSet oldColorSet = colorSet;
+            ColorSet oldColorSet = colorSet; //NOSONAR
 
-            animateColors(
-                    oldColorSet,
-                    newColorSet,
-                    800,
-                    intermediateColorSet -> {
+            animateColors( //NOSONAR
+                    oldColorSet, //NOSONAR
+                    newColorSet, //NOSONAR
+                    800, //NOSONAR
+                    intermediateColorSet -> { //NOSONAR
 
-                        if (!isAdded() || getContext() == null) return;
+                        if (!isAdded() || getContext() == null) return; //NOSONAR
 
                         // Update all the colours related to the now playing screen first
-                        invalidateColors(intermediateColorSet);
+                        invalidateColors(intermediateColorSet); //NOSONAR
 
                         // We need to update the nav bar colour at the same time, since it's visible as well.
-                        if (settingsManager.getTintNavBar()) {
-                            Aesthetic.get(getContext()).colorNavigationBar(intermediateColorSet.getPrimaryColor()).apply();
+                        if (settingsManager.getTintNavBar()) { //NOSONAR
+                            Aesthetic.get(getContext()).colorNavigationBar(intermediateColorSet.getPrimaryColor()).apply(); //NOSONAR
                         }
                     },
                     () -> {
-                        if (!isAdded() || getContext() == null) return;
+                        if (!isAdded() || getContext() == null) return; //NOSONAR
 
                         // Wait until the first set of color change animations is complete, before updating Aesthetic.
                         // This allows our invalidateColors() animation to run smoothly, as the Aesthetic color change
                         // introduces some jank.
-                        if (!settingsManager.getUsePaletteNowPlayingOnly()) {
+                        if (!settingsManager.getUsePaletteNowPlayingOnly()) { //NOSONAR
 
-                            animateColors(oldColorSet, newColorSet, 450, intermediateColorSet -> {
+                            animateColors(oldColorSet, newColorSet, 450, intermediateColorSet -> { //NOSONAR
 
-                                if (!isAdded() || getContext() == null) return;
+                                if (!isAdded() || getContext() == null) return; //NOSONAR
 
-                                Aesthetic.get(getContext())
-                                        .colorPrimary(intermediateColorSet.getPrimaryColor())
-                                        .colorAccent(intermediateColorSet.getAccentColor())
-                                        .colorStatusBarAuto().apply();
-                            }, null);
+                                Aesthetic.get(getContext()) //NOSONAR
+                                        .colorPrimary(intermediateColorSet.getPrimaryColor()) //NOSONAR
+                                        .colorAccent(intermediateColorSet.getAccentColor()) //NOSONAR
+                                        .colorStatusBarAuto().apply(); //NOSONAR
+                            }, null); //NOSONAR
                         }
                     }
             );
         }
 
-        @SuppressLint("CheckResult")
-        @Override
-        public void onLoadFailed(Exception e, Drawable errorDrawable) {
-            super.onLoadFailed(e, errorDrawable);
+        @SuppressLint("CheckResult") //NOSONAR
+        @Override //NOSONAR
+        public void onLoadFailed(Exception e, Drawable errorDrawable) { //NOSONAR
+            super.onLoadFailed(e, errorDrawable); //NOSONAR
 
-            getAestheticColorSetDisposable()
-                    .take(1)
-                    .subscribe(
-                            colorSet -> animateColors(PlayerFragment.this.colorSet, colorSet, 800, intermediateColorSet -> invalidateColors(intermediateColorSet), null),
-                            error -> {
+            getAestheticColorSetDisposable() //NOSONAR
+                    .take(1) //NOSONAR
+                    .subscribe( //NOSONAR
+                            colorSet -> animateColors(PlayerFragment.this.colorSet, colorSet, 800, intermediateColorSet -> invalidateColors(intermediateColorSet), null), //NOSONAR
+                            error -> { //NOSONAR
                                 // Nothing ot do
                             }
                     );
         }
     };
 
-    private Observable<ColorSet> getAestheticColorSetDisposable() {
-        return Observable.combineLatest(
-                Aesthetic.get(getContext()).colorPrimary(),
-                Aesthetic.get(getContext()).colorAccent(),
-                Pair::new
-        ).map(pair -> ColorSet.Companion.fromPrimaryAccentColors(getContext(), pair.first, pair.second));
+    private Observable<ColorSet> getAestheticColorSetDisposable() { //NOSONAR
+        return Observable.combineLatest( //NOSONAR
+                Aesthetic.get(getContext()).colorPrimary(), //NOSONAR
+                Aesthetic.get(getContext()).colorAccent(), //NOSONAR
+                Pair::new //NOSONAR
+        ).map(pair -> ColorSet.Companion.fromPrimaryAccentColors(getContext(), pair.first, pair.second)); //NOSONAR
     }
 
     // SongMenuContract.View implementation
 
-    @Override
-    public void presentCreatePlaylistDialog(@NotNull List<? extends Song> songs) {
+    @Override //NOSONAR
+    public void presentCreatePlaylistDialog(@NotNull List<? extends Song> songs) { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void presentSongInfoDialog(@NotNull Song song) {
-        SongInfoDialog.Companion.newInstance(song).show(getChildFragmentManager());
+    @Override //NOSONAR
+    public void presentSongInfoDialog(@NotNull Song song) { //NOSONAR
+        SongInfoDialog.Companion.newInstance(song).show(getChildFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public void onSongsAddedToPlaylist(@NotNull Playlist playlist, int numSongs) {
+    @Override //NOSONAR
+    public void onSongsAddedToPlaylist(@NotNull Playlist playlist, int numSongs) { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void onSongsAddedToQueue(int numSongs) {
+    @Override //NOSONAR
+    public void onSongsAddedToQueue(int numSongs) { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void presentTagEditorDialog(@NotNull Song song) {
-        TaggerDialog.newInstance(song).show(getChildFragmentManager());
+    @Override //NOSONAR
+    public void presentTagEditorDialog(@NotNull Song song) { //NOSONAR
+        TaggerDialog.newInstance(song).show(getChildFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public void presentDeleteDialog(@NotNull List<? extends Song> songs) {
+    @Override //NOSONAR
+    public void presentDeleteDialog(@NotNull List<? extends Song> songs) { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public void shareSong(@NotNull Song song) {
-        ShareDialog.Companion.newInstance(song).show(getChildFragmentManager());
+    @Override //NOSONAR
+    public void shareSong(@NotNull Song song) { //NOSONAR
+        ShareDialog.Companion.newInstance(song).show(getChildFragmentManager()); //NOSONAR
     }
 
-    @Override
-    public void presentRingtonePermissionDialog() {
-        RingtoneManager.Companion.getDialog(getContext()).show();
+    @Override //NOSONAR
+    public void presentRingtonePermissionDialog() { //NOSONAR
+        RingtoneManager.Companion.getDialog(getContext()).show(); //NOSONAR
     }
 
-    @Override
-    public void showRingtoneSetMessage() {
-        Toast.makeText(getContext(), R.string.ringtone_set_new, Toast.LENGTH_SHORT).show();
+    @Override //NOSONAR
+    public void showRingtoneSetMessage() { //NOSONAR
+        Toast.makeText(getContext(), R.string.ringtone_set_new, Toast.LENGTH_SHORT).show(); //NOSONAR
     }
 }

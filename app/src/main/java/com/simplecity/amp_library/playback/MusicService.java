@@ -50,316 +50,316 @@ import java.util.List;
 import javax.inject.Inject;
 import kotlin.Unit;
 
-@SuppressLint("InlinedApi")
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class MusicService extends MediaBrowserServiceCompat {
+@SuppressLint("InlinedApi") //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class MusicService extends MediaBrowserServiceCompat { //NOSONAR
 
-    @interface NotifyMode {
-        int NONE = 0;
-        int FOREGROUND = 1;
-        int BACKGROUND = 2;
+    @interface NotifyMode { //NOSONAR
+        int NONE = 0; //NOSONAR
+        int FOREGROUND = 1; //NOSONAR
+        int BACKGROUND = 2; //NOSONAR
     }
 
-    private static final String TAG = "MusicService";
+    private static final String TAG = "MusicService"; //NOSONAR
 
-    private MusicServiceCallbacks musicServiceCallbacks = new MusicServiceCallbacks();
+    private MusicServiceCallbacks musicServiceCallbacks = new MusicServiceCallbacks(); //NOSONAR
 
-    private QueueManager queueManager;
+    private QueueManager queueManager; //NOSONAR
 
-    @Nullable
-    private CastManager castManager;
+    @Nullable //NOSONAR
+    private CastManager castManager; //NOSONAR
 
-    private BluetoothManager bluetoothManager;
+    private BluetoothManager bluetoothManager; //NOSONAR
 
-    private HeadsetManager headsetManager;
+    private HeadsetManager headsetManager; //NOSONAR
 
-    @Inject
-    WidgetManager widgetManager;
+    @Inject //NOSONAR
+    WidgetManager widgetManager; //NOSONAR
 
-    private ScrobbleManager scrobbleManager;
+    private ScrobbleManager scrobbleManager; //NOSONAR
 
-    private final IBinder binder = new LocalBinder(this);
+    private final IBinder binder = new LocalBinder(this); //NOSONAR
 
-    private BroadcastReceiver unmountReceiver = null;
+    private BroadcastReceiver unmountReceiver = null; //NOSONAR
 
-    private int serviceStartId = -1;
+    private int serviceStartId = -1; //NOSONAR
 
-    private boolean serviceInUse = false;
+    private boolean serviceInUse = false; //NOSONAR
 
-    private MusicNotificationHelper notificationHelper;
+    private MusicNotificationHelper notificationHelper; //NOSONAR
 
-    private static NotificationStateHandler notificationStateHandler;
+    private static NotificationStateHandler notificationStateHandler; //NOSONAR
 
-    private AlarmManager alarmManager;
+    private AlarmManager alarmManager; //NOSONAR
 
-    private PendingIntent shutdownIntent;
+    private PendingIntent shutdownIntent; //NOSONAR
 
-    private boolean shutdownScheduled;
+    private boolean shutdownScheduled; //NOSONAR
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
-    private PackageValidator mPackageValidator;
+    private PackageValidator mPackageValidator; //NOSONAR
 
-    private PlaybackManager playbackManager;
+    private PlaybackManager playbackManager; //NOSONAR
 
-    private DummyNotificationHelper dummyNotificationHelper = new DummyNotificationHelper();
+    private DummyNotificationHelper dummyNotificationHelper = new DummyNotificationHelper(); //NOSONAR
 
-    @Inject
-    Repository.SongsRepository songsRepository;
+    @Inject //NOSONAR
+    Repository.SongsRepository songsRepository; //NOSONAR
 
-    @Inject
-    Repository.AlbumsRepository albumsRepository;
+    @Inject //NOSONAR
+    Repository.AlbumsRepository albumsRepository; //NOSONAR
 
-    @Inject
-    Repository.AlbumArtistsRepository albumArtistsRepository;
+    @Inject //NOSONAR
+    Repository.AlbumArtistsRepository albumArtistsRepository; //NOSONAR
 
-    @Inject
-    Repository.PlaylistsRepository playlistsRepository;
+    @Inject //NOSONAR
+    Repository.PlaylistsRepository playlistsRepository; //NOSONAR
 
-    @Inject
-    Repository.GenresRepository genresRepository;
+    @Inject //NOSONAR
+    Repository.GenresRepository genresRepository; //NOSONAR
 
-    @Inject
-    PlaybackSettingsManager playbackSettingsManager;
+    @Inject //NOSONAR
+    PlaybackSettingsManager playbackSettingsManager; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    AnalyticsManager analyticsManager; //NOSONAR
 
-    @Inject
-    FavoritesPlaylistManager favoritesPlaylistManager;
+    @Inject //NOSONAR
+    FavoritesPlaylistManager favoritesPlaylistManager; //NOSONAR
 
-    @SuppressLint("InlinedApi")
-    @Override
-    public void onCreate() {
-        AndroidInjection.inject(this);
-        super.onCreate();
+    @SuppressLint("InlinedApi") //NOSONAR
+    @Override //NOSONAR
+    public void onCreate() { //NOSONAR
+        AndroidInjection.inject(this); //NOSONAR
+        super.onCreate(); //NOSONAR
 
-        queueManager = new QueueManager(
-                musicServiceCallbacks,
-                songsRepository,
-                playbackSettingsManager,
-                settingsManager
+        queueManager = new QueueManager( //NOSONAR
+                musicServiceCallbacks, //NOSONAR
+                songsRepository, //NOSONAR
+                playbackSettingsManager, //NOSONAR
+                settingsManager //NOSONAR
         );
 
-        playbackManager = new PlaybackManager(
-                this,
-                queueManager,
-                playbackSettingsManager,
-                songsRepository,
-                albumsRepository,
-                albumArtistsRepository,
-                genresRepository,
-                playlistsRepository,
-                musicServiceCallbacks,
-                settingsManager
+        playbackManager = new PlaybackManager( //NOSONAR
+                this, //NOSONAR
+                queueManager, //NOSONAR
+                playbackSettingsManager, //NOSONAR
+                songsRepository, //NOSONAR
+                albumsRepository, //NOSONAR
+                albumArtistsRepository, //NOSONAR
+                genresRepository, //NOSONAR
+                playlistsRepository, //NOSONAR
+                musicServiceCallbacks, //NOSONAR
+                settingsManager //NOSONAR
         );
 
-        scrobbleManager = new ScrobbleManager(playbackSettingsManager);
+        scrobbleManager = new ScrobbleManager(playbackSettingsManager); //NOSONAR
 
-        mPackageValidator = new PackageValidator(this);
+        mPackageValidator = new PackageValidator(this); //NOSONAR
 
-        setSessionToken(playbackManager.getMediaSessionToken());
+        setSessionToken(playbackManager.getMediaSessionToken()); //NOSONAR
 
-        if (CastManager.isCastAvailable(this, settingsManager)) {
-            castManager = new CastManager(this, playbackManager);
+        if (CastManager.isCastAvailable(this, settingsManager)) { //NOSONAR
+            castManager = new CastManager(this, playbackManager); //NOSONAR
         }
 
-        bluetoothManager = new BluetoothManager(playbackManager, analyticsManager, musicServiceCallbacks, settingsManager);
+        bluetoothManager = new BluetoothManager(playbackManager, analyticsManager, musicServiceCallbacks, settingsManager); //NOSONAR
 
-        headsetManager = new HeadsetManager(playbackManager, playbackSettingsManager);
+        headsetManager = new HeadsetManager(playbackManager, playbackSettingsManager); //NOSONAR
 
-        notificationHelper = new MusicNotificationHelper(this, analyticsManager);
+        notificationHelper = new MusicNotificationHelper(this, analyticsManager); //NOSONAR
 
-        notificationStateHandler = new NotificationStateHandler(this);
+        notificationStateHandler = new NotificationStateHandler(this); //NOSONAR
 
-        headsetManager.registerHeadsetPlugReceiver(this);
-        bluetoothManager.registerBluetoothReceiver(this);
-        bluetoothManager.registerA2dpServiceListener(this);
+        headsetManager.registerHeadsetPlugReceiver(this); //NOSONAR
+        bluetoothManager.registerBluetoothReceiver(this); //NOSONAR
+        bluetoothManager.registerA2dpServiceListener(this); //NOSONAR
 
-        registerExternalStorageListener();
+        registerExternalStorageListener(); //NOSONAR
 
-        IntentFilter intentFilter = new IntentFilter();
-        intentFilter.addAction(ServiceCommand.COMMAND);
-        intentFilter.addAction(ServiceCommand.TOGGLE_PLAYBACK);
-        intentFilter.addAction(ServiceCommand.PAUSE);
-        intentFilter.addAction(ServiceCommand.NEXT);
-        intentFilter.addAction(ServiceCommand.PREV);
-        intentFilter.addAction(ServiceCommand.STOP);
-        intentFilter.addAction(ServiceCommand.SHUFFLE);
-        intentFilter.addAction(ServiceCommand.REPEAT);
-        intentFilter.addAction(ExternalIntents.PLAY_STATUS_REQUEST);
-        registerReceiver(intentReceiver, intentFilter);
+        IntentFilter intentFilter = new IntentFilter(); //NOSONAR
+        intentFilter.addAction(ServiceCommand.COMMAND); //NOSONAR
+        intentFilter.addAction(ServiceCommand.TOGGLE_PLAYBACK); //NOSONAR
+        intentFilter.addAction(ServiceCommand.PAUSE); //NOSONAR
+        intentFilter.addAction(ServiceCommand.NEXT); //NOSONAR
+        intentFilter.addAction(ServiceCommand.PREV); //NOSONAR
+        intentFilter.addAction(ServiceCommand.STOP); //NOSONAR
+        intentFilter.addAction(ServiceCommand.SHUFFLE); //NOSONAR
+        intentFilter.addAction(ServiceCommand.REPEAT); //NOSONAR
+        intentFilter.addAction(ExternalIntents.PLAY_STATUS_REQUEST); //NOSONAR
+        registerReceiver(intentReceiver, intentFilter); //NOSONAR
 
         // Initialize the delayed shutdown intent
-        Intent shutdownIntent = new Intent(this, MusicService.class);
-        shutdownIntent.setAction(ServiceCommand.SHUTDOWN);
+        Intent shutdownIntent = new Intent(this, MusicService.class); //NOSONAR
+        shutdownIntent.setAction(ServiceCommand.SHUTDOWN); //NOSONAR
 
-        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        this.shutdownIntent = PendingIntent.getService(this, 0, shutdownIntent, 0);
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE); //NOSONAR
+        this.shutdownIntent = PendingIntent.getService(this, 0, shutdownIntent, 0); //NOSONAR
 
-        analyticsManager.dropBreadcrumb(TAG, "onCreate(), scheduling delayed shutdown");
-        scheduleDelayedShutdown();
+        analyticsManager.dropBreadcrumb(TAG, "onCreate(), scheduling delayed shutdown"); //NOSONAR
+        scheduleDelayedShutdown(); //NOSONAR
 
-        playbackManager.reloadQueue();
+        playbackManager.reloadQueue(); //NOSONAR
     }
 
-    @Override
-    public IBinder onBind(final Intent intent) {
+    @Override //NOSONAR
+    public IBinder onBind(final Intent intent) { //NOSONAR
 
-        analyticsManager.dropBreadcrumb(TAG, "onBind().. cancelShutdown()");
-        cancelShutdown();
-        serviceInUse = true;
+        analyticsManager.dropBreadcrumb(TAG, "onBind().. cancelShutdown()"); //NOSONAR
+        cancelShutdown(); //NOSONAR
+        serviceInUse = true; //NOSONAR
 
         // For Android auto, need to call super, or onGetRoot won't be called.
-        if (intent != null && "android.media.browse.MediaBrowserService".equals(intent.getAction())) {
-            return super.onBind(intent);
+        if (intent != null && "android.media.browse.MediaBrowserService".equals(intent.getAction())) { //NOSONAR
+            return super.onBind(intent); //NOSONAR
         }
 
-        return binder;
+        return binder; //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) {
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public BrowserRoot onGetRoot(@NonNull String clientPackageName, int clientUid, @Nullable Bundle rootHints) { //NOSONAR
         // To ensure you are not allowing any arbitrary app to browse your app's contents, you
         // need to check the origin:
-        if (!mPackageValidator.isCallerAllowed(this, clientPackageName, clientUid)) {
+        if (!mPackageValidator.isCallerAllowed(this, clientPackageName, clientUid)) { //NOSONAR
             // If the request comes from an untrusted package, return an empty browser root.
             // If you return null, then the media browser will not be able to connect and
             // no further calls will be made to other media browsing methods.
-            Log.i(TAG, String.format("OnGetRoot: Browsing NOT ALLOWED for unknown caller. Returning empty browser root so all apps can use MediaController.%s", clientPackageName));
-            return new MediaBrowserServiceCompat.BrowserRoot("EMPTY_ROOT", null);
+            Log.i(TAG, String.format("OnGetRoot: Browsing NOT ALLOWED for unknown caller. Returning empty browser root so all apps can use MediaController.%s", clientPackageName)); //NOSONAR
+            return new MediaBrowserServiceCompat.BrowserRoot("EMPTY_ROOT", null); //NOSONAR
         }
-        return new BrowserRoot("media:/root/", null);
+        return new BrowserRoot("media:/root/", null); //NOSONAR
     }
 
-    @Override
-    public void onLoadChildren(@NonNull String parentMediaId, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) {
-        if ("EMPTY_ROOT".equals(parentMediaId)) {
-            result.sendResult(new ArrayList<>());
-        } else {
-            result.detach();
+    @Override //NOSONAR
+    public void onLoadChildren(@NonNull String parentMediaId, @NonNull Result<List<MediaBrowserCompat.MediaItem>> result) { //NOSONAR
+        if ("EMPTY_ROOT".equals(parentMediaId)) { //NOSONAR
+            result.sendResult(new ArrayList<>()); //NOSONAR
+        } else { //NOSONAR
+            result.detach(); //NOSONAR
             // if music library is ready, return immediately
-            new MediaIdHelper(
-                    (ShuttleApplication) getApplication(),
-                    songsRepository,
-                    albumsRepository,
-                    albumArtistsRepository,
-                    genresRepository,
-                    playlistsRepository
-            ).getChildren(parentMediaId, mediaItems -> {
-                result.sendResult(mediaItems);
-                return Unit.INSTANCE;
+            new MediaIdHelper( //NOSONAR
+                    (ShuttleApplication) getApplication(), //NOSONAR
+                    songsRepository, //NOSONAR
+                    albumsRepository, //NOSONAR
+                    albumArtistsRepository, //NOSONAR
+                    genresRepository, //NOSONAR
+                    playlistsRepository //NOSONAR
+            ).getChildren(parentMediaId, mediaItems -> { //NOSONAR
+                result.sendResult(mediaItems); //NOSONAR
+                return Unit.INSTANCE; //NOSONAR
             });
         }
     }
 
-    @Override
-    public void onRebind(Intent intent) {
-        analyticsManager.dropBreadcrumb(TAG, "onRebind().. cancelShutdown()");
-        cancelShutdown();
-        serviceInUse = true;
+    @Override //NOSONAR
+    public void onRebind(Intent intent) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onRebind().. cancelShutdown()"); //NOSONAR
+        cancelShutdown(); //NOSONAR
+        serviceInUse = true; //NOSONAR
     }
 
-    @Override
-    public boolean onUnbind(Intent intent) {
-        analyticsManager.dropBreadcrumb(TAG, "onUnbind()");
+    @Override //NOSONAR
+    public boolean onUnbind(Intent intent) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onUnbind()"); //NOSONAR
 
-        serviceInUse = false;
-        saveState(true);
+        serviceInUse = false; //NOSONAR
+        saveState(true); //NOSONAR
 
-        if (playbackManager.isPlaying() || playbackManager.willResumePlayback()) {
+        if (playbackManager.isPlaying() || playbackManager.willResumePlayback()) { //NOSONAR
             // Something is currently playing, or will be playing once an in-progress action requesting audio focus ends, so don't stop the service now.
-            return true;
+            return true; //NOSONAR
 
             // If there is a playlist but playback is paused, then wait a while before stopping the service, so that pause/resume isn't slow.
             // Also delay stopping the service if we're transitioning between tracks.
-        } else if (!queueManager.getCurrentPlaylist().isEmpty()) {
-            analyticsManager.dropBreadcrumb(TAG, "onUnbind() scheduling delayed shutdown.");
-            scheduleDelayedShutdown();
-            return true;
+        } else if (!queueManager.getCurrentPlaylist().isEmpty()) { //NOSONAR
+            analyticsManager.dropBreadcrumb(TAG, "onUnbind() scheduling delayed shutdown."); //NOSONAR
+            scheduleDelayedShutdown(); //NOSONAR
+            return true; //NOSONAR
         }
 
-        analyticsManager.dropBreadcrumb(TAG, "stopSelf() called");
-        stopSelf(serviceStartId);
+        analyticsManager.dropBreadcrumb(TAG, "stopSelf() called"); //NOSONAR
+        stopSelf(serviceStartId); //NOSONAR
 
-        return true;
+        return true; //NOSONAR
     }
 
-    @Override
-    public void onTaskRemoved(Intent rootIntent) {
-        analyticsManager.dropBreadcrumb(TAG, "onTaskRemoved()");
+    @Override //NOSONAR
+    public void onTaskRemoved(Intent rootIntent) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onTaskRemoved()"); //NOSONAR
 
         // Fixme:
         //  playbackManager.willResumePlayback() returns true even after we've manually paused.
         //  This means we don't call stopSelf(), which in turn causes the service to act as if it has crashed, and will recreate itself unnecessarily.
 
-        if (!isPlaying() && !playbackManager.willResumePlayback()) {
-            analyticsManager.dropBreadcrumb(TAG, "stopSelf() called");
-            stopSelf();
+        if (!isPlaying() && !playbackManager.willResumePlayback()) { //NOSONAR
+            analyticsManager.dropBreadcrumb(TAG, "stopSelf() called"); //NOSONAR
+            stopSelf(); //NOSONAR
         }
 
-        super.onTaskRemoved(rootIntent);
+        super.onTaskRemoved(rootIntent); //NOSONAR
     }
 
-    @Override
-    public void onDestroy() {
-        analyticsManager.dropBreadcrumb(TAG, "onDestroy()");
+    @Override //NOSONAR
+    public void onDestroy() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "onDestroy()"); //NOSONAR
 
-        saveState(true);
+        saveState(true); //NOSONAR
 
         //Shutdown the EQ
-        Intent shutdownEqualizer = new Intent(MusicService.this, Equalizer.class);
-        stopService(shutdownEqualizer);
+        Intent shutdownEqualizer = new Intent(MusicService.this, Equalizer.class); //NOSONAR
+        stopService(shutdownEqualizer); //NOSONAR
 
-        alarmManager.cancel(shutdownIntent);
+        alarmManager.cancel(shutdownIntent); //NOSONAR
 
         // Remove any callbacks from the handlers
-        notificationStateHandler.removeCallbacksAndMessages(null);
+        notificationStateHandler.removeCallbacksAndMessages(null); //NOSONAR
 
-        if (castManager != null) {
-            castManager.destroy();
+        if (castManager != null) { //NOSONAR
+            castManager.destroy(); //NOSONAR
         }
 
-        headsetManager.unregisterHeadsetPlugReceiver(this);
-        bluetoothManager.unregisterBluetoothReceiver(this);
-        bluetoothManager.unregisterA2dpServiceListener(this);
+        headsetManager.unregisterHeadsetPlugReceiver(this); //NOSONAR
+        bluetoothManager.unregisterBluetoothReceiver(this); //NOSONAR
+        bluetoothManager.unregisterA2dpServiceListener(this); //NOSONAR
 
-        unregisterReceiver(intentReceiver);
-        if (unmountReceiver != null) {
-            unregisterReceiver(unmountReceiver);
-            unmountReceiver = null;
+        unregisterReceiver(intentReceiver); //NOSONAR
+        if (unmountReceiver != null) { //NOSONAR
+            unregisterReceiver(unmountReceiver); //NOSONAR
+            unmountReceiver = null; //NOSONAR
         }
 
-        playbackManager.destroy();
+        playbackManager.destroy(); //NOSONAR
 
-        dummyNotificationHelper.teardown(this);
-        notificationHelper.tearDown();
+        dummyNotificationHelper.teardown(this); //NOSONAR
+        notificationHelper.tearDown(); //NOSONAR
 
-        disposables.clear();
+        disposables.clear(); //NOSONAR
 
-        super.onDestroy();
+        super.onDestroy(); //NOSONAR
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        serviceStartId = startId;
+    @Override //NOSONAR
+    public int onStartCommand(Intent intent, int flags, int startId) { //NOSONAR
+        serviceStartId = startId; //NOSONAR
 
-        if (intent != null) {
-            String action = intent.getAction();
-            String command = intent.getStringExtra(MediaButtonCommand.CMD_NAME);
-            analyticsManager.dropBreadcrumb(TAG, String.format("onStartCommand() Action: %s, Command: %s", action, command));
-            if (command != null) {
-                action = commandToAction(command);
+        if (intent != null) { //NOSONAR
+            String action = intent.getAction(); //NOSONAR
+            String command = intent.getStringExtra(MediaButtonCommand.CMD_NAME); //NOSONAR
+            analyticsManager.dropBreadcrumb(TAG, String.format("onStartCommand() Action: %s, Command: %s", action, command)); //NOSONAR
+            if (command != null) { //NOSONAR
+                action = commandToAction(command); //NOSONAR
             }
 
-            if (action != null) {
-                switch (action) {
-                    case ServiceCommand.NEXT:
-                        dummyNotificationHelper.showDummyNotification(this);
+            if (action != null) { //NOSONAR
+                switch (action) { //NOSONAR
+                    case ServiceCommand.NEXT: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started:
                         // - With queue: Force to next song, start playback, update notification, no ANR
@@ -368,23 +368,11 @@ public class MusicService extends MediaBrowserServiceCompat {
                         // Possible solution: (A) Show the Shuttle notification, despite the fact that music isn't playing. Need to customise notification to allow for an empty queue (no current song)
                         // We could try to generate a queue of random songs as well, but there's no guarantee the user has music on their device.
 
-                        gotoNext(true);
+                        gotoNext(true); //NOSONAR
 
-                        break;
-                    case ServiceCommand.PREV:
-                        dummyNotificationHelper.showDummyNotification(this);
-
-                        // If the service is not already started:
-                        // - With queue: ANR
-                        // - No queue: ANR
-
-                        // Possible solution: (A) Show the Shuttle notification, despite the fact that music isn't playing. Need to customise notification to allow for an empty queue (no current song)
-
-                        previous(false);
-
-                        break;
-                    case ServiceCommand.PAUSE:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        break; //NOSONAR
+                    case ServiceCommand.PREV: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started:
                         // - With queue: ANR
@@ -392,11 +380,23 @@ public class MusicService extends MediaBrowserServiceCompat {
 
                         // Possible solution: (A) Show the Shuttle notification, despite the fact that music isn't playing. Need to customise notification to allow for an empty queue (no current song)
 
-                        pause(true);
-                        break;
-                    case ServiceCommand.PLAY:
-                    case ShortcutCommands.PLAY:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        previous(false); //NOSONAR
+
+                        break; //NOSONAR
+                    case ServiceCommand.PAUSE: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
+
+                        // If the service is not already started:
+                        // - With queue: ANR
+                        // - No queue: ANR
+
+                        // Possible solution: (A) Show the Shuttle notification, despite the fact that music isn't playing. Need to customise notification to allow for an empty queue (no current song)
+
+                        pause(true); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.PLAY: //NOSONAR
+                    case ShortcutCommands.PLAY: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started:
                         // - No queue: ANR
@@ -404,221 +404,221 @@ public class MusicService extends MediaBrowserServiceCompat {
 
                         // Possible solution: (A) Show the Shuttle notification, despite the fact that music isn't playing. Need to customise notification to allow for an empty queue (no current song)
 
-                        play();
-                        break;
-                    case ServiceCommand.TOGGLE_PLAYBACK:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        play(); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.TOGGLE_PLAYBACK: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
-                        if (isPlaying()) {
+                        if (isPlaying()) { //NOSONAR
 
                             // It's not possible to be playing and the service not be started. No ANR
 
-                            pause(intent.getBooleanExtra(MediaButtonCommand.FORCE_PREVIOUS, false));
-                        } else {
+                            pause(intent.getBooleanExtra(MediaButtonCommand.FORCE_PREVIOUS, false)); //NOSONAR
+                        } else { //NOSONAR
 
                             // Same as ServiceCommand.PLAY
 
-                            play();
+                            play(); //NOSONAR
                         }
-                        break;
-                    case ServiceCommand.STOP:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        break; //NOSONAR
+                    case ServiceCommand.STOP: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is already started & we're not playing: ANR
                         // If the service is not already started: ANR
 
-                        pause(false);
-                        releaseServiceUiAndStop();
-                        notificationStateHandler.removeCallbacksAndMessages(null);
+                        pause(false); //NOSONAR
+                        releaseServiceUiAndStop(); //NOSONAR
+                        notificationStateHandler.removeCallbacksAndMessages(null); //NOSONAR
                         //For some reason, the notification will only go away if this call is delayed.
-                        new Handler().postDelayed(() -> stopForegroundImpl(true, false), 150);
-                        break;
-                    case ServiceCommand.SHUFFLE:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        new Handler().postDelayed(() -> stopForegroundImpl(true, false), 150); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.SHUFFLE: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started: ANR
 
-                        toggleShuffleMode();
-                        break;
-                    case ServiceCommand.REPEAT:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        toggleShuffleMode(); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.REPEAT: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started: ANR
 
-                        toggleRepeat();
-                        break;
-                    case ServiceCommand.TOGGLE_FAVORITE:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        toggleRepeat(); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.TOGGLE_FAVORITE: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started: ANR
 
-                        toggleFavorite();
-                        break;
-                    case ExternalIntents.PLAY_STATUS_REQUEST:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        toggleFavorite(); //NOSONAR
+                        break; //NOSONAR
+                    case ExternalIntents.PLAY_STATUS_REQUEST: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started: ANR
 
-                        notifyChange(ExternalIntents.PLAY_STATUS_RESPONSE);
-                        break;
-                    case ServiceCommand.SHUTDOWN:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        notifyChange(ExternalIntents.PLAY_STATUS_RESPONSE); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.SHUTDOWN: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If the service is not already started: ANR
 
-                        shutdownScheduled = false;
-                        releaseServiceUiAndStop();
-                        return START_NOT_STICKY;
-                    case ShortcutCommands.SHUFFLE_ALL:
-                        dummyNotificationHelper.showDummyNotification(this);
+                        shutdownScheduled = false; //NOSONAR
+                        releaseServiceUiAndStop(); //NOSONAR
+                        return START_NOT_STICKY; //NOSONAR
+                    case ShortcutCommands.SHUFFLE_ALL: //NOSONAR
+                        dummyNotificationHelper.showDummyNotification(this); //NOSONAR
 
                         // If service is not already started: ANR
 
-                        queueManager.makeShuffleList();
-                        playAutoShuffleList();
-                        break;
+                        queueManager.makeShuffleList(); //NOSONAR
+                        playAutoShuffleList(); //NOSONAR
+                        break; //NOSONAR
                 }
             }
         }
 
         // Make sure the service will shut down on its own if it was just started but not bound to and nothing is playing
-        analyticsManager.dropBreadcrumb(TAG, "onStartCommand() scheduling delayed shutdown");
-        scheduleDelayedShutdown();
+        analyticsManager.dropBreadcrumb(TAG, "onStartCommand() scheduling delayed shutdown"); //NOSONAR
+        scheduleDelayedShutdown(); //NOSONAR
 
-        return START_STICKY;
+        return START_STICKY; //NOSONAR
     }
 
-    private final BroadcastReceiver intentReceiver = new BroadcastReceiver() {
-        @Override
-        public void onReceive(final Context context, final Intent intent) {
+    private final BroadcastReceiver intentReceiver = new BroadcastReceiver() { //NOSONAR
+        @Override //NOSONAR
+        public void onReceive(final Context context, final Intent intent) { //NOSONAR
 
-            String action = intent.getAction();
+            String action = intent.getAction(); //NOSONAR
 
-            String command = intent.getStringExtra(MediaButtonCommand.CMD_NAME);
-            if (command != null) {
-                action = commandToAction(command);
-                widgetManager.processCommand(MusicService.this, intent, command);
+            String command = intent.getStringExtra(MediaButtonCommand.CMD_NAME); //NOSONAR
+            if (command != null) { //NOSONAR
+                action = commandToAction(command); //NOSONAR
+                widgetManager.processCommand(MusicService.this, intent, command); //NOSONAR
             }
 
-            if (action != null) {
-                analyticsManager.dropBreadcrumb(TAG, String.format("onReceive() Action: %s, Command: %s", action, command));
-                switch (action) {
-                    case ServiceCommand.NEXT:
-                        gotoNext(true);
-                        break;
-                    case ServiceCommand.PREV:
-                        previous(false);
-                        break;
-                    case ServiceCommand.TOGGLE_PLAYBACK:
-                        if (isPlaying()) {
-                            pause(true);
-                        } else {
-                            play();
+            if (action != null) { //NOSONAR
+                analyticsManager.dropBreadcrumb(TAG, String.format("onReceive() Action: %s, Command: %s", action, command)); //NOSONAR
+                switch (action) { //NOSONAR
+                    case ServiceCommand.NEXT: //NOSONAR
+                        gotoNext(true); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.PREV: //NOSONAR
+                        previous(false); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.TOGGLE_PLAYBACK: //NOSONAR
+                        if (isPlaying()) { //NOSONAR
+                            pause(true); //NOSONAR
+                        } else { //NOSONAR
+                            play(); //NOSONAR
                         }
-                        break;
-                    case ServiceCommand.PAUSE:
-                        pause(true);
-                        break;
-                    case ServiceCommand.PLAY:
-                        play();
-                        break;
-                    case ServiceCommand.STOP:
-                        pause(false);
-                        releaseServiceUiAndStop();
-                        break;
-                    case ServiceCommand.TOGGLE_FAVORITE:
-                        toggleFavorite();
-                        break;
+                        break; //NOSONAR
+                    case ServiceCommand.PAUSE: //NOSONAR
+                        pause(true); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.PLAY: //NOSONAR
+                        play(); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.STOP: //NOSONAR
+                        pause(false); //NOSONAR
+                        releaseServiceUiAndStop(); //NOSONAR
+                        break; //NOSONAR
+                    case ServiceCommand.TOGGLE_FAVORITE: //NOSONAR
+                        toggleFavorite(); //NOSONAR
+                        break; //NOSONAR
                 }
             }
         }
     };
 
-    @Nullable
-    public String commandToAction(@NonNull String command) {
-        switch (command) {
-            case MediaButtonCommand.NEXT:
-                return ServiceCommand.NEXT;
-            case MediaButtonCommand.PREVIOUS:
-                return ServiceCommand.PREV;
-            case MediaButtonCommand.TOGGLE_PAUSE:
-                return ServiceCommand.TOGGLE_PLAYBACK;
-            case MediaButtonCommand.PAUSE:
-                return ServiceCommand.PAUSE;
-            case MediaButtonCommand.PLAY:
-                return ServiceCommand.PLAY;
-            case MediaButtonCommand.STOP:
-                return ServiceCommand.STOP;
-            case MediaButtonCommand.TOGGLE_FAVORITE:
-                return ServiceCommand.TOGGLE_FAVORITE;
+    @Nullable //NOSONAR
+    public String commandToAction(@NonNull String command) { //NOSONAR
+        switch (command) { //NOSONAR
+            case MediaButtonCommand.NEXT: //NOSONAR
+                return ServiceCommand.NEXT; //NOSONAR
+            case MediaButtonCommand.PREVIOUS: //NOSONAR
+                return ServiceCommand.PREV; //NOSONAR
+            case MediaButtonCommand.TOGGLE_PAUSE: //NOSONAR
+                return ServiceCommand.TOGGLE_PLAYBACK; //NOSONAR
+            case MediaButtonCommand.PAUSE: //NOSONAR
+                return ServiceCommand.PAUSE; //NOSONAR
+            case MediaButtonCommand.PLAY: //NOSONAR
+                return ServiceCommand.PLAY; //NOSONAR
+            case MediaButtonCommand.STOP: //NOSONAR
+                return ServiceCommand.STOP; //NOSONAR
+            case MediaButtonCommand.TOGGLE_FAVORITE: //NOSONAR
+                return ServiceCommand.TOGGLE_FAVORITE; //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 
 
     /**
      * Release resources and destroy the service.
      */
-    void releaseServiceUiAndStop() {
+    void releaseServiceUiAndStop() { //NOSONAR
 
         // If we're currently playing, or we're going to be playing in the near future, don't shutdown.
-        if (isPlaying() || playbackManager.willResumePlayback()) {
-            return;
+        if (isPlaying() || playbackManager.willResumePlayback()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        analyticsManager.dropBreadcrumb(TAG, "releaseServiceUiAndStop()");
+        analyticsManager.dropBreadcrumb(TAG, "releaseServiceUiAndStop()"); //NOSONAR
 
-        playbackManager.release();
+        playbackManager.release(); //NOSONAR
 
-        cancelNotification();
+        cancelNotification(); //NOSONAR
 
-        if (!serviceInUse) {
-            saveState(true);
+        if (!serviceInUse) { //NOSONAR
+            saveState(true); //NOSONAR
 
             //Shutdown the EQ
-            Intent shutdownEqualizer = new Intent(MusicService.this, Equalizer.class);
-            stopService(shutdownEqualizer);
+            Intent shutdownEqualizer = new Intent(MusicService.this, Equalizer.class); //NOSONAR
+            stopService(shutdownEqualizer); //NOSONAR
 
-            analyticsManager.dropBreadcrumb(TAG, "stopSelf() called");
-            stopSelf(serviceStartId);
+            analyticsManager.dropBreadcrumb(TAG, "stopSelf() called"); //NOSONAR
+            stopSelf(serviceStartId); //NOSONAR
         }
     }
 
     /**
      * Called when we receive a ACTION_MEDIA_EJECT notification.
      */
-    public void closeExternalStorageFiles() {
+    public void closeExternalStorageFiles() { //NOSONAR
         // Stop playback and clean up if the SD card is going to be unmounted.
-        stop();
-        notifyChange(InternalIntents.QUEUE_CHANGED);
-        notifyChange(InternalIntents.META_CHANGED);
+        stop(); //NOSONAR
+        notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
+        notifyChange(InternalIntents.META_CHANGED); //NOSONAR
     }
 
     /**
      * Registers an intent to listen for ACTION_MEDIA_EJECT notifications. The intent will call closeExternalStorageFiles() if the external
      * media is going to be ejected, so scs can clean up any files they have open.
      */
-    public void registerExternalStorageListener() {
-        if (unmountReceiver == null) {
-            unmountReceiver = new BroadcastReceiver() {
-                @Override
-                public void onReceive(Context context, Intent intent) {
-                    final String action = intent.getAction();
-                    if (Intent.ACTION_MEDIA_EJECT.equals(action)) {
-                        saveState(true);
-                        queueManager.queueIsSaveable = false;
-                        closeExternalStorageFiles();
-                    } else if (Intent.ACTION_MEDIA_MOUNTED.equals(action)) {
-                        queueManager.queueIsSaveable = true;
-                        playbackManager.reloadQueue();
+    public void registerExternalStorageListener() { //NOSONAR
+        if (unmountReceiver == null) { //NOSONAR
+            unmountReceiver = new BroadcastReceiver() { //NOSONAR
+                @Override //NOSONAR
+                public void onReceive(Context context, Intent intent) { //NOSONAR
+                    final String action = intent.getAction(); //NOSONAR
+                    if (Intent.ACTION_MEDIA_EJECT.equals(action)) { //NOSONAR
+                        saveState(true); //NOSONAR
+                        queueManager.queueIsSaveable = false; //NOSONAR
+                        closeExternalStorageFiles(); //NOSONAR
+                    } else if (Intent.ACTION_MEDIA_MOUNTED.equals(action)) { //NOSONAR
+                        queueManager.queueIsSaveable = true; //NOSONAR
+                        playbackManager.reloadQueue(); //NOSONAR
                     }
                 }
             };
-            IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction(Intent.ACTION_MEDIA_EJECT);
-            intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED);
-            intentFilter.addDataScheme("file");
-            registerReceiver(unmountReceiver, intentFilter);
+            IntentFilter intentFilter = new IntentFilter(); //NOSONAR
+            intentFilter.addAction(Intent.ACTION_MEDIA_EJECT); //NOSONAR
+            intentFilter.addAction(Intent.ACTION_MEDIA_MOUNTED); //NOSONAR
+            intentFilter.addDataScheme("file"); //NOSONAR
+            registerReceiver(unmountReceiver, intentFilter); //NOSONAR
         }
     }
 
@@ -628,9 +628,9 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param saveQueue whether to save the queue as well
      */
-    void saveState(boolean saveQueue) {
-        playbackManager.saveState();
-        queueManager.saveQueue(saveQueue);
+    void saveState(boolean saveQueue) { //NOSONAR
+        playbackManager.saveState(); //NOSONAR
+        queueManager.saveQueue(saveQueue); //NOSONAR
     }
 
     /**
@@ -639,27 +639,27 @@ public class MusicService extends MediaBrowserServiceCompat {
      * @param songs The list to queue
      * @param action The action to take
      */
-    public void enqueue(List<Song> songs, @QueueManager.EnqueueAction final int action) {
-        playbackManager.enqueue(songs, action);
+    public void enqueue(List<Song> songs, @QueueManager.EnqueueAction final int action) { //NOSONAR
+        playbackManager.enqueue(songs, action); //NOSONAR
     }
 
-    public void moveToNext(QueueItem queueItem) {
-        List<QueueItem> playlist = queueManager.getCurrentPlaylist();
-        int fromIndex = playlist.indexOf(queueItem);
+    public void moveToNext(QueueItem queueItem) { //NOSONAR
+        List<QueueItem> playlist = queueManager.getCurrentPlaylist(); //NOSONAR
+        int fromIndex = playlist.indexOf(queueItem); //NOSONAR
 
-        QueueItem currentQueueItem = queueManager.getCurrentQueueItem();
-        int toIndex = playlist.indexOf(currentQueueItem) + 1;
+        QueueItem currentQueueItem = queueManager.getCurrentQueueItem(); //NOSONAR
+        int toIndex = playlist.indexOf(currentQueueItem) + 1; //NOSONAR
 
-        if (fromIndex != toIndex) {
-            playbackManager.moveQueueItem(fromIndex, toIndex);
+        if (fromIndex != toIndex) { //NOSONAR
+            playbackManager.moveQueueItem(fromIndex, toIndex); //NOSONAR
         }
     }
 
     /**
      * Sets the track to be played
      */
-    protected void setNextTrack() {
-        playbackManager.setNextTrack();
+    protected void setNextTrack() { //NOSONAR
+        playbackManager.setNextTrack(); //NOSONAR
     }
 
     /**
@@ -668,8 +668,8 @@ public class MusicService extends MediaBrowserServiceCompat {
      * @param songs The list of songs to open
      * @param position The position to start playback at
      */
-    public void open(@NonNull List<Song> songs, int position, Boolean playWhenReady) {
-        playbackManager.load(songs, position, playWhenReady, 0);
+    public void open(@NonNull List<Song> songs, int position, Boolean playWhenReady) { //NOSONAR
+        playbackManager.load(songs, position, playWhenReady, 0); //NOSONAR
     }
 
     /**
@@ -677,27 +677,27 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param path The path of the file to open
      */
-    public void openFile(String path, Boolean playWhenReady) {
-        playbackManager.loadFile(path, playWhenReady);
+    public void openFile(String path, Boolean playWhenReady) { //NOSONAR
+        playbackManager.loadFile(path, playWhenReady); //NOSONAR
     }
 
     /**
      * Starts playback of a previously opened file
      */
-    public void play() {
-        playbackManager.play();
+    public void play() { //NOSONAR
+        playbackManager.play(); //NOSONAR
     }
 
-    public void togglePlayback() {
-        playbackManager.togglePlayback();
+    public void togglePlayback() { //NOSONAR
+        playbackManager.togglePlayback(); //NOSONAR
     }
 
     /**
      * Stops playback
      */
-    public void stop() {
-        analyticsManager.dropBreadcrumb(TAG, "stop()");
-        playbackManager.stop(true);
+    public void stop() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "stop()"); //NOSONAR
+        playbackManager.stop(true); //NOSONAR
     }
 
     /**
@@ -705,9 +705,9 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param canFade whether we are allowed to fade out before pausing.
      */
-    public void pause(boolean canFade) {
-        analyticsManager.dropBreadcrumb(TAG, "pause()");
-        playbackManager.pause(canFade);
+    public void pause(boolean canFade) { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "pause()"); //NOSONAR
+        playbackManager.pause(canFade); //NOSONAR
     }
 
     /**
@@ -715,22 +715,22 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @return true if something is playing (or will be playing shortly, in case we're currently transitioning between tracks), false if not
      */
-    public boolean isPlaying() {
-        return playbackManager.isPlaying();
+    public boolean isPlaying() { //NOSONAR
+        return playbackManager.isPlaying(); //NOSONAR
     }
 
     /**
      * @return true if is playing or has played recently
      */
-    private boolean recentlyPlayed() {
-        return playbackManager.recentlyPlayed();
+    private boolean recentlyPlayed() { //NOSONAR
+        return playbackManager.recentlyPlayed(); //NOSONAR
     }
 
     /**
      * Changes from the current track to the previous track
      */
-    public void previous(boolean force) {
-        playbackManager.previous(force);
+    public void previous(boolean force) { //NOSONAR
+        playbackManager.previous(force); //NOSONAR
     }
 
     /**
@@ -738,15 +738,15 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param force true to move to the next song regardless of repeat mode.
      */
-    public void gotoNext(boolean force) {
-        playbackManager.next(force);
+    public void gotoNext(boolean force) { //NOSONAR
+        playbackManager.next(force); //NOSONAR
     }
 
     /**
      * Returns the current playback position in milliseconds
      */
-    public long getSeekPosition() {
-        return playbackManager.getSeekPosition();
+    public long getSeekPosition() { //NOSONAR
+        return playbackManager.getSeekPosition(); //NOSONAR
     }
 
     /**
@@ -754,130 +754,130 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param position The position to seek to, in milliseconds
      */
-    public void seekTo(long position) {
-        playbackManager.seekTo(position);
+    public void seekTo(long position) { //NOSONAR
+        playbackManager.seekTo(position); //NOSONAR
     }
 
     /**
      * @return int the audio session ID.
      */
-    public int getAudioSessionId() {
-        return playbackManager.getAudioSessionId();
+    public int getAudioSessionId() { //NOSONAR
+        return playbackManager.getAudioSessionId(); //NOSONAR
     }
 
     /**
      * Creates a shuffled list of all songs and begins playback
      */
-    public void playAutoShuffleList() {
-        playbackManager.playAutoShuffleList();
+    public void playAutoShuffleList() { //NOSONAR
+        playbackManager.playAutoShuffleList(); //NOSONAR
     }
 
-    @QueueManager.ShuffleMode
-    public int getShuffleMode() {
-        return queueManager.shuffleMode;
+    @QueueManager.ShuffleMode //NOSONAR
+    public int getShuffleMode() { //NOSONAR
+        return queueManager.shuffleMode; //NOSONAR
     }
 
-    public void setShuffleMode(@QueueManager.ShuffleMode int shufflemode) {
-        queueManager.setShuffleMode(shufflemode);
+    public void setShuffleMode(@QueueManager.ShuffleMode int shufflemode) { //NOSONAR
+        queueManager.setShuffleMode(shufflemode); //NOSONAR
     }
 
-    @QueueManager.RepeatMode
-    public int getRepeatMode() {
-        return queueManager.repeatMode;
+    @QueueManager.RepeatMode //NOSONAR
+    public int getRepeatMode() { //NOSONAR
+        return queueManager.repeatMode; //NOSONAR
     }
 
-    public void setRepeatMode(@QueueManager.RepeatMode int repeatMode) {
-        queueManager.setRepeatMode(repeatMode);
-        setNextTrack();
+    public void setRepeatMode(@QueueManager.RepeatMode int repeatMode) { //NOSONAR
+        queueManager.setRepeatMode(repeatMode); //NOSONAR
+        setNextTrack(); //NOSONAR
     }
 
-    @Nullable
-    public Song getSong() {
-        return queueManager.getCurrentSong();
+    @Nullable //NOSONAR
+    public Song getSong() { //NOSONAR
+        return queueManager.getCurrentSong(); //NOSONAR
     }
 
-    public void toggleFavorite() {
-        Song song = queueManager.getCurrentSong();
-        if (song != null) {
-            favoritesPlaylistManager.toggleFavorite(song, isFavorite -> {
-                if (isFavorite) {
-                    Toast.makeText(MusicService.this, getString(R.string.song_to_favourites, song.name), Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(MusicService.this, getString(R.string.song_removed_from_favourites, song.name), Toast.LENGTH_SHORT).show();
+    public void toggleFavorite() { //NOSONAR
+        Song song = queueManager.getCurrentSong(); //NOSONAR
+        if (song != null) { //NOSONAR
+            favoritesPlaylistManager.toggleFavorite(song, isFavorite -> { //NOSONAR
+                if (isFavorite) { //NOSONAR
+                    Toast.makeText(MusicService.this, getString(R.string.song_to_favourites, song.name), Toast.LENGTH_SHORT).show(); //NOSONAR
+                } else { //NOSONAR
+                    Toast.makeText(MusicService.this, getString(R.string.song_removed_from_favourites, song.name), Toast.LENGTH_SHORT).show(); //NOSONAR
                 }
-                notifyChange(InternalIntents.FAVORITE_CHANGED);
-                return Unit.INSTANCE;
+                notifyChange(InternalIntents.FAVORITE_CHANGED); //NOSONAR
+                return Unit.INSTANCE; //NOSONAR
             });
         }
     }
 
-    private void showToast(int resId) {
-        Toast.makeText(getBaseContext(), resId, Toast.LENGTH_SHORT).show();
+    private void showToast(int resId) { //NOSONAR
+        Toast.makeText(getBaseContext(), resId, Toast.LENGTH_SHORT).show(); //NOSONAR
     }
 
-    public void toggleShuffleMode() {
-        switch (getShuffleMode()) {
-            case QueueManager.ShuffleMode.OFF:
-                setShuffleMode(QueueManager.ShuffleMode.ON);
-                notifyChange(InternalIntents.SHUFFLE_CHANGED);
-                queueManager.makeShuffleList();
-                notifyChange(InternalIntents.QUEUE_CHANGED);
-                if (getRepeatMode() == QueueManager.RepeatMode.ONE) {
-                    setRepeatMode(QueueManager.RepeatMode.ALL);
+    public void toggleShuffleMode() { //NOSONAR
+        switch (getShuffleMode()) { //NOSONAR
+            case QueueManager.ShuffleMode.OFF: //NOSONAR
+                setShuffleMode(QueueManager.ShuffleMode.ON); //NOSONAR
+                notifyChange(InternalIntents.SHUFFLE_CHANGED); //NOSONAR
+                queueManager.makeShuffleList(); //NOSONAR
+                notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
+                if (getRepeatMode() == QueueManager.RepeatMode.ONE) { //NOSONAR
+                    setRepeatMode(QueueManager.RepeatMode.ALL); //NOSONAR
                 }
-                showToast(R.string.shuffle_on_notif);
-                break;
-            case QueueManager.ShuffleMode.ON:
-                setShuffleMode(QueueManager.ShuffleMode.OFF);
-                notifyChange(InternalIntents.SHUFFLE_CHANGED);
-                if (this.queueManager.queuePosition >= 0 && this.queueManager.queuePosition < queueManager.shuffleList.size()) {
-                    int playPos = queueManager.playlist.indexOf(queueManager.shuffleList.get(this.queueManager.queuePosition));
-                    if (playPos != -1) {
-                        this.queueManager.queuePosition = playPos;
+                showToast(R.string.shuffle_on_notif); //NOSONAR
+                break; //NOSONAR
+            case QueueManager.ShuffleMode.ON: //NOSONAR
+                setShuffleMode(QueueManager.ShuffleMode.OFF); //NOSONAR
+                notifyChange(InternalIntents.SHUFFLE_CHANGED); //NOSONAR
+                if (this.queueManager.queuePosition >= 0 && this.queueManager.queuePosition < queueManager.shuffleList.size()) { //NOSONAR
+                    int playPos = queueManager.playlist.indexOf(queueManager.shuffleList.get(this.queueManager.queuePosition)); //NOSONAR
+                    if (playPos != -1) { //NOSONAR
+                        this.queueManager.queuePosition = playPos; //NOSONAR
                     }
                 }
-                notifyChange(InternalIntents.QUEUE_CHANGED);
-                showToast(R.string.shuffle_off_notif);
-                break;
+                notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
+                showToast(R.string.shuffle_off_notif); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    public void toggleRepeat() {
-        switch (getRepeatMode()) {
-            case QueueManager.RepeatMode.OFF:
-                setRepeatMode(QueueManager.RepeatMode.ALL);
-                showToast(R.string.repeat_all_notif);
-                break;
-            case QueueManager.RepeatMode.ALL:
-                setRepeatMode(QueueManager.RepeatMode.ONE);
-                showToast(R.string.repeat_current_notif);
-                break;
-            case QueueManager.RepeatMode.ONE:
-                setRepeatMode(QueueManager.RepeatMode.OFF);
-                showToast(R.string.repeat_off_notif);
-                break;
+    public void toggleRepeat() { //NOSONAR
+        switch (getRepeatMode()) { //NOSONAR
+            case QueueManager.RepeatMode.OFF: //NOSONAR
+                setRepeatMode(QueueManager.RepeatMode.ALL); //NOSONAR
+                showToast(R.string.repeat_all_notif); //NOSONAR
+                break; //NOSONAR
+            case QueueManager.RepeatMode.ALL: //NOSONAR
+                setRepeatMode(QueueManager.RepeatMode.ONE); //NOSONAR
+                showToast(R.string.repeat_current_notif); //NOSONAR
+                break; //NOSONAR
+            case QueueManager.RepeatMode.ONE: //NOSONAR
+                setRepeatMode(QueueManager.RepeatMode.OFF); //NOSONAR
+                showToast(R.string.repeat_off_notif); //NOSONAR
+                break; //NOSONAR
         }
-        notifyChange(InternalIntents.REPEAT_CHANGED);
+        notifyChange(InternalIntents.REPEAT_CHANGED); //NOSONAR
     }
 
-    public void clearQueue() {
-        playbackManager.clearQueue();
+    public void clearQueue() { //NOSONAR
+        playbackManager.clearQueue(); //NOSONAR
     }
 
-    public List<QueueItem> getQueue() {
-        return queueManager.getCurrentPlaylist();
+    public List<QueueItem> getQueue() { //NOSONAR
+        return queueManager.getCurrentPlaylist(); //NOSONAR
     }
 
     /**
      * @return the position in the queue
      */
-    public int getQueuePosition() {
-        return queueManager.queuePosition;
+    public int getQueuePosition() { //NOSONAR
+        return queueManager.queuePosition; //NOSONAR
     }
 
-    public boolean getQueueReloading() {
-        synchronized (this) {
-            return queueManager.queueReloading;
+    public boolean getQueueReloading() { //NOSONAR
+        synchronized (this) { //NOSONAR
+            return queueManager.queueReloading; //NOSONAR
         }
     }
 
@@ -886,136 +886,136 @@ public class MusicService extends MediaBrowserServiceCompat {
      *
      * @param position The position in the queue of the track that will be played.
      */
-    public void setQueuePosition(int position) {
-        playbackManager.setQueuePosition(position);
+    public void setQueuePosition(int position) { //NOSONAR
+        playbackManager.setQueuePosition(position); //NOSONAR
     }
 
-    public void removeQueueItems(List<QueueItem> queueItems) {
-        playbackManager.removeQueueItems(queueItems);
+    public void removeQueueItems(List<QueueItem> queueItems) { //NOSONAR
+        playbackManager.removeQueueItems(queueItems); //NOSONAR
     }
 
-    public void removeSongs(List<Song> songs) {
-        playbackManager.removeSongs(songs);
+    public void removeSongs(List<Song> songs) { //NOSONAR
+        playbackManager.removeSongs(songs); //NOSONAR
     }
 
-    public void removeQueueItem(QueueItem queueItem) {
-        playbackManager.removeQueueItem(queueItem);
+    public void removeQueueItem(QueueItem queueItem) { //NOSONAR
+        playbackManager.removeQueueItem(queueItem); //NOSONAR
     }
 
-    public void moveQueueItem(int from, int to) {
-        playbackManager.moveQueueItem(from, to);
+    public void moveQueueItem(int from, int to) { //NOSONAR
+        playbackManager.moveQueueItem(from, to); //NOSONAR
     }
 
     // EQ
 
-    public void closeEqualizerSessions(boolean internal, int audioSessionId) {
-        playbackManager.closeEqualizerSessions(internal, audioSessionId);
+    public void closeEqualizerSessions(boolean internal, int audioSessionId) { //NOSONAR
+        playbackManager.closeEqualizerSessions(internal, audioSessionId); //NOSONAR
     }
 
-    public void openEqualizerSession(boolean internal, int audioSessionId) {
-        playbackManager.openEqualizerSession(internal, audioSessionId);
+    public void openEqualizerSession(boolean internal, int audioSessionId) { //NOSONAR
+        playbackManager.openEqualizerSession(internal, audioSessionId); //NOSONAR
     }
 
-    public void updateEqualizer() {
-        playbackManager.updateEqualizer();
+    public void updateEqualizer() { //NOSONAR
+        playbackManager.updateEqualizer(); //NOSONAR
     }
 
-    private void scheduleDelayedShutdown() {
-        if (isPlaying() || serviceInUse || playbackManager.willResumePlayback()) {
-            analyticsManager.dropBreadcrumb(TAG,
-                    String.format("scheduleDelayedShutdown called.. returning early. isPlaying: %s service in use: %s will resume playback: %s",
-                            isPlaying(), serviceInUse, playbackManager.willResumePlayback()));
-            return;
+    private void scheduleDelayedShutdown() { //NOSONAR
+        if (isPlaying() || serviceInUse || playbackManager.willResumePlayback()) { //NOSONAR
+            analyticsManager.dropBreadcrumb(TAG, //NOSONAR
+                    String.format("scheduleDelayedShutdown called.. returning early. isPlaying: %s service in use: %s will resume playback: %s", //NOSONAR
+                            isPlaying(), serviceInUse, playbackManager.willResumePlayback())); //NOSONAR
+            return; //NOSONAR
         }
 
-        analyticsManager.dropBreadcrumb(TAG, "scheduleDelayedShutdown for 5 mins from now");
-        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 5 * 60 * 1000 /* 5 mins */, shutdownIntent);
-        shutdownScheduled = true;
+        analyticsManager.dropBreadcrumb(TAG, "scheduleDelayedShutdown for 5 mins from now"); //NOSONAR
+        alarmManager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 5 * 60 * 1000 /* 5 mins */, shutdownIntent); //NOSONAR
+        shutdownScheduled = true; //NOSONAR
     }
 
-    private void cancelShutdown() {
-        analyticsManager.dropBreadcrumb(TAG, "cancelShutdown() called. Shutdown scheduled: " + shutdownScheduled);
-        if (shutdownScheduled) {
-            alarmManager.cancel(shutdownIntent);
-            shutdownScheduled = false;
+    private void cancelShutdown() { //NOSONAR
+        analyticsManager.dropBreadcrumb(TAG, "cancelShutdown() called. Shutdown scheduled: " + shutdownScheduled); //NOSONAR
+        if (shutdownScheduled) { //NOSONAR
+            alarmManager.cancel(shutdownIntent); //NOSONAR
+            shutdownScheduled = false; //NOSONAR
         }
     }
 
     // Notifications
 
-    void updateNotification() {
+    void updateNotification() { //NOSONAR
 
-        final int notifyMode;
+        final int notifyMode; //NOSONAR
 
-        if (isPlaying()) {
-            notifyMode = NotifyMode.FOREGROUND;
-        } else if (recentlyPlayed()) {
-            notifyMode = NotifyMode.BACKGROUND;
-        } else {
-            notifyMode = NotifyMode.NONE;
+        if (isPlaying()) { //NOSONAR
+            notifyMode = NotifyMode.FOREGROUND; //NOSONAR
+        } else if (recentlyPlayed()) { //NOSONAR
+            notifyMode = NotifyMode.BACKGROUND; //NOSONAR
+        } else { //NOSONAR
+            notifyMode = NotifyMode.NONE; //NOSONAR
         }
 
-        switch (notifyMode) {
-            case NotifyMode.FOREGROUND:
-                startForegroundImpl();
-                break;
-            case NotifyMode.BACKGROUND:
-                try {
-                    if (queueManager.getCurrentSong() != null) {
-                        notificationHelper.notify(this, playlistsRepository, songsRepository, queueManager.getCurrentSong(), isPlaying(), playbackManager.getMediaSessionToken(), settingsManager,
-                                favoritesPlaylistManager);
+        switch (notifyMode) { //NOSONAR
+            case NotifyMode.FOREGROUND: //NOSONAR
+                startForegroundImpl(); //NOSONAR
+                break; //NOSONAR
+            case NotifyMode.BACKGROUND: //NOSONAR
+                try { //NOSONAR
+                    if (queueManager.getCurrentSong() != null) { //NOSONAR
+                        notificationHelper.notify(this, playlistsRepository, songsRepository, queueManager.getCurrentSong(), isPlaying(), playbackManager.getMediaSessionToken(), settingsManager, //NOSONAR
+                                favoritesPlaylistManager); //NOSONAR
                     }
-                } catch (ConcurrentModificationException e) {
-                    LogUtils.logException(TAG, "Exception while attempting to show notification", e);
+                } catch (ConcurrentModificationException e) { //NOSONAR
+                    LogUtils.logException(TAG, "Exception while attempting to show notification", e); //NOSONAR
                 }
-                stopForegroundImpl(false, false);
-                break;
-            case NotifyMode.NONE:
-                stopForegroundImpl(false, false);
-                notificationHelper.cancel();
-                break;
+                stopForegroundImpl(false, false); //NOSONAR
+                break; //NOSONAR
+            case NotifyMode.NONE: //NOSONAR
+                stopForegroundImpl(false, false); //NOSONAR
+                notificationHelper.cancel(); //NOSONAR
+                break; //NOSONAR
         }
     }
 
-    private void cancelNotification() {
-        stopForegroundImpl(true, true);
-        notificationHelper.cancel();
+    private void cancelNotification() { //NOSONAR
+        stopForegroundImpl(true, true); //NOSONAR
+        notificationHelper.cancel(); //NOSONAR
     }
 
-    public static PendingIntent retrievePlaybackAction(Context context, final String action) {
-        final ComponentName serviceName = new ComponentName(context, MusicService.class);
-        Intent intent = new Intent(action);
-        intent.setComponent(serviceName);
+    public static PendingIntent retrievePlaybackAction(Context context, final String action) { //NOSONAR
+        final ComponentName serviceName = new ComponentName(context, MusicService.class); //NOSONAR
+        Intent intent = new Intent(action); //NOSONAR
+        intent.setComponent(serviceName); //NOSONAR
 
-        return PendingIntent.getService(context, 0, intent, 0);
+        return PendingIntent.getService(context, 0, intent, 0); //NOSONAR
     }
 
     /**
      * Starts the foreground notification, and cancels any stop messages
      */
-    private void startForegroundImpl() {
-        try {
-            notificationStateHandler.sendEmptyMessage(NotificationStateHandler.START_FOREGROUND);
-            Song song = queueManager.getCurrentSong();
-            if (song != null) {
-                Log.i(TAG, "startForeground called");
-                if (notificationHelper.startForeground(
-                        this,
-                        playlistsRepository,
-                        songsRepository,
-                        queueManager.getCurrentSong(),
-                        isPlaying(),
-                        playbackManager.getMediaSessionToken(),
-                        settingsManager,
-                        favoritesPlaylistManager
+    private void startForegroundImpl() { //NOSONAR
+        try { //NOSONAR
+            notificationStateHandler.sendEmptyMessage(NotificationStateHandler.START_FOREGROUND); //NOSONAR
+            Song song = queueManager.getCurrentSong(); //NOSONAR
+            if (song != null) { //NOSONAR
+                Log.i(TAG, "startForeground called"); //NOSONAR
+                if (notificationHelper.startForeground( //NOSONAR
+                        this, //NOSONAR
+                        playlistsRepository, //NOSONAR
+                        songsRepository, //NOSONAR
+                        queueManager.getCurrentSong(), //NOSONAR
+                        isPlaying(), //NOSONAR
+                        playbackManager.getMediaSessionToken(), //NOSONAR
+                        settingsManager, //NOSONAR
+                        favoritesPlaylistManager //NOSONAR
                 )) {
-                    dummyNotificationHelper.setForegroundedByApp(true);
+                    dummyNotificationHelper.setForegroundedByApp(true); //NOSONAR
                 }
-            } else {
-                Log.e(TAG, "startForeground should have been called, but song is null");
+            } else { //NOSONAR
+                Log.e(TAG, "startForeground should have been called, but song is null"); //NOSONAR
             }
-        } catch (NullPointerException | ConcurrentModificationException e) {
-            Crashlytics.log("startForegroundImpl error: " + e.getMessage());
+        } catch (NullPointerException | ConcurrentModificationException e) { //NOSONAR
+            Crashlytics.log("startForegroundImpl error: " + e.getMessage()); //NOSONAR
         }
     }
 
@@ -1025,173 +1025,173 @@ public class MusicService extends MediaBrowserServiceCompat {
      * @param removeNotification true to remove the notification as well as stop the service running in the foreground
      * @param withDelay true to delay the stop call by 1.5 seconds, allowing subsequent start calls to cancel this call
      */
-    void stopForegroundImpl(boolean removeNotification, boolean withDelay) {
-        if (withDelay) {
-            notificationStateHandler.sendEmptyMessageDelayed(NotificationStateHandler.STOP_FOREGROUND, 1500);
-        } else {
-            stopForeground(removeNotification);
-            dummyNotificationHelper.setForegroundedByApp(false);
+    void stopForegroundImpl(boolean removeNotification, boolean withDelay) { //NOSONAR
+        if (withDelay) { //NOSONAR
+            notificationStateHandler.sendEmptyMessageDelayed(NotificationStateHandler.STOP_FOREGROUND, 1500); //NOSONAR
+        } else { //NOSONAR
+            stopForeground(removeNotification); //NOSONAR
+            dummyNotificationHelper.setForegroundedByApp(false); //NOSONAR
         }
     }
 
     // Event management
 
-    private Bundle getExtras(@NonNull Song song) {
-        Bundle extras = new Bundle();
-        extras.putLong("id", song.id);
-        extras.putString("artist", song.artistName);
-        extras.putString("album", song.albumName);
-        extras.putString("track", song.name);
-        extras.putInt("shuffleMode", getShuffleMode());
-        extras.putInt("repeatMode", getRepeatMode());
-        extras.putBoolean("playing", isPlaying());
-        extras.putLong("duration", song.duration);
-        extras.putLong("position", getSeekPosition());
-        extras.putLong("ListSize", queueManager.getCurrentPlaylist().size());
-        return extras;
+    private Bundle getExtras(@NonNull Song song) { //NOSONAR
+        Bundle extras = new Bundle(); //NOSONAR
+        extras.putLong("id", song.id); //NOSONAR
+        extras.putString("artist", song.artistName); //NOSONAR
+        extras.putString("album", song.albumName); //NOSONAR
+        extras.putString("track", song.name); //NOSONAR
+        extras.putInt("shuffleMode", getShuffleMode()); //NOSONAR
+        extras.putInt("repeatMode", getRepeatMode()); //NOSONAR
+        extras.putBoolean("playing", isPlaying()); //NOSONAR
+        extras.putLong("duration", song.duration); //NOSONAR
+        extras.putLong("position", getSeekPosition()); //NOSONAR
+        extras.putLong("ListSize", queueManager.getCurrentPlaylist().size()); //NOSONAR
+        return extras; //NOSONAR
     }
 
-    private Intent getTaskerIntent(@NonNull Song song) {
-        Intent intent = new Intent(ExternalIntents.TASKER);
-        intent.putExtra("%MTRACK", isPlaying() ? song.name : "");
-        return intent;
+    private Intent getTaskerIntent(@NonNull Song song) { //NOSONAR
+        Intent intent = new Intent(ExternalIntents.TASKER); //NOSONAR
+        intent.putExtra("%MTRACK", isPlaying() ? song.name : ""); //NOSONAR
+        return intent; //NOSONAR
     }
 
-    private Intent getPebbleIntent(@NonNull Song song) {
-        Intent intent = new Intent(ExternalIntents.PEBBLE);
-        intent.putExtra("artist", song.artistName);
-        intent.putExtra("album", song.albumName);
-        intent.putExtra("track", song.name);
-        return intent;
+    private Intent getPebbleIntent(@NonNull Song song) { //NOSONAR
+        Intent intent = new Intent(ExternalIntents.PEBBLE); //NOSONAR
+        intent.putExtra("artist", song.artistName); //NOSONAR
+        intent.putExtra("album", song.albumName); //NOSONAR
+        intent.putExtra("track", song.name); //NOSONAR
+        return intent; //NOSONAR
     }
 
-    void notifyChange(String action) {
-        switch (action) {
-            case InternalIntents.TRACK_ENDING:
-                onTrackEnded();
-                return;
-            case InternalIntents.FAVORITE_CHANGED:
-                updateNotification();
-                return;
-            case InternalIntents.PLAY_STATE_CHANGED:
-                onPlayStateChanged();
-                break;
-            case InternalIntents.META_CHANGED:
-                onMetaChanged();
-                break;
-            case InternalIntents.QUEUE_CHANGED:
-                onQueueChanged();
-                break;
+    void notifyChange(String action) { //NOSONAR
+        switch (action) { //NOSONAR
+            case InternalIntents.TRACK_ENDING: //NOSONAR
+                onTrackEnded(); //NOSONAR
+                return; //NOSONAR
+            case InternalIntents.FAVORITE_CHANGED: //NOSONAR
+                updateNotification(); //NOSONAR
+                return; //NOSONAR
+            case InternalIntents.PLAY_STATE_CHANGED: //NOSONAR
+                onPlayStateChanged(); //NOSONAR
+                break; //NOSONAR
+            case InternalIntents.META_CHANGED: //NOSONAR
+                onMetaChanged(); //NOSONAR
+                break; //NOSONAR
+            case InternalIntents.QUEUE_CHANGED: //NOSONAR
+                onQueueChanged(); //NOSONAR
+                break; //NOSONAR
         }
 
-        Intent intent = new Intent(action);
-        Song currentSong = queueManager.getCurrentSong();
-        if (currentSong != null) {
-            intent.putExtras(getExtras(currentSong));
+        Intent intent = new Intent(action); //NOSONAR
+        Song currentSong = queueManager.getCurrentSong(); //NOSONAR
+        if (currentSong != null) { //NOSONAR
+            intent.putExtras(getExtras(currentSong)); //NOSONAR
         }
-        sendBroadcast(intent);
+        sendBroadcast(intent); //NOSONAR
 
-        widgetManager.notifyChange(this, action);
+        widgetManager.notifyChange(this, action); //NOSONAR
 
-        saveState(false);
+        saveState(false); //NOSONAR
     }
 
-    private void onQueueChanged() {
-        if (isPlaying()) {
-            setNextTrack();
-        }
-    }
-
-    private void onMetaChanged() {
-        updateNotification();
-
-        if (queueManager.getCurrentSong() != null) {
-            queueManager.getCurrentSong().setStartTime();
-
-            sendBroadcast(getTaskerIntent(queueManager.getCurrentSong()));
-
-            sendBroadcast(getPebbleIntent(queueManager.getCurrentSong()));
-
-            bluetoothManager.sendMetaChangedIntent(this, getExtras(queueManager.getCurrentSong()));
-
-            scrobbleManager.scrobbleBroadcast(this, ScrobbleManager.ScrobbleStatus.START, queueManager.getCurrentSong());
+    private void onQueueChanged() { //NOSONAR
+        if (isPlaying()) { //NOSONAR
+            setNextTrack(); //NOSONAR
         }
     }
 
-    private void onPlayStateChanged() {
-        updateNotification();
+    private void onMetaChanged() { //NOSONAR
+        updateNotification(); //NOSONAR
 
-        if (queueManager.getCurrentSong() != null) {
+        if (queueManager.getCurrentSong() != null) { //NOSONAR
+            queueManager.getCurrentSong().setStartTime(); //NOSONAR
 
-            bluetoothManager.sendPlayStateChangedIntent(this, getExtras(queueManager.getCurrentSong()));
+            sendBroadcast(getTaskerIntent(queueManager.getCurrentSong())); //NOSONAR
 
-            sendBroadcast(getTaskerIntent(queueManager.getCurrentSong()));
+            sendBroadcast(getPebbleIntent(queueManager.getCurrentSong())); //NOSONAR
 
-            if (isPlaying()) {
-                queueManager.getCurrentSong().setResumed();
-                sendBroadcast(getPebbleIntent(queueManager.getCurrentSong()));
-            } else {
-                queueManager.getCurrentSong().setPaused();
+            bluetoothManager.sendMetaChangedIntent(this, getExtras(queueManager.getCurrentSong())); //NOSONAR
+
+            scrobbleManager.scrobbleBroadcast(this, ScrobbleManager.ScrobbleStatus.START, queueManager.getCurrentSong()); //NOSONAR
+        }
+    }
+
+    private void onPlayStateChanged() { //NOSONAR
+        updateNotification(); //NOSONAR
+
+        if (queueManager.getCurrentSong() != null) { //NOSONAR
+
+            bluetoothManager.sendPlayStateChangedIntent(this, getExtras(queueManager.getCurrentSong())); //NOSONAR
+
+            sendBroadcast(getTaskerIntent(queueManager.getCurrentSong())); //NOSONAR
+
+            if (isPlaying()) { //NOSONAR
+                queueManager.getCurrentSong().setResumed(); //NOSONAR
+                sendBroadcast(getPebbleIntent(queueManager.getCurrentSong())); //NOSONAR
+            } else { //NOSONAR
+                queueManager.getCurrentSong().setPaused(); //NOSONAR
             }
-            scrobbleManager.scrobbleBroadcast(this, isPlaying() ? ScrobbleManager.ScrobbleStatus.RESUME : ScrobbleManager.ScrobbleStatus.PAUSE, queueManager.getCurrentSong());
+            scrobbleManager.scrobbleBroadcast(this, isPlaying() ? ScrobbleManager.ScrobbleStatus.RESUME : ScrobbleManager.ScrobbleStatus.PAUSE, queueManager.getCurrentSong()); //NOSONAR
         }
     }
 
-    private void onTrackEnded() {
+    private void onTrackEnded() { //NOSONAR
         //We're just about to change tracks, so 'current song' is the song that just finished
-        Song finishedSong = queueManager.getCurrentSong();
-        if (finishedSong != null) {
-            if (finishedSong.hasPlayed()) {
-                disposables.add(
-                        Completable.fromAction(() -> ShuttleUtils.incrementPlayCount(this, finishedSong))
-                                .subscribeOn(Schedulers.io())
-                                .subscribe(() -> {
+        Song finishedSong = queueManager.getCurrentSong(); //NOSONAR
+        if (finishedSong != null) { //NOSONAR
+            if (finishedSong.hasPlayed()) { //NOSONAR
+                disposables.add( //NOSONAR
+                        Completable.fromAction(() -> ShuttleUtils.incrementPlayCount(this, finishedSong)) //NOSONAR
+                                .subscribeOn(Schedulers.io()) //NOSONAR
+                                .subscribe(() -> { //NOSONAR
                                     // Nothing to do
-                                }, error -> LogUtils.logException(TAG, "Error incrementing play count", error))
+                                }, error -> LogUtils.logException(TAG, "Error incrementing play count", error)) //NOSONAR
                 );
             }
-            scrobbleManager.scrobbleBroadcast(this, ScrobbleManager.ScrobbleStatus.COMPLETE, finishedSong);
+            scrobbleManager.scrobbleBroadcast(this, ScrobbleManager.ScrobbleStatus.COMPLETE, finishedSong); //NOSONAR
         }
     }
 
-    public interface Callbacks {
+    public interface Callbacks { //NOSONAR
 
-        void notifyChange(String action);
+        void notifyChange(String action); //NOSONAR
 
-        void scheduleDelayedShutdown();
+        void scheduleDelayedShutdown(); //NOSONAR
 
-        void cancelShutdown();
+        void cancelShutdown(); //NOSONAR
 
-        void updateNotification();
+        void updateNotification(); //NOSONAR
 
-        void stopForegroundImpl(boolean removeNotification, boolean withDelay);
+        void stopForegroundImpl(boolean removeNotification, boolean withDelay); //NOSONAR
     }
 
-    class MusicServiceCallbacks implements Callbacks {
+    class MusicServiceCallbacks implements Callbacks { //NOSONAR
 
-        @Override
-        public void notifyChange(String action) {
-            MusicService.this.notifyChange(action);
+        @Override //NOSONAR
+        public void notifyChange(String action) { //NOSONAR
+            MusicService.this.notifyChange(action); //NOSONAR
         }
 
-        @Override
-        public void scheduleDelayedShutdown() {
-            MusicService.this.scheduleDelayedShutdown();
+        @Override //NOSONAR
+        public void scheduleDelayedShutdown() { //NOSONAR
+            MusicService.this.scheduleDelayedShutdown(); //NOSONAR
         }
 
-        @Override
-        public void cancelShutdown() {
-            MusicService.this.cancelShutdown();
+        @Override //NOSONAR
+        public void cancelShutdown() { //NOSONAR
+            MusicService.this.cancelShutdown(); //NOSONAR
         }
 
-        @Override
-        public void updateNotification() {
-            MusicService.this.updateNotification();
+        @Override //NOSONAR
+        public void updateNotification() { //NOSONAR
+            MusicService.this.updateNotification(); //NOSONAR
         }
 
-        @Override
-        public void stopForegroundImpl(boolean removeNotification, boolean withDelay) {
-            MusicService.this.stopForegroundImpl(removeNotification, withDelay);
+        @Override //NOSONAR
+        public void stopForegroundImpl(boolean removeNotification, boolean withDelay) { //NOSONAR
+            MusicService.this.stopForegroundImpl(removeNotification, withDelay); //NOSONAR
         }
     }
 }

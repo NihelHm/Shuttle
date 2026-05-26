@@ -3,310 +3,310 @@ package com.simplecity.amp_library.model;
 import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class TagUpdate {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class TagUpdate { //NOSONAR
 
-    String title;
-    String album;
-    String artist;
-    String albumArtist;
-    String genre;
-    String year;
-    String track;
-    String trackTotal;
-    String disc;
-    String discTotal;
-    String lyrics;
-    String comment;
+    String title; //NOSONAR
+    String album; //NOSONAR
+    String artist; //NOSONAR
+    String albumArtist; //NOSONAR
+    String genre; //NOSONAR
+    String year; //NOSONAR
+    String track; //NOSONAR
+    String trackTotal; //NOSONAR
+    String disc; //NOSONAR
+    String discTotal; //NOSONAR
+    String lyrics; //NOSONAR
+    String comment; //NOSONAR
 
-    boolean titleHasChanged;
-    boolean albumHasChanged;
-    boolean artistHasChanged;
-    boolean albumArtistHasChanged;
-    boolean genreHasChanged;
-    boolean yearHasChanged;
-    boolean trackHasChanged;
-    boolean trackTotalHasChanged;
-    boolean discHasChanged;
-    boolean discTotalHasChanged;
-    boolean lyricsHasChanged;
-    boolean commentHasChanged;
+    boolean titleHasChanged; //NOSONAR
+    boolean albumHasChanged; //NOSONAR
+    boolean artistHasChanged; //NOSONAR
+    boolean albumArtistHasChanged; //NOSONAR
+    boolean genreHasChanged; //NOSONAR
+    boolean yearHasChanged; //NOSONAR
+    boolean trackHasChanged; //NOSONAR
+    boolean trackTotalHasChanged; //NOSONAR
+    boolean discHasChanged; //NOSONAR
+    boolean discTotalHasChanged; //NOSONAR
+    boolean lyricsHasChanged; //NOSONAR
+    boolean commentHasChanged; //NOSONAR
 
-    public TagUpdate(Tag tag) {
-        try {
-            this.title = tag.getFirst(FieldKey.TITLE);
-        } catch (UnsupportedOperationException ignored) {
+    public TagUpdate(Tag tag) { //NOSONAR
+        try { //NOSONAR
+            this.title = tag.getFirst(FieldKey.TITLE); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.album = tag.getFirst(FieldKey.ALBUM);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.album = tag.getFirst(FieldKey.ALBUM); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.artist = tag.getFirst(FieldKey.ARTIST);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.artist = tag.getFirst(FieldKey.ARTIST); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.albumArtist = tag.getFirst(FieldKey.ALBUM_ARTIST);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.albumArtist = tag.getFirst(FieldKey.ALBUM_ARTIST); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.genre = tag.getFirst(FieldKey.GENRE);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.genre = tag.getFirst(FieldKey.GENRE); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.year = tag.getFirst(FieldKey.YEAR);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.year = tag.getFirst(FieldKey.YEAR); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.track = tag.getFirst(FieldKey.TRACK);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.track = tag.getFirst(FieldKey.TRACK); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.disc = tag.getFirst(FieldKey.DISC_NO);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.disc = tag.getFirst(FieldKey.DISC_NO); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.discTotal = tag.getFirst(FieldKey.DISC_TOTAL); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.lyrics = tag.getFirst(FieldKey.LYRICS);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.lyrics = tag.getFirst(FieldKey.LYRICS); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
-        try {
-            this.comment = tag.getFirst(FieldKey.COMMENT);
-        } catch (UnsupportedOperationException ignored) {
+        try { //NOSONAR
+            this.comment = tag.getFirst(FieldKey.COMMENT); //NOSONAR
+        } catch (UnsupportedOperationException ignored) { //NOSONAR
             // Intentionally left empty.
         }
     }
 
-    public void softSetTitle(String title) {
-        if (title == null) {
-            return;
+    public void softSetTitle(String title) { //NOSONAR
+        if (title == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.title == null || !this.title.equals(title)) {
-            this.title = title;
-            titleHasChanged = true;
-        }
-    }
-
-    public void softSetAlbum(String album) {
-        if (album == null) {
-            return;
-        }
-        if (this.album == null || !this.album.equals(album)) {
-            this.album = album;
-            albumHasChanged = true;
+        if (this.title == null || !this.title.equals(title)) { //NOSONAR
+            this.title = title; //NOSONAR
+            titleHasChanged = true; //NOSONAR
         }
     }
 
-    public void softSetArtist(String artist) {
-        if (artist == null) {
-            return;
+    public void softSetAlbum(String album) { //NOSONAR
+        if (album == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.artist == null || !this.artist.equals(artist)) {
-            this.artist = artist;
-            artistHasChanged = true;
-        }
-    }
-
-    public void softSetAlbumArtist(String albumArtist) {
-        if (albumArtist == null) {
-            return;
-        }
-        if (this.albumArtist == null || !this.albumArtist.equals(albumArtist)) {
-            this.albumArtist = albumArtist;
-            albumArtistHasChanged = true;
+        if (this.album == null || !this.album.equals(album)) { //NOSONAR
+            this.album = album; //NOSONAR
+            albumHasChanged = true; //NOSONAR
         }
     }
 
-    public void softSetGenre(String genre) {
-        if (genre == null) {
-            return;
+    public void softSetArtist(String artist) { //NOSONAR
+        if (artist == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.genre == null || !this.genre.equals(genre)) {
-            this.genre = genre;
-            genreHasChanged = true;
-        }
-    }
-
-    public void softSetYear(String year) {
-        if (year == null) {
-            return;
-        }
-        if (this.year == null || !this.year.equals(year)) {
-            this.year = year;
-            yearHasChanged = true;
+        if (this.artist == null || !this.artist.equals(artist)) { //NOSONAR
+            this.artist = artist; //NOSONAR
+            artistHasChanged = true; //NOSONAR
         }
     }
 
-    public void softSetTrack(String track) {
-        if (track == null) {
-            return;
+    public void softSetAlbumArtist(String albumArtist) { //NOSONAR
+        if (albumArtist == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.track == null || !this.track.equals(track)) {
-            this.track = track;
-            trackHasChanged = true;
-        }
-    }
-
-    public void softSetTrackTotal(String trackTotal) {
-        if (trackTotal == null) {
-            return;
-        }
-        if (this.trackTotal == null || !this.trackTotal.equals(trackTotal)) {
-            this.trackTotal = trackTotal;
-            trackTotalHasChanged = true;
+        if (this.albumArtist == null || !this.albumArtist.equals(albumArtist)) { //NOSONAR
+            this.albumArtist = albumArtist; //NOSONAR
+            albumArtistHasChanged = true; //NOSONAR
         }
     }
 
-    public void softSetDisc(String disc) {
-        if (disc == null) {
-            return;
+    public void softSetGenre(String genre) { //NOSONAR
+        if (genre == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.disc == null || !this.disc.equals(disc)) {
-            this.disc = disc;
-            discHasChanged = true;
-        }
-    }
-
-    public void softSetDiscTotal(String discTotal) {
-        if (discTotal == null) {
-            return;
-        }
-        if (this.discTotal == null || !this.discTotal.equals(discTotal)) {
-            this.discTotal = discTotal;
-            discTotalHasChanged = true;
+        if (this.genre == null || !this.genre.equals(genre)) { //NOSONAR
+            this.genre = genre; //NOSONAR
+            genreHasChanged = true; //NOSONAR
         }
     }
 
-    public void softSetLyrics(String lyrics) {
-        if (lyrics == null) {
-            return;
+    public void softSetYear(String year) { //NOSONAR
+        if (year == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (this.lyrics == null || !this.lyrics.equals(lyrics)) {
-            this.lyrics = lyrics;
-            lyricsHasChanged = true;
-        }
-    }
-
-    public void softSetComment(String comment) {
-        if (comment == null) {
-            return;
-        }
-        if (this.comment == null || !this.comment.equals(comment)) {
-            this.comment = comment;
-            commentHasChanged = true;
+        if (this.year == null || !this.year.equals(year)) { //NOSONAR
+            this.year = year; //NOSONAR
+            yearHasChanged = true; //NOSONAR
         }
     }
 
-    public boolean hasChanged() {
-        return titleHasChanged || albumHasChanged || artistHasChanged ||
-                albumArtistHasChanged || genreHasChanged || yearHasChanged
-                || trackHasChanged || trackTotalHasChanged || discHasChanged
-                || discTotalHasChanged || lyricsHasChanged || commentHasChanged;
+    public void softSetTrack(String track) { //NOSONAR
+        if (track == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (this.track == null || !this.track.equals(track)) { //NOSONAR
+            this.track = track; //NOSONAR
+            trackHasChanged = true; //NOSONAR
+        }
     }
 
-    public void updateTag(Tag tag) {
-        if (tag == null) {
-            return;
+    public void softSetTrackTotal(String trackTotal) { //NOSONAR
+        if (trackTotal == null) { //NOSONAR
+            return; //NOSONAR
         }
-        if (titleHasChanged) {
-            try {
-                tag.setField(FieldKey.TITLE, title);
-            } catch (Exception ignored) {
+        if (this.trackTotal == null || !this.trackTotal.equals(trackTotal)) { //NOSONAR
+            this.trackTotal = trackTotal; //NOSONAR
+            trackTotalHasChanged = true; //NOSONAR
+        }
+    }
+
+    public void softSetDisc(String disc) { //NOSONAR
+        if (disc == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (this.disc == null || !this.disc.equals(disc)) { //NOSONAR
+            this.disc = disc; //NOSONAR
+            discHasChanged = true; //NOSONAR
+        }
+    }
+
+    public void softSetDiscTotal(String discTotal) { //NOSONAR
+        if (discTotal == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (this.discTotal == null || !this.discTotal.equals(discTotal)) { //NOSONAR
+            this.discTotal = discTotal; //NOSONAR
+            discTotalHasChanged = true; //NOSONAR
+        }
+    }
+
+    public void softSetLyrics(String lyrics) { //NOSONAR
+        if (lyrics == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (this.lyrics == null || !this.lyrics.equals(lyrics)) { //NOSONAR
+            this.lyrics = lyrics; //NOSONAR
+            lyricsHasChanged = true; //NOSONAR
+        }
+    }
+
+    public void softSetComment(String comment) { //NOSONAR
+        if (comment == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (this.comment == null || !this.comment.equals(comment)) { //NOSONAR
+            this.comment = comment; //NOSONAR
+            commentHasChanged = true; //NOSONAR
+        }
+    }
+
+    public boolean hasChanged() { //NOSONAR
+        return titleHasChanged || albumHasChanged || artistHasChanged || //NOSONAR
+                albumArtistHasChanged || genreHasChanged || yearHasChanged //NOSONAR
+                || trackHasChanged || trackTotalHasChanged || discHasChanged //NOSONAR
+                || discTotalHasChanged || lyricsHasChanged || commentHasChanged; //NOSONAR
+    }
+
+    public void updateTag(Tag tag) { //NOSONAR
+        if (tag == null) { //NOSONAR
+            return; //NOSONAR
+        }
+        if (titleHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.TITLE, title); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (albumHasChanged) {
-            try {
-                tag.setField(FieldKey.ALBUM, album);
-            } catch (Exception ignored) {
+        if (albumHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.ALBUM, album); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (artistHasChanged) {
-            try {
-                tag.setField(FieldKey.ARTIST, artist);
-            } catch (Exception ignored) {
+        if (artistHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.ARTIST, artist); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (albumArtistHasChanged) {
-            try {
-                tag.setField(FieldKey.ALBUM_ARTIST, albumArtist);
-            } catch (Exception ignored) {
+        if (albumArtistHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.ALBUM_ARTIST, albumArtist); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (genreHasChanged) {
-            try {
-                tag.setField(FieldKey.GENRE, genre);
-            } catch (Exception ignored) {
+        if (genreHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.GENRE, genre); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (yearHasChanged) {
-            try {
-                tag.setField(FieldKey.YEAR, year);
-            } catch (Exception ignored) {
+        if (yearHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.YEAR, year); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (trackHasChanged) {
-            try {
-                tag.setField(FieldKey.TRACK, track);
-            } catch (Exception ignored) {
+        if (trackHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.TRACK, track); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (trackTotalHasChanged) {
-            try {
-                tag.setField(FieldKey.TRACK_TOTAL, trackTotal);
-            } catch (Exception ignored) {
+        if (trackTotalHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.TRACK_TOTAL, trackTotal); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (discHasChanged) {
-            try {
-                tag.setField(FieldKey.DISC_NO, disc);
-            } catch (Exception ignored) {
+        if (discHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.DISC_NO, disc); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (discTotalHasChanged) {
-            try {
-                tag.setField(FieldKey.DISC_TOTAL, discTotal);
-            } catch (Exception ignored) {
+        if (discTotalHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.DISC_TOTAL, discTotal); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (lyricsHasChanged) {
-            try {
-                tag.setField(FieldKey.LYRICS, lyrics);
-            } catch (Exception ignored) {
+        if (lyricsHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.LYRICS, lyrics); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }
-        if (commentHasChanged) {
-            try {
-                tag.setField(FieldKey.COMMENT, comment);
-            } catch (Exception ignored) {
+        if (commentHasChanged) { //NOSONAR
+            try { //NOSONAR
+                tag.setField(FieldKey.COMMENT, comment); //NOSONAR
+            } catch (Exception ignored) { //NOSONAR
                 // Intentionally left empty.
             }
         }

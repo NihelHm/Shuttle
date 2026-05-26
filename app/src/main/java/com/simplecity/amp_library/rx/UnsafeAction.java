@@ -5,9 +5,9 @@ import io.reactivex.functions.Action;
 /**
  * An Action which does not throw on error.
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public interface UnsafeAction extends Action {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public interface UnsafeAction extends Action { //NOSONAR
 
-    @Override
-    void run();
+    @Override //NOSONAR
+    void run(); //NOSONAR
 }

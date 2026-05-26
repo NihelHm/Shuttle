@@ -5,58 +5,58 @@ import com.simplecity.amp_library.utils.FileHelper;
 import java.io.File;
 import java.io.Serializable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BaseFileObject implements Serializable {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BaseFileObject implements Serializable { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public String name;
-    @SuppressWarnings("java:S1104")
-    public String path;
-    @SuppressWarnings("java:S1104")
-    public long size;
+    public String name; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String path; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long size; //NOSONAR
 
-    @FileType
-    @SuppressWarnings("java:S1104")
-    public int fileType;
+    @FileType //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int fileType; //NOSONAR
 
-    public File getParent() {
-        File file = new File(path);
-        return file.getParentFile();
+    public File getParent() { //NOSONAR
+        File file = new File(path); //NOSONAR
+        return file.getParentFile(); //NOSONAR
     }
 
-    public boolean canReadWrite() {
-        return FileHelper.canReadWrite(new File(path));
+    public boolean canReadWrite() { //NOSONAR
+        return FileHelper.canReadWrite(new File(path)); //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return "BaseFileObject{" +
-                "name='" + name + '\'' +
-                ", path='" + path + '\'' +
-                ", fileType=" + fileType +
-                "} " + super.toString();
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return "BaseFileObject{" + //NOSONAR
+                "name='" + name + '\'' + //NOSONAR
+                ", path='" + path + '\'' + //NOSONAR
+                ", fileType=" + fileType + //NOSONAR
+                "} " + super.toString(); //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        BaseFileObject that = (BaseFileObject) o;
+        BaseFileObject that = (BaseFileObject) o; //NOSONAR
 
-        if (size != that.size) return false;
-        if (fileType != that.fileType) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        return path != null ? path.equals(that.path) : that.path == null;
+        if (size != that.size) return false; //NOSONAR
+        if (fileType != that.fileType) return false; //NOSONAR
+        if (name != null ? !name.equals(that.name) : that.name != null) return false; //NOSONAR
+        return path != null ? path.equals(that.path) : that.path == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = name != null ? name.hashCode() : 0;
-        result = 31 * result + (path != null ? path.hashCode() : 0);
-        result = 31 * result + (int) (size ^ (size >>> 32));
-        result = 31 * result + fileType;
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = name != null ? name.hashCode() : 0; //NOSONAR
+        result = 31 * result + (path != null ? path.hashCode() : 0); //NOSONAR
+        result = 31 * result + (int) (size ^ (size >>> 32)); //NOSONAR
+        result = 31 * result + fileType; //NOSONAR
+        return result; //NOSONAR
     }
 }

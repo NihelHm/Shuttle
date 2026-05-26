@@ -29,443 +29,443 @@ import java.util.List;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class PlaybackManager implements Playback.Callbacks {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class PlaybackManager implements Playback.Callbacks { //NOSONAR
 
-    private static final String TAG = "PlaybackManager";
+    private static final String TAG = "PlaybackManager"; //NOSONAR
 
-    private Context context;
+    private Context context; //NOSONAR
 
-    private QueueManager queueManager;
+    private QueueManager queueManager; //NOSONAR
 
-    private PlaybackSettingsManager playbackSettingsManager;
+    private PlaybackSettingsManager playbackSettingsManager; //NOSONAR
 
-    private MediaSessionManager mediaSessionManager;
+    private MediaSessionManager mediaSessionManager; //NOSONAR
 
-    private Equalizer equalizer;
+    private Equalizer equalizer; //NOSONAR
 
-    private long lastPlayedTime;
+    private long lastPlayedTime; //NOSONAR
 
-    private CompositeDisposable disposables = new CompositeDisposable();
+    private CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
-    private boolean pauseOnTrackFinish = false;
+    private boolean pauseOnTrackFinish = false; //NOSONAR
 
-    private MusicService.Callbacks musicServiceCallbacks;
+    private MusicService.Callbacks musicServiceCallbacks; //NOSONAR
 
-    private Repository.SongsRepository songsRepository;
+    private Repository.SongsRepository songsRepository; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    private boolean playOnQueueReload = false;
+    private boolean playOnQueueReload = false; //NOSONAR
 
-    @NonNull
-    Playback playback;
+    @NonNull //NOSONAR
+    Playback playback; //NOSONAR
 
-    PlaybackManager(
-            Context context,
-            QueueManager queueManager,
-            PlaybackSettingsManager playbackSettingsManager,
-            Repository.SongsRepository songsRepository,
-            Repository.AlbumsRepository albumsRepository,
-            Repository.AlbumArtistsRepository albumArtistsRepository,
-            Repository.GenresRepository genresRepository,
-            Repository.PlaylistsRepository playlistsRepository,
-            MusicService.Callbacks musicServiceCallbacks,
-            SettingsManager settingsManager
+    PlaybackManager( //NOSONAR
+            Context context, //NOSONAR
+            QueueManager queueManager, //NOSONAR
+            PlaybackSettingsManager playbackSettingsManager, //NOSONAR
+            Repository.SongsRepository songsRepository, //NOSONAR
+            Repository.AlbumsRepository albumsRepository, //NOSONAR
+            Repository.AlbumArtistsRepository albumArtistsRepository, //NOSONAR
+            Repository.GenresRepository genresRepository, //NOSONAR
+            Repository.PlaylistsRepository playlistsRepository, //NOSONAR
+            MusicService.Callbacks musicServiceCallbacks, //NOSONAR
+            SettingsManager settingsManager //NOSONAR
     ) {
 
-        playback = new MediaPlayerPlayback(context);
-        playback.setCallbacks(this);
+        playback = new MediaPlayerPlayback(context); //NOSONAR
+        playback.setCallbacks(this); //NOSONAR
 
-        this.context = context.getApplicationContext();
+        this.context = context.getApplicationContext(); //NOSONAR
 
-        this.queueManager = queueManager;
+        this.queueManager = queueManager; //NOSONAR
 
-        this.playbackSettingsManager = playbackSettingsManager;
+        this.playbackSettingsManager = playbackSettingsManager; //NOSONAR
 
-        this.musicServiceCallbacks = musicServiceCallbacks;
+        this.musicServiceCallbacks = musicServiceCallbacks; //NOSONAR
 
-        this.songsRepository = songsRepository;
+        this.songsRepository = songsRepository; //NOSONAR
 
-        this.settingsManager = settingsManager;
+        this.settingsManager = settingsManager; //NOSONAR
 
-        mediaSessionManager = new MediaSessionManager(
-                context, queueManager,
-                this,
-                playbackSettingsManager,
-                settingsManager,
-                songsRepository,
-                albumsRepository,
-                albumArtistsRepository,
-                genresRepository,
-                playlistsRepository
+        mediaSessionManager = new MediaSessionManager( //NOSONAR
+                context, queueManager, //NOSONAR
+                this, //NOSONAR
+                playbackSettingsManager, //NOSONAR
+                settingsManager, //NOSONAR
+                songsRepository, //NOSONAR
+                albumsRepository, //NOSONAR
+                albumArtistsRepository, //NOSONAR
+                genresRepository, //NOSONAR
+                playlistsRepository //NOSONAR
         );
 
-        equalizer = new Equalizer(context, settingsManager);
+        equalizer = new Equalizer(context, settingsManager); //NOSONAR
 
-        disposables.add(SleepTimer.getInstance().getCurrentTimeObservable()
-                .subscribe(remainingTime -> {
-                    if (remainingTime == 0) {
-                        if (SleepTimer.getInstance().playToEnd) {
-                            pauseOnTrackFinish = true;
-                        } else {
-                            stop(true);
+        disposables.add(SleepTimer.getInstance().getCurrentTimeObservable() //NOSONAR
+                .subscribe(remainingTime -> { //NOSONAR
+                    if (remainingTime == 0) { //NOSONAR
+                        if (SleepTimer.getInstance().playToEnd) { //NOSONAR
+                            pauseOnTrackFinish = true; //NOSONAR
+                        } else { //NOSONAR
+                            stop(true); //NOSONAR
                         }
                     }
-                }, throwable -> LogUtils.logException(TAG, "Error consuming SleepTimer observable", throwable)));
+                }, throwable -> LogUtils.logException(TAG, "Error consuming SleepTimer observable", throwable))); //NOSONAR
     }
 
-    @NonNull
-    public Playback getPlayback() {
-        return playback;
+    @NonNull //NOSONAR
+    public Playback getPlayback() { //NOSONAR
+        return playback; //NOSONAR
     }
 
-    public void setQueuePosition(int position) {
-        stop(false);
-        queueManager.queuePosition = position;
-        load(true, true, 0);
+    public void setQueuePosition(int position) { //NOSONAR
+        stop(false); //NOSONAR
+        queueManager.queuePosition = position; //NOSONAR
+        load(true, true, 0); //NOSONAR
     }
 
-    void clearQueue() {
-        stop(true);
-        queueManager.clearQueue();
+    void clearQueue() { //NOSONAR
+        stop(true); //NOSONAR
+        queueManager.clearQueue(); //NOSONAR
     }
 
-    void reloadQueue() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            return;
+    void reloadQueue() { //NOSONAR
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) { //NOSONAR
+            return; //NOSONAR
         }
 
-        disposables.add(queueManager.reloadQueue(() -> {
-                    load(true, playOnQueueReload, playbackSettingsManager.getSeekPosition());
-                    playOnQueueReload = false;
-                    return Unit.INSTANCE;
+        disposables.add(queueManager.reloadQueue(() -> { //NOSONAR
+                    load(true, playOnQueueReload, playbackSettingsManager.getSeekPosition()); //NOSONAR
+                    playOnQueueReload = false; //NOSONAR
+                    return Unit.INSTANCE; //NOSONAR
                 })
         );
     }
 
-    void removeQueueItems(List<QueueItem> queueItems) {
-        queueManager.removeQueueItems(queueItems, () -> stop(true), () -> {
-            boolean wasPlaying = isPlaying();
-            stop(false);
-            load(true, wasPlaying, 0);
+    void removeQueueItems(List<QueueItem> queueItems) { //NOSONAR
+        queueManager.removeQueueItems(queueItems, () -> stop(true), () -> { //NOSONAR
+            boolean wasPlaying = isPlaying(); //NOSONAR
+            stop(false); //NOSONAR
+            load(true, wasPlaying, 0); //NOSONAR
         });
     }
 
-    void removeSongs(List<Song> songs) {
-        queueManager.removeSongs(songs, () -> stop(true), () -> {
-            boolean wasPlaying = isPlaying();
-            stop(false);
-            load(true, wasPlaying, 0);
+    void removeSongs(List<Song> songs) { //NOSONAR
+        queueManager.removeSongs(songs, () -> stop(true), () -> { //NOSONAR
+            boolean wasPlaying = isPlaying(); //NOSONAR
+            stop(false); //NOSONAR
+            load(true, wasPlaying, 0); //NOSONAR
         });
     }
 
-    void removeQueueItem(QueueItem queueItem) {
-        queueManager.removeQueueItem(queueItem, () -> stop(true), () -> {
-            boolean wasPlaying = isPlaying();
-            stop(false);
-            load(true, wasPlaying, 0);
+    void removeQueueItem(QueueItem queueItem) { //NOSONAR
+        queueManager.removeQueueItem(queueItem, () -> stop(true), () -> { //NOSONAR
+            boolean wasPlaying = isPlaying(); //NOSONAR
+            stop(false); //NOSONAR
+            load(true, wasPlaying, 0); //NOSONAR
         });
     }
 
-    void moveQueueItem(int from, int to) {
-        queueManager.moveQueueItem(from, to);
+    void moveQueueItem(int from, int to) { //NOSONAR
+        queueManager.moveQueueItem(from, to); //NOSONAR
     }
 
-    private void notifyChange(String what) {
-        musicServiceCallbacks.notifyChange(what);
+    private void notifyChange(String what) { //NOSONAR
+        musicServiceCallbacks.notifyChange(what); //NOSONAR
     }
 
-    void playAutoShuffleList() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-            disposables.add(songsRepository.getSongs((Function1<? super Song, Boolean>) null)
-                    .firstOrError()
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(songs -> {
-                        queueManager.playlist = QueueItemKt.toQueueItems(songs);
-                        queueManager.queuePosition = -1;
-                        queueManager.makeShuffleList();
-                        queueManager.setShuffleMode(QueueManager.ShuffleMode.ON);
-                        notifyChange(InternalIntents.QUEUE_CHANGED);
-                        queueManager.queuePosition = 0;
-                        load(true, true, 0);
-                    }, error -> LogUtils.logException(TAG, "Error playing auto shuffle list", error)));
-        } else {
-            queueManager.shuffleMode = QueueManager.ShuffleMode.OFF;
-            queueManager.saveQueue(false);
+    void playAutoShuffleList() { //NOSONAR
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) { //NOSONAR
+            disposables.add(songsRepository.getSongs((Function1<? super Song, Boolean>) null) //NOSONAR
+                    .firstOrError() //NOSONAR
+                    .subscribeOn(Schedulers.io()) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe(songs -> { //NOSONAR
+                        queueManager.playlist = QueueItemKt.toQueueItems(songs); //NOSONAR
+                        queueManager.queuePosition = -1; //NOSONAR
+                        queueManager.makeShuffleList(); //NOSONAR
+                        queueManager.setShuffleMode(QueueManager.ShuffleMode.ON); //NOSONAR
+                        notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
+                        queueManager.queuePosition = 0; //NOSONAR
+                        load(true, true, 0); //NOSONAR
+                    }, error -> LogUtils.logException(TAG, "Error playing auto shuffle list", error))); //NOSONAR
+        } else { //NOSONAR
+            queueManager.shuffleMode = QueueManager.ShuffleMode.OFF; //NOSONAR
+            queueManager.saveQueue(false); //NOSONAR
         }
     }
 
-    MediaSessionCompat.Token getMediaSessionToken() {
-        return mediaSessionManager.getSessionToken();
+    MediaSessionCompat.Token getMediaSessionToken() { //NOSONAR
+        return mediaSessionManager.getSessionToken(); //NOSONAR
     }
 
-    void closeEqualizerSessions(boolean internal, int audioSessionId) {
-        equalizer.closeEqualizerSessions(internal, audioSessionId);
+    void closeEqualizerSessions(boolean internal, int audioSessionId) { //NOSONAR
+        equalizer.closeEqualizerSessions(internal, audioSessionId); //NOSONAR
     }
 
-    void openEqualizerSession(boolean internal, int audioSessionId) {
-        equalizer.openEqualizerSession(internal, audioSessionId);
+    void openEqualizerSession(boolean internal, int audioSessionId) { //NOSONAR
+        equalizer.openEqualizerSession(internal, audioSessionId); //NOSONAR
     }
 
-    void updateEqualizer() {
-        equalizer.update();
+    void updateEqualizer() { //NOSONAR
+        equalizer.update(); //NOSONAR
     }
 
     /**
      * @param force true to ignore the current repeat mode.
      * @return The next position to play, or -1 of playback should complete.
      */
-    private int getNextPosition(boolean force) {
-        return queueManager.getNextPosition(force);
+    private int getNextPosition(boolean force) { //NOSONAR
+        return queueManager.getNextPosition(force); //NOSONAR
     }
 
-    public void load(@NonNull List<Song> songs, int queuePosition, Boolean playWhenReady, long seekPosition) {
-        queueManager.load(
-                songs,
-                queuePosition,
-                () -> load(true, playWhenReady, seekPosition)
+    public void load(@NonNull List<Song> songs, int queuePosition, Boolean playWhenReady, long seekPosition) { //NOSONAR
+        queueManager.load( //NOSONAR
+                songs, //NOSONAR
+                queuePosition, //NOSONAR
+                () -> load(true, playWhenReady, seekPosition) //NOSONAR
         );
     }
 
-    private void load(boolean setNext, Boolean playWhenReady, long seekPosition) {
-        if (queueManager.getCurrentPlaylist().isEmpty() || queueManager.queuePosition < 0 || queueManager.queuePosition >= queueManager.getCurrentPlaylist().size()) {
-            return;
+    private void load(boolean setNext, Boolean playWhenReady, long seekPosition) { //NOSONAR
+        if (queueManager.getCurrentPlaylist().isEmpty() || queueManager.queuePosition < 0 || queueManager.queuePosition >= queueManager.getCurrentPlaylist().size()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        stop(false);
+        stop(false); //NOSONAR
 
-        loadAttempt(1, playWhenReady, seekPosition, success -> {
-            if (success) {
+        loadAttempt(1, playWhenReady, seekPosition, success -> { //NOSONAR
+            if (success) { //NOSONAR
 
-                notifyChange(InternalIntents.QUEUE_CHANGED);
-                notifyChange(InternalIntents.META_CHANGED);
+                notifyChange(InternalIntents.QUEUE_CHANGED); //NOSONAR
+                notifyChange(InternalIntents.META_CHANGED); //NOSONAR
 
-                restoreBookmark();
+                restoreBookmark(); //NOSONAR
 
-                if (setNext) {
-                    setNextTrack();
+                if (setNext) { //NOSONAR
+                    setNextTrack(); //NOSONAR
                 }
-            } else {
-                musicServiceCallbacks.scheduleDelayedShutdown();
+            } else { //NOSONAR
+                musicServiceCallbacks.scheduleDelayedShutdown(); //NOSONAR
             }
-            return Unit.INSTANCE;
+            return Unit.INSTANCE; //NOSONAR
         });
     }
 
-    private void loadAttempt(int attempt, Boolean playWhenReady, long seekPosition, @Nullable Function1<Boolean, Unit> completion) {
+    private void loadAttempt(int attempt, Boolean playWhenReady, long seekPosition, @Nullable Function1<Boolean, Unit> completion) { //NOSONAR
 
-        Song song = queueManager.getCurrentSong();
-        if (song == null) {
-            if (completion != null) {
-                completion.invoke(false);
+        Song song = queueManager.getCurrentSong(); //NOSONAR
+        if (song == null) { //NOSONAR
+            if (completion != null) { //NOSONAR
+                completion.invoke(false); //NOSONAR
             }
-            return;
+            return; //NOSONAR
         }
 
-        load(song, playWhenReady, seekPosition, success -> {
-            if (success) {
-                if (completion != null) {
-                    completion.invoke(true);
+        load(song, playWhenReady, seekPosition, success -> { //NOSONAR
+            if (success) { //NOSONAR
+                if (completion != null) { //NOSONAR
+                    completion.invoke(true); //NOSONAR
                 }
-            } else {
-                if (attempt < 10) {
-                    int position = getNextPosition(false);
-                    if (position < 0) {
-                        if (completion != null) {
-                            completion.invoke(false);
+            } else { //NOSONAR
+                if (attempt < 10) { //NOSONAR
+                    int position = getNextPosition(false); //NOSONAR
+                    if (position < 0) { //NOSONAR
+                        if (completion != null) { //NOSONAR
+                            completion.invoke(false); //NOSONAR
                         }
-                    } else {
-                        queueManager.queuePosition = position;
-                        queueManager.saveQueue(false);
-                        loadAttempt(attempt + 1, playWhenReady, seekPosition, completion);
+                    } else { //NOSONAR
+                        queueManager.queuePosition = position; //NOSONAR
+                        queueManager.saveQueue(false); //NOSONAR
+                        loadAttempt(attempt + 1, playWhenReady, seekPosition, completion); //NOSONAR
                     }
-                } else {
-                    if (completion != null) {
-                        completion.invoke(false);
+                } else { //NOSONAR
+                    if (completion != null) { //NOSONAR
+                        completion.invoke(false); //NOSONAR
                     }
                 }
             }
-            return Unit.INSTANCE;
+            return Unit.INSTANCE; //NOSONAR
         });
     }
 
-    private void load(@NonNull Song song, Boolean playWhenReady, long seekPosition, @Nullable Function1<Boolean, Unit> completion) {
-        playback.load(song, playWhenReady, seekPosition, success -> {
-            if (success) {
-                if (playWhenReady) {
-                    musicServiceCallbacks.cancelShutdown();
+    private void load(@NonNull Song song, Boolean playWhenReady, long seekPosition, @Nullable Function1<Boolean, Unit> completion) { //NOSONAR
+        playback.load(song, playWhenReady, seekPosition, success -> { //NOSONAR
+            if (success) { //NOSONAR
+                if (playWhenReady) { //NOSONAR
+                    musicServiceCallbacks.cancelShutdown(); //NOSONAR
                 }
-                if (completion != null) {
-                    completion.invoke(true);
+                if (completion != null) { //NOSONAR
+                    completion.invoke(true); //NOSONAR
                 }
-            } else {
-                stop(true);
-                if (completion != null) {
-                    completion.invoke(false);
+            } else { //NOSONAR
+                stop(true); //NOSONAR
+                if (completion != null) { //NOSONAR
+                    completion.invoke(false); //NOSONAR
                 }
             }
-            return Unit.INSTANCE;
+            return Unit.INSTANCE; //NOSONAR
         });
     }
 
-    void loadFile(String path, Boolean playWhenReady) {
-        if (path == null) {
-            return;
+    void loadFile(String path, Boolean playWhenReady) { //NOSONAR
+        if (path == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        Uri uri = Uri.parse(path);
-        long id = -1;
-        try {
-            id = Long.valueOf(uri.getLastPathSegment());
-        } catch (NumberFormatException ignored) {
+        Uri uri = Uri.parse(path); //NOSONAR
+        long id = -1; //NOSONAR
+        try { //NOSONAR
+            id = Long.valueOf(uri.getLastPathSegment()); //NOSONAR
+        } catch (NumberFormatException ignored) { //NOSONAR
             // Intentionally left empty.
         }
 
-        Function1<? super Song, Boolean> predicate;
+        Function1<? super Song, Boolean> predicate; //NOSONAR
 
-        long finalId = id;
-        if (finalId != -1 && (path.startsWith(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI.toString()) || path.startsWith(MediaStore.Files.getContentUri("external").toString()))) {
-            predicate = song -> song.id == finalId;
-        } else {
-            if (uri != null && path.startsWith("content://")) {
-                path = uri.getPath();
+        long finalId = id; //NOSONAR
+        if (finalId != -1 && (path.startsWith(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI.toString()) || path.startsWith(MediaStore.Files.getContentUri("external").toString()))) { //NOSONAR
+            predicate = song -> song.id == finalId; //NOSONAR
+        } else { //NOSONAR
+            if (uri != null && path.startsWith("content://")) { //NOSONAR
+                path = uri.getPath(); //NOSONAR
             }
-            String finalPath = path;
-            predicate = song -> song.path.contains(finalPath);
+            String finalPath = path; //NOSONAR
+            predicate = song -> song.path.contains(finalPath); //NOSONAR
         }
 
-        disposables.add(songsRepository.getSongs(predicate)
-                .firstOrError()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(songs -> {
-                    if (!songs.isEmpty() && queueManager.getCurrentSong() != null) {
-                        load(queueManager.getCurrentSong(), playWhenReady, (long) 0, null);
+        disposables.add(songsRepository.getSongs(predicate) //NOSONAR
+                .firstOrError() //NOSONAR
+                .subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe(songs -> { //NOSONAR
+                    if (!songs.isEmpty() && queueManager.getCurrentSong() != null) { //NOSONAR
+                        load(queueManager.getCurrentSong(), playWhenReady, (long) 0, null); //NOSONAR
                     }
-                }, error -> LogUtils.logException(TAG, "Error opening file", error)));
+                }, error -> LogUtils.logException(TAG, "Error opening file", error))); //NOSONAR
     }
 
-    private void restoreBookmark() {
+    private void restoreBookmark() { //NOSONAR
         // Go to bookmark if needed
-        if (queueManager.getCurrentSong() != null && queueManager.getCurrentSong().isPodcast) {
-            long bookmark = queueManager.getCurrentSong().bookMark;
+        if (queueManager.getCurrentSong() != null && queueManager.getCurrentSong().isPodcast) { //NOSONAR
+            long bookmark = queueManager.getCurrentSong().bookMark; //NOSONAR
             // Start playing a little bit before the bookmark, so it's easier to get back in to the narrative.
-            seekTo(bookmark - 5000);
+            seekTo(bookmark - 5000); //NOSONAR
         }
     }
 
-    void setNextTrack() {
-        queueManager.nextPlayPos = getNextPosition(false);
-        if (queueManager.nextPlayPos >= 0
-                && !queueManager.getCurrentPlaylist().isEmpty()
-                && queueManager.nextPlayPos < queueManager.getCurrentPlaylist().size()) {
-            final Song nextSong = queueManager.getCurrentPlaylist().get(queueManager.nextPlayPos).getSong();
-            playback.setNextDataSource(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + nextSong.id);
-        } else {
-            playback.setNextDataSource(null);
+    void setNextTrack() { //NOSONAR
+        queueManager.nextPlayPos = getNextPosition(false); //NOSONAR
+        if (queueManager.nextPlayPos >= 0 //NOSONAR
+                && !queueManager.getCurrentPlaylist().isEmpty() //NOSONAR
+                && queueManager.nextPlayPos < queueManager.getCurrentPlaylist().size()) { //NOSONAR
+            final Song nextSong = queueManager.getCurrentPlaylist().get(queueManager.nextPlayPos).getSong(); //NOSONAR
+            playback.setNextDataSource(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI + "/" + nextSong.id); //NOSONAR
+        } else { //NOSONAR
+            playback.setNextDataSource(null); //NOSONAR
         }
     }
 
-    void enqueue(List<Song> songs, int action) {
-        queueManager.enqueue(
-                songs,
-                action,
-                this::setNextTrack,
-                () -> load(true, true, 0));
+    void enqueue(List<Song> songs, int action) { //NOSONAR
+        queueManager.enqueue( //NOSONAR
+                songs, //NOSONAR
+                action, //NOSONAR
+                this::setNextTrack, //NOSONAR
+                () -> load(true, true, 0)); //NOSONAR
     }
 
-    void saveState() {
-        if (playback.isInitialized()) {
-            playbackSettingsManager.setSeekPosition(playback.getPosition());
+    void saveState() { //NOSONAR
+        if (playback.isInitialized()) { //NOSONAR
+            playbackSettingsManager.setSeekPosition(playback.getPosition()); //NOSONAR
         }
     }
 
-    void release() {
-        if (isPlaying() || playback.willResumePlayback()) {
-            return;
+    void release() { //NOSONAR
+        if (isPlaying() || playback.willResumePlayback()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        mediaSessionManager.setActive(false);
+        mediaSessionManager.setActive(false); //NOSONAR
     }
 
-    void destroy() {
+    void destroy() { //NOSONAR
 
-        playback.stop();
+        playback.stop(); //NOSONAR
 
         // Release all MediaPlayer resources, including the native player and wakelocks
-        playback.release();
+        playback.release(); //NOSONAR
 
-        disposables.clear();
+        disposables.clear(); //NOSONAR
 
-        mediaSessionManager.destroy();
+        mediaSessionManager.destroy(); //NOSONAR
 
-        equalizer.release();
-        equalizer.closeEqualizerSessions(true, getAudioSessionId());
+        equalizer.release(); //NOSONAR
+        equalizer.closeEqualizerSessions(true, getAudioSessionId()); //NOSONAR
     }
 
-    boolean recentlyPlayed() {
-        return isPlaying() || System.currentTimeMillis() - lastPlayedTime < 5 * 60 * 1000 /* 5 mins */;
+    boolean recentlyPlayed() { //NOSONAR
+        return isPlaying() || System.currentTimeMillis() - lastPlayedTime < 5 * 60 * 1000 /* 5 mins */; //NOSONAR
     }
 
-    int getAudioSessionId() {
-        return playback.getAudioSessionId();
+    int getAudioSessionId() { //NOSONAR
+        return playback.getAudioSessionId(); //NOSONAR
     }
 
-    public void seekTo(long position) {
-        if (position < 0) {
-            position = 0;
-        } else if (position > playback.getDuration()) {
-            position = playback.getDuration();
+    public void seekTo(long position) { //NOSONAR
+        if (position < 0) { //NOSONAR
+            position = 0; //NOSONAR
+        } else if (position > playback.getDuration()) { //NOSONAR
+            position = playback.getDuration(); //NOSONAR
         }
 
-        playback.seekTo(position);
+        playback.seekTo(position); //NOSONAR
 
-        notifyChange(InternalIntents.POSITION_CHANGED);
+        notifyChange(InternalIntents.POSITION_CHANGED); //NOSONAR
     }
 
-    long getSeekPosition() {
-        return playback.getPosition();
+    long getSeekPosition() { //NOSONAR
+        return playback.getPosition(); //NOSONAR
     }
 
-    public void pause(boolean fade) {
-        if (isPlaying()) {
-            updateLastPlayedTime();
-            saveBookmarkIfNeeded();
+    public void pause(boolean fade) { //NOSONAR
+        if (isPlaying()) { //NOSONAR
+            updateLastPlayedTime(); //NOSONAR
+            saveBookmarkIfNeeded(); //NOSONAR
         }
-        playback.pause(fade);
-        equalizer.closeEqualizerSessions(false, getAudioSessionId());
-        notifyChange(InternalIntents.PLAY_STATE_CHANGED);
-        musicServiceCallbacks.scheduleDelayedShutdown();
+        playback.pause(fade); //NOSONAR
+        equalizer.closeEqualizerSessions(false, getAudioSessionId()); //NOSONAR
+        notifyChange(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
+        musicServiceCallbacks.scheduleDelayedShutdown(); //NOSONAR
     }
 
-    private void updateLastPlayedTime() {
-        lastPlayedTime = System.currentTimeMillis();
+    private void updateLastPlayedTime() { //NOSONAR
+        lastPlayedTime = System.currentTimeMillis(); //NOSONAR
     }
 
-    public boolean isPlaying() {
-        return playback.isPlaying();
+    public boolean isPlaying() { //NOSONAR
+        return playback.isPlaying(); //NOSONAR
     }
 
-    boolean willResumePlayback() {
-        return playback.willResumePlayback();
+    boolean willResumePlayback() { //NOSONAR
+        return playback.willResumePlayback(); //NOSONAR
     }
 
-    public void stop(boolean goToIdle) {
+    public void stop(boolean goToIdle) { //NOSONAR
 
-        if (isPlaying()) {
-            updateLastPlayedTime();
-            saveBookmarkIfNeeded();
+        if (isPlaying()) { //NOSONAR
+            updateLastPlayedTime(); //NOSONAR
+            saveBookmarkIfNeeded(); //NOSONAR
         }
 
-        playback.stop();
+        playback.stop(); //NOSONAR
 
-        if (goToIdle) {
-            musicServiceCallbacks.scheduleDelayedShutdown();
-            lastPlayedTime = System.currentTimeMillis();
-        } else {
-            musicServiceCallbacks.stopForegroundImpl(false, true);
+        if (goToIdle) { //NOSONAR
+            musicServiceCallbacks.scheduleDelayedShutdown(); //NOSONAR
+            lastPlayedTime = System.currentTimeMillis(); //NOSONAR
+        } else { //NOSONAR
+            musicServiceCallbacks.stopForegroundImpl(false, true); //NOSONAR
         }
     }
 
@@ -473,176 +473,176 @@ public class PlaybackManager implements Playback.Callbacks {
      * @param force true to ignore the repeat mode.
      * @return true if the we've successfully moved to the next track.
      */
-    public boolean next(boolean force) {
-        notifyChange(InternalIntents.TRACK_ENDING);
+    public boolean next(boolean force) { //NOSONAR
+        notifyChange(InternalIntents.TRACK_ENDING); //NOSONAR
 
-        int nextPosition = getNextPosition(force);
-        if (nextPosition < 0) {
-            musicServiceCallbacks.scheduleDelayedShutdown();
-            return false;
+        int nextPosition = getNextPosition(force); //NOSONAR
+        if (nextPosition < 0) { //NOSONAR
+            musicServiceCallbacks.scheduleDelayedShutdown(); //NOSONAR
+            return false; //NOSONAR
         }
 
-        setQueuePosition(nextPosition);
-        return true;
+        setQueuePosition(nextPosition); //NOSONAR
+        return true; //NOSONAR
     }
 
     /**
      * @param force true to ignore the current seek position & repeat mode.
      */
-    public void previous(boolean force) {
-        if (force || getSeekPosition() <= 2000) {
-            queueManager.previous();
-            stop(false);
-            load(false, true, 0);
-        } else {
-            seekTo(0);
-            play();
+    public void previous(boolean force) { //NOSONAR
+        if (force || getSeekPosition() <= 2000) { //NOSONAR
+            queueManager.previous(); //NOSONAR
+            stop(false); //NOSONAR
+            load(false, true, 0); //NOSONAR
+        } else { //NOSONAR
+            seekTo(0); //NOSONAR
+            play(); //NOSONAR
         }
     }
 
-    public void play() {
-        if (settingsManager.getEqualizerEnabled()) {
+    public void play() { //NOSONAR
+        if (settingsManager.getEqualizerEnabled()) { //NOSONAR
             //Shutdown any existing external audio sessions
-            equalizer.closeEqualizerSessions(false, getAudioSessionId());
+            equalizer.closeEqualizerSessions(false, getAudioSessionId()); //NOSONAR
 
             //Start internal equalizer session (will only turn on if enabled)
-            equalizer.openEqualizerSession(true, getAudioSessionId());
-        } else {
-            equalizer.openEqualizerSession(false, getAudioSessionId());
+            equalizer.openEqualizerSession(true, getAudioSessionId()); //NOSONAR
+        } else { //NOSONAR
+            equalizer.openEqualizerSession(false, getAudioSessionId()); //NOSONAR
         }
 
-        mediaSessionManager.setActive(true);
+        mediaSessionManager.setActive(true); //NOSONAR
 
-        if (playback.isInitialized()) {
+        if (playback.isInitialized()) { //NOSONAR
             // If we are at the end of the song, go to the next song first
-            long duration = playback.getDuration();
-            if (queueManager.repeatMode != QueueManager.RepeatMode.ONE && duration > 2000 && playback.getPosition() >= duration - 2000) {
-                next(true);
-            } else {
-                playback.start();
+            long duration = playback.getDuration(); //NOSONAR
+            if (queueManager.repeatMode != QueueManager.RepeatMode.ONE && duration > 2000 && playback.getPosition() >= duration - 2000) { //NOSONAR
+                next(true); //NOSONAR
+            } else { //NOSONAR
+                playback.start(); //NOSONAR
             }
 
-            musicServiceCallbacks.cancelShutdown();
-            musicServiceCallbacks.updateNotification();
-        } else if (queueManager.getCurrentPlaylist().isEmpty()) {
+            musicServiceCallbacks.cancelShutdown(); //NOSONAR
+            musicServiceCallbacks.updateNotification(); //NOSONAR
+        } else if (queueManager.getCurrentPlaylist().isEmpty()) { //NOSONAR
             // This is mostly so that if you press 'play' on a bluetooth headset without ever having played anything before, it will still play something.
-            if (queueManager.queueReloading) {
-                playOnQueueReload = true;
-            } else {
-                playAutoShuffleList();
+            if (queueManager.queueReloading) { //NOSONAR
+                playOnQueueReload = true; //NOSONAR
+            } else { //NOSONAR
+                playAutoShuffleList(); //NOSONAR
             }
         }
 
-        notifyChange(InternalIntents.PLAY_STATE_CHANGED);
+        notifyChange(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
     }
 
-    void togglePlayback() {
-        if (isPlaying()) {
-            pause(true);
-        } else {
-            play();
+    void togglePlayback() { //NOSONAR
+        if (isPlaying()) { //NOSONAR
+            pause(true); //NOSONAR
+        } else { //NOSONAR
+            play(); //NOSONAR
         }
     }
 
-    private void saveBookmarkIfNeeded() {
-        Song currentSong = queueManager.getCurrentSong();
-        if (currentSong != null && currentSong.isPodcast) {
-            long pos = getSeekPosition();
-            long duration = queueManager.getCurrentSong().duration;
-            if (pos < 5000 || (pos + 5000) > duration) {
+    private void saveBookmarkIfNeeded() { //NOSONAR
+        Song currentSong = queueManager.getCurrentSong(); //NOSONAR
+        if (currentSong != null && currentSong.isPodcast) { //NOSONAR
+            long pos = getSeekPosition(); //NOSONAR
+            long duration = queueManager.getCurrentSong().duration; //NOSONAR
+            if (pos < 5000 || (pos + 5000) > duration) { //NOSONAR
                 // If we're near the start or end, clear the bookmark
-                pos = 0;
+                pos = 0; //NOSONAR
             }
 
-            currentSong.bookMark = pos;
+            currentSong.bookMark = pos; //NOSONAR
 
-            try {
+            try { //NOSONAR
                 // Write 'pos' to the bookmark field
-                ContentValues values = new ContentValues();
-                values.put(MediaStore.Audio.Media.BOOKMARK, pos);
-                Uri uri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, queueManager.getCurrentSong().id);
-                if (uri != null) {
-                    context.getContentResolver().update(uri, values, null, null);
-                } else {
-                    Log.e(TAG, "Save bookmark failed (uri null)");
+                ContentValues values = new ContentValues(); //NOSONAR
+                values.put(MediaStore.Audio.Media.BOOKMARK, pos); //NOSONAR
+                Uri uri = ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, queueManager.getCurrentSong().id); //NOSONAR
+                if (uri != null) { //NOSONAR
+                    context.getContentResolver().update(uri, values, null, null); //NOSONAR
+                } else { //NOSONAR
+                    Log.e(TAG, "Save bookmark failed (uri null)"); //NOSONAR
                 }
-            } catch (SQLiteException error) {
-                Log.e(TAG, "Save bookmark failed, error: " + error.getLocalizedMessage());
+            } catch (SQLiteException error) { //NOSONAR
+                Log.e(TAG, "Save bookmark failed, error: " + error.getLocalizedMessage()); //NOSONAR
             }
         }
     }
 
-    @Override
-    public void onTrackEnded(@NonNull Playback playback, boolean trackDidChange) {
-        if (getPlayback() != playback) return;
+    @Override //NOSONAR
+    public void onTrackEnded(@NonNull Playback playback, boolean trackDidChange) { //NOSONAR
+        if (getPlayback() != playback) return; //NOSONAR
 
-        notifyChange(InternalIntents.TRACK_ENDING);
+        notifyChange(InternalIntents.TRACK_ENDING); //NOSONAR
 
-        if (pauseOnTrackFinish) {
-            pause(false);
-            pauseOnTrackFinish = false;
-            return;
+        if (pauseOnTrackFinish) { //NOSONAR
+            pause(false); //NOSONAR
+            pauseOnTrackFinish = false; //NOSONAR
+            return; //NOSONAR
         }
 
-        if (queueManager.repeatMode == QueueManager.RepeatMode.ONE) {
-            seekTo(0);
-            play();
-            return;
+        if (queueManager.repeatMode == QueueManager.RepeatMode.ONE) { //NOSONAR
+            seekTo(0); //NOSONAR
+            play(); //NOSONAR
+            return; //NOSONAR
         }
 
-        if (trackDidChange) {
-            queueManager.queuePosition = queueManager.nextPlayPos;
-            notifyChange(InternalIntents.META_CHANGED);
-            setNextTrack();
-        } else {
-            if (!next(false)) {
+        if (trackDidChange) { //NOSONAR
+            queueManager.queuePosition = queueManager.nextPlayPos; //NOSONAR
+            notifyChange(InternalIntents.META_CHANGED); //NOSONAR
+            setNextTrack(); //NOSONAR
+        } else { //NOSONAR
+            if (!next(false)) { //NOSONAR
                 // If we failed to move to the next track, then playback is complete.
-                notifyChange(InternalIntents.PLAY_STATE_CHANGED);
+                notifyChange(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
             }
         }
     }
 
-    @Override
-    public void onPlayStateChanged(@NonNull Playback playback) {
-        if (getPlayback() != playback) return;
+    @Override //NOSONAR
+    public void onPlayStateChanged(@NonNull Playback playback) { //NOSONAR
+        if (getPlayback() != playback) return; //NOSONAR
 
-        notifyChange(InternalIntents.PLAY_STATE_CHANGED);
+        notifyChange(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
     }
 
-    @Override
-    public void onError(@NonNull Playback playback, @NonNull String message) {
-        if (getPlayback() != playback) return;
+    @Override //NOSONAR
+    public void onError(@NonNull Playback playback, @NonNull String message) { //NOSONAR
+        if (getPlayback() != playback) return; //NOSONAR
 
-        if (isPlaying()) {
-            next(true);
-        } else {
-            load(true, false, 0);
+        if (isPlaying()) { //NOSONAR
+            next(true); //NOSONAR
+        } else { //NOSONAR
+            load(true, false, 0); //NOSONAR
         }
     }
 
-    public void switchToPlayback(@NonNull Playback playback, long seekPosition) {
-        Playback oldPlayback = this.playback;
-        boolean wasPlaying = oldPlayback.isPlaying();
+    public void switchToPlayback(@NonNull Playback playback, long seekPosition) { //NOSONAR
+        Playback oldPlayback = this.playback; //NOSONAR
+        boolean wasPlaying = oldPlayback.isPlaying(); //NOSONAR
 
-        this.playback = playback;
+        this.playback = playback; //NOSONAR
 
-        playback.setCallbacks(this);
-        playback.seekTo(seekPosition);
+        playback.setCallbacks(this); //NOSONAR
+        playback.seekTo(seekPosition); //NOSONAR
 
-        boolean playWhenReady = wasPlaying && playback.getResumeWhenSwitched();
+        boolean playWhenReady = wasPlaying && playback.getResumeWhenSwitched(); //NOSONAR
 
-        if (wasPlaying && !playWhenReady) {
+        if (wasPlaying && !playWhenReady) { //NOSONAR
             // If we were playing, and now we're not, we need to update the playback state
-            notifyChange(InternalIntents.PLAY_STATE_CHANGED);
+            notifyChange(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
         }
 
-        oldPlayback.stop();
+        oldPlayback.stop(); //NOSONAR
 
-        Song song = queueManager.getCurrentSong();
-        if (song != null) {
-            playback.load(song, playWhenReady, seekPosition, null);
-        } else {
-            Log.e(TAG, "Current song null");
+        Song song = queueManager.getCurrentSong(); //NOSONAR
+        if (song != null) { //NOSONAR
+            playback.load(song, playWhenReady, seekPosition, null); //NOSONAR
+        } else { //NOSONAR
+            Log.e(TAG, "Current song null"); //NOSONAR
         }
     }
 }

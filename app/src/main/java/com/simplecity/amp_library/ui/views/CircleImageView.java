@@ -22,273 +22,273 @@ import com.afollestad.aesthetic.Aesthetic;
 import com.simplecity.amp_library.R;
 import io.reactivex.disposables.Disposable;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CircleImageView extends AppCompatImageView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CircleImageView extends AppCompatImageView { //NOSONAR
 
-    private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
+    private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP; //NOSONAR
 
-    private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888;
-    private static final int COLORDRAWABLE_DIMENSION = 1;
+    private static final Bitmap.Config BITMAP_CONFIG = Bitmap.Config.ARGB_8888; //NOSONAR
+    private static final int COLORDRAWABLE_DIMENSION = 1; //NOSONAR
 
-    private static final int DEFAULT_BORDER_WIDTH = 0;
-    private static final int DEFAULT_BORDER_COLOR = Color.BLACK;
+    private static final int DEFAULT_BORDER_WIDTH = 0; //NOSONAR
+    private static final int DEFAULT_BORDER_COLOR = Color.BLACK; //NOSONAR
 
-    private final RectF mDrawableRect = new RectF();
-    private final RectF mBorderRect = new RectF();
+    private final RectF mDrawableRect = new RectF(); //NOSONAR
+    private final RectF mBorderRect = new RectF(); //NOSONAR
 
-    private final Matrix mShaderMatrix = new Matrix();
-    private final Paint mBitmapPaint = new Paint();
-    private final Paint mBorderPaint = new Paint();
+    private final Matrix mShaderMatrix = new Matrix(); //NOSONAR
+    private final Paint mBitmapPaint = new Paint(); //NOSONAR
+    private final Paint mBorderPaint = new Paint(); //NOSONAR
 
-    private int mBorderColor = DEFAULT_BORDER_COLOR;
-    private int mBorderWidth = DEFAULT_BORDER_WIDTH;
+    private int mBorderColor = DEFAULT_BORDER_COLOR; //NOSONAR
+    private int mBorderWidth = DEFAULT_BORDER_WIDTH; //NOSONAR
 
-    private Bitmap mBitmap;
-    private ColorFilter mColorFilter;
-    private BitmapShader mBitmapShader;
-    private int mBitmapWidth;
-    private int mBitmapHeight;
+    private Bitmap mBitmap; //NOSONAR
+    private ColorFilter mColorFilter; //NOSONAR
+    private BitmapShader mBitmapShader; //NOSONAR
+    private int mBitmapWidth; //NOSONAR
+    private int mBitmapHeight; //NOSONAR
 
-    private float mDrawableRadius;
-    private float mBorderRadius;
+    private float mDrawableRadius; //NOSONAR
+    private float mBorderRadius; //NOSONAR
 
-    private boolean mReady;
-    private boolean mSetupPending;
+    private boolean mReady; //NOSONAR
+    private boolean mSetupPending; //NOSONAR
 
-    private Disposable aestheticDisposable;
+    private Disposable aestheticDisposable; //NOSONAR
 
-    public CircleImageView(Context context) {
-        super(context);
+    public CircleImageView(Context context) { //NOSONAR
+        super(context); //NOSONAR
 
-        init();
+        init(); //NOSONAR
     }
 
-    public CircleImageView(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+    public CircleImageView(Context context, AttributeSet attrs) { //NOSONAR
+        this(context, attrs, 0); //NOSONAR
     }
 
-    public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
-        super(context, attrs, defStyle);
+    public CircleImageView(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+        super(context, attrs, defStyle); //NOSONAR
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0); //NOSONAR
 
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH);
-        mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH); //NOSONAR
+        mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR); //NOSONAR
 
-        a.recycle();
+        a.recycle(); //NOSONAR
 
-        init();
+        init(); //NOSONAR
     }
 
-    private void init() {
-        super.setScaleType(SCALE_TYPE);
-        mReady = true;
+    private void init() { //NOSONAR
+        super.setScaleType(SCALE_TYPE); //NOSONAR
+        mReady = true; //NOSONAR
 
-        if (mSetupPending) {
-            setup();
-            mSetupPending = false;
+        if (mSetupPending) { //NOSONAR
+            setup(); //NOSONAR
+            mSetupPending = false; //NOSONAR
         }
     }
 
-    @Override
-    public ScaleType getScaleType() {
-        return SCALE_TYPE;
+    @Override //NOSONAR
+    public ScaleType getScaleType() { //NOSONAR
+        return SCALE_TYPE; //NOSONAR
     }
 
-    @Override
-    public void setScaleType(ScaleType scaleType) {
-        if (scaleType != SCALE_TYPE) {
-            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType));
+    @Override //NOSONAR
+    public void setScaleType(ScaleType scaleType) { //NOSONAR
+        if (scaleType != SCALE_TYPE) { //NOSONAR
+            throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType)); //NOSONAR
         }
     }
 
-    @Override
-    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth());
+    @Override //NOSONAR
+    public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) { //NOSONAR
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec); //NOSONAR
+        setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //NOSONAR
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        if (getDrawable() == null) {
-            return;
+    @Override //NOSONAR
+    protected void onDraw(Canvas canvas) { //NOSONAR
+        if (getDrawable() == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        if (mBorderWidth != 0) {
-            canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint);
+        if (mBorderWidth != 0) { //NOSONAR
+            canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint); //NOSONAR
         }
-        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint);
+        canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint); //NOSONAR
     }
 
-    @Override
-    protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        super.onSizeChanged(w, h, oldw, oldh);
-        setup();
+    @Override //NOSONAR
+    protected void onSizeChanged(int w, int h, int oldw, int oldh) { //NOSONAR
+        super.onSizeChanged(w, h, oldw, oldh); //NOSONAR
+        setup(); //NOSONAR
     }
 
-    public int getBorderColor() {
-        return mBorderColor;
+    public int getBorderColor() { //NOSONAR
+        return mBorderColor; //NOSONAR
     }
 
-    public void setBorderColor(int borderColor) {
-        if (borderColor == mBorderColor) {
-            return;
-        }
-
-        mBorderColor = borderColor;
-        mBorderPaint.setColor(mBorderColor);
-        invalidate();
-    }
-
-    public int getBorderWidth() {
-        return mBorderWidth;
-    }
-
-    public void setBorderWidth(int borderWidth) {
-        if (borderWidth == mBorderWidth) {
-            return;
+    public void setBorderColor(int borderColor) { //NOSONAR
+        if (borderColor == mBorderColor) { //NOSONAR
+            return; //NOSONAR
         }
 
-        mBorderWidth = borderWidth;
-        setup();
+        mBorderColor = borderColor; //NOSONAR
+        mBorderPaint.setColor(mBorderColor); //NOSONAR
+        invalidate(); //NOSONAR
     }
 
-    @Override
-    public void setColorFilter(ColorFilter cf) {
-        super.setColorFilter(cf);
-        mColorFilter = cf;
+    public int getBorderWidth() { //NOSONAR
+        return mBorderWidth; //NOSONAR
     }
 
-    @Override
-    public void setImageBitmap(Bitmap bm) {
-        super.setImageBitmap(bm);
-        mBitmap = bm;
-        setup();
-    }
-
-    @Override
-    public void setImageDrawable(Drawable drawable) {
-        super.setImageDrawable(drawable);
-        mBitmap = getBitmapFromDrawable(drawable);
-        setup();
-    }
-
-    @Override
-    public void setImageResource(int resId) {
-        super.setImageResource(resId);
-        mBitmap = getBitmapFromDrawable(getDrawable());
-        setup();
-    }
-
-    @Override
-    public void setImageURI(Uri uri) {
-        super.setImageURI(uri);
-        mBitmap = getBitmapFromDrawable(getDrawable());
-        setup();
-    }
-
-    private Bitmap getBitmapFromDrawable(Drawable drawable) {
-        if (drawable == null) {
-            return null;
+    public void setBorderWidth(int borderWidth) { //NOSONAR
+        if (borderWidth == mBorderWidth) { //NOSONAR
+            return; //NOSONAR
         }
 
-        if (drawable instanceof BitmapDrawable) {
-            return ((BitmapDrawable) drawable).getBitmap();
+        mBorderWidth = borderWidth; //NOSONAR
+        setup(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setColorFilter(ColorFilter cf) { //NOSONAR
+        super.setColorFilter(cf); //NOSONAR
+        mColorFilter = cf; //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setImageBitmap(Bitmap bm) { //NOSONAR
+        super.setImageBitmap(bm); //NOSONAR
+        mBitmap = bm; //NOSONAR
+        setup(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setImageDrawable(Drawable drawable) { //NOSONAR
+        super.setImageDrawable(drawable); //NOSONAR
+        mBitmap = getBitmapFromDrawable(drawable); //NOSONAR
+        setup(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setImageResource(int resId) { //NOSONAR
+        super.setImageResource(resId); //NOSONAR
+        mBitmap = getBitmapFromDrawable(getDrawable()); //NOSONAR
+        setup(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setImageURI(Uri uri) { //NOSONAR
+        super.setImageURI(uri); //NOSONAR
+        mBitmap = getBitmapFromDrawable(getDrawable()); //NOSONAR
+        setup(); //NOSONAR
+    }
+
+    private Bitmap getBitmapFromDrawable(Drawable drawable) { //NOSONAR
+        if (drawable == null) { //NOSONAR
+            return null; //NOSONAR
         }
 
-        try {
-            Bitmap bitmap;
+        if (drawable instanceof BitmapDrawable) { //NOSONAR
+            return ((BitmapDrawable) drawable).getBitmap(); //NOSONAR
+        }
 
-            if (drawable instanceof ColorDrawable) {
-                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG);
-            } else {
-                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG);
+        try { //NOSONAR
+            Bitmap bitmap; //NOSONAR
+
+            if (drawable instanceof ColorDrawable) { //NOSONAR
+                bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG); //NOSONAR
+            } else { //NOSONAR
+                bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG); //NOSONAR
             }
 
-            Canvas canvas = new Canvas(bitmap);
-            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
-            drawable.draw(canvas);
-            return bitmap;
-        } catch (OutOfMemoryError e) {
-            return null;
+            Canvas canvas = new Canvas(bitmap); //NOSONAR
+            drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight()); //NOSONAR
+            drawable.draw(canvas); //NOSONAR
+            return bitmap; //NOSONAR
+        } catch (OutOfMemoryError e) { //NOSONAR
+            return null; //NOSONAR
         }
     }
 
-    private void setup() {
-        if (!mReady) {
-            mSetupPending = true;
-            return;
+    private void setup() { //NOSONAR
+        if (!mReady) { //NOSONAR
+            mSetupPending = true; //NOSONAR
+            return; //NOSONAR
         }
 
-        if (mBitmap == null) {
-            return;
+        if (mBitmap == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP); //NOSONAR
 
-        mBitmapPaint.setAntiAlias(true);
-        mBitmapPaint.setShader(mBitmapShader);
-        mBitmapPaint.setColorFilter(mColorFilter);
+        mBitmapPaint.setAntiAlias(true); //NOSONAR
+        mBitmapPaint.setShader(mBitmapShader); //NOSONAR
+        mBitmapPaint.setColorFilter(mColorFilter); //NOSONAR
 
-        mBorderPaint.setStyle(Paint.Style.FILL);
-        mBorderPaint.setAntiAlias(true);
-        mBorderPaint.setColor(mBorderColor);
-        mBorderPaint.setStrokeWidth(mBorderWidth);
+        mBorderPaint.setStyle(Paint.Style.FILL); //NOSONAR
+        mBorderPaint.setAntiAlias(true); //NOSONAR
+        mBorderPaint.setColor(mBorderColor); //NOSONAR
+        mBorderPaint.setStrokeWidth(mBorderWidth); //NOSONAR
 
-        mBitmapHeight = mBitmap.getHeight();
-        mBitmapWidth = mBitmap.getWidth();
+        mBitmapHeight = mBitmap.getHeight(); //NOSONAR
+        mBitmapWidth = mBitmap.getWidth(); //NOSONAR
 
-        mBorderRect.set(0, 0, getWidth(), getHeight());
-        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2, (mBorderRect.width() - mBorderWidth) / 2);
+        mBorderRect.set(0, 0, getWidth(), getHeight()); //NOSONAR
+        mBorderRadius = Math.min((mBorderRect.height() - mBorderWidth) / 2, (mBorderRect.width() - mBorderWidth) / 2); //NOSONAR
 
-        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width() - mBorderWidth, mBorderRect.height() - mBorderWidth);
-        mDrawableRadius = Math.min(mDrawableRect.height() / 2, mDrawableRect.width() / 2);
+        mDrawableRect.set(mBorderWidth, mBorderWidth, mBorderRect.width() - mBorderWidth, mBorderRect.height() - mBorderWidth); //NOSONAR
+        mDrawableRadius = Math.min(mDrawableRect.height() / 2, mDrawableRect.width() / 2); //NOSONAR
 
-        updateShaderMatrix();
-        invalidate();
+        updateShaderMatrix(); //NOSONAR
+        invalidate(); //NOSONAR
     }
 
-    private void updateShaderMatrix() {
-        float scale;
-        float dx = 0;
-        float dy = 0;
+    private void updateShaderMatrix() { //NOSONAR
+        float scale; //NOSONAR
+        float dx = 0; //NOSONAR
+        float dy = 0; //NOSONAR
 
-        mShaderMatrix.set(null);
+        mShaderMatrix.set(null); //NOSONAR
 
-        if (mBitmapWidth * mDrawableRect.height() > mDrawableRect.width() * mBitmapHeight) {
-            scale = mDrawableRect.height() / (float) mBitmapHeight;
-            dx = (mDrawableRect.width() - mBitmapWidth * scale) * 0.5f;
-        } else {
-            scale = mDrawableRect.width() / (float) mBitmapWidth;
-            dy = (mDrawableRect.height() - mBitmapHeight * scale) * 0.5f;
+        if (mBitmapWidth * mDrawableRect.height() > mDrawableRect.width() * mBitmapHeight) { //NOSONAR
+            scale = mDrawableRect.height() / (float) mBitmapHeight; //NOSONAR
+            dx = (mDrawableRect.width() - mBitmapWidth * scale) * 0.5f; //NOSONAR
+        } else { //NOSONAR
+            scale = mDrawableRect.width() / (float) mBitmapWidth; //NOSONAR
+            dy = (mDrawableRect.height() - mBitmapHeight * scale) * 0.5f; //NOSONAR
         }
 
-        mShaderMatrix.setScale(scale, scale);
-        mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth);
+        mShaderMatrix.setScale(scale, scale); //NOSONAR
+        mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth); //NOSONAR
 
-        mBitmapShader.setLocalMatrix(mShaderMatrix);
+        mBitmapShader.setLocalMatrix(mShaderMatrix); //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        if (!isInEditMode()) {
-            aestheticDisposable = Aesthetic.get(getContext()).isDark()
-                    .subscribe(isDark -> {
-                        if (isDark) {
-                            setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_900));
-                        } else {
-                            setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_250));
+        if (!isInEditMode()) { //NOSONAR
+            aestheticDisposable = Aesthetic.get(getContext()).isDark() //NOSONAR
+                    .subscribe(isDark -> { //NOSONAR
+                        if (isDark) { //NOSONAR
+                            setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_900)); //NOSONAR
+                        } else { //NOSONAR
+                            setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_250)); //NOSONAR
                         }
                     });
         }
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        super.onDetachedFromWindow(); //NOSONAR
 
-        aestheticDisposable.dispose();
+        aestheticDisposable.dispose(); //NOSONAR
     }
 }

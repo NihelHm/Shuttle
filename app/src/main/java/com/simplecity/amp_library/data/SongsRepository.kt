@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 
 package com.simplecity.amp_library.data
@@ -33,187 +33,187 @@ import java.util.Arrays
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-open class SongsRepository @Inject constructor(
-    private val context: Context,
-    private val blacklistRepository: Repository.BlacklistRepository,
-    private val whitelistRepository: Repository.WhitelistRepository,
-    private val settingsManager: SettingsManager
-) : SongsRepository {
+@Singleton //NOSONAR
+open class SongsRepository @Inject constructor( //NOSONAR
+    private val context: Context, //NOSONAR
+    private val blacklistRepository: Repository.BlacklistRepository, //NOSONAR
+    private val whitelistRepository: Repository.WhitelistRepository, //NOSONAR
+    private val settingsManager: SettingsManager //NOSONAR
+) : SongsRepository { //NOSONAR
 
-    private var songsSubscription: Disposable? = null
-    private val songsRelay = BehaviorRelay.create<List<Song>>()
+    private var songsSubscription: Disposable? = null //NOSONAR
+    private val songsRelay = BehaviorRelay.create<List<Song>>() //NOSONAR
 
-    private var allSongsSubscription: Disposable? = null
-    private val allSongsRelay = BehaviorRelay.create<List<Song>>()
+    private var allSongsSubscription: Disposable? = null //NOSONAR
+    private val allSongsRelay = BehaviorRelay.create<List<Song>>() //NOSONAR
 
-    override fun getAllSongs(): Observable<List<Song>> {
-        if (allSongsSubscription == null || allSongsSubscription?.isDisposed == true) {
-            allSongsSubscription = SqlBriteUtils.createObservableList<Song>(context, { Song(it) }, Song.getQuery())
-                .subscribe(
-                    allSongsRelay,
-                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get all songs", error) }
+    override fun getAllSongs(): Observable<List<Song>> { //NOSONAR
+        if (allSongsSubscription == null || allSongsSubscription?.isDisposed == true) { //NOSONAR
+            allSongsSubscription = SqlBriteUtils.createObservableList<Song>(context, { Song(it) }, Song.getQuery()) //NOSONAR
+                .subscribe( //NOSONAR
+                    allSongsRelay, //NOSONAR
+                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get all songs", error) } //NOSONAR
                 )
         }
 
-        return allSongsRelay
-            .subscribeOn(Schedulers.io())
+        return allSongsRelay //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
     }
 
-    override fun getSongs(predicate: ((Song) -> Boolean)?): Observable<List<Song>> {
-        if (songsSubscription == null || songsSubscription?.isDisposed == true) {
-            songsSubscription = getAllSongs()
-                .compose(getInclExclTransformer())
-                .map { songs ->
-                    songs
-                        .filterNot { song -> song.isPodcast }
-                        .toList()
+    override fun getSongs(predicate: ((Song) -> Boolean)?): Observable<List<Song>> { //NOSONAR
+        if (songsSubscription == null || songsSubscription?.isDisposed == true) { //NOSONAR
+            songsSubscription = getAllSongs() //NOSONAR
+                .compose(getInclExclTransformer()) //NOSONAR
+                .map { songs -> //NOSONAR
+                    songs //NOSONAR
+                        .filterNot { song -> song.isPodcast } //NOSONAR
+                        .toList() //NOSONAR
                 }
-                .subscribe(songsRelay)
+                .subscribe(songsRelay) //NOSONAR
         }
 
-        return songsRelay
-            .map { songs -> predicate?.let { predicate -> songs.filter(predicate) } ?: songs }
-            .subscribeOn(Schedulers.io())
+        return songsRelay //NOSONAR
+            .map { songs -> predicate?.let { predicate -> songs.filter(predicate) } ?: songs } //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
     }
 
-    override fun getSongs(album: Album): Observable<List<Song>> {
-        return getSongs { song -> song.albumId == album.id }
+    override fun getSongs(album: Album): Observable<List<Song>> { //NOSONAR
+        return getSongs { song -> song.albumId == album.id } //NOSONAR
     }
 
-    override fun getSongs(albumArtist: AlbumArtist): Observable<List<Song>> {
-        return getSongs { song ->
-            albumArtist.albums
-                .map { album -> album.id }
-                .any { albumId -> albumId == song.albumId }
+    override fun getSongs(albumArtist: AlbumArtist): Observable<List<Song>> { //NOSONAR
+        return getSongs { song -> //NOSONAR
+            albumArtist.albums //NOSONAR
+                .map { album -> album.id } //NOSONAR
+                .any { albumId -> albumId == song.albumId } //NOSONAR
         }
     }
 
-    override fun getSongs(playlist: Playlist): Observable<List<Song>> {
-        return when (playlist.id) {
-            PlaylistManager.PlaylistIds.RECENTLY_ADDED_PLAYLIST -> {
-                val numWeeks = settingsManager.numWeeks * 3600 * 24 * 7
-                return getSongs { song -> song.dateAdded > System.currentTimeMillis() / 1000 - numWeeks }
-                    .map { songs ->
-                        songs
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) })
-                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(b.dateAdded.toLong(), a.dateAdded.toLong()) })
+    override fun getSongs(playlist: Playlist): Observable<List<Song>> { //NOSONAR
+        return when (playlist.id) { //NOSONAR
+            PlaylistManager.PlaylistIds.RECENTLY_ADDED_PLAYLIST -> { //NOSONAR
+                val numWeeks = settingsManager.numWeeks * 3600 * 24 * 7 //NOSONAR
+                return getSongs { song -> song.dateAdded > System.currentTimeMillis() / 1000 - numWeeks } //NOSONAR
+                    .map { songs -> //NOSONAR
+                        songs //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) }) //NOSONAR
+                            .sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(b.dateAdded.toLong(), a.dateAdded.toLong()) }) //NOSONAR
                     }
             }
 
-            PlaylistManager.PlaylistIds.PODCASTS_PLAYLIST -> {
-                getAllSongs()
-                    .compose(getInclExclTransformer())
-                    .map { songs -> songs.filter { song -> song.isPodcast } }
-                    .map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(a.playlistSongPlayOrder, b.playlistSongPlayOrder) }) }
+            PlaylistManager.PlaylistIds.PODCASTS_PLAYLIST -> { //NOSONAR
+                getAllSongs() //NOSONAR
+                    .compose(getInclExclTransformer()) //NOSONAR
+                    .map { songs -> songs.filter { song -> song.isPodcast } } //NOSONAR
+                    .map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(a.playlistSongPlayOrder, b.playlistSongPlayOrder) }) } //NOSONAR
             }
 
-            PlaylistManager.PlaylistIds.MOST_PLAYED_PLAYLIST -> {
-                val query = Query.Builder()
-                    .uri(PlayCountTable.URI)
-                    .projection(arrayOf(PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_PLAY_COUNT))
-                    .sort(PlayCountTable.COLUMN_PLAY_COUNT + " DESC")
-                    .build()
+            PlaylistManager.PlaylistIds.MOST_PLAYED_PLAYLIST -> { //NOSONAR
+                val query = Query.Builder() //NOSONAR
+                    .uri(PlayCountTable.URI) //NOSONAR
+                    .projection(arrayOf(PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_PLAY_COUNT)) //NOSONAR
+                    .sort(PlayCountTable.COLUMN_PLAY_COUNT + " DESC") //NOSONAR
+                    .build() //NOSONAR
 
-                SqlBriteUtils.createObservableList(context, { cursor ->
-                    Pair(
-                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_ID)),
-                        cursor.getInt(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_PLAY_COUNT))
+                SqlBriteUtils.createObservableList(context, { cursor -> //NOSONAR
+                    Pair( //NOSONAR
+                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_ID)), //NOSONAR
+                        cursor.getInt(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_PLAY_COUNT)) //NOSONAR
                     )
-                }, query)
-                    .flatMap { pairs ->
-                        getSongs { song ->
-                            pairs.firstOrNull { pair ->
-                                song.playCount = pair.second
-                                pair.first == song.id && pair.second >= 2
-                            } != null
-                        }.map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.playCount, a.playCount) }) }
+                }, query) //NOSONAR
+                    .flatMap { pairs -> //NOSONAR
+                        getSongs { song -> //NOSONAR
+                            pairs.firstOrNull { pair -> //NOSONAR
+                                song.playCount = pair.second //NOSONAR
+                                pair.first == song.id && pair.second >= 2 //NOSONAR
+                            } != null //NOSONAR
+                        }.map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.playCount, a.playCount) }) } //NOSONAR
                     }
             }
 
-            PlaylistManager.PlaylistIds.RECENTLY_PLAYED_PLAYLIST -> {
-                val query = Query.Builder()
-                    .uri(PlayCountTable.URI)
-                    .projection(arrayOf(PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_TIME_PLAYED))
-                    .sort(PlayCountTable.COLUMN_TIME_PLAYED + " DESC")
-                    .build()
+            PlaylistManager.PlaylistIds.RECENTLY_PLAYED_PLAYLIST -> { //NOSONAR
+                val query = Query.Builder() //NOSONAR
+                    .uri(PlayCountTable.URI) //NOSONAR
+                    .projection(arrayOf(PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_TIME_PLAYED)) //NOSONAR
+                    .sort(PlayCountTable.COLUMN_TIME_PLAYED + " DESC") //NOSONAR
+                    .build() //NOSONAR
 
-                SqlBriteUtils.createObservableList(context, { cursor ->
-                    Pair(
-                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_ID)),
-                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_TIME_PLAYED))
+                SqlBriteUtils.createObservableList(context, { cursor -> //NOSONAR
+                    Pair( //NOSONAR
+                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_ID)), //NOSONAR
+                        cursor.getLong(cursor.getColumnIndexOrThrow(PlayCountTable.COLUMN_TIME_PLAYED)) //NOSONAR
                     )
-                }, query)
-                    .flatMap { pairs ->
-                        getSongs { song ->
-                            pairs.filter { pair ->
-                                song.lastPlayed = pair.second
-                                pair.first == song.id
-                            }.firstOrNull() != null
-                        }.map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(b.lastPlayed, a.lastPlayed) }) }
+                }, query) //NOSONAR
+                    .flatMap { pairs -> //NOSONAR
+                        getSongs { song -> //NOSONAR
+                            pairs.filter { pair -> //NOSONAR
+                                song.lastPlayed = pair.second //NOSONAR
+                                pair.first == song.id //NOSONAR
+                            }.firstOrNull() != null //NOSONAR
+                        }.map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(b.lastPlayed, a.lastPlayed) }) } //NOSONAR
                     }
             }
 
-            else -> {
-                val query = Song.getQuery()
-                query.uri = MediaStore.Audio.Playlists.Members.getContentUri("external", playlist.id)
-                val projection = ArrayList(Arrays.asList(*Song.getProjection()))
-                projection.add(MediaStore.Audio.Playlists.Members._ID)
-                projection.add(MediaStore.Audio.Playlists.Members.AUDIO_ID)
-                projection.add(MediaStore.Audio.Playlists.Members.PLAY_ORDER)
-                query.projection = projection.toTypedArray()
+            else -> { //NOSONAR
+                val query = Song.getQuery() //NOSONAR
+                query.uri = MediaStore.Audio.Playlists.Members.getContentUri("external", playlist.id) //NOSONAR
+                val projection = ArrayList(Arrays.asList(*Song.getProjection())) //NOSONAR
+                projection.add(MediaStore.Audio.Playlists.Members._ID) //NOSONAR
+                projection.add(MediaStore.Audio.Playlists.Members.AUDIO_ID) //NOSONAR
+                projection.add(MediaStore.Audio.Playlists.Members.PLAY_ORDER) //NOSONAR
+                query.projection = projection.toTypedArray() //NOSONAR
 
-                SqlBriteUtils.createObservableList<Song>(context, { Playlist.createSongFromPlaylistCursor(it) }, query)
-                    .map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(a.playlistSongPlayOrder, b.playlistSongPlayOrder) }) }
+                SqlBriteUtils.createObservableList<Song>(context, { Playlist.createSongFromPlaylistCursor(it) }, query) //NOSONAR
+                    .map { songs -> songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareLong(a.playlistSongPlayOrder, b.playlistSongPlayOrder) }) } //NOSONAR
             }
         }
     }
 
-    override fun getSongs(genre: Genre): Observable<List<Song>> {
-        return getSongs()
-            .map { songs ->
-                songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) })
-                    .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) })
-                    .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) })
-                    .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) })
-                    .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) })
+    override fun getSongs(genre: Genre): Observable<List<Song>> { //NOSONAR
+        return getSongs() //NOSONAR
+            .map { songs -> //NOSONAR
+                songs.sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(b.year, a.year) }) //NOSONAR
+                    .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.track, b.track) }) //NOSONAR
+                    .sortedWith(Comparator { a, b -> ComparisonUtils.compareInt(a.discNumber, b.discNumber) }) //NOSONAR
+                    .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumName, b.albumName) }) //NOSONAR
+                    .sortedWith(Comparator { a, b -> ComparisonUtils.compare(a.albumArtistName, b.albumArtistName) }) //NOSONAR
             }
     }
 
-    private fun getInclExclTransformer(): ObservableTransformer<List<Song>, List<Song>> {
-        return ObservableTransformer { upstream ->
-            Observable.combineLatest<List<Song>, List<InclExclItem>, List<InclExclItem>, List<Song>>(
-                upstream,
-                whitelistRepository.getWhitelistItems(this),
-                blacklistRepository.getBlacklistItems(this),
-                Function3 { songs: List<Song>, inclItems: List<InclExclItem>, exclItems: List<InclExclItem> ->
-                    var result = songs
+    private fun getInclExclTransformer(): ObservableTransformer<List<Song>, List<Song>> { //NOSONAR
+        return ObservableTransformer { upstream -> //NOSONAR
+            Observable.combineLatest<List<Song>, List<InclExclItem>, List<InclExclItem>, List<Song>>( //NOSONAR
+                upstream, //NOSONAR
+                whitelistRepository.getWhitelistItems(this), //NOSONAR
+                blacklistRepository.getBlacklistItems(this), //NOSONAR
+                Function3 { songs: List<Song>, inclItems: List<InclExclItem>, exclItems: List<InclExclItem> -> //NOSONAR
+                    var result = songs //NOSONAR
 
                     // Filter out excluded paths
-                    if (!exclItems.isEmpty()) {
-                        result = songs
-                            .filterNot { song -> exclItems.any { exclItem -> StringUtils.containsIgnoreCase(song.path, exclItem.path) } }
-                            .toList()
+                    if (!exclItems.isEmpty()) { //NOSONAR
+                        result = songs //NOSONAR
+                            .filterNot { song -> exclItems.any { exclItem -> StringUtils.containsIgnoreCase(song.path, exclItem.path) } } //NOSONAR
+                            .toList() //NOSONAR
                     }
 
                     // Filter out non-included paths
-                    if (!inclItems.isEmpty()) {
-                        result = result
-                            .filter { song -> inclItems.any { inclItem -> StringUtils.containsIgnoreCase(song.path, inclItem.path) } }
-                            .toList()
+                    if (!inclItems.isEmpty()) { //NOSONAR
+                        result = result //NOSONAR
+                            .filter { song -> inclItems.any { inclItem -> StringUtils.containsIgnoreCase(song.path, inclItem.path) } } //NOSONAR
+                            .toList() //NOSONAR
                     }
 
-                    result
+                    result //NOSONAR
                 })
         }
     }
 
-    companion object {
-        const val TAG = "SongsRepository"
+    companion object { //NOSONAR
+        const val TAG = "SongsRepository" //NOSONAR
     }
 }

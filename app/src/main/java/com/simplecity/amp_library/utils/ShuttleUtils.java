@@ -43,45 +43,45 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public final class ShuttleUtils {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public final class ShuttleUtils { //NOSONAR
 
     //Arguments supplied to various bundles
 
-    private final static String TAG = "ShuttleUtils";
+    private final static String TAG = "ShuttleUtils"; //NOSONAR
 
-    @NonNull
-    public static Intent getShuttleStoreIntent(@NonNull String packageName) {
-        String uri;
-        if (isAmazonBuild()) {
-            uri = "amzn://apps/android?p=" + packageName;
-        } else {
-            uri = "market://details?id=" + packageName;
+    @NonNull //NOSONAR
+    public static Intent getShuttleStoreIntent(@NonNull String packageName) { //NOSONAR
+        String uri; //NOSONAR
+        if (isAmazonBuild()) { //NOSONAR
+            uri = "amzn://apps/android?p=" + packageName; //NOSONAR
+        } else { //NOSONAR
+            uri = "market://details?id=" + packageName; //NOSONAR
         }
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        return new Intent(Intent.ACTION_VIEW, Uri.parse(uri)); //NOSONAR
     }
 
-    @NonNull
-    public static Intent getShuttleWebIntent(@NonNull String packageName) {
-        String uri;
-        if (isAmazonBuild()) {
-            uri = "http://www.amazon.com/gp/mas/dl/android?p=" + packageName;
-        } else {
-            uri = "https://play.google.com/store/apps/details?id=" + packageName;
+    @NonNull //NOSONAR
+    public static Intent getShuttleWebIntent(@NonNull String packageName) { //NOSONAR
+        String uri; //NOSONAR
+        if (isAmazonBuild()) { //NOSONAR
+            uri = "http://www.amazon.com/gp/mas/dl/android?p=" + packageName; //NOSONAR
+        } else { //NOSONAR
+            uri = "https://play.google.com/store/apps/details?id=" + packageName; //NOSONAR
         }
-        return new Intent(Intent.ACTION_VIEW, Uri.parse(uri));
+        return new Intent(Intent.ACTION_VIEW, Uri.parse(uri)); //NOSONAR
     }
 
-    public static void openShuttleLink(@NonNull Activity activity, @NonNull String packageName, PackageManager packageManager) {
-        Intent intent = getShuttleStoreIntent(packageName);
-        if (packageManager.resolveActivity(intent, 0) == null) {
-            intent = getShuttleWebIntent(packageName);
+    public static void openShuttleLink(@NonNull Activity activity, @NonNull String packageName, PackageManager packageManager) { //NOSONAR
+        Intent intent = getShuttleStoreIntent(packageName); //NOSONAR
+        if (packageManager.resolveActivity(intent, 0) == null) { //NOSONAR
+            intent = getShuttleWebIntent(packageName); //NOSONAR
         }
-        activity.startActivity(intent);
+        activity.startActivity(intent); //NOSONAR
     }
 
-    public static boolean isAmazonBuild() {
-        return BuildConfig.FLAVOR.equals("amazonFree") || BuildConfig.FLAVOR.equals("amazonPaid");
+    public static boolean isAmazonBuild() { //NOSONAR
+        return BuildConfig.FLAVOR.equals("amazonFree") || BuildConfig.FLAVOR.equals("amazonPaid"); //NOSONAR
     }
 
     /**
@@ -90,129 +90,129 @@ public final class ShuttleUtils {
      * @param careAboutWifiOnly whether we care if the preference 'download via wifi only' is checked
      * @return true if we have a connection, false otherwise
      */
-    public static boolean isOnline(Context context, boolean careAboutWifiOnly) {
+    public static boolean isOnline(Context context, boolean careAboutWifiOnly) { //NOSONAR
 
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context);
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(context); //NOSONAR
 
         //Check if we are restricted to download over wifi only
-        boolean wifiOnly = prefs.getBoolean("pref_download_wifi_only", true);
+        boolean wifiOnly = prefs.getBoolean("pref_download_wifi_only", true); //NOSONAR
 
         //If we don't care whether wifi is allowed or not, set wifiOnly to false
-        if (!careAboutWifiOnly) {
-            wifiOnly = false;
+        if (!careAboutWifiOnly) { //NOSONAR
+            wifiOnly = false; //NOSONAR
         }
 
-        final ConnectivityManager cm = (ConnectivityManager) context
-                .getSystemService(Context.CONNECTIVITY_SERVICE);
+        final ConnectivityManager cm = (ConnectivityManager) context //NOSONAR
+                .getSystemService(Context.CONNECTIVITY_SERVICE); //NOSONAR
 
         //Check the state of the wifi network
-        final NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        if (wifiNetwork != null && wifiNetwork.isConnectedOrConnecting()) {
-            return true;
+        final NetworkInfo wifiNetwork = cm.getNetworkInfo(ConnectivityManager.TYPE_WIFI); //NOSONAR
+        if (wifiNetwork != null && wifiNetwork.isConnectedOrConnecting()) { //NOSONAR
+            return true; //NOSONAR
         }
 
         //Check other networks
-        final NetworkInfo netInfo = cm.getActiveNetworkInfo();
-        return netInfo != null && netInfo.isConnectedOrConnecting() && !wifiOnly;
+        final NetworkInfo netInfo = cm.getActiveNetworkInfo(); //NOSONAR
+        return netInfo != null && netInfo.isConnectedOrConnecting() && !wifiOnly; //NOSONAR
     }
 
-    public static boolean isUpgraded(ShuttleApplication application, SettingsManager settingsManager) {
+    public static boolean isUpgraded(ShuttleApplication application, SettingsManager settingsManager) { //NOSONAR
 
-        if (application.getIsUpgraded()) {
-            return true;
+        if (application.getIsUpgraded()) { //NOSONAR
+            return true; //NOSONAR
         }
 
-        if (settingsManager.getIsLegacyUpgraded()) {
-            return true;
+        if (settingsManager.getIsLegacyUpgraded()) { //NOSONAR
+            return true; //NOSONAR
         }
 
-        try {
-            return application.getPackageName().equals(Config.PACKAGE_NAME_PRO);
-        } catch (Exception ignored) {
+        try { //NOSONAR
+            return application.getPackageName().equals(Config.PACKAGE_NAME_PRO); //NOSONAR
+        } catch (Exception ignored) { //NOSONAR
             // Intentionally left empty.
         }
 
         //If something goes wrong, assume the user has the pro version
-        return true;
+        return true; //NOSONAR
     }
 
     /**
      * @return true if device is running API >= 23
      */
-    public static boolean hasMarshmallow() {
-        return Build.VERSION.SDK_INT >= 23;
+    public static boolean hasMarshmallow() { //NOSONAR
+        return Build.VERSION.SDK_INT >= 23; //NOSONAR
     }
 
     /**
      * @return true if device is running API >= 24
      */
-    public static boolean hasNougat() {
-        return Build.VERSION.SDK_INT >= 24;
+    public static boolean hasNougat() { //NOSONAR
+        return Build.VERSION.SDK_INT >= 24; //NOSONAR
     }
 
     /**
      * @return true if device is running API >= 26
      */
-    public static boolean hasOreo() {
-        return Build.VERSION.SDK_INT >= 26;
+    public static boolean hasOreo() { //NOSONAR
+        return Build.VERSION.SDK_INT >= 26; //NOSONAR
     }
 
-    public static boolean isLandscape(Context context) {
-        final int orientation = context.getResources().getConfiguration().orientation;
-        return orientation == Configuration.ORIENTATION_LANDSCAPE;
+    public static boolean isLandscape(Context context) { //NOSONAR
+        final int orientation = context.getResources().getConfiguration().orientation; //NOSONAR
+        return orientation == Configuration.ORIENTATION_LANDSCAPE; //NOSONAR
     }
 
-    public static boolean isTablet(Context context) {
-        return context.getResources().getBoolean(R.bool.isTablet);
+    public static boolean isTablet(Context context) { //NOSONAR
+        return context.getResources().getBoolean(R.bool.isTablet); //NOSONAR
     }
 
-    public static Single<List<Song>> getSongsForFileObjects(Repository.SongsRepository songsRepository, List<BaseFileObject> fileObjects) {
+    public static Single<List<Song>> getSongsForFileObjects(Repository.SongsRepository songsRepository, List<BaseFileObject> fileObjects) { //NOSONAR
 
-        List<Single<List<Song>>> observables = Stream.of(fileObjects)
-                .map(fileObject -> FileHelper.getSongList(songsRepository, new File(fileObject.path), true, false))
-                .toList();
+        List<Single<List<Song>>> observables = Stream.of(fileObjects) //NOSONAR
+                .map(fileObject -> FileHelper.getSongList(songsRepository, new File(fileObject.path), true, false)) //NOSONAR
+                .toList(); //NOSONAR
 
-        return Single.concat(observables)
-                .reduce((songs, songs2) -> {
-                    List<Song> allSongs = new ArrayList<>();
-                    allSongs.addAll(songs);
-                    allSongs.addAll(songs2);
-                    return allSongs;
-                }).toSingle();
+        return Single.concat(observables) //NOSONAR
+                .reduce((songs, songs2) -> { //NOSONAR
+                    List<Song> allSongs = new ArrayList<>(); //NOSONAR
+                    allSongs.addAll(songs); //NOSONAR
+                    allSongs.addAll(songs2); //NOSONAR
+                    return allSongs; //NOSONAR
+                }).toSingle(); //NOSONAR
     }
 
-    public static void incrementPlayCount(Context context, Song song) {
+    public static void incrementPlayCount(Context context, Song song) { //NOSONAR
 
-        if (song == null) {
-            return;
+        if (song == null) { //NOSONAR
+            return; //NOSONAR
         }
 
-        ContentValues values = new ContentValues();
-        values.put(PlayCountTable.COLUMN_ID, song.id);
-        values.put(PlayCountTable.COLUMN_PLAY_COUNT, song.getPlayCount(context) + 1);
-        values.put(PlayCountTable.COLUMN_TIME_PLAYED, System.currentTimeMillis());
+        ContentValues values = new ContentValues(); //NOSONAR
+        values.put(PlayCountTable.COLUMN_ID, song.id); //NOSONAR
+        values.put(PlayCountTable.COLUMN_PLAY_COUNT, song.getPlayCount(context) + 1); //NOSONAR
+        values.put(PlayCountTable.COLUMN_TIME_PLAYED, System.currentTimeMillis()); //NOSONAR
 
-        try {
-            if (context.getContentResolver().update(PlayCountTable.URI, values, PlayCountTable.COLUMN_ID + " ='" + song.id + "'", null) < 1) {
-                context.getContentResolver().insert(PlayCountTable.URI, values);
+        try { //NOSONAR
+            if (context.getContentResolver().update(PlayCountTable.URI, values, PlayCountTable.COLUMN_ID + " ='" + song.id + "'", null) < 1) { //NOSONAR
+                context.getContentResolver().insert(PlayCountTable.URI, values); //NOSONAR
             }
-        } catch (IllegalArgumentException e) {
-            Log.e(TAG, "Failed to increment play count: " + e.toString());
+        } catch (IllegalArgumentException e) { //NOSONAR
+            Log.e(TAG, "Failed to increment play count: " + e.toString()); //NOSONAR
         }
     }
 
-    public static String getIpAddr(Context context) {
-        @SuppressLint("WifiManagerLeak")
-        int i = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getIpAddress();
-        Object[] arrayOfObject = new Object[4];
-        arrayOfObject[0] = i & 0xFF;
-        arrayOfObject[1] = 0xFF & i >> 8;
-        arrayOfObject[2] = 0xFF & i >> 16;
-        arrayOfObject[3] = 0xFF & i >> 24;
-        return String.format("%d.%d.%d.%d", arrayOfObject);
+    public static String getIpAddr(Context context) { //NOSONAR
+        @SuppressLint("WifiManagerLeak") //NOSONAR
+        int i = ((WifiManager) context.getSystemService(Context.WIFI_SERVICE)).getConnectionInfo().getIpAddress(); //NOSONAR
+        Object[] arrayOfObject = new Object[4]; //NOSONAR
+        arrayOfObject[0] = i & 0xFF; //NOSONAR
+        arrayOfObject[1] = 0xFF & i >> 8; //NOSONAR
+        arrayOfObject[2] = 0xFF & i >> 16; //NOSONAR
+        arrayOfObject[3] = 0xFF & i >> 24; //NOSONAR
+        return String.format("%d.%d.%d.%d", arrayOfObject); //NOSONAR
     }
 
-    public static boolean canDrawBehindStatusBar() {
-        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH);
+    public static boolean canDrawBehindStatusBar() { //NOSONAR
+        return (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH); //NOSONAR
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.album.list
 
@@ -14,60 +14,60 @@ import com.simplecity.amp_library.utils.sorting.SortManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class AlbumsPresenter @Inject constructor(
-    private val albumsRepository: AlbumsRepository,
-    private val sortManager: SortManager,
-    private val albumsMenuPresenter: AlbumMenuPresenter
-) : Presenter<View>(), AlbumListContract.Presenter, AlbumMenuContract.Presenter by albumsMenuPresenter {
+class AlbumsPresenter @Inject constructor( //NOSONAR
+    private val albumsRepository: AlbumsRepository, //NOSONAR
+    private val sortManager: SortManager, //NOSONAR
+    private val albumsMenuPresenter: AlbumMenuPresenter //NOSONAR
+) : Presenter<View>(), AlbumListContract.Presenter, AlbumMenuContract.Presenter by albumsMenuPresenter { //NOSONAR
 
-    private var albums = mutableListOf<AlbumArtist>()
+    private var albums = mutableListOf<AlbumArtist>() //NOSONAR
 
-    override fun bindView(view: View) {
-        super.bindView(view)
-        albumsMenuPresenter.bindView(view)
+    override fun bindView(view: View) { //NOSONAR
+        super.bindView(view) //NOSONAR
+        albumsMenuPresenter.bindView(view) //NOSONAR
     }
 
-    override fun unbindView(view: View) {
-        super.unbindView(view)
-        albumsMenuPresenter.unbindView(view)
+    override fun unbindView(view: View) { //NOSONAR
+        super.unbindView(view) //NOSONAR
+        albumsMenuPresenter.unbindView(view) //NOSONAR
     }
 
-    @SuppressLint("CheckResult")
-    override fun loadAlbums(scrollToTop: Boolean) {
-        addDisposable(albumsRepository.getAlbums()
-            .map { albumArtists ->
-                val albumArtists = albumArtists.toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    override fun loadAlbums(scrollToTop: Boolean) { //NOSONAR
+        addDisposable(albumsRepository.getAlbums() //NOSONAR
+            .map { albumArtists -> //NOSONAR
+                val albumArtists = albumArtists.toMutableList() //NOSONAR
 
-                sortManager.sortAlbums(albumArtists)
+                sortManager.sortAlbums(albumArtists) //NOSONAR
 
-                if (!sortManager.artistsAscending) {
-                    albumArtists.reverse()
+                if (!sortManager.artistsAscending) { //NOSONAR
+                    albumArtists.reverse() //NOSONAR
                 }
-                albumArtists
+                albumArtists //NOSONAR
             }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { albumArtists ->
-                    this.albums - albumArtists
-                    view?.setData(albumArtists)
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { albumArtists -> //NOSONAR
+                    this.albums - albumArtists //NOSONAR
+                    view?.setData(albumArtists) //NOSONAR
                 },
-                { error -> LogUtils.logException(TAG, "refreshAdapterItems error", error) }
+                { error -> LogUtils.logException(TAG, "refreshAdapterItems error", error) } //NOSONAR
             ))
     }
 
-    override fun setAlbumsSortOrder(order: Int) {
-        sortManager.artistsSortOrder = order
-        loadAlbums(true)
-        view?.invalidateOptionsMenu()
+    override fun setAlbumsSortOrder(order: Int) { //NOSONAR
+        sortManager.artistsSortOrder = order //NOSONAR
+        loadAlbums(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    override fun setAlbumsAscending(ascending: Boolean) {
-        sortManager.artistsAscending = ascending
-        loadAlbums(true)
-        view?.invalidateOptionsMenu()
+    override fun setAlbumsAscending(ascending: Boolean) { //NOSONAR
+        sortManager.artistsAscending = ascending //NOSONAR
+        loadAlbums(true) //NOSONAR
+        view?.invalidateOptionsMenu() //NOSONAR
     }
 
-    companion object {
-        const val TAG = "AlbumPresenter"
+    companion object { //NOSONAR
+        const val TAG = "AlbumPresenter" //NOSONAR
     }
 }

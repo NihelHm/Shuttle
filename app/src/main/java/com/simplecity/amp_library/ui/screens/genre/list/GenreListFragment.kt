@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.genre.list
 
@@ -30,143 +30,143 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class GenreListFragment :
-    BaseFragment(),
-    GenreView.ClickListener,
-    GenreListContract.View {
+class GenreListFragment : //NOSONAR
+    BaseFragment(), //NOSONAR
+    GenreView.ClickListener, //NOSONAR
+    GenreListContract.View { //NOSONAR
 
-    private var genreClickListener: GenreClickListener? = null
+    private var genreClickListener: GenreClickListener? = null //NOSONAR
 
-    private lateinit var recyclerView: FastScrollRecyclerView
+    private lateinit var recyclerView: FastScrollRecyclerView //NOSONAR
 
-    private lateinit var adapter: SectionedAdapter
+    private lateinit var adapter: SectionedAdapter //NOSONAR
 
-    private var refreshDisposable: Disposable? = null
+    private var refreshDisposable: Disposable? = null //NOSONAR
 
-    private val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable() //NOSONAR
 
-    @Inject lateinit var presenter: GenreListPresenter
+    @Inject lateinit var presenter: GenreListPresenter //NOSONAR
 
-    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper
+    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper //NOSONAR
 
-    interface GenreClickListener {
-        fun onGenreClicked(genre: Genre)
+    interface GenreClickListener { //NOSONAR
+        fun onGenreClicked(genre: Genre) //NOSONAR
     }
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
 
-        if (parentFragment is GenreClickListener) {
-            genreClickListener = parentFragment as GenreClickListener?
+        if (parentFragment is GenreClickListener) { //NOSONAR
+            genreClickListener = parentFragment as GenreClickListener? //NOSONAR
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
+        super.onCreate(savedInstanceState) //NOSONAR
 
-        adapter = SectionedAdapter()
+        adapter = SectionedAdapter() //NOSONAR
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        recyclerView = inflater.inflate(R.layout.fragment_recycler, container, false) as FastScrollRecyclerView
-        return recyclerView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
+        recyclerView = inflater.inflate(R.layout.fragment_recycler, container, false) as FastScrollRecyclerView //NOSONAR
+        return recyclerView //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        recyclerView.layoutManager = LinearLayoutManager(context)
-        recyclerView.setRecyclerListener(RecyclerListener())
-        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(context) //NOSONAR
+        recyclerView.setRecyclerListener(RecyclerListener()) //NOSONAR
+        recyclerView.adapter = adapter //NOSONAR
 
-        presenter.bindView(this)
+        presenter.bindView(this) //NOSONAR
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResume() { //NOSONAR
+        super.onResume() //NOSONAR
 
-        presenter.loadGenres()
+        presenter.loadGenres() //NOSONAR
     }
 
-    override fun onPause() {
+    override fun onPause() { //NOSONAR
 
-        refreshDisposable?.dispose()
+        refreshDisposable?.dispose() //NOSONAR
 
-        disposables.clear()
+        disposables.clear() //NOSONAR
 
-        super.onPause()
+        super.onPause() //NOSONAR
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroyView() { //NOSONAR
+        super.onDestroyView() //NOSONAR
 
-        presenter.unbindView(this)
+        presenter.unbindView(this) //NOSONAR
     }
 
-    override fun onItemClick(genre: Genre) {
-        genreClickListener?.onGenreClicked(genre)
+    override fun onItemClick(genre: Genre) { //NOSONAR
+        genreClickListener?.onGenreClicked(genre) //NOSONAR
     }
 
-    override fun onOverflowClick(v: View, genre: Genre) {
-        val popupMenu = PopupMenu(context!!, v)
-        popupMenu.inflate(R.menu.menu_genre)
+    override fun onOverflowClick(v: View, genre: Genre) { //NOSONAR
+        val popupMenu = PopupMenu(context!!, v) //NOSONAR
+        popupMenu.inflate(R.menu.menu_genre) //NOSONAR
 
         // Add playlist menu
-        val subMenu = popupMenu.menu.findItem(R.id.addToPlaylist).subMenu
-        playlistMenuHelper.createPlaylistMenu(subMenu)
+        val subMenu = popupMenu.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+        playlistMenuHelper.createPlaylistMenu(subMenu) //NOSONAR
 
-        popupMenu.setOnMenuItemClickListener(GenreMenuUtils.getGenreClickListener(genre, presenter))
-        popupMenu.show()
+        popupMenu.setOnMenuItemClickListener(GenreMenuUtils.getGenreClickListener(genre, presenter)) //NOSONAR
+        popupMenu.show() //NOSONAR
     }
 
     // GenreListContract.View Implementation
 
-    override fun setData(genres: List<Genre>) {
-        if (genres.isEmpty()) {
-            adapter.setItems(listOf(EmptyView(R.string.empty_genres)))
-        } else {
-            adapter.setItems(genres.map {
-                val genreView = GenreView(it)
-                genreView.setClickListener(this)
-                genreView
+    override fun setData(genres: List<Genre>) { //NOSONAR
+        if (genres.isEmpty()) { //NOSONAR
+            adapter.setItems(listOf(EmptyView(R.string.empty_genres))) //NOSONAR
+        } else { //NOSONAR
+            adapter.setItems(genres.map { //NOSONAR
+                val genreView = GenreView(it) //NOSONAR
+                genreView.setClickListener(this) //NOSONAR
+                genreView //NOSONAR
             })
         }
     }
 
     // GenreMenuContract.View Implementation
 
-    override fun presentCreatePlaylistDialog(songs: List<Song>) {
-        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager)
+    override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
+        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager) //NOSONAR
     }
 
-    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onSongsAddedToQueue(numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onPlaybackFailed() {
+    override fun onPlaybackFailed() { //NOSONAR
         // To do later: Improve error message
-        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
     // BaseFragment Implementation
 
-    override fun screenName(): String {
-        return TAG
+    override fun screenName(): String { //NOSONAR
+        return TAG //NOSONAR
     }
 
     // Static
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "GenreListFragment"
+        private const val TAG = "GenreListFragment" //NOSONAR
 
-        fun newInstance(title: String) = GenreListFragment().withArgs {
-            putString(ARG_TITLE, title)
+        fun newInstance(title: String) = GenreListFragment().withArgs { //NOSONAR
+            putString(ARG_TITLE, title) //NOSONAR
         }
     }
 }

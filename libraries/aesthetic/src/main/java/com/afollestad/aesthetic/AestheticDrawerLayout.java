@@ -12,75 +12,75 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticDrawerLayout extends DrawerLayout {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticDrawerLayout extends DrawerLayout { //NOSONAR
 
-  private ActiveInactiveColors lastState;
-  private DrawerArrowDrawable arrowDrawable;
-  private Disposable subscription;
+  private ActiveInactiveColors lastState; //NOSONAR
+  private DrawerArrowDrawable arrowDrawable; //NOSONAR
+  private Disposable subscription; //NOSONAR
 
-  public AestheticDrawerLayout(Context context) {
-    super(context);
+  public AestheticDrawerLayout(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticDrawerLayout(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticDrawerLayout(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticDrawerLayout(Context context, AttributeSet attrs, int defStyle) {
-    super(context, attrs, defStyle);
+  public AestheticDrawerLayout(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
+    super(context, attrs, defStyle); //NOSONAR
   }
 
-  private void invalidateColor(ActiveInactiveColors colors) {
-    if (colors == null) {
-      return;
+  private void invalidateColor(ActiveInactiveColors colors) { //NOSONAR
+    if (colors == null) { //NOSONAR
+      return; //NOSONAR
     }
-    this.lastState = colors;
-    if (this.arrowDrawable != null) {
-      this.arrowDrawable.setColor(lastState.activeColor());
+    this.lastState = colors; //NOSONAR
+    if (this.arrowDrawable != null) { //NOSONAR
+      this.arrowDrawable.setColor(lastState.activeColor()); //NOSONAR
     }
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    subscription =
-        Aesthetic.get(getContext())
-            .colorIconTitle(null)
-            .compose(Rx.<ActiveInactiveColors>distinctToMainThread())
-            .subscribe(
-                new Consumer<ActiveInactiveColors>() {
-                  @Override
-                  public void accept(
-                      @io.reactivex.annotations.NonNull ActiveInactiveColors colors) {
-                    invalidateColor(colors);
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    subscription = //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .colorIconTitle(null) //NOSONAR
+            .compose(Rx.<ActiveInactiveColors>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<ActiveInactiveColors>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept( //NOSONAR
+                      @io.reactivex.annotations.NonNull ActiveInactiveColors colors) { //NOSONAR
+                    invalidateColor(colors); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    subscription.dispose();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    subscription.dispose(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 
-  @Override
-  public void addDrawerListener(@NonNull DrawerListener listener) {
-    super.addDrawerListener(listener);
-    if (listener instanceof ActionBarDrawerToggle) {
-      this.arrowDrawable = ((ActionBarDrawerToggle) listener).getDrawerArrowDrawable();
+  @Override //NOSONAR
+  public void addDrawerListener(@NonNull DrawerListener listener) { //NOSONAR
+    super.addDrawerListener(listener); //NOSONAR
+    if (listener instanceof ActionBarDrawerToggle) { //NOSONAR
+      this.arrowDrawable = ((ActionBarDrawerToggle) listener).getDrawerArrowDrawable(); //NOSONAR
     }
-    invalidateColor(lastState);
+    invalidateColor(lastState); //NOSONAR
   }
 
-  @SuppressWarnings("deprecation")
-  @Override
-  public void setDrawerListener(DrawerListener listener) {
-    super.setDrawerListener(listener);
-    if (listener instanceof ActionBarDrawerToggle) {
-      this.arrowDrawable = ((ActionBarDrawerToggle) listener).getDrawerArrowDrawable();
+  @SuppressWarnings("deprecation") //NOSONAR
+  @Override //NOSONAR
+  public void setDrawerListener(DrawerListener listener) { //NOSONAR
+    super.setDrawerListener(listener); //NOSONAR
+    if (listener instanceof ActionBarDrawerToggle) { //NOSONAR
+      this.arrowDrawable = ((ActionBarDrawerToggle) listener).getDrawerArrowDrawable(); //NOSONAR
     }
-    invalidateColor(lastState);
+    invalidateColor(lastState); //NOSONAR
   }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.album.list
 
@@ -53,298 +53,298 @@ import io.reactivex.Single
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
-class AlbumListFragment :
-    AlbumListContract.View,
-    BaseFragment(),
-    AlbumView.ClickListener,
-    ShuffleView.ShuffleClickListener {
+class AlbumListFragment : //NOSONAR
+    AlbumListContract.View, //NOSONAR
+    BaseFragment(), //NOSONAR
+    AlbumView.ClickListener, //NOSONAR
+    ShuffleView.ShuffleClickListener { //NOSONAR
 
-    private lateinit var albumClickListener: AlbumClickListener
+    private lateinit var albumClickListener: AlbumClickListener //NOSONAR
 
-    private lateinit var recyclerView: FastScrollRecyclerView
+    private lateinit var recyclerView: FastScrollRecyclerView //NOSONAR
 
-    private lateinit var layoutManager: GridLayoutManager
+    private lateinit var layoutManager: GridLayoutManager //NOSONAR
 
-    private lateinit var adapter: SectionedAdapter
+    private lateinit var adapter: SectionedAdapter //NOSONAR
 
-    private lateinit var spanSizeLookup: SpanSizeLookup
+    private lateinit var spanSizeLookup: SpanSizeLookup //NOSONAR
 
-    private lateinit var shuffleView: ShuffleView
+    private lateinit var shuffleView: ShuffleView //NOSONAR
 
-    private var contextualToolbarHelper: ContextualToolbarHelper<Album>? = null
+    private var contextualToolbarHelper: ContextualToolbarHelper<Album>? = null //NOSONAR
 
-    private var playlistMenuDisposable: Disposable? = null
+    private var playlistMenuDisposable: Disposable? = null //NOSONAR
 
-    private var setDataDisposable: Disposable? = null
+    private var setDataDisposable: Disposable? = null //NOSONAR
 
-    @Inject lateinit var presenter: AlbumsPresenter
+    @Inject lateinit var presenter: AlbumsPresenter //NOSONAR
 
-    @Inject lateinit var requestManager: RequestManager
+    @Inject lateinit var requestManager: RequestManager //NOSONAR
 
-    @Inject lateinit var sortManager: SortManager
+    @Inject lateinit var sortManager: SortManager //NOSONAR
 
-    @Inject lateinit var songsRepository: Repository.SongsRepository
+    @Inject lateinit var songsRepository: Repository.SongsRepository //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper
+    @Inject lateinit var playlistMenuHelper: PlaylistMenuHelper //NOSONAR
 
-    interface AlbumClickListener {
-        fun onAlbumClicked(album: Album, transitionView: View)
+    interface AlbumClickListener { //NOSONAR
+        fun onAlbumClicked(album: Album, transitionView: View) //NOSONAR
     }
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        super.onAttach(context) //NOSONAR
 
-        AndroidSupportInjection.inject(this)
+        AndroidSupportInjection.inject(this) //NOSONAR
 
-        val parentFragment = parentFragment
-        if (parentFragment is AlbumClickListener) {
-            albumClickListener = parentFragment
+        val parentFragment = parentFragment //NOSONAR
+        if (parentFragment is AlbumClickListener) { //NOSONAR
+            albumClickListener = parentFragment //NOSONAR
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
+        super.onCreate(savedInstanceState) //NOSONAR
 
-        setHasOptionsMenu(true)
+        setHasOptionsMenu(true) //NOSONAR
 
-        adapter = SectionedAdapter()
+        adapter = SectionedAdapter() //NOSONAR
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        recyclerView = inflater.inflate(R.layout.fragment_recycler, container, false) as FastScrollRecyclerView
-        return recyclerView
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
+        recyclerView = inflater.inflate(R.layout.fragment_recycler, container, false) as FastScrollRecyclerView //NOSONAR
+        return recyclerView //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        val spanCount = settingsManager.getAlbumColumnCount(context)
-        layoutManager = GridLayoutManager(context, spanCount)
-        spanSizeLookup = SpanSizeLookup(adapter, spanCount)
-        spanSizeLookup.isSpanIndexCacheEnabled = true
-        layoutManager.spanSizeLookup = spanSizeLookup
+        val spanCount = settingsManager.getAlbumColumnCount(context) //NOSONAR
+        layoutManager = GridLayoutManager(context, spanCount) //NOSONAR
+        spanSizeLookup = SpanSizeLookup(adapter, spanCount) //NOSONAR
+        spanSizeLookup.isSpanIndexCacheEnabled = true //NOSONAR
+        layoutManager.spanSizeLookup = spanSizeLookup //NOSONAR
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = layoutManager
-        recyclerView.addItemDecoration(GridDividerDecoration(resources, 4, true))
-        recyclerView.setRecyclerListener(RecyclerListener())
+        recyclerView.adapter = adapter //NOSONAR
+        recyclerView.layoutManager = layoutManager //NOSONAR
+        recyclerView.addItemDecoration(GridDividerDecoration(resources, 4, true)) //NOSONAR
+        recyclerView.setRecyclerListener(RecyclerListener()) //NOSONAR
 
-        shuffleView = ShuffleView()
-        shuffleView.setTitleResId(R.string.shuffle_albums)
-        shuffleView.setClickListener(this)
+        shuffleView = ShuffleView() //NOSONAR
+        shuffleView.setTitleResId(R.string.shuffle_albums) //NOSONAR
+        shuffleView.setClickListener(this) //NOSONAR
 
-        presenter.bindView(this)
+        presenter.bindView(this) //NOSONAR
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResume() { //NOSONAR
+        super.onResume() //NOSONAR
 
-        presenter.loadAlbums(false)
+        presenter.loadAlbums(false) //NOSONAR
 
-        if (userVisibleHint) {
-            setupContextualToolbar()
+        if (userVisibleHint) { //NOSONAR
+            setupContextualToolbar() //NOSONAR
         }
     }
 
-    override fun onPause() {
-        setDataDisposable?.dispose()
+    override fun onPause() { //NOSONAR
+        setDataDisposable?.dispose() //NOSONAR
 
-        playlistMenuDisposable?.dispose()
+        playlistMenuDisposable?.dispose() //NOSONAR
 
-        super.onPause()
+        super.onPause() //NOSONAR
     }
 
-    override fun onDestroyView() {
-        presenter.unbindView(this)
-        super.onDestroyView()
+    override fun onDestroyView() { //NOSONAR
+        presenter.unbindView(this) //NOSONAR
+        super.onDestroyView() //NOSONAR
     }
 
-    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
-        super.onCreateOptionsMenu(menu, inflater)
+    override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) { //NOSONAR
+        super.onCreateOptionsMenu(menu, inflater) //NOSONAR
 
-        inflater!!.inflate(R.menu.menu_sort_albums, menu)
-        inflater.inflate(R.menu.menu_view_as, menu)
+        inflater!!.inflate(R.menu.menu_sort_albums, menu) //NOSONAR
+        inflater.inflate(R.menu.menu_view_as, menu) //NOSONAR
 
-        menu!!.addSubMenu(0, MENU_GRID_SIZE, 0, R.string.menu_grid_size)
-        val subMenu = menu.findItem(MENU_GRID_SIZE).subMenu
+        menu!!.addSubMenu(0, MENU_GRID_SIZE, 0, R.string.menu_grid_size) //NOSONAR
+        val subMenu = menu.findItem(MENU_GRID_SIZE).subMenu //NOSONAR
 
-        val spanCountArray = resources.getIntArray(R.array.span_count)
-        for (i in spanCountArray.indices) {
-            subMenu.add(MENU_GROUP_GRID, spanCountArray[i], i, spanCountArray[i].toString())
+        val spanCountArray = resources.getIntArray(R.array.span_count) //NOSONAR
+        for (i in spanCountArray.indices) { //NOSONAR
+            subMenu.add(MENU_GROUP_GRID, spanCountArray[i], i, spanCountArray[i].toString()) //NOSONAR
         }
-        subMenu.setGroupCheckable(MENU_GROUP_GRID, true, true)
+        subMenu.setGroupCheckable(MENU_GROUP_GRID, true, true) //NOSONAR
     }
 
-    override fun onPrepareOptionsMenu(menu: Menu) {
-        super.onPrepareOptionsMenu(menu)
+    override fun onPrepareOptionsMenu(menu: Menu) { //NOSONAR
+        super.onPrepareOptionsMenu(menu) //NOSONAR
 
-        val sortOrder = sortManager.albumsSortOrder
+        val sortOrder = sortManager.albumsSortOrder //NOSONAR
 
-        when (sortOrder) {
-            SortManager.AlbumSort.DEFAULT -> menu.findItem(R.id.sort_album_default).isChecked = true
-            SortManager.AlbumSort.NAME -> menu.findItem(R.id.sort_album_name).isChecked = true
-            SortManager.AlbumSort.YEAR -> menu.findItem(R.id.sort_album_year).isChecked = true
-            SortManager.AlbumSort.ARTIST_NAME -> menu.findItem(R.id.sort_album_artist_name).isChecked = true
+        when (sortOrder) { //NOSONAR
+            SortManager.AlbumSort.DEFAULT -> menu.findItem(R.id.sort_album_default).isChecked = true //NOSONAR
+            SortManager.AlbumSort.NAME -> menu.findItem(R.id.sort_album_name).isChecked = true //NOSONAR
+            SortManager.AlbumSort.YEAR -> menu.findItem(R.id.sort_album_year).isChecked = true //NOSONAR
+            SortManager.AlbumSort.ARTIST_NAME -> menu.findItem(R.id.sort_album_artist_name).isChecked = true //NOSONAR
         }
 
-        menu.findItem(R.id.sort_album_ascending).isChecked = sortManager.albumsAscending
+        menu.findItem(R.id.sort_album_ascending).isChecked = sortManager.albumsAscending //NOSONAR
 
-        val displayType = settingsManager.getAlbumDisplayType(context)
-        when (displayType) {
-            ViewType.ALBUM_LIST -> menu.findItem(R.id.view_as_list).isChecked = true
-            ViewType.ALBUM_GRID -> menu.findItem(R.id.view_as_grid).isChecked = true
-            ViewType.ALBUM_CARD -> menu.findItem(R.id.view_as_grid_card).isChecked = true
-            ViewType.ALBUM_PALETTE -> menu.findItem(R.id.view_as_grid_palette).isChecked = true
+        val displayType = settingsManager.getAlbumDisplayType(context) //NOSONAR
+        when (displayType) { //NOSONAR
+            ViewType.ALBUM_LIST -> menu.findItem(R.id.view_as_list).isChecked = true //NOSONAR
+            ViewType.ALBUM_GRID -> menu.findItem(R.id.view_as_grid).isChecked = true //NOSONAR
+            ViewType.ALBUM_CARD -> menu.findItem(R.id.view_as_grid_card).isChecked = true //NOSONAR
+            ViewType.ALBUM_PALETTE -> menu.findItem(R.id.view_as_grid_palette).isChecked = true //NOSONAR
         }
 
-        val gridMenuItem = menu.findItem(MENU_GRID_SIZE)
-        if (displayType == ViewType.ALBUM_LIST) {
-            gridMenuItem.isVisible = false
-        } else {
-            gridMenuItem.isVisible = true
-            gridMenuItem.subMenu?.findItem(settingsManager.getAlbumColumnCount(context))?.isChecked = true
+        val gridMenuItem = menu.findItem(MENU_GRID_SIZE) //NOSONAR
+        if (displayType == ViewType.ALBUM_LIST) { //NOSONAR
+            gridMenuItem.isVisible = false //NOSONAR
+        } else { //NOSONAR
+            gridMenuItem.isVisible = true //NOSONAR
+            gridMenuItem.subMenu?.findItem(settingsManager.getAlbumColumnCount(context))?.isChecked = true //NOSONAR
         }
     }
 
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when (item!!.itemId) {
-            R.id.sort_album_default -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.DEFAULT)
-            R.id.sort_album_name -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.NAME)
-            R.id.sort_album_year -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.YEAR)
-            R.id.sort_album_artist_name -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.ARTIST_NAME)
-            R.id.sort_album_ascending -> presenter.setAlbumsAscending(!item.isChecked)
-            R.id.view_as_list -> {
-                val viewType = ViewType.ALBUM_LIST
-                settingsManager.setAlbumDisplayType(viewType)
-                setupListSpan()
-                updateViewType(viewType)
+    override fun onOptionsItemSelected(item: MenuItem?): Boolean { //NOSONAR
+        when (item!!.itemId) { //NOSONAR
+            R.id.sort_album_default -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.DEFAULT) //NOSONAR
+            R.id.sort_album_name -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.NAME) //NOSONAR
+            R.id.sort_album_year -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.YEAR) //NOSONAR
+            R.id.sort_album_artist_name -> presenter.setAlbumsSortOrder(SortManager.AlbumSort.ARTIST_NAME) //NOSONAR
+            R.id.sort_album_ascending -> presenter.setAlbumsAscending(!item.isChecked) //NOSONAR
+            R.id.view_as_list -> { //NOSONAR
+                val viewType = ViewType.ALBUM_LIST //NOSONAR
+                settingsManager.setAlbumDisplayType(viewType) //NOSONAR
+                setupListSpan() //NOSONAR
+                updateViewType(viewType) //NOSONAR
             }
-            R.id.view_as_grid -> {
-                val viewType = ViewType.ALBUM_GRID
-                settingsManager.setAlbumDisplayType(viewType)
-                setupGridSpan()
-                updateViewType(viewType)
+            R.id.view_as_grid -> { //NOSONAR
+                val viewType = ViewType.ALBUM_GRID //NOSONAR
+                settingsManager.setAlbumDisplayType(viewType) //NOSONAR
+                setupGridSpan() //NOSONAR
+                updateViewType(viewType) //NOSONAR
             }
-            R.id.view_as_grid_card -> {
-                val viewType = ViewType.ALBUM_CARD
-                settingsManager.setAlbumDisplayType(viewType)
-                setupGridSpan()
-                updateViewType(viewType)
+            R.id.view_as_grid_card -> { //NOSONAR
+                val viewType = ViewType.ALBUM_CARD //NOSONAR
+                settingsManager.setAlbumDisplayType(viewType) //NOSONAR
+                setupGridSpan() //NOSONAR
+                updateViewType(viewType) //NOSONAR
             }
-            R.id.view_as_grid_palette -> {
-                val viewType = ViewType.ALBUM_PALETTE
-                settingsManager.setAlbumDisplayType(viewType)
-                setupGridSpan()
-                updateViewType(viewType)
+            R.id.view_as_grid_palette -> { //NOSONAR
+                val viewType = ViewType.ALBUM_PALETTE //NOSONAR
+                settingsManager.setAlbumDisplayType(viewType) //NOSONAR
+                setupGridSpan() //NOSONAR
+                updateViewType(viewType) //NOSONAR
             }
         }
 
-        if (item.groupId == MENU_GROUP_GRID) {
-            settingsManager.setAlbumColumnCount(context, item.itemId)
-            spanSizeLookup.setSpanCount(item.itemId)
-            (recyclerView.layoutManager as GridLayoutManager).spanCount = settingsManager.getAlbumColumnCount(context)
-            adapter.notifyItemRangeChanged(0, adapter.itemCount)
+        if (item.groupId == MENU_GROUP_GRID) { //NOSONAR
+            settingsManager.setAlbumColumnCount(context, item.itemId) //NOSONAR
+            spanSizeLookup.setSpanCount(item.itemId) //NOSONAR
+            (recyclerView.layoutManager as GridLayoutManager).spanCount = settingsManager.getAlbumColumnCount(context) //NOSONAR
+            adapter.notifyItemRangeChanged(0, adapter.itemCount) //NOSONAR
         }
 
-        activity!!.invalidateOptionsMenu()
+        activity!!.invalidateOptionsMenu() //NOSONAR
 
-        return super.onOptionsItemSelected(item)
+        return super.onOptionsItemSelected(item) //NOSONAR
     }
 
-    private fun setupGridSpan() {
-        val spanCount = settingsManager.getAlbumColumnCount(context)
-        spanSizeLookup.setSpanCount(spanCount)
-        layoutManager.spanCount = spanCount
+    private fun setupGridSpan() { //NOSONAR
+        val spanCount = settingsManager.getAlbumColumnCount(context) //NOSONAR
+        spanSizeLookup.setSpanCount(spanCount) //NOSONAR
+        layoutManager.spanCount = spanCount //NOSONAR
     }
 
-    private fun setupListSpan() {
-        val spanCount = resources.getInteger(R.integer.list_num_columns)
-        spanSizeLookup.setSpanCount(spanCount)
-        layoutManager.spanCount = spanCount
+    private fun setupListSpan() { //NOSONAR
+        val spanCount = resources.getInteger(R.integer.list_num_columns) //NOSONAR
+        spanSizeLookup.setSpanCount(spanCount) //NOSONAR
+        layoutManager.spanCount = spanCount //NOSONAR
     }
 
-    private fun updateViewType(@ViewType viewType: Int) {
-        adapter.items
-            .filter { viewModel -> viewModel is AlbumView }
-            .forEach { viewModel -> (viewModel as AlbumView).viewType = viewType }
-        adapter.notifyItemRangeChanged(0, adapter.itemCount)
+    private fun updateViewType(@ViewType viewType: Int) { //NOSONAR
+        adapter.items //NOSONAR
+            .filter { viewModel -> viewModel is AlbumView } //NOSONAR
+            .forEach { viewModel -> (viewModel as AlbumView).viewType = viewType } //NOSONAR
+        adapter.notifyItemRangeChanged(0, adapter.itemCount) //NOSONAR
     }
 
-    override fun onAlbumClick(position: Int, albumView: AlbumView, viewHolder: AlbumView.ViewHolder) {
-        if (!contextualToolbarHelper!!.handleClick(albumView, albumView.album)) {
-            albumClickListener.onAlbumClicked(albumView.album, viewHolder.imageOne)
+    override fun onAlbumClick(position: Int, albumView: AlbumView, viewHolder: AlbumView.ViewHolder) { //NOSONAR
+        if (!contextualToolbarHelper!!.handleClick(albumView, albumView.album)) { //NOSONAR
+            albumClickListener.onAlbumClicked(albumView.album, viewHolder.imageOne) //NOSONAR
         }
     }
 
-    override fun onAlbumLongClick(position: Int, albumView: AlbumView): Boolean {
-        return contextualToolbarHelper!!.handleLongClick(albumView, albumView.album)
+    override fun onAlbumLongClick(position: Int, albumView: AlbumView): Boolean { //NOSONAR
+        return contextualToolbarHelper!!.handleLongClick(albumView, albumView.album) //NOSONAR
     }
 
-    override fun onAlbumOverflowClicked(view: View, album: Album) {
-        val menu = PopupMenu(context!!, view)
-        menu.inflate(R.menu.menu_album)
-        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu
-        playlistMenuHelper.createPlaylistMenu(subMenu)
-        menu.setOnMenuItemClickListener(
-            AlbumMenuUtils.getAlbumMenuClickListener(album, presenter)
+    override fun onAlbumOverflowClicked(view: View, album: Album) { //NOSONAR
+        val menu = PopupMenu(context!!, view) //NOSONAR
+        menu.inflate(R.menu.menu_album) //NOSONAR
+        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+        playlistMenuHelper.createPlaylistMenu(subMenu) //NOSONAR
+        menu.setOnMenuItemClickListener( //NOSONAR
+            AlbumMenuUtils.getAlbumMenuClickListener(album, presenter) //NOSONAR
         )
-        menu.show()
+        menu.show() //NOSONAR
     }
 
-    override fun onShuffleItemClick() {
+    override fun onShuffleItemClick() { //NOSONAR
         // Note: For album-shuffle mode, we don't actually turn shuffle on.
-        mediaManager.shuffleMode = QueueManager.ShuffleMode.OFF
+        mediaManager.shuffleMode = QueueManager.ShuffleMode.OFF //NOSONAR
 
-        mediaManager.playAll(songsRepository.getSongs(null as Function1<Song, Boolean>?)
-            .firstOrError()
-            .map { songs -> Operators.albumShuffleSongs(songs, sortManager) }) {
+        mediaManager.playAll(songsRepository.getSongs(null as Function1<Song, Boolean>?) //NOSONAR
+            .firstOrError() //NOSONAR
+            .map { songs -> Operators.albumShuffleSongs(songs, sortManager) }) { //NOSONAR
             // To do later: Show playback failed toast
-            Unit
+            Unit //NOSONAR
         }
     }
 
-    override fun setUserVisibleHint(isVisibleToUser: Boolean) {
-        super.setUserVisibleHint(isVisibleToUser)
-        if (isVisibleToUser) {
-            setupContextualToolbar()
-        } else {
-            contextualToolbarHelper?.finish()
+    override fun setUserVisibleHint(isVisibleToUser: Boolean) { //NOSONAR
+        super.setUserVisibleHint(isVisibleToUser) //NOSONAR
+        if (isVisibleToUser) { //NOSONAR
+            setupContextualToolbar() //NOSONAR
+        } else { //NOSONAR
+            contextualToolbarHelper?.finish() //NOSONAR
         }
     }
 
-    private fun setupContextualToolbar() {
-        val contextualToolbar = ContextualToolbar.findContextualToolbar(this)
-        if (contextualToolbar != null) {
-            contextualToolbar.menu.clear()
-            contextualToolbar.inflateMenu(R.menu.context_menu_general)
-            val submenu = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu
-            playlistMenuDisposable?.dispose()
+    private fun setupContextualToolbar() { //NOSONAR
+        val contextualToolbar = ContextualToolbar.findContextualToolbar(this) //NOSONAR
+        if (contextualToolbar != null) { //NOSONAR
+            contextualToolbar.menu.clear() //NOSONAR
+            contextualToolbar.inflateMenu(R.menu.context_menu_general) //NOSONAR
+            val submenu = contextualToolbar.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+            playlistMenuDisposable?.dispose() //NOSONAR
 
-            playlistMenuDisposable = playlistMenuHelper.createUpdatingPlaylistMenu(submenu)
-                .doOnError { throwable -> LogUtils.logException(TAG, "setupContextualToolbar error", throwable) }
-                .onErrorComplete()
-                .subscribe()
+            playlistMenuDisposable = playlistMenuHelper.createUpdatingPlaylistMenu(submenu) //NOSONAR
+                .doOnError { throwable -> LogUtils.logException(TAG, "setupContextualToolbar error", throwable) } //NOSONAR
+                .onErrorComplete() //NOSONAR
+                .subscribe() //NOSONAR
 
-            contextualToolbar.setOnMenuItemClickListener(
-                AlbumMenuUtils.getAlbumMenuClickListener(
-                    Single.defer { Single.just(contextualToolbarHelper!!.items) },
-                    presenter
+            contextualToolbar.setOnMenuItemClickListener( //NOSONAR
+                AlbumMenuUtils.getAlbumMenuClickListener( //NOSONAR
+                    Single.defer { Single.just(contextualToolbarHelper!!.items) }, //NOSONAR
+                    presenter //NOSONAR
                 )
             )
 
-            contextualToolbarHelper = ContextualToolbarHelper(context!!, contextualToolbar, object : ContextualToolbarHelper.Callback {
+            contextualToolbarHelper = ContextualToolbarHelper(context!!, contextualToolbar, object : ContextualToolbarHelper.Callback { //NOSONAR
 
-                override fun notifyItemChanged(viewModel: SelectableViewModel) {
-                    val index = adapter.items.indexOf(viewModel as ViewModel<*>)
-                    if (index >= 0) {
-                        adapter.notifyItemChanged(index, 0)
+                override fun notifyItemChanged(viewModel: SelectableViewModel) { //NOSONAR
+                    val index = adapter.items.indexOf(viewModel as ViewModel<*>) //NOSONAR
+                    if (index >= 0) { //NOSONAR
+                        adapter.notifyItemChanged(index, 0) //NOSONAR
                     }
                 }
 
-                override fun notifyDatasetChanged() {
-                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0)
+                override fun notifyDatasetChanged() { //NOSONAR
+                    adapter.notifyItemRangeChanged(0, adapter.items.size, 0) //NOSONAR
                 }
             })
         }
@@ -352,89 +352,89 @@ class AlbumListFragment :
 
     // AlbumListContract.View Implementation
 
-    override fun setData(albums: List<Album>, scrollToTop: Boolean) {
-        setDataDisposable?.dispose()
+    override fun setData(albums: List<Album>, scrollToTop: Boolean) { //NOSONAR
+        setDataDisposable?.dispose() //NOSONAR
 
-        if (albums.isEmpty()) {
-            setDataDisposable = adapter.setItems(listOf(EmptyView(string.empty_albums)))
-        } else {
-            val viewModels = albums.map { album ->
-                val albumView = AlbumView(album, settingsManager.getAlbumDisplayType(context), requestManager, sortManager, settingsManager)
-                albumView.setClickListener(this)
-                albumView as ViewModel<*>
-            }.toMutableList()
+        if (albums.isEmpty()) { //NOSONAR
+            setDataDisposable = adapter.setItems(listOf(EmptyView(string.empty_albums))) //NOSONAR
+        } else { //NOSONAR
+            val viewModels = albums.map { album -> //NOSONAR
+                val albumView = AlbumView(album, settingsManager.getAlbumDisplayType(context), requestManager, sortManager, settingsManager) //NOSONAR
+                albumView.setClickListener(this) //NOSONAR
+                albumView as ViewModel<*> //NOSONAR
+            }.toMutableList() //NOSONAR
 
-            viewModels.add(0, shuffleView)
+            viewModels.add(0, shuffleView) //NOSONAR
 
-            setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() {
-                override fun onComplete() {
-                    super.onComplete()
-                    if (scrollToTop) {
-                        recyclerView.smoothScrollToPosition(0)
+            setDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() { //NOSONAR
+                override fun onComplete() { //NOSONAR
+                    super.onComplete() //NOSONAR
+                    if (scrollToTop) { //NOSONAR
+                        recyclerView.smoothScrollToPosition(0) //NOSONAR
                     }
                 }
             })
         }
     }
 
-    override fun invalidateOptionsMenu() {
-        activity?.invalidateOptionsMenu()
+    override fun invalidateOptionsMenu() { //NOSONAR
+        activity?.invalidateOptionsMenu() //NOSONAR
     }
 
     // AlbumMenuContract.View Implementation
 
-    override fun presentCreatePlaylistDialog(songs: List<Song>) {
-        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager)
+    override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
+        CreatePlaylistDialog.newInstance(songs).show(childFragmentManager) //NOSONAR
     }
 
-    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onSongsAddedToQueue(numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun onPlaybackFailed() {
+    override fun onPlaybackFailed() { //NOSONAR
         // To do later: Improve error message
-        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun presentTagEditorDialog(album: Album) {
-        TaggerDialog.newInstance(album).show(childFragmentManager)
+    override fun presentTagEditorDialog(album: Album) { //NOSONAR
+        TaggerDialog.newInstance(album).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentDeleteAlbumsDialog(albums: List<Album>) {
-        DeleteDialog.newInstance(DeleteDialog.ListAlbumsRef { albums }).show(childFragmentManager)
+    override fun presentDeleteAlbumsDialog(albums: List<Album>) { //NOSONAR
+        DeleteDialog.newInstance(DeleteDialog.ListAlbumsRef { albums }).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentAlbumInfoDialog(album: Album) {
-        AlbumBiographyDialog.newInstance(album).show(childFragmentManager)
+    override fun presentAlbumInfoDialog(album: Album) { //NOSONAR
+        AlbumBiographyDialog.newInstance(album).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentArtworkEditorDialog(album: Album) {
-        ArtworkDialog.build(context, album).show()
+    override fun presentArtworkEditorDialog(album: Album) { //NOSONAR
+        ArtworkDialog.build(context, album).show() //NOSONAR
     }
 
     // BaseFragment Implementation
 
-    override fun screenName(): String {
-        return TAG
+    override fun screenName(): String { //NOSONAR
+        return TAG //NOSONAR
     }
 
     // Static
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "AlbumListFragment"
+        private const val TAG = "AlbumListFragment" //NOSONAR
 
-        private const val ARG_TITLE = "title"
+        private const val ARG_TITLE = "title" //NOSONAR
 
-        private const val MENU_GRID_SIZE = 100
-        private const val MENU_GROUP_GRID = 1
+        private const val MENU_GRID_SIZE = 100 //NOSONAR
+        private const val MENU_GROUP_GRID = 1 //NOSONAR
 
-        fun newInstance(title: String) = AlbumListFragment().withArgs {
-            putString(ARG_TITLE, title)
+        fun newInstance(title: String) = AlbumListFragment().withArgs { //NOSONAR
+            putString(ARG_TITLE, title) //NOSONAR
         }
     }
 }

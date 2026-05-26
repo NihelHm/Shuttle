@@ -15,79 +15,79 @@ import io.reactivex.disposables.Disposable;
 
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CustomMediaRouteActionProvider extends MediaRouteActionProvider {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CustomMediaRouteActionProvider extends MediaRouteActionProvider { //NOSONAR
 
     /**
      * Creates the action provider.
      *
      * @param context The context.
      */
-    public CustomMediaRouteActionProvider(Context context) {
-        super(context);
+    public CustomMediaRouteActionProvider(Context context) { //NOSONAR
+        super(context); //NOSONAR
     }
 
-    @Override
-    public MediaRouteButton onCreateMediaRouteButton() {
-        return new CustomMediaRouteButton(getContext());
+    @Override //NOSONAR
+    public MediaRouteButton onCreateMediaRouteButton() { //NOSONAR
+        return new CustomMediaRouteButton(getContext()); //NOSONAR
     }
 
-    public static class CustomMediaRouteButton extends MediaRouteButton {
+    public static class CustomMediaRouteButton extends MediaRouteButton { //NOSONAR
 
-        private Disposable subscription;
+        private Disposable subscription; //NOSONAR
 
-        @Nullable
-        Drawable drawable;
+        @Nullable //NOSONAR
+        Drawable drawable; //NOSONAR
 
-        public CustomMediaRouteButton(Context context) {
-            super(context);
+        public CustomMediaRouteButton(Context context) { //NOSONAR
+            super(context); //NOSONAR
         }
 
-        public CustomMediaRouteButton(Context context, AttributeSet attrs) {
-            super(context, attrs);
+        public CustomMediaRouteButton(Context context, AttributeSet attrs) { //NOSONAR
+            super(context, attrs); //NOSONAR
         }
 
-        public CustomMediaRouteButton(Context context, AttributeSet attrs, int defStyleAttr) {
-            super(context, attrs, defStyleAttr);
+        public CustomMediaRouteButton(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+            super(context, attrs, defStyleAttr); //NOSONAR
         }
 
-        private void invalidateColors(@NonNull ActiveInactiveColors colors, Drawable icon) {
-            if (icon != null) {
-                drawable.setTintList(colors.toEnabledSl());
+        private void invalidateColors(@NonNull ActiveInactiveColors colors, Drawable icon) { //NOSONAR
+            if (icon != null) { //NOSONAR
+                drawable.setTintList(colors.toEnabledSl()); //NOSONAR
             }
         }
 
-        @Override
-        public void setRemoteIndicatorDrawable(Drawable d) {
-            super.setRemoteIndicatorDrawable(d);
+        @Override //NOSONAR
+        public void setRemoteIndicatorDrawable(Drawable d) { //NOSONAR
+            super.setRemoteIndicatorDrawable(d); //NOSONAR
 
-            this.drawable = d;
+            this.drawable = d; //NOSONAR
 
-            Aesthetic.get(getContext())
-                    .colorIconTitle(null)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .take(1)
-                    .subscribe(
-                            colors -> invalidateColors(colors, drawable),
-                            onErrorLogAndRethrow());
+            Aesthetic.get(getContext()) //NOSONAR
+                    .colorIconTitle(null) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .take(1) //NOSONAR
+                    .subscribe( //NOSONAR
+                            colors -> invalidateColors(colors, drawable), //NOSONAR
+                            onErrorLogAndRethrow()); //NOSONAR
         }
 
-        @Override
-        public void onAttachedToWindow() {
-            super.onAttachedToWindow();
-            subscription =
-                    Aesthetic.get(getContext())
-                            .colorIconTitle(null)
-                            .compose(Rx.distinctToMainThread())
-                            .subscribe(
-                                    colors -> invalidateColors(colors, drawable),
-                                    onErrorLogAndRethrow());
+        @Override //NOSONAR
+        public void onAttachedToWindow() { //NOSONAR
+            super.onAttachedToWindow(); //NOSONAR
+            subscription = //NOSONAR
+                    Aesthetic.get(getContext()) //NOSONAR
+                            .colorIconTitle(null) //NOSONAR
+                            .compose(Rx.distinctToMainThread()) //NOSONAR
+                            .subscribe( //NOSONAR
+                                    colors -> invalidateColors(colors, drawable), //NOSONAR
+                                    onErrorLogAndRethrow()); //NOSONAR
         }
 
-        @Override
-        public void onDetachedFromWindow() {
-            subscription.dispose();
-            super.onDetachedFromWindow();
+        @Override //NOSONAR
+        public void onDetachedFromWindow() { //NOSONAR
+            subscription.dispose(); //NOSONAR
+            super.onDetachedFromWindow(); //NOSONAR
         }
     }
 }

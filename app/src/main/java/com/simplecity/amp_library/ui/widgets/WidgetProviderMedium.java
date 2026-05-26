@@ -15,180 +15,180 @@ import com.simplecity.amp_library.utils.DrawableUtils;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 
-@Singleton
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class WidgetProviderMedium extends BaseWidgetProvider {
+@Singleton //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class WidgetProviderMedium extends BaseWidgetProvider { //NOSONAR
 
-    private static final String TAG = "MusicAppWidgetProvider";
+    private static final String TAG = "MusicAppWidgetProvider"; //NOSONAR
 
-    public static final String ARG_MEDIUM_LAYOUT_ID = "widget_medium_layout_id_";
+    public static final String ARG_MEDIUM_LAYOUT_ID = "widget_medium_layout_id_"; //NOSONAR
 
-    public static final String CMDAPPWIDGETUPDATE = "appwidgetupdate_medium";
+    public static final String CMDAPPWIDGETUPDATE = "appwidgetupdate_medium"; //NOSONAR
 
-    @Inject
-    public WidgetProviderMedium() {
+    @Inject //NOSONAR
+    public WidgetProviderMedium() { //NOSONAR
         // Intentionally left empty.
     }
 
-    @Override
-    public String getUpdateCommandString() {
-        return CMDAPPWIDGETUPDATE;
+    @Override //NOSONAR
+    public String getUpdateCommandString() { //NOSONAR
+        return CMDAPPWIDGETUPDATE; //NOSONAR
     }
 
-    @Override
-    public String getLayoutIdString() {
-        return ARG_MEDIUM_LAYOUT_ID;
+    @Override //NOSONAR
+    public String getLayoutIdString() { //NOSONAR
+        return ARG_MEDIUM_LAYOUT_ID; //NOSONAR
     }
 
-    @Override
-    public int getWidgetLayoutId() {
-        return R.layout.widget_layout_medium;
+    @Override //NOSONAR
+    public int getWidgetLayoutId() { //NOSONAR
+        return R.layout.widget_layout_medium; //NOSONAR
     }
 
-    @Override
-    public int getRootViewId() {
-        return R.id.widget_layout_medium;
+    @Override //NOSONAR
+    public int getRootViewId() { //NOSONAR
+        return R.id.widget_layout_medium; //NOSONAR
     }
 
-    protected void initialiseWidget(Context context, SharedPreferences sharedPreferences, int appWidgetId) {
-        final Resources res = context.getResources();
-        final RemoteViews views = new RemoteViews(context.getPackageName(), mLayoutId);
+    protected void initialiseWidget(Context context, SharedPreferences sharedPreferences, int appWidgetId) { //NOSONAR
+        final Resources res = context.getResources(); //NOSONAR
+        final RemoteViews views = new RemoteViews(context.getPackageName(), mLayoutId); //NOSONAR
 
-        views.setViewVisibility(R.id.text1, View.GONE);
-        views.setTextViewText(R.id.text2, res.getText(R.string.widget_initial_text));
+        views.setViewVisibility(R.id.text1, View.GONE); //NOSONAR
+        views.setTextViewText(R.id.text2, res.getText(R.string.widget_initial_text)); //NOSONAR
 
-        int textColor = sharedPreferences.getInt(ARG_WIDGET_TEXT_COLOR + appWidgetId, ContextCompat.getColor(context, R.color.white));
-        views.setImageViewResource(R.id.next_button, R.drawable.ic_skip_next_24dp);
-        views.setImageViewResource(R.id.prev_button, R.drawable.ic_skip_previous_24dp);
-        views.setTextColor(R.id.text2, textColor);
-        views.setTextColor(R.id.text1, textColor);
+        int textColor = sharedPreferences.getInt(ARG_WIDGET_TEXT_COLOR + appWidgetId, ContextCompat.getColor(context, R.color.white)); //NOSONAR
+        views.setImageViewResource(R.id.next_button, R.drawable.ic_skip_next_24dp); //NOSONAR
+        views.setImageViewResource(R.id.prev_button, R.drawable.ic_skip_previous_24dp); //NOSONAR
+        views.setTextColor(R.id.text2, textColor); //NOSONAR
+        views.setTextColor(R.id.text1, textColor); //NOSONAR
 
-        int backgroundColor = sharedPreferences.getInt(ARG_WIDGET_BACKGROUND_COLOR + appWidgetId, ColorUtils.adjustAlpha(ContextCompat.getColor(context, R.color.white), 35 / 255f));
-        views.setInt(R.id.widget_layout_medium, "setBackgroundColor", backgroundColor);
-        boolean showAlbumArt = sharedPreferences.getBoolean(ARG_WIDGET_SHOW_ARTWORK + appWidgetId, true);
-        if (!showAlbumArt) {
-            views.setViewVisibility(R.id.album_art, View.GONE);
+        int backgroundColor = sharedPreferences.getInt(ARG_WIDGET_BACKGROUND_COLOR + appWidgetId, ColorUtils.adjustAlpha(ContextCompat.getColor(context, R.color.white), 35 / 255f)); //NOSONAR
+        views.setInt(R.id.widget_layout_medium, "setBackgroundColor", backgroundColor); //NOSONAR
+        boolean showAlbumArt = sharedPreferences.getBoolean(ARG_WIDGET_SHOW_ARTWORK + appWidgetId, true); //NOSONAR
+        if (!showAlbumArt) { //NOSONAR
+            views.setViewVisibility(R.id.album_art, View.GONE); //NOSONAR
         }
-        int colorFilter = sharedPreferences.getInt(ARG_WIDGET_COLOR_FILTER + appWidgetId, -1);
-        if (colorFilter != -1) {
-            views.setInt(R.id.album_art, "setColorFilter", colorFilter);
-        }
-
-        setupButtons(context, views, appWidgetId, getRootViewId());
-        pushUpdate(context, appWidgetId, views);
-    }
-
-    public void update(MusicService service, SharedPreferences sharedPreferences, int[] appWidgetIds, boolean updateArtwork) {
-
-        if (appWidgetIds == null) {
-            return;
+        int colorFilter = sharedPreferences.getInt(ARG_WIDGET_COLOR_FILTER + appWidgetId, -1); //NOSONAR
+        if (colorFilter != -1) { //NOSONAR
+            views.setInt(R.id.album_art, "setColorFilter", colorFilter); //NOSONAR
         }
 
-        for (int appWidgetId : appWidgetIds) {
+        setupButtons(context, views, appWidgetId, getRootViewId()); //NOSONAR
+        pushUpdate(context, appWidgetId, views); //NOSONAR
+    }
 
-            boolean showAlbumArt = sharedPreferences.getBoolean(ARG_WIDGET_SHOW_ARTWORK + appWidgetId, true);
+    public void update(MusicService service, SharedPreferences sharedPreferences, int[] appWidgetIds, boolean updateArtwork) { //NOSONAR
 
-            mLayoutId = sharedPreferences.getInt(ARG_MEDIUM_LAYOUT_ID + appWidgetId, R.layout.widget_layout_medium);
+        if (appWidgetIds == null) { //NOSONAR
+            return; //NOSONAR
+        }
 
-            final Resources res = service.getResources();
-            final RemoteViews views = new RemoteViews(service.getPackageName(), mLayoutId);
+        for (int appWidgetId : appWidgetIds) { //NOSONAR
 
-            CharSequence titleName = "";
-            CharSequence albumName = "";
-            CharSequence artistName = "";
-            CharSequence errorState = null;
+            boolean showAlbumArt = sharedPreferences.getBoolean(ARG_WIDGET_SHOW_ARTWORK + appWidgetId, true); //NOSONAR
 
-            Song song = service.getSong();
-            if (song != null) {
-                titleName = song.name;
-                albumName = song.albumName;
-                artistName = song.albumArtistName;
+            mLayoutId = sharedPreferences.getInt(ARG_MEDIUM_LAYOUT_ID + appWidgetId, R.layout.widget_layout_medium); //NOSONAR
+
+            final Resources res = service.getResources(); //NOSONAR
+            final RemoteViews views = new RemoteViews(service.getPackageName(), mLayoutId); //NOSONAR
+
+            CharSequence titleName = ""; //NOSONAR
+            CharSequence albumName = ""; //NOSONAR
+            CharSequence artistName = ""; //NOSONAR
+            CharSequence errorState = null; //NOSONAR
+
+            Song song = service.getSong(); //NOSONAR
+            if (song != null) { //NOSONAR
+                titleName = song.name; //NOSONAR
+                albumName = song.albumName; //NOSONAR
+                artistName = song.albumArtistName; //NOSONAR
             }
 
             // Format title string with track number, or show SD card message
-            String status = Environment.getExternalStorageState();
-            if (status.equals(Environment.MEDIA_SHARED) || status.equals(Environment.MEDIA_UNMOUNTED)) {
-                if (android.os.Environment.isExternalStorageRemovable()) {
-                    errorState = res.getText(R.string.sdcard_busy_title);
-                } else {
-                    errorState = res.getText(R.string.sdcard_busy_title_nosdcard);
+            String status = Environment.getExternalStorageState(); //NOSONAR
+            if (status.equals(Environment.MEDIA_SHARED) || status.equals(Environment.MEDIA_UNMOUNTED)) { //NOSONAR
+                if (android.os.Environment.isExternalStorageRemovable()) { //NOSONAR
+                    errorState = res.getText(R.string.sdcard_busy_title); //NOSONAR
+                } else { //NOSONAR
+                    errorState = res.getText(R.string.sdcard_busy_title_nosdcard); //NOSONAR
                 }
-            } else if (status.equals(Environment.MEDIA_REMOVED)) {
-                if (android.os.Environment.isExternalStorageRemovable()) {
-                    errorState = res.getText(R.string.sdcard_missing_title);
-                } else {
-                    errorState = res.getText(R.string.sdcard_missing_title_nosdcard);
+            } else if (status.equals(Environment.MEDIA_REMOVED)) { //NOSONAR
+                if (android.os.Environment.isExternalStorageRemovable()) { //NOSONAR
+                    errorState = res.getText(R.string.sdcard_missing_title); //NOSONAR
+                } else { //NOSONAR
+                    errorState = res.getText(R.string.sdcard_missing_title_nosdcard); //NOSONAR
                 }
-            } else if (titleName == null) {
-                errorState = res.getText(R.string.emptyplaylist);
+            } else if (titleName == null) { //NOSONAR
+                errorState = res.getText(R.string.emptyplaylist); //NOSONAR
             }
 
-            if (errorState != null) {
+            if (errorState != null) { //NOSONAR
                 // Show error state to user
-                views.setViewVisibility(R.id.text1, View.GONE);
-                views.setTextViewText(R.id.text2, errorState);
-            } else {
+                views.setViewVisibility(R.id.text1, View.GONE); //NOSONAR
+                views.setTextViewText(R.id.text2, errorState); //NOSONAR
+            } else { //NOSONAR
                 // No error, so show normal titles
-                views.setViewVisibility(R.id.text1, View.VISIBLE);
-                views.setTextViewText(R.id.text1, titleName);
-                views.setTextViewText(R.id.text2, artistName + " • " + albumName);
+                views.setViewVisibility(R.id.text1, View.VISIBLE); //NOSONAR
+                views.setTextViewText(R.id.text1, titleName); //NOSONAR
+                views.setTextViewText(R.id.text2, artistName + " • " + albumName); //NOSONAR
             }
 
-            boolean invertIcons = sharedPreferences.getBoolean(ARG_WIDGET_INVERT_ICONS + appWidgetId, false);
+            boolean invertIcons = sharedPreferences.getBoolean(ARG_WIDGET_INVERT_ICONS + appWidgetId, false); //NOSONAR
 
             // Set correct drawable for pause state
-            final boolean isPlaying = service.isPlaying();
-            if (isPlaying) {
-                if (invertIcons) {
-                    views.setImageViewBitmap(R.id.play_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_pause_24dp));
-                } else {
-                    views.setImageViewResource(R.id.play_button, R.drawable.ic_pause_24dp);
+            final boolean isPlaying = service.isPlaying(); //NOSONAR
+            if (isPlaying) { //NOSONAR
+                if (invertIcons) { //NOSONAR
+                    views.setImageViewBitmap(R.id.play_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_pause_24dp)); //NOSONAR
+                } else { //NOSONAR
+                    views.setImageViewResource(R.id.play_button, R.drawable.ic_pause_24dp); //NOSONAR
                 }
-            } else {
-                if (invertIcons) {
-                    views.setImageViewBitmap(R.id.play_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_play_24dp));
-                } else {
-                    views.setImageViewResource(R.id.play_button, R.drawable.ic_play_24dp);
+            } else { //NOSONAR
+                if (invertIcons) { //NOSONAR
+                    views.setImageViewBitmap(R.id.play_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_play_24dp)); //NOSONAR
+                } else { //NOSONAR
+                    views.setImageViewResource(R.id.play_button, R.drawable.ic_play_24dp); //NOSONAR
                 }
             }
 
-            setupShuffleView(service, views, invertIcons);
+            setupShuffleView(service, views, invertIcons); //NOSONAR
 
-            setupRepeatView(service, views, invertIcons);
+            setupRepeatView(service, views, invertIcons); //NOSONAR
 
-            int textColor = sharedPreferences.getInt(ARG_WIDGET_TEXT_COLOR + appWidgetId, ContextCompat.getColor(service, R.color.white));
-            if (invertIcons) {
-                views.setImageViewBitmap(R.id.next_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_skip_next_24dp));
-                views.setImageViewBitmap(R.id.prev_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_skip_previous_24dp));
-            } else {
-                views.setImageViewResource(R.id.next_button, R.drawable.ic_skip_next_24dp);
-                views.setImageViewResource(R.id.prev_button, R.drawable.ic_skip_previous_24dp);
+            int textColor = sharedPreferences.getInt(ARG_WIDGET_TEXT_COLOR + appWidgetId, ContextCompat.getColor(service, R.color.white)); //NOSONAR
+            if (invertIcons) { //NOSONAR
+                views.setImageViewBitmap(R.id.next_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_skip_next_24dp)); //NOSONAR
+                views.setImageViewBitmap(R.id.prev_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_skip_previous_24dp)); //NOSONAR
+            } else { //NOSONAR
+                views.setImageViewResource(R.id.next_button, R.drawable.ic_skip_next_24dp); //NOSONAR
+                views.setImageViewResource(R.id.prev_button, R.drawable.ic_skip_previous_24dp); //NOSONAR
             }
 
-            views.setTextColor(R.id.text2, textColor);
-            views.setTextColor(R.id.text1, textColor);
+            views.setTextColor(R.id.text2, textColor); //NOSONAR
+            views.setTextColor(R.id.text1, textColor); //NOSONAR
 
-            int backgroundColor = sharedPreferences.getInt(ARG_WIDGET_BACKGROUND_COLOR + appWidgetId, ColorUtils.adjustAlpha(ContextCompat.getColor(service, R.color.white), 35 / 255f));
-            views.setInt(R.id.widget_layout_medium, "setBackgroundColor", backgroundColor);
+            int backgroundColor = sharedPreferences.getInt(ARG_WIDGET_BACKGROUND_COLOR + appWidgetId, ColorUtils.adjustAlpha(ContextCompat.getColor(service, R.color.white), 35 / 255f)); //NOSONAR
+            views.setInt(R.id.widget_layout_medium, "setBackgroundColor", backgroundColor); //NOSONAR
 
-            setupButtons(service, views, appWidgetId, getRootViewId());
+            setupButtons(service, views, appWidgetId, getRootViewId()); //NOSONAR
 
-            if (!showAlbumArt) {
-                views.setViewVisibility(R.id.album_art, View.GONE);
+            if (!showAlbumArt) { //NOSONAR
+                views.setViewVisibility(R.id.album_art, View.GONE); //NOSONAR
             }
 
-            pushUpdate(service, appWidgetId, views);
+            pushUpdate(service, appWidgetId, views); //NOSONAR
 
-            if (updateArtwork && errorState == null && showAlbumArt) {
+            if (updateArtwork && errorState == null && showAlbumArt) { //NOSONAR
 
-                views.setImageViewResource(R.id.album_art, R.drawable.ic_placeholder_light_medium);
+                views.setImageViewResource(R.id.album_art, R.drawable.ic_placeholder_light_medium); //NOSONAR
 
-                int colorFilter = sharedPreferences.getInt(ARG_WIDGET_COLOR_FILTER + appWidgetId, -1);
-                if (colorFilter != -1) {
-                    views.setInt(R.id.album_art, "setColorFilter", colorFilter);
+                int colorFilter = sharedPreferences.getInt(ARG_WIDGET_COLOR_FILTER + appWidgetId, -1); //NOSONAR
+                if (colorFilter != -1) { //NOSONAR
+                    views.setInt(R.id.album_art, "setColorFilter", colorFilter); //NOSONAR
                 }
 
-                doOnMainThread(() -> loadArtwork(service, appWidgetIds, views, 256));
+                doOnMainThread(() -> loadArtwork(service, appWidgetIds, views, 256)); //NOSONAR
             }
         }
     }

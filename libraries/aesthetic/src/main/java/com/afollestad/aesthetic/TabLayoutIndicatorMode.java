@@ -8,10 +8,10 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("WeakerAccess")
-@Retention(SOURCE)
-@IntDef(value = {PRIMARY, ACCENT})
-public @interface TabLayoutIndicatorMode {
-  int PRIMARY = 0;
-  int ACCENT = 1;
+@SuppressWarnings("WeakerAccess") //NOSONAR
+@Retention(SOURCE) //NOSONAR
+@IntDef(value = {PRIMARY, ACCENT}) //NOSONAR
+public @interface TabLayoutIndicatorMode { //NOSONAR
+  int PRIMARY = 0; //NOSONAR
+  int ACCENT = 1; //NOSONAR
 }

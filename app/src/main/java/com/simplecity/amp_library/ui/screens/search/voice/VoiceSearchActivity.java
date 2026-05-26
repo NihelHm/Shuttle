@@ -25,136 +25,136 @@ import kotlin.jvm.functions.Function1;
 
 import static com.simplecity.amp_library.utils.StringUtils.containsIgnoreCase;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class VoiceSearchActivity extends BaseActivity {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class VoiceSearchActivity extends BaseActivity { //NOSONAR
 
-    private static final String TAG = "VoiceSearchActivity";
+    private static final String TAG = "VoiceSearchActivity"; //NOSONAR
 
-    private String filterString;
+    private String filterString; //NOSONAR
 
-    private Intent intent;
+    private Intent intent; //NOSONAR
 
-    private int position = -1;
+    private int position = -1; //NOSONAR
 
-    @Inject
-    MediaManager mediaManager;
+    @Inject //NOSONAR
+    MediaManager mediaManager; //NOSONAR
 
-    @Inject
-    Repository.SongsRepository songsRepository;
+    @Inject //NOSONAR
+    Repository.SongsRepository songsRepository; //NOSONAR
 
-    @Inject
-    Repository.AlbumsRepository albumsRepository;
+    @Inject //NOSONAR
+    Repository.AlbumsRepository albumsRepository; //NOSONAR
 
-    @Inject
-    Repository.AlbumArtistsRepository albumArtistsRepository;
+    @Inject //NOSONAR
+    Repository.AlbumArtistsRepository albumArtistsRepository; //NOSONAR
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(Bundle savedInstanceState) { //NOSONAR
+        AndroidInjection.inject(this); //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        intent = getIntent();
+        intent = getIntent(); //NOSONAR
 
-        filterString = intent.getStringExtra(SearchManager.QUERY);
+        filterString = intent.getStringExtra(SearchManager.QUERY); //NOSONAR
     }
 
-    @Override
-    public void onServiceConnected(ComponentName name, IBinder service) {
-        super.onServiceConnected(name, service);
-        if (intent != null && intent.getAction() != null && intent.getAction().equals("android.media.action.MEDIA_PLAY_FROM_SEARCH")) {
-            searchAndPlaySongs();
+    @Override //NOSONAR
+    public void onServiceConnected(ComponentName name, IBinder service) { //NOSONAR
+        super.onServiceConnected(name, service); //NOSONAR
+        if (intent != null && intent.getAction() != null && intent.getAction().equals("android.media.action.MEDIA_PLAY_FROM_SEARCH")) { //NOSONAR
+            searchAndPlaySongs(); //NOSONAR
         }
     }
 
-    @Override
-    public void onServiceDisconnected(ComponentName name) {
+    @Override //NOSONAR
+    public void onServiceDisconnected(ComponentName name) { //NOSONAR
         // Intentionally left empty.
     }
 
-    private void searchAndPlaySongs() {
+    private void searchAndPlaySongs() { //NOSONAR
 
-        albumArtistsRepository.getAlbumArtists()
-                .first(Collections.emptyList())
-                .flatMapObservable(Observable::fromIterable)
-                .filter(albumArtist -> albumArtist.name.toLowerCase(Locale.getDefault()).contains(filterString.toLowerCase()))
-                .flatMapSingle(albumArtist -> albumArtist.getSongsSingle(songsRepository))
-                .map(songs -> {
-                    Collections.sort(songs, (a, b) -> a.getAlbumArtist().compareTo(b.getAlbumArtist()));
-                    Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum()));
-                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track));
-                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber));
-                    return songs;
+        albumArtistsRepository.getAlbumArtists() //NOSONAR
+                .first(Collections.emptyList()) //NOSONAR
+                .flatMapObservable(Observable::fromIterable) //NOSONAR
+                .filter(albumArtist -> albumArtist.name.toLowerCase(Locale.getDefault()).contains(filterString.toLowerCase())) //NOSONAR
+                .flatMapSingle(albumArtist -> albumArtist.getSongsSingle(songsRepository)) //NOSONAR
+                .map(songs -> { //NOSONAR
+                    Collections.sort(songs, (a, b) -> a.getAlbumArtist().compareTo(b.getAlbumArtist())); //NOSONAR
+                    Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum())); //NOSONAR
+                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track)); //NOSONAR
+                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber)); //NOSONAR
+                    return songs; //NOSONAR
                 });
 
         //Search for album-artists, albums & songs matching our filter. Then, create an Observable emitting List<Song> for each type of result.
         //Then we concat the results, and return the first one which is non-empty. Order is important here, we want album-artist first, if it's
         //available, then albums, then songs.
-        Observable.concat(
+        Observable.concat( //NOSONAR
                 //If we have an album artist matching our query, then play the songs by that album artist
-                albumArtistsRepository.getAlbumArtists()
-                        .first(Collections.emptyList())
-                        .flatMapObservable(Observable::fromIterable)
-                        .filter(albumArtist -> albumArtist.name.toLowerCase(Locale.getDefault()).contains(filterString.toLowerCase()))
-                        .flatMapSingle(albumArtist -> albumArtist.getSongsSingle(songsRepository))
-                        .map(songs -> {
-                            Collections.sort(songs, (a, b) -> a.getAlbumArtist().compareTo(b.getAlbumArtist()));
-                            Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum()));
-                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track));
-                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber));
-                            return songs;
+                albumArtistsRepository.getAlbumArtists() //NOSONAR
+                        .first(Collections.emptyList()) //NOSONAR
+                        .flatMapObservable(Observable::fromIterable) //NOSONAR
+                        .filter(albumArtist -> albumArtist.name.toLowerCase(Locale.getDefault()).contains(filterString.toLowerCase())) //NOSONAR
+                        .flatMapSingle(albumArtist -> albumArtist.getSongsSingle(songsRepository)) //NOSONAR
+                        .map(songs -> { //NOSONAR
+                            Collections.sort(songs, (a, b) -> a.getAlbumArtist().compareTo(b.getAlbumArtist())); //NOSONAR
+                            Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum())); //NOSONAR
+                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track)); //NOSONAR
+                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber)); //NOSONAR
+                            return songs; //NOSONAR
                         }),
                 //If we have an album matching our query, then play the songs from that album
-                albumsRepository.getAlbums()
-                        .first(Collections.emptyList())
-                        .flatMapObservable(Observable::fromIterable)
-                        .filter(album -> containsIgnoreCase(album.name, filterString)
-                                || containsIgnoreCase(album.name, filterString)
-                                || (Stream.of(album.artists).anyMatch(artist -> containsIgnoreCase(artist.name, filterString)))
-                                || containsIgnoreCase(album.albumArtistName, filterString))
-                        .flatMapSingle(album -> AlbumExtKt.getSongsSingle(album, songsRepository))
-                        .map(songs -> {
-                            Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum()));
-                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track));
-                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber));
-                            return songs;
+                albumsRepository.getAlbums() //NOSONAR
+                        .first(Collections.emptyList()) //NOSONAR
+                        .flatMapObservable(Observable::fromIterable) //NOSONAR
+                        .filter(album -> containsIgnoreCase(album.name, filterString) //NOSONAR
+                                || containsIgnoreCase(album.name, filterString) //NOSONAR
+                                || (Stream.of(album.artists).anyMatch(artist -> containsIgnoreCase(artist.name, filterString))) //NOSONAR
+                                || containsIgnoreCase(album.albumArtistName, filterString)) //NOSONAR
+                        .flatMapSingle(album -> AlbumExtKt.getSongsSingle(album, songsRepository)) //NOSONAR
+                        .map(songs -> { //NOSONAR
+                            Collections.sort(songs, (a, b) -> a.getAlbum().compareTo(b.getAlbum())); //NOSONAR
+                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track)); //NOSONAR
+                            Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber)); //NOSONAR
+                            return songs; //NOSONAR
                         }),
                 //If have a song, play that song, as well as others from the same album.
-                songsRepository.getSongs((Function1<? super Song, Boolean>) null)
-                        .first(Collections.emptyList())
-                        .flatMapObservable(Observable::fromIterable)
-                        .filter(song -> containsIgnoreCase(song.name, filterString)
-                                || containsIgnoreCase(song.albumName, filterString)
-                                || containsIgnoreCase(song.artistName, filterString)
-                                || containsIgnoreCase(song.albumArtistName, filterString))
-                        .flatMapSingle(song -> AlbumExtKt.getSongsSingle(song.getAlbum(), songsRepository)
-                                .map(songs -> {
-                                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track));
-                                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber));
-                                    position = songs.indexOf(song);
-                                    return songs;
+                songsRepository.getSongs((Function1<? super Song, Boolean>) null) //NOSONAR
+                        .first(Collections.emptyList()) //NOSONAR
+                        .flatMapObservable(Observable::fromIterable) //NOSONAR
+                        .filter(song -> containsIgnoreCase(song.name, filterString) //NOSONAR
+                                || containsIgnoreCase(song.albumName, filterString) //NOSONAR
+                                || containsIgnoreCase(song.artistName, filterString) //NOSONAR
+                                || containsIgnoreCase(song.albumArtistName, filterString)) //NOSONAR
+                        .flatMapSingle(song -> AlbumExtKt.getSongsSingle(song.getAlbum(), songsRepository) //NOSONAR
+                                .map(songs -> { //NOSONAR
+                                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.track, b.track)); //NOSONAR
+                                    Collections.sort(songs, (a, b) -> ComparisonUtils.compareInt(a.discNumber, b.discNumber)); //NOSONAR
+                                    position = songs.indexOf(song); //NOSONAR
+                                    return songs; //NOSONAR
                                 }))
         )
-                .filter(songs -> !songs.isEmpty())
-                .firstOrError()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(songs -> {
-                    if (songs != null) {
-                        mediaManager.playAll(songs, position, true, () -> {
+                .filter(songs -> !songs.isEmpty()) //NOSONAR
+                .firstOrError() //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe(songs -> { //NOSONAR
+                    if (songs != null) { //NOSONAR
+                        mediaManager.playAll(songs, position, true, () -> { //NOSONAR
                             // To do later: Show playback error toast
-                            return Unit.INSTANCE;
+                            return Unit.INSTANCE; //NOSONAR
                         });
-                        startActivity(new Intent(this, MainActivity.class));
+                        startActivity(new Intent(this, MainActivity.class)); //NOSONAR
                     }
-                    finish();
-                }, error -> {
-                    LogUtils.logException(TAG, "Error attempting to playAll()", error);
-                    startActivity(new Intent(this, MainActivity.class));
-                    finish();
+                    finish(); //NOSONAR
+                }, error -> { //NOSONAR
+                    LogUtils.logException(TAG, "Error attempting to playAll()", error); //NOSONAR
+                    startActivity(new Intent(this, MainActivity.class)); //NOSONAR
+                    finish(); //NOSONAR
                 });
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 }

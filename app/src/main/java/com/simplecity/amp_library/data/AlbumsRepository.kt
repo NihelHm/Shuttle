@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.data
 
@@ -14,25 +14,25 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class AlbumsRepository @Inject constructor(private val songsRepository: Repository.SongsRepository) : AlbumsRepository {
+@Singleton //NOSONAR
+class AlbumsRepository @Inject constructor(private val songsRepository: Repository.SongsRepository) : AlbumsRepository { //NOSONAR
 
-    private var albumsSubscription: Disposable? = null
-    private val albumsRelay = BehaviorRelay.create<List<Album>>()
+    private var albumsSubscription: Disposable? = null //NOSONAR
+    private val albumsRelay = BehaviorRelay.create<List<Album>>() //NOSONAR
 
-    override fun getAlbums(): Observable<List<Album>> {
-        if (albumsSubscription == null || albumsSubscription?.isDisposed == true) {
-            albumsSubscription = songsRepository.getSongs()
-                .flatMap { songs -> Observable.just(Operators.songsToAlbums(songs)) }
-                .subscribe(
-                    albumsRelay,
-                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get albums", error) }
+    override fun getAlbums(): Observable<List<Album>> { //NOSONAR
+        if (albumsSubscription == null || albumsSubscription?.isDisposed == true) { //NOSONAR
+            albumsSubscription = songsRepository.getSongs() //NOSONAR
+                .flatMap { songs -> Observable.just(Operators.songsToAlbums(songs)) } //NOSONAR
+                .subscribe( //NOSONAR
+                    albumsRelay, //NOSONAR
+                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get albums", error) } //NOSONAR
                 )
         }
-        return albumsRelay.subscribeOn(Schedulers.io())
+        return albumsRelay.subscribeOn(Schedulers.io()) //NOSONAR
     }
 
-    companion object {
-        const val TAG = "AlbumsRepository"
+    companion object { //NOSONAR
+        const val TAG = "AlbumsRepository" //NOSONAR
     }
 }

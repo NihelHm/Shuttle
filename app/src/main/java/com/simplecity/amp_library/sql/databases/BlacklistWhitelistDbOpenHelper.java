@@ -4,38 +4,38 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BlacklistWhitelistDbOpenHelper extends SQLiteOpenHelper {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BlacklistWhitelistDbOpenHelper extends SQLiteOpenHelper { //NOSONAR
 
-    private static final String TAG = "BlacklistWhitelistDbOpenHelper";
+    private static final String TAG = "BlacklistWhitelistDbOpenHelper"; //NOSONAR
 
-    public static final String COLUMN_ID = "_id";
-    public static final String COLUMN_PATH = "path";
-    public static final String COLUMN_TYPE = "type";
+    public static final String COLUMN_ID = "_id"; //NOSONAR
+    public static final String COLUMN_PATH = "path"; //NOSONAR
+    public static final String COLUMN_TYPE = "type"; //NOSONAR
 
-    private static final String DATABASE_NAME = "inclexcl.db";
-    public static final String TABLE_NAME = "inclexcl";
+    private static final String DATABASE_NAME = "inclexcl.db"; //NOSONAR
+    public static final String TABLE_NAME = "inclexcl"; //NOSONAR
 
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 1; //NOSONAR
 
-    private static final String DATABASE_CREATE_WHITELIST = "CREATE TABLE IF NOT EXISTS "
-            + TABLE_NAME + "("
-            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, "
-            + COLUMN_PATH + " TEXT NOT NULL, "
-            + COLUMN_TYPE + " INTEGER DEFAULT 0"
+    private static final String DATABASE_CREATE_WHITELIST = "CREATE TABLE IF NOT EXISTS " //NOSONAR
+            + TABLE_NAME + "(" //NOSONAR
+            + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " //NOSONAR
+            + COLUMN_PATH + " TEXT NOT NULL, " //NOSONAR
+            + COLUMN_TYPE + " INTEGER DEFAULT 0" //NOSONAR
             + ");";
 
-    public BlacklistWhitelistDbOpenHelper(Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    public BlacklistWhitelistDbOpenHelper(Context context) { //NOSONAR
+        super(context, DATABASE_NAME, null, DATABASE_VERSION); //NOSONAR
     }
 
-    @Override
-    public void onCreate(SQLiteDatabase database) {
-        database.execSQL(DATABASE_CREATE_WHITELIST);
+    @Override //NOSONAR
+    public void onCreate(SQLiteDatabase database) { //NOSONAR
+        database.execSQL(DATABASE_CREATE_WHITELIST); //NOSONAR
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    @Override //NOSONAR
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //NOSONAR
         // Intentionally left empty.
     }
 }

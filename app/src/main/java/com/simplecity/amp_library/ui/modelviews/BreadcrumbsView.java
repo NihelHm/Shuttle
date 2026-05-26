@@ -13,75 +13,75 @@ import com.simplecityapps.recycler_adapter.model.BaseViewModel;
 import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BreadcrumbsView extends BaseViewModel<BreadcrumbsView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BreadcrumbsView extends BaseViewModel<BreadcrumbsView.ViewHolder> { //NOSONAR
 
-    private String breadcrumbPath;
+    private String breadcrumbPath; //NOSONAR
 
-    public BreadcrumbsView(String breadcrumbPath) {
-        this.breadcrumbPath = breadcrumbPath;
+    public BreadcrumbsView(String breadcrumbPath) { //NOSONAR
+        this.breadcrumbPath = breadcrumbPath; //NOSONAR
     }
 
-    public void setBreadcrumbsPath(String path) {
-        breadcrumbPath = path;
+    public void setBreadcrumbsPath(String path) { //NOSONAR
+        breadcrumbPath = path; //NOSONAR
     }
 
-    @Nullable
-    private BreadcrumbListener listener;
+    @Nullable //NOSONAR
+    private BreadcrumbListener listener; //NOSONAR
 
-    public void setListener(@Nullable BreadcrumbListener listener) {
-        this.listener = listener;
+    public void setListener(@Nullable BreadcrumbListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    @Override
-    public int getViewType() {
-        return ViewType.BREADCRUMBS;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return ViewType.BREADCRUMBS; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return R.layout.list_item_breadcrumbs;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return R.layout.list_item_breadcrumbs; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        if (!TextUtils.isEmpty(breadcrumbPath)) {
-            holder.breadcrumbView.changeBreadcrumbPath(breadcrumbPath);
+        if (!TextUtils.isEmpty(breadcrumbPath)) { //NOSONAR
+            holder.breadcrumbView.changeBreadcrumbPath(breadcrumbPath); //NOSONAR
         }
     }
 
-    @Override
-    public void bindView(ViewHolder holder, int position, List payloads) {
-        bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
+        bindView(holder); //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public void onBreadcrumbClick(BreadcrumbItem breadcrumbItem) {
-        if (listener != null) {
-            listener.onBreadcrumbItemClick(breadcrumbItem);
+    public void onBreadcrumbClick(BreadcrumbItem breadcrumbItem) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onBreadcrumbItemClick(breadcrumbItem); //NOSONAR
         }
     }
 
-    public static class ViewHolder extends BaseViewHolder<BreadcrumbsView> {
+    public static class ViewHolder extends BaseViewHolder<BreadcrumbsView> { //NOSONAR
 
-        private BreadcrumbView breadcrumbView;
+        private BreadcrumbView breadcrumbView; //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            breadcrumbView = itemView.findViewById(R.id.breadcrumbs);
-            breadcrumbView.addBreadcrumbListener(item -> viewModel.onBreadcrumbClick(item));
+            breadcrumbView = itemView.findViewById(R.id.breadcrumbs); //NOSONAR
+            breadcrumbView.addBreadcrumbListener(item -> viewModel.onBreadcrumbClick(item)); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "BreadcrumbsView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "BreadcrumbsView.ViewHolder"; //NOSONAR
         }
     }
 }

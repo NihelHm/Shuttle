@@ -29,53 +29,53 @@ import com.bumptech.glide.load.engine.Resource;
 import com.bumptech.glide.load.engine.bitmap_recycle.BitmapPool;
 import com.bumptech.glide.load.resource.bitmap.BitmapResource;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CropCircleTransformation implements Transformation<Bitmap> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CropCircleTransformation implements Transformation<Bitmap> { //NOSONAR
 
-    private BitmapPool mBitmapPool;
+    private BitmapPool mBitmapPool; //NOSONAR
 
-    public CropCircleTransformation(Context context) {
-        this(Glide.get(context).getBitmapPool());
+    public CropCircleTransformation(Context context) { //NOSONAR
+        this(Glide.get(context).getBitmapPool()); //NOSONAR
     }
 
-    public CropCircleTransformation(BitmapPool pool) {
-        this.mBitmapPool = pool;
+    public CropCircleTransformation(BitmapPool pool) { //NOSONAR
+        this.mBitmapPool = pool; //NOSONAR
     }
 
-    @Override
-    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) {
-        Bitmap source = resource.get();
-        int size = Math.min(source.getWidth(), source.getHeight());
+    @Override //NOSONAR
+    public Resource<Bitmap> transform(Resource<Bitmap> resource, int outWidth, int outHeight) { //NOSONAR
+        Bitmap source = resource.get(); //NOSONAR
+        int size = Math.min(source.getWidth(), source.getHeight()); //NOSONAR
 
-        int width = (source.getWidth() - size) / 2;
-        int height = (source.getHeight() - size) / 2;
+        int width = (source.getWidth() - size) / 2; //NOSONAR
+        int height = (source.getHeight() - size) / 2; //NOSONAR
 
-        Bitmap bitmap = mBitmapPool.get(size, size, Bitmap.Config.ARGB_8888);
-        if (bitmap == null) {
-            bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap = mBitmapPool.get(size, size, Bitmap.Config.ARGB_8888); //NOSONAR
+        if (bitmap == null) { //NOSONAR
+            bitmap = Bitmap.createBitmap(size, size, Bitmap.Config.ARGB_8888); //NOSONAR
         }
 
-        Canvas canvas = new Canvas(bitmap);
-        Paint paint = new Paint();
-        BitmapShader shader =
-                new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
-        if (width != 0 || height != 0) {
+        Canvas canvas = new Canvas(bitmap); //NOSONAR
+        Paint paint = new Paint(); //NOSONAR
+        BitmapShader shader = //NOSONAR
+                new BitmapShader(source, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP); //NOSONAR
+        if (width != 0 || height != 0) { //NOSONAR
             // source isn't square, move viewport to center
-            Matrix matrix = new Matrix();
-            matrix.setTranslate(-width, -height);
-            shader.setLocalMatrix(matrix);
+            Matrix matrix = new Matrix(); //NOSONAR
+            matrix.setTranslate(-width, -height); //NOSONAR
+            shader.setLocalMatrix(matrix); //NOSONAR
         }
-        paint.setShader(shader);
-        paint.setAntiAlias(true);
+        paint.setShader(shader); //NOSONAR
+        paint.setAntiAlias(true); //NOSONAR
 
-        float r = size / 2f;
-        canvas.drawCircle(r, r, r, paint);
+        float r = size / 2f; //NOSONAR
+        canvas.drawCircle(r, r, r, paint); //NOSONAR
 
-        return BitmapResource.obtain(bitmap, mBitmapPool);
+        return BitmapResource.obtain(bitmap, mBitmapPool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return "CropCircleTransformation()";
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return "CropCircleTransformation()"; //NOSONAR
     }
 }

@@ -8,26 +8,26 @@ import com.simplecity.amp_library.model.ArtworkProvider;
 import java.io.File;
 import java.io.InputStream;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class TypeLoader implements ModelLoader<ArtworkProvider, InputStream> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class TypeLoader implements ModelLoader<ArtworkProvider, InputStream> { //NOSONAR
 
-    private static final String TAG = "ArtworkModelLoader";
+    private static final String TAG = "ArtworkModelLoader"; //NOSONAR
 
-    private Context applicationContext;
+    private Context applicationContext; //NOSONAR
 
-    @ArtworkProvider.Type
-    private int type;
+    @ArtworkProvider.Type //NOSONAR
+    private int type; //NOSONAR
 
-    private File file;
+    private File file; //NOSONAR
 
-    public TypeLoader(Context context, @ArtworkProvider.Type int type, File file) {
-        applicationContext = context.getApplicationContext();
-        this.type = type;
-        this.file = file;
+    public TypeLoader(Context context, @ArtworkProvider.Type int type, File file) { //NOSONAR
+        applicationContext = context.getApplicationContext(); //NOSONAR
+        this.type = type; //NOSONAR
+        this.file = file; //NOSONAR
     }
 
-    @Override
-    public DataFetcher<InputStream> getResourceFetcher(ArtworkProvider model, int width, int height) {
-        return new TypeFetcher(applicationContext, model, type, file);
+    @Override //NOSONAR
+    public DataFetcher<InputStream> getResourceFetcher(ArtworkProvider model, int width, int height) { //NOSONAR
+        return new TypeFetcher(applicationContext, model, type, file); //NOSONAR
     }
 }

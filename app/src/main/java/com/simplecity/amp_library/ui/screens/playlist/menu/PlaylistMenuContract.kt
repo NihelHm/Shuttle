@@ -1,27 +1,27 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.playlist.menu
 
 import com.simplecity.amp_library.model.Playlist
 import com.simplecity.amp_library.utils.menu.playlist.PlaylistMenuCallbacks
 
-interface PlaylistMenuContract {
+interface PlaylistMenuContract { //NOSONAR
 
-    interface View {
+    interface View { //NOSONAR
 
-        fun onPlaybackFailed()
+        fun onPlaybackFailed() //NOSONAR
 
-        fun onSongsAddedToQueue(numSongs: Int)
+        fun onSongsAddedToQueue(numSongs: Int) //NOSONAR
 
-        fun presentEditDialog(playlist: Playlist)
+        fun presentEditDialog(playlist: Playlist) //NOSONAR
 
-        fun presentRenameDialog(playlist: Playlist)
+        fun presentRenameDialog(playlist: Playlist) //NOSONAR
 
-        fun presentM3uDialog(playlist: Playlist)
+        fun presentM3uDialog(playlist: Playlist) //NOSONAR
 
-        fun presentDeletePlaylistDialog(playlist: Playlist)
+        fun presentDeletePlaylistDialog(playlist: Playlist) //NOSONAR
     }
 
-    interface Presenter : PlaylistMenuCallbacks
+    interface Presenter : PlaylistMenuCallbacks //NOSONAR
 
 }

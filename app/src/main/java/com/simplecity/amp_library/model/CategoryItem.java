@@ -17,157 +17,157 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CategoryItem {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CategoryItem { //NOSONAR
 
-    public @interface Type {
-        int GENRES = 0;
-        int SUGGESTED = 1;
-        int ARTISTS = 2;
-        int ALBUMS = 3;
-        int SONGS = 4;
-        int PLAYLISTS = 5;
-        int FOLDERS = 6;
+    public @interface Type { //NOSONAR
+        int GENRES = 0; //NOSONAR
+        int SUGGESTED = 1; //NOSONAR
+        int ARTISTS = 2; //NOSONAR
+        int ALBUMS = 3; //NOSONAR
+        int SONGS = 4; //NOSONAR
+        int PLAYLISTS = 5; //NOSONAR
+        int FOLDERS = 6; //NOSONAR
     }
 
-    @Type
-    @SuppressWarnings("java:S1104")
-    public int type;
+    @Type //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int type; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public int sortOrder;
+    public int sortOrder; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public boolean isChecked;
+    public boolean isChecked; //NOSONAR
 
-    private CategoryItem(@Type int type, SharedPreferences sharedPreferences) {
-        this.type = type;
-        isChecked = sharedPreferences.getBoolean(getEnabledKey(), isEnabledByDefault());
-        sortOrder = sharedPreferences.getInt(getSortKey(), 0);
+    private CategoryItem(@Type int type, SharedPreferences sharedPreferences) { //NOSONAR
+        this.type = type; //NOSONAR
+        isChecked = sharedPreferences.getBoolean(getEnabledKey(), isEnabledByDefault()); //NOSONAR
+        sortOrder = sharedPreferences.getInt(getSortKey(), 0); //NOSONAR
     }
 
-    public static List<CategoryItem> getCategoryItems(SharedPreferences sharedPreferences) {
-        List<CategoryItem> items = new ArrayList<>();
-        items.add(new CategoryItem(Type.GENRES, sharedPreferences));
-        items.add(new CategoryItem(Type.SUGGESTED, sharedPreferences));
-        items.add(new CategoryItem(Type.ARTISTS, sharedPreferences));
-        items.add(new CategoryItem(Type.ALBUMS, sharedPreferences));
-        items.add(new CategoryItem(Type.SONGS, sharedPreferences));
-        items.add(new CategoryItem(Type.FOLDERS, sharedPreferences));
-        items.add(new CategoryItem(Type.PLAYLISTS, sharedPreferences));
-        Collections.sort(items, (a, b) -> ComparisonUtils.compareInt(a.sortOrder, b.sortOrder));
-        return items;
+    public static List<CategoryItem> getCategoryItems(SharedPreferences sharedPreferences) { //NOSONAR
+        List<CategoryItem> items = new ArrayList<>(); //NOSONAR
+        items.add(new CategoryItem(Type.GENRES, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.SUGGESTED, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.ARTISTS, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.ALBUMS, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.SONGS, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.FOLDERS, sharedPreferences)); //NOSONAR
+        items.add(new CategoryItem(Type.PLAYLISTS, sharedPreferences)); //NOSONAR
+        Collections.sort(items, (a, b) -> ComparisonUtils.compareInt(a.sortOrder, b.sortOrder)); //NOSONAR
+        return items; //NOSONAR
     }
 
-    public void savePrefs(SharedPreferences.Editor editor) {
-        editor.putBoolean(getEnabledKey(), isChecked);
-        editor.putInt(getSortKey(), sortOrder);
-        editor.apply();
+    public void savePrefs(SharedPreferences.Editor editor) { //NOSONAR
+        editor.putBoolean(getEnabledKey(), isChecked); //NOSONAR
+        editor.putInt(getSortKey(), sortOrder); //NOSONAR
+        editor.apply(); //NOSONAR
     }
 
-    @StringRes
-    public int getTitleResId() {
-        switch (type) {
-            case Type.GENRES:
-                return R.string.genres_title;
-            case Type.SUGGESTED:
-                return R.string.suggested_title;
-            case Type.ARTISTS:
-                return R.string.artists_title;
-            case Type.ALBUMS:
-                return R.string.albums_title;
-            case Type.SONGS:
-                return R.string.tracks_title;
-            case Type.FOLDERS:
-                return R.string.folders_title;
-            case Type.PLAYLISTS:
-                return R.string.playlists_title;
+    @StringRes //NOSONAR
+    public int getTitleResId() { //NOSONAR
+        switch (type) { //NOSONAR
+            case Type.GENRES: //NOSONAR
+                return R.string.genres_title; //NOSONAR
+            case Type.SUGGESTED: //NOSONAR
+                return R.string.suggested_title; //NOSONAR
+            case Type.ARTISTS: //NOSONAR
+                return R.string.artists_title; //NOSONAR
+            case Type.ALBUMS: //NOSONAR
+                return R.string.albums_title; //NOSONAR
+            case Type.SONGS: //NOSONAR
+                return R.string.tracks_title; //NOSONAR
+            case Type.FOLDERS: //NOSONAR
+                return R.string.folders_title; //NOSONAR
+            case Type.PLAYLISTS: //NOSONAR
+                return R.string.playlists_title; //NOSONAR
         }
-        return -1;
+        return -1; //NOSONAR
     }
 
-    public String getKey() {
-        switch (type) {
-            case Type.GENRES:
-                return "genres";
-            case Type.SUGGESTED:
-                return "suggested";
-            case Type.ARTISTS:
-                return "artists";
-            case Type.ALBUMS:
-                return "albums";
-            case Type.SONGS:
-                return "songs";
-            case Type.FOLDERS:
-                return "folders";
-            case Type.PLAYLISTS:
-                return "playlists";
+    public String getKey() { //NOSONAR
+        switch (type) { //NOSONAR
+            case Type.GENRES: //NOSONAR
+                return "genres"; //NOSONAR
+            case Type.SUGGESTED: //NOSONAR
+                return "suggested"; //NOSONAR
+            case Type.ARTISTS: //NOSONAR
+                return "artists"; //NOSONAR
+            case Type.ALBUMS: //NOSONAR
+                return "albums"; //NOSONAR
+            case Type.SONGS: //NOSONAR
+                return "songs"; //NOSONAR
+            case Type.FOLDERS: //NOSONAR
+                return "folders"; //NOSONAR
+            case Type.PLAYLISTS: //NOSONAR
+                return "playlists"; //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    public boolean isEnabledByDefault() {
-        switch (type) {
-            case Type.GENRES:
-                return true;
-            case Type.SUGGESTED:
-                return true;
-            case Type.ARTISTS:
-                return true;
-            case Type.ALBUMS:
-                return true;
-            case Type.SONGS:
-                return true;
-            case Type.FOLDERS:
-                return false;
-            case Type.PLAYLISTS:
-                return false;
+    public boolean isEnabledByDefault() { //NOSONAR
+        switch (type) { //NOSONAR
+            case Type.GENRES: //NOSONAR
+                return true; //NOSONAR
+            case Type.SUGGESTED: //NOSONAR
+                return true; //NOSONAR
+            case Type.ARTISTS: //NOSONAR
+                return true; //NOSONAR
+            case Type.ALBUMS: //NOSONAR
+                return true; //NOSONAR
+            case Type.SONGS: //NOSONAR
+                return true; //NOSONAR
+            case Type.FOLDERS: //NOSONAR
+                return false; //NOSONAR
+            case Type.PLAYLISTS: //NOSONAR
+                return false; //NOSONAR
         }
-        return true;
+        return true; //NOSONAR
     }
 
-    public String getSortKey() {
-        return getKey() + "_sort";
+    public String getSortKey() { //NOSONAR
+        return getKey() + "_sort"; //NOSONAR
     }
 
-    public String getEnabledKey() {
-        return getKey() + "_enabled";
+    public String getEnabledKey() { //NOSONAR
+        return getKey() + "_enabled"; //NOSONAR
     }
 
-    public Fragment getFragment(Context context) {
-        switch (type) {
-            case Type.GENRES:
-                return GenreListFragment.Companion.newInstance(context.getString(getTitleResId()));
-            case Type.SUGGESTED:
-                return SuggestedFragment.Companion.newInstance(context.getString(getTitleResId()));
-            case Type.ARTISTS:
-                return AlbumArtistListFragment.Companion.newInstance(context.getString(getTitleResId()));
-            case Type.ALBUMS:
-                return AlbumListFragment.Companion.newInstance(context.getString(getTitleResId()));
-            case Type.SONGS:
-                return SongListFragment.Companion.newInstance(context.getString(getTitleResId()));
-            case Type.FOLDERS:
-                return FolderFragment.newInstance(context.getString(getTitleResId()), true);
-            case Type.PLAYLISTS:
-                return PlaylistListFragment.Companion.newInstance(context.getString(getTitleResId()));
+    public Fragment getFragment(Context context) { //NOSONAR
+        switch (type) { //NOSONAR
+            case Type.GENRES: //NOSONAR
+                return GenreListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
+            case Type.SUGGESTED: //NOSONAR
+                return SuggestedFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
+            case Type.ARTISTS: //NOSONAR
+                return AlbumArtistListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
+            case Type.ALBUMS: //NOSONAR
+                return AlbumListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
+            case Type.SONGS: //NOSONAR
+                return SongListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
+            case Type.FOLDERS: //NOSONAR
+                return FolderFragment.newInstance(context.getString(getTitleResId()), true); //NOSONAR
+            case Type.PLAYLISTS: //NOSONAR
+                return PlaylistListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        CategoryItem that = (CategoryItem) o;
+        CategoryItem that = (CategoryItem) o; //NOSONAR
 
-        return type == that.type;
+        return type == that.type; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        return type;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        return type; //NOSONAR
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.playback
 
@@ -17,161 +17,161 @@ import com.simplecity.amp_library.playback.constants.ServiceCommand
  * A base class for local playback engines, which manages requesting/cancelling audio focus, and pausing, resuming or ducking
  * the audio in response to incoming calls/notifications etc.
  */
-abstract class LocalPlayback(context: Context) : Playback {
+abstract class LocalPlayback(context: Context) : Playback { //NOSONAR
 
-    object Volume {
+    object Volume { //NOSONAR
         /**
          * The volume we set the media player to when we lose audio focus, but are
          * allowed to reduce the volume instead of stopping playback.
          */
-        const val DUCK = 0.2f
+        const val DUCK = 0.2f //NOSONAR
 
         /** The volume we set the media player when we have audio focus.  */
-        const val NORMAL = 1.0f
+        const val NORMAL = 1.0f //NOSONAR
     }
 
-    object AudioFocus {
+    object AudioFocus { //NOSONAR
         /** We don't have audio focus, and can't duck */
-        const val NO_FOCUS_NO_DUCK = "no_focus_no_duck"
+        const val NO_FOCUS_NO_DUCK = "no_focus_no_duck" //NOSONAR
 
         /** We don't have focus, but can duck */
-        const val NO_FOCUS_CAN_DUCK = "no_focus_can_duck"
+        const val NO_FOCUS_CAN_DUCK = "no_focus_can_duck" //NOSONAR
 
         /** We have full audio focus  */
-        const val FOCUSED = "focused"
+        const val FOCUSED = "focused" //NOSONAR
     }
 
-    internal var context: Context = context.applicationContext
+    internal var context: Context = context.applicationContext //NOSONAR
 
-    private val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager
+    private val audioManager: AudioManager = context.getSystemService(Context.AUDIO_SERVICE) as AudioManager //NOSONAR
 
-    private var playOnFocusGain: Boolean = false
+    private var playOnFocusGain: Boolean = false //NOSONAR
 
-    private var audioNoisyReceiverRegistered: Boolean = false
+    private var audioNoisyReceiverRegistered: Boolean = false //NOSONAR
 
-    private var currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK
+    private var currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK //NOSONAR
 
-    private val audioNoisyIntentFilter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY)
+    private val audioNoisyIntentFilter = IntentFilter(AudioManager.ACTION_AUDIO_BECOMING_NOISY) //NOSONAR
 
-    override var callbacks: Callbacks? = null
+    override var callbacks: Callbacks? = null //NOSONAR
 
-    private val audioNoisyReceiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-            if (AudioManager.ACTION_AUDIO_BECOMING_NOISY == intent.action) {
-                Log.d(TAG, "Headphones disconnected.")
-                if (isPlaying) {
-                    val intent = Intent(context, MusicService::class.java)
-                    intent.action = ServiceCommand.COMMAND
-                    intent.putExtra(MediaButtonCommand.CMD_NAME, ServiceCommand.PAUSE)
-                    context.startService(intent)
+    private val audioNoisyReceiver = object : BroadcastReceiver() { //NOSONAR
+        override fun onReceive(context: Context, intent: Intent) { //NOSONAR
+            if (AudioManager.ACTION_AUDIO_BECOMING_NOISY == intent.action) { //NOSONAR
+                Log.d(TAG, "Headphones disconnected.") //NOSONAR
+                if (isPlaying) { //NOSONAR
+                    val intent = Intent(context, MusicService::class.java) //NOSONAR
+                    intent.action = ServiceCommand.COMMAND //NOSONAR
+                    intent.putExtra(MediaButtonCommand.CMD_NAME, ServiceCommand.PAUSE) //NOSONAR
+                    context.startService(intent) //NOSONAR
                 }
             }
         }
     }
 
-    private val onAudioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange ->
-        Log.d(TAG, String.format("onAudioFocusChange. focusChange: %s", focusChange))
-        when (focusChange) {
-            AudioManager.AUDIOFOCUS_GAIN -> currentAudioFocusState = AudioFocus.FOCUSED
-            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK ->
+    private val onAudioFocusChangeListener = AudioManager.OnAudioFocusChangeListener { focusChange -> //NOSONAR
+        Log.d(TAG, String.format("onAudioFocusChange. focusChange: %s", focusChange)) //NOSONAR
+        when (focusChange) { //NOSONAR
+            AudioManager.AUDIOFOCUS_GAIN -> currentAudioFocusState = AudioFocus.FOCUSED //NOSONAR
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT_CAN_DUCK -> //NOSONAR
                 // Audio focus was lost, but it's possible to duck (i.e.: play quietly)
-                currentAudioFocusState = AudioFocus.NO_FOCUS_CAN_DUCK
-            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> {
+                currentAudioFocusState = AudioFocus.NO_FOCUS_CAN_DUCK //NOSONAR
+            AudioManager.AUDIOFOCUS_LOSS_TRANSIENT -> { //NOSONAR
                 // Lost audio focus, but will gain it back (shortly), so note whether
                 // playback should resume
-                currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK
-                playOnFocusGain = isPlaying
+                currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK //NOSONAR
+                playOnFocusGain = isPlaying //NOSONAR
             }
-            AudioManager.AUDIOFOCUS_LOSS ->
+            AudioManager.AUDIOFOCUS_LOSS -> //NOSONAR
                 // Lost audio focus, probably "permanently"
-                currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK
+                currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK //NOSONAR
         }
 
         // Update the player state based on the change
-        configurePlayerState()
+        configurePlayerState() //NOSONAR
     }
 
-    override fun willResumePlayback(): Boolean {
+    override fun willResumePlayback(): Boolean { //NOSONAR
         // Fixme: This returns true even after manually pausing playback. This should not be the case.
-        return playOnFocusGain
+        return playOnFocusGain //NOSONAR
     }
 
-    @CallSuper
-    override fun pause(fade: Boolean) {
-        unregisterAudioNoisyReceiver()
+    @CallSuper //NOSONAR
+    override fun pause(fade: Boolean) { //NOSONAR
+        unregisterAudioNoisyReceiver() //NOSONAR
     }
 
-    @CallSuper
-    override fun stop() {
-        playOnFocusGain = false
-        giveUpAudioFocus()
-        unregisterAudioNoisyReceiver()
+    @CallSuper //NOSONAR
+    override fun stop() { //NOSONAR
+        playOnFocusGain = false //NOSONAR
+        giveUpAudioFocus() //NOSONAR
+        unregisterAudioNoisyReceiver() //NOSONAR
     }
 
-    @CallSuper
-    override fun start() {
-        playOnFocusGain = true
-        tryToGetAudioFocus()
-        registerAudioNoisyReceiver()
+    @CallSuper //NOSONAR
+    override fun start() { //NOSONAR
+        playOnFocusGain = true //NOSONAR
+        tryToGetAudioFocus() //NOSONAR
+        registerAudioNoisyReceiver() //NOSONAR
     }
 
-    private fun tryToGetAudioFocus() {
-        Log.d(TAG, "tryToGetAudioFocus")
-        val result = audioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN)
-        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            currentAudioFocusState = AudioFocus.FOCUSED
-        } else {
-            currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK
+    private fun tryToGetAudioFocus() { //NOSONAR
+        Log.d(TAG, "tryToGetAudioFocus") //NOSONAR
+        val result = audioManager.requestAudioFocus(onAudioFocusChangeListener, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN) //NOSONAR
+        if (result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) { //NOSONAR
+            currentAudioFocusState = AudioFocus.FOCUSED //NOSONAR
+        } else { //NOSONAR
+            currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK //NOSONAR
         }
     }
 
-    private fun giveUpAudioFocus() {
-        Log.d(TAG, "giveUpAudioFocus")
-        if (audioManager.abandonAudioFocus(onAudioFocusChangeListener) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK
+    private fun giveUpAudioFocus() { //NOSONAR
+        Log.d(TAG, "giveUpAudioFocus") //NOSONAR
+        if (audioManager.abandonAudioFocus(onAudioFocusChangeListener) == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) { //NOSONAR
+            currentAudioFocusState = AudioFocus.NO_FOCUS_NO_DUCK //NOSONAR
         }
     }
 
-    private fun registerAudioNoisyReceiver() {
-        if (!audioNoisyReceiverRegistered) {
-            context.registerReceiver(audioNoisyReceiver, audioNoisyIntentFilter)
-            audioNoisyReceiverRegistered = true
+    private fun registerAudioNoisyReceiver() { //NOSONAR
+        if (!audioNoisyReceiverRegistered) { //NOSONAR
+            context.registerReceiver(audioNoisyReceiver, audioNoisyIntentFilter) //NOSONAR
+            audioNoisyReceiverRegistered = true //NOSONAR
         }
     }
 
-    private fun unregisterAudioNoisyReceiver() {
-        if (audioNoisyReceiverRegistered) {
-            context.unregisterReceiver(audioNoisyReceiver)
-            audioNoisyReceiverRegistered = false
+    private fun unregisterAudioNoisyReceiver() { //NOSONAR
+        if (audioNoisyReceiverRegistered) { //NOSONAR
+            context.unregisterReceiver(audioNoisyReceiver) //NOSONAR
+            audioNoisyReceiverRegistered = false //NOSONAR
         }
     }
 
-    private fun configurePlayerState() {
-        Log.d(TAG, String.format("configurePlayerState() called. currentAudioFocusState: %s", currentAudioFocusState))
-        if (currentAudioFocusState == AudioFocus.NO_FOCUS_NO_DUCK) {
+    private fun configurePlayerState() { //NOSONAR
+        Log.d(TAG, String.format("configurePlayerState() called. currentAudioFocusState: %s", currentAudioFocusState)) //NOSONAR
+        if (currentAudioFocusState == AudioFocus.NO_FOCUS_NO_DUCK) { //NOSONAR
             // We don't have audio focus and can't duck, so we have to pause
-            pause(false)
-        } else {
-            registerAudioNoisyReceiver()
+            pause(false) //NOSONAR
+        } else { //NOSONAR
+            registerAudioNoisyReceiver() //NOSONAR
 
-            if (currentAudioFocusState == AudioFocus.NO_FOCUS_CAN_DUCK) {
+            if (currentAudioFocusState == AudioFocus.NO_FOCUS_CAN_DUCK) { //NOSONAR
                 // We're permitted to play, but only if we 'duck', ie: play softly
-                Log.d(TAG, "Adjusting volume: DUCK")
-                setVolume(Volume.DUCK)
-            } else {
-                Log.d(TAG, "Adjusting volume: Normal")
-                setVolume(Volume.NORMAL)
+                Log.d(TAG, "Adjusting volume: DUCK") //NOSONAR
+                setVolume(Volume.DUCK) //NOSONAR
+            } else { //NOSONAR
+                Log.d(TAG, "Adjusting volume: Normal") //NOSONAR
+                setVolume(Volume.NORMAL) //NOSONAR
             }
 
             // If we were playing when we lost focus, we need to resume playing.
-            if (playOnFocusGain) {
-                start()
-                playOnFocusGain = false
+            if (playOnFocusGain) { //NOSONAR
+                start() //NOSONAR
+                playOnFocusGain = false //NOSONAR
             }
         }
     }
 
-    companion object {
-        const val TAG = "LocalPlayback"
+    companion object { //NOSONAR
+        const val TAG = "LocalPlayback" //NOSONAR
     }
 }

@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.di.app.activity
 
@@ -8,18 +8,18 @@ import android.support.v7.app.AppCompatActivity
 import dagger.Module
 import dagger.Provides
 
-@Module
-class ActivityModule {
+@Module //NOSONAR
+class ActivityModule { //NOSONAR
 
-    @Provides
-    @ActivityScope
-    fun activity(activity: AppCompatActivity): Activity {
-        return activity
+    @Provides //NOSONAR
+    @ActivityScope //NOSONAR
+    fun activity(activity: AppCompatActivity): Activity { //NOSONAR
+        return activity //NOSONAR
     }
 
-    @Provides
-    @ActivityScope
-    fun fragmentManager(activity: AppCompatActivity): FragmentManager {
-        return activity.supportFragmentManager
+    @Provides //NOSONAR
+    @ActivityScope //NOSONAR
+    fun fragmentManager(activity: AppCompatActivity): FragmentManager { //NOSONAR
+        return activity.supportFragmentManager //NOSONAR
     }
 }

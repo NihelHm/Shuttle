@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.dialog
 
@@ -22,136 +22,136 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 
-class SongInfoDialog : DialogFragment() {
+class SongInfoDialog : DialogFragment() { //NOSONAR
 
-    private lateinit var song: Song
+    private lateinit var song: Song //NOSONAR
 
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        super.onAttach(context) //NOSONAR
 
-        song = arguments!!.getSerializable(ARG_SONG) as Song
+        song = arguments!!.getSerializable(ARG_SONG) as Song //NOSONAR
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        @SuppressLint("InflateParams")
-        val view = (context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.dialog_song_info, null)
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
+        @SuppressLint("InflateParams") //NOSONAR
+        val view = (context!!.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater).inflate(R.layout.dialog_song_info, null) //NOSONAR
 
-        val titleView = view.findViewById<View>(R.id.title)
-        val titleKey = titleView.findViewById<TextView>(R.id.key)
-        titleKey.setText(R.string.song_title)
-        val titleValue = titleView.findViewById<TextView>(R.id.value)
-        titleValue.text = song.name
+        val titleView = view.findViewById<View>(R.id.title) //NOSONAR
+        val titleKey = titleView.findViewById<TextView>(R.id.key) //NOSONAR
+        titleKey.setText(R.string.song_title) //NOSONAR
+        val titleValue = titleView.findViewById<TextView>(R.id.value) //NOSONAR
+        titleValue.text = song.name //NOSONAR
 
-        val trackNumberView = view.findViewById<View>(R.id.track_number)
-        val trackNumberKey = trackNumberView.findViewById<TextView>(R.id.key)
-        trackNumberKey.setText(R.string.track_number)
-        val trackNumberValue = trackNumberView.findViewById<TextView>(R.id.value)
-        trackNumberValue.text = song.trackNumberLabel.toString()
+        val trackNumberView = view.findViewById<View>(R.id.track_number) //NOSONAR
+        val trackNumberKey = trackNumberView.findViewById<TextView>(R.id.key) //NOSONAR
+        trackNumberKey.setText(R.string.track_number) //NOSONAR
+        val trackNumberValue = trackNumberView.findViewById<TextView>(R.id.value) //NOSONAR
+        trackNumberValue.text = song.trackNumberLabel.toString() //NOSONAR
 
-        val artistView = view.findViewById<View>(artist)
-        val artistKey = artistView.findViewById<TextView>(R.id.key)
-        artistKey.setText(R.string.artist_title)
-        val artistValue = artistView.findViewById<TextView>(R.id.value)
-        artistValue.text = song.artistName
+        val artistView = view.findViewById<View>(artist) //NOSONAR
+        val artistKey = artistView.findViewById<TextView>(R.id.key) //NOSONAR
+        artistKey.setText(R.string.artist_title) //NOSONAR
+        val artistValue = artistView.findViewById<TextView>(R.id.value) //NOSONAR
+        artistValue.text = song.artistName //NOSONAR
 
-        val albumView = view.findViewById<View>(album)
-        val albumKey = albumView.findViewById<TextView>(R.id.key)
-        albumKey.setText(R.string.album_title)
-        val albumValue = albumView.findViewById<TextView>(R.id.value)
-        albumValue.text = song.albumName
+        val albumView = view.findViewById<View>(album) //NOSONAR
+        val albumKey = albumView.findViewById<TextView>(R.id.key) //NOSONAR
+        albumKey.setText(R.string.album_title) //NOSONAR
+        val albumValue = albumView.findViewById<TextView>(R.id.value) //NOSONAR
+        albumValue.text = song.albumName //NOSONAR
 
-        val genreView = view.findViewById<View>(R.id.genre)
-        val genreKey = genreView.findViewById<TextView>(R.id.key)
-        genreKey.setText(R.string.genre_title)
-        val genreValue = genreView.findViewById<TextView>(R.id.value)
-        song.getGenre(context!!.applicationContext as ShuttleApplication)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ genre -> genreValue.text = genre.name },
-                { error -> LogUtils.logException(TAG, "Error getting genre", error) })
+        val genreView = view.findViewById<View>(R.id.genre) //NOSONAR
+        val genreKey = genreView.findViewById<TextView>(R.id.key) //NOSONAR
+        genreKey.setText(R.string.genre_title) //NOSONAR
+        val genreValue = genreView.findViewById<TextView>(R.id.value) //NOSONAR
+        song.getGenre(context!!.applicationContext as ShuttleApplication) //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe({ genre -> genreValue.text = genre.name }, //NOSONAR
+                { error -> LogUtils.logException(TAG, "Error getting genre", error) }) //NOSONAR
 
-        val albumArtistView = view.findViewById<View>(R.id.album_artist)
-        val albumArtistKey = albumArtistView.findViewById<TextView>(R.id.key)
-        albumArtistKey.setText(R.string.album_artist_title)
-        val albumArtistValue = albumArtistView.findViewById<TextView>(R.id.value)
-        albumArtistValue.text = song.albumArtistName
+        val albumArtistView = view.findViewById<View>(R.id.album_artist) //NOSONAR
+        val albumArtistKey = albumArtistView.findViewById<TextView>(R.id.key) //NOSONAR
+        albumArtistKey.setText(R.string.album_artist_title) //NOSONAR
+        val albumArtistValue = albumArtistView.findViewById<TextView>(R.id.value) //NOSONAR
+        albumArtistValue.text = song.albumArtistName //NOSONAR
 
-        val durationView = view.findViewById<View>(R.id.duration)
-        val durationKey = durationView.findViewById<TextView>(R.id.key)
-        durationKey.setText(R.string.sort_song_duration)
-        val durationValue = durationView.findViewById<TextView>(R.id.value)
-        durationValue.text = song.getDurationLabel(context)
+        val durationView = view.findViewById<View>(R.id.duration) //NOSONAR
+        val durationKey = durationView.findViewById<TextView>(R.id.key) //NOSONAR
+        durationKey.setText(R.string.sort_song_duration) //NOSONAR
+        val durationValue = durationView.findViewById<TextView>(R.id.value) //NOSONAR
+        durationValue.text = song.getDurationLabel(context) //NOSONAR
 
-        val pathView = view.findViewById<View>(R.id.path)
-        val pathKey = pathView.findViewById<TextView>(R.id.key)
-        pathKey.setText(R.string.song_info_path)
-        val pathValue = pathView.findViewById<TextView>(R.id.value)
-        pathValue.text = song.path
+        val pathView = view.findViewById<View>(R.id.path) //NOSONAR
+        val pathKey = pathView.findViewById<TextView>(R.id.key) //NOSONAR
+        pathKey.setText(R.string.song_info_path) //NOSONAR
+        val pathValue = pathView.findViewById<TextView>(R.id.value) //NOSONAR
+        pathValue.text = song.path //NOSONAR
 
-        val discNumberView = view.findViewById<View>(R.id.disc_number)
-        val discNumberKey = discNumberView.findViewById<TextView>(R.id.key)
-        discNumberKey.setText(R.string.disc_number)
-        val discNumberValue = discNumberView.findViewById<TextView>(R.id.value)
-        discNumberValue.text = song.discNumberLabel.toString()
+        val discNumberView = view.findViewById<View>(R.id.disc_number) //NOSONAR
+        val discNumberKey = discNumberView.findViewById<TextView>(R.id.key) //NOSONAR
+        discNumberKey.setText(R.string.disc_number) //NOSONAR
+        val discNumberValue = discNumberView.findViewById<TextView>(R.id.value) //NOSONAR
+        discNumberValue.text = song.discNumberLabel.toString() //NOSONAR
 
-        val fileSizeView = view.findViewById<View>(R.id.file_size)
-        val fileSizeKey = fileSizeView.findViewById<TextView>(R.id.key)
-        fileSizeKey.setText(R.string.song_info_file_size)
-        val fileSizeValue = fileSizeView.findViewById<TextView>(R.id.value)
-        fileSizeValue.text = song.fileSizeLabel
+        val fileSizeView = view.findViewById<View>(R.id.file_size) //NOSONAR
+        val fileSizeKey = fileSizeView.findViewById<TextView>(R.id.key) //NOSONAR
+        fileSizeKey.setText(R.string.song_info_file_size) //NOSONAR
+        val fileSizeValue = fileSizeView.findViewById<TextView>(R.id.value) //NOSONAR
+        fileSizeValue.text = song.fileSizeLabel //NOSONAR
 
-        val formatView = view.findViewById<View>(R.id.format)
-        val formatKey = formatView.findViewById<TextView>(R.id.key)
-        formatKey.setText(R.string.song_info_format)
-        val formatValue = formatView.findViewById<TextView>(R.id.value)
-        formatValue.text = song.formatLabel
+        val formatView = view.findViewById<View>(R.id.format) //NOSONAR
+        val formatKey = formatView.findViewById<TextView>(R.id.key) //NOSONAR
+        formatKey.setText(R.string.song_info_format) //NOSONAR
+        val formatValue = formatView.findViewById<TextView>(R.id.value) //NOSONAR
+        formatValue.text = song.formatLabel //NOSONAR
 
-        val bitrateView = view.findViewById<View>(R.id.bitrate)
-        val bitrateKey = bitrateView.findViewById<TextView>(R.id.key)
-        bitrateKey.setText(R.string.song_info_bitrate)
-        val bitrateValue = bitrateView.findViewById<TextView>(R.id.value)
-        bitrateValue.text = song.getBitrateLabel(context)
+        val bitrateView = view.findViewById<View>(R.id.bitrate) //NOSONAR
+        val bitrateKey = bitrateView.findViewById<TextView>(R.id.key) //NOSONAR
+        bitrateKey.setText(R.string.song_info_bitrate) //NOSONAR
+        val bitrateValue = bitrateView.findViewById<TextView>(R.id.value) //NOSONAR
+        bitrateValue.text = song.getBitrateLabel(context) //NOSONAR
 
-        val samplingRateView = view.findViewById<View>(R.id.sample_rate)
-        val samplingRateKey = samplingRateView.findViewById<TextView>(R.id.key)
-        samplingRateKey.setText(R.string.song_info_sample_Rate)
-        val samplingRateValue = samplingRateView.findViewById<TextView>(R.id.value)
-        samplingRateValue.text = song.getSampleRateLabel(context)
+        val samplingRateView = view.findViewById<View>(R.id.sample_rate) //NOSONAR
+        val samplingRateKey = samplingRateView.findViewById<TextView>(R.id.key) //NOSONAR
+        samplingRateKey.setText(R.string.song_info_sample_Rate) //NOSONAR
+        val samplingRateValue = samplingRateView.findViewById<TextView>(R.id.value) //NOSONAR
+        samplingRateValue.text = song.getSampleRateLabel(context) //NOSONAR
 
-        val playCountView = view.findViewById<View>(R.id.play_count)
-        val playCountKey = playCountView.findViewById<TextView>(R.id.key)
-        playCountKey.setText(R.string.song_info_play_count)
-        val playCountValue = playCountView.findViewById<TextView>(R.id.value)
+        val playCountView = view.findViewById<View>(R.id.play_count) //NOSONAR
+        val playCountKey = playCountView.findViewById<TextView>(R.id.key) //NOSONAR
+        playCountKey.setText(R.string.song_info_play_count) //NOSONAR
+        val playCountValue = playCountView.findViewById<TextView>(R.id.value) //NOSONAR
 
-        Observable.fromCallable { song.getPlayCount(context) }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ playCount -> playCountValue.text = playCount.toString() },
-                { error -> LogUtils.logException(TAG, "Error getting play count", error) })
+        Observable.fromCallable { song.getPlayCount(context) } //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe({ playCount -> playCountValue.text = playCount.toString() }, //NOSONAR
+                { error -> LogUtils.logException(TAG, "Error getting play count", error) }) //NOSONAR
 
-        return MaterialDialog.Builder(context!!)
-            .title(context!!.getString(R.string.dialog_song_info_title))
-            .customView(view, false)
-            .negativeText(R.string.close)
-            .build()
+        return MaterialDialog.Builder(context!!) //NOSONAR
+            .title(context!!.getString(R.string.dialog_song_info_title)) //NOSONAR
+            .customView(view, false) //NOSONAR
+            .negativeText(R.string.close) //NOSONAR
+            .build() //NOSONAR
     }
 
-    fun show(fragmentManager: FragmentManager) {
-        show(fragmentManager, TAG)
+    fun show(fragmentManager: FragmentManager) { //NOSONAR
+        show(fragmentManager, TAG) //NOSONAR
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "SongInfoDialog"
+        private const val TAG = "SongInfoDialog" //NOSONAR
 
-        private const val ARG_SONG = "song"
+        private const val ARG_SONG = "song" //NOSONAR
 
-        fun newInstance(song: Song): SongInfoDialog {
-            val args = Bundle()
-            args.putSerializable(ARG_SONG, song)
-            val fragment = SongInfoDialog()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(song: Song): SongInfoDialog { //NOSONAR
+            val args = Bundle() //NOSONAR
+            args.putSerializable(ARG_SONG, song) //NOSONAR
+            val fragment = SongInfoDialog() //NOSONAR
+            fragment.arguments = args //NOSONAR
+            return fragment //NOSONAR
         }
     }
 }

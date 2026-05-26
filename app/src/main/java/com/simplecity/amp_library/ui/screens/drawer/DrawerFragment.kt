@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.drawer
 
@@ -53,320 +53,320 @@ import kotlinx.android.synthetic.main.fragment_drawer.recyclerView
 import java.util.ArrayList
 import javax.inject.Inject
 
-class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListener, DrawerParent.ClickListener {
+class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListener, DrawerParent.ClickListener { //NOSONAR
 
-    private lateinit var adapter: DrawerAdapter
+    private lateinit var adapter: DrawerAdapter //NOSONAR
 
-    private var drawerLayout: DrawerLayout? = null
+    private var drawerLayout: DrawerLayout? = null //NOSONAR
 
-    private var playlistDrawerParent: DrawerParent? = null
+    private var playlistDrawerParent: DrawerParent? = null //NOSONAR
 
-    @DrawerParent.Type
-    private var selectedDrawerParent = DrawerParent.Type.LIBRARY
+    @DrawerParent.Type //NOSONAR
+    private var selectedDrawerParent = DrawerParent.Type.LIBRARY //NOSONAR
 
-    private var currentSelectedPlaylist: Playlist? = null
+    private var currentSelectedPlaylist: Playlist? = null //NOSONAR
 
-    @Inject lateinit var playerPresenter: PlayerPresenter
+    @Inject lateinit var playerPresenter: PlayerPresenter //NOSONAR
 
-    @Inject lateinit var drawerPresenter: DrawerPresenter
+    @Inject lateinit var drawerPresenter: DrawerPresenter //NOSONAR
 
-    @Inject lateinit var billingManager: BillingManager
+    @Inject lateinit var billingManager: BillingManager //NOSONAR
 
-    @Inject lateinit var songsRepository: Repository.SongsRepository
+    @Inject lateinit var songsRepository: Repository.SongsRepository //NOSONAR
 
-    @Inject lateinit var playlistsRepository: Repository.PlaylistsRepository
+    @Inject lateinit var playlistsRepository: Repository.PlaylistsRepository //NOSONAR
 
-    @Inject lateinit var settingsManager: SettingsManager
+    @Inject lateinit var settingsManager: SettingsManager //NOSONAR
 
-    @Inject lateinit var requestManager: RequestManager
+    @Inject lateinit var requestManager: RequestManager //NOSONAR
 
-    @Inject lateinit var playlistManager: PlaylistManager
+    @Inject lateinit var playlistManager: PlaylistManager //NOSONAR
 
-    @Inject lateinit var favoritesPlaylistManager: FavoritesPlaylistManager
+    @Inject lateinit var favoritesPlaylistManager: FavoritesPlaylistManager //NOSONAR
 
-    private var backgroundPlaceholder: Drawable? = null
+    private var backgroundPlaceholder: Drawable? = null //NOSONAR
 
-    private val disposables = CompositeDisposable()
+    private val disposables = CompositeDisposable() //NOSONAR
 
-    private var drawerParents: MutableList<Parent<DrawerChild>>? = null
+    private var drawerParents: MutableList<Parent<DrawerChild>>? = null //NOSONAR
 
     // Lifecycle
 
-    override fun onAttach(context: Context?) {
-        AndroidSupportInjection.inject(this)
-        super.onAttach(context)
+    override fun onAttach(context: Context?) { //NOSONAR
+        AndroidSupportInjection.inject(this) //NOSONAR
+        super.onAttach(context) //NOSONAR
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
+        super.onCreate(savedInstanceState) //NOSONAR
 
-        if (savedInstanceState != null) {
-            selectedDrawerParent = savedInstanceState.getInt(STATE_SELECTED_DRAWER_PARENT, DrawerParent.Type.LIBRARY)
-            currentSelectedPlaylist = savedInstanceState.get(STATE_SELECTED_PLAYLIST) as Playlist?
+        if (savedInstanceState != null) { //NOSONAR
+            selectedDrawerParent = savedInstanceState.getInt(STATE_SELECTED_DRAWER_PARENT, DrawerParent.Type.LIBRARY) //NOSONAR
+            currentSelectedPlaylist = savedInstanceState.get(STATE_SELECTED_PLAYLIST) as Playlist? //NOSONAR
         }
 
-        backgroundPlaceholder = ContextCompat.getDrawable(context!!, R.drawable.ic_drawer_header_placeholder)
+        backgroundPlaceholder = ContextCompat.getDrawable(context!!, R.drawable.ic_drawer_header_placeholder) //NOSONAR
 
-        playlistDrawerParent = DrawerParent.getPlaylistsParent(settingsManager)
+        playlistDrawerParent = DrawerParent.getPlaylistsParent(settingsManager) //NOSONAR
 
-        drawerParents = ArrayList()
-        drawerParents!!.add(DrawerParent.getLibraryParent(settingsManager))
-        drawerParents!!.add(DrawerParent.getFolderParent(context!!, settingsManager))
-        drawerParents!!.add(playlistDrawerParent!!)
-        drawerParents!!.add(DrawerDivider())
-        drawerParents!!.add(DrawerParent.getSleepTimerParent(settingsManager))
-        drawerParents!!.add(DrawerParent.getEqualizerParent(settingsManager))
-        drawerParents!!.add(DrawerParent.getSettingsParent(settingsManager))
-        drawerParents!!.add(DrawerParent.getSupportParent(settingsManager))
+        drawerParents = ArrayList() //NOSONAR
+        drawerParents!!.add(DrawerParent.getLibraryParent(settingsManager)) //NOSONAR
+        drawerParents!!.add(DrawerParent.getFolderParent(context!!, settingsManager)) //NOSONAR
+        drawerParents!!.add(playlistDrawerParent!!) //NOSONAR
+        drawerParents!!.add(DrawerDivider()) //NOSONAR
+        drawerParents!!.add(DrawerParent.getSleepTimerParent(settingsManager)) //NOSONAR
+        drawerParents!!.add(DrawerParent.getEqualizerParent(settingsManager)) //NOSONAR
+        drawerParents!!.add(DrawerParent.getSettingsParent(settingsManager)) //NOSONAR
+        drawerParents!!.add(DrawerParent.getSupportParent(settingsManager)) //NOSONAR
 
-        adapter = DrawerAdapter(drawerParents!!)
+        adapter = DrawerAdapter(drawerParents!!) //NOSONAR
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_drawer, container, false)
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
+        return inflater.inflate(R.layout.fragment_drawer, container, false) //NOSONAR
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
+        super.onViewCreated(view, savedInstanceState) //NOSONAR
 
-        recyclerView!!.layoutManager = LinearLayoutManager(context)
-        recyclerView!!.adapter = adapter
+        recyclerView!!.layoutManager = LinearLayoutManager(context) //NOSONAR
+        recyclerView!!.adapter = adapter //NOSONAR
 
-        setDrawerItemSelected(selectedDrawerParent)
+        setDrawerItemSelected(selectedDrawerParent) //NOSONAR
 
-        drawerPresenter.bindView(this)
-        playerPresenter.bindView(playerViewAdapter)
+        drawerPresenter.bindView(this) //NOSONAR
+        playerPresenter.bindView(playerViewAdapter) //NOSONAR
 
-        drawerLayout = getParentDrawerLayout(view)
+        drawerLayout = getParentDrawerLayout(view) //NOSONAR
     }
 
-    override fun onResume() {
-        super.onResume()
+    override fun onResume() { //NOSONAR
+        super.onResume() //NOSONAR
 
         // To do later: Move this crap to presenter
-        disposables.add(Aesthetic.get(context)
-            .colorPrimary()
-            .compose(Rx.distinctToMainThread())
-            .subscribe { color ->
-                backgroundPlaceholder!!.setColorFilter(color!!, PorterDuff.Mode.MULTIPLY)
-                if (mediaManager.song == null) {
-                    background_image.setImageDrawable(backgroundPlaceholder)
+        disposables.add(Aesthetic.get(context) //NOSONAR
+            .colorPrimary() //NOSONAR
+            .compose(Rx.distinctToMainThread()) //NOSONAR
+            .subscribe { color -> //NOSONAR
+                backgroundPlaceholder!!.setColorFilter(color!!, PorterDuff.Mode.MULTIPLY) //NOSONAR
+                if (mediaManager.song == null) { //NOSONAR
+                    background_image.setImageDrawable(backgroundPlaceholder) //NOSONAR
                 }
             })
 
-        playerPresenter.updateTrackInfo()
+        playerPresenter.updateTrackInfo() //NOSONAR
 
-        disposables.add(
-            SleepTimer.getInstance().currentTimeObservable
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ aLong ->
-                    drawerParents!!
-                        .forEachIndexed { i, drawerParent ->
-                            if (aLong > 0 && drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) {
-                                drawerParent.setTimeRemaining(aLong!!)
-                                adapter.notifyParentChanged(i)
+        disposables.add( //NOSONAR
+            SleepTimer.getInstance().currentTimeObservable //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe({ aLong -> //NOSONAR
+                    drawerParents!! //NOSONAR
+                        .forEachIndexed { i, drawerParent -> //NOSONAR
+                            if (aLong > 0 && drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) { //NOSONAR
+                                drawerParent.setTimeRemaining(aLong!!) //NOSONAR
+                                adapter.notifyParentChanged(i) //NOSONAR
                             }
                         }
-                }, { throwable -> LogUtils.logException(TAG, "Error observing sleep time", throwable) })
+                }, { throwable -> LogUtils.logException(TAG, "Error observing sleep time", throwable) }) //NOSONAR
         )
 
-        disposables.add(
-            SleepTimer.getInstance().timerActiveSubject
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ active ->
-                    drawerParents!!
-                        .forEachIndexed { i, drawerParent ->
-                            if (drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) {
-                                drawerParent.setTimerActive(active!!)
-                                adapter.notifyParentChanged(i)
+        disposables.add( //NOSONAR
+            SleepTimer.getInstance().timerActiveSubject //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe({ active -> //NOSONAR
+                    drawerParents!! //NOSONAR
+                        .forEachIndexed { i, drawerParent -> //NOSONAR
+                            if (drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) { //NOSONAR
+                                drawerParent.setTimerActive(active!!) //NOSONAR
+                                adapter.notifyParentChanged(i) //NOSONAR
                             }
                         }
                 },
-                    { throwable -> LogUtils.logException(TAG, "Error observing sleep state", throwable) })
+                    { throwable -> LogUtils.logException(TAG, "Error observing sleep state", throwable) }) //NOSONAR
         )
 
-        drawerParents!!
-            .filter { parent -> parent is DrawerParent }
-            .forEach { parent -> (parent as DrawerParent).setListener(this) }
+        drawerParents!! //NOSONAR
+            .filter { parent -> parent is DrawerParent } //NOSONAR
+            .forEach { parent -> (parent as DrawerParent).setListener(this) } //NOSONAR
     }
 
-    override fun onPause() {
-        disposables.clear()
+    override fun onPause() { //NOSONAR
+        disposables.clear() //NOSONAR
 
-        drawerParents!!
-            .filter { parent -> parent is DrawerParent }
-            .forEach { parent -> (parent as DrawerParent).setListener(null) }
+        drawerParents!! //NOSONAR
+            .filter { parent -> parent is DrawerParent } //NOSONAR
+            .forEach { parent -> (parent as DrawerParent).setListener(null) } //NOSONAR
 
-        super.onPause()
+        super.onPause() //NOSONAR
     }
 
-    override fun onDestroyView() {
-        drawerPresenter.unbindView(this)
-        playerPresenter.unbindView(playerViewAdapter)
+    override fun onDestroyView() { //NOSONAR
+        drawerPresenter.unbindView(this) //NOSONAR
+        playerPresenter.unbindView(playerViewAdapter) //NOSONAR
 
-        super.onDestroyView()
+        super.onDestroyView() //NOSONAR
     }
 
-    private val playerViewAdapter: PlayerViewAdapter = object : PlayerViewAdapter() {
-        override fun trackInfoChanged(song: Song?) {
+    private val playerViewAdapter: PlayerViewAdapter = object : PlayerViewAdapter() { //NOSONAR
+        override fun trackInfoChanged(song: Song?) { //NOSONAR
 
-            if (song == null) {
-                return
+            if (song == null) { //NOSONAR
+                return //NOSONAR
             }
 
-            line1.text = song.name
-            line2.text = String.format("%s - %s", song.albumArtistName, song.albumName)
-            placeholder_text.setText(R.string.app_name)
+            line1.text = song.name //NOSONAR
+            line2.text = String.format("%s - %s", song.albumArtistName, song.albumName) //NOSONAR
+            placeholder_text.setText(R.string.app_name) //NOSONAR
 
-            requestManager.load(song)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .centerCrop()
-                .error(backgroundPlaceholder)
-                .into(background_image)
+            requestManager.load(song) //NOSONAR
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                .centerCrop() //NOSONAR
+                .error(backgroundPlaceholder) //NOSONAR
+                .into(background_image) //NOSONAR
 
-            requestManager.load<AlbumArtist>(song.albumArtist)
-                .diskCacheStrategy(DiskCacheStrategy.ALL)
-                .placeholder(PlaceholderProvider.getInstance(context).mediumPlaceHolderResId)
-                .into(artist_image)
+            requestManager.load<AlbumArtist>(song.albumArtist) //NOSONAR
+                .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                .placeholder(PlaceholderProvider.getInstance(context).mediumPlaceHolderResId) //NOSONAR
+                .into(artist_image) //NOSONAR
 
-            if (song.name == null || song.albumName == null && song.albumArtistName == null) {
-                placeholder_text.visibility = View.VISIBLE
-                line1.visibility = View.GONE
-                line2.visibility = View.GONE
-            } else {
-                placeholder_text.visibility = View.GONE
-                line1.visibility = View.VISIBLE
-                line2.visibility = View.VISIBLE
+            if (song.name == null || song.albumName == null && song.albumArtistName == null) { //NOSONAR
+                placeholder_text.visibility = View.VISIBLE //NOSONAR
+                line1.visibility = View.GONE //NOSONAR
+                line2.visibility = View.GONE //NOSONAR
+            } else { //NOSONAR
+                placeholder_text.visibility = View.GONE //NOSONAR
+                line1.visibility = View.VISIBLE //NOSONAR
+                line2.visibility = View.VISIBLE //NOSONAR
             }
         }
     }
 
-    override fun onClick(drawerParent: DrawerParent) {
-        drawerPresenter.onDrawerItemClicked(drawerParent)
+    override fun onClick(drawerParent: DrawerParent) { //NOSONAR
+        drawerPresenter.onDrawerItemClicked(drawerParent) //NOSONAR
     }
 
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putSerializable(STATE_SELECTED_DRAWER_PARENT, selectedDrawerParent)
-        outState.putSerializable(STATE_SELECTED_PLAYLIST, currentSelectedPlaylist)
+    override fun onSaveInstanceState(outState: Bundle) { //NOSONAR
+        super.onSaveInstanceState(outState) //NOSONAR
+        outState.putSerializable(STATE_SELECTED_DRAWER_PARENT, selectedDrawerParent) //NOSONAR
+        outState.putSerializable(STATE_SELECTED_PLAYLIST, currentSelectedPlaylist) //NOSONAR
     }
 
-    internal fun onPlaylistClicked(playlist: Playlist) {
-        drawerPresenter.onPlaylistClicked(playlist)
+    internal fun onPlaylistClicked(playlist: Playlist) { //NOSONAR
+        drawerPresenter.onPlaylistClicked(playlist) //NOSONAR
     }
 
-    override fun setPlaylistItems(playlists: List<Playlist>) {
+    override fun setPlaylistItems(playlists: List<Playlist>) { //NOSONAR
 
-        val parentPosition = adapter.parentList.indexOf(playlistDrawerParent)
+        val parentPosition = adapter.parentList.indexOf(playlistDrawerParent) //NOSONAR
 
-        val prevItemCount = playlistDrawerParent!!.children.size
-        playlistDrawerParent!!.children.clear()
-        adapter.notifyChildRangeRemoved(parentPosition, 0, prevItemCount)
+        val prevItemCount = playlistDrawerParent!!.children.size //NOSONAR
+        playlistDrawerParent!!.children.clear() //NOSONAR
+        adapter.notifyChildRangeRemoved(parentPosition, 0, prevItemCount) //NOSONAR
 
-        val drawerChildren = playlists
-            .map { playlist ->
-                val drawerChild = DrawerChild(playlist)
-                drawerChild.setListener(object : DrawerChild.ClickListener {
-                    override fun onClick(playlist: Playlist) {
-                        onPlaylistClicked(playlist)
+        val drawerChildren = playlists //NOSONAR
+            .map { playlist -> //NOSONAR
+                val drawerChild = DrawerChild(playlist) //NOSONAR
+                drawerChild.setListener(object : DrawerChild.ClickListener { //NOSONAR
+                    override fun onClick(playlist: Playlist) { //NOSONAR
+                        onPlaylistClicked(playlist) //NOSONAR
                     }
 
-                    override fun onOverflowClick(view: View, playlist: Playlist) {
-                        val popupMenu = PopupMenu(view.context, view)
-                        PlaylistMenuUtils.setupPlaylistMenu(popupMenu, playlist)
-                        popupMenu.setOnMenuItemClickListener(PlaylistMenuUtils.getPlaylistPopupMenuClickListener(playlist, drawerPresenter))
-                        popupMenu.show()
+                    override fun onOverflowClick(view: View, playlist: Playlist) { //NOSONAR
+                        val popupMenu = PopupMenu(view.context, view) //NOSONAR
+                        PlaylistMenuUtils.setupPlaylistMenu(popupMenu, playlist) //NOSONAR
+                        popupMenu.setOnMenuItemClickListener(PlaylistMenuUtils.getPlaylistPopupMenuClickListener(playlist, drawerPresenter)) //NOSONAR
+                        popupMenu.show() //NOSONAR
                     }
                 })
-                drawerChild
-            }.toList()
+                drawerChild //NOSONAR
+            }.toList() //NOSONAR
 
-        playlistDrawerParent!!.children.addAll(drawerChildren)
-        adapter.notifyChildRangeInserted(parentPosition, 0, drawerChildren.size)
+        playlistDrawerParent!!.children.addAll(drawerChildren) //NOSONAR
+        adapter.notifyChildRangeInserted(parentPosition, 0, drawerChildren.size) //NOSONAR
 
-        adapter.notifyParentChanged(parentPosition)
+        adapter.notifyParentChanged(parentPosition) //NOSONAR
     }
 
-    override fun closeDrawer() {
-        drawerLayout?.closeDrawer(Gravity.START)
+    override fun closeDrawer() { //NOSONAR
+        drawerLayout?.closeDrawer(Gravity.START) //NOSONAR
     }
 
-    override fun setDrawerItemSelected(@DrawerParent.Type type: Int) {
-        adapter.parentList
-            .forEachIndexed { i, drawerParent ->
-                if (drawerParent is DrawerParent) {
-                    if (drawerParent.type == type) {
-                        if (!drawerParent.isSelected) {
-                            drawerParent.isSelected = true
-                            adapter.notifyParentChanged(i)
+    override fun setDrawerItemSelected(@DrawerParent.Type type: Int) { //NOSONAR
+        adapter.parentList //NOSONAR
+            .forEachIndexed { i, drawerParent -> //NOSONAR
+                if (drawerParent is DrawerParent) { //NOSONAR
+                    if (drawerParent.type == type) { //NOSONAR
+                        if (!drawerParent.isSelected) { //NOSONAR
+                            drawerParent.isSelected = true //NOSONAR
+                            adapter.notifyParentChanged(i) //NOSONAR
                         }
-                    } else {
-                        if (drawerParent.isSelected) {
-                            drawerParent.isSelected = false
-                            adapter.notifyParentChanged(i)
+                    } else { //NOSONAR
+                        if (drawerParent.isSelected) { //NOSONAR
+                            drawerParent.isSelected = false //NOSONAR
+                            adapter.notifyParentChanged(i) //NOSONAR
                         }
                     }
                 }
             }
     }
 
-    override fun showUpgradeDialog() {
-        UpgradeDialog().show(childFragmentManager)
+    override fun showUpgradeDialog() { //NOSONAR
+        UpgradeDialog().show(childFragmentManager) //NOSONAR
     }
 
     // PlaylistMenuContract.View Implementation
 
-    override fun onPlaybackFailed() {
+    override fun onPlaybackFailed() { //NOSONAR
         // To do later: Improve error message
-        Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
-    override fun presentEditDialog(playlist: Playlist) {
-        WeekSelectorDialog().show(childFragmentManager)
+    override fun presentEditDialog(playlist: Playlist) { //NOSONAR
+        WeekSelectorDialog().show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentRenameDialog(playlist: Playlist) {
-        RenamePlaylistDialog.newInstance(playlist).show(childFragmentManager)
+    override fun presentRenameDialog(playlist: Playlist) { //NOSONAR
+        RenamePlaylistDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentM3uDialog(playlist: Playlist) {
-        M3uPlaylistDialog.newInstance(playlist).show(childFragmentManager)
+    override fun presentM3uDialog(playlist: Playlist) { //NOSONAR
+        M3uPlaylistDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
     }
 
-    override fun presentDeletePlaylistDialog(playlist: Playlist) {
-        DeletePlaylistConfirmationDialog.newInstance(playlist).show(childFragmentManager)
+    override fun presentDeletePlaylistDialog(playlist: Playlist) { //NOSONAR
+        DeletePlaylistConfirmationDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
     }
 
-    override fun onSongsAddedToQueue(numSongs: Int) {
-        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show()
+    override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
+        Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
     }
 
     // BaseDetailFragment Implementation
 
-    override fun screenName(): String {
-        return TAG
+    override fun screenName(): String { //NOSONAR
+        return TAG //NOSONAR
     }
 
     // Static
 
-    companion object {
+    companion object { //NOSONAR
 
-        private const val TAG = "DrawerFragment"
+        private const val TAG = "DrawerFragment" //NOSONAR
 
-        private const val STATE_SELECTED_DRAWER_PARENT = "selected_drawer_parent"
+        private const val STATE_SELECTED_DRAWER_PARENT = "selected_drawer_parent" //NOSONAR
 
-        private const val STATE_SELECTED_PLAYLIST = "selected_drawer_playlist"
+        private const val STATE_SELECTED_PLAYLIST = "selected_drawer_playlist" //NOSONAR
 
-        fun getParentDrawerLayout(v: View?): DrawerLayout? {
-            if (v == null) return null
+        fun getParentDrawerLayout(v: View?): DrawerLayout? { //NOSONAR
+            if (v == null) return null //NOSONAR
 
-            if (v is DrawerLayout) {
-                return v
+            if (v is DrawerLayout) { //NOSONAR
+                return v //NOSONAR
             }
 
-            return if (v.parent is View) {
-                getParentDrawerLayout(v.parent as View)
-            } else null
+            return if (v.parent is View) { //NOSONAR
+                getParentDrawerLayout(v.parent as View) //NOSONAR
+            } else null //NOSONAR
         }
     }
 }

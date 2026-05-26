@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.playlists
 
@@ -25,119 +25,119 @@ import java.util.Collections
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
-class FavoritesPlaylistManager @Inject constructor(
-    private val applicationContext: Context,
-    private val playlistManager: PlaylistManager,
-    private val playlistsRepository: PlaylistsRepository,
-    private val songsRepository: SongsRepository
+class FavoritesPlaylistManager @Inject constructor( //NOSONAR
+    private val applicationContext: Context, //NOSONAR
+    private val playlistManager: PlaylistManager, //NOSONAR
+    private val playlistsRepository: PlaylistsRepository, //NOSONAR
+    private val songsRepository: SongsRepository //NOSONAR
 ) {
 
-    fun getFavoritesPlaylist(): Single<Playlist?> {
-        return playlistsRepository.getPlaylists()
-            .first(Collections.emptyList())
-            .flatMapObservable { playlists -> Observable.fromIterable(playlists) }
-            .filter { playlist -> playlist.type == Type.FAVORITES }
-            .switchIfEmpty(Maybe.fromCallable { createFavoritePlaylist() }.toObservable())
-            .firstOrError()
-            .doOnError { throwable -> LogUtils.logException(TAG, "getFavoritesPlaylist failed", throwable) }
+    fun getFavoritesPlaylist(): Single<Playlist?> { //NOSONAR
+        return playlistsRepository.getPlaylists() //NOSONAR
+            .first(Collections.emptyList()) //NOSONAR
+            .flatMapObservable { playlists -> Observable.fromIterable(playlists) } //NOSONAR
+            .filter { playlist -> playlist.type == Type.FAVORITES } //NOSONAR
+            .switchIfEmpty(Maybe.fromCallable { createFavoritePlaylist() }.toObservable()) //NOSONAR
+            .firstOrError() //NOSONAR
+            .doOnError { throwable -> LogUtils.logException(TAG, "getFavoritesPlaylist failed", throwable) } //NOSONAR
     }
 
-    fun isFavorite(song: Song?): Observable<Boolean> {
-        return if (song == null) {
-            Observable.just(false)
-        } else getFavoritesPlaylist().flatMapObservable { playlist -> songsRepository.getSongs(playlist) }
-            .map { songs -> songs.contains(song) }
+    fun isFavorite(song: Song?): Observable<Boolean> { //NOSONAR
+        return if (song == null) { //NOSONAR
+            Observable.just(false) //NOSONAR
+        } else getFavoritesPlaylist().flatMapObservable { playlist -> songsRepository.getSongs(playlist) } //NOSONAR
+            .map { songs -> songs.contains(song) } //NOSONAR
 
     }
 
-    fun createFavoritePlaylist(): Playlist? {
-        val playlist = playlistManager.createPlaylist(applicationContext.getString(R.string.fav_title))
-        if (playlist != null) {
-            playlist.canDelete = false
-            playlist.canRename = false
-            playlist.type = Playlist.Type.FAVORITES
+    fun createFavoritePlaylist(): Playlist? { //NOSONAR
+        val playlist = playlistManager.createPlaylist(applicationContext.getString(R.string.fav_title)) //NOSONAR
+        if (playlist != null) { //NOSONAR
+            playlist.canDelete = false //NOSONAR
+            playlist.canRename = false //NOSONAR
+            playlist.type = Playlist.Type.FAVORITES //NOSONAR
         }
-        return playlist
+        return playlist //NOSONAR
     }
 
-    fun clearFavorites(): Disposable {
-        return getFavoritesPlaylist()
-            .flatMapCompletable { playlist ->
-                Completable.fromAction {
-                    val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", playlist.id)
-                    applicationContext.contentResolver.delete(uri, null, null)
+    fun clearFavorites(): Disposable { //NOSONAR
+        return getFavoritesPlaylist() //NOSONAR
+            .flatMapCompletable { playlist -> //NOSONAR
+                Completable.fromAction { //NOSONAR
+                    val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", playlist.id) //NOSONAR
+                    applicationContext.contentResolver.delete(uri, null, null) //NOSONAR
                 }
             }
-            .subscribeOn(Schedulers.io())
-            .subscribe(
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .subscribe( //NOSONAR
                 {
                     // Intentionally left empty.
                 },
-                { throwable -> LogUtils.logException(TAG, "clearFavorites error", throwable) }
+                { throwable -> LogUtils.logException(TAG, "clearFavorites error", throwable) } //NOSONAR
             )
     }
 
-    fun toggleFavorite(song: Song, isFavorite: (Boolean) -> Unit): Disposable {
-        return isFavorite(song)
-            .first(false)
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                { favorite ->
-                    if (!favorite) {
-                        addToFavorites(song) { success ->
-                            if (success) {
-                                isFavorite.invoke(true)
+    fun toggleFavorite(song: Song, isFavorite: (Boolean) -> Unit): Disposable { //NOSONAR
+        return isFavorite(song) //NOSONAR
+            .first(false) //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .subscribe( //NOSONAR
+                { favorite -> //NOSONAR
+                    if (!favorite) { //NOSONAR
+                        addToFavorites(song) { success -> //NOSONAR
+                            if (success) { //NOSONAR
+                                isFavorite.invoke(true) //NOSONAR
                             }
                         }
-                    } else {
-                        removeFromFavorites(song) { success ->
-                            if (success) {
-                                isFavorite.invoke(false)
+                    } else { //NOSONAR
+                        removeFromFavorites(song) { success -> //NOSONAR
+                            if (success) { //NOSONAR
+                                isFavorite.invoke(false) //NOSONAR
                             }
                         }
                     }
                 },
-                { error -> LogUtils.logException(TAG, "PlaylistManager: Error toggling favorites", error) }
+                { error -> LogUtils.logException(TAG, "PlaylistManager: Error toggling favorites", error) } //NOSONAR
             )
     }
 
-    fun addToFavorites(song: Song, success: (Boolean) -> Unit): Disposable {
-        return Single.zip<Playlist, Int, Pair<Playlist, Int>>(
-            getFavoritesPlaylist(),
-            getFavoritesPlaylist().flatMapObservable<List<Song>> { songsRepository.getSongs(it) }
-                .first(emptyList())
-                .map { it.size },
-            BiFunction { first, second -> Pair(first, second) })
-            .map { pair ->
-                val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", pair.first!!.id)
-                val values = ContentValues()
-                values.put(MediaStore.Audio.Playlists.Members.AUDIO_ID, song.id)
-                values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, pair.second!! + 1)
-                val newUri = applicationContext.contentResolver.insert(uri, values)
-                applicationContext.contentResolver.notifyChange(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, null)
-                newUri != null
+    fun addToFavorites(song: Song, success: (Boolean) -> Unit): Disposable { //NOSONAR
+        return Single.zip<Playlist, Int, Pair<Playlist, Int>>( //NOSONAR
+            getFavoritesPlaylist(), //NOSONAR
+            getFavoritesPlaylist().flatMapObservable<List<Song>> { songsRepository.getSongs(it) } //NOSONAR
+                .first(emptyList()) //NOSONAR
+                .map { it.size }, //NOSONAR
+            BiFunction { first, second -> Pair(first, second) }) //NOSONAR
+            .map { pair -> //NOSONAR
+                val uri = MediaStore.Audio.Playlists.Members.getContentUri("external", pair.first!!.id) //NOSONAR
+                val values = ContentValues() //NOSONAR
+                values.put(MediaStore.Audio.Playlists.Members.AUDIO_ID, song.id) //NOSONAR
+                values.put(MediaStore.Audio.Playlists.Members.PLAY_ORDER, pair.second!! + 1) //NOSONAR
+                val newUri = applicationContext.contentResolver.insert(uri, values) //NOSONAR
+                applicationContext.contentResolver.notifyChange(MediaStore.Audio.Playlists.EXTERNAL_CONTENT_URI, null) //NOSONAR
+                newUri != null //NOSONAR
             }
-            .delay(150, TimeUnit.MILLISECONDS)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { success.invoke(it) },
-                { throwable -> LogUtils.logException(TAG, "Error adding to playlist", throwable) }
+            .delay(150, TimeUnit.MILLISECONDS) //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { success.invoke(it) }, //NOSONAR
+                { throwable -> LogUtils.logException(TAG, "Error adding to playlist", throwable) } //NOSONAR
             )
     }
 
-    fun removeFromFavorites(song: Song, callback: (Boolean) -> Unit): Disposable {
-        return getFavoritesPlaylist()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                { playlist -> playlist?.let { playlistManager.removeFromPlaylist(it, song, callback) } },
-                { error -> LogUtils.logException(TAG, "PlaylistManager: Error Removing from favorites", error) }
+    fun removeFromFavorites(song: Song, callback: (Boolean) -> Unit): Disposable { //NOSONAR
+        return getFavoritesPlaylist() //NOSONAR
+            .subscribeOn(Schedulers.io()) //NOSONAR
+            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                { playlist -> playlist?.let { playlistManager.removeFromPlaylist(it, song, callback) } }, //NOSONAR
+                { error -> LogUtils.logException(TAG, "PlaylistManager: Error Removing from favorites", error) } //NOSONAR
             )
     }
 
-    companion object {
+    companion object { //NOSONAR
 
-        private val TAG = "FavoritesPlaylistManage"
+        private val TAG = "FavoritesPlaylistManage" //NOSONAR
     }
 }

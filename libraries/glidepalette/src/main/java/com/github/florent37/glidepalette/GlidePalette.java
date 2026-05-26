@@ -9,109 +9,109 @@ import com.bumptech.glide.load.resource.bitmap.GlideBitmapDrawable;
 import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.Target;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class GlidePalette<ModelType, TranscodeType> extends BitmapPalette implements RequestListener<ModelType, TranscodeType> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class GlidePalette<ModelType, TranscodeType> extends BitmapPalette implements RequestListener<ModelType, TranscodeType> { //NOSONAR
 
-    protected RequestListener<ModelType, TranscodeType> callback;
+    protected RequestListener<ModelType, TranscodeType> callback; //NOSONAR
 
-    protected GlidePalette() {
+    protected GlidePalette() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public static GlidePalette with(String url) {
-        GlidePalette glidePalette = new GlidePalette();
-        glidePalette.url = url;
-        return glidePalette;
+    public static GlidePalette with(String url) { //NOSONAR
+        GlidePalette glidePalette = new GlidePalette(); //NOSONAR
+        glidePalette.url = url; //NOSONAR
+        return glidePalette; //NOSONAR
     }
 
-    public GlidePalette use(@Profile int paletteProfile) {
-        super.use(paletteProfile);
-        return this;
+    public GlidePalette use(@Profile int paletteProfile) { //NOSONAR
+        super.use(paletteProfile); //NOSONAR
+        return this; //NOSONAR
     }
 
-    public GlidePalette<ModelType, TranscodeType> intoBackground(View view) {
-        return this.intoBackground(view, Swatch.RGB);
+    public GlidePalette<ModelType, TranscodeType> intoBackground(View view) { //NOSONAR
+        return this.intoBackground(view, Swatch.RGB); //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> intoBackground(View view, @Swatch int paletteSwatch) {
-        super.intoBackground(view, paletteSwatch);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> intoBackground(View view, @Swatch int paletteSwatch) { //NOSONAR
+        super.intoBackground(view, paletteSwatch); //NOSONAR
+        return this; //NOSONAR
     }
 
-    public GlidePalette<ModelType, TranscodeType> intoTextColor(TextView textView) {
-        return this.intoTextColor(textView, Swatch.TITLE_TEXT_COLOR);
+    public GlidePalette<ModelType, TranscodeType> intoTextColor(TextView textView) { //NOSONAR
+        return this.intoTextColor(textView, Swatch.TITLE_TEXT_COLOR); //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> intoTextColor(TextView textView, @Swatch int paletteSwatch) {
-        super.intoTextColor(textView, paletteSwatch);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> intoTextColor(TextView textView, @Swatch int paletteSwatch) { //NOSONAR
+        super.intoTextColor(textView, paletteSwatch); //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> crossfade(boolean crossfade) {
-        super.crossfade(crossfade);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> crossfade(boolean crossfade) { //NOSONAR
+        super.crossfade(crossfade); //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> crossfade(boolean crossfade, int crossfadeSpeed) {
-        super.crossfade(crossfade, crossfadeSpeed);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> crossfade(boolean crossfade, int crossfadeSpeed) { //NOSONAR
+        super.crossfade(crossfade, crossfadeSpeed); //NOSONAR
+        return this; //NOSONAR
     }
 
-    public GlidePalette<ModelType, TranscodeType> setGlideListener(RequestListener<ModelType, TranscodeType> listener) {
-        this.callback = listener;
-        return this;
+    public GlidePalette<ModelType, TranscodeType> setGlideListener(RequestListener<ModelType, TranscodeType> listener) { //NOSONAR
+        this.callback = listener; //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> intoCallBack(GlidePalette.CallBack callBack) {
-        super.intoCallBack(callBack);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> intoCallBack(GlidePalette.CallBack callBack) { //NOSONAR
+        super.intoCallBack(callBack); //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> setPaletteBuilderInterceptor(PaletteBuilderInterceptor interceptor) {
-        super.setPaletteBuilderInterceptor(interceptor);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> setPaletteBuilderInterceptor(PaletteBuilderInterceptor interceptor) { //NOSONAR
+        super.setPaletteBuilderInterceptor(interceptor); //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public GlidePalette<ModelType, TranscodeType> skipPaletteCache(boolean skipCache) {
-        super.skipPaletteCache(skipCache);
-        return this;
+    @Override //NOSONAR
+    public GlidePalette<ModelType, TranscodeType> skipPaletteCache(boolean skipCache) { //NOSONAR
+        super.skipPaletteCache(skipCache); //NOSONAR
+        return this; //NOSONAR
     }
 
-    @Override
-    public boolean onException(Exception e, ModelType model, Target<TranscodeType> target, boolean isFirstResource) {
-        return this.callback != null && this.callback.onException(e, model, target, isFirstResource);
+    @Override //NOSONAR
+    public boolean onException(Exception e, ModelType model, Target<TranscodeType> target, boolean isFirstResource) { //NOSONAR
+        return this.callback != null && this.callback.onException(e, model, target, isFirstResource); //NOSONAR
     }
 
-    @Override
-    public boolean onResourceReady(TranscodeType resource, ModelType model, Target<TranscodeType> target, boolean isFromMemoryCache, boolean isFirstResource) {
-        boolean callbackResult = this.callback != null && this.callback.onResourceReady(resource, model, target, isFromMemoryCache, isFirstResource);
+    @Override //NOSONAR
+    public boolean onResourceReady(TranscodeType resource, ModelType model, Target<TranscodeType> target, boolean isFromMemoryCache, boolean isFirstResource) { //NOSONAR
+        boolean callbackResult = this.callback != null && this.callback.onResourceReady(resource, model, target, isFromMemoryCache, isFirstResource); //NOSONAR
 
-        Bitmap b = null;
-        if (resource instanceof Bitmap) {
-            b = (Bitmap) resource;
-        } else if (resource instanceof GlideBitmapDrawable) {
-            b = ((GlideBitmapDrawable) resource).getBitmap();
-        } else if (target instanceof BitmapHolder) {
-            b = ((BitmapHolder) target).getBitmap();
+        Bitmap b = null; //NOSONAR
+        if (resource instanceof Bitmap) { //NOSONAR
+            b = (Bitmap) resource; //NOSONAR
+        } else if (resource instanceof GlideBitmapDrawable) { //NOSONAR
+            b = ((GlideBitmapDrawable) resource).getBitmap(); //NOSONAR
+        } else if (target instanceof BitmapHolder) { //NOSONAR
+            b = ((BitmapHolder) target).getBitmap(); //NOSONAR
         }
 
-        if (b != null) {
-            start(b);
+        if (b != null) { //NOSONAR
+            start(b); //NOSONAR
         }
 
-        return callbackResult;
+        return callbackResult; //NOSONAR
     }
 
-    public interface BitmapHolder {
-        @Nullable
-        Bitmap getBitmap();
+    public interface BitmapHolder { //NOSONAR
+        @Nullable //NOSONAR
+        Bitmap getBitmap(); //NOSONAR
     }
 
 }

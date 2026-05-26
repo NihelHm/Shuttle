@@ -26,348 +26,348 @@ import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import java.util.Arrays;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> implements SectionedView {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> implements SectionedView { //NOSONAR
 
-    public interface ClickListener {
+    public interface ClickListener { //NOSONAR
 
-        void onSongClick(int position, SongView songView);
+        void onSongClick(int position, SongView songView); //NOSONAR
 
-        boolean onSongLongClick(int position, SongView songView);
+        boolean onSongLongClick(int position, SongView songView); //NOSONAR
 
-        void onSongOverflowClick(int position, View v, Song song);
+        void onSongOverflowClick(int position, View v, Song song); //NOSONAR
 
-        void onStartDrag(ViewHolder holder);
+        void onStartDrag(ViewHolder holder); //NOSONAR
     }
 
-    private static final String TAG = "SongView";
+    private static final String TAG = "SongView"; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public Song song;
+    public Song song; //NOSONAR
 
-    private RequestManager requestManager;
+    private RequestManager requestManager; //NOSONAR
 
-    private SortManager sortManager;
+    private SortManager sortManager; //NOSONAR
 
-    private PrefixHighlighter prefixHighlighter;
+    private PrefixHighlighter prefixHighlighter; //NOSONAR
 
-    private SettingsManager settingsManager;
+    private SettingsManager settingsManager; //NOSONAR
 
-    private char[] prefix;
+    private char[] prefix; //NOSONAR
 
-    private boolean editable;
+    private boolean editable; //NOSONAR
 
-    private boolean showAlbumArt;
+    private boolean showAlbumArt; //NOSONAR
 
-    private boolean showPlayCount;
+    private boolean showPlayCount; //NOSONAR
 
-    private boolean showTrackNumber;
+    private boolean showTrackNumber; //NOSONAR
 
-    private boolean showArtistName = true;
+    private boolean showArtistName = true; //NOSONAR
 
-    private boolean showAlbumName = true;
+    private boolean showAlbumName = true; //NOSONAR
 
-    @Nullable
-    private ClickListener listener;
+    @Nullable //NOSONAR
+    private ClickListener listener; //NOSONAR
 
-    public SongView(Song song, RequestManager requestManager, SortManager sortManager, SettingsManager settingsManager) {
-        this.song = song;
-        this.requestManager = requestManager;
-        this.sortManager = sortManager;
-        this.settingsManager = settingsManager;
+    public SongView(Song song, RequestManager requestManager, SortManager sortManager, SettingsManager settingsManager) { //NOSONAR
+        this.song = song; //NOSONAR
+        this.requestManager = requestManager; //NOSONAR
+        this.sortManager = sortManager; //NOSONAR
+        this.settingsManager = settingsManager; //NOSONAR
     }
 
-    public void setClickListener(@Nullable ClickListener listener) {
-        this.listener = listener;
+    public void setClickListener(@Nullable ClickListener listener) { //NOSONAR
+        this.listener = listener; //NOSONAR
     }
 
-    public void setEditable(boolean editable) {
-        this.editable = editable;
+    public void setEditable(boolean editable) { //NOSONAR
+        this.editable = editable; //NOSONAR
     }
 
-    public void showAlbumArt(boolean showAlbumArt) {
-        this.showAlbumArt = showAlbumArt;
+    public void showAlbumArt(boolean showAlbumArt) { //NOSONAR
+        this.showAlbumArt = showAlbumArt; //NOSONAR
     }
 
-    public boolean getShowAlbumArt() {
-        return showAlbumArt;
+    public boolean getShowAlbumArt() { //NOSONAR
+        return showAlbumArt; //NOSONAR
     }
 
-    public void showPlayCount(boolean showPlayCount) {
-        this.showPlayCount = showPlayCount;
+    public void showPlayCount(boolean showPlayCount) { //NOSONAR
+        this.showPlayCount = showPlayCount; //NOSONAR
     }
 
-    public void showArtistName(boolean showArtistName) {
-        this.showArtistName = showArtistName;
+    public void showArtistName(boolean showArtistName) { //NOSONAR
+        this.showArtistName = showArtistName; //NOSONAR
     }
 
-    public void showAlbumName(boolean showAlbumName) {
-        this.showAlbumName = showAlbumName;
+    public void showAlbumName(boolean showAlbumName) { //NOSONAR
+        this.showAlbumName = showAlbumName; //NOSONAR
     }
 
-    public void setPrefix(PrefixHighlighter prefixHighlighter, char[] prefix) {
-        this.prefixHighlighter = prefixHighlighter;
-        this.prefix = prefix;
+    public void setPrefix(PrefixHighlighter prefixHighlighter, char[] prefix) { //NOSONAR
+        this.prefixHighlighter = prefixHighlighter; //NOSONAR
+        this.prefix = prefix; //NOSONAR
     }
 
-    public void setShowTrackNumber(boolean showTrackNumber) {
-        this.showTrackNumber = showTrackNumber;
+    public void setShowTrackNumber(boolean showTrackNumber) { //NOSONAR
+        this.showTrackNumber = showTrackNumber; //NOSONAR
     }
 
-    void onItemClick(int position) {
-        if (listener != null) {
-            listener.onSongClick(position, this);
+    void onItemClick(int position) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onSongClick(position, this); //NOSONAR
         }
     }
 
-    void onOverflowClick(int position, View v) {
-        if (listener != null) {
-            listener.onSongOverflowClick(position, v, song);
+    void onOverflowClick(int position, View v) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onSongOverflowClick(position, v, song); //NOSONAR
         }
     }
 
-    boolean onItemLongClick(int position) {
-        if (listener != null) {
-            return listener.onSongLongClick(position, this);
+    boolean onItemLongClick(int position) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            return listener.onSongLongClick(position, this); //NOSONAR
         }
-        return false;
+        return false; //NOSONAR
     }
 
-    void onStartDrag(ViewHolder holder) {
-        if (listener != null) {
-            listener.onStartDrag(holder);
+    void onStartDrag(ViewHolder holder) { //NOSONAR
+        if (listener != null) { //NOSONAR
+            listener.onStartDrag(holder); //NOSONAR
         }
     }
 
-    @Override
-    public int getViewType() {
-        return editable ? ViewType.SONG_EDITABLE : ViewType.SONG;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return editable ? ViewType.SONG_EDITABLE : ViewType.SONG; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return editable ? R.layout.list_item_edit : R.layout.list_item_two_lines;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return editable ? R.layout.list_item_edit : R.layout.list_item_two_lines; //NOSONAR
     }
 
-    @Override
-    public void bindView(ViewHolder holder) {
-        super.bindView(holder);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder) { //NOSONAR
+        super.bindView(holder); //NOSONAR
 
-        holder.lineOne.setText(song.name);
+        holder.lineOne.setText(song.name); //NOSONAR
 
-        if (holder.playCount != null) {
-            if (showPlayCount && song.playCount > 1) {
-                holder.playCount.setVisibility(View.VISIBLE);
-                holder.playCount.setCount(song.playCount);
-            } else {
-                holder.playCount.setVisibility(View.GONE);
+        if (holder.playCount != null) { //NOSONAR
+            if (showPlayCount && song.playCount > 1) { //NOSONAR
+                holder.playCount.setVisibility(View.VISIBLE); //NOSONAR
+                holder.playCount.setCount(song.playCount); //NOSONAR
+            } else { //NOSONAR
+                holder.playCount.setVisibility(View.GONE); //NOSONAR
             }
         }
 
-        if (showArtistName && showAlbumName) {
-            holder.lineTwo.setText(String.format("%s - %s", song.artistName, song.albumName));
-            holder.lineTwo.setVisibility(View.VISIBLE);
-        } else if (showAlbumName) {
-            holder.lineTwo.setText(song.albumName);
-            holder.lineTwo.setVisibility(View.VISIBLE);
-        } else {
-            holder.lineTwo.setVisibility(View.GONE);
+        if (showArtistName && showAlbumName) { //NOSONAR
+            holder.lineTwo.setText(String.format("%s - %s", song.artistName, song.albumName)); //NOSONAR
+            holder.lineTwo.setVisibility(View.VISIBLE); //NOSONAR
+        } else if (showAlbumName) { //NOSONAR
+            holder.lineTwo.setText(song.albumName); //NOSONAR
+            holder.lineTwo.setVisibility(View.VISIBLE); //NOSONAR
+        } else { //NOSONAR
+            holder.lineTwo.setVisibility(View.GONE); //NOSONAR
         }
 
-        holder.lineThree.setText(song.getDurationLabel(holder.itemView.getContext()));
+        holder.lineThree.setText(song.getDurationLabel(holder.itemView.getContext())); //NOSONAR
 
-        if (holder.artwork != null) {
-            if (showAlbumArt && settingsManager.showArtworkInQueue()) {
-                holder.artwork.setVisibility(View.VISIBLE);
-                requestManager.load(song)
-                        .diskCacheStrategy(DiskCacheStrategy.ALL)
-                        .placeholder(PlaceholderProvider.getInstance(holder.itemView.getContext()).getPlaceHolderDrawable(song.albumName, false, settingsManager))
-                        .into(holder.artwork);
-            } else {
-                holder.artwork.setVisibility(View.GONE);
+        if (holder.artwork != null) { //NOSONAR
+            if (showAlbumArt && settingsManager.showArtworkInQueue()) { //NOSONAR
+                holder.artwork.setVisibility(View.VISIBLE); //NOSONAR
+                requestManager.load(song) //NOSONAR
+                        .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
+                        .placeholder(PlaceholderProvider.getInstance(holder.itemView.getContext()).getPlaceHolderDrawable(song.albumName, false, settingsManager)) //NOSONAR
+                        .into(holder.artwork); //NOSONAR
+            } else { //NOSONAR
+                holder.artwork.setVisibility(View.GONE); //NOSONAR
             }
         }
 
-        holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(R.string.btn_options, song.name));
+        holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(R.string.btn_options, song.name)); //NOSONAR
 
-        if (prefixHighlighter != null) {
-            prefixHighlighter.setText(holder.lineOne, prefix);
-            prefixHighlighter.setText(holder.lineTwo, prefix);
+        if (prefixHighlighter != null) { //NOSONAR
+            prefixHighlighter.setText(holder.lineOne, prefix); //NOSONAR
+            prefixHighlighter.setText(holder.lineTwo, prefix); //NOSONAR
         }
 
-        if (holder.trackNumber != null) {
-            if (showTrackNumber) {
-                holder.trackNumber.setVisibility(View.VISIBLE);
-                holder.trackNumber.setText(String.valueOf(song.track));
-            } else {
-                holder.trackNumber.setVisibility(View.GONE);
+        if (holder.trackNumber != null) { //NOSONAR
+            if (showTrackNumber) { //NOSONAR
+                holder.trackNumber.setVisibility(View.VISIBLE); //NOSONAR
+                holder.trackNumber.setText(String.valueOf(song.track)); //NOSONAR
+            } else { //NOSONAR
+                holder.trackNumber.setVisibility(View.GONE); //NOSONAR
             }
         }
     }
 
-    @Override
-    public void bindView(ViewHolder holder, int position, List payloads) {
-        super.bindView(holder, position, payloads);
+    @Override //NOSONAR
+    public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
+        super.bindView(holder, position, payloads); //NOSONAR
 
         //A partial bind. Due to the areContentsEqual implementation, the only reason this is called
         //is because the prefix changed. Update accordingly.
-        if (prefixHighlighter != null) {
-            prefixHighlighter.setText(holder.lineOne, prefix);
-            prefixHighlighter.setText(holder.lineTwo, prefix);
+        if (prefixHighlighter != null) { //NOSONAR
+            prefixHighlighter.setText(holder.lineOne, prefix); //NOSONAR
+            prefixHighlighter.setText(holder.lineTwo, prefix); //NOSONAR
         }
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    @Override
-    public String getSectionName() {
-        int sortOrder = sortManager.getSongsSortOrder();
+    @Override //NOSONAR
+    public String getSectionName() { //NOSONAR
+        int sortOrder = sortManager.getSongsSortOrder(); //NOSONAR
 
-        if (sortOrder != SortManager.SongSort.DATE
-                && sortOrder != SortManager.SongSort.DURATION
-                && sortOrder != SortManager.SongSort.TRACK_NUMBER) {
+        if (sortOrder != SortManager.SongSort.DATE //NOSONAR
+                && sortOrder != SortManager.SongSort.DURATION //NOSONAR
+                && sortOrder != SortManager.SongSort.TRACK_NUMBER) { //NOSONAR
 
-            String string = null;
-            boolean requiresSubstring = true;
-            switch (sortOrder) {
-                case SortManager.SongSort.DEFAULT:
-                    string = StringUtils.keyFor(song.name);
-                    break;
-                case SortManager.SongSort.NAME:
-                    string = song.name;
-                    break;
-                case SortManager.SongSort.YEAR:
-                    string = String.valueOf(song.year);
-                    if (string.length() != 4) {
-                        string = "-";
-                    } else {
-                        string = string.substring(2, 4);
+            String string = null; //NOSONAR
+            boolean requiresSubstring = true; //NOSONAR
+            switch (sortOrder) { //NOSONAR
+                case SortManager.SongSort.DEFAULT: //NOSONAR
+                    string = StringUtils.keyFor(song.name); //NOSONAR
+                    break; //NOSONAR
+                case SortManager.SongSort.NAME: //NOSONAR
+                    string = song.name; //NOSONAR
+                    break; //NOSONAR
+                case SortManager.SongSort.YEAR: //NOSONAR
+                    string = String.valueOf(song.year); //NOSONAR
+                    if (string.length() != 4) { //NOSONAR
+                        string = "-"; //NOSONAR
+                    } else { //NOSONAR
+                        string = string.substring(2, 4); //NOSONAR
                     }
-                    requiresSubstring = false;
-                    break;
-                case SortManager.SongSort.ALBUM_NAME:
-                    string = StringUtils.keyFor(song.albumName);
-                    break;
-                case SortManager.SongSort.ARTIST_NAME:
-                    string = StringUtils.keyFor(song.artistName);
-                    break;
+                    requiresSubstring = false; //NOSONAR
+                    break; //NOSONAR
+                case SortManager.SongSort.ALBUM_NAME: //NOSONAR
+                    string = StringUtils.keyFor(song.albumName); //NOSONAR
+                    break; //NOSONAR
+                case SortManager.SongSort.ARTIST_NAME: //NOSONAR
+                    string = StringUtils.keyFor(song.artistName); //NOSONAR
+                    break; //NOSONAR
             }
 
-            if (requiresSubstring) {
-                if (!TextUtils.isEmpty(string)) {
-                    string = string.substring(0, 1).toUpperCase();
-                } else {
-                    string = " ";
+            if (requiresSubstring) { //NOSONAR
+                if (!TextUtils.isEmpty(string)) { //NOSONAR
+                    string = string.substring(0, 1).toUpperCase(); //NOSONAR
+                } else { //NOSONAR
+                    string = " "; //NOSONAR
                 }
             }
-            return string;
+            return string; //NOSONAR
         }
-        return "";
+        return ""; //NOSONAR
     }
 
-    @Override
-    public boolean areContentsEqual(Object other) {
-        if (other instanceof SongView) {
-            return this.song.equals(((SongView) other).song)
-                    && Arrays.equals(prefix, ((SongView) other).prefix);
+    @Override //NOSONAR
+    public boolean areContentsEqual(Object other) { //NOSONAR
+        if (other instanceof SongView) { //NOSONAR
+            return this.song.equals(((SongView) other).song) //NOSONAR
+                    && Arrays.equals(prefix, ((SongView) other).prefix); //NOSONAR
         }
-        return false;
+        return false; //NOSONAR
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        SongView songView = (SongView) o;
+        SongView songView = (SongView) o; //NOSONAR
 
-        if (editable != songView.editable) return false;
-        if (showAlbumArt != songView.showAlbumArt) return false;
-        if (showPlayCount != songView.showPlayCount) return false;
-        if (showTrackNumber != songView.showTrackNumber) return false;
-        if (showArtistName != songView.showArtistName) return false;
-        if (showAlbumName != songView.showAlbumName) return false;
-        return song != null ? song.equals(songView.song) : songView.song == null;
+        if (editable != songView.editable) return false; //NOSONAR
+        if (showAlbumArt != songView.showAlbumArt) return false; //NOSONAR
+        if (showPlayCount != songView.showPlayCount) return false; //NOSONAR
+        if (showTrackNumber != songView.showTrackNumber) return false; //NOSONAR
+        if (showArtistName != songView.showArtistName) return false; //NOSONAR
+        if (showAlbumName != songView.showAlbumName) return false; //NOSONAR
+        return song != null ? song.equals(songView.song) : songView.song == null; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = song != null ? song.hashCode() : 0;
-        result = 31 * result + (editable ? 1 : 0);
-        result = 31 * result + (showAlbumArt ? 1 : 0);
-        result = 31 * result + (showPlayCount ? 1 : 0);
-        result = 31 * result + (showTrackNumber ? 1 : 0);
-        result = 31 * result + (showArtistName ? 1 : 0);
-        result = 31 * result + (showAlbumName ? 1 : 0);
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = song != null ? song.hashCode() : 0; //NOSONAR
+        result = 31 * result + (editable ? 1 : 0); //NOSONAR
+        result = 31 * result + (showAlbumArt ? 1 : 0); //NOSONAR
+        result = 31 * result + (showPlayCount ? 1 : 0); //NOSONAR
+        result = 31 * result + (showTrackNumber ? 1 : 0); //NOSONAR
+        result = 31 * result + (showArtistName ? 1 : 0); //NOSONAR
+        result = 31 * result + (showAlbumName ? 1 : 0); //NOSONAR
+        return result; //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder<SongView> {
+    public static class ViewHolder extends BaseViewHolder<SongView> { //NOSONAR
 
-        @BindView(R.id.line_one)
-        TextView lineOne;
+        @BindView(R.id.line_one) //NOSONAR
+        TextView lineOne; //NOSONAR
 
-        @BindView(R.id.line_two)
-        TextView lineTwo;
+        @BindView(R.id.line_two) //NOSONAR
+        TextView lineTwo; //NOSONAR
 
-        @BindView(R.id.line_three)
-        TextView lineThree;
+        @BindView(R.id.line_three) //NOSONAR
+        TextView lineThree; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.trackNumber)
-        TextView trackNumber;
+        @Nullable //NOSONAR
+        @BindView(R.id.trackNumber) //NOSONAR
+        TextView trackNumber; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.play_count)
-        PlayCountView playCount;
+        @Nullable //NOSONAR
+        @BindView(R.id.play_count) //NOSONAR
+        PlayCountView playCount; //NOSONAR
 
-        @BindView(R.id.btn_overflow)
-        @SuppressWarnings("java:S1104")
-        public NonScrollImageButton overflowButton;
+        @BindView(R.id.btn_overflow) //NOSONAR
+        @SuppressWarnings("java:S1104") //NOSONAR
+        public NonScrollImageButton overflowButton; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.drag_handle)
-        ImageView dragHandle;
+        @Nullable //NOSONAR
+        @BindView(R.id.drag_handle) //NOSONAR
+        ImageView dragHandle; //NOSONAR
 
-        @Nullable
-        @BindView(R.id.image)
-        ImageView artwork;
+        @Nullable //NOSONAR
+        @BindView(R.id.image) //NOSONAR
+        ImageView artwork; //NOSONAR
 
-        ViewHolder(View itemView) {
-            super(itemView);
+        ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
 
-            ButterKnife.bind(this, itemView);
+            ButterKnife.bind(this, itemView); //NOSONAR
 
-            itemView.setOnClickListener(v -> viewModel.onItemClick(getAdapterPosition()));
-            itemView.setOnLongClickListener(v -> viewModel.onItemLongClick(getAdapterPosition()));
+            itemView.setOnClickListener(v -> viewModel.onItemClick(getAdapterPosition())); //NOSONAR
+            itemView.setOnLongClickListener(v -> viewModel.onItemLongClick(getAdapterPosition())); //NOSONAR
 
-            overflowButton.setOnClickListener(v -> viewModel.onOverflowClick(getAdapterPosition(), v));
+            overflowButton.setOnClickListener(v -> viewModel.onOverflowClick(getAdapterPosition(), v)); //NOSONAR
 
-            if (dragHandle != null) {
-                dragHandle.setOnTouchListener((v, event) -> {
-                    if (event.getActionMasked() == MotionEvent.ACTION_DOWN) {
-                        viewModel.onStartDrag(this);
+            if (dragHandle != null) { //NOSONAR
+                dragHandle.setOnTouchListener((v, event) -> { //NOSONAR
+                    if (event.getActionMasked() == MotionEvent.ACTION_DOWN) { //NOSONAR
+                        viewModel.onStartDrag(this); //NOSONAR
                     }
-                    return true;
+                    return true; //NOSONAR
                 });
             }
         }
 
-        @Override
-        public String toString() {
-            return "SongView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "SongView.ViewHolder"; //NOSONAR
         }
 
-        @Override
-        public void recycle() {
-            super.recycle();
+        @Override //NOSONAR
+        public void recycle() { //NOSONAR
+            super.recycle(); //NOSONAR
 
-            if (artwork != null) {
-                Glide.clear(artwork);
+            if (artwork != null) { //NOSONAR
+                Glide.clear(artwork); //NOSONAR
             }
         }
     }

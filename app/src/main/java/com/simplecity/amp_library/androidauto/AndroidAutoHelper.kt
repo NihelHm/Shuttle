@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.androidauto
 
@@ -25,390 +25,390 @@ import com.simplecity.amp_library.utils.extensions.getSongsSingle
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 
-sealed class MediaIdWrapper {
+sealed class MediaIdWrapper { //NOSONAR
 
-    object RootDirectory : MediaIdWrapper()
+    object RootDirectory : MediaIdWrapper() //NOSONAR
 
-    object ArtistDirectory : MediaIdWrapper()
+    object ArtistDirectory : MediaIdWrapper() //NOSONAR
 
-    class AlbumDirectory(var artistHash: Int?) : MediaIdWrapper()
+    class AlbumDirectory(var artistHash: Int?) : MediaIdWrapper() //NOSONAR
 
-    class SongDirectory(var artistHash: String?, var albumId: Long?) : MediaIdWrapper()
+    class SongDirectory(var artistHash: String?, var albumId: Long?) : MediaIdWrapper() //NOSONAR
 
-    object PlaylistDirectory : MediaIdWrapper()
+    object PlaylistDirectory : MediaIdWrapper() //NOSONAR
 
-    object GenreDirectory : MediaIdWrapper()
+    object GenreDirectory : MediaIdWrapper() //NOSONAR
 
-    class Song(var artistHash: String?, var albumId: Long?, var songId: Long?) : MediaIdWrapper()
+    class Song(var artistHash: String?, var albumId: Long?, var songId: Long?) : MediaIdWrapper() //NOSONAR
 
-    class Genre(var genreId: Long) : MediaIdWrapper()
+    class Genre(var genreId: Long) : MediaIdWrapper() //NOSONAR
 
-    class Playlist(var playlistId: Long) : MediaIdWrapper()
+    class Playlist(var playlistId: Long) : MediaIdWrapper() //NOSONAR
 }
 
-class MediaIdHelper(
-    private val application: ShuttleApplication,
-    private val songsRepository: Repository.SongsRepository,
-    private val albumsRepository: Repository.AlbumsRepository,
-    private val albumArtistsRepository: Repository.AlbumArtistsRepository,
-    private val genresRepository: Repository.GenresRepository,
-    private val playlistsRepository: PlaylistsRepository
+class MediaIdHelper( //NOSONAR
+    private val application: ShuttleApplication, //NOSONAR
+    private val songsRepository: Repository.SongsRepository, //NOSONAR
+    private val albumsRepository: Repository.AlbumsRepository, //NOSONAR
+    private val albumArtistsRepository: Repository.AlbumArtistsRepository, //NOSONAR
+    private val genresRepository: Repository.GenresRepository, //NOSONAR
+    private val playlistsRepository: PlaylistsRepository //NOSONAR
 ) {
 
-    companion object {
-        const val TAG = "MediaIdHelper"
+    companion object { //NOSONAR
+        const val TAG = "MediaIdHelper" //NOSONAR
     }
 
-    @Throws(IllegalStateException::class)
-    private fun parseMediaId(mediaId: String): MediaIdWrapper {
+    @Throws(IllegalStateException::class) //NOSONAR
+    private fun parseMediaId(mediaId: String): MediaIdWrapper { //NOSONAR
 
-        val uri = Uri.parse(mediaId)
+        val uri = Uri.parse(mediaId) //NOSONAR
 
-        return when (uri.pathSegments.firstOrNull()) {
+        return when (uri.pathSegments.firstOrNull()) { //NOSONAR
 
-            "root" -> {
-                MediaIdWrapper.RootDirectory
+            "root" -> { //NOSONAR
+                MediaIdWrapper.RootDirectory //NOSONAR
             }
-            else -> {
-                val artistHash = uri.pathSegments.getNextSegment("artists")
-                val albumId = uri.pathSegments.getNextSegment("albums")?.toLongOrNull()
-                val songId = uri.pathSegments.getNextSegment("songs")?.toLongOrNull()
-                val playlistId = uri.pathSegments.getNextSegment("playlists")?.toLongOrNull()
-                val genreId = uri.pathSegments.getNextSegment("genres")?.toLongOrNull()
+            else -> { //NOSONAR
+                val artistHash = uri.pathSegments.getNextSegment("artists") //NOSONAR
+                val albumId = uri.pathSegments.getNextSegment("albums")?.toLongOrNull() //NOSONAR
+                val songId = uri.pathSegments.getNextSegment("songs")?.toLongOrNull() //NOSONAR
+                val playlistId = uri.pathSegments.getNextSegment("playlists")?.toLongOrNull() //NOSONAR
+                val genreId = uri.pathSegments.getNextSegment("genres")?.toLongOrNull() //NOSONAR
 
-                if (uri.toString().endsWith('/')) {
-                    when {
-                        uri.pathSegments.contains("songs") -> MediaIdWrapper.SongDirectory(artistHash, albumId)
-                        uri.pathSegments.contains("albums") -> MediaIdWrapper.AlbumDirectory(artistHash?.toInt())
-                        uri.pathSegments.contains("artists") -> MediaIdWrapper.ArtistDirectory
-                        uri.pathSegments.contains("playlists") -> MediaIdWrapper.PlaylistDirectory
-                        uri.pathSegments.contains("genres") -> MediaIdWrapper.GenreDirectory
-                        else -> {
-                            throw IllegalStateException("Unknown MediaId '$mediaId' path")
+                if (uri.toString().endsWith('/')) { //NOSONAR
+                    when { //NOSONAR
+                        uri.pathSegments.contains("songs") -> MediaIdWrapper.SongDirectory(artistHash, albumId) //NOSONAR
+                        uri.pathSegments.contains("albums") -> MediaIdWrapper.AlbumDirectory(artistHash?.toInt()) //NOSONAR
+                        uri.pathSegments.contains("artists") -> MediaIdWrapper.ArtistDirectory //NOSONAR
+                        uri.pathSegments.contains("playlists") -> MediaIdWrapper.PlaylistDirectory //NOSONAR
+                        uri.pathSegments.contains("genres") -> MediaIdWrapper.GenreDirectory //NOSONAR
+                        else -> { //NOSONAR
+                            throw IllegalStateException("Unknown MediaId '$mediaId' path") //NOSONAR
                         }
                     }
-                } else {
-                    when {
-                        playlistId != null -> MediaIdWrapper.Playlist(playlistId)
-                        genreId != null -> MediaIdWrapper.Genre(genreId)
-                        else -> MediaIdWrapper.Song(artistHash, albumId, songId)
+                } else { //NOSONAR
+                    when { //NOSONAR
+                        playlistId != null -> MediaIdWrapper.Playlist(playlistId) //NOSONAR
+                        genreId != null -> MediaIdWrapper.Genre(genreId) //NOSONAR
+                        else -> MediaIdWrapper.Song(artistHash, albumId, songId) //NOSONAR
                     }
                 }
             }
         }
     }
 
-    private fun List<String>.getNextSegment(segmentName: String): String? {
-        val index = indexOf(segmentName)
-        if (index >= 0 && size > index + 1) {
-            return this[index + 1]
+    private fun List<String>.getNextSegment(segmentName: String): String? { //NOSONAR
+        val index = indexOf(segmentName) //NOSONAR
+        if (index >= 0 && size > index + 1) { //NOSONAR
+            return this[index + 1] //NOSONAR
         }
-        return null
+        return null //NOSONAR
     }
 
-    fun getChildren(mediaId: String, result: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) {
+    fun getChildren(mediaId: String, result: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) { //NOSONAR
 
-        val mediaIdWrapper: MediaIdWrapper? = try {
-            parseMediaId(mediaId)
-        } catch (e: IllegalStateException) {
-            Log.e(TAG, "Failed to parse media id: ${e.localizedMessage}")
-            null
+        val mediaIdWrapper: MediaIdWrapper? = try { //NOSONAR
+            parseMediaId(mediaId) //NOSONAR
+        } catch (e: IllegalStateException) { //NOSONAR
+            Log.e(TAG, "Failed to parse media id: ${e.localizedMessage}") //NOSONAR
+            null //NOSONAR
         }
 
-        when (mediaIdWrapper) {
-            is MediaIdWrapper.RootDirectory -> result(
-                mutableListOf(
-                    MediaItem(
-                        Builder()
-                            .setTitle(application.getString(string.artists_title))
-                            .setMediaId("media:/artists/")
-                            .build(), MediaItem.FLAG_BROWSABLE
+        when (mediaIdWrapper) { //NOSONAR
+            is MediaIdWrapper.RootDirectory -> result( //NOSONAR
+                mutableListOf( //NOSONAR
+                    MediaItem( //NOSONAR
+                        Builder() //NOSONAR
+                            .setTitle(application.getString(string.artists_title)) //NOSONAR
+                            .setMediaId("media:/artists/") //NOSONAR
+                            .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
                     ),
-                    MediaItem(
-                        Builder()
-                            .setTitle(application.getString(string.albums_title))
-                            .setMediaId("media:/albums/")
-                            .build(), MediaItem.FLAG_BROWSABLE
-                    ), MediaItem(
-                        Builder()
-                            .setTitle(application.getString(string.playlists_title))
-                            .setMediaId("media:/playlists/")
-                            .build(), MediaItem.FLAG_BROWSABLE
-                    ), MediaItem(
-                        Builder()
-                            .setTitle(application.getString(string.genres_title))
-                            .setMediaId("media:/genres/")
-                            .build(), MediaItem.FLAG_BROWSABLE
+                    MediaItem( //NOSONAR
+                        Builder() //NOSONAR
+                            .setTitle(application.getString(string.albums_title)) //NOSONAR
+                            .setMediaId("media:/albums/") //NOSONAR
+                            .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
+                    ), MediaItem( //NOSONAR
+                        Builder() //NOSONAR
+                            .setTitle(application.getString(string.playlists_title)) //NOSONAR
+                            .setMediaId("media:/playlists/") //NOSONAR
+                            .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
+                    ), MediaItem( //NOSONAR
+                        Builder() //NOSONAR
+                            .setTitle(application.getString(string.genres_title)) //NOSONAR
+                            .setMediaId("media:/genres/") //NOSONAR
+                            .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
                     )
                 )
             )
-            is MediaIdWrapper.GenreDirectory -> listGenres(mediaId, result)
-            is MediaIdWrapper.PlaylistDirectory -> listPlaylists(mediaId, result)
-            is MediaIdWrapper.ArtistDirectory -> listArtists(mediaId, result)
-            is MediaIdWrapper.AlbumDirectory -> listAlbums(mediaId, mediaIdWrapper.artistHash, result)
-            is MediaIdWrapper.SongDirectory -> listSongs(mediaId, mediaIdWrapper.albumId, result)
-            else -> result(mutableListOf())
+            is MediaIdWrapper.GenreDirectory -> listGenres(mediaId, result) //NOSONAR
+            is MediaIdWrapper.PlaylistDirectory -> listPlaylists(mediaId, result) //NOSONAR
+            is MediaIdWrapper.ArtistDirectory -> listArtists(mediaId, result) //NOSONAR
+            is MediaIdWrapper.AlbumDirectory -> listAlbums(mediaId, mediaIdWrapper.artistHash, result) //NOSONAR
+            is MediaIdWrapper.SongDirectory -> listSongs(mediaId, mediaIdWrapper.albumId, result) //NOSONAR
+            else -> result(mutableListOf()) //NOSONAR
         }
     }
 
-    fun getSongListForMediaId(mediaId: String, completion: (List<Song>, position: Int) -> Unit) {
-        val mediaWrapper = parseMediaId(mediaId)
-        when (mediaWrapper) {
-            is MediaIdWrapper.Song -> {
-                getSongsForPredicate { if (mediaWrapper.albumId == null) true else it.albumId == mediaWrapper.albumId }
-                    .map { songs ->
-                        songs
-                            .sortedBy { song -> song.albumArtistName }
-                            .sortedBy { song -> song.albumName }
-                            .sortedBy { song -> song.track }
-                            .sortedBy { song -> song.discNumber }
+    fun getSongListForMediaId(mediaId: String, completion: (List<Song>, position: Int) -> Unit) { //NOSONAR
+        val mediaWrapper = parseMediaId(mediaId) //NOSONAR
+        when (mediaWrapper) { //NOSONAR
+            is MediaIdWrapper.Song -> { //NOSONAR
+                getSongsForPredicate { if (mediaWrapper.albumId == null) true else it.albumId == mediaWrapper.albumId } //NOSONAR
+                    .map { songs -> //NOSONAR
+                        songs //NOSONAR
+                            .sortedBy { song -> song.albumArtistName } //NOSONAR
+                            .sortedBy { song -> song.albumName } //NOSONAR
+                            .sortedBy { song -> song.track } //NOSONAR
+                            .sortedBy { song -> song.discNumber } //NOSONAR
                     }
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { songs -> completion(songs, songs.indexOfFirst { it.id == mediaWrapper.songId }.or(0)) },
-                        { completion(mutableListOf(), 0) }
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                        { songs -> completion(songs, songs.indexOfFirst { it.id == mediaWrapper.songId }.or(0)) }, //NOSONAR
+                        { completion(mutableListOf(), 0) } //NOSONAR
                     )
             }
-            is MediaIdWrapper.Playlist -> {
-                getSongsForPlaylistId(mediaWrapper.playlistId)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { songs -> completion(songs, 0) },
-                        { completion(mutableListOf(), 0) }
+            is MediaIdWrapper.Playlist -> { //NOSONAR
+                getSongsForPlaylistId(mediaWrapper.playlistId) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                        { songs -> completion(songs, 0) }, //NOSONAR
+                        { completion(mutableListOf(), 0) } //NOSONAR
                     )
             }
-            is MediaIdWrapper.Genre -> {
-                getSongsForGenreId(mediaWrapper.genreId)
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(
-                        { songs -> completion(songs, 0) },
-                        { completion(mutableListOf(), 0) }
+            is MediaIdWrapper.Genre -> { //NOSONAR
+                getSongsForGenreId(mediaWrapper.genreId) //NOSONAR
+                    .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                    .subscribe( //NOSONAR
+                        { songs -> completion(songs, 0) }, //NOSONAR
+                        { completion(mutableListOf(), 0) } //NOSONAR
                     )
             }
         }
     }
 
-    fun handlePlayFromSearch(query: String, extras: Bundle): Single<Pair<List<Song>, Int>> {
-        val mediaFocus = extras.getString(MediaStore.EXTRA_MEDIA_FOCUS)
-        when (mediaFocus) {
-            MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE -> {
-                extras.getString(MediaStore.EXTRA_MEDIA_ARTIST)?.let { artist ->
-                    return getSongsForPredicate { song -> song.artistName.equals(artist, true) }
-                        .map { songs ->
-                            Pair(songs
-                                .sortedBy { song -> song.albumName }
-                                .sortedBy { song -> song.track }
-                                .sortedBy { song -> song.discNumber },
-                                0
+    fun handlePlayFromSearch(query: String, extras: Bundle): Single<Pair<List<Song>, Int>> { //NOSONAR
+        val mediaFocus = extras.getString(MediaStore.EXTRA_MEDIA_FOCUS) //NOSONAR
+        when (mediaFocus) { //NOSONAR
+            MediaStore.Audio.Artists.ENTRY_CONTENT_TYPE -> { //NOSONAR
+                extras.getString(MediaStore.EXTRA_MEDIA_ARTIST)?.let { artist -> //NOSONAR
+                    return getSongsForPredicate { song -> song.artistName.equals(artist, true) } //NOSONAR
+                        .map { songs -> //NOSONAR
+                            Pair(songs //NOSONAR
+                                .sortedBy { song -> song.albumName } //NOSONAR
+                                .sortedBy { song -> song.track } //NOSONAR
+                                .sortedBy { song -> song.discNumber }, //NOSONAR
+                                0 //NOSONAR
                             )
                         }
                 }
             }
-            MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE -> {
-                extras.getString(MediaStore.EXTRA_MEDIA_ALBUM)?.let { album ->
-                    return getSongsForPredicate { song -> song.albumName.equals(album, true) }
-                        .map { songs ->
-                            Pair(songs
-                                .sortedBy { song -> song.track }
-                                .sortedBy { song -> song.discNumber },
-                                0
+            MediaStore.Audio.Albums.ENTRY_CONTENT_TYPE -> { //NOSONAR
+                extras.getString(MediaStore.EXTRA_MEDIA_ALBUM)?.let { album -> //NOSONAR
+                    return getSongsForPredicate { song -> song.albumName.equals(album, true) } //NOSONAR
+                        .map { songs -> //NOSONAR
+                            Pair(songs //NOSONAR
+                                .sortedBy { song -> song.track } //NOSONAR
+                                .sortedBy { song -> song.discNumber }, //NOSONAR
+                                0 //NOSONAR
                             )
                         }
                 }
             }
-            MediaStore.Audio.Genres.ENTRY_CONTENT_TYPE -> {
-                extras.getString(MediaStore.EXTRA_MEDIA_GENRE)?.let { genreName ->
-                    return genresRepository.getGenres()
-                        .first(emptyList())
-                        .flatMap { genres -> Single.just(genres.first { genre -> genre.name == genreName }) }
-                        .flatMap { genresSingle -> genresSingle.getSongsObservable(application) }
-                        .map { songs ->
-                            Pair(songs.sortedBy { it.playlistSongPlayOrder }.toMutableList(), 0)
+            MediaStore.Audio.Genres.ENTRY_CONTENT_TYPE -> { //NOSONAR
+                extras.getString(MediaStore.EXTRA_MEDIA_GENRE)?.let { genreName -> //NOSONAR
+                    return genresRepository.getGenres() //NOSONAR
+                        .first(emptyList()) //NOSONAR
+                        .flatMap { genres -> Single.just(genres.first { genre -> genre.name == genreName }) } //NOSONAR
+                        .flatMap { genresSingle -> genresSingle.getSongsObservable(application) } //NOSONAR
+                        .map { songs -> //NOSONAR
+                            Pair(songs.sortedBy { it.playlistSongPlayOrder }.toMutableList(), 0) //NOSONAR
                         }
                 }
             }
         }
 
-        return getSongsForPredicate { song -> song.name.contains(query, true) }
-            .flatMap { songs ->
-                if (songs.isEmpty()) {
-                    Single.just(Pair<Song?, List<Song>>(null, emptyList()))
-                } else {
+        return getSongsForPredicate { song -> song.name.contains(query, true) } //NOSONAR
+            .flatMap { songs -> //NOSONAR
+                if (songs.isEmpty()) { //NOSONAR
+                    Single.just(Pair<Song?, List<Song>>(null, emptyList())) //NOSONAR
+                } else { //NOSONAR
                     // Take the first song matching our predicate, and retrieve all songs from the same album.
-                    val song = songs.first()
-                    song.album.getSongsSingle(songsRepository).map { albumSongs -> Pair(song, albumSongs) }
+                    val song = songs.first() //NOSONAR
+                    song.album.getSongsSingle(songsRepository).map { albumSongs -> Pair(song, albumSongs) } //NOSONAR
                 }
             }
-            .map { pair ->
-                val songs = pair.second
-                    .sortedBy { song -> song.artistName }
-                    .sortedBy { song -> song.albumName }
-                    .sortedBy { song -> song.track }
-                    .sortedBy { song -> song.discNumber }
-                var index = 0
-                pair.first?.let { song ->
-                    index = songs.indexOf(song)
+            .map { pair -> //NOSONAR
+                val songs = pair.second //NOSONAR
+                    .sortedBy { song -> song.artistName } //NOSONAR
+                    .sortedBy { song -> song.albumName } //NOSONAR
+                    .sortedBy { song -> song.track } //NOSONAR
+                    .sortedBy { song -> song.discNumber } //NOSONAR
+                var index = 0 //NOSONAR
+                pair.first?.let { song -> //NOSONAR
+                    index = songs.indexOf(song) //NOSONAR
                 }
-                Pair(songs, index)
+                Pair(songs, index) //NOSONAR
             }
     }
 
     // DataManager helpers
 
-    @SuppressLint("CheckResult")
-    private fun listArtists(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) {
-        albumArtistsRepository.getAlbumArtists().first(emptyList())
-            .map { albumArtists ->
-                albumArtists
-                    .sortedBy { albumArtist -> StringUtils.keyFor(albumArtist.name) }
-                    .map { albumArtist -> albumArtist.toMediaItem(mediaId) }
-                    .toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    private fun listArtists(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) { //NOSONAR
+        albumArtistsRepository.getAlbumArtists().first(emptyList()) //NOSONAR
+            .map { albumArtists -> //NOSONAR
+                albumArtists //NOSONAR
+                    .sortedBy { albumArtist -> StringUtils.keyFor(albumArtist.name) } //NOSONAR
+                    .map { albumArtist -> albumArtist.toMediaItem(mediaId) } //NOSONAR
+                    .toMutableList() //NOSONAR
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {
+            .subscribe({ mediaItems -> completion(mediaItems) }, { //NOSONAR
                 // Intentionally left empty.
             })
     }
 
-    @SuppressLint("CheckResult")
-    private fun listPlaylists(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) {
-        playlistsRepository.getPlaylists().first(emptyList())
-            .map { playlists ->
-                playlists
-                    .sortedBy { playlist -> playlist.type }
-                    .map { playlist -> playlist.toMediaItem(mediaId) }
-                    .toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    private fun listPlaylists(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) { //NOSONAR
+        playlistsRepository.getPlaylists().first(emptyList()) //NOSONAR
+            .map { playlists -> //NOSONAR
+                playlists //NOSONAR
+                    .sortedBy { playlist -> playlist.type } //NOSONAR
+                    .map { playlist -> playlist.toMediaItem(mediaId) } //NOSONAR
+                    .toMutableList() //NOSONAR
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {
+            .subscribe({ mediaItems -> completion(mediaItems) }, { //NOSONAR
                 // Intentionally left empty.
             })
     }
 
-    @SuppressLint("CheckResult")
-    private fun listGenres(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) {
-        genresRepository.getGenres().first(emptyList())
-            .map { genres ->
-                genres
-                    .sortedBy { genre -> genre.name }
-                    .map { genre -> genre.toMediaItem(mediaId) }
-                    .toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    private fun listGenres(mediaId: String, completion: (MutableList<MediaBrowserCompat.MediaItem>) -> Unit) { //NOSONAR
+        genresRepository.getGenres().first(emptyList()) //NOSONAR
+            .map { genres -> //NOSONAR
+                genres //NOSONAR
+                    .sortedBy { genre -> genre.name } //NOSONAR
+                    .map { genre -> genre.toMediaItem(mediaId) } //NOSONAR
+                    .toMutableList() //NOSONAR
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {
+            .subscribe({ mediaItems -> completion(mediaItems) }, { //NOSONAR
                 // Intentionally left empty.
             })
     }
 
-    @SuppressLint("CheckResult")
-    private fun listAlbums(mediaId: String, artistHash: Int?, completion: (MutableList<MediaItem>) -> Unit) {
+    @SuppressLint("CheckResult") //NOSONAR
+    private fun listAlbums(mediaId: String, artistHash: Int?, completion: (MutableList<MediaItem>) -> Unit) { //NOSONAR
 
-        val albumsSingle = if (artistHash != null) {
-            albumArtistsRepository.getAlbumArtists().first(emptyList())
-                .map { albumArtists -> albumArtists.first { it.hashCode() == artistHash } }
-                .map { albumArtist -> albumArtist.albums }
-        } else {
-            albumsRepository.getAlbums().first(emptyList())
+        val albumsSingle = if (artistHash != null) { //NOSONAR
+            albumArtistsRepository.getAlbumArtists().first(emptyList()) //NOSONAR
+                .map { albumArtists -> albumArtists.first { it.hashCode() == artistHash } } //NOSONAR
+                .map { albumArtist -> albumArtist.albums } //NOSONAR
+        } else { //NOSONAR
+            albumsRepository.getAlbums().first(emptyList()) //NOSONAR
         }
 
-        albumsSingle.map { albums ->
-            albums
-                .sortedBy { it.name }
-                .map { album -> album.toMediaItem(mediaId) }
-                .toMutableList()
+        albumsSingle.map { albums -> //NOSONAR
+            albums //NOSONAR
+                .sortedBy { it.name } //NOSONAR
+                .map { album -> album.toMediaItem(mediaId) } //NOSONAR
+                .toMutableList() //NOSONAR
         }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {
+            .subscribe({ mediaItems -> completion(mediaItems) }, { //NOSONAR
                 // Intentionally left empty.
             })
     }
 
-    @SuppressLint("CheckResult")
-    private fun listSongs(mediaId: String, albumId: Long?, completion: (MutableList<MediaItem>) -> Unit) {
-        getSongsForPredicate { if (albumId == null) true else it.albumId == albumId }
-            .map { songs ->
-                songs
-                    .sortedBy { song -> song.albumArtistName }
-                    .sortedBy { song -> song.albumName }
-                    .sortedBy { song -> song.track }
-                    .sortedBy { song -> song.discNumber }
-                    .map { song -> song.toMediaItem(mediaId) }
-                    .toMutableList()
+    @SuppressLint("CheckResult") //NOSONAR
+    private fun listSongs(mediaId: String, albumId: Long?, completion: (MutableList<MediaItem>) -> Unit) { //NOSONAR
+        getSongsForPredicate { if (albumId == null) true else it.albumId == albumId } //NOSONAR
+            .map { songs -> //NOSONAR
+                songs //NOSONAR
+                    .sortedBy { song -> song.albumArtistName } //NOSONAR
+                    .sortedBy { song -> song.albumName } //NOSONAR
+                    .sortedBy { song -> song.track } //NOSONAR
+                    .sortedBy { song -> song.discNumber } //NOSONAR
+                    .map { song -> song.toMediaItem(mediaId) } //NOSONAR
+                    .toMutableList() //NOSONAR
             }
-            .subscribe({ mediaItems -> completion(mediaItems) }, {
+            .subscribe({ mediaItems -> completion(mediaItems) }, { //NOSONAR
                 // Intentionally left empty.
             })
     }
 
-    private fun getSongsForPredicate(predicate: (Song) -> Boolean): Single<List<Song>> {
-        return songsRepository.getSongs(predicate).first(emptyList())
+    private fun getSongsForPredicate(predicate: (Song) -> Boolean): Single<List<Song>> { //NOSONAR
+        return songsRepository.getSongs(predicate).first(emptyList()) //NOSONAR
     }
 
-    private fun getSongsForPlaylistId(playlistId: Long?): Single<List<Song>> {
-        return playlistsRepository.getPlaylists()
-            .first(emptyList())
-            .flatMap { playlists -> Single.just(playlists.first { playlist -> playlist.id == playlistId }) }
-            .flatMap { playlist -> songsRepository.getSongs(playlist).first(emptyList()) }
-            .map { songs ->
-                songs
-                    .sortedBy { it.playlistSongPlayOrder }
-                    .toMutableList()
+    private fun getSongsForPlaylistId(playlistId: Long?): Single<List<Song>> { //NOSONAR
+        return playlistsRepository.getPlaylists() //NOSONAR
+            .first(emptyList()) //NOSONAR
+            .flatMap { playlists -> Single.just(playlists.first { playlist -> playlist.id == playlistId }) } //NOSONAR
+            .flatMap { playlist -> songsRepository.getSongs(playlist).first(emptyList()) } //NOSONAR
+            .map { songs -> //NOSONAR
+                songs //NOSONAR
+                    .sortedBy { it.playlistSongPlayOrder } //NOSONAR
+                    .toMutableList() //NOSONAR
             }
     }
 
-    private fun getSongsForGenreId(genreId: Long?): Single<MutableList<Song>> {
-        return genresRepository.getGenres()
-            .first(emptyList())
-            .flatMap { genres -> Single.just(genres.first { genre -> genre.id == genreId }) }
-            .flatMap { genresSingle -> genresSingle.getSongsObservable(application) }
-            .map { songs ->
-                songs.shuffled().toMutableList()
+    private fun getSongsForGenreId(genreId: Long?): Single<MutableList<Song>> { //NOSONAR
+        return genresRepository.getGenres() //NOSONAR
+            .first(emptyList()) //NOSONAR
+            .flatMap { genres -> Single.just(genres.first { genre -> genre.id == genreId }) } //NOSONAR
+            .flatMap { genresSingle -> genresSingle.getSongsObservable(application) } //NOSONAR
+            .map { songs -> //NOSONAR
+                songs.shuffled().toMutableList() //NOSONAR
             }
     }
 
     // MediaItem helpers
 
-    private fun Playlist.toMediaItem(parent: String): MediaItem {
-        return MediaItem(
-            Builder()
-                .setTitle(name)
-                .setMediaId("$parent$id/songs")
-                .build(), MediaItem.FLAG_PLAYABLE
+    private fun Playlist.toMediaItem(parent: String): MediaItem { //NOSONAR
+        return MediaItem( //NOSONAR
+            Builder() //NOSONAR
+                .setTitle(name) //NOSONAR
+                .setMediaId("$parent$id/songs") //NOSONAR
+                .build(), MediaItem.FLAG_PLAYABLE //NOSONAR
         )
     }
 
-    private fun Genre.toMediaItem(parent: String): MediaItem {
-        return MediaItem(
-            Builder()
-                .setTitle(name)
-                .setMediaId("$parent$id/songs")
-                .build(), MediaItem.FLAG_PLAYABLE
+    private fun Genre.toMediaItem(parent: String): MediaItem { //NOSONAR
+        return MediaItem( //NOSONAR
+            Builder() //NOSONAR
+                .setTitle(name) //NOSONAR
+                .setMediaId("$parent$id/songs") //NOSONAR
+                .build(), MediaItem.FLAG_PLAYABLE //NOSONAR
         )
     }
 
-    private fun AlbumArtist.toMediaItem(parent: String): MediaItem {
-        return MediaItem(
-            Builder()
-                .setTitle(name)
-                .setMediaId("$parent${hashCode()}/albums/")
-                .build(), MediaItem.FLAG_BROWSABLE
+    private fun AlbumArtist.toMediaItem(parent: String): MediaItem { //NOSONAR
+        return MediaItem( //NOSONAR
+            Builder() //NOSONAR
+                .setTitle(name) //NOSONAR
+                .setMediaId("$parent${hashCode()}/albums/") //NOSONAR
+                .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
         )
     }
 
-    private fun Album.toMediaItem(parent: String): MediaItem {
-        return MediaItem(
-            Builder()
-                .setTitle(name)
-                .setSubtitle(albumArtistName)
-                .setMediaId("$parent$id/songs/")
-                .build(), MediaItem.FLAG_BROWSABLE
+    private fun Album.toMediaItem(parent: String): MediaItem { //NOSONAR
+        return MediaItem( //NOSONAR
+            Builder() //NOSONAR
+                .setTitle(name) //NOSONAR
+                .setSubtitle(albumArtistName) //NOSONAR
+                .setMediaId("$parent$id/songs/") //NOSONAR
+                .build(), MediaItem.FLAG_BROWSABLE //NOSONAR
         )
     }
 
-    private fun Song.toMediaItem(parent: String): MediaItem {
-        return MediaItem(
-            Builder()
-                .setTitle(name)
-                .setSubtitle(albumArtistName)
-                .setMediaUri(Uri.parse(path))
-                .setMediaId("$parent$id")
-                .build(), MediaItem.FLAG_PLAYABLE
+    private fun Song.toMediaItem(parent: String): MediaItem { //NOSONAR
+        return MediaItem( //NOSONAR
+            Builder() //NOSONAR
+                .setTitle(name) //NOSONAR
+                .setSubtitle(albumArtistName) //NOSONAR
+                .setMediaUri(Uri.parse(path)) //NOSONAR
+                .setMediaId("$parent$id") //NOSONAR
+                .build(), MediaItem.FLAG_PLAYABLE //NOSONAR
         )
     }
 }

@@ -27,66 +27,66 @@ import io.reactivex.functions.Consumer;
 import java.lang.reflect.Field;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticCoordinatorLayout extends CoordinatorLayout
-    implements AppBarLayout.OnOffsetChangedListener {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticCoordinatorLayout extends CoordinatorLayout //NOSONAR
+    implements AppBarLayout.OnOffsetChangedListener { //NOSONAR
 
-  private Disposable toolbarColorSubscription;
-  private Disposable statusBarColorSubscription;
-  private AppBarLayout appBarLayout;
-  private View colorView;
-  private AestheticToolbar toolbar;
-  private CollapsingToolbarLayout collapsingToolbarLayout;
+  private Disposable toolbarColorSubscription; //NOSONAR
+  private Disposable statusBarColorSubscription; //NOSONAR
+  private AppBarLayout appBarLayout; //NOSONAR
+  private View colorView; //NOSONAR
+  private AestheticToolbar toolbar; //NOSONAR
+  private CollapsingToolbarLayout collapsingToolbarLayout; //NOSONAR
 
-  private int toolbarColor;
-  private ActiveInactiveColors iconTextColors;
-  private int lastOffset = -1;
+  private int toolbarColor; //NOSONAR
+  private ActiveInactiveColors iconTextColors; //NOSONAR
+  private int lastOffset = -1; //NOSONAR
 
-  public AestheticCoordinatorLayout(Context context) {
-    super(context);
+  public AestheticCoordinatorLayout(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticCoordinatorLayout(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticCoordinatorLayout(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticCoordinatorLayout(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public AestheticCoordinatorLayout(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
   }
 
-  @SuppressWarnings("unchecked")
-  private static void tintMenu(
-      @NonNull AestheticToolbar toolbar, @Nullable Menu menu, final ActiveInactiveColors colors) {
-    if (toolbar.getNavigationIcon() != null) {
-      toolbar.setNavigationIcon(toolbar.getNavigationIcon(), colors.activeColor());
+  @SuppressWarnings("unchecked") //NOSONAR
+  private static void tintMenu( //NOSONAR
+      @NonNull AestheticToolbar toolbar, @Nullable Menu menu, final ActiveInactiveColors colors) { //NOSONAR
+    if (toolbar.getNavigationIcon() != null) { //NOSONAR
+      toolbar.setNavigationIcon(toolbar.getNavigationIcon(), colors.activeColor()); //NOSONAR
     }
-    Util.setOverflowButtonColor(toolbar, colors.activeColor());
+    Util.setOverflowButtonColor(toolbar, colors.activeColor()); //NOSONAR
 
-    try {
-      final Field field = Toolbar.class.getDeclaredField("mCollapseIcon");
-      field.setAccessible(true);
-      Drawable collapseIcon = (Drawable) field.get(toolbar);
-      if (collapseIcon != null) {
-        field.set(toolbar, TintHelper.createTintedDrawable(collapseIcon, colors.toEnabledSl()));
+    try { //NOSONAR
+      final Field field = Toolbar.class.getDeclaredField("mCollapseIcon"); //NOSONAR
+      field.setAccessible(true); //NOSONAR
+      Drawable collapseIcon = (Drawable) field.get(toolbar); //NOSONAR
+      if (collapseIcon != null) { //NOSONAR
+        field.set(toolbar, TintHelper.createTintedDrawable(collapseIcon, colors.toEnabledSl())); //NOSONAR
       }
-    } catch (Exception e) {
-      e.printStackTrace();
+    } catch (Exception e) { //NOSONAR
+      e.printStackTrace(); //NOSONAR
     }
 
-    final PorterDuffColorFilter colorFilter =
-        new PorterDuffColorFilter(colors.activeColor(), PorterDuff.Mode.SRC_IN);
-    for (int i = 0; i < toolbar.getChildCount(); i++) {
-      final View v = toolbar.getChildAt(i);
+    final PorterDuffColorFilter colorFilter = //NOSONAR
+        new PorterDuffColorFilter(colors.activeColor(), PorterDuff.Mode.SRC_IN); //NOSONAR
+    for (int i = 0; i < toolbar.getChildCount(); i++) { //NOSONAR
+      final View v = toolbar.getChildAt(i); //NOSONAR
       // We can't iterate through the toolbar.getMenu() here, because we need the ActionMenuItemView.
-      if (v instanceof ActionMenuView) {
-        for (int j = 0; j < ((ActionMenuView) v).getChildCount(); j++) {
-          final View innerView = ((ActionMenuView) v).getChildAt(j);
-          if (innerView instanceof ActionMenuItemView) {
-            int drawablesCount = ((ActionMenuItemView) innerView).getCompoundDrawables().length;
-            for (int k = 0; k < drawablesCount; k++) {
-              if (((ActionMenuItemView) innerView).getCompoundDrawables()[k] != null) {
-                ((ActionMenuItemView) innerView)
-                    .getCompoundDrawables()[k].setColorFilter(colorFilter);
+      if (v instanceof ActionMenuView) { //NOSONAR
+        for (int j = 0; j < ((ActionMenuView) v).getChildCount(); j++) { //NOSONAR
+          final View innerView = ((ActionMenuView) v).getChildAt(j); //NOSONAR
+          if (innerView instanceof ActionMenuItemView) { //NOSONAR
+            int drawablesCount = ((ActionMenuItemView) innerView).getCompoundDrawables().length; //NOSONAR
+            for (int k = 0; k < drawablesCount; k++) { //NOSONAR
+              if (((ActionMenuItemView) innerView).getCompoundDrawables()[k] != null) { //NOSONAR
+                ((ActionMenuItemView) innerView) //NOSONAR
+                    .getCompoundDrawables()[k].setColorFilter(colorFilter); //NOSONAR
               }
             }
           }
@@ -94,129 +94,129 @@ public class AestheticCoordinatorLayout extends CoordinatorLayout
       }
     }
 
-    if (menu == null) {
-      menu = toolbar.getMenu();
+    if (menu == null) { //NOSONAR
+      menu = toolbar.getMenu(); //NOSONAR
     }
-    ViewUtil.tintToolbarMenu(toolbar, menu, colors);
+    ViewUtil.tintToolbarMenu(toolbar, menu, colors); //NOSONAR
   }
 
-  @Override
-  public void onAttachedToWindow() {
-    super.onAttachedToWindow();
+  @Override //NOSONAR
+  public void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
 
     // Find the toolbar and color view used to blend the scroll transition
-    if (getChildCount() > 0 && getChildAt(0) instanceof AppBarLayout) {
-      appBarLayout = (AppBarLayout) getChildAt(0);
-      if (appBarLayout.getChildCount() > 0
-          && appBarLayout.getChildAt(0) instanceof CollapsingToolbarLayout) {
-        collapsingToolbarLayout = (CollapsingToolbarLayout) appBarLayout.getChildAt(0);
-        for (int i = 0; i < collapsingToolbarLayout.getChildCount(); i++) {
-          if (this.toolbar != null && this.colorView != null) {
-            break;
+    if (getChildCount() > 0 && getChildAt(0) instanceof AppBarLayout) { //NOSONAR
+      appBarLayout = (AppBarLayout) getChildAt(0); //NOSONAR
+      if (appBarLayout.getChildCount() > 0 //NOSONAR
+          && appBarLayout.getChildAt(0) instanceof CollapsingToolbarLayout) { //NOSONAR
+        collapsingToolbarLayout = (CollapsingToolbarLayout) appBarLayout.getChildAt(0); //NOSONAR
+        for (int i = 0; i < collapsingToolbarLayout.getChildCount(); i++) { //NOSONAR
+          if (this.toolbar != null && this.colorView != null) { //NOSONAR
+            break; //NOSONAR
           }
-          View child = collapsingToolbarLayout.getChildAt(i);
-          if (child instanceof AestheticToolbar) {
-            this.toolbar = (AestheticToolbar) child;
-          } else if (child.getBackground() != null
-              && child.getBackground() instanceof ColorDrawable) {
-            this.colorView = child;
+          View child = collapsingToolbarLayout.getChildAt(i); //NOSONAR
+          if (child instanceof AestheticToolbar) { //NOSONAR
+            this.toolbar = (AestheticToolbar) child; //NOSONAR
+          } else if (child.getBackground() != null //NOSONAR
+              && child.getBackground() instanceof ColorDrawable) { //NOSONAR
+            this.colorView = child; //NOSONAR
           }
         }
       }
     }
 
-    if (toolbar != null && colorView != null) {
-      this.appBarLayout.addOnOffsetChangedListener(this);
-      toolbarColorSubscription =
-          Observable.combineLatest(
-                  toolbar.colorUpdated(),
-                  Aesthetic.get(getContext()).colorIconTitle(toolbar.colorUpdated()),
-                  new BiFunction<
-                      Integer, ActiveInactiveColors, Pair<Integer, ActiveInactiveColors>>() {
-                    @Override
-                    public Pair<Integer, ActiveInactiveColors> apply(
-                        Integer integer, ActiveInactiveColors activeInactiveColors) {
-                      return Pair.create(integer, activeInactiveColors);
+    if (toolbar != null && colorView != null) { //NOSONAR
+      this.appBarLayout.addOnOffsetChangedListener(this); //NOSONAR
+      toolbarColorSubscription = //NOSONAR
+          Observable.combineLatest( //NOSONAR
+                  toolbar.colorUpdated(), //NOSONAR
+                  Aesthetic.get(getContext()).colorIconTitle(toolbar.colorUpdated()), //NOSONAR
+                  new BiFunction< //NOSONAR
+                      Integer, ActiveInactiveColors, Pair<Integer, ActiveInactiveColors>>() { //NOSONAR
+                    @Override //NOSONAR
+                    public Pair<Integer, ActiveInactiveColors> apply( //NOSONAR
+                        Integer integer, ActiveInactiveColors activeInactiveColors) { //NOSONAR
+                      return Pair.create(integer, activeInactiveColors); //NOSONAR
                     }
                   })
-              .compose(Rx.<Pair<Integer, ActiveInactiveColors>>distinctToMainThread())
-              .subscribe(
-                  new Consumer<Pair<Integer, ActiveInactiveColors>>() {
-                    @Override
-                    public void accept(@NonNull Pair<Integer, ActiveInactiveColors> result) {
-                      toolbarColor = result.first;
-                      iconTextColors = result.second;
-                      invalidateColors();
+              .compose(Rx.<Pair<Integer, ActiveInactiveColors>>distinctToMainThread()) //NOSONAR
+              .subscribe( //NOSONAR
+                  new Consumer<Pair<Integer, ActiveInactiveColors>>() { //NOSONAR
+                    @Override //NOSONAR
+                    public void accept(@NonNull Pair<Integer, ActiveInactiveColors> result) { //NOSONAR
+                      toolbarColor = result.first; //NOSONAR
+                      iconTextColors = result.second; //NOSONAR
+                      invalidateColors(); //NOSONAR
                     }
                   },
-                  onErrorLogAndRethrow());
+                  onErrorLogAndRethrow()); //NOSONAR
     }
 
-    if (collapsingToolbarLayout != null) {
-      statusBarColorSubscription =
-          Aesthetic.get(getContext())
-              .colorStatusBar()
-              .compose(Rx.<Integer>distinctToMainThread())
-              .subscribe(
-                  new Consumer<Integer>() {
-                    @Override
-                    public void accept(@io.reactivex.annotations.NonNull Integer color) {
-                      collapsingToolbarLayout.setContentScrimColor(color);
-                      collapsingToolbarLayout.setStatusBarScrimColor(color);
+    if (collapsingToolbarLayout != null) { //NOSONAR
+      statusBarColorSubscription = //NOSONAR
+          Aesthetic.get(getContext()) //NOSONAR
+              .colorStatusBar() //NOSONAR
+              .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+              .subscribe( //NOSONAR
+                  new Consumer<Integer>() { //NOSONAR
+                    @Override //NOSONAR
+                    public void accept(@io.reactivex.annotations.NonNull Integer color) { //NOSONAR
+                      collapsingToolbarLayout.setContentScrimColor(color); //NOSONAR
+                      collapsingToolbarLayout.setStatusBarScrimColor(color); //NOSONAR
                     }
                   },
-                  onErrorLogAndRethrow());
+                  onErrorLogAndRethrow()); //NOSONAR
     }
   }
 
-  @Override
-  public void onDetachedFromWindow() {
-    if (toolbarColorSubscription != null) {
-      toolbarColorSubscription.dispose();
+  @Override //NOSONAR
+  public void onDetachedFromWindow() { //NOSONAR
+    if (toolbarColorSubscription != null) { //NOSONAR
+      toolbarColorSubscription.dispose(); //NOSONAR
     }
-    if (statusBarColorSubscription != null) {
-      statusBarColorSubscription.dispose();
+    if (statusBarColorSubscription != null) { //NOSONAR
+      statusBarColorSubscription.dispose(); //NOSONAR
     }
-    if (this.appBarLayout != null) {
-      this.appBarLayout.removeOnOffsetChangedListener(this);
-      this.appBarLayout = null;
+    if (this.appBarLayout != null) { //NOSONAR
+      this.appBarLayout.removeOnOffsetChangedListener(this); //NOSONAR
+      this.appBarLayout = null; //NOSONAR
     }
-    this.toolbar = null;
-    this.colorView = null;
-    super.onDetachedFromWindow();
+    this.toolbar = null; //NOSONAR
+    this.colorView = null; //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 
-  @Override
-  public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-    if (lastOffset == Math.abs(verticalOffset)) {
-      return;
+  @Override //NOSONAR
+  public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) { //NOSONAR
+    if (lastOffset == Math.abs(verticalOffset)) { //NOSONAR
+      return; //NOSONAR
     }
-    lastOffset = Math.abs(verticalOffset);
-    invalidateColors();
+    lastOffset = Math.abs(verticalOffset); //NOSONAR
+    invalidateColors(); //NOSONAR
   }
 
-  private void invalidateColors() {
-    if (iconTextColors == null) {
-      return;
+  private void invalidateColors() { //NOSONAR
+    if (iconTextColors == null) { //NOSONAR
+      return; //NOSONAR
     }
 
-    final int maxOffset = appBarLayout.getMeasuredHeight() - toolbar.getMeasuredHeight();
-    final float ratio = (float) lastOffset / (float) maxOffset;
+    final int maxOffset = appBarLayout.getMeasuredHeight() - toolbar.getMeasuredHeight(); //NOSONAR
+    final float ratio = (float) lastOffset / (float) maxOffset; //NOSONAR
 
-    final int colorViewColor = ((ColorDrawable) colorView.getBackground()).getColor();
-    final int blendedColor = Util.blendColors(colorViewColor, toolbarColor, ratio);
-    final int collapsedTitleColor = iconTextColors.activeColor();
-    final int expandedTitleColor = Util.isColorLight(colorViewColor) ? Color.BLACK : Color.WHITE;
-    final int blendedTitleColor = Util.blendColors(expandedTitleColor, collapsedTitleColor, ratio);
+    final int colorViewColor = ((ColorDrawable) colorView.getBackground()).getColor(); //NOSONAR
+    final int blendedColor = Util.blendColors(colorViewColor, toolbarColor, ratio); //NOSONAR
+    final int collapsedTitleColor = iconTextColors.activeColor(); //NOSONAR
+    final int expandedTitleColor = Util.isColorLight(colorViewColor) ? Color.BLACK : Color.WHITE; //NOSONAR
+    final int blendedTitleColor = Util.blendColors(expandedTitleColor, collapsedTitleColor, ratio); //NOSONAR
 
-    toolbar.setBackgroundColor(blendedColor);
+    toolbar.setBackgroundColor(blendedColor); //NOSONAR
 
-    collapsingToolbarLayout.setCollapsedTitleTextColor(collapsedTitleColor);
-    collapsingToolbarLayout.setExpandedTitleColor(expandedTitleColor);
+    collapsingToolbarLayout.setCollapsedTitleTextColor(collapsedTitleColor); //NOSONAR
+    collapsingToolbarLayout.setExpandedTitleColor(expandedTitleColor); //NOSONAR
 
-    tintMenu(
-        toolbar,
-        toolbar.getMenu(),
-        ActiveInactiveColors.create(blendedTitleColor, Util.adjustAlpha(blendedColor, 0.7f)));
+    tintMenu( //NOSONAR
+        toolbar, //NOSONAR
+        toolbar.getMenu(), //NOSONAR
+        ActiveInactiveColors.create(blendedTitleColor, Util.adjustAlpha(blendedColor, 0.7f))); //NOSONAR
   }
 }

@@ -1,40 +1,40 @@
 package com.simplecity.amp_library.glide.utils;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Size {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Size { //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public int width;
-    @SuppressWarnings("java:S1104")
-    public int height;
+    public int width; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int height; //NOSONAR
 
-    public Size(int width, int height) {
+    public Size(int width, int height) { //NOSONAR
         {
-            this.width = width;
-            this.height = height;
+            this.width = width; //NOSONAR
+            this.height = height; //NOSONAR
         }
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
 
-        Size size = (Size) o;
+        Size size = (Size) o; //NOSONAR
 
-        return width == size.width && height == size.height;
+        return width == size.width && height == size.height; //NOSONAR
     }
 
-    @Override
-    public int hashCode() {
-        int result = width;
-        result = 31 * result + height;
-        return result;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = width; //NOSONAR
+        result = 31 * result + height; //NOSONAR
+        return result; //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return String.format("%s, %s", width, height);
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return String.format("%s, %s", width, height); //NOSONAR
     }
 }

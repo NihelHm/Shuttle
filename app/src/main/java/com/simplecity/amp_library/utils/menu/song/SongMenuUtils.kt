@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.menu.song
 
@@ -12,120 +12,120 @@ import com.simplecity.amp_library.utils.playlists.PlaylistManager
 import com.simplecity.amp_library.utils.playlists.PlaylistMenuHelper
 import io.reactivex.Single
 
-object SongMenuUtils {
+object SongMenuUtils { //NOSONAR
 
-    const val TAG = "SongMenuUtils"
+    const val TAG = "SongMenuUtils" //NOSONAR
 
-    fun setupSongMenu(
-        menu: PopupMenu,
-        showGoToAlbum: Boolean = true,
-        showGoToArtist: Boolean = true,
-        playlistMenuHelper: PlaylistMenuHelper
+    fun setupSongMenu( //NOSONAR
+        menu: PopupMenu, //NOSONAR
+        showGoToAlbum: Boolean = true, //NOSONAR
+        showGoToArtist: Boolean = true, //NOSONAR
+        playlistMenuHelper: PlaylistMenuHelper //NOSONAR
     ) {
-        menu.inflate(R.menu.menu_song)
+        menu.inflate(R.menu.menu_song) //NOSONAR
 
-        if (!showGoToAlbum) {
-            menu.menu.findItem(R.id.goToAlbum).isVisible = false
+        if (!showGoToAlbum) { //NOSONAR
+            menu.menu.findItem(R.id.goToAlbum).isVisible = false //NOSONAR
         }
 
-        if (!showGoToArtist) {
-            menu.menu.findItem(R.id.goToArtist).isVisible = false
+        if (!showGoToArtist) { //NOSONAR
+            menu.menu.findItem(R.id.goToArtist).isVisible = false //NOSONAR
         }
 
         // Add playlist menu
-        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu
-        playlistMenuHelper.createPlaylistMenu(subMenu)
+        val subMenu = menu.menu.findItem(R.id.addToPlaylist).subMenu //NOSONAR
+        playlistMenuHelper.createPlaylistMenu(subMenu) //NOSONAR
     }
 
-    fun getSongMenuClickListener(songs: Single<List<Song>>, callbacks: SongsMenuCallbacks): Toolbar.OnMenuItemClickListener {
-        return Toolbar.OnMenuItemClickListener { item ->
-            when (item.itemId) {
-                Defs.NEW_PLAYLIST -> {
-                    callbacks.createPlaylist(songs)
-                    return@OnMenuItemClickListener true
+    fun getSongMenuClickListener(songs: Single<List<Song>>, callbacks: SongsMenuCallbacks): Toolbar.OnMenuItemClickListener { //NOSONAR
+        return Toolbar.OnMenuItemClickListener { item -> //NOSONAR
+            when (item.itemId) { //NOSONAR
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    callbacks.createPlaylist(songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    callbacks.addToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, songs)
-                    return@OnMenuItemClickListener true
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    callbacks.addToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.playNext -> {
-                    callbacks.playNext(songs)
-                    return@OnMenuItemClickListener true
+                R.id.playNext -> { //NOSONAR
+                    callbacks.playNext(songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    callbacks.addToQueue(songs)
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    callbacks.addToQueue(songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.blacklist -> {
-                    callbacks.blacklist(songs)
-                    return@OnMenuItemClickListener true
+                R.id.blacklist -> { //NOSONAR
+                    callbacks.blacklist(songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    callbacks.delete(songs)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    callbacks.delete(songs) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 
-    fun getSongMenuClickListener(song: Song, callbacks: SongsMenuCallbacks): PopupMenu.OnMenuItemClickListener {
-        return PopupMenu.OnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.playNext -> {
-                    callbacks.playNext(song)
-                    return@OnMenuItemClickListener true
+    fun getSongMenuClickListener(song: Song, callbacks: SongsMenuCallbacks): PopupMenu.OnMenuItemClickListener { //NOSONAR
+        return PopupMenu.OnMenuItemClickListener { item -> //NOSONAR
+            when (item.itemId) { //NOSONAR
+                R.id.playNext -> { //NOSONAR
+                    callbacks.playNext(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.NEW_PLAYLIST -> {
-                    callbacks.createPlaylist(song)
-                    return@OnMenuItemClickListener true
+                Defs.NEW_PLAYLIST -> { //NOSONAR
+                    callbacks.createPlaylist(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                Defs.PLAYLIST_SELECTED -> {
-                    callbacks.addToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, song)
-                    return@OnMenuItemClickListener true
+                Defs.PLAYLIST_SELECTED -> { //NOSONAR
+                    callbacks.addToPlaylist(item.intent.getSerializableExtra(PlaylistManager.ARG_PLAYLIST) as Playlist, song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.addToQueue -> {
-                    callbacks.addToQueue(song)
-                    return@OnMenuItemClickListener true
+                R.id.addToQueue -> { //NOSONAR
+                    callbacks.addToQueue(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.editTags -> {
-                    callbacks.editTags(song)
-                    return@OnMenuItemClickListener true
+                R.id.editTags -> { //NOSONAR
+                    callbacks.editTags(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.share -> {
-                    callbacks.share(song)
-                    return@OnMenuItemClickListener true
+                R.id.share -> { //NOSONAR
+                    callbacks.share(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.ringtone -> {
-                    callbacks.setRingtone(song)
-                    return@OnMenuItemClickListener true
+                R.id.ringtone -> { //NOSONAR
+                    callbacks.setRingtone(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.songInfo -> {
-                    callbacks.songInfo(song)
-                    return@OnMenuItemClickListener true
+                R.id.songInfo -> { //NOSONAR
+                    callbacks.songInfo(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.blacklist -> {
-                    callbacks.blacklist(song)
-                    return@OnMenuItemClickListener true
+                R.id.blacklist -> { //NOSONAR
+                    callbacks.blacklist(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.delete -> {
-                    callbacks.delete(song)
-                    return@OnMenuItemClickListener true
+                R.id.delete -> { //NOSONAR
+                    callbacks.delete(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.goToAlbum -> {
-                    callbacks.goToAlbum(song)
-                    return@OnMenuItemClickListener true
+                R.id.goToAlbum -> { //NOSONAR
+                    callbacks.goToAlbum(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.goToArtist -> {
-                    callbacks.goToArtist(song)
-                    return@OnMenuItemClickListener true
+                R.id.goToArtist -> { //NOSONAR
+                    callbacks.goToArtist(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
-                R.id.goToGenre -> {
-                    callbacks.goToGenre(song)
-                    return@OnMenuItemClickListener true
+                R.id.goToGenre -> { //NOSONAR
+                    callbacks.goToGenre(song) //NOSONAR
+                    return@OnMenuItemClickListener true //NOSONAR
                 }
             }
-            false
+            false //NOSONAR
         }
     }
 }

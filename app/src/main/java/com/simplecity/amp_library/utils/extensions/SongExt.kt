@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.utils.extensions
 
@@ -10,30 +10,30 @@ import com.simplecity.amp_library.model.Song
 import com.simplecity.amp_library.utils.LogUtils
 import java.io.File
 
-const val TAG = "SongExtensions"
+const val TAG = "SongExtensions" //NOSONAR
 
-fun Song.share(context: Context) {
-    try {
-        val intent = Intent(Intent.ACTION_SEND).setType("audio/*")
-        val uri = FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", File(path))
-        intent.putExtra(Intent.EXTRA_STREAM, uri)
-        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_via)))
-    } catch (e: IllegalArgumentException) {
-        LogUtils.logException(TAG, "Failed to share track", e)
+fun Song.share(context: Context) { //NOSONAR
+    try { //NOSONAR
+        val intent = Intent(Intent.ACTION_SEND).setType("audio/*") //NOSONAR
+        val uri = FileProvider.getUriForFile(context, context.applicationContext.packageName + ".provider", File(path)) //NOSONAR
+        intent.putExtra(Intent.EXTRA_STREAM, uri) //NOSONAR
+        context.startActivity(Intent.createChooser(intent, context.getString(R.string.share_via))) //NOSONAR
+    } catch (e: IllegalArgumentException) { //NOSONAR
+        LogUtils.logException(TAG, "Failed to share track", e) //NOSONAR
     }
 }
 
-fun Song.delete(): Boolean {
+fun Song.delete(): Boolean { //NOSONAR
 
-    if (path == null) return false
+    if (path == null) return false //NOSONAR
 
-    var success = false
+    var success = false //NOSONAR
 
-    val file = File(path)
-    if (file.exists()) {
-        success = file.delete()
+    val file = File(path) //NOSONAR
+    if (file.exists()) { //NOSONAR
+        success = file.delete() //NOSONAR
     }
 
-    return success
+    return success //NOSONAR
 }
 

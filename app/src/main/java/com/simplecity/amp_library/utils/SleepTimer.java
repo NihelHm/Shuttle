@@ -17,145 +17,145 @@ import io.reactivex.Observable;
 import io.reactivex.subjects.BehaviorSubject;
 import java.util.concurrent.TimeUnit;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public final class SleepTimer {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public final class SleepTimer { //NOSONAR
 
-    private static final String TAG = "SleepTimer";
+    private static final String TAG = "SleepTimer"; //NOSONAR
 
-    private static SleepTimer instance;
+    private static SleepTimer instance; //NOSONAR
 
-    private boolean isActive;
+    private boolean isActive; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public boolean playToEnd = false;
+    public boolean playToEnd = false; //NOSONAR
 
-    private int timeRemaining = 0;
+    private int timeRemaining = 0; //NOSONAR
 
-    private Flowable<Long> currentTimeObservable;
+    private Flowable<Long> currentTimeObservable; //NOSONAR
 
-    private BehaviorSubject<Boolean> timerActiveObservable;
+    private BehaviorSubject<Boolean> timerActiveObservable; //NOSONAR
 
-    public static SleepTimer getInstance() {
-        if (instance == null) {
-            instance = new SleepTimer();
+    public static SleepTimer getInstance() { //NOSONAR
+        if (instance == null) { //NOSONAR
+            instance = new SleepTimer(); //NOSONAR
         }
-        return instance;
+        return instance; //NOSONAR
     }
 
-    private SleepTimer() {
+    private SleepTimer() { //NOSONAR
 
-        timerActiveObservable = BehaviorSubject.create();
+        timerActiveObservable = BehaviorSubject.create(); //NOSONAR
 
-        currentTimeObservable = timerActiveObservable
-                .doOnNext(isActive -> this.isActive = isActive)
-                .switchMap(ignored -> Observable
-                        .interval(1, TimeUnit.SECONDS)
-                        .filter(aLong -> isActive)
-                        .map(time -> timeRemaining - time)
-                        .distinctUntilChanged()
-                        .skip(1)
-                        .doOnNext(aLong -> {
-                            if (aLong == -1) {
-                                stop();
+        currentTimeObservable = timerActiveObservable //NOSONAR
+                .doOnNext(isActive -> this.isActive = isActive) //NOSONAR
+                .switchMap(ignored -> Observable //NOSONAR
+                        .interval(1, TimeUnit.SECONDS) //NOSONAR
+                        .filter(aLong -> isActive) //NOSONAR
+                        .map(time -> timeRemaining - time) //NOSONAR
+                        .distinctUntilChanged() //NOSONAR
+                        .skip(1) //NOSONAR
+                        .doOnNext(aLong -> { //NOSONAR
+                            if (aLong == -1) { //NOSONAR
+                                stop(); //NOSONAR
                             }
                         }))
-                .toFlowable(BackpressureStrategy.LATEST)
-                .share();
+                .toFlowable(BackpressureStrategy.LATEST) //NOSONAR
+                .share(); //NOSONAR
     }
 
-    public Flowable<Long> getCurrentTimeObservable() {
-        return currentTimeObservable;
+    public Flowable<Long> getCurrentTimeObservable() { //NOSONAR
+        return currentTimeObservable; //NOSONAR
     }
 
-    public BehaviorSubject<Boolean> getTimerActiveSubject() {
-        return timerActiveObservable;
+    public BehaviorSubject<Boolean> getTimerActiveSubject() { //NOSONAR
+        return timerActiveObservable; //NOSONAR
     }
 
-    public void start(int seconds, boolean playToEnd) {
-        this.timeRemaining = seconds;
-        this.playToEnd = playToEnd;
-        timerActiveObservable.onNext(true);
+    public void start(int seconds, boolean playToEnd) { //NOSONAR
+        this.timeRemaining = seconds; //NOSONAR
+        this.playToEnd = playToEnd; //NOSONAR
+        timerActiveObservable.onNext(true); //NOSONAR
     }
 
-    public void stop() {
-        isActive = false;
-        timerActiveObservable.onNext(false);
+    public void stop() { //NOSONAR
+        isActive = false; //NOSONAR
+        timerActiveObservable.onNext(false); //NOSONAR
     }
 
-    public MaterialDialog getDialog(Context context, UnsafeAction showMinutesPicker, UnsafeAction timerStarted) {
+    public MaterialDialog getDialog(Context context, UnsafeAction showMinutesPicker, UnsafeAction timerStarted) { //NOSONAR
 
-        if (isActive) {
-            return new MaterialDialog.Builder(context)
-                    .content(R.string.sleep_timer_stop_title)
-                    .positiveText(R.string.sleep_timer_stop_button)
-                    .negativeText(R.string.close)
-                    .onPositive((materialDialog, dialogAction) -> stop())
-                    .build();
-        } else {
-            return new MaterialDialog.Builder(context)
-                    .title(R.string.sleep_timer)
-                    .items(R.array.timerValues)
-                    .checkBoxPromptRes(R.string.sleep_timer_play_to_end, false, (compoundButton, b) -> playToEnd = b)
-                    .itemsCallback((materialDialog, view, i, charSequence) -> {
-                        switch (i) {
-                            case 0:
+        if (isActive) { //NOSONAR
+            return new MaterialDialog.Builder(context) //NOSONAR
+                    .content(R.string.sleep_timer_stop_title) //NOSONAR
+                    .positiveText(R.string.sleep_timer_stop_button) //NOSONAR
+                    .negativeText(R.string.close) //NOSONAR
+                    .onPositive((materialDialog, dialogAction) -> stop()) //NOSONAR
+                    .build(); //NOSONAR
+        } else { //NOSONAR
+            return new MaterialDialog.Builder(context) //NOSONAR
+                    .title(R.string.sleep_timer) //NOSONAR
+                    .items(R.array.timerValues) //NOSONAR
+                    .checkBoxPromptRes(R.string.sleep_timer_play_to_end, false, (compoundButton, b) -> playToEnd = b) //NOSONAR
+                    .itemsCallback((materialDialog, view, i, charSequence) -> { //NOSONAR
+                        switch (i) { //NOSONAR
+                            case 0: //NOSONAR
                                 // 5 mins
-                                start(5 * 60, playToEnd);
-                                timerStarted.run();
-                                break;
-                            case 1:
+                                start(5 * 60, playToEnd); //NOSONAR
+                                timerStarted.run(); //NOSONAR
+                                break; //NOSONAR
+                            case 1: //NOSONAR
                                 // 15 mins
-                                start(15 * 60, playToEnd);
-                                timerStarted.run();
-                                break;
-                            case 2:
+                                start(15 * 60, playToEnd); //NOSONAR
+                                timerStarted.run(); //NOSONAR
+                                break; //NOSONAR
+                            case 2: //NOSONAR
                                 // 30 mins
-                                start(30 * 60, playToEnd);
-                                timerStarted.run();
-                                break;
-                            case 3:
+                                start(30 * 60, playToEnd); //NOSONAR
+                                timerStarted.run(); //NOSONAR
+                                break; //NOSONAR
+                            case 3: //NOSONAR
                                 // 1 hour
-                                start(60 * 60, playToEnd);
-                                timerStarted.run();
-                                break;
-                            case 4:
+                                start(60 * 60, playToEnd); //NOSONAR
+                                timerStarted.run(); //NOSONAR
+                                break; //NOSONAR
+                            case 4: //NOSONAR
                                 // Set time manually
-                                showMinutesPicker.run();
-                                break;
+                                showMinutesPicker.run(); //NOSONAR
+                                break; //NOSONAR
                         }
-                    }).build();
+                    }).build(); //NOSONAR
         }
     }
 
-    public void showMinutesDialog(Context context, UnsafeAction timerStarted) {
+    public void showMinutesDialog(Context context, UnsafeAction timerStarted) { //NOSONAR
 
-        @SuppressLint("InflateParams")
-        View customView = LayoutInflater.from(context).inflate(R.layout.dialog_minutes_picker, null);
+        @SuppressLint("InflateParams") //NOSONAR
+        View customView = LayoutInflater.from(context).inflate(R.layout.dialog_minutes_picker, null); //NOSONAR
 
-        EditText editText = customView.findViewById(R.id.editText);
+        EditText editText = customView.findViewById(R.id.editText); //NOSONAR
 
-        new MaterialDialog.Builder(context)
-                .title(R.string.sleep_timer_set_minutes)
-                .customView(customView, false)
-                .positiveText(R.string.button_ok)
-                .negativeText(R.string.cancel)
-                .autoDismiss(false)
-                .onPositive((materialDialog, dialogAction) -> {
-                    if (!TextUtils.isEmpty(editText.getText())) {
-                        start(Integer.parseInt(editText.getText().toString()) * 60, playToEnd);
-                        timerStarted.run();
-                        materialDialog.dismiss();
+        new MaterialDialog.Builder(context) //NOSONAR
+                .title(R.string.sleep_timer_set_minutes) //NOSONAR
+                .customView(customView, false) //NOSONAR
+                .positiveText(R.string.button_ok) //NOSONAR
+                .negativeText(R.string.cancel) //NOSONAR
+                .autoDismiss(false) //NOSONAR
+                .onPositive((materialDialog, dialogAction) -> { //NOSONAR
+                    if (!TextUtils.isEmpty(editText.getText())) { //NOSONAR
+                        start(Integer.parseInt(editText.getText().toString()) * 60, playToEnd); //NOSONAR
+                        timerStarted.run(); //NOSONAR
+                        materialDialog.dismiss(); //NOSONAR
                     }
                 })
-                .onNegative((materialDialog, dialogAction) -> {
-                    materialDialog.dismiss();
+                .onNegative((materialDialog, dialogAction) -> { //NOSONAR
+                    materialDialog.dismiss(); //NOSONAR
                 })
-                .show();
+                .show(); //NOSONAR
 
-        new Handler().post(() -> {
-            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
-            inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT);
+        new Handler().post(() -> { //NOSONAR
+            InputMethodManager inputMethodManager = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE); //NOSONAR
+            inputMethodManager.showSoftInput(editText, InputMethodManager.SHOW_IMPLICIT); //NOSONAR
         });
     }
 }

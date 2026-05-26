@@ -10,43 +10,43 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticViewPager extends ViewPager {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticViewPager extends ViewPager { //NOSONAR
 
-  private Disposable subscription;
+  private Disposable subscription; //NOSONAR
 
-  public AestheticViewPager(Context context) {
-    super(context);
+  public AestheticViewPager(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticViewPager(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticViewPager(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  private void invalidateColors(int color) {
-    EdgeGlowUtil.setEdgeGlowColor(this, color);
+  private void invalidateColors(int color) { //NOSONAR
+    EdgeGlowUtil.setEdgeGlowColor(this, color); //NOSONAR
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    subscription =
-        Aesthetic.get(getContext())
-            .colorAccent()
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer color) {
-                    invalidateColors(color);
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    subscription = //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .colorAccent() //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer color) { //NOSONAR
+                    invalidateColors(color); //NOSONAR
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    subscription.dispose();
-    super.onDetachedFromWindow();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    subscription.dispose(); //NOSONAR
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

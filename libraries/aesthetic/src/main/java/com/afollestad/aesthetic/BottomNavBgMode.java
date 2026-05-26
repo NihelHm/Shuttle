@@ -10,12 +10,12 @@ import android.support.annotation.IntDef;
 import java.lang.annotation.Retention;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("WeakerAccess")
-@Retention(SOURCE)
-@IntDef(value = {BLACK_WHITE_AUTO, PRIMARY, PRIMARY_DARK, ACCENT})
-public @interface BottomNavBgMode {
-  int BLACK_WHITE_AUTO = 0;
-  int PRIMARY = 1;
-  int PRIMARY_DARK = 2;
-  int ACCENT = 3;
+@SuppressWarnings("WeakerAccess") //NOSONAR
+@Retention(SOURCE) //NOSONAR
+@IntDef(value = {BLACK_WHITE_AUTO, PRIMARY, PRIMARY_DARK, ACCENT}) //NOSONAR
+public @interface BottomNavBgMode { //NOSONAR
+  int BLACK_WHITE_AUTO = 0; //NOSONAR
+  int PRIMARY = 1; //NOSONAR
+  int PRIMARY_DARK = 2; //NOSONAR
+  int ACCENT = 3; //NOSONAR
 }

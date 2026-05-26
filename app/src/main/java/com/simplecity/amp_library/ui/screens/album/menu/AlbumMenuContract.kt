@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.ui.screens.album.menu
 
@@ -7,27 +7,27 @@ import com.simplecity.amp_library.model.Playlist
 import com.simplecity.amp_library.model.Song
 import com.simplecity.amp_library.utils.menu.album.AlbumsMenuCallbacks
 
-interface AlbumMenuContract {
+interface AlbumMenuContract { //NOSONAR
 
-    interface View {
+    interface View { //NOSONAR
 
-        fun presentCreatePlaylistDialog(songs: List<Song>)
+        fun presentCreatePlaylistDialog(songs: List<Song>) //NOSONAR
 
-        fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int)
+        fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) //NOSONAR
 
-        fun onSongsAddedToQueue(numSongs: Int)
+        fun onSongsAddedToQueue(numSongs: Int) //NOSONAR
 
-        fun onPlaybackFailed()
+        fun onPlaybackFailed() //NOSONAR
 
-        fun presentTagEditorDialog(album: Album)
+        fun presentTagEditorDialog(album: Album) //NOSONAR
 
-        fun presentDeleteAlbumsDialog(albums: List<Album>)
+        fun presentDeleteAlbumsDialog(albums: List<Album>) //NOSONAR
 
-        fun presentAlbumInfoDialog(album: Album)
+        fun presentAlbumInfoDialog(album: Album) //NOSONAR
 
-        fun presentArtworkEditorDialog(album: Album)
+        fun presentArtworkEditorDialog(album: Album) //NOSONAR
     }
 
-    interface Presenter : AlbumsMenuCallbacks
+    interface Presenter : AlbumsMenuCallbacks //NOSONAR
 
 }

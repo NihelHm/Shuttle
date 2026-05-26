@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.di.app
 
@@ -8,16 +8,16 @@ import dagger.android.AndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
 import javax.inject.Singleton
 
-@Singleton
-@Component(
-    modules = [
-        AndroidSupportInjectionModule::class,
-        AppModule::class,
-        AppAssistedModule::class,
-        RepositoryModule::class
+@Singleton //NOSONAR
+@Component( //NOSONAR
+    modules = [ //NOSONAR
+        AndroidSupportInjectionModule::class, //NOSONAR
+        AppModule::class, //NOSONAR
+        AppAssistedModule::class, //NOSONAR
+        RepositoryModule::class //NOSONAR
     ]
 )
-interface AppComponent : AndroidInjector<ShuttleApplication> {
-    @Component.Builder
-    abstract class Builder : AndroidInjector.Builder<ShuttleApplication>()
+interface AppComponent : AndroidInjector<ShuttleApplication> { //NOSONAR
+    @Component.Builder //NOSONAR
+    abstract class Builder : AndroidInjector.Builder<ShuttleApplication>() //NOSONAR
 }

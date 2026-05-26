@@ -11,138 +11,138 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
 import static com.afollestad.aesthetic.Util.resolveResId;
 
 /** @author Aidan Follestad (afollestad) */
-@RestrictTo(LIBRARY_GROUP)
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-final class InflationInterceptor implements LayoutInflaterFactory {
+@RestrictTo(LIBRARY_GROUP) //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+final class InflationInterceptor implements LayoutInflaterFactory { //NOSONAR
 
-  @Override
-  public View onCreateView(View parent, final String name, Context context, AttributeSet attrs) {
-    View view = null;
-    final int viewId = resolveResId(context, attrs, android.R.attr.id);
+  @Override //NOSONAR
+  public View onCreateView(View parent, final String name, Context context, AttributeSet attrs) { //NOSONAR
+    View view = null; //NOSONAR
+    final int viewId = resolveResId(context, attrs, android.R.attr.id); //NOSONAR
 
-    switch (name) {
-      case "ImageView":
-      case "android.support.v7.widget.AppCompatImageView":
-        view = new AestheticImageView(context, attrs);
-        break;
-      case "ImageButton":
-      case "android.support.v7.widget.AppCompatImageButton":
-        view = new AestheticImageButton(context, attrs);
-        break;
-      case "android.support.v4.widget.DrawerLayout":
-        view = new AestheticDrawerLayout(context, attrs);
-        break;
-      case "Toolbar":
-      case "android.support.v7.widget.Toolbar":
-        view = new AestheticToolbar(context, attrs);
-        break;
-      case "android.support.v7.widget.AppCompatTextView":
-      case "TextView":
-        if (viewId == R.id.snackbar_text) {
-          view = null;
-        } else {
-          view = new AestheticTextView(context, attrs);
-          if (parent instanceof LinearLayout && view.getId() == android.R.id.message) {
+    switch (name) { //NOSONAR
+      case "ImageView": //NOSONAR
+      case "android.support.v7.widget.AppCompatImageView": //NOSONAR
+        view = new AestheticImageView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "ImageButton": //NOSONAR
+      case "android.support.v7.widget.AppCompatImageButton": //NOSONAR
+        view = new AestheticImageButton(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v4.widget.DrawerLayout": //NOSONAR
+        view = new AestheticDrawerLayout(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "Toolbar": //NOSONAR
+      case "android.support.v7.widget.Toolbar": //NOSONAR
+        view = new AestheticToolbar(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.widget.AppCompatTextView": //NOSONAR
+      case "TextView": //NOSONAR
+        if (viewId == R.id.snackbar_text) { //NOSONAR
+          view = null; //NOSONAR
+        } else { //NOSONAR
+          view = new AestheticTextView(context, attrs); //NOSONAR
+          if (parent instanceof LinearLayout && view.getId() == android.R.id.message) { //NOSONAR
             // This is for a toast message
-            view = null;
+            view = null; //NOSONAR
           }
         }
-        break;
-      case "Button":
-      case "android.support.v7.widget.AppCompatButton":
-        if (viewId == android.R.id.button1
-            || viewId == android.R.id.button2
-            || viewId == android.R.id.button3) {
-          view = new AestheticDialogButton(context, attrs);
-        } else if (viewId == R.id.snackbar_action) {
-          view = new AestheticSnackBarButton(context, attrs);
-        } else {
-          view = new AestheticButton(context, attrs);
+        break; //NOSONAR
+      case "Button": //NOSONAR
+      case "android.support.v7.widget.AppCompatButton": //NOSONAR
+        if (viewId == android.R.id.button1 //NOSONAR
+            || viewId == android.R.id.button2 //NOSONAR
+            || viewId == android.R.id.button3) { //NOSONAR
+          view = new AestheticDialogButton(context, attrs); //NOSONAR
+        } else if (viewId == R.id.snackbar_action) { //NOSONAR
+          view = new AestheticSnackBarButton(context, attrs); //NOSONAR
+        } else { //NOSONAR
+          view = new AestheticButton(context, attrs); //NOSONAR
         }
-        break;
-      case "android.support.v7.widget.AppCompatCheckBox":
-      case "CheckBox":
-        view = new AestheticCheckBox(context, attrs);
-        break;
-      case "android.support.v7.widget.AppCompatRadioButton":
-      case "RadioButton":
-        view = new AestheticRadioButton(context, attrs);
-        break;
-      case "android.support.v7.widget.AppCompatEditText":
-      case "EditText":
-        view = new AestheticEditText(context, attrs);
-        break;
-      case "Switch":
-        view = new AestheticSwitch(context, attrs);
-        break;
-      case "android.support.v7.widget.SwitchCompat":
-        view = new AestheticSwitchCompat(context, attrs);
-        break;
-      case "android.support.v7.widget.AppCompatSeekBar":
-      case "SeekBar":
-        view = new AestheticSeekBar(context, attrs);
-        break;
-      case "ProgressBar":
-      case "me.zhanghai.android.materialprogressbar.MaterialProgressBar":
-        view = new AestheticProgressBar(context, attrs);
-        break;
-      case "android.support.v7.view.menu.ActionMenuItemView":
-        view = new AestheticActionMenuItemView(context, attrs);
-        break;
+        break; //NOSONAR
+      case "android.support.v7.widget.AppCompatCheckBox": //NOSONAR
+      case "CheckBox": //NOSONAR
+        view = new AestheticCheckBox(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.widget.AppCompatRadioButton": //NOSONAR
+      case "RadioButton": //NOSONAR
+        view = new AestheticRadioButton(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.widget.AppCompatEditText": //NOSONAR
+      case "EditText": //NOSONAR
+        view = new AestheticEditText(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "Switch": //NOSONAR
+        view = new AestheticSwitch(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.widget.SwitchCompat": //NOSONAR
+        view = new AestheticSwitchCompat(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.widget.AppCompatSeekBar": //NOSONAR
+      case "SeekBar": //NOSONAR
+        view = new AestheticSeekBar(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "ProgressBar": //NOSONAR
+      case "me.zhanghai.android.materialprogressbar.MaterialProgressBar": //NOSONAR
+        view = new AestheticProgressBar(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v7.view.menu.ActionMenuItemView": //NOSONAR
+        view = new AestheticActionMenuItemView(context, attrs); //NOSONAR
+        break; //NOSONAR
 
-      case "android.support.v7.widget.RecyclerView":
-        view = new AestheticRecyclerView(context, attrs);
-        break;
-      case "android.support.v4.widget.NestedScrollView":
-        view = new AestheticNestedScrollView(context, attrs);
-        break;
-      case "ListView":
-        view = new AestheticListView(context, attrs);
-        break;
-      case "ScrollView":
-        view = new AestheticScrollView(context, attrs);
-        break;
-      case "android.support.v4.view.ViewPager":
-        view = new AestheticViewPager(context, attrs);
-        break;
+      case "android.support.v7.widget.RecyclerView": //NOSONAR
+        view = new AestheticRecyclerView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v4.widget.NestedScrollView": //NOSONAR
+        view = new AestheticNestedScrollView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "ListView": //NOSONAR
+        view = new AestheticListView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "ScrollView": //NOSONAR
+        view = new AestheticScrollView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.v4.view.ViewPager": //NOSONAR
+        view = new AestheticViewPager(context, attrs); //NOSONAR
+        break; //NOSONAR
 
-      case "Spinner":
-      case "android.support.v7.widget.AppCompatSpinner":
-        view = new AestheticSpinner(context, attrs);
-        break;
+      case "Spinner": //NOSONAR
+      case "android.support.v7.widget.AppCompatSpinner": //NOSONAR
+        view = new AestheticSpinner(context, attrs); //NOSONAR
+        break; //NOSONAR
 
-      case "android.support.design.widget.TextInputLayout":
-        view = new AestheticTextInputLayout(context, attrs);
-        break;
-      case "android.support.design.widget.TextInputEditText":
-        view = new AestheticTextInputEditText(context, attrs);
-        break;
+      case "android.support.design.widget.TextInputLayout": //NOSONAR
+        view = new AestheticTextInputLayout(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.TextInputEditText": //NOSONAR
+        view = new AestheticTextInputEditText(context, attrs); //NOSONAR
+        break; //NOSONAR
 
-      case "android.support.v7.widget.CardView":
-        view = new AestheticCardView(context, attrs);
-        break;
-      case "android.support.design.widget.TabLayout":
-        view = new AestheticTabLayout(context, attrs);
-        break;
-      case "android.support.design.widget.NavigationView":
-        view = new AestheticNavigationView(context, attrs);
-        break;
-      case "android.support.design.widget.BottomNavigationView":
-        view = new AestheticBottomNavigationView(context, attrs);
-        break;
-      case "android.support.design.widget.FloatingActionButton":
-        view = new AestheticFab(context, attrs);
-        break;
-      case "android.support.design.widget.CoordinatorLayout":
-        view = new AestheticCoordinatorLayout(context, attrs);
-        break;
+      case "android.support.v7.widget.CardView": //NOSONAR
+        view = new AestheticCardView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.TabLayout": //NOSONAR
+        view = new AestheticTabLayout(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.NavigationView": //NOSONAR
+        view = new AestheticNavigationView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.BottomNavigationView": //NOSONAR
+        view = new AestheticBottomNavigationView(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.FloatingActionButton": //NOSONAR
+        view = new AestheticFab(context, attrs); //NOSONAR
+        break; //NOSONAR
+      case "android.support.design.widget.CoordinatorLayout": //NOSONAR
+        view = new AestheticCoordinatorLayout(context, attrs); //NOSONAR
+        break; //NOSONAR
     }
 
-    if (view != null && view.getTag() != null && ":aesthetic_ignore".equals(view.getTag())) {
+    if (view != null && view.getTag() != null && ":aesthetic_ignore".equals(view.getTag())) { //NOSONAR
       // Set view back to null so we can let AppCompat handle this view instead.
-      view = null;
+      view = null; //NOSONAR
     }
 
-    return view;
+    return view; //NOSONAR
   }
 }

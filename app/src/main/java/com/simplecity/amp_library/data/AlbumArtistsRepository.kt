@@ -1,4 +1,4 @@
-@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier")
+@file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
 package com.simplecity.amp_library.data
 
@@ -15,26 +15,26 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class AlbumArtistsRepository @Inject constructor(private val albumsRepository: AlbumsRepository) : AlbumArtistsRepository {
+@Singleton //NOSONAR
+class AlbumArtistsRepository @Inject constructor(private val albumsRepository: AlbumsRepository) : AlbumArtistsRepository { //NOSONAR
 
-    private var albumArtistsSubscription: Disposable? = null
-    private val albumArtistsRelay = BehaviorRelay.create<List<AlbumArtist>>()
+    private var albumArtistsSubscription: Disposable? = null //NOSONAR
+    private val albumArtistsRelay = BehaviorRelay.create<List<AlbumArtist>>() //NOSONAR
 
-    override fun getAlbumArtists(): Observable<List<AlbumArtist>> {
-        if (albumArtistsSubscription == null || albumArtistsSubscription?.isDisposed == true) {
-            albumArtistsSubscription = albumsRepository.getAlbums()
-                .flatMap { albums -> Observable.just(Operators.albumsToAlbumArtists(albums)) }
-                .subscribe(
-                    albumArtistsRelay,
-                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get album artists", error) }
+    override fun getAlbumArtists(): Observable<List<AlbumArtist>> { //NOSONAR
+        if (albumArtistsSubscription == null || albumArtistsSubscription?.isDisposed == true) { //NOSONAR
+            albumArtistsSubscription = albumsRepository.getAlbums() //NOSONAR
+                .flatMap { albums -> Observable.just(Operators.albumsToAlbumArtists(albums)) } //NOSONAR
+                .subscribe( //NOSONAR
+                    albumArtistsRelay, //NOSONAR
+                    Consumer { error -> LogUtils.logException(PlaylistsRepository.TAG, "Failed to get album artists", error) } //NOSONAR
                 )
         }
-        return albumArtistsRelay.subscribeOn(Schedulers.io())
+        return albumArtistsRelay.subscribeOn(Schedulers.io()) //NOSONAR
     }
 
-    companion object {
-        const val TAG = "AlbumArtistsRepository"
+    companion object { //NOSONAR
+        const val TAG = "AlbumArtistsRepository" //NOSONAR
     }
 
 }

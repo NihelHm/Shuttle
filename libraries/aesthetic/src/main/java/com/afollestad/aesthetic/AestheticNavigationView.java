@@ -16,121 +16,121 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 
 /** @author Aidan Follestad (afollestad) */
-@SuppressWarnings("RestrictedApi")
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class AestheticNavigationView extends NavigationView {
+@SuppressWarnings("RestrictedApi") //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class AestheticNavigationView extends NavigationView { //NOSONAR
 
-  private Disposable modeSubscription;
-  private Disposable colorSubscription;
+  private Disposable modeSubscription; //NOSONAR
+  private Disposable colorSubscription; //NOSONAR
 
-  public AestheticNavigationView(Context context) {
-    super(context);
+  public AestheticNavigationView(Context context) { //NOSONAR
+    super(context); //NOSONAR
   }
 
-  public AestheticNavigationView(Context context, AttributeSet attrs) {
-    super(context, attrs);
+  public AestheticNavigationView(Context context, AttributeSet attrs) { //NOSONAR
+    super(context, attrs); //NOSONAR
   }
 
-  public AestheticNavigationView(Context context, AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
+  public AestheticNavigationView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+    super(context, attrs, defStyleAttr); //NOSONAR
   }
 
-  private void invalidateColors(ColorIsDarkState state) {
-    int selectedColor = state.color();
-    boolean isDark = state.isDark();
-    int baseColor = isDark ? Color.WHITE : Color.BLACK;
-    int unselectedIconColor = Util.adjustAlpha(baseColor, .54f);
-    int unselectedTextColor = Util.adjustAlpha(baseColor, .87f);
-    int selectedItemBgColor =
-        ContextCompat.getColor(
-            getContext(),
-            isDark
-                ? R.color.ate_navigation_drawer_selected_dark
-                : R.color.ate_navigation_drawer_selected_light);
+  private void invalidateColors(ColorIsDarkState state) { //NOSONAR
+    int selectedColor = state.color(); //NOSONAR
+    boolean isDark = state.isDark(); //NOSONAR
+    int baseColor = isDark ? Color.WHITE : Color.BLACK; //NOSONAR
+    int unselectedIconColor = Util.adjustAlpha(baseColor, .54f); //NOSONAR
+    int unselectedTextColor = Util.adjustAlpha(baseColor, .87f); //NOSONAR
+    int selectedItemBgColor = //NOSONAR
+        ContextCompat.getColor( //NOSONAR
+            getContext(), //NOSONAR
+            isDark //NOSONAR
+                ? R.color.ate_navigation_drawer_selected_dark //NOSONAR
+                : R.color.ate_navigation_drawer_selected_light); //NOSONAR
 
-    final ColorStateList iconSl =
-        new ColorStateList(
-            new int[][] {
-              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked}
+    final ColorStateList iconSl = //NOSONAR
+        new ColorStateList( //NOSONAR
+            new int[][] { //NOSONAR
+              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
             },
-            new int[] {unselectedIconColor, selectedColor});
-    final ColorStateList textSl =
-        new ColorStateList(
-            new int[][] {
-              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked}
+            new int[] {unselectedIconColor, selectedColor}); //NOSONAR
+    final ColorStateList textSl = //NOSONAR
+        new ColorStateList( //NOSONAR
+            new int[][] { //NOSONAR
+              new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
             },
-            new int[] {unselectedTextColor, selectedColor});
-    setItemTextColor(textSl);
-    setItemIconTintList(iconSl);
+            new int[] {unselectedTextColor, selectedColor}); //NOSONAR
+    setItemTextColor(textSl); //NOSONAR
+    setItemIconTintList(iconSl); //NOSONAR
 
-    StateListDrawable bgDrawable = new StateListDrawable();
-    bgDrawable.addState(
-        new int[] {android.R.attr.state_checked}, new ColorDrawable(selectedItemBgColor));
-    setItemBackground(bgDrawable);
+    StateListDrawable bgDrawable = new StateListDrawable(); //NOSONAR
+    bgDrawable.addState( //NOSONAR
+        new int[] {android.R.attr.state_checked}, new ColorDrawable(selectedItemBgColor)); //NOSONAR
+    setItemBackground(bgDrawable); //NOSONAR
   }
 
-  @Override
-  protected void onAttachedToWindow() {
-    super.onAttachedToWindow();
-    modeSubscription =
-        Aesthetic.get(getContext())
-            .navigationViewMode()
-            .compose(Rx.<Integer>distinctToMainThread())
-            .subscribe(
-                new Consumer<Integer>() {
-                  @Override
-                  public void accept(@NonNull Integer mode) {
-                    switch (mode) {
-                      case NavigationViewMode.SELECTED_PRIMARY:
-                        colorSubscription =
-                            Observable.combineLatest(
-                                    Aesthetic.get(getContext()).colorPrimary(),
-                                    Aesthetic.get(getContext()).isDark(),
-                                    ColorIsDarkState.creator())
-                                .compose(Rx.<ColorIsDarkState>distinctToMainThread())
-                                .subscribe(
-                                    new Consumer<ColorIsDarkState>() {
-                                      @Override
-                                      public void accept(
-                                          @NonNull ColorIsDarkState colorIsDarkState) {
-                                        invalidateColors(colorIsDarkState);
+  @Override //NOSONAR
+  protected void onAttachedToWindow() { //NOSONAR
+    super.onAttachedToWindow(); //NOSONAR
+    modeSubscription = //NOSONAR
+        Aesthetic.get(getContext()) //NOSONAR
+            .navigationViewMode() //NOSONAR
+            .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
+            .subscribe( //NOSONAR
+                new Consumer<Integer>() { //NOSONAR
+                  @Override //NOSONAR
+                  public void accept(@NonNull Integer mode) { //NOSONAR
+                    switch (mode) { //NOSONAR
+                      case NavigationViewMode.SELECTED_PRIMARY: //NOSONAR
+                        colorSubscription = //NOSONAR
+                            Observable.combineLatest( //NOSONAR
+                                    Aesthetic.get(getContext()).colorPrimary(), //NOSONAR
+                                    Aesthetic.get(getContext()).isDark(), //NOSONAR
+                                    ColorIsDarkState.creator()) //NOSONAR
+                                .compose(Rx.<ColorIsDarkState>distinctToMainThread()) //NOSONAR
+                                .subscribe( //NOSONAR
+                                    new Consumer<ColorIsDarkState>() { //NOSONAR
+                                      @Override //NOSONAR
+                                      public void accept( //NOSONAR
+                                          @NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
+                                        invalidateColors(colorIsDarkState); //NOSONAR
                                       }
                                     },
-                                    onErrorLogAndRethrow());
-                        break;
-                      case NavigationViewMode.SELECTED_ACCENT:
-                        colorSubscription =
-                            Observable.combineLatest(
-                                    Aesthetic.get(getContext()).colorAccent(),
-                                    Aesthetic.get(getContext()).isDark(),
-                                    ColorIsDarkState.creator())
-                                .compose(Rx.<ColorIsDarkState>distinctToMainThread())
-                                .subscribe(
-                                    new Consumer<ColorIsDarkState>() {
-                                      @Override
-                                      public void accept(
-                                          @NonNull ColorIsDarkState colorIsDarkState) {
-                                        invalidateColors(colorIsDarkState);
+                                    onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      case NavigationViewMode.SELECTED_ACCENT: //NOSONAR
+                        colorSubscription = //NOSONAR
+                            Observable.combineLatest( //NOSONAR
+                                    Aesthetic.get(getContext()).colorAccent(), //NOSONAR
+                                    Aesthetic.get(getContext()).isDark(), //NOSONAR
+                                    ColorIsDarkState.creator()) //NOSONAR
+                                .compose(Rx.<ColorIsDarkState>distinctToMainThread()) //NOSONAR
+                                .subscribe( //NOSONAR
+                                    new Consumer<ColorIsDarkState>() { //NOSONAR
+                                      @Override //NOSONAR
+                                      public void accept( //NOSONAR
+                                          @NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
+                                        invalidateColors(colorIsDarkState); //NOSONAR
                                       }
                                     },
-                                    onErrorLogAndRethrow());
-                        break;
-                      default:
-                        throw new IllegalStateException("Unknown nav view mode: " + mode);
+                                    onErrorLogAndRethrow()); //NOSONAR
+                        break; //NOSONAR
+                      default: //NOSONAR
+                        throw new IllegalStateException("Unknown nav view mode: " + mode); //NOSONAR
                     }
                   }
                 },
-                onErrorLogAndRethrow());
+                onErrorLogAndRethrow()); //NOSONAR
   }
 
-  @Override
-  protected void onDetachedFromWindow() {
-    if (modeSubscription != null) {
-      modeSubscription.dispose();
+  @Override //NOSONAR
+  protected void onDetachedFromWindow() { //NOSONAR
+    if (modeSubscription != null) { //NOSONAR
+      modeSubscription.dispose(); //NOSONAR
     }
-    if (colorSubscription != null) {
-      colorSubscription.dispose();
+    if (colorSubscription != null) { //NOSONAR
+      colorSubscription.dispose(); //NOSONAR
     }
-    super.onDetachedFromWindow();
+    super.onDetachedFromWindow(); //NOSONAR
   }
 }

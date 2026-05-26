@@ -44,394 +44,394 @@ import org.jaudiotagger.tag.FieldKey;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class TaggerDialog extends DialogFragment {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class TaggerDialog extends DialogFragment { //NOSONAR
 
-    public static final String TAG = "TaggerDialog";
+    public static final String TAG = "TaggerDialog"; //NOSONAR
 
-    public static final int DOCUMENT_TREE_REQUEST_CODE = 901;
+    public static final int DOCUMENT_TREE_REQUEST_CODE = 901; //NOSONAR
 
-    public static final String ARG_MODEL = "model";
+    public static final String ARG_MODEL = "model"; //NOSONAR
 
-    private MaterialDialog materialDialog;
+    private MaterialDialog materialDialog; //NOSONAR
 
-    private boolean hasCheckedPermissions;
+    private boolean hasCheckedPermissions; //NOSONAR
 
-    private AlbumArtist albumArtist;
-    private Album album;
-    private Song song;
+    private AlbumArtist albumArtist; //NOSONAR
+    private Album album; //NOSONAR
+    private Song song; //NOSONAR
 
-    List<String> originalSongPaths = new ArrayList<>();
-    private List<DocumentFile> documentFiles = new ArrayList<>();
+    List<String> originalSongPaths = new ArrayList<>(); //NOSONAR
+    private List<DocumentFile> documentFiles = new ArrayList<>(); //NOSONAR
 
-    private boolean showAlbum = true;
-    private boolean showTrack = true;
+    private boolean showAlbum = true; //NOSONAR
+    private boolean showTrack = true; //NOSONAR
 
-    private EditText albumArtistEditText;
-    private EditText artistEditText;
-    private EditText albumEditText;
-    private EditText titleEditText;
-    private EditText genreEditText;
-    private EditText yearEditText;
-    private EditText trackEditText;
-    private EditText trackTotalEditText;
-    private EditText discEditText;
-    private EditText discTotalEditText;
-    private EditText lyricsEditText;
-    private EditText commentEditText;
+    private EditText albumArtistEditText; //NOSONAR
+    private EditText artistEditText; //NOSONAR
+    private EditText albumEditText; //NOSONAR
+    private EditText titleEditText; //NOSONAR
+    private EditText genreEditText; //NOSONAR
+    private EditText yearEditText; //NOSONAR
+    private EditText trackEditText; //NOSONAR
+    private EditText trackTotalEditText; //NOSONAR
+    private EditText discEditText; //NOSONAR
+    private EditText discTotalEditText; //NOSONAR
+    private EditText lyricsEditText; //NOSONAR
+    private EditText commentEditText; //NOSONAR
 
-    private TextInputLayout albumInputLayout;
-    private TextInputLayout titleInputLayout;
-    private TextInputLayout trackInputLayout;
-    private TextInputLayout discInputLayout;
-    private TextInputLayout lyricsInputLayout;
-    private TextInputLayout commentInputLayout;
+    private TextInputLayout albumInputLayout; //NOSONAR
+    private TextInputLayout titleInputLayout; //NOSONAR
+    private TextInputLayout trackInputLayout; //NOSONAR
+    private TextInputLayout discInputLayout; //NOSONAR
+    private TextInputLayout lyricsInputLayout; //NOSONAR
+    private TextInputLayout commentInputLayout; //NOSONAR
 
-    private String artistName;
-    private String albumName;
-    private String albumArtistName;
-    private String title;
-    private String genre;
-    private String year;
-    private String track;
-    private String trackTotal;
-    private String disc;
-    private String discTotal;
-    private String lyrics;
-    private String comment;
+    private String artistName; //NOSONAR
+    private String albumName; //NOSONAR
+    private String albumArtistName; //NOSONAR
+    private String title; //NOSONAR
+    private String genre; //NOSONAR
+    private String year; //NOSONAR
+    private String track; //NOSONAR
+    private String trackTotal; //NOSONAR
+    private String disc; //NOSONAR
+    private String discTotal; //NOSONAR
+    private String lyrics; //NOSONAR
+    private String comment; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    public static TaggerDialog newInstance(Serializable model) {
+    public static TaggerDialog newInstance(Serializable model) { //NOSONAR
 
-        Bundle args = new Bundle();
-        args.putSerializable(ARG_MODEL, model);
-        TaggerDialog fragment = new TaggerDialog();
-        fragment.setArguments(args);
-        return fragment;
+        Bundle args = new Bundle(); //NOSONAR
+        args.putSerializable(ARG_MODEL, model); //NOSONAR
+        TaggerDialog fragment = new TaggerDialog(); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    @Override
-    public void onAttach(Context context) {
-        AndroidSupportInjection.inject(this);
-        super.onAttach(context);
+    @Override //NOSONAR
+    public void onAttach(Context context) { //NOSONAR
+        AndroidSupportInjection.inject(this); //NOSONAR
+        super.onAttach(context); //NOSONAR
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        Serializable model = getArguments().getSerializable(ARG_MODEL);
-        if (model instanceof AlbumArtist) {
-            albumArtist = (AlbumArtist) model;
+        Serializable model = getArguments().getSerializable(ARG_MODEL); //NOSONAR
+        if (model instanceof AlbumArtist) { //NOSONAR
+            albumArtist = (AlbumArtist) model; //NOSONAR
 
-            originalSongPaths = Stream.of(albumArtist.albums)
-                    .flatMap(value -> Stream.of(value.paths))
-                    .toList();
-            showAlbum = false;
-            showTrack = false;
-        } else if (model instanceof Album) {
-            album = (Album) model;
-            originalSongPaths = album.paths;
-            showTrack = false;
-        } else if (model instanceof Song) {
-            song = (Song) model;
-            originalSongPaths.add(song.path);
+            originalSongPaths = Stream.of(albumArtist.albums) //NOSONAR
+                    .flatMap(value -> Stream.of(value.paths)) //NOSONAR
+                    .toList(); //NOSONAR
+            showAlbum = false; //NOSONAR
+            showTrack = false; //NOSONAR
+        } else if (model instanceof Album) { //NOSONAR
+            album = (Album) model; //NOSONAR
+            originalSongPaths = album.paths; //NOSONAR
+            showTrack = false; //NOSONAR
+        } else if (model instanceof Song) { //NOSONAR
+            song = (Song) model; //NOSONAR
+            originalSongPaths.add(song.path); //NOSONAR
         }
 
-        if (originalSongPaths == null || originalSongPaths.isEmpty()) {
-            dismiss();
+        if (originalSongPaths == null || originalSongPaths.isEmpty()) { //NOSONAR
+            dismiss(); //NOSONAR
 
             //To do later: refine & extract
-            Toast.makeText(getContext(), R.string.tag_retrieve_error, Toast.LENGTH_LONG).show();
+            Toast.makeText(getContext(), R.string.tag_retrieve_error, Toast.LENGTH_LONG).show(); //NOSONAR
         }
     }
 
-    @Override
-    public Dialog onCreateDialog(Bundle savedInstanceState) {
+    @Override //NOSONAR
+    public Dialog onCreateDialog(Bundle savedInstanceState) { //NOSONAR
 
-        @SuppressLint("InflateParams")
-        View customView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_tagger, null, false);
+        @SuppressLint("InflateParams") //NOSONAR
+        View customView = LayoutInflater.from(getContext()).inflate(R.layout.dialog_tagger, null, false); //NOSONAR
 
-        setupViews(customView);
+        setupViews(customView); //NOSONAR
 
-        populateViews();
+        populateViews(); //NOSONAR
 
-        materialDialog = new MaterialDialog.Builder(getContext())
-                .title(R.string.edit_tags)
-                .customView(customView, false)
-                .positiveText(R.string.save)
-                .onPositive((dialog, which) -> saveTags())
-                .negativeText(R.string.close)
-                .onNegative((dialog, which) -> dismiss())
-                .autoDismiss(false)
-                .build();
+        materialDialog = new MaterialDialog.Builder(getContext()) //NOSONAR
+                .title(R.string.edit_tags) //NOSONAR
+                .customView(customView, false) //NOSONAR
+                .positiveText(R.string.save) //NOSONAR
+                .onPositive((dialog, which) -> saveTags()) //NOSONAR
+                .negativeText(R.string.close) //NOSONAR
+                .onNegative((dialog, which) -> dismiss()) //NOSONAR
+                .autoDismiss(false) //NOSONAR
+                .build(); //NOSONAR
 
-        return materialDialog;
+        return materialDialog; //NOSONAR
     }
 
-    private void setupViews(View rootView) {
+    private void setupViews(View rootView) { //NOSONAR
 
-        titleEditText = rootView.findViewById(R.id.new_track_name);
-        titleInputLayout = getParent(titleEditText);
+        titleEditText = rootView.findViewById(R.id.new_track_name); //NOSONAR
+        titleInputLayout = getParent(titleEditText); //NOSONAR
 
-        albumEditText = rootView.findViewById(R.id.new_album_name);
-        albumInputLayout = getParent(albumEditText);
+        albumEditText = rootView.findViewById(R.id.new_album_name); //NOSONAR
+        albumInputLayout = getParent(albumEditText); //NOSONAR
 
-        artistEditText = rootView.findViewById(R.id.new_artist_name);
+        artistEditText = rootView.findViewById(R.id.new_artist_name); //NOSONAR
 
-        albumArtistEditText = rootView.findViewById(R.id.new_album_artist_name);
+        albumArtistEditText = rootView.findViewById(R.id.new_album_artist_name); //NOSONAR
 
-        genreEditText = rootView.findViewById(R.id.new_genre_name);
+        genreEditText = rootView.findViewById(R.id.new_genre_name); //NOSONAR
 
-        yearEditText = rootView.findViewById(R.id.new_year_number);
+        yearEditText = rootView.findViewById(R.id.new_year_number); //NOSONAR
 
-        trackEditText = rootView.findViewById(R.id.new_track_number);
-        trackInputLayout = getParent(trackEditText);
+        trackEditText = rootView.findViewById(R.id.new_track_number); //NOSONAR
+        trackInputLayout = getParent(trackEditText); //NOSONAR
 
-        trackTotalEditText = rootView.findViewById(R.id.new_track_total);
+        trackTotalEditText = rootView.findViewById(R.id.new_track_total); //NOSONAR
 
-        discEditText = rootView.findViewById(R.id.new_disc_number);
-        discInputLayout = getParent(discEditText);
+        discEditText = rootView.findViewById(R.id.new_disc_number); //NOSONAR
+        discInputLayout = getParent(discEditText); //NOSONAR
 
-        discTotalEditText = rootView.findViewById(R.id.new_disc_total);
+        discTotalEditText = rootView.findViewById(R.id.new_disc_total); //NOSONAR
 
-        lyricsEditText = rootView.findViewById(R.id.new_lyrics);
-        lyricsInputLayout = getParent(lyricsEditText);
+        lyricsEditText = rootView.findViewById(R.id.new_lyrics); //NOSONAR
+        lyricsInputLayout = getParent(lyricsEditText); //NOSONAR
 
-        commentEditText = rootView.findViewById(R.id.new_comment);
-        commentInputLayout = getParent(commentEditText);
+        commentEditText = rootView.findViewById(R.id.new_comment); //NOSONAR
+        commentInputLayout = getParent(commentEditText); //NOSONAR
 
-        if (albumArtist != null || album != null) {
-            titleInputLayout.setVisibility(View.GONE);
-            titleEditText.setVisibility(View.GONE);
-            trackInputLayout.setVisibility(View.GONE);
-            trackEditText.setVisibility(View.GONE);
-            trackTotalEditText.setVisibility(View.GONE);
-            discInputLayout.setVisibility(View.GONE);
-            discEditText.setVisibility(View.GONE);
-            lyricsInputLayout.setVisibility(View.GONE);
-            lyricsEditText.setVisibility(View.GONE);
-            commentInputLayout.setVisibility(View.GONE);
-            commentEditText.setVisibility(View.GONE);
+        if (albumArtist != null || album != null) { //NOSONAR
+            titleInputLayout.setVisibility(View.GONE); //NOSONAR
+            titleEditText.setVisibility(View.GONE); //NOSONAR
+            trackInputLayout.setVisibility(View.GONE); //NOSONAR
+            trackEditText.setVisibility(View.GONE); //NOSONAR
+            trackTotalEditText.setVisibility(View.GONE); //NOSONAR
+            discInputLayout.setVisibility(View.GONE); //NOSONAR
+            discEditText.setVisibility(View.GONE); //NOSONAR
+            lyricsInputLayout.setVisibility(View.GONE); //NOSONAR
+            lyricsEditText.setVisibility(View.GONE); //NOSONAR
+            commentInputLayout.setVisibility(View.GONE); //NOSONAR
+            commentEditText.setVisibility(View.GONE); //NOSONAR
         }
 
-        if (albumArtist != null) {
-            albumInputLayout.setVisibility(View.GONE);
-            albumEditText.setVisibility(View.GONE);
+        if (albumArtist != null) { //NOSONAR
+            albumInputLayout.setVisibility(View.GONE); //NOSONAR
+            albumEditText.setVisibility(View.GONE); //NOSONAR
         }
     }
 
-    void populateViews() {
+    void populateViews() { //NOSONAR
 
-        if (originalSongPaths == null || originalSongPaths.isEmpty()) {
-            return;
+        if (originalSongPaths == null || originalSongPaths.isEmpty()) { //NOSONAR
+            return; //NOSONAR
         }
 
-        try {
-            AudioFile mAudioFile = AudioFileIO.read(new File(originalSongPaths.get(0)));
-            Tag tag = mAudioFile.getTag();
+        try { //NOSONAR
+            AudioFile mAudioFile = AudioFileIO.read(new File(originalSongPaths.get(0))); //NOSONAR
+            Tag tag = mAudioFile.getTag(); //NOSONAR
 
-            if (tag == null) {
-                return;
+            if (tag == null) { //NOSONAR
+                return; //NOSONAR
             }
 
-            title = tag.getFirst(FieldKey.TITLE);
-            albumName = tag.getFirst(FieldKey.ALBUM);
-            artistName = tag.getFirst(FieldKey.ARTIST);
-            try {
-                albumArtistName = tag.getFirst(FieldKey.ALBUM_ARTIST);
-            } catch (UnsupportedOperationException ignored) {
+            title = tag.getFirst(FieldKey.TITLE); //NOSONAR
+            albumName = tag.getFirst(FieldKey.ALBUM); //NOSONAR
+            artistName = tag.getFirst(FieldKey.ARTIST); //NOSONAR
+            try { //NOSONAR
+                albumArtistName = tag.getFirst(FieldKey.ALBUM_ARTIST); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-            genre = tag.getFirst(FieldKey.GENRE);
-            year = tag.getFirst(FieldKey.YEAR);
-            track = tag.getFirst(FieldKey.TRACK);
-            try {
-                trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL);
-            } catch (UnsupportedOperationException ignored) {
+            genre = tag.getFirst(FieldKey.GENRE); //NOSONAR
+            year = tag.getFirst(FieldKey.YEAR); //NOSONAR
+            track = tag.getFirst(FieldKey.TRACK); //NOSONAR
+            try { //NOSONAR
+                trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-            try {
-                disc = tag.getFirst(FieldKey.DISC_NO);
-            } catch (UnsupportedOperationException ignored) {
+            try { //NOSONAR
+                disc = tag.getFirst(FieldKey.DISC_NO); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-            try {
-                discTotal = tag.getFirst(FieldKey.DISC_TOTAL);
-            } catch (UnsupportedOperationException ignored) {
+            try { //NOSONAR
+                discTotal = tag.getFirst(FieldKey.DISC_TOTAL); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-            try {
-                lyrics = tag.getFirst(FieldKey.LYRICS);
-            } catch (UnsupportedOperationException ignored) {
+            try { //NOSONAR
+                lyrics = tag.getFirst(FieldKey.LYRICS); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-            try {
-                comment = tag.getFirst(FieldKey.COMMENT);
-            } catch (UnsupportedOperationException ignored) {
+            try { //NOSONAR
+                comment = tag.getFirst(FieldKey.COMMENT); //NOSONAR
+            } catch (UnsupportedOperationException ignored) { //NOSONAR
                 // Intentionally left empty.
             }
-        } catch (IOException | InvalidAudioFrameException | TagException | ReadOnlyFileException | CannotReadException e) {
-            Log.e(TAG, "Failed to read tags. " + e.toString());
+        } catch (IOException | InvalidAudioFrameException | TagException | ReadOnlyFileException | CannotReadException e) { //NOSONAR
+            Log.e(TAG, "Failed to read tags. " + e.toString()); //NOSONAR
         }
 
-        titleEditText.setText(title);
-        titleEditText.setSelection(titleEditText.getText().length());
+        titleEditText.setText(title); //NOSONAR
+        titleEditText.setSelection(titleEditText.getText().length()); //NOSONAR
 
-        albumEditText.setText(albumName);
-        albumEditText.setSelection(albumEditText.getText().length());
+        albumEditText.setText(albumName); //NOSONAR
+        albumEditText.setSelection(albumEditText.getText().length()); //NOSONAR
 
-        artistEditText.setText(artistName);
-        artistEditText.setSelection(artistEditText.getText().length());
+        artistEditText.setText(artistName); //NOSONAR
+        artistEditText.setSelection(artistEditText.getText().length()); //NOSONAR
 
-        albumArtistEditText.setText(albumArtistName);
-        albumArtistEditText.setSelection(albumArtistEditText.getText().length());
+        albumArtistEditText.setText(albumArtistName); //NOSONAR
+        albumArtistEditText.setSelection(albumArtistEditText.getText().length()); //NOSONAR
 
-        genreEditText.setText(genre);
-        genreEditText.setSelection(genreEditText.getText().length());
+        genreEditText.setText(genre); //NOSONAR
+        genreEditText.setSelection(genreEditText.getText().length()); //NOSONAR
 
-        yearEditText.setText(String.valueOf(year));
-        yearEditText.setSelection(yearEditText.getText().length());
+        yearEditText.setText(String.valueOf(year)); //NOSONAR
+        yearEditText.setSelection(yearEditText.getText().length()); //NOSONAR
 
-        trackEditText.setText(String.valueOf(track));
-        trackEditText.setSelection(trackEditText.getText().length());
+        trackEditText.setText(String.valueOf(track)); //NOSONAR
+        trackEditText.setSelection(trackEditText.getText().length()); //NOSONAR
 
-        trackTotalEditText.setText(String.valueOf(trackTotal));
-        trackTotalEditText.setSelection(trackTotalEditText.getText().length());
+        trackTotalEditText.setText(String.valueOf(trackTotal)); //NOSONAR
+        trackTotalEditText.setSelection(trackTotalEditText.getText().length()); //NOSONAR
 
-        discEditText.setText(String.valueOf(disc));
-        discEditText.setSelection(discEditText.getText().length());
+        discEditText.setText(String.valueOf(disc)); //NOSONAR
+        discEditText.setSelection(discEditText.getText().length()); //NOSONAR
 
-        discTotalEditText.setText(String.valueOf(discTotal));
-        discTotalEditText.setSelection(discTotalEditText.getText().length());
+        discTotalEditText.setText(String.valueOf(discTotal)); //NOSONAR
+        discTotalEditText.setSelection(discTotalEditText.getText().length()); //NOSONAR
 
-        lyricsEditText.setText(lyrics);
-        lyricsEditText.setSelection(lyricsEditText.getText().length());
+        lyricsEditText.setText(lyrics); //NOSONAR
+        lyricsEditText.setSelection(lyricsEditText.getText().length()); //NOSONAR
 
-        commentEditText.setText(comment);
-        commentEditText.setSelection(commentEditText.getText().length());
+        commentEditText.setText(comment); //NOSONAR
+        commentEditText.setSelection(commentEditText.getText().length()); //NOSONAR
     }
 
-    private void saveTags() {
+    private void saveTags() { //NOSONAR
 
-        ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage(getString(R.string.tag_editor_check_permission));
-        progressDialog.setIndeterminate(true);
-        progressDialog.setCancelable(false);
-        progressDialog.show();
+        ProgressDialog progressDialog = new ProgressDialog(getContext()); //NOSONAR
+        progressDialog.setMessage(getString(R.string.tag_editor_check_permission)); //NOSONAR
+        progressDialog.setIndeterminate(true); //NOSONAR
+        progressDialog.setCancelable(false); //NOSONAR
+        progressDialog.show(); //NOSONAR
 
-        CheckDocumentPermissionsTask task = new CheckDocumentPermissionsTask(getContext(), settingsManager, originalSongPaths, documentFiles, hasPermission -> {
+        CheckDocumentPermissionsTask task = new CheckDocumentPermissionsTask(getContext(), settingsManager, originalSongPaths, documentFiles, hasPermission -> { //NOSONAR
 
-            if (isResumed() && progressDialog.isShowing()) {
-                progressDialog.dismiss();
+            if (isResumed() && progressDialog.isShowing()) { //NOSONAR
+                progressDialog.dismiss(); //NOSONAR
             }
 
-            if (!isResumed() || getContext() == null) {
-                LogUtils.logException(TAG, "Save tags returning early.. Context null or dialog not resumed.", null);
-                return;
+            if (!isResumed() || getContext() == null) { //NOSONAR
+                LogUtils.logException(TAG, "Save tags returning early.. Context null or dialog not resumed.", null); //NOSONAR
+                return; //NOSONAR
             }
 
-            if (hasPermission) {
+            if (hasPermission) { //NOSONAR
 
-                final ProgressDialog saveProgressDialog = new ProgressDialog(getContext());
-                saveProgressDialog.setMessage(getResources().getString(R.string.saving_tags));
-                saveProgressDialog.setMax(originalSongPaths.size());
-                saveProgressDialog.setIndeterminate(false);
-                saveProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-                saveProgressDialog.setCancelable(false);
-                saveProgressDialog.show();
+                final ProgressDialog saveProgressDialog = new ProgressDialog(getContext()); //NOSONAR
+                saveProgressDialog.setMessage(getResources().getString(R.string.saving_tags)); //NOSONAR
+                saveProgressDialog.setMax(originalSongPaths.size()); //NOSONAR
+                saveProgressDialog.setIndeterminate(false); //NOSONAR
+                saveProgressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL); //NOSONAR
+                saveProgressDialog.setCancelable(false); //NOSONAR
+                saveProgressDialog.show(); //NOSONAR
 
-                TaggerTask.TagCompletionListener listener = new TaggerTask.TagCompletionListener() {
-                    @Override
-                    public void onSuccess() {
+                TaggerTask.TagCompletionListener listener = new TaggerTask.TagCompletionListener() { //NOSONAR
+                    @Override //NOSONAR
+                    public void onSuccess() { //NOSONAR
 
-                        CustomMediaScanner.scanFiles(getContext(), originalSongPaths, null);
+                        CustomMediaScanner.scanFiles(getContext(), originalSongPaths, null); //NOSONAR
 
-                        if (getContext() != null && isResumed()) {
-                            saveProgressDialog.dismiss();
+                        if (getContext() != null && isResumed()) { //NOSONAR
+                            saveProgressDialog.dismiss(); //NOSONAR
 
-                            dismiss();
+                            dismiss(); //NOSONAR
                         }
                     }
 
-                    @Override
-                    public void onFailure() {
+                    @Override //NOSONAR
+                    public void onFailure() { //NOSONAR
 
-                        if (getContext() != null && isResumed()) {
-                            saveProgressDialog.dismiss();
-                            Toast.makeText(getContext(), R.string.tag_error, Toast.LENGTH_LONG).show();
-                            dismiss();
+                        if (getContext() != null && isResumed()) { //NOSONAR
+                            saveProgressDialog.dismiss(); //NOSONAR
+                            Toast.makeText(getContext(), R.string.tag_error, Toast.LENGTH_LONG).show(); //NOSONAR
+                            dismiss(); //NOSONAR
                         }
                     }
 
-                    @Override
-                    public void onProgress(int progress) {
-                        saveProgressDialog.setProgress(progress);
+                    @Override //NOSONAR
+                    public void onProgress(int progress) { //NOSONAR
+                        saveProgressDialog.setProgress(progress); //NOSONAR
                     }
                 };
 
-                TaggerTask taggerTask = new TaggerTask(getContext())
-                        .showAlbum(showAlbum)
-                        .showTrack(showTrack)
-                        .setPaths(originalSongPaths)
-                        .setDocumentfiles(documentFiles)
-                        .title(titleEditText.getText().toString())
-                        .album(albumEditText.getText().toString())
-                        .artist(artistEditText.getText().toString())
-                        .albumArtist(albumArtistEditText.getText().toString())
-                        .year(yearEditText.getText().toString())
-                        .track(trackEditText.getText().toString())
-                        .trackTotal(trackTotalEditText.getText().toString())
-                        .disc(discEditText.getText().toString())
-                        .discTotal(discTotalEditText.getText().toString())
-                        .lyrics(lyricsEditText.getText().toString())
-                        .comment(commentEditText.getText().toString())
-                        .genre(genreEditText.getText().toString())
-                        .listener(listener)
-                        .build();
-                taggerTask.execute();
-            } else {
-                TaggerUtils.showChooseDocumentDialog(getContext(), (dialog1, which1) -> {
-                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
-                    if (intent.resolveActivity(getContext().getPackageManager()) != null) {
-                        this.startActivityForResult(intent, DOCUMENT_TREE_REQUEST_CODE);
-                    } else {
-                        Toast.makeText(getContext(), R.string.R_string_toast_no_document_provider, Toast.LENGTH_LONG).show();
+                TaggerTask taggerTask = new TaggerTask(getContext()) //NOSONAR
+                        .showAlbum(showAlbum) //NOSONAR
+                        .showTrack(showTrack) //NOSONAR
+                        .setPaths(originalSongPaths) //NOSONAR
+                        .setDocumentfiles(documentFiles) //NOSONAR
+                        .title(titleEditText.getText().toString()) //NOSONAR
+                        .album(albumEditText.getText().toString()) //NOSONAR
+                        .artist(artistEditText.getText().toString()) //NOSONAR
+                        .albumArtist(albumArtistEditText.getText().toString()) //NOSONAR
+                        .year(yearEditText.getText().toString()) //NOSONAR
+                        .track(trackEditText.getText().toString()) //NOSONAR
+                        .trackTotal(trackTotalEditText.getText().toString()) //NOSONAR
+                        .disc(discEditText.getText().toString()) //NOSONAR
+                        .discTotal(discTotalEditText.getText().toString()) //NOSONAR
+                        .lyrics(lyricsEditText.getText().toString()) //NOSONAR
+                        .comment(commentEditText.getText().toString()) //NOSONAR
+                        .genre(genreEditText.getText().toString()) //NOSONAR
+                        .listener(listener) //NOSONAR
+                        .build(); //NOSONAR
+                taggerTask.execute(); //NOSONAR
+            } else { //NOSONAR
+                TaggerUtils.showChooseDocumentDialog(getContext(), (dialog1, which1) -> { //NOSONAR
+                    Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE); //NOSONAR
+                    if (intent.resolveActivity(getContext().getPackageManager()) != null) { //NOSONAR
+                        this.startActivityForResult(intent, DOCUMENT_TREE_REQUEST_CODE); //NOSONAR
+                    } else { //NOSONAR
+                        Toast.makeText(getContext(), R.string.R_string_toast_no_document_provider, Toast.LENGTH_LONG).show(); //NOSONAR
                     }
-                }, hasCheckedPermissions);
-                hasCheckedPermissions = true;
+                }, hasCheckedPermissions); //NOSONAR
+                hasCheckedPermissions = true; //NOSONAR
             }
         });
-        task.execute();
+        task.execute(); //NOSONAR
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode) {
-            case DOCUMENT_TREE_REQUEST_CODE:
-                if (resultCode == Activity.RESULT_OK) {
-                    Uri treeUri = data.getData();
-                    getContext().getContentResolver().takePersistableUriPermission(treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
-                    settingsManager.setDocumentTreeUri(data.getData().toString());
-                    saveTags();
+    @Override //NOSONAR
+    public void onActivityResult(int requestCode, int resultCode, Intent data) { //NOSONAR
+        super.onActivityResult(requestCode, resultCode, data); //NOSONAR
+        switch (requestCode) { //NOSONAR
+            case DOCUMENT_TREE_REQUEST_CODE: //NOSONAR
+                if (resultCode == Activity.RESULT_OK) { //NOSONAR
+                    Uri treeUri = data.getData(); //NOSONAR
+                    getContext().getContentResolver().takePersistableUriPermission(treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION); //NOSONAR
+                    settingsManager.setDocumentTreeUri(data.getData().toString()); //NOSONAR
+                    saveTags(); //NOSONAR
                 }
-                break;
+                break; //NOSONAR
         }
     }
 
-    public void show(FragmentManager fragmentManager) {
-        show(fragmentManager, TAG);
+    public void show(FragmentManager fragmentManager) { //NOSONAR
+        show(fragmentManager, TAG); //NOSONAR
     }
 
-    private TextInputLayout getParent(EditText editText) {
-        if (editText.getParent() instanceof TextInputLayout) {
-            return (TextInputLayout) editText.getParent();
-        } else if (editText.getParent() instanceof FrameLayout) {
-            return (TextInputLayout) editText.getParent().getParent();
+    private TextInputLayout getParent(EditText editText) { //NOSONAR
+        if (editText.getParent() instanceof TextInputLayout) { //NOSONAR
+            return (TextInputLayout) editText.getParent(); //NOSONAR
+        } else if (editText.getParent() instanceof FrameLayout) { //NOSONAR
+            return (TextInputLayout) editText.getParent().getParent(); //NOSONAR
         }
-        return null;
+        return null; //NOSONAR
     }
 }

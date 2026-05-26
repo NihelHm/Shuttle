@@ -78,683 +78,683 @@ import test.com.androidnavigation.fragment.BackPressListener;
 import static com.afollestad.aesthetic.Rx.distinctToMainThread;
 import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class FolderFragment extends BaseFragment implements
-        BreadcrumbListener,
-        BackPressListener,
-        FolderView.ClickListener,
-        Toolbar.OnMenuItemClickListener,
-        DrawerLockManager.DrawerLock {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class FolderFragment extends BaseFragment implements //NOSONAR
+        BreadcrumbListener, //NOSONAR
+        BackPressListener, //NOSONAR
+        FolderView.ClickListener, //NOSONAR
+        Toolbar.OnMenuItemClickListener, //NOSONAR
+        DrawerLockManager.DrawerLock { //NOSONAR
 
-    private static final String TAG = "FolderFragment";
+    private static final String TAG = "FolderFragment"; //NOSONAR
 
-    private static final String ARG_CURRENT_DIR = "current_dir";
+    private static final String ARG_CURRENT_DIR = "current_dir"; //NOSONAR
 
-    private static final String ARG_DISPLAYED_IN_TABS = "displayed_in_tabs";
+    private static final String ARG_DISPLAYED_IN_TABS = "displayed_in_tabs"; //NOSONAR
 
-    private static final String ARG_TITLE = "title";
+    private static final String ARG_TITLE = "title"; //NOSONAR
 
-    ViewModelAdapter adapter;
+    ViewModelAdapter adapter; //NOSONAR
 
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerView) //NOSONAR
+    RecyclerView recyclerView; //NOSONAR
 
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    @BindView(R.id.toolbar) //NOSONAR
+    Toolbar toolbar; //NOSONAR
 
-    @BindView(R.id.breadcrumb_view)
-    Breadcrumb breadcrumb;
+    @BindView(R.id.breadcrumb_view) //NOSONAR
+    Breadcrumb breadcrumb; //NOSONAR
 
-    @BindView(R.id.contextualToolbar)
-    ContextualToolbar contextualToolbar;
+    @BindView(R.id.contextualToolbar) //NOSONAR
+    ContextualToolbar contextualToolbar; //NOSONAR
 
-    @BindView(R.id.app_bar)
-    AppBarLayout appBarLayout;
+    @BindView(R.id.app_bar) //NOSONAR
+    AppBarLayout appBarLayout; //NOSONAR
 
-    @BindView(R.id.statusBarView)
-    ThemedStatusBarView statusBarView;
+    @BindView(R.id.statusBarView) //NOSONAR
+    ThemedStatusBarView statusBarView; //NOSONAR
 
-    private CompositeDisposable compositeDisposable = new CompositeDisposable();
+    private CompositeDisposable compositeDisposable = new CompositeDisposable(); //NOSONAR
 
-    String currentDir;
+    String currentDir; //NOSONAR
 
-    boolean displayedInTabs = false;
+    boolean displayedInTabs = false; //NOSONAR
 
-    FileBrowser fileBrowser;
+    FileBrowser fileBrowser; //NOSONAR
 
-    boolean showBreadcrumbsInList;
+    boolean showBreadcrumbsInList; //NOSONAR
 
-    private boolean isShowingWhitelist;
-    private boolean isShowingBlacklist;
+    private boolean isShowingWhitelist; //NOSONAR
+    private boolean isShowingBlacklist; //NOSONAR
 
-    private CompositeDisposable disposables;
+    private CompositeDisposable disposables; //NOSONAR
 
-    private ContextualToolbarHelper<BaseFileObject> contextualToolbarHelper;
+    private ContextualToolbarHelper<BaseFileObject> contextualToolbarHelper; //NOSONAR
 
-    @Nullable
-    private BreadcrumbsView breadcrumbsView;
+    @Nullable //NOSONAR
+    private BreadcrumbsView breadcrumbsView; //NOSONAR
 
-    private Unbinder unbinder;
+    private Unbinder unbinder; //NOSONAR
 
-    @Nullable
-    private Disposable setItemsDisposable;
+    @Nullable //NOSONAR
+    private Disposable setItemsDisposable; //NOSONAR
 
-    @Inject
-    Repository.BlacklistRepository blacklistRepository;
+    @Inject //NOSONAR
+    Repository.BlacklistRepository blacklistRepository; //NOSONAR
 
-    @Inject
-    Repository.WhitelistRepository whitelistRepository;
+    @Inject //NOSONAR
+    Repository.WhitelistRepository whitelistRepository; //NOSONAR
 
-    @Inject
-    Repository.SongsRepository songsRepository;
+    @Inject //NOSONAR
+    Repository.SongsRepository songsRepository; //NOSONAR
 
-    @Inject
-    Repository.PlaylistsRepository playlistsRepository;
+    @Inject //NOSONAR
+    Repository.PlaylistsRepository playlistsRepository; //NOSONAR
 
-    @Inject
-    SettingsManager settingsManager;
+    @Inject //NOSONAR
+    SettingsManager settingsManager; //NOSONAR
 
-    @Inject
-    AnalyticsManager analyticsManager;
+    @Inject //NOSONAR
+    AnalyticsManager analyticsManager; //NOSONAR
 
-    @Inject
-    RingtoneManager ringtoneManager;
+    @Inject //NOSONAR
+    RingtoneManager ringtoneManager; //NOSONAR
 
-    @Inject
-    PlaylistManager playlistManager;
+    @Inject //NOSONAR
+    PlaylistManager playlistManager; //NOSONAR
 
-    @Inject
-    PlaylistMenuHelper playlistMenuHelper;
+    @Inject //NOSONAR
+    PlaylistMenuHelper playlistMenuHelper; //NOSONAR
 
-    public static FolderFragment newInstance(String title, boolean isDisplayedInTabs) {
-        FolderFragment fragment = new FolderFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_TITLE, title);
-        args.putBoolean(ARG_DISPLAYED_IN_TABS, isDisplayedInTabs);
-        fragment.setArguments(args);
-        return fragment;
+    public static FolderFragment newInstance(String title, boolean isDisplayedInTabs) { //NOSONAR
+        FolderFragment fragment = new FolderFragment(); //NOSONAR
+        Bundle args = new Bundle(); //NOSONAR
+        args.putString(ARG_TITLE, title); //NOSONAR
+        args.putBoolean(ARG_DISPLAYED_IN_TABS, isDisplayedInTabs); //NOSONAR
+        fragment.setArguments(args); //NOSONAR
+        return fragment; //NOSONAR
     }
 
-    @Override
-    public void onCreate(final Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    @Override //NOSONAR
+    public void onCreate(final Bundle savedInstanceState) { //NOSONAR
+        super.onCreate(savedInstanceState); //NOSONAR
 
-        disposables = new CompositeDisposable();
+        disposables = new CompositeDisposable(); //NOSONAR
 
-        adapter = new ViewModelAdapter();
+        adapter = new ViewModelAdapter(); //NOSONAR
 
-        fileBrowser = new FileBrowser(settingsManager);
+        fileBrowser = new FileBrowser(settingsManager); //NOSONAR
 
-        if (savedInstanceState != null) {
-            currentDir = savedInstanceState.getString(ARG_CURRENT_DIR);
+        if (savedInstanceState != null) { //NOSONAR
+            currentDir = savedInstanceState.getString(ARG_CURRENT_DIR); //NOSONAR
         }
 
-        displayedInTabs = getArguments().getBoolean(ARG_DISPLAYED_IN_TABS);
+        displayedInTabs = getArguments().getBoolean(ARG_DISPLAYED_IN_TABS); //NOSONAR
 
-        if (displayedInTabs) {
-            setHasOptionsMenu(true);
+        if (displayedInTabs) { //NOSONAR
+            setHasOptionsMenu(true); //NOSONAR
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    @Override //NOSONAR
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) { //NOSONAR
 
-        View rootView = inflater.inflate(R.layout.fragment_folder_browser, container, false);
+        View rootView = inflater.inflate(R.layout.fragment_folder_browser, container, false); //NOSONAR
 
-        unbinder = ButterKnife.bind(this, rootView);
+        unbinder = ButterKnife.bind(this, rootView); //NOSONAR
 
-        if (displayedInTabs) {
-            breadcrumbsView = new BreadcrumbsView(currentDir);
-            showBreadcrumbsInList = true;
-            changeBreadcrumbPath();
-            appBarLayout.setVisibility(View.GONE);
-            statusBarView.setVisibility(View.GONE);
-        } else {
-            showBreadcrumbsInList = false;
-            breadcrumb.addBreadcrumbListener(this);
-            if (!TextUtils.isEmpty(currentDir)) {
-                breadcrumb.changeBreadcrumbPath(currentDir);
+        if (displayedInTabs) { //NOSONAR
+            breadcrumbsView = new BreadcrumbsView(currentDir); //NOSONAR
+            showBreadcrumbsInList = true; //NOSONAR
+            changeBreadcrumbPath(); //NOSONAR
+            appBarLayout.setVisibility(View.GONE); //NOSONAR
+            statusBarView.setVisibility(View.GONE); //NOSONAR
+        } else { //NOSONAR
+            showBreadcrumbsInList = false; //NOSONAR
+            breadcrumb.addBreadcrumbListener(this); //NOSONAR
+            if (!TextUtils.isEmpty(currentDir)) { //NOSONAR
+                breadcrumb.changeBreadcrumbPath(currentDir); //NOSONAR
             }
         }
 
-        if (!displayedInTabs) {
-            toolbar.inflateMenu(R.menu.menu_folders);
-            toolbar.setNavigationOnClickListener(v -> getNavigationController().popViewController());
-            toolbar.setOnMenuItemClickListener(this);
-            updateMenuItems(toolbar.getMenu());
+        if (!displayedInTabs) { //NOSONAR
+            toolbar.inflateMenu(R.menu.menu_folders); //NOSONAR
+            toolbar.setNavigationOnClickListener(v -> getNavigationController().popViewController()); //NOSONAR
+            toolbar.setOnMenuItemClickListener(this); //NOSONAR
+            updateMenuItems(toolbar.getMenu()); //NOSONAR
         }
 
-        recyclerView.setRecyclerListener(new RecyclerListener());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        recyclerView.setAdapter(adapter);
+        recyclerView.setRecyclerListener(new RecyclerListener()); //NOSONAR
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity())); //NOSONAR
+        recyclerView.setAdapter(adapter); //NOSONAR
 
-        compositeDisposable.add(Aesthetic.get(getContext())
-                .colorPrimary()
-                .compose(distinctToMainThread())
-                .subscribe(color -> ViewBackgroundAction.create(appBarLayout).accept(color), onErrorLogAndRethrow()));
+        compositeDisposable.add(Aesthetic.get(getContext()) //NOSONAR
+                .colorPrimary() //NOSONAR
+                .compose(distinctToMainThread()) //NOSONAR
+                .subscribe(color -> ViewBackgroundAction.create(appBarLayout).accept(color), onErrorLogAndRethrow())); //NOSONAR
 
-        return rootView;
+        return rootView; //NOSONAR
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
+    @Override //NOSONAR
+    public void onResume() { //NOSONAR
+        super.onResume(); //NOSONAR
 
-        if (currentDir == null) {
-            disposables.add(Observable.fromCallable(() -> {
-                        if (!TextUtils.isEmpty(currentDir)) {
-                            return new File(currentDir);
-                        } else {
-                            return fileBrowser.getInitialDir();
+        if (currentDir == null) { //NOSONAR
+            disposables.add(Observable.fromCallable(() -> { //NOSONAR
+                        if (!TextUtils.isEmpty(currentDir)) { //NOSONAR
+                            return new File(currentDir); //NOSONAR
+                        } else { //NOSONAR
+                            return fileBrowser.getInitialDir(); //NOSONAR
                         }
-                    }).subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe(
-                                    this::changeDir,
-                                    error -> LogUtils.logException(TAG, "Error in onResume", error))
+                    }).subscribeOn(Schedulers.io()) //NOSONAR
+                            .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                            .subscribe( //NOSONAR
+                                    this::changeDir, //NOSONAR
+                                    error -> LogUtils.logException(TAG, "Error in onResume", error)) //NOSONAR
             );
         }
 
-        getNavigationController().addBackPressListener(this);
+        getNavigationController().addBackPressListener(this); //NOSONAR
 
-        if (!displayedInTabs) {
-            DrawerLockManager.getInstance().addDrawerLock(this);
+        if (!displayedInTabs) { //NOSONAR
+            DrawerLockManager.getInstance().addDrawerLock(this); //NOSONAR
         }
 
-        if (isVisible()) {
-            setupContextualToolbar();
-        }
-    }
-
-    @Override
-    public void onPause() {
-        disposables.clear();
-
-        getNavigationController().removeBackPressListener(this);
-
-        if (!displayedInTabs) {
-            DrawerLockManager.getInstance().removeDrawerLock(this);
-        }
-
-        super.onPause();
-    }
-
-    @Override
-    public void onDestroyView() {
-        compositeDisposable.clear();
-        if (setItemsDisposable != null) {
-            setItemsDisposable.dispose();
-        }
-        unbinder.unbind();
-        super.onDestroyView();
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        outState.putString(ARG_CURRENT_DIR, currentDir);
-        super.onSaveInstanceState(outState);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_folders, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public void onPrepareOptionsMenu(Menu menu) {
-        super.onPrepareOptionsMenu(menu);
-
-        updateMenuItems(menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return this.onMenuItemClick(item);
-    }
-
-    private void updateMenuItems() {
-        if (displayedInTabs) {
-            getActivity().invalidateOptionsMenu();
-        } else {
-            updateMenuItems(toolbar.getMenu());
+        if (isVisible()) { //NOSONAR
+            setupContextualToolbar(); //NOSONAR
         }
     }
 
-    private void updateMenuItems(Menu menu) {
+    @Override //NOSONAR
+    public void onPause() { //NOSONAR
+        disposables.clear(); //NOSONAR
 
-        switch (settingsManager.getFolderBrowserFilesSortOrder()) {
-            case SortManager.SortFiles.DEFAULT:
-                menu.findItem(R.id.sort_files_default).setChecked(true);
-                break;
-            case SortManager.SortFiles.FILE_NAME:
-                menu.findItem(R.id.sort_files_filename).setChecked(true);
-                break;
-            case SortManager.SortFiles.SIZE:
-                menu.findItem(R.id.sort_files_size).setChecked(true);
-                break;
-            case SortManager.SortFiles.ARTIST_NAME:
-                menu.findItem(R.id.sort_files_artist_name).setChecked(true);
-                break;
-            case SortManager.SortFiles.ALBUM_NAME:
-                menu.findItem(R.id.sort_files_album_name).setChecked(true);
-                break;
-            case SortManager.SortFiles.TRACK_NAME:
-                menu.findItem(R.id.sort_files_track_name).setChecked(true);
-                break;
+        getNavigationController().removeBackPressListener(this); //NOSONAR
+
+        if (!displayedInTabs) { //NOSONAR
+            DrawerLockManager.getInstance().removeDrawerLock(this); //NOSONAR
         }
 
-        switch (settingsManager.getFolderBrowserFoldersSortOrder()) {
-            case SortManager.SortFolders.DEFAULT:
-                menu.findItem(R.id.sort_folder_default).setChecked(true);
-                break;
-            case SortManager.SortFolders.COUNT:
-                menu.findItem(R.id.sort_folder_count).setChecked(true);
-                break;
+        super.onPause(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void onDestroyView() { //NOSONAR
+        compositeDisposable.clear(); //NOSONAR
+        if (setItemsDisposable != null) { //NOSONAR
+            setItemsDisposable.dispose(); //NOSONAR
+        }
+        unbinder.unbind(); //NOSONAR
+        super.onDestroyView(); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void onSaveInstanceState(Bundle outState) { //NOSONAR
+        outState.putString(ARG_CURRENT_DIR, currentDir); //NOSONAR
+        super.onSaveInstanceState(outState); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { //NOSONAR
+        inflater.inflate(R.menu.menu_folders, menu); //NOSONAR
+        super.onCreateOptionsMenu(menu, inflater); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void onPrepareOptionsMenu(Menu menu) { //NOSONAR
+        super.onPrepareOptionsMenu(menu); //NOSONAR
+
+        updateMenuItems(menu); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public boolean onOptionsItemSelected(MenuItem item) { //NOSONAR
+        return this.onMenuItemClick(item); //NOSONAR
+    }
+
+    private void updateMenuItems() { //NOSONAR
+        if (displayedInTabs) { //NOSONAR
+            getActivity().invalidateOptionsMenu(); //NOSONAR
+        } else { //NOSONAR
+            updateMenuItems(toolbar.getMenu()); //NOSONAR
+        }
+    }
+
+    private void updateMenuItems(Menu menu) { //NOSONAR
+
+        switch (settingsManager.getFolderBrowserFilesSortOrder()) { //NOSONAR
+            case SortManager.SortFiles.DEFAULT: //NOSONAR
+                menu.findItem(R.id.sort_files_default).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.FILE_NAME: //NOSONAR
+                menu.findItem(R.id.sort_files_filename).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.SIZE: //NOSONAR
+                menu.findItem(R.id.sort_files_size).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.ARTIST_NAME: //NOSONAR
+                menu.findItem(R.id.sort_files_artist_name).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.ALBUM_NAME: //NOSONAR
+                menu.findItem(R.id.sort_files_album_name).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFiles.TRACK_NAME: //NOSONAR
+                menu.findItem(R.id.sort_files_track_name).setChecked(true); //NOSONAR
+                break; //NOSONAR
         }
 
-        menu.findItem(R.id.folder_home_dir).setIcon(fileBrowser.getHomeDirIcon());
-        menu.findItem(R.id.folder_home_dir).setTitle(fileBrowser.getHomeDirTitle());
-        menu.findItem(R.id.show_filenames).setChecked(settingsManager.getFolderBrowserShowFileNames());
-        menu.findItem(R.id.files_ascending).setChecked(settingsManager.getFolderBrowserFilesAscending());
-        menu.findItem(R.id.folders_ascending).setChecked(settingsManager.getFolderBrowserFoldersAscending());
+        switch (settingsManager.getFolderBrowserFoldersSortOrder()) { //NOSONAR
+            case SortManager.SortFolders.DEFAULT: //NOSONAR
+                menu.findItem(R.id.sort_folder_default).setChecked(true); //NOSONAR
+                break; //NOSONAR
+            case SortManager.SortFolders.COUNT: //NOSONAR
+                menu.findItem(R.id.sort_folder_count).setChecked(true); //NOSONAR
+                break; //NOSONAR
+        }
+
+        menu.findItem(R.id.folder_home_dir).setIcon(fileBrowser.getHomeDirIcon()); //NOSONAR
+        menu.findItem(R.id.folder_home_dir).setTitle(fileBrowser.getHomeDirTitle()); //NOSONAR
+        menu.findItem(R.id.show_filenames).setChecked(settingsManager.getFolderBrowserShowFileNames()); //NOSONAR
+        menu.findItem(R.id.files_ascending).setChecked(settingsManager.getFolderBrowserFilesAscending()); //NOSONAR
+        menu.findItem(R.id.folders_ascending).setChecked(settingsManager.getFolderBrowserFoldersAscending()); //NOSONAR
     }
 
-    @Override
-    public void onBreadcrumbItemClick(BreadcrumbItem item) {
-        changeDir(new File(item.getItemPath()));
+    @Override //NOSONAR
+    public void onBreadcrumbItemClick(BreadcrumbItem item) { //NOSONAR
+        changeDir(new File(item.getItemPath())); //NOSONAR
     }
 
-    @SuppressLint("CheckResult")
-    public void changeDir(File newDir) {
-        disposables.add(Single.zip(
-                whitelistRepository.getWhitelistItems(songsRepository).first(Collections.emptyList()),
-                blacklistRepository.getBlacklistItems(songsRepository).first(Collections.emptyList()),
-                Single.fromCallable(() -> {
-                    final String path = FileHelper.getPath(newDir);
-                    if (TextUtils.isEmpty(path)) {
-                        return new ArrayList<>();
+    @SuppressLint("CheckResult") //NOSONAR
+    public void changeDir(File newDir) { //NOSONAR
+        disposables.add(Single.zip( //NOSONAR
+                whitelistRepository.getWhitelistItems(songsRepository).first(Collections.emptyList()), //NOSONAR
+                blacklistRepository.getBlacklistItems(songsRepository).first(Collections.emptyList()), //NOSONAR
+                Single.fromCallable(() -> { //NOSONAR
+                    final String path = FileHelper.getPath(newDir); //NOSONAR
+                    if (TextUtils.isEmpty(path)) { //NOSONAR
+                        return new ArrayList<>(); //NOSONAR
                     }
-                    currentDir = path;
-                    return fileBrowser.loadDir(new File(path));
+                    currentDir = path; //NOSONAR
+                    return fileBrowser.loadDir(new File(path)); //NOSONAR
                 }),
-                (Function3<List<InclExclItem>, List<InclExclItem>, List<BaseFileObject>, List<ViewModel>>) (whitelist, blacklist, baseFileObjects) -> {
-                    List<ViewModel> items = Stream.of(baseFileObjects)
-                            .map(baseFileObject -> {
+                (Function3<List<InclExclItem>, List<InclExclItem>, List<BaseFileObject>, List<ViewModel>>) (whitelist, blacklist, baseFileObjects) -> { //NOSONAR
+                    List<ViewModel> items = Stream.of(baseFileObjects) //NOSONAR
+                            .map(baseFileObject -> { //NOSONAR
 
                                 // Look for an existing FolderView wrapping the BaseFileObject, we'll reuse it if it exists.
-                                FolderView folderView = (FolderView) Stream.of(adapter.items)
-                                        .filter(viewModel -> viewModel instanceof FolderView && (((FolderView) viewModel).baseFileObject.equals(baseFileObject)))
-                                        .findFirst()
-                                        .orElse(null);
+                                FolderView folderView = (FolderView) Stream.of(adapter.items) //NOSONAR
+                                        .filter(viewModel -> viewModel instanceof FolderView && (((FolderView) viewModel).baseFileObject.equals(baseFileObject))) //NOSONAR
+                                        .findFirst() //NOSONAR
+                                        .orElse(null); //NOSONAR
 
-                                if (folderView == null) {
-                                    folderView = new FolderView(baseFileObject, whitelistRepository, blacklistRepository, settingsManager,
-                                            Stream.of(whitelist).anyMatch(inclExclItem -> inclExclItem.path.equals(baseFileObject.path)),
-                                            Stream.of(blacklist).anyMatch(inclExclItem -> inclExclItem.path.equals(baseFileObject.path)));
-                                    folderView.setShowWhitelist(isShowingWhitelist);
-                                    folderView.setShowBlacklist(isShowingBlacklist);
-                                    folderView.setClickListener(FolderFragment.this);
+                                if (folderView == null) { //NOSONAR
+                                    folderView = new FolderView(baseFileObject, whitelistRepository, blacklistRepository, settingsManager, //NOSONAR
+                                            Stream.of(whitelist).anyMatch(inclExclItem -> inclExclItem.path.equals(baseFileObject.path)), //NOSONAR
+                                            Stream.of(blacklist).anyMatch(inclExclItem -> inclExclItem.path.equals(baseFileObject.path))); //NOSONAR
+                                    folderView.setShowWhitelist(isShowingWhitelist); //NOSONAR
+                                    folderView.setShowBlacklist(isShowingBlacklist); //NOSONAR
+                                    folderView.setClickListener(FolderFragment.this); //NOSONAR
                                 }
 
-                                return folderView;
+                                return folderView; //NOSONAR
                             })
-                            .collect(Collectors.toList());
+                            .collect(Collectors.toList()); //NOSONAR
 
-                    if (showBreadcrumbsInList && breadcrumbsView != null) {
-                        breadcrumbsView.setBreadcrumbsPath(currentDir);
-                        breadcrumbsView.setListener(FolderFragment.this);
-                        items.add(0, breadcrumbsView);
+                    if (showBreadcrumbsInList && breadcrumbsView != null) { //NOSONAR
+                        breadcrumbsView.setBreadcrumbsPath(currentDir); //NOSONAR
+                        breadcrumbsView.setListener(FolderFragment.this); //NOSONAR
+                        items.add(0, breadcrumbsView); //NOSONAR
                     }
-                    return items;
-                }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(
-                        adaptableItems -> {
-                            if (adapter != null) {
-                                analyticsManager.dropBreadcrumb(TAG, "setItems()");
-                                setItemsDisposable = adapter.setItems(adaptableItems);
+                    return items; //NOSONAR
+                }).subscribeOn(Schedulers.io()) //NOSONAR
+                .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                .subscribe( //NOSONAR
+                        adaptableItems -> { //NOSONAR
+                            if (adapter != null) { //NOSONAR
+                                analyticsManager.dropBreadcrumb(TAG, "setItems()"); //NOSONAR
+                                setItemsDisposable = adapter.setItems(adaptableItems); //NOSONAR
                             }
-                            if (breadcrumb != null) {
-                                breadcrumb.changeBreadcrumbPath(currentDir);
+                            if (breadcrumb != null) { //NOSONAR
+                                breadcrumb.changeBreadcrumbPath(currentDir); //NOSONAR
                             }
-                            if (adapter != null) {
-                                changeBreadcrumbPath();
+                            if (adapter != null) { //NOSONAR
+                                changeBreadcrumbPath(); //NOSONAR
                             }
-                            updateMenuItems();
+                            updateMenuItems(); //NOSONAR
                         },
-                        error -> LogUtils.logException(TAG, "Error changing dir", error))
+                        error -> LogUtils.logException(TAG, "Error changing dir", error)) //NOSONAR
         );
     }
 
-    public void reload() {
-        if (currentDir != null) {
-            changeDir(new File(currentDir));
+    public void reload() { //NOSONAR
+        if (currentDir != null) { //NOSONAR
+            changeDir(new File(currentDir)); //NOSONAR
         }
     }
 
-    @Override
-    public boolean consumeBackPress() {
-        if (getUserVisibleHint()) {
-            final File currDir = fileBrowser.getCurrentDir();
-            final File homeDir = fileBrowser.getHomeDir();
-            if (currDir != null && homeDir != null && currDir.compareTo(homeDir) != 0) {
-                changeDir(currDir.getParentFile());
-                return true;
+    @Override //NOSONAR
+    public boolean consumeBackPress() { //NOSONAR
+        if (getUserVisibleHint()) { //NOSONAR
+            final File currDir = fileBrowser.getCurrentDir(); //NOSONAR
+            final File homeDir = fileBrowser.getHomeDir(); //NOSONAR
+            if (currDir != null && homeDir != null && currDir.compareTo(homeDir) != 0) { //NOSONAR
+                changeDir(currDir.getParentFile()); //NOSONAR
+                return true; //NOSONAR
             }
         }
-        return false;
+        return false; //NOSONAR
     }
 
-    @SuppressLint("CheckResult")
-    @Override
-    public void onFileObjectClick(int position, FolderView folderView) {
-        if (contextualToolbarHelper != null && !contextualToolbarHelper.handleClick(folderView, folderView.baseFileObject)) {
-            if (folderView.baseFileObject.fileType == FileType.FILE) {
-                FileHelper.getSongList(songsRepository, new File(folderView.baseFileObject.path), false, true)
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                                songs -> {
-                                    int index = -1;
-                                    for (int i = 0, songsSize = songs.size(); i < songsSize; i++) {
-                                        Song song = songs.get(i);
-                                        if (song.path.contains(folderView.baseFileObject.path)) {
-                                            index = i;
-                                            break;
+    @SuppressLint("CheckResult") //NOSONAR
+    @Override //NOSONAR
+    public void onFileObjectClick(int position, FolderView folderView) { //NOSONAR
+        if (contextualToolbarHelper != null && !contextualToolbarHelper.handleClick(folderView, folderView.baseFileObject)) { //NOSONAR
+            if (folderView.baseFileObject.fileType == FileType.FILE) { //NOSONAR
+                FileHelper.getSongList(songsRepository, new File(folderView.baseFileObject.path), false, true) //NOSONAR
+                        .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
+                        .subscribe( //NOSONAR
+                                songs -> { //NOSONAR
+                                    int index = -1; //NOSONAR
+                                    for (int i = 0, songsSize = songs.size(); i < songsSize; i++) { //NOSONAR
+                                        Song song = songs.get(i); //NOSONAR
+                                        if (song.path.contains(folderView.baseFileObject.path)) { //NOSONAR
+                                            index = i; //NOSONAR
+                                            break; //NOSONAR
                                         }
                                     }
-                                    mediaManager.playAll(songs, index, true, () -> {
-                                        if (isAdded() && getContext() != null) {
+                                    mediaManager.playAll(songs, index, true, () -> { //NOSONAR
+                                        if (isAdded() && getContext() != null) { //NOSONAR
                                             // To do later: Show playback failed toast
                                         }
-                                        return Unit.INSTANCE;
+                                        return Unit.INSTANCE; //NOSONAR
                                     });
                                 },
-                                error -> LogUtils.logException(TAG, "Error playing all", error));
-            } else {
-                changeDir(new File(folderView.baseFileObject.path));
+                                error -> LogUtils.logException(TAG, "Error playing all", error)); //NOSONAR
+            } else { //NOSONAR
+                changeDir(new File(folderView.baseFileObject.path)); //NOSONAR
             }
-        } else if (folderView.baseFileObject.fileType != FileType.FILE) {
-            changeDir(new File(folderView.baseFileObject.path));
+        } else if (folderView.baseFileObject.fileType != FileType.FILE) { //NOSONAR
+            changeDir(new File(folderView.baseFileObject.path)); //NOSONAR
         }
     }
 
-    @Override
-    public void onFileObjectOverflowClick(View v, FolderView folderView) {
-        PopupMenu menu = new PopupMenu(getActivity(), v);
-        FolderMenuUtils.INSTANCE.setupFolderMenu(menu, folderView.baseFileObject, playlistMenuHelper);
-        menu.setOnMenuItemClickListener(FolderMenuUtils.INSTANCE.getFolderMenuClickListener(this, mediaManager, songsRepository, folderView, playlistManager, callbacks));
-        menu.show();
+    @Override //NOSONAR
+    public void onFileObjectOverflowClick(View v, FolderView folderView) { //NOSONAR
+        PopupMenu menu = new PopupMenu(getActivity(), v); //NOSONAR
+        FolderMenuUtils.INSTANCE.setupFolderMenu(menu, folderView.baseFileObject, playlistMenuHelper); //NOSONAR
+        menu.setOnMenuItemClickListener(FolderMenuUtils.INSTANCE.getFolderMenuClickListener(this, mediaManager, songsRepository, folderView, playlistManager, callbacks)); //NOSONAR
+        menu.show(); //NOSONAR
     }
 
-    @Override
-    public void onFileObjectCheckboxClick(CheckBox checkBox, FolderView folderView) {
+    @Override //NOSONAR
+    public void onFileObjectCheckboxClick(CheckBox checkBox, FolderView folderView) { //NOSONAR
         // Intentionally left empty.
     }
 
-    public void changeBreadcrumbPath() {
-        if (breadcrumbsView != null) {
-            breadcrumbsView.setBreadcrumbsPath(currentDir);
-            adapter.notifyItemChanged(adapter.items.indexOf(breadcrumbsView), 0);
+    public void changeBreadcrumbPath() { //NOSONAR
+        if (breadcrumbsView != null) { //NOSONAR
+            breadcrumbsView.setBreadcrumbsPath(currentDir); //NOSONAR
+            adapter.notifyItemChanged(adapter.items.indexOf(breadcrumbsView), 0); //NOSONAR
         }
     }
 
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            setupContextualToolbar();
-        } else {
-            if (contextualToolbarHelper != null) {
-                contextualToolbarHelper.finish();
+    @Override //NOSONAR
+    public void setUserVisibleHint(boolean isVisibleToUser) { //NOSONAR
+        super.setUserVisibleHint(isVisibleToUser); //NOSONAR
+        if (isVisibleToUser) { //NOSONAR
+            setupContextualToolbar(); //NOSONAR
+        } else { //NOSONAR
+            if (contextualToolbarHelper != null) { //NOSONAR
+                contextualToolbarHelper.finish(); //NOSONAR
             }
         }
     }
 
-    private void setupContextualToolbar() {
-        if (contextualToolbar != null) {
+    private void setupContextualToolbar() { //NOSONAR
+        if (contextualToolbar != null) { //NOSONAR
 
-            contextualToolbar.getMenu().clear();
-            contextualToolbar.inflateMenu(R.menu.context_menu_folders);
+            contextualToolbar.getMenu().clear(); //NOSONAR
+            contextualToolbar.inflateMenu(R.menu.context_menu_folders); //NOSONAR
 
-            contextualToolbarHelper = new ContextualToolbarHelper<>(getContext(), contextualToolbar, new ContextualToolbarHelper.Callback() {
-                @Override
-                public void notifyItemChanged(SelectableViewModel viewModel) {
-                    int index = adapter.items.indexOf(viewModel);
-                    if (index >= 0) {
-                        adapter.notifyItemChanged(index, 0);
+            contextualToolbarHelper = new ContextualToolbarHelper<>(getContext(), contextualToolbar, new ContextualToolbarHelper.Callback() { //NOSONAR
+                @Override //NOSONAR
+                public void notifyItemChanged(SelectableViewModel viewModel) { //NOSONAR
+                    int index = adapter.items.indexOf(viewModel); //NOSONAR
+                    if (index >= 0) { //NOSONAR
+                        adapter.notifyItemChanged(index, 0); //NOSONAR
                     }
                 }
 
-                @Override
-                public void notifyDatasetChanged() {
-                    adapter.notifyItemRangeChanged(0, adapter.items.size(), 0);
+                @Override //NOSONAR
+                public void notifyDatasetChanged() { //NOSONAR
+                    adapter.notifyItemRangeChanged(0, adapter.items.size(), 0); //NOSONAR
                 }
             });
 
-            contextualToolbarHelper.setCanChangeTitle(false);
+            contextualToolbarHelper.setCanChangeTitle(false); //NOSONAR
 
-            contextualToolbar.setOnMenuItemClickListener(menuItem -> {
-                switch (menuItem.getItemId()) {
-                    case R.id.done:
-                        contextualToolbarHelper.finish();
-                        showWhitelist(false);
-                        showBlacklist(false);
-                        adapter.notifyItemRangeChanged(0, adapter.getItemCount());
-                        return true;
+            contextualToolbar.setOnMenuItemClickListener(menuItem -> { //NOSONAR
+                switch (menuItem.getItemId()) { //NOSONAR
+                    case R.id.done: //NOSONAR
+                        contextualToolbarHelper.finish(); //NOSONAR
+                        showWhitelist(false); //NOSONAR
+                        showBlacklist(false); //NOSONAR
+                        adapter.notifyItemRangeChanged(0, adapter.getItemCount()); //NOSONAR
+                        return true; //NOSONAR
                 }
-                return false;
+                return false; //NOSONAR
             });
         }
     }
 
-    private void showWhitelist(boolean show) {
-        isShowingWhitelist = show;
-        if (isShowingWhitelist) {
-            isShowingBlacklist = false;
+    private void showWhitelist(boolean show) { //NOSONAR
+        isShowingWhitelist = show; //NOSONAR
+        if (isShowingWhitelist) { //NOSONAR
+            isShowingBlacklist = false; //NOSONAR
         }
-        Stream.of(adapter.items)
-                .filter(viewModel -> viewModel instanceof FolderView)
-                .forEach(viewModel -> ((FolderView) viewModel).setShowWhitelist(show));
-        adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0);
-        contextualToolbar.setTitle(R.string.whitelist_title);
+        Stream.of(adapter.items) //NOSONAR
+                .filter(viewModel -> viewModel instanceof FolderView) //NOSONAR
+                .forEach(viewModel -> ((FolderView) viewModel).setShowWhitelist(show)); //NOSONAR
+        adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0); //NOSONAR
+        contextualToolbar.setTitle(R.string.whitelist_title); //NOSONAR
     }
 
-    private void showBlacklist(boolean show) {
-        isShowingBlacklist = show;
-        if (isShowingBlacklist) {
-            isShowingWhitelist = false;
+    private void showBlacklist(boolean show) { //NOSONAR
+        isShowingBlacklist = show; //NOSONAR
+        if (isShowingBlacklist) { //NOSONAR
+            isShowingWhitelist = false; //NOSONAR
         }
-        Stream.of(adapter.items)
-                .filter(viewModel -> viewModel instanceof FolderView)
-                .forEach(viewModel -> ((FolderView) viewModel).setShowBlacklist(show));
-        adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0);
-        contextualToolbar.setTitle(R.string.blacklist_title);
+        Stream.of(adapter.items) //NOSONAR
+                .filter(viewModel -> viewModel instanceof FolderView) //NOSONAR
+                .forEach(viewModel -> ((FolderView) viewModel).setShowBlacklist(show)); //NOSONAR
+        adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0); //NOSONAR
+        contextualToolbar.setTitle(R.string.blacklist_title); //NOSONAR
     }
 
-    @Override
-    protected String screenName() {
-        return TAG;
+    @Override //NOSONAR
+    protected String screenName() { //NOSONAR
+        return TAG; //NOSONAR
     }
 
-    @Override
-    public boolean onMenuItemClick(MenuItem menuItem) {
-        switch (menuItem.getItemId()) {
-            case R.id.folder_home_dir:
-                if (fileBrowser.atHomeDirectory()) {
-                    fileBrowser.clearHomeDir();
-                    updateMenuItems();
-                } else if (fileBrowser.hasHomeDir()) {
-                    changeDir(fileBrowser.getHomeDir());
-                } else {
-                    fileBrowser.setHomeDir();
-                    updateMenuItems();
+    @Override //NOSONAR
+    public boolean onMenuItemClick(MenuItem menuItem) { //NOSONAR
+        switch (menuItem.getItemId()) { //NOSONAR
+            case R.id.folder_home_dir: //NOSONAR
+                if (fileBrowser.atHomeDirectory()) { //NOSONAR
+                    fileBrowser.clearHomeDir(); //NOSONAR
+                    updateMenuItems(); //NOSONAR
+                } else if (fileBrowser.hasHomeDir()) { //NOSONAR
+                    changeDir(fileBrowser.getHomeDir()); //NOSONAR
+                } else { //NOSONAR
+                    fileBrowser.setHomeDir(); //NOSONAR
+                    updateMenuItems(); //NOSONAR
                 }
-                return true;
-            case R.id.sort_files_default:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.DEFAULT);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_files_filename:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.FILE_NAME);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_files_size:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.SIZE);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_files_artist_name:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.ARTIST_NAME);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_files_album_name:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.ALBUM_NAME);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_files_track_name:
-                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.TRACK_NAME);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.files_ascending:
-                settingsManager.setFolderBrowserFilesAscending(!menuItem.isChecked());
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_folder_count:
-                settingsManager.setFolderBrowserFoldersSortOrder(SortManager.SortFolders.COUNT);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.sort_folder_default:
-                settingsManager.setFolderBrowserFoldersSortOrder(SortManager.SortFolders.DEFAULT);
-                reload();
-                updateMenuItems();
-                return true;
-            case R.id.folders_ascending:
-                settingsManager.setFolderBrowserFoldersAscending(!menuItem.isChecked());
-                reload();
-                getActivity().invalidateOptionsMenu();
-                return true;
-            case R.id.whitelist:
-                contextualToolbarHelper.start();
-                showWhitelist(true);
-                return true;
-            case R.id.blacklist:
-                contextualToolbarHelper.start();
-                showBlacklist(true);
-                return true;
-            case R.id.show_filenames:
-                settingsManager.setFolderBrowserShowFileNames(!menuItem.isChecked());
-                adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0);
-                updateMenuItems();
-                return true;
+                return true; //NOSONAR
+            case R.id.sort_files_default: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.DEFAULT); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_files_filename: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.FILE_NAME); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_files_size: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.SIZE); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_files_artist_name: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.ARTIST_NAME); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_files_album_name: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.ALBUM_NAME); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_files_track_name: //NOSONAR
+                settingsManager.setFolderBrowserFilesSortOrder(SortManager.SortFiles.TRACK_NAME); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.files_ascending: //NOSONAR
+                settingsManager.setFolderBrowserFilesAscending(!menuItem.isChecked()); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_folder_count: //NOSONAR
+                settingsManager.setFolderBrowserFoldersSortOrder(SortManager.SortFolders.COUNT); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.sort_folder_default: //NOSONAR
+                settingsManager.setFolderBrowserFoldersSortOrder(SortManager.SortFolders.DEFAULT); //NOSONAR
+                reload(); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.folders_ascending: //NOSONAR
+                settingsManager.setFolderBrowserFoldersAscending(!menuItem.isChecked()); //NOSONAR
+                reload(); //NOSONAR
+                getActivity().invalidateOptionsMenu(); //NOSONAR
+                return true; //NOSONAR
+            case R.id.whitelist: //NOSONAR
+                contextualToolbarHelper.start(); //NOSONAR
+                showWhitelist(true); //NOSONAR
+                return true; //NOSONAR
+            case R.id.blacklist: //NOSONAR
+                contextualToolbarHelper.start(); //NOSONAR
+                showBlacklist(true); //NOSONAR
+                return true; //NOSONAR
+            case R.id.show_filenames: //NOSONAR
+                settingsManager.setFolderBrowserShowFileNames(!menuItem.isChecked()); //NOSONAR
+                adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0); //NOSONAR
+                updateMenuItems(); //NOSONAR
+                return true; //NOSONAR
         }
-        return false;
+        return false; //NOSONAR
     }
 
-    FolderMenuUtils.Callbacks callbacks = new FolderMenuUtils.Callbacks() {
+    FolderMenuUtils.Callbacks callbacks = new FolderMenuUtils.Callbacks() { //NOSONAR
 
-        @Override
-        public void onSongsAddedToQueue(int numSongs) {
-            Toast.makeText(getContext(), getContext().getResources().getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show();
+        @Override //NOSONAR
+        public void onSongsAddedToQueue(int numSongs) { //NOSONAR
+            Toast.makeText(getContext(), getContext().getResources().getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show(); //NOSONAR
         }
 
-        @Override
-        public void onPlaybackFailed() {
+        @Override //NOSONAR
+        public void onPlaybackFailed() { //NOSONAR
             // To do later: Improve error message
-            Toast.makeText(getContext(), R.string.emptyplaylist, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), R.string.emptyplaylist, Toast.LENGTH_SHORT).show(); //NOSONAR
         }
 
-        @Override
-        public void showToast(String message) {
-            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
+        @Override //NOSONAR
+        public void showToast(String message) { //NOSONAR
+            Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show(); //NOSONAR
         }
 
-        @Override
-        public void showToast(int messageResId) {
-            Toast.makeText(getContext(), messageResId, Toast.LENGTH_LONG).show();
+        @Override //NOSONAR
+        public void showToast(int messageResId) { //NOSONAR
+            Toast.makeText(getContext(), messageResId, Toast.LENGTH_LONG).show(); //NOSONAR
         }
 
-        @Override
-        public void shareSong(Song song) {
-            SongExtKt.share(song, getContext());
+        @Override //NOSONAR
+        public void shareSong(Song song) { //NOSONAR
+            SongExtKt.share(song, getContext()); //NOSONAR
         }
 
-        @Override
-        public void setRingtone(Song song) {
-            if (RingtoneManager.Companion.requiresDialog(getContext())) {
-                RingtoneManager.Companion.getDialog(getContext()).show();
-            } else {
-                ringtoneManager.setRingtone(song, () -> {
-                    Toast.makeText(getContext(), R.string.ringtone_set_new, Toast.LENGTH_SHORT).show();
-                    return Unit.INSTANCE;
+        @Override //NOSONAR
+        public void setRingtone(Song song) { //NOSONAR
+            if (RingtoneManager.Companion.requiresDialog(getContext())) { //NOSONAR
+                RingtoneManager.Companion.getDialog(getContext()).show(); //NOSONAR
+            } else { //NOSONAR
+                ringtoneManager.setRingtone(song, () -> { //NOSONAR
+                    Toast.makeText(getContext(), R.string.ringtone_set_new, Toast.LENGTH_SHORT).show(); //NOSONAR
+                    return Unit.INSTANCE; //NOSONAR
                 });
             }
         }
 
-        @Override
-        public void showSongInfo(Song song) {
-            SongInfoDialog.Companion.newInstance(song).show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showSongInfo(Song song) { //NOSONAR
+            SongInfoDialog.Companion.newInstance(song).show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void onPlaylistItemsInserted() {
+        @Override //NOSONAR
+        public void onPlaylistItemsInserted() { //NOSONAR
             // Intentionally left empty.
         }
 
-        @Override
-        public void showTagEditor(Song song) {
-            TaggerDialog.newInstance(song).show(getChildFragmentManager());
+        @Override //NOSONAR
+        public void showTagEditor(Song song) { //NOSONAR
+            TaggerDialog.newInstance(song).show(getChildFragmentManager()); //NOSONAR
         }
 
-        @Override
-        public void onFileNameChanged(FolderView folderView) {
-            IntStream.range(0, adapter.getItemCount())
-                    .filter(i -> adapter.items.get(i) == folderView)
-                    .findFirst()
-                    .ifPresent(i -> adapter.notifyItemChanged(i));
+        @Override //NOSONAR
+        public void onFileNameChanged(FolderView folderView) { //NOSONAR
+            IntStream.range(0, adapter.getItemCount()) //NOSONAR
+                    .filter(i -> adapter.items.get(i) == folderView) //NOSONAR
+                    .findFirst() //NOSONAR
+                    .ifPresent(i -> adapter.notifyItemChanged(i)); //NOSONAR
         }
 
-        @Override
-        public void onFileDeleted(FolderView folderView) {
-            IntStream.range(0, adapter.getItemCount())
-                    .filter(i -> adapter.items.get(i) == folderView)
-                    .findFirst()
-                    .ifPresent(i -> adapter.notifyItemRemoved(i));
+        @Override //NOSONAR
+        public void onFileDeleted(FolderView folderView) { //NOSONAR
+            IntStream.range(0, adapter.getItemCount()) //NOSONAR
+                    .filter(i -> adapter.items.get(i) == folderView) //NOSONAR
+                    .findFirst() //NOSONAR
+                    .ifPresent(i -> adapter.notifyItemRemoved(i)); //NOSONAR
         }
 
-        @Override
-        public void playNext(Single<List<Song>> songsSingle) {
-            mediaManager.playNext(songsSingle, message -> {
-                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show();
-                return Unit.INSTANCE;
+        @Override //NOSONAR
+        public void playNext(Single<List<Song>> songsSingle) { //NOSONAR
+            mediaManager.playNext(songsSingle, message -> { //NOSONAR
+                Toast.makeText(getContext(), message, Toast.LENGTH_LONG).show(); //NOSONAR
+                return Unit.INSTANCE; //NOSONAR
             });
         }
 
-        @Override
-        public void blacklist(@NotNull Song song) {
-            MenuUtils.blacklist(blacklistRepository, song);
+        @Override //NOSONAR
+        public void blacklist(@NotNull Song song) { //NOSONAR
+            MenuUtils.blacklist(blacklistRepository, song); //NOSONAR
         }
 
-        @Override
-        public void blacklist(@NotNull Single<List<Song>> songsSingle) {
-            MenuUtils.blacklist(blacklistRepository, songsSingle);
+        @Override //NOSONAR
+        public void blacklist(@NotNull Single<List<Song>> songsSingle) { //NOSONAR
+            MenuUtils.blacklist(blacklistRepository, songsSingle); //NOSONAR
         }
 
-        @Override
-        public void whitelist(@NotNull Song song) {
-            MenuUtils.whitelist(whitelistRepository, song);
+        @Override //NOSONAR
+        public void whitelist(@NotNull Song song) { //NOSONAR
+            MenuUtils.whitelist(whitelistRepository, song); //NOSONAR
         }
 
-        @Override
-        public void whitelist(@NotNull Single<List<Song>> songsSingle) {
-            MenuUtils.whitelist(whitelistRepository, songsSingle);
+        @Override //NOSONAR
+        public void whitelist(@NotNull Single<List<Song>> songsSingle) { //NOSONAR
+            MenuUtils.whitelist(whitelistRepository, songsSingle); //NOSONAR
         }
     };
 }

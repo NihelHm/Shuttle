@@ -18,53 +18,53 @@ import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
  * A Custom AestheticCheckbox which sets its text color to black.
  * (This was surprisingly difficult to achieve)
  */
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class CustomCheckbox extends AestheticCheckBox {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class CustomCheckbox extends AestheticCheckBox { //NOSONAR
 
-    private CompositeDisposable subscriptions;
+    private CompositeDisposable subscriptions; //NOSONAR
 
-    public CustomCheckbox(Context context) {
-        super(context);
+    public CustomCheckbox(Context context) { //NOSONAR
+        super(context); //NOSONAR
     }
 
-    public CustomCheckbox(Context context, AttributeSet attrs) {
-        super(context, attrs);
+    public CustomCheckbox(Context context, AttributeSet attrs) { //NOSONAR
+        super(context, attrs); //NOSONAR
     }
 
-    public CustomCheckbox(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public CustomCheckbox(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
+        super(context, attrs, defStyleAttr); //NOSONAR
     }
 
-    @Override
-    protected void invalidateColors(ColorIsDarkState state) {
-        super.invalidateColors(state);
+    @Override //NOSONAR
+    protected void invalidateColors(ColorIsDarkState state) { //NOSONAR
+        super.invalidateColors(state); //NOSONAR
 
-        setTextColor(Color.BLACK);
+        setTextColor(Color.BLACK); //NOSONAR
     }
 
-    @Override
-    protected void onAttachedToWindow() {
-        super.onAttachedToWindow();
+    @Override //NOSONAR
+    protected void onAttachedToWindow() { //NOSONAR
+        super.onAttachedToWindow(); //NOSONAR
 
-        subscriptions = new CompositeDisposable();
+        subscriptions = new CompositeDisposable(); //NOSONAR
         //noinspection ConstantConditions
-        subscriptions.add(
-                Observable.combineLatest(
-                        ViewUtil.getObservableForResId(
-                                getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()),
-                        Aesthetic.get(getContext()).isDark(),
-                        ColorIsDarkState.creator())
-                        .compose(Rx.<ColorIsDarkState>distinctToMainThread())
-                        .subscribe(
-                                colorIsDarkState -> invalidateColors(colorIsDarkState),
-                                onErrorLogAndRethrow()));
+        subscriptions.add( //NOSONAR
+                Observable.combineLatest( //NOSONAR
+                        ViewUtil.getObservableForResId( //NOSONAR
+                                getContext(), backgroundResId, Aesthetic.get(getContext()).colorAccent()), //NOSONAR
+                        Aesthetic.get(getContext()).isDark(), //NOSONAR
+                        ColorIsDarkState.creator()) //NOSONAR
+                        .compose(Rx.<ColorIsDarkState>distinctToMainThread()) //NOSONAR
+                        .subscribe( //NOSONAR
+                                colorIsDarkState -> invalidateColors(colorIsDarkState), //NOSONAR
+                                onErrorLogAndRethrow())); //NOSONAR
 
-        ViewTextColorAction.create(this).accept(Color.BLACK);
+        ViewTextColorAction.create(this).accept(Color.BLACK); //NOSONAR
     }
 
-    @Override
-    protected void onDetachedFromWindow() {
-        subscriptions.clear();
-        super.onDetachedFromWindow();
+    @Override //NOSONAR
+    protected void onDetachedFromWindow() { //NOSONAR
+        subscriptions.clear(); //NOSONAR
+        super.onDetachedFromWindow(); //NOSONAR
     }
 }

@@ -19,105 +19,105 @@ import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
  *
  * @author Aidan Follestad (afollestad)
  */
-@RestrictTo(LIBRARY_GROUP)
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-final class MaterialDialogsUtil {
+@RestrictTo(LIBRARY_GROUP) //NOSONAR
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+final class MaterialDialogsUtil { //NOSONAR
 
-  static boolean shouldSupport() {
-    try {
-      Class.forName("com.afollestad.materialdialogs.internal.ThemeSingleton");
-    } catch (ClassNotFoundException e) {
-      return false;
+  static boolean shouldSupport() { //NOSONAR
+    try { //NOSONAR
+      Class.forName("com.afollestad.materialdialogs.internal.ThemeSingleton"); //NOSONAR
+    } catch (ClassNotFoundException e) { //NOSONAR
+      return false; //NOSONAR
     }
-    return true;
+    return true; //NOSONAR
   }
 
-  static class Params {
+  static class Params { //NOSONAR
 
-    final int primaryTextColor;
-    final int secondaryTextColor;
-    final int accentColor;
-    final boolean darkTheme;
+    final int primaryTextColor; //NOSONAR
+    final int secondaryTextColor; //NOSONAR
+    final int accentColor; //NOSONAR
+    final boolean darkTheme; //NOSONAR
 
-    private Params(
-        int primaryTextColor, int secondaryTextColor, int accentColor, boolean darkTheme) {
-      this.primaryTextColor = primaryTextColor;
-      this.secondaryTextColor = secondaryTextColor;
-      this.accentColor = accentColor;
-      this.darkTheme = darkTheme;
+    private Params( //NOSONAR
+        int primaryTextColor, int secondaryTextColor, int accentColor, boolean darkTheme) { //NOSONAR
+      this.primaryTextColor = primaryTextColor; //NOSONAR
+      this.secondaryTextColor = secondaryTextColor; //NOSONAR
+      this.accentColor = accentColor; //NOSONAR
+      this.darkTheme = darkTheme; //NOSONAR
     }
 
-    public static Params create(
-        int primaryTextColor, int secondaryTextColor, int accentColor, boolean darkTheme) {
-      return new Params(primaryTextColor, secondaryTextColor, accentColor, darkTheme);
+    public static Params create( //NOSONAR
+        int primaryTextColor, int secondaryTextColor, int accentColor, boolean darkTheme) { //NOSONAR
+      return new Params(primaryTextColor, secondaryTextColor, accentColor, darkTheme); //NOSONAR
     }
   }
 
-  @SuppressWarnings("TryWithIdenticalCatches")
-  static void theme(Params params) {
-    try {
-      Class<?> cls = Class.forName("com.afollestad.materialdialogs.internal.ThemeSingleton");
-      Method getMethod = cls.getMethod("get");
-      Object instance = getMethod.invoke(null);
+  @SuppressWarnings("TryWithIdenticalCatches") //NOSONAR
+  static void theme(Params params) { //NOSONAR
+    try { //NOSONAR
+      Class<?> cls = Class.forName("com.afollestad.materialdialogs.internal.ThemeSingleton"); //NOSONAR
+      Method getMethod = cls.getMethod("get"); //NOSONAR
+      Object instance = getMethod.invoke(null); //NOSONAR
 
-      Field fieldDarkTheme = cls.getField("darkTheme");
-      fieldDarkTheme.set(instance, params.darkTheme);
+      Field fieldDarkTheme = cls.getField("darkTheme"); //NOSONAR
+      fieldDarkTheme.set(instance, params.darkTheme); //NOSONAR
 
-      Field fieldTitleColor = cls.getField("titleColor");
-      fieldTitleColor.set(instance, params.primaryTextColor);
+      Field fieldTitleColor = cls.getField("titleColor"); //NOSONAR
+      fieldTitleColor.set(instance, params.primaryTextColor); //NOSONAR
 
-      Field fieldContentColor = cls.getField("contentColor");
-      fieldContentColor.set(instance, params.secondaryTextColor);
+      Field fieldContentColor = cls.getField("contentColor"); //NOSONAR
+      fieldContentColor.set(instance, params.secondaryTextColor); //NOSONAR
 
-      Field fieldItemColor = cls.getField("itemColor");
-      fieldItemColor.set(instance, params.secondaryTextColor);
+      Field fieldItemColor = cls.getField("itemColor"); //NOSONAR
+      fieldItemColor.set(instance, params.secondaryTextColor); //NOSONAR
 
-      Field fieldPosColor = cls.getField("positiveColor");
-      fieldPosColor.set(instance, ColorStateList.valueOf(params.accentColor));
+      Field fieldPosColor = cls.getField("positiveColor"); //NOSONAR
+      fieldPosColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
-      Field fieldNeuColor = cls.getField("neutralColor");
-      fieldNeuColor.set(instance, ColorStateList.valueOf(params.accentColor));
+      Field fieldNeuColor = cls.getField("neutralColor"); //NOSONAR
+      fieldNeuColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
-      Field fieldNegColor = cls.getField("negativeColor");
-      fieldNegColor.set(instance, ColorStateList.valueOf(params.accentColor));
+      Field fieldNegColor = cls.getField("negativeColor"); //NOSONAR
+      fieldNegColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
-      Field fieldWidgetColor = cls.getField("widgetColor");
-      fieldWidgetColor.set(instance, ColorStateList.valueOf(params.accentColor));
+      Field fieldWidgetColor = cls.getField("widgetColor"); //NOSONAR
+      fieldWidgetColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
-      Field fieldLinkColor = cls.getField("linkColor");
-      fieldLinkColor.set(instance, ColorStateList.valueOf(params.accentColor));
+      Field fieldLinkColor = cls.getField("linkColor"); //NOSONAR
+      fieldLinkColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
-    } catch (Throwable t) {
+    } catch (Throwable t) { //NOSONAR
 //      t.printStackTrace();
     }
   }
 
-  static Disposable observe(Aesthetic instance) {
-    return Observable.combineLatest(
-            instance.textColorPrimary(),
-            instance.textColorSecondary(),
-            instance.colorAccent(),
-            instance.isDark(),
-            new Function4<Integer, Integer, Integer, Boolean, Params>() {
-              @Override
-              public MaterialDialogsUtil.Params apply(
-                  @io.reactivex.annotations.NonNull Integer primaryText,
-                  @io.reactivex.annotations.NonNull Integer secondaryText,
-                  @io.reactivex.annotations.NonNull Integer accent,
-                  @io.reactivex.annotations.NonNull Boolean isDark)
-                  throws Exception {
-                return MaterialDialogsUtil.Params.create(
-                    primaryText, secondaryText, accent, isDark);
+  static Disposable observe(Aesthetic instance) { //NOSONAR
+    return Observable.combineLatest( //NOSONAR
+            instance.textColorPrimary(), //NOSONAR
+            instance.textColorSecondary(), //NOSONAR
+            instance.colorAccent(), //NOSONAR
+            instance.isDark(), //NOSONAR
+            new Function4<Integer, Integer, Integer, Boolean, Params>() { //NOSONAR
+              @Override //NOSONAR
+              public MaterialDialogsUtil.Params apply( //NOSONAR
+                  @io.reactivex.annotations.NonNull Integer primaryText, //NOSONAR
+                  @io.reactivex.annotations.NonNull Integer secondaryText, //NOSONAR
+                  @io.reactivex.annotations.NonNull Integer accent, //NOSONAR
+                  @io.reactivex.annotations.NonNull Boolean isDark) //NOSONAR
+                  throws Exception { //NOSONAR
+                return MaterialDialogsUtil.Params.create( //NOSONAR
+                    primaryText, secondaryText, accent, isDark); //NOSONAR
               }
             })
-        .distinctUntilChanged()
-        .subscribe(
-            new Consumer<Params>() {
-              @Override
-              public void accept(
-                  @io.reactivex.annotations.NonNull MaterialDialogsUtil.Params params)
-                  throws Exception {
-                MaterialDialogsUtil.theme(params);
+        .distinctUntilChanged() //NOSONAR
+        .subscribe( //NOSONAR
+            new Consumer<Params>() { //NOSONAR
+              @Override //NOSONAR
+              public void accept( //NOSONAR
+                  @io.reactivex.annotations.NonNull MaterialDialogsUtil.Params params) //NOSONAR
+                  throws Exception { //NOSONAR
+                MaterialDialogsUtil.theme(params); //NOSONAR
               }
             });
   }

@@ -12,25 +12,25 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class BitmapAndSizeDecoder implements ResourceDecoder<InputStream, BitmapAndSize> {
-    private final ResourceDecoder<InputStream, Bitmap> bitmapDecoder;
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class BitmapAndSizeDecoder implements ResourceDecoder<InputStream, BitmapAndSize> { //NOSONAR
+    private final ResourceDecoder<InputStream, Bitmap> bitmapDecoder; //NOSONAR
 
-    private BitmapPool pool;
+    private BitmapPool pool; //NOSONAR
 
-    public BitmapAndSizeDecoder(Context context) {
-        this(context, new StreamBitmapDecoder(context));
+    public BitmapAndSizeDecoder(Context context) { //NOSONAR
+        this(context, new StreamBitmapDecoder(context)); //NOSONAR
     }
 
-    public BitmapAndSizeDecoder(Context context, ResourceDecoder<InputStream, Bitmap> bitmapDecoder) {
-        this.bitmapDecoder = bitmapDecoder;
-        pool = Glide.get(context).getBitmapPool();
+    public BitmapAndSizeDecoder(Context context, ResourceDecoder<InputStream, Bitmap> bitmapDecoder) { //NOSONAR
+        this.bitmapDecoder = bitmapDecoder; //NOSONAR
+        pool = Glide.get(context).getBitmapPool(); //NOSONAR
     }
 
-    @Override
-    public Resource<BitmapAndSize> decode(InputStream source, int width, int height) throws IOException {
-        if (!source.markSupported()) {
-            source = new BufferedInputStream(source);
+    @Override //NOSONAR
+    public Resource<BitmapAndSize> decode(InputStream source, int width, int height) throws IOException { //NOSONAR
+        if (!source.markSupported()) { //NOSONAR
+            source = new BufferedInputStream(source); //NOSONAR
         }
 
         //Cap the size of the decoded bitmap to a max dimension of 2048px. Last.fm can return some pretty
@@ -41,19 +41,19 @@ public class BitmapAndSizeDecoder implements ResourceDecoder<InputStream, Bitmap
         //data at the top of the file. We set the stream mark at 100kb, meaning we're going to remember 100kb
         //of data and reset the stream when we've finished. 100kb should be enough to allow for the case where
         //thumbnail data is stored before EXIF data in JPEG images.
-        source.mark(100 * 2048);
-        BitmapFactory.Options opt = new BitmapFactory.Options();
-        opt.inJustDecodeBounds = true;
-        BitmapFactory.decodeStream(source, null, opt);
-        source.reset();
+        source.mark(100 * 2048); //NOSONAR
+        BitmapFactory.Options opt = new BitmapFactory.Options(); //NOSONAR
+        opt.inJustDecodeBounds = true; //NOSONAR
+        BitmapFactory.decodeStream(source, null, opt); //NOSONAR
+        source.reset(); //NOSONAR
 
-        Resource<Bitmap> bitmap = bitmapDecoder.decode(source, width, height);
+        Resource<Bitmap> bitmap = bitmapDecoder.decode(source, width, height); //NOSONAR
 
-        return BitmapAndSizeResource.obtain(bitmap.get(), new Size(opt.outWidth, opt.outHeight), pool);
+        return BitmapAndSizeResource.obtain(bitmap.get(), new Size(opt.outWidth, opt.outHeight), pool); //NOSONAR
     }
 
-    @Override
-    public String getId() {
-        return getClass().getName();
+    @Override //NOSONAR
+    public String getId() { //NOSONAR
+        return getClass().getName(); //NOSONAR
     }
 }

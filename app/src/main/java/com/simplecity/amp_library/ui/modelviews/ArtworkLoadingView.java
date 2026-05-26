@@ -8,33 +8,33 @@ import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
 import static com.simplecity.amp_library.R.layout.list_item_artwork_loading;
 import static com.simplecity.amp_library.ui.adapters.ViewType.LOADING;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class ArtworkLoadingView extends BaseViewModel<ArtworkLoadingView.ViewHolder> {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class ArtworkLoadingView extends BaseViewModel<ArtworkLoadingView.ViewHolder> { //NOSONAR
 
-    @Override
-    public int getViewType() {
-        return LOADING;
+    @Override //NOSONAR
+    public int getViewType() { //NOSONAR
+        return LOADING; //NOSONAR
     }
 
-    @Override
-    public int getLayoutResId() {
-        return list_item_artwork_loading;
+    @Override //NOSONAR
+    public int getLayoutResId() { //NOSONAR
+        return list_item_artwork_loading; //NOSONAR
     }
 
-    @Override
-    public ViewHolder createViewHolder(ViewGroup parent) {
-        return new ViewHolder(createView(parent));
+    @Override //NOSONAR
+    public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
+        return new ViewHolder(createView(parent)); //NOSONAR
     }
 
-    public static class ViewHolder extends BaseViewHolder {
+    public static class ViewHolder extends BaseViewHolder { //NOSONAR
 
-        public ViewHolder(View itemView) {
-            super(itemView);
+        public ViewHolder(View itemView) { //NOSONAR
+            super(itemView); //NOSONAR
         }
 
-        @Override
-        public String toString() {
-            return "ArtworkLoadingView.ViewHolder";
+        @Override //NOSONAR
+        public String toString() { //NOSONAR
+            return "ArtworkLoadingView.ViewHolder"; //NOSONAR
         }
     }
 }

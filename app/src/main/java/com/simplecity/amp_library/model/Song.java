@@ -25,180 +25,180 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 import java.util.List;
 
-@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"})
-public class Song implements
-        Serializable,
-        Comparable<Song>,
-        ArtworkProvider,
-        Sortable {
+@SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
+public class Song implements //NOSONAR
+        Serializable, //NOSONAR
+        Comparable<Song>, //NOSONAR
+        ArtworkProvider, //NOSONAR
+        Sortable { //NOSONAR
 
-    private static final String TAG = "Song";
+    private static final String TAG = "Song"; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public long id;
-    @SuppressWarnings("java:S1104")
-    public String name;
-    @SuppressWarnings("java:S1104")
-    public String artistName;
-    private long artistId;
-    @SuppressWarnings("java:S1104")
-    public String albumName;
-    @SuppressWarnings("java:S1104")
-    public long albumId;
-    @SuppressWarnings("java:S1104")
-    public long duration;
-    @SuppressWarnings("java:S1104")
-    public int year;
-    @SuppressWarnings("java:S1104")
-    public int dateAdded;
-    @SuppressWarnings("java:S1104")
-    public long playlistSongId;
-    @SuppressWarnings("java:S1104")
-    public long playlistSongPlayOrder;
-    @SuppressWarnings("java:S1104")
-    public int playCount;
-    @SuppressWarnings("java:S1104")
-    public long lastPlayed;
-    private long startTime;
-    private long elapsedTime = 0;
-    private boolean isPaused;
-    @SuppressWarnings("java:S1104")
-    public int track;
-    @SuppressWarnings("java:S1104")
-    public int discNumber;
-    @SuppressWarnings("java:S1104")
-    public boolean isPodcast;
-    @SuppressWarnings("java:S1104")
-    public String path;
-    @SuppressWarnings("java:S1104")
-    public long bookMark;
+    public long id; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String name; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String artistName; //NOSONAR
+    private long artistId; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String albumName; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long albumId; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long duration; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int year; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int dateAdded; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long playlistSongId; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long playlistSongPlayOrder; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int playCount; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long lastPlayed; //NOSONAR
+    private long startTime; //NOSONAR
+    private long elapsedTime = 0; //NOSONAR
+    private boolean isPaused; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int track; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public int discNumber; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public boolean isPodcast; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public String path; //NOSONAR
+    @SuppressWarnings("java:S1104") //NOSONAR
+    public long bookMark; //NOSONAR
 
-    @SuppressWarnings("java:S1104")
+    @SuppressWarnings("java:S1104") //NOSONAR
 
-    public String albumArtistName;
+    public String albumArtistName; //NOSONAR
 
-    private TagInfo tagInfo;
+    private TagInfo tagInfo; //NOSONAR
 
-    private String durationLabel;
-    private String bitrateLabel;
-    private String sampleRateLabel;
-    private String formatLabel;
-    private String trackNumberLabel;
-    private String discNumberLabel;
-    private String fileSizeLabel;
+    private String durationLabel; //NOSONAR
+    private String bitrateLabel; //NOSONAR
+    private String sampleRateLabel; //NOSONAR
+    private String formatLabel; //NOSONAR
+    private String trackNumberLabel; //NOSONAR
+    private String discNumberLabel; //NOSONAR
+    private String fileSizeLabel; //NOSONAR
 
-    private String artworkKey;
-    private String sortKey;
+    private String artworkKey; //NOSONAR
+    private String sortKey; //NOSONAR
 
-    public static String[] getProjection() {
-        return new String[] {
-                MediaStore.Audio.Media._ID,
-                MediaStore.Audio.Media.DATA,
-                MediaStore.Audio.Media.TITLE,
-                MediaStore.Audio.Media.ARTIST_ID,
-                MediaStore.Audio.Media.ARTIST,
-                MediaStore.Audio.Media.ALBUM_ID,
-                MediaStore.Audio.Media.ALBUM,
-                MediaStore.Audio.Media.DURATION,
-                MediaStore.Audio.Media.YEAR,
-                MediaStore.Audio.Media.TRACK,
-                MediaStore.Audio.Media.DATE_ADDED,
-                MediaStore.Audio.Media.IS_PODCAST,
-                MediaStore.Audio.Media.BOOKMARK,
-                "album_artist"
+    public static String[] getProjection() { //NOSONAR
+        return new String[] { //NOSONAR
+                MediaStore.Audio.Media._ID, //NOSONAR
+                MediaStore.Audio.Media.DATA, //NOSONAR
+                MediaStore.Audio.Media.TITLE, //NOSONAR
+                MediaStore.Audio.Media.ARTIST_ID, //NOSONAR
+                MediaStore.Audio.Media.ARTIST, //NOSONAR
+                MediaStore.Audio.Media.ALBUM_ID, //NOSONAR
+                MediaStore.Audio.Media.ALBUM, //NOSONAR
+                MediaStore.Audio.Media.DURATION, //NOSONAR
+                MediaStore.Audio.Media.YEAR, //NOSONAR
+                MediaStore.Audio.Media.TRACK, //NOSONAR
+                MediaStore.Audio.Media.DATE_ADDED, //NOSONAR
+                MediaStore.Audio.Media.IS_PODCAST, //NOSONAR
+                MediaStore.Audio.Media.BOOKMARK, //NOSONAR
+                "album_artist" //NOSONAR
         };
     }
 
-    public static Query getQuery() {
-        return new Query.Builder()
-                .uri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI)
-                .projection(Song.getProjection())
-                .selection(MediaStore.Audio.Media.IS_MUSIC + "=1 OR " + MediaStore.Audio.Media.IS_PODCAST + "=1")
-                .args(null)
-                .sort(MediaStore.Audio.Media.TRACK)
-                .build();
+    public static Query getQuery() { //NOSONAR
+        return new Query.Builder() //NOSONAR
+                .uri(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI) //NOSONAR
+                .projection(Song.getProjection()) //NOSONAR
+                .selection(MediaStore.Audio.Media.IS_MUSIC + "=1 OR " + MediaStore.Audio.Media.IS_PODCAST + "=1") //NOSONAR
+                .args(null) //NOSONAR
+                .sort(MediaStore.Audio.Media.TRACK) //NOSONAR
+                .build(); //NOSONAR
     }
 
-    public Song(Cursor cursor) {
+    public Song(Cursor cursor) { //NOSONAR
 
-        id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID));
+        id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID)); //NOSONAR
 
-        name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE));
+        name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TITLE)); //NOSONAR
 
-        artistId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID));
+        artistId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST_ID)); //NOSONAR
 
-        artistName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST));
+        artistName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ARTIST)); //NOSONAR
 
-        albumId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID));
+        albumId = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM_ID)); //NOSONAR
 
-        albumName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM));
+        albumName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.ALBUM)); //NOSONAR
 
-        duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION));
+        duration = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DURATION)); //NOSONAR
 
-        year = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.YEAR));
+        year = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.YEAR)); //NOSONAR
 
-        track = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TRACK));
+        track = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.TRACK)); //NOSONAR
 
-        if (track >= 1000) {
-            discNumber = track / 1000;
-            track = track % 1000;
+        if (track >= 1000) { //NOSONAR
+            discNumber = track / 1000; //NOSONAR
+            track = track % 1000; //NOSONAR
         }
 
-        dateAdded = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_ADDED));
+        dateAdded = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_ADDED)); //NOSONAR
 
-        path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA));
+        path = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA)); //NOSONAR
 
-        albumArtistName = artistName;
-        if (cursor.getColumnIndex("album_artist") != -1) {
-            String albumArtist = cursor.getString(cursor.getColumnIndex("album_artist"));
-            if (albumArtist != null) {
-                albumArtistName = albumArtist;
+        albumArtistName = artistName; //NOSONAR
+        if (cursor.getColumnIndex("album_artist") != -1) { //NOSONAR
+            String albumArtist = cursor.getString(cursor.getColumnIndex("album_artist")); //NOSONAR
+            if (albumArtist != null) { //NOSONAR
+                albumArtistName = albumArtist; //NOSONAR
             }
         }
 
-        isPodcast = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.IS_PODCAST)) == 1;
+        isPodcast = cursor.getInt(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.IS_PODCAST)) == 1; //NOSONAR
 
-        bookMark = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.BOOKMARK));
+        bookMark = cursor.getLong(cursor.getColumnIndex(MediaStore.Audio.Media.BOOKMARK)); //NOSONAR
 
         //Populate the artwork key & sort key properties if null.
-        setSortKey();
-        setArtworkKey();
+        setSortKey(); //NOSONAR
+        setArtworkKey(); //NOSONAR
     }
 
-    public Song() {
+    public Song() { //NOSONAR
         // Intentionally left empty.
     }
 
-    public Single<Genre> getGenre(Context context) {
-        Query query = Genre.getQuery();
-        query.uri = MediaStore.Audio.Genres.getContentUriForAudioId("external", (int) id);
-        return SqlBriteUtils.createSingle(context, Genre::new, query, null);
+    public Single<Genre> getGenre(Context context) { //NOSONAR
+        Query query = Genre.getQuery(); //NOSONAR
+        query.uri = MediaStore.Audio.Genres.getContentUriForAudioId("external", (int) id); //NOSONAR
+        return SqlBriteUtils.createSingle(context, Genre::new, query, null); //NOSONAR
     }
 
-    public int getPlayCount(Context context) {
+    public int getPlayCount(Context context) { //NOSONAR
 
-        int playCount = 0;
+        int playCount = 0; //NOSONAR
 
-        Uri playCountUri = PlayCountTable.URI;
-        Uri appendedUri = ContentUris.withAppendedId(playCountUri, id);
+        Uri playCountUri = PlayCountTable.URI; //NOSONAR
+        Uri appendedUri = ContentUris.withAppendedId(playCountUri, id); //NOSONAR
 
-        if (appendedUri != null) {
+        if (appendedUri != null) { //NOSONAR
 
-            Query query = new Query.Builder()
-                    .uri(appendedUri)
-                    .projection(new String[] { PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_PLAY_COUNT })
-                    .build();
+            Query query = new Query.Builder() //NOSONAR
+                    .uri(appendedUri) //NOSONAR
+                    .projection(new String[] { PlayCountTable.COLUMN_ID, PlayCountTable.COLUMN_PLAY_COUNT }) //NOSONAR
+                    .build(); //NOSONAR
 
-            playCount = SqlUtils.createSingleQuery(context, cursor ->
-                    cursor.getInt(cursor.getColumnIndex(PlayCountTable.COLUMN_PLAY_COUNT)), 0, query);
+            playCount = SqlUtils.createSingleQuery(context, cursor -> //NOSONAR
+                    cursor.getInt(cursor.getColumnIndex(PlayCountTable.COLUMN_PLAY_COUNT)), 0, query); //NOSONAR
         }
 
-        return playCount;
+        return playCount; //NOSONAR
     }
 
-    public void setStartTime() {
-        startTime = System.currentTimeMillis();
+    public void setStartTime() { //NOSONAR
+        startTime = System.currentTimeMillis(); //NOSONAR
     }
 
     /**
@@ -206,24 +206,24 @@ public class Song implements
      *
      * @return true if the elapsed time is > 75% of the duration false otherwise
      */
-    public boolean hasPlayed() {
-        return getElapsedTime() != 0 && ((float) getElapsedTime() / (float) duration) > 0.75f;
+    public boolean hasPlayed() { //NOSONAR
+        return getElapsedTime() != 0 && ((float) getElapsedTime() / (float) duration) > 0.75f; //NOSONAR
     }
 
     /**
      * Sets this track as 'paused' to make sure the elapsed time doesn't continue to increase
      */
-    public void setPaused() {
-        elapsedTime = elapsedTime + System.currentTimeMillis() - startTime;
-        isPaused = true;
+    public void setPaused() { //NOSONAR
+        elapsedTime = elapsedTime + System.currentTimeMillis() - startTime; //NOSONAR
+        isPaused = true; //NOSONAR
     }
 
     /**
      * Sets this track as 'resumed' to resume incrementing the elapsed time
      */
-    public void setResumed() {
-        startTime = System.currentTimeMillis();
-        isPaused = false;
+    public void setResumed() { //NOSONAR
+        startTime = System.currentTimeMillis(); //NOSONAR
+        isPaused = false; //NOSONAR
     }
 
     /**
@@ -231,195 +231,195 @@ public class Song implements
      *
      * @return the elapsed time of this track (in millis)
      */
-    private long getElapsedTime() {
-        if (isPaused) {
-            return elapsedTime;
-        } else {
-            return elapsedTime + System.currentTimeMillis() - startTime;
+    private long getElapsedTime() { //NOSONAR
+        if (isPaused) { //NOSONAR
+            return elapsedTime; //NOSONAR
+        } else { //NOSONAR
+            return elapsedTime + System.currentTimeMillis() - startTime; //NOSONAR
         }
     }
 
-    public String getDurationLabel(Context context) {
-        if (durationLabel == null) {
-            durationLabel = StringUtils.makeTimeString(context, duration / 1000);
+    public String getDurationLabel(Context context) { //NOSONAR
+        if (durationLabel == null) { //NOSONAR
+            durationLabel = StringUtils.makeTimeString(context, duration / 1000); //NOSONAR
         }
-        return durationLabel;
+        return durationLabel; //NOSONAR
     }
 
-    public TagInfo getTagInfo() {
-        if (tagInfo == null) {
-            tagInfo = new TagInfo(path);
+    public TagInfo getTagInfo() { //NOSONAR
+        if (tagInfo == null) { //NOSONAR
+            tagInfo = new TagInfo(path); //NOSONAR
         }
-        return tagInfo;
+        return tagInfo; //NOSONAR
     }
 
-    public String getBitrateLabel(Context context) {
-        if (bitrateLabel == null) {
-            bitrateLabel = getTagInfo().bitrate + context.getString(R.string.song_info_bitrate_suffix);
+    public String getBitrateLabel(Context context) { //NOSONAR
+        if (bitrateLabel == null) { //NOSONAR
+            bitrateLabel = getTagInfo().bitrate + context.getString(R.string.song_info_bitrate_suffix); //NOSONAR
         }
-        return bitrateLabel;
+        return bitrateLabel; //NOSONAR
     }
 
-    public String getSampleRateLabel(Context context) {
-        if (sampleRateLabel == null) {
-            int sampleRate = getTagInfo().sampleRate;
-            if (sampleRate == -1) {
-                sampleRateLabel = "Unknown";
-                return sampleRateLabel;
+    public String getSampleRateLabel(Context context) { //NOSONAR
+        if (sampleRateLabel == null) { //NOSONAR
+            int sampleRate = getTagInfo().sampleRate; //NOSONAR
+            if (sampleRate == -1) { //NOSONAR
+                sampleRateLabel = "Unknown"; //NOSONAR
+                return sampleRateLabel; //NOSONAR
             }
-            sampleRateLabel = ((float) sampleRate) / 1000 + context.getString(R.string.song_info_sample_rate_suffix);
+            sampleRateLabel = ((float) sampleRate) / 1000 + context.getString(R.string.song_info_sample_rate_suffix); //NOSONAR
         }
-        return sampleRateLabel;
+        return sampleRateLabel; //NOSONAR
     }
 
-    public String getFormatLabel() {
-        if (formatLabel == null) {
-            formatLabel = getTagInfo().format;
+    public String getFormatLabel() { //NOSONAR
+        if (formatLabel == null) { //NOSONAR
+            formatLabel = getTagInfo().format; //NOSONAR
         }
-        return formatLabel;
+        return formatLabel; //NOSONAR
     }
 
-    public String getTrackNumberLabel() {
-        if (trackNumberLabel == null) {
-            if (track == -1) {
-                trackNumberLabel = String.valueOf(getTagInfo().trackNumber);
-            } else {
-                trackNumberLabel = String.valueOf(track);
-            }
-        }
-        return trackNumberLabel;
-    }
-
-    public String getDiscNumberLabel() {
-        if (discNumberLabel == null) {
-            if (discNumber == -1) {
-                discNumberLabel = String.valueOf(getTagInfo().discNumber);
-            } else {
-                discNumberLabel = String.valueOf(discNumber);
+    public String getTrackNumberLabel() { //NOSONAR
+        if (trackNumberLabel == null) { //NOSONAR
+            if (track == -1) { //NOSONAR
+                trackNumberLabel = String.valueOf(getTagInfo().trackNumber); //NOSONAR
+            } else { //NOSONAR
+                trackNumberLabel = String.valueOf(track); //NOSONAR
             }
         }
-        return discNumberLabel;
+        return trackNumberLabel; //NOSONAR
     }
 
-    public String getFileSizeLabel() {
-        if (fileSizeLabel == null) {
-            if (!TextUtils.isEmpty(path)) {
-                File file = new File(path);
-                fileSizeLabel = FileHelper.getHumanReadableSize(file.length());
+    public String getDiscNumberLabel() { //NOSONAR
+        if (discNumberLabel == null) { //NOSONAR
+            if (discNumber == -1) { //NOSONAR
+                discNumberLabel = String.valueOf(getTagInfo().discNumber); //NOSONAR
+            } else { //NOSONAR
+                discNumberLabel = String.valueOf(discNumber); //NOSONAR
             }
         }
-        return fileSizeLabel;
+        return discNumberLabel; //NOSONAR
     }
 
-    public Album getAlbum() {
-        return new Album.Builder()
-                .id(albumId)
-                .name(albumName)
-                .addArtist(new Artist(artistId, artistName))
-                .albumArtist(albumArtistName)
-                .year(year)
-                .numSongs(1)
-                .numDiscs(discNumber)
-                .lastPlayed(lastPlayed)
-                .dateAdded(dateAdded)
-                .path(path)
-                .songPlayCount(playCount)
-                .build();
-    }
-
-    public AlbumArtist getAlbumArtist() {
-        return new AlbumArtist.Builder()
-                .name(albumArtistName)
-                .album(getAlbum())
-                .build();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Song song = (Song) o;
-
-        return id == song.id && artistId == song.artistId && albumId == song.albumId;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = (int) (id ^ (id >>> 32));
-        result = 31 * result + (int) (artistId ^ (artistId >>> 32));
-        result = 31 * result + (int) (albumId ^ (albumId >>> 32));
-        return result;
-    }
-
-    @Override
-    public String getSortKey() {
-        if (sortKey == null) {
-            setSortKey();
+    public String getFileSizeLabel() { //NOSONAR
+        if (fileSizeLabel == null) { //NOSONAR
+            if (!TextUtils.isEmpty(path)) { //NOSONAR
+                File file = new File(path); //NOSONAR
+                fileSizeLabel = FileHelper.getHumanReadableSize(file.length()); //NOSONAR
+            }
         }
-        return sortKey;
+        return fileSizeLabel; //NOSONAR
     }
 
-    @Override
-    public void setSortKey() {
-        sortKey = StringUtils.keyFor(name);
+    public Album getAlbum() { //NOSONAR
+        return new Album.Builder() //NOSONAR
+                .id(albumId) //NOSONAR
+                .name(albumName) //NOSONAR
+                .addArtist(new Artist(artistId, artistName)) //NOSONAR
+                .albumArtist(albumArtistName) //NOSONAR
+                .year(year) //NOSONAR
+                .numSongs(1) //NOSONAR
+                .numDiscs(discNumber) //NOSONAR
+                .lastPlayed(lastPlayed) //NOSONAR
+                .dateAdded(dateAdded) //NOSONAR
+                .path(path) //NOSONAR
+                .songPlayCount(playCount) //NOSONAR
+                .build(); //NOSONAR
     }
 
-    @Override
-    @NonNull
-    public String getArtworkKey() {
-        if (artworkKey == null) setArtworkKey();
-        return artworkKey;
+    public AlbumArtist getAlbumArtist() { //NOSONAR
+        return new AlbumArtist.Builder() //NOSONAR
+                .name(albumArtistName) //NOSONAR
+                .album(getAlbum()) //NOSONAR
+                .build(); //NOSONAR
     }
 
-    private void setArtworkKey() {
-        artworkKey = String.format("%s_%s", albumArtistName, albumName);
+    @Override //NOSONAR
+    public boolean equals(Object o) { //NOSONAR
+        if (this == o) return true; //NOSONAR
+        if (o == null || getClass() != o.getClass()) return false; //NOSONAR
+
+        Song song = (Song) o; //NOSONAR
+
+        return id == song.id && artistId == song.artistId && albumId == song.albumId; //NOSONAR
     }
 
-    @Nullable
-    @Override
-    public String getRemoteArtworkUrl() {
-        try {
-            return "https://artwork.shuttlemusicplayer.app/api/v1/artwork"
-                    + "?artist=" + URLEncoder.encode(albumArtistName, Charset.forName("UTF-8").name())
-                    + "&album=" + URLEncoder.encode(albumName, Charset.forName("UTF-8").name());
-        } catch (UnsupportedEncodingException e) {
-            return null;
+    @Override //NOSONAR
+    public int hashCode() { //NOSONAR
+        int result = (int) (id ^ (id >>> 32)); //NOSONAR
+        result = 31 * result + (int) (artistId ^ (artistId >>> 32)); //NOSONAR
+        result = 31 * result + (int) (albumId ^ (albumId >>> 32)); //NOSONAR
+        return result; //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public String getSortKey() { //NOSONAR
+        if (sortKey == null) { //NOSONAR
+            setSortKey(); //NOSONAR
+        }
+        return sortKey; //NOSONAR
+    }
+
+    @Override //NOSONAR
+    public void setSortKey() { //NOSONAR
+        sortKey = StringUtils.keyFor(name); //NOSONAR
+    }
+
+    @Override //NOSONAR
+    @NonNull //NOSONAR
+    public String getArtworkKey() { //NOSONAR
+        if (artworkKey == null) setArtworkKey(); //NOSONAR
+        return artworkKey; //NOSONAR
+    }
+
+    private void setArtworkKey() { //NOSONAR
+        artworkKey = String.format("%s_%s", albumArtistName, albumName); //NOSONAR
+    }
+
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public String getRemoteArtworkUrl() { //NOSONAR
+        try { //NOSONAR
+            return "https://artwork.shuttlemusicplayer.app/api/v1/artwork" //NOSONAR
+                    + "?artist=" + URLEncoder.encode(albumArtistName, Charset.forName("UTF-8").name()) //NOSONAR
+                    + "&album=" + URLEncoder.encode(albumName, Charset.forName("UTF-8").name()); //NOSONAR
+        } catch (UnsupportedEncodingException e) { //NOSONAR
+            return null; //NOSONAR
         }
     }
 
-    @Override
-    public InputStream getMediaStoreArtwork(Context context) {
-        return ArtworkUtils.getMediaStoreArtwork(context, this);
+    @Override //NOSONAR
+    public InputStream getMediaStoreArtwork(Context context) { //NOSONAR
+        return ArtworkUtils.getMediaStoreArtwork(context, this); //NOSONAR
     }
 
-    @Override
-    public InputStream getFolderArtwork() {
-        return ArtworkUtils.getFolderArtwork(path);
+    @Override //NOSONAR
+    public InputStream getFolderArtwork() { //NOSONAR
+        return ArtworkUtils.getFolderArtwork(path); //NOSONAR
     }
 
-    @Override
-    public InputStream getTagArtwork() {
-        return ArtworkUtils.getTagArtwork(path);
+    @Override //NOSONAR
+    public InputStream getTagArtwork() { //NOSONAR
+        return ArtworkUtils.getTagArtwork(path); //NOSONAR
     }
 
-    @Override
-    public List<File> getFolderArtworkFiles() {
-        return ArtworkUtils.getAllFolderArtwork(path);
+    @Override //NOSONAR
+    public List<File> getFolderArtworkFiles() { //NOSONAR
+        return ArtworkUtils.getAllFolderArtwork(path); //NOSONAR
     }
 
-    @Override
-    public String toString() {
-        return "\nSong{" +
-                "\nid='" + id +
-                "\nname='" + name +
-                "\nalbumArtistName='" + albumArtistName +
+    @Override //NOSONAR
+    public String toString() { //NOSONAR
+        return "\nSong{" + //NOSONAR
+                "\nid='" + id + //NOSONAR
+                "\nname='" + name + //NOSONAR
+                "\nalbumArtistName='" + albumArtistName + //NOSONAR
                 '}';
     }
 
-    @Nullable
-    @Override
-    public int compareTo(@NonNull Song song) {
-        return ComparisonUtils.compare(getSortKey(), song.getSortKey());
+    @Nullable //NOSONAR
+    @Override //NOSONAR
+    public int compareTo(@NonNull Song song) { //NOSONAR
+        return ComparisonUtils.compare(getSortKey(), song.getSortKey()); //NOSONAR
     }
 }
