@@ -1,29 +1,29 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.suggested
+package com.simplecity.amp_library.ui.screens.suggested // NOSONAR
 
-import com.simplecity.amp_library.data.Repository.PlaylistsRepository
-import com.simplecity.amp_library.data.Repository.SongsRepository
-import com.simplecity.amp_library.model.Album
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.ui.common.Presenter
-import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuPresenter
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter
-import com.simplecity.amp_library.ui.screens.suggested.SuggestedContract.View
-import com.simplecity.amp_library.utils.ComparisonUtils
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.Operators
-import com.simplecity.amp_library.utils.extensions.getSongsSingle
-import com.simplecity.amp_library.utils.menu.album.AlbumsMenuCallbacks
-import com.simplecity.amp_library.utils.menu.song.SongsMenuCallbacks
-import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Function4
-import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
+import com.simplecity.amp_library.data.Repository.PlaylistsRepository // NOSONAR
+import com.simplecity.amp_library.data.Repository.SongsRepository // NOSONAR
+import com.simplecity.amp_library.model.Album // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.ui.common.Presenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.suggested.SuggestedContract.View // NOSONAR
+import com.simplecity.amp_library.utils.ComparisonUtils // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.Operators // NOSONAR
+import com.simplecity.amp_library.utils.extensions.getSongsSingle // NOSONAR
+import com.simplecity.amp_library.utils.menu.album.AlbumsMenuCallbacks // NOSONAR
+import com.simplecity.amp_library.utils.menu.song.SongsMenuCallbacks // NOSONAR
+import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager // NOSONAR
+import io.reactivex.Observable // NOSONAR
+import io.reactivex.Single // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.functions.Function4 // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class SuggestedPresenter @Inject constructor( //NOSONAR
     private val songsRepository: SongsRepository, //NOSONAR
@@ -31,7 +31,7 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
     private val favoritesPlaylistManager: FavoritesPlaylistManager, //NOSONAR
     private val songMenuPresenter: SongMenuPresenter, //NOSONAR
     private val albumMenuPresenter: AlbumMenuPresenter //NOSONAR
-) :
+) : // NOSONAR
     Presenter<SuggestedContract.View>(), //NOSONAR
     SuggestedContract.Presenter, //NOSONAR
     SongsMenuCallbacks by songMenuPresenter, //NOSONAR
@@ -42,21 +42,21 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
 
         songMenuPresenter.bindView(view) //NOSONAR
         albumMenuPresenter.bindView(view) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun unbindView(view: View) { //NOSONAR
         super.unbindView(view) //NOSONAR
 
         songMenuPresenter.unbindView(view) //NOSONAR
         albumMenuPresenter.unbindView(view) //NOSONAR
-    }
+    } // NOSONAR
 
     data class SuggestedData( //NOSONAR
         val mostPlayedPlaylist: Playlist, val mostPlayedSongs: List<Song>, //NOSONAR
         val recentlyPlayedPlaylist: Playlist, val recentlyPlayedAlbums: List<Album>, //NOSONAR
         val favoriteSongsPlaylist: Playlist, val favoriteSongs: List<Song>, //NOSONAR
         val recentlyAddedAlbumsPlaylist: Playlist, val recentlyAddedAlbums: List<Album> //NOSONAR
-    )
+    ) // NOSONAR
 
     override fun loadData() { //NOSONAR
 
@@ -78,21 +78,21 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
                             .map { songs -> //NOSONAR
                                 album.numSongs = songs.size //NOSONAR
                                 album //NOSONAR
-                            }
+                            } // NOSONAR
                             .filter { a -> a.numSongs > 0 } //NOSONAR
                             .toSingle() //NOSONAR
-                    }
+                    } // NOSONAR
                     .sorted { a, b -> ComparisonUtils.compareLong(b.lastPlayed, a.lastPlayed) } //NOSONAR
                     .take(6) //NOSONAR
                     .toList() //NOSONAR
-            }
+            } // NOSONAR
 
         val favoriteSongs = favoritesPlaylistManager.getFavoritesPlaylist() //NOSONAR
             .flatMapObservable { playlist -> //NOSONAR
                 favoriteSongsPlaylist = playlist //NOSONAR
                 songsRepository.getSongs(favoriteSongsPlaylist) //NOSONAR
                     .take(20) //NOSONAR
-            }
+            } // NOSONAR
 
         val recentlyAddedAlbums = songsRepository.getSongs(recentlyAddedAlbumsPlaylist) //NOSONAR
             .flatMap { songs -> Observable.just(Operators.songsToAlbums(songs)) } //NOSONAR
@@ -101,7 +101,7 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
                     .sorted { a, b -> ComparisonUtils.compareLong(b.dateAdded, a.dateAdded) } //NOSONAR
                     .take(10) //NOSONAR
                     .toList() //NOSONAR
-            }
+            } // NOSONAR
 
         addDisposable( //NOSONAR
             Observable.combineLatest(mostPlayedSongs, recentlyPlayedAlbums, favoriteSongs, recentlyAddedAlbums, //NOSONAR
@@ -111,14 +111,14 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
                         recentlyPlayedPlaylist, recentlyPlayedAlbums, //NOSONAR
                         favoriteSongsPlaylist, favoriteSongs, //NOSONAR
                         recentlyAddedAlbumsPlaylist, recentlyAddedAlbums //NOSONAR
-                    )
-                })
+                    ) // NOSONAR
+                }) // NOSONAR
                 .subscribe( //NOSONAR
                     { suggestedData -> view?.setData(suggestedData) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "Failed to load data", error) } //NOSONAR
-                )
-        )
-    }
+                ) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) { //NOSONAR
         addDisposable( //NOSONAR
@@ -128,11 +128,11 @@ class SuggestedPresenter @Inject constructor( //NOSONAR
                 .subscribe( //NOSONAR
                     { items -> dst(items) }, //NOSONAR
                     { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) } //NOSONAR
-                )
-        )
-    }
+                ) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     companion object { //NOSONAR
         private const val TAG = "SuggestedPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

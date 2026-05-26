@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/media_route_menu_item"
-        android:title="@string/media_route_menu_title"
-        android:visible="true"
-        app:actionProviderClass="com.simplecity.amp_library.ui.views.CustomMediaRouteActionProvider"
-        app:showAsAction="always" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/media_route_menu_item" <!-- NOSONAR -->
+        android:title="@string/media_route_menu_title" <!-- NOSONAR -->
+        android:visible="true" <!-- NOSONAR -->
+        app:actionProviderClass="com.simplecity.amp_library.ui.views.CustomMediaRouteActionProvider" <!-- NOSONAR -->
+        app:showAsAction="always" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/action_search"
-        android:icon="@drawable/ic_search_24dp"
-        android:title="@string/search_title"
-        app:showAsAction="ifRoom"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/action_search" <!-- NOSONAR -->
+        android:icon="@drawable/ic_search_24dp" <!-- NOSONAR -->
+        android:title="@string/search_title" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"/> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

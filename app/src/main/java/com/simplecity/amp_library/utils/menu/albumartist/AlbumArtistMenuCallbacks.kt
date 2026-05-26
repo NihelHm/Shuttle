@@ -1,10 +1,10 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.utils.menu.albumartist
+package com.simplecity.amp_library.utils.menu.albumartist // NOSONAR
 
-import com.simplecity.amp_library.model.AlbumArtist
-import com.simplecity.amp_library.model.Playlist
-import io.reactivex.Single
+import com.simplecity.amp_library.model.AlbumArtist // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import io.reactivex.Single // NOSONAR
 
 interface AlbumArtistMenuCallbacks { //NOSONAR
 
@@ -33,52 +33,52 @@ interface AlbumArtistMenuCallbacks { //NOSONAR
     fun albumShuffle(albumArtist: AlbumArtist) //NOSONAR
 
     fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
     transform(albumArtists) { albumArtists -> createArtistsPlaylist(albumArtists) } //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
     transform(albumArtists) { albumArtists -> addArtistsToPlaylist(playlist, albumArtists) } //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
     transform(albumArtists) { albumArtists -> playArtistsNext(albumArtists) } //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
     transform(albumArtists) { albumArtists -> addArtistsToQueue(albumArtists) } //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.deleteArtists(albumArtists: Single<List<AlbumArtist>>) { //NOSONAR
     transform(albumArtists) { albumArtists -> deleteArtists(albumArtists) } //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.playArtistsNext(albumArtist: AlbumArtist) { //NOSONAR
     playArtistsNext(listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.createArtistsPlaylist(albumArtist: AlbumArtist) { //NOSONAR
     createArtistsPlaylist(listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.addArtistsToPlaylist(playlist: Playlist, albumArtist: AlbumArtist) { //NOSONAR
     addArtistsToPlaylist(playlist, listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.addArtistsToQueue(albumArtist: AlbumArtist) { //NOSONAR
     addArtistsToQueue(listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.blacklistArtists(albumArtist: AlbumArtist) { //NOSONAR
     blacklistArtists(listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.deleteArtists(albumArtist: AlbumArtist) { //NOSONAR
     deleteArtists(listOf(albumArtist)) //NOSONAR
-}
+} // NOSONAR
 
 fun AlbumArtistMenuCallbacks.albumShuffle(albumArtist: AlbumArtist) { //NOSONAR
     albumShuffle(albumArtist) //NOSONAR
-}
+} // NOSONAR

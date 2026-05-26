@@ -1,17 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<android.support.v7.preference.PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.preference.PreferenceScreen <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <android.support.v7.preference.PreferenceCategory
-        android:title="@string/pref_category_playback">
+    <android.support.v7.preference.PreferenceCategory <!-- NOSONAR -->
+        android:title="@string/pref_category_playback"> <!-- NOSONAR -->
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_remember_shuffle"
-            android:summary="@string/pref_summary_remember_shuffle"
-            android:title="@string/pref_title_remember_shuffle"/>
+        <android.support.v7.preference.SwitchPreferenceCompat <!-- NOSONAR -->
+            android:defaultValue="false" <!-- NOSONAR -->
+            android:key="pref_remember_shuffle" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_remember_shuffle" <!-- NOSONAR -->
+            android:title="@string/pref_title_remember_shuffle"/> <!-- NOSONAR -->
 
-    </android.support.v7.preference.PreferenceCategory>
+    </android.support.v7.preference.PreferenceCategory> <!-- NOSONAR -->
 
-</android.support.v7.preference.PreferenceScreen>
+</android.support.v7.preference.PreferenceScreen> <!-- NOSONAR -->

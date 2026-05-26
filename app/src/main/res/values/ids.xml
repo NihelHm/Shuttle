@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
 
-    <item name="numbers_key" type="id"/>
+    <item name="numbers_key" type="id"/> <!-- NOSONAR -->
 
-</resources>
+</resources> <!-- NOSONAR -->

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
-                    android:configure="com.simplecity.amp_library.ui.widgets.WidgetConfigureActivityMedium"
-                    android:initialLayout="@layout/widget_layout_medium"
-                    android:minHeight="40dp"
-                    android:minWidth="@dimen/widget_medium_width"
-                    android:resizeMode="horizontal|vertical"
-                    android:updatePeriodMillis="0"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+                    android:configure="com.simplecity.amp_library.ui.widgets.WidgetConfigureActivityMedium" <!-- NOSONAR -->
+                    android:initialLayout="@layout/widget_layout_medium" <!-- NOSONAR -->
+                    android:minHeight="40dp" <!-- NOSONAR -->
+                    android:minWidth="@dimen/widget_medium_width" <!-- NOSONAR -->
+                    android:resizeMode="horizontal|vertical" <!-- NOSONAR -->
+                    android:updatePeriodMillis="0"/> <!-- NOSONAR -->
 

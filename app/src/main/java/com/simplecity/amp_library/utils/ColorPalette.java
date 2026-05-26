@@ -1,19 +1,19 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.content.Context;
-import android.graphics.Color;
-import com.simplecity.amp_library.ShuttleApplication;
+import android.content.Context; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ColorPalette { //NOSONAR
 
     public static int[] getPrimaryColors(Context context, SettingsManager settingsManager) { //NOSONAR
         return ShuttleUtils.isUpgraded((ShuttleApplication) context.getApplicationContext(), settingsManager) ? PRIMARY_COLORS : PRIMARY_COLORS_FREE; //NOSONAR
-    }
+    } // NOSONAR
 
     public static int[][] getPrimaryColorsSub(Context context, SettingsManager settingsManager) { //NOSONAR
         return ShuttleUtils.isUpgraded((ShuttleApplication) context.getApplicationContext(), settingsManager) ? PRIMARY_COLORS_SUB : PRIMARY_COLORS_SUB_FREE; //NOSONAR
-    }
+    } // NOSONAR
 
     private final static int[] PRIMARY_COLORS = new int[] { //NOSONAR
             Color.parseColor("#F44336"), //NOSONAR
@@ -35,7 +35,7 @@ public class ColorPalette { //NOSONAR
             Color.parseColor("#795548"), //NOSONAR
             Color.parseColor("#9E9E9E"), //NOSONAR
             Color.parseColor("#607D8B") //NOSONAR
-    };
+    }; // NOSONAR
 
     private final static int[][] PRIMARY_COLORS_SUB = new int[][] { //NOSONAR
             new int[] { //NOSONAR
@@ -49,7 +49,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#D32F2F"), //NOSONAR
                     Color.parseColor("#C62828"), //NOSONAR
                     Color.parseColor("#B71C1C") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FCE4EC"), //NOSONAR
                     Color.parseColor("#F8BBD0"), //NOSONAR
@@ -61,7 +61,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#C2185B"), //NOSONAR
                     Color.parseColor("#AD1457"), //NOSONAR
                     Color.parseColor("#880E4F") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#F3E5F5"), //NOSONAR
                     Color.parseColor("#E1BEE7"), //NOSONAR
@@ -73,7 +73,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#7B1FA2"), //NOSONAR
                     Color.parseColor("#6A1B9A"), //NOSONAR
                     Color.parseColor("#4A148C") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#EDE7F6"), //NOSONAR
                     Color.parseColor("#D1C4E9"), //NOSONAR
@@ -85,7 +85,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#512DA8"), //NOSONAR
                     Color.parseColor("#4527A0"), //NOSONAR
                     Color.parseColor("#311B92") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E8EAF6"), //NOSONAR
                     Color.parseColor("#C5CAE9"), //NOSONAR
@@ -97,7 +97,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#303F9F"), //NOSONAR
                     Color.parseColor("#283593"), //NOSONAR
                     Color.parseColor("#1A237E") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E3F2FD"), //NOSONAR
                     Color.parseColor("#BBDEFB"), //NOSONAR
@@ -109,7 +109,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#1976D2"), //NOSONAR
                     Color.parseColor("#1565C0"), //NOSONAR
                     Color.parseColor("#0D47A1") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E1F5FE"), //NOSONAR
                     Color.parseColor("#B3E5FC"), //NOSONAR
@@ -121,7 +121,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#0288D1"), //NOSONAR
                     Color.parseColor("#0277BD"), //NOSONAR
                     Color.parseColor("#01579B") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E0F7FA"), //NOSONAR
                     Color.parseColor("#B2EBF2"), //NOSONAR
@@ -133,7 +133,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#0097A7"), //NOSONAR
                     Color.parseColor("#00838F"), //NOSONAR
                     Color.parseColor("#006064") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E0F2F1"), //NOSONAR
                     Color.parseColor("#B2DFDB"), //NOSONAR
@@ -145,7 +145,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#00796B"), //NOSONAR
                     Color.parseColor("#00695C"), //NOSONAR
                     Color.parseColor("#004D40") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E8F5E9"), //NOSONAR
                     Color.parseColor("#C8E6C9"), //NOSONAR
@@ -157,7 +157,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#388E3C"), //NOSONAR
                     Color.parseColor("#2E7D32"), //NOSONAR
                     Color.parseColor("#1B5E20") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#F1F8E9"), //NOSONAR
                     Color.parseColor("#DCEDC8"), //NOSONAR
@@ -169,7 +169,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#689F38"), //NOSONAR
                     Color.parseColor("#558B2F"), //NOSONAR
                     Color.parseColor("#33691E") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#F9FBE7"), //NOSONAR
                     Color.parseColor("#F0F4C3"), //NOSONAR
@@ -181,7 +181,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#AFB42B"), //NOSONAR
                     Color.parseColor("#9E9D24"), //NOSONAR
                     Color.parseColor("#827717") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FFFDE7"), //NOSONAR
                     Color.parseColor("#FFF9C4"), //NOSONAR
@@ -193,7 +193,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#FBC02D"), //NOSONAR
                     Color.parseColor("#F9A825"), //NOSONAR
                     Color.parseColor("#F57F17") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FFF8E1"), //NOSONAR
                     Color.parseColor("#FFECB3"), //NOSONAR
@@ -205,7 +205,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#FFA000"), //NOSONAR
                     Color.parseColor("#FF8F00"), //NOSONAR
                     Color.parseColor("#FF6F00") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FFF3E0"), //NOSONAR
                     Color.parseColor("#FFE0B2"), //NOSONAR
@@ -217,7 +217,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#F57C00"), //NOSONAR
                     Color.parseColor("#EF6C00"), //NOSONAR
                     Color.parseColor("#E65100") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FBE9E7"), //NOSONAR
                     Color.parseColor("#FFCCBC"), //NOSONAR
@@ -229,7 +229,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#E64A19"), //NOSONAR
                     Color.parseColor("#D84315"), //NOSONAR
                     Color.parseColor("#BF360C") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#EFEBE9"), //NOSONAR
                     Color.parseColor("#D7CCC8"), //NOSONAR
@@ -241,7 +241,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#5D4037"), //NOSONAR
                     Color.parseColor("#4E342E"), //NOSONAR
                     Color.parseColor("#3E2723") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FAFAFA"), //NOSONAR
                     Color.parseColor("#F5F5F5"), //NOSONAR
@@ -253,7 +253,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#616161"), //NOSONAR
                     Color.parseColor("#424242"), //NOSONAR
                     Color.parseColor("#212121") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#ECEFF1"), //NOSONAR
                     Color.parseColor("#CFD8DC"), //NOSONAR
@@ -265,8 +265,8 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#455A64"), //NOSONAR
                     Color.parseColor("#37474F"), //NOSONAR
                     Color.parseColor("#263238") //NOSONAR
-            }
-    };
+            } // NOSONAR
+    }; // NOSONAR
 
     private final static int[] PRIMARY_COLORS_FREE = new int[] { //NOSONAR
             Color.parseColor("#F44336"), //NOSONAR
@@ -276,7 +276,7 @@ public class ColorPalette { //NOSONAR
             Color.parseColor("#4CAF50"), //NOSONAR
             Color.parseColor("#FFC107"), //NOSONAR
             Color.parseColor("#9E9E9E") //NOSONAR
-    };
+    }; // NOSONAR
 
     private final static int[][] PRIMARY_COLORS_SUB_FREE = new int[][] { //NOSONAR
             new int[] { //NOSONAR
@@ -290,7 +290,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#D32F2F"), //NOSONAR
                     Color.parseColor("#C62828"), //NOSONAR
                     Color.parseColor("#B71C1C") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#F3E5F5"), //NOSONAR
                     Color.parseColor("#E1BEE7"), //NOSONAR
@@ -302,7 +302,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#7B1FA2"), //NOSONAR
                     Color.parseColor("#6A1B9A"), //NOSONAR
                     Color.parseColor("#4A148C") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E1F5FE"), //NOSONAR
                     Color.parseColor("#B3E5FC"), //NOSONAR
@@ -314,7 +314,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#0288D1"), //NOSONAR
                     Color.parseColor("#0277BD"), //NOSONAR
                     Color.parseColor("#01579B") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E0F2F1"), //NOSONAR
                     Color.parseColor("#B2DFDB"), //NOSONAR
@@ -326,7 +326,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#00796B"), //NOSONAR
                     Color.parseColor("#00695C"), //NOSONAR
                     Color.parseColor("#004D40") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#E8F5E9"), //NOSONAR
                     Color.parseColor("#C8E6C9"), //NOSONAR
@@ -338,7 +338,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#388E3C"), //NOSONAR
                     Color.parseColor("#2E7D32"), //NOSONAR
                     Color.parseColor("#1B5E20") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FFF8E1"), //NOSONAR
                     Color.parseColor("#FFECB3"), //NOSONAR
@@ -350,7 +350,7 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#FFA000"), //NOSONAR
                     Color.parseColor("#FF8F00"), //NOSONAR
                     Color.parseColor("#FF6F00") //NOSONAR
-            },
+            }, // NOSONAR
             new int[] { //NOSONAR
                     Color.parseColor("#FAFAFA"), //NOSONAR
                     Color.parseColor("#F5F5F5"), //NOSONAR
@@ -362,6 +362,6 @@ public class ColorPalette { //NOSONAR
                     Color.parseColor("#616161"), //NOSONAR
                     Color.parseColor("#424242"), //NOSONAR
                     Color.parseColor("#212121") //NOSONAR
-            },
-    };
-}
+            }, // NOSONAR
+    }; // NOSONAR
+} // NOSONAR

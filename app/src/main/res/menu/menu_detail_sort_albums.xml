@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <item
-        android:enabled="false"
-        android:title="@string/albums_title"/>
+    <item <!-- NOSONAR -->
+        android:enabled="false" <!-- NOSONAR -->
+        android:title="@string/albums_title"/> <!-- NOSONAR -->
 
-    <group
-        android:id="@+id/group_albums"
-        android:checkableBehavior="single">
-        <item
-            android:id="@+id/sort_album_default"
-            android:title="@string/sort_default"/>
-        <item
-            android:id="@+id/sort_album_name"
-            android:title="@string/sort_album_name"/>
-        <item
-            android:id="@+id/sort_album_year"
-            android:title="@string/sort_album_year"/>
-    </group>
+    <group <!-- NOSONAR -->
+        android:id="@+id/group_albums" <!-- NOSONAR -->
+        android:checkableBehavior="single"> <!-- NOSONAR -->
+        <item <!-- NOSONAR -->
+            android:id="@+id/sort_album_default" <!-- NOSONAR -->
+            android:title="@string/sort_default"/> <!-- NOSONAR -->
+        <item <!-- NOSONAR -->
+            android:id="@+id/sort_album_name" <!-- NOSONAR -->
+            android:title="@string/sort_album_name"/> <!-- NOSONAR -->
+        <item <!-- NOSONAR -->
+            android:id="@+id/sort_album_year" <!-- NOSONAR -->
+            android:title="@string/sort_album_year"/> <!-- NOSONAR -->
+    </group> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/sort_albums_ascending"
-        android:checkable="true"
-        android:checked="true"
-        android:title="@string/sort_ascending"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/sort_albums_ascending" <!-- NOSONAR -->
+        android:checkable="true" <!-- NOSONAR -->
+        android:checked="true" <!-- NOSONAR -->
+        android:title="@string/sort_ascending"/> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

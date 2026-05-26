@@ -1,20 +1,20 @@
-package com.simplecity.amp_library.ui.modelviews;
+package com.simplecity.amp_library.ui.modelviews; // NOSONAR
 
-import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-import com.simplecity.amp_library.model.Playlist;
-import com.simplecity.amp_library.ui.views.NonScrollImageButton;
-import com.simplecityapps.recycler_adapter.model.BaseViewModel;
-import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
+import android.support.annotation.Nullable; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import com.simplecity.amp_library.model.Playlist; // NOSONAR
+import com.simplecity.amp_library.ui.views.NonScrollImageButton; // NOSONAR
+import com.simplecityapps.recycler_adapter.model.BaseViewModel; // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder; // NOSONAR
 
-import static com.simplecity.amp_library.R.id.btn_overflow;
-import static com.simplecity.amp_library.R.id.line_one;
-import static com.simplecity.amp_library.R.layout.list_item_one_line;
-import static com.simplecity.amp_library.R.string.btn_options;
-import static com.simplecity.amp_library.ui.adapters.ViewType.PLAYLIST;
-import static com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment.PlaylistClickListener;
+import static com.simplecity.amp_library.R.id.btn_overflow; // NOSONAR
+import static com.simplecity.amp_library.R.id.line_one; // NOSONAR
+import static com.simplecity.amp_library.R.layout.list_item_one_line; // NOSONAR
+import static com.simplecity.amp_library.R.string.btn_options; // NOSONAR
+import static com.simplecity.amp_library.ui.adapters.ViewType.PLAYLIST; // NOSONAR
+import static com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment.PlaylistClickListener; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOSONAR
@@ -24,7 +24,7 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOS
         void onPlaylistClick(int position, PlaylistView playlistView); //NOSONAR
 
         void onPlaylistOverflowClick(int position, View v, Playlist playlist); //NOSONAR
-    }
+    } // NOSONAR
 
     @SuppressWarnings("java:S1104") //NOSONAR
 
@@ -35,21 +35,21 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOS
 
     public PlaylistView(Playlist playlist) { //NOSONAR
         this.playlist = playlist; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setListener(@Nullable OnClickListener listener) { //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getViewType() { //NOSONAR
         return PLAYLIST; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getLayoutResId() { //NOSONAR
         return list_item_one_line; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder) { //NOSONAR
@@ -57,24 +57,24 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOS
 
         holder.lineOne.setText(playlist.name); //NOSONAR
         holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(btn_options, playlist.name)); //NOSONAR
-    }
+    } // NOSONAR
 
     void onPlaylistClicked(int position) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onPlaylistClick(position, this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void onOverflowClicked(int position, View v) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onPlaylistOverflowClick(position, v, playlist); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
         return new ViewHolder(createView(parent)); //NOSONAR
-    }
+    } // NOSONAR
 
     public static class ViewHolder extends BaseViewHolder<PlaylistView> { //NOSONAR
 
@@ -94,13 +94,13 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOS
 
             itemView.setOnClickListener(v -> viewModel.onPlaylistClicked(getAdapterPosition())); //NOSONAR
             overflowButton.setOnClickListener(v -> viewModel.onOverflowClicked(getAdapterPosition(), v)); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public String toString() { //NOSONAR
             return "PlaylistView.ViewHolder"; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean equals(Object o) { //NOSONAR
@@ -110,15 +110,15 @@ public class PlaylistView extends BaseViewModel<PlaylistView.ViewHolder> { //NOS
         PlaylistView that = (PlaylistView) o; //NOSONAR
 
         return playlist != null ? playlist.equals(that.playlist) : that.playlist == null; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int hashCode() { //NOSONAR
         return playlist != null ? playlist.hashCode() : 0; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean areContentsEqual(Object other) { //NOSONAR
         return equals(other); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

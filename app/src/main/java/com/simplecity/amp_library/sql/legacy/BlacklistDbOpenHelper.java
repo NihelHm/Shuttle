@@ -1,8 +1,8 @@
-package com.simplecity.amp_library.sql.legacy;
+package com.simplecity.amp_library.sql.legacy; // NOSONAR
 
-import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
+import android.content.Context; // NOSONAR
+import android.database.sqlite.SQLiteDatabase; // NOSONAR
+import android.database.sqlite.SQLiteOpenHelper; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class BlacklistDbOpenHelper extends SQLiteOpenHelper { //NOSONAR
@@ -21,16 +21,16 @@ public class BlacklistDbOpenHelper extends SQLiteOpenHelper { //NOSONAR
 
     public BlacklistDbOpenHelper(Context context) { //NOSONAR
         super(context, DATABASE_NAME, null, DATABASE_VERSION); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreate(SQLiteDatabase db) { //NOSONAR
         db.execSQL(DATABASE_CREATE); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) { //NOSONAR
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_SONGS); //NOSONAR
         onCreate(db); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

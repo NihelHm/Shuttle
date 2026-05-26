@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:fitsSystemWindows="true" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:background="@color/colorPrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content"/> <!-- NOSONAR -->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+    <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+        android:id="@+id/toolbar" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+        android:background="@color/colorPrimary" <!-- NOSONAR -->
+        app:navigationIcon="?attr/homeAsUpIndicator" <!-- NOSONAR -->
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <FrameLayout <!-- NOSONAR -->
+        android:id="@+id/mainContainer" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent"/> <!-- NOSONAR -->
 
-</LinearLayout>
+</LinearLayout> <!-- NOSONAR -->

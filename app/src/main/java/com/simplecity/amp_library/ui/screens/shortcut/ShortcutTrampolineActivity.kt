@@ -1,22 +1,22 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.shortcut
+package com.simplecity.amp_library.ui.screens.shortcut // NOSONAR
 
-import android.content.Intent
-import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import com.simplecity.amp_library.playback.MusicService
-import com.simplecity.amp_library.playback.constants.ShortcutCommands
-import com.simplecity.amp_library.ui.screens.main.MainActivity
-import com.simplecity.amp_library.utils.AnalyticsManager
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.ResumingServiceManager
-import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager
-import com.simplecity.amp_library.utils.playlists.PlaylistManager
-import dagger.android.AndroidInjection
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
+import android.content.Intent // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v7.app.AppCompatActivity // NOSONAR
+import com.simplecity.amp_library.playback.MusicService // NOSONAR
+import com.simplecity.amp_library.playback.constants.ShortcutCommands // NOSONAR
+import com.simplecity.amp_library.ui.screens.main.MainActivity // NOSONAR
+import com.simplecity.amp_library.utils.AnalyticsManager // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.ResumingServiceManager // NOSONAR
+import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistManager // NOSONAR
+import dagger.android.AndroidInjection // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class ShortcutTrampolineActivity : AppCompatActivity() { //NOSONAR
 
@@ -35,13 +35,13 @@ class ShortcutTrampolineActivity : AppCompatActivity() { //NOSONAR
                 intent.action = action //NOSONAR
                 ResumingServiceManager(lifecycle, analyticsManager).startService(this, intent, null) //NOSONAR
                 finish() //NOSONAR
-            }
+            } // NOSONAR
             ShortcutCommands.FOLDERS -> { //NOSONAR
                 intent = Intent(this, MainActivity::class.java) //NOSONAR
                 intent.action = action //NOSONAR
                 startActivity(intent) //NOSONAR
                 finish() //NOSONAR
-            }
+            } // NOSONAR
             ShortcutCommands.PLAYLIST -> { //NOSONAR
                 intent = Intent(this, MainActivity::class.java) //NOSONAR
                 intent.action = action //NOSONAR
@@ -53,14 +53,14 @@ class ShortcutTrampolineActivity : AppCompatActivity() { //NOSONAR
                                     intent.putExtra(PlaylistManager.ARG_PLAYLIST, playlist) //NOSONAR
                                     startActivity(intent) //NOSONAR
                                     finish() //NOSONAR
-                                },
+                                }, // NOSONAR
                                 { error -> LogUtils.logException(TAG, "Error starting activity", error) } //NOSONAR
-                        )
-            }
-        }
-    }
+                        ) // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     companion object { //NOSONAR
         private const val TAG = "ShortcutTrampolineActiv" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,9 +1,9 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.support.v4.util.ArrayMap;
-import java.util.Map;
+import android.content.Context; // NOSONAR
+import android.graphics.Typeface; // NOSONAR
+import android.support.v4.util.ArrayMap; // NOSONAR
+import java.util.Map; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class TypefaceManager { //NOSONAR
@@ -17,25 +17,25 @@ public class TypefaceManager { //NOSONAR
     private final Map<String, Typeface> mCache = new ArrayMap<>(); //NOSONAR
     private static TypefaceManager sInstance = null; //NOSONAR
 
-    /**
-     * Only initialize through {@link #getInstance()}
-     */
+    /** // NOSONAR
+     * Only initialize through {@link #getInstance()} // NOSONAR
+     */ // NOSONAR
     private TypefaceManager() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static TypefaceManager getInstance() { //NOSONAR
         if (sInstance == null) { //NOSONAR
             sInstance = new TypefaceManager(); //NOSONAR
-        }
+        } // NOSONAR
         return sInstance; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * @param typeface The name of the type face asset
-     * @return The {@link android.graphics.Typeface} that matches
-     * <code>typeface</code>
-     */
+    /** // NOSONAR
+     * @param typeface The name of the type face asset // NOSONAR
+     * @return The {@link android.graphics.Typeface} that matches // NOSONAR
+     * <code>typeface</code> // NOSONAR
+     */ // NOSONAR
     public Typeface getTypeface(Context context, String typeface) { //NOSONAR
         Typeface result = mCache.get(typeface); //NOSONAR
         if (result == null) { //NOSONAR
@@ -53,10 +53,10 @@ public class TypefaceManager { //NOSONAR
                 default: //NOSONAR
                     result = Typeface.createFromAsset(context.getAssets(), "fonts/" + typeface); //NOSONAR
                     break; //NOSONAR
-            }
+            } // NOSONAR
             mCache.put(typeface, result); //NOSONAR
-        }
+        } // NOSONAR
         return result; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR
 

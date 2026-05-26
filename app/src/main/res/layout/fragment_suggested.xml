@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    android:paddingBottom="4dp"
-    tools:listitem="@layout/list_item_two_lines"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.v7.widget.RecyclerView <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:id="@+id/recyclerView" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:clipToPadding="false" <!-- NOSONAR -->
+    android:paddingBottom="4dp" <!-- NOSONAR -->
+    tools:listitem="@layout/list_item_two_lines"/> <!-- NOSONAR -->

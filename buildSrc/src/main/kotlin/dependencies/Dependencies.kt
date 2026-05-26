@@ -1,6 +1,6 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package dependencies
+package dependencies // NOSONAR
 
 object Dependencies { //NOSONAR
 
@@ -24,59 +24,59 @@ object Dependencies { //NOSONAR
         const val daggerAssistedInject = "0.3.2" //NOSONAR
         const val expandableRecyclerView = "3.0.0-RC1" //NOSONAR
         const val billing = "1.2" //NOSONAR
-    }
+    } // NOSONAR
 
-    // Kotlin
+    // Kotlin // NOSONAR
 
     const val kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Plugins.Versions.kotlin}" //NOSONAR
     const val ktx = "androidx.core:core-ktx:${Plugins.Versions.ktx}" //NOSONAR
 
-    // NanoHttp - https://github.com/NanoHttpd/nanohttpd (Various)
+    // NanoHttp - https://github.com/NanoHttpd/nanohttpd (Various) // NOSONAR
     const val nanoHttp = "org.nanohttpd:nanohttpd-webserver:${Versions.nanoHttp}" //NOSONAR
 
-    // Crashlytics - https://fabric.io/kits/android/crashlytics
+    // Crashlytics - https://fabric.io/kits/android/crashlytics // NOSONAR
     const val crashlytics = "com.crashlytics.sdk.android:crashlytics:${Versions.crashlytics}" //NOSONAR
 
-    // Dashclock - https://git.io/vix9g (Roman Nurik)
+    // Dashclock - https://git.io/vix9g (Roman Nurik) // NOSONAR
     const val dashClockApi = "com.google.android.apps.dashclock:dashclock-api:${Versions.dashClockApi}" //NOSONAR
 
-    // RecyclerView-FastScroll - https://git.io/vix5z
+    // RecyclerView-FastScroll - https://git.io/vix5z // NOSONAR
     const val fastScroll = "com.simplecityapps:recyclerview-fastscroll:${Versions.fastScroll}" //NOSONAR
 
-    // Glide - https://git.io/vtn9K (Bump)
+    // Glide - https://git.io/vtn9K (Bump) // NOSONAR
     const val glide = "com.github.bumptech.glide:glide:${Versions.glide}" //NOSONAR
 
-    // Glide - OkHttp  integration - https://git.io/vihvW (Bump)
+    // Glide - OkHttp  integration - https://git.io/vihvW (Bump) // NOSONAR
     const val glideOkhttp = "com.github.bumptech.glide:okhttp3-integration:${Versions.glideOkhttp}" //NOSONAR
 
-    // Material Dialogs - https://git.io/vixHf (Aidan Follestad)
+    // Material Dialogs - https://git.io/vixHf (Aidan Follestad) // NOSONAR
     const val materialDialogs = "com.afollestad.material-dialogs:core:${Versions.materialDialogs}" //NOSONAR
     const val materialDialogCommons = "com.afollestad.material-dialogs:commons:${Versions.materialDialogs}" //NOSONAR
 
-    // Permiso - https://git.io/vixQ4 (Greyson Parrelli)
+    // Permiso - https://git.io/vixQ4 (Greyson Parrelli) // NOSONAR
     const val permiso = "com.greysonparrelli.permiso:permiso:${Versions.permiso}" //NOSONAR
 
-    // Streams Backport - https://git.io/vCazA (Victor Melnik)
+    // Streams Backport - https://git.io/vCazA (Victor Melnik) // NOSONAR
     const val streams = "com.annimon:stream:${Versions.streams}" //NOSONAR
 
-    // Butterknife
+    // Butterknife // NOSONAR
     const val butterknife = "com.jakewharton:butterknife:${Versions.butterknife}" //NOSONAR
     const val butterknifeAnnotationProcessor = "com.jakewharton:butterknife-compiler:${Versions.butterknifeAnnotationProcessor}" //NOSONAR
 
-    // Dagger
+    // Dagger // NOSONAR
     const val dagger = "com.google.dagger:dagger:${Versions.dagger}" //NOSONAR
     const val daggerCompiler = "com.google.dagger:dagger-compiler:${Versions.dagger}" //NOSONAR
     const val daggerProcessor = "com.google.dagger:dagger-android-processor:${Versions.dagger}" //NOSONAR
     const val daggerSupport = "com.google.dagger:dagger-android-support:${Versions.dagger}" //NOSONAR
 
-    // Dagger Assisted Inject
+    // Dagger Assisted Inject // NOSONAR
     const val daggerAssistedInject = "com.squareup.inject:assisted-inject-annotations-dagger2:${Versions.daggerAssistedInject}" //NOSONAR
     const val daggerAssistedInjectProcessor = "com.squareup.inject:assisted-inject-processor-dagger2:${Versions.daggerAssistedInject}" //NOSONAR
 
-    // Expandable Recycler View - https://github.com/thoughtbot/expandable-recycler-view
+    // Expandable Recycler View - https://github.com/thoughtbot/expandable-recycler-view // NOSONAR
     const val expandableRecyclerView = "com.bignerdranch.android:expandablerecyclerview:${Versions.expandableRecyclerView}" //NOSONAR
 
-    // In app purchases
+    // In app purchases // NOSONAR
     const val billing = "com.android.billingclient:billing:${Versions.billing}" //NOSONAR
 
     object Plugins { //NOSONAR
@@ -89,7 +89,7 @@ object Dependencies { //NOSONAR
             const val fabricGradlePlugin = "1.+" //NOSONAR
             const val gradleVersions = "0.20.0" //NOSONAR
             const val playServices = "4.2.0" //NOSONAR
-        }
+        } // NOSONAR
 
         const val android = "com.android.tools.build:gradle:${Versions.androidGradlePlugin}" //NOSONAR
         const val kotlin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}" //NOSONAR
@@ -98,7 +98,7 @@ object Dependencies { //NOSONAR
         const val playPublisher = "com.github.triplet.play" //NOSONAR
         const val gradleVersions = "com.github.ben-manes:gradle-versions-plugin:${Versions.gradleVersions}" //NOSONAR
         const val playServices = "com.google.gms:google-services:${Versions.playServices}" //NOSONAR
-    }
+    } // NOSONAR
 
     object Google { //NOSONAR
 
@@ -108,7 +108,7 @@ object Dependencies { //NOSONAR
             const val firebaseRemoteConfig = "16.1.0" //NOSONAR
             const val constraintLayout = "2.0.0-alpha3" //NOSONAR
             const val chromeCastFramework = "16.1.0" //NOSONAR
-        }
+        } // NOSONAR
 
         const val cardView = "com.android.support:cardview-v7:${Versions.supportLib}" //NOSONAR
         const val design = "com.android.support:design:${Versions.supportLib}" //NOSONAR
@@ -123,7 +123,7 @@ object Dependencies { //NOSONAR
         const val prefCompat = "com.android.support:preference-v7:${Versions.supportLib}" //NOSONAR
         const val prefCompatv14 = "com.android.support:preference-v14:${Versions.supportLib}" //NOSONAR
         const val chromeCastFramework = "com.google.android.gms:play-services-cast-framework:${Versions.chromeCastFramework}" //NOSONAR
-    }
+    } // NOSONAR
 
     object Square { //NOSONAR
 
@@ -135,7 +135,7 @@ object Dependencies { //NOSONAR
             const val retrofit = "2.4.0" //NOSONAR
             const val retrofitGson = "2.4.0" //NOSONAR
             const val sqlBrite = "2.0.0" //NOSONAR
-        }
+        } // NOSONAR
 
         const val haha = "com.squareup.haha:haha:${Versions.haha}" //NOSONAR
         const val leakCanaryDebug = "com.squareup.leakcanary:leakcanary-android:${Versions.leakCanary}" //NOSONAR
@@ -145,7 +145,7 @@ object Dependencies { //NOSONAR
         const val retrofit = "com.squareup.retrofit2:retrofit:${Versions.retrofit}" //NOSONAR
         const val retrofitGson = "com.squareup.retrofit2:converter-gson:${Versions.retrofitGson}" //NOSONAR
         const val sqlBrite = "com.squareup.sqlbrite2:sqlbrite:${Versions.sqlBrite}" //NOSONAR
-    }
+    } // NOSONAR
 
     object Rx { //NOSONAR
 
@@ -159,36 +159,36 @@ object Dependencies { //NOSONAR
             const val rxPrefs = "2.0.0" //NOSONAR
             const val rxKotlin = "2.3.0" //NOSONAR
             const val rxDogTag = "0.2.0" //NOSONAR
-        }
+        } // NOSONAR
 
-        // RxJava - https://git.io/vihv0 (ReactiveX)
+        // RxJava - https://git.io/vihv0 (ReactiveX) // NOSONAR
         const val rxAndroid = "io.reactivex.rxjava2:rxandroid:${Versions.rxAndroid}" //NOSONAR
 
-        // rxBinding - https://git.io/vix5y (Jake Wharton)
+        // rxBinding - https://git.io/vix5y (Jake Wharton) // NOSONAR
         const val rxBinding = "com.jakewharton.rxbinding2:rxbinding:${Versions.rxBinding}" //NOSONAR
 
-        // rxBinding AppCompat - https://git.io/vix5y (Jake Wharton)
+        // rxBinding AppCompat - https://git.io/vix5y (Jake Wharton) // NOSONAR
         const val rxBindingAppCompat = "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${Versions.rxBindingAppCompat}" //NOSONAR
 
-        // RxJava - https://git.io/rxjava (ReactiveX)
+        // RxJava - https://git.io/rxjava (ReactiveX) // NOSONAR
         const val rxJava = "io.reactivex.rxjava2:rxjava:${Versions.rxJava}" //NOSONAR
 
-        // RX Image Picker - https://git.io/vix5H (MLSDev )
+        // RX Image Picker - https://git.io/vix5H (MLSDev ) // NOSONAR
         const val rxImagePicker = "com.github.timusus:RxImagePicker:permission-check-fix-SNAPSHOT" //NOSONAR
 
-        // RX Relay - https://github.com/JakeWharton/RxRelay
+        // RX Relay - https://github.com/JakeWharton/RxRelay // NOSONAR
         const val rxRelay = "com.jakewharton.rxrelay2:rxrelay:${Versions.rxRelay}" //NOSONAR
 
-        // Rx Receivers - https://github.com/f2prateek/rx-receivers
+        // Rx Receivers - https://github.com/f2prateek/rx-receivers // NOSONAR
         const val rxBroadcast = "com.cantrowitz:rxbroadcast:${Versions.rxBroadcast}" //NOSONAR
 
-        // Rx Prefs - https://github.com/f2prateek/rx-preferences
+        // Rx Prefs - https://github.com/f2prateek/rx-preferences // NOSONAR
         const val rxPrefs = "com.f2prateek.rx.preferences2:rx-preferences:${Versions.rxPrefs}" //NOSONAR
 
         const val rxKotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rxKotlin}" //NOSONAR
 
         const val rxDogTag = "com.uber.rxdogtag:rxdogtag:${Versions.rxDogTag}" //NOSONAR
-    }
+    } // NOSONAR
 
     object Testing { //NOSONAR
 
@@ -197,53 +197,53 @@ object Dependencies { //NOSONAR
             const val espressoCore = "3.0.0" //NOSONAR
             const val assertj = "3.9.0" //NOSONAR
 
-            // Mockito version restriction -- PowerMock does not fully support Mockito2 yet.
-            // https://github.com/powermock/powermock/wiki/Mockito2_maven
+            // Mockito version restriction -- PowerMock does not fully support Mockito2 yet. // NOSONAR
+            // https://github.com/powermock/powermock/wiki/Mockito2_maven // NOSONAR
             const val mockito = "2.8.47" //NOSONAR
             const val powermock = "1.7.1" //NOSONAR
 
-            // Future note: PowerMock and Robolectric can't work together until Robolectric 3.3 is released
-            // https://github.com/robolectric/robolectric/wiki/Using-PowerMock
+            // Future note: PowerMock and Robolectric can't work together until Robolectric 3.3 is released // NOSONAR
+            // https://github.com/robolectric/robolectric/wiki/Using-PowerMock // NOSONAR
             const val robolectric = "3.6.1" //NOSONAR
-        }
+        } // NOSONAR
 
-        // JUnit
+        // JUnit // NOSONAR
         const val junit = "junit:junit:${Versions.junit}" //NOSONAR
 
-        // Espresso
+        // Espresso // NOSONAR
         const val espresso = "com.android.support.test.espresso:espresso-core:${Versions.espressoCore}" //NOSONAR
 
-        // Mockito - https://github.com/mockito/mockito
+        // Mockito - https://github.com/mockito/mockito // NOSONAR
         const val mockito = "org.mockito:mockito-core:${Versions.mockito}" //NOSONAR
 
-        // Powermock - https://github.com/powermock/powermock
+        // Powermock - https://github.com/powermock/powermock // NOSONAR
         const val powermock = "org.powermock:powermock-api-mockito2:${Versions.powermock}" //NOSONAR
         const val powermockjunit = "org.powermock:powermock-module-junit4:${Versions.powermock}" //NOSONAR
 
-        // Robolectric - https://github.com/robolectric/robolectric
+        // Robolectric - https://github.com/robolectric/robolectric // NOSONAR
         const val robolectric = "org.robolectric:robolectric:${Versions.robolectric}" //NOSONAR
 
-        // AssertJ - http://joel-costigliola.github.io/assertj/
+        // AssertJ - http://joel-costigliola.github.io/assertj/ // NOSONAR
         const val assertj = "org.assertj:assertj-core:${Versions.assertj}" //NOSONAR
-    }
+    } // NOSONAR
 
     object Projects { //NOSONAR
 
-        // Glide Palette - https://git.io/vix57 (Florent Champigny)
+        // Glide Palette - https://git.io/vix57 (Florent Champigny) // NOSONAR
         val glidePalette = ":libraries:glidepalette" //NOSONAR
 
-        // Internal navigation library
+        // Internal navigation library // NOSONAR
         val navigation = ":libraries:navigation" //NOSONAR
 
-        // Internal recycler adapter library
+        // Internal recycler adapter library // NOSONAR
         val recyclerAdapter = ":libraries:recycler-adapter" //NOSONAR
 
-        // Multi Sheet View
+        // Multi Sheet View // NOSONAR
         val multiSheetView = ":libraries:multisheetview" //NOSONAR
 
-        // Aesthetic - Theming Engine
+        // Aesthetic - Theming Engine // NOSONAR
         val aesthetic = ":libraries:aesthetic" //NOSONAR
-    }
+    } // NOSONAR
 
     object BuildPlugins { //NOSONAR
 
@@ -256,6 +256,6 @@ object Dependencies { //NOSONAR
         const val fabric = "io.fabric" //NOSONAR
         const val gradleVersions = "com.github.ben-manes.versions" //NOSONAR
         const val playServices = "com.google.gms.google-services" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR
 

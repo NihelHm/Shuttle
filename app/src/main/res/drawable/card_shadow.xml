@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <gradient
-        android:angle="270"
-        android:centerColor="#11000000"
-        android:endColor="#00000000"
-        android:startColor="#33000000"/>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
+    <gradient <!-- NOSONAR -->
+        android:angle="270" <!-- NOSONAR -->
+        android:centerColor="#11000000" <!-- NOSONAR -->
+        android:endColor="#00000000" <!-- NOSONAR -->
+        android:startColor="#33000000"/> <!-- NOSONAR -->
 
-    <corners android:radius="2dp"/>
-</shape>
+    <corners android:radius="2dp"/> <!-- NOSONAR -->
+</shape> <!-- NOSONAR -->

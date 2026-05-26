@@ -1,16 +1,16 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import android.content.Context;
-import android.support.annotation.RestrictTo;
-import android.support.v4.view.LayoutInflaterFactory;
-import android.util.AttributeSet;
-import android.view.View;
-import android.widget.LinearLayout;
+import android.content.Context; // NOSONAR
+import android.support.annotation.RestrictTo; // NOSONAR
+import android.support.v4.view.LayoutInflaterFactory; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import android.view.View; // NOSONAR
+import android.widget.LinearLayout; // NOSONAR
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
-import static com.afollestad.aesthetic.Util.resolveResId;
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP; // NOSONAR
+import static com.afollestad.aesthetic.Util.resolveResId; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @RestrictTo(LIBRARY_GROUP) //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 final class InflationInterceptor implements LayoutInflaterFactory { //NOSONAR
@@ -43,10 +43,10 @@ final class InflationInterceptor implements LayoutInflaterFactory { //NOSONAR
         } else { //NOSONAR
           view = new AestheticTextView(context, attrs); //NOSONAR
           if (parent instanceof LinearLayout && view.getId() == android.R.id.message) { //NOSONAR
-            // This is for a toast message
+            // This is for a toast message // NOSONAR
             view = null; //NOSONAR
-          }
-        }
+          } // NOSONAR
+        } // NOSONAR
         break; //NOSONAR
       case "Button": //NOSONAR
       case "android.support.v7.widget.AppCompatButton": //NOSONAR
@@ -58,7 +58,7 @@ final class InflationInterceptor implements LayoutInflaterFactory { //NOSONAR
           view = new AestheticSnackBarButton(context, attrs); //NOSONAR
         } else { //NOSONAR
           view = new AestheticButton(context, attrs); //NOSONAR
-        }
+        } // NOSONAR
         break; //NOSONAR
       case "android.support.v7.widget.AppCompatCheckBox": //NOSONAR
       case "CheckBox": //NOSONAR
@@ -136,13 +136,13 @@ final class InflationInterceptor implements LayoutInflaterFactory { //NOSONAR
       case "android.support.design.widget.CoordinatorLayout": //NOSONAR
         view = new AestheticCoordinatorLayout(context, attrs); //NOSONAR
         break; //NOSONAR
-    }
+    } // NOSONAR
 
     if (view != null && view.getTag() != null && ":aesthetic_ignore".equals(view.getTag())) { //NOSONAR
-      // Set view back to null so we can let AppCompat handle this view instead.
+      // Set view back to null so we can let AppCompat handle this view instead. // NOSONAR
       view = null; //NOSONAR
-    }
+    } // NOSONAR
 
     return view; //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

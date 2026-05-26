@@ -1,48 +1,48 @@
-package com.simplecity.amp_library.ui.screens.tagger;
+package com.simplecity.amp_library.ui.screens.tagger; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.design.widget.TextInputLayout;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.provider.DocumentFile;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.Toast;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.annimon.stream.Stream;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.model.Album;
-import com.simplecity.amp_library.model.AlbumArtist;
-import com.simplecity.amp_library.model.Song;
-import com.simplecity.amp_library.utils.CustomMediaScanner;
-import com.simplecity.amp_library.utils.LogUtils;
-import com.simplecity.amp_library.utils.SettingsManager;
-import dagger.android.support.AndroidSupportInjection;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.TagException;
+import android.annotation.SuppressLint; // NOSONAR
+import android.app.Activity; // NOSONAR
+import android.app.Dialog; // NOSONAR
+import android.app.ProgressDialog; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.design.widget.TextInputLayout; // NOSONAR
+import android.support.v4.app.DialogFragment; // NOSONAR
+import android.support.v4.app.FragmentManager; // NOSONAR
+import android.support.v4.provider.DocumentFile; // NOSONAR
+import android.util.Log; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.View; // NOSONAR
+import android.widget.EditText; // NOSONAR
+import android.widget.FrameLayout; // NOSONAR
+import android.widget.Toast; // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.model.Album; // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist; // NOSONAR
+import com.simplecity.amp_library.model.Song; // NOSONAR
+import com.simplecity.amp_library.utils.CustomMediaScanner; // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.io.Serializable; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
+import org.jaudiotagger.audio.AudioFile; // NOSONAR
+import org.jaudiotagger.audio.AudioFileIO; // NOSONAR
+import org.jaudiotagger.audio.exceptions.CannotReadException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException; // NOSONAR
+import org.jaudiotagger.tag.FieldKey; // NOSONAR
+import org.jaudiotagger.tag.Tag; // NOSONAR
+import org.jaudiotagger.tag.TagException; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class TaggerDialog extends DialogFragment { //NOSONAR
@@ -110,13 +110,13 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
         TaggerDialog fragment = new TaggerDialog(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onAttach(Context context) { //NOSONAR
         AndroidSupportInjection.inject(this); //NOSONAR
         super.onAttach(context); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
@@ -138,15 +138,15 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
         } else if (model instanceof Song) { //NOSONAR
             song = (Song) model; //NOSONAR
             originalSongPaths.add(song.path); //NOSONAR
-        }
+        } // NOSONAR
 
         if (originalSongPaths == null || originalSongPaths.isEmpty()) { //NOSONAR
             dismiss(); //NOSONAR
 
-            //To do later: refine & extract
+            //To do later: refine & extract // NOSONAR
             Toast.makeText(getContext(), R.string.tag_retrieve_error, Toast.LENGTH_LONG).show(); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public Dialog onCreateDialog(Bundle savedInstanceState) { //NOSONAR
@@ -169,7 +169,7 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
                 .build(); //NOSONAR
 
         return materialDialog; //NOSONAR
-    }
+    } // NOSONAR
 
     private void setupViews(View rootView) { //NOSONAR
 
@@ -215,19 +215,19 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
             lyricsEditText.setVisibility(View.GONE); //NOSONAR
             commentInputLayout.setVisibility(View.GONE); //NOSONAR
             commentEditText.setVisibility(View.GONE); //NOSONAR
-        }
+        } // NOSONAR
 
         if (albumArtist != null) { //NOSONAR
             albumInputLayout.setVisibility(View.GONE); //NOSONAR
             albumEditText.setVisibility(View.GONE); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void populateViews() { //NOSONAR
 
         if (originalSongPaths == null || originalSongPaths.isEmpty()) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         try { //NOSONAR
             AudioFile mAudioFile = AudioFileIO.read(new File(originalSongPaths.get(0))); //NOSONAR
@@ -235,7 +235,7 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
 
             if (tag == null) { //NOSONAR
                 return; //NOSONAR
-            }
+            } // NOSONAR
 
             title = tag.getFirst(FieldKey.TITLE); //NOSONAR
             albumName = tag.getFirst(FieldKey.ALBUM); //NOSONAR
@@ -243,39 +243,39 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
             try { //NOSONAR
                 albumArtistName = tag.getFirst(FieldKey.ALBUM_ARTIST); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
             genre = tag.getFirst(FieldKey.GENRE); //NOSONAR
             year = tag.getFirst(FieldKey.YEAR); //NOSONAR
             track = tag.getFirst(FieldKey.TRACK); //NOSONAR
             try { //NOSONAR
                 trackTotal = tag.getFirst(FieldKey.TRACK_TOTAL); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
             try { //NOSONAR
                 disc = tag.getFirst(FieldKey.DISC_NO); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
             try { //NOSONAR
                 discTotal = tag.getFirst(FieldKey.DISC_TOTAL); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
             try { //NOSONAR
                 lyrics = tag.getFirst(FieldKey.LYRICS); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
             try { //NOSONAR
                 comment = tag.getFirst(FieldKey.COMMENT); //NOSONAR
             } catch (UnsupportedOperationException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
         } catch (IOException | InvalidAudioFrameException | TagException | ReadOnlyFileException | CannotReadException e) { //NOSONAR
             Log.e(TAG, "Failed to read tags. " + e.toString()); //NOSONAR
-        }
+        } // NOSONAR
 
         titleEditText.setText(title); //NOSONAR
         titleEditText.setSelection(titleEditText.getText().length()); //NOSONAR
@@ -312,7 +312,7 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
 
         commentEditText.setText(comment); //NOSONAR
         commentEditText.setSelection(commentEditText.getText().length()); //NOSONAR
-    }
+    } // NOSONAR
 
     private void saveTags() { //NOSONAR
 
@@ -326,12 +326,12 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
 
             if (isResumed() && progressDialog.isShowing()) { //NOSONAR
                 progressDialog.dismiss(); //NOSONAR
-            }
+            } // NOSONAR
 
             if (!isResumed() || getContext() == null) { //NOSONAR
                 LogUtils.logException(TAG, "Save tags returning early.. Context null or dialog not resumed.", null); //NOSONAR
                 return; //NOSONAR
-            }
+            } // NOSONAR
 
             if (hasPermission) { //NOSONAR
 
@@ -353,8 +353,8 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
                             saveProgressDialog.dismiss(); //NOSONAR
 
                             dismiss(); //NOSONAR
-                        }
-                    }
+                        } // NOSONAR
+                    } // NOSONAR
 
                     @Override //NOSONAR
                     public void onFailure() { //NOSONAR
@@ -363,14 +363,14 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
                             saveProgressDialog.dismiss(); //NOSONAR
                             Toast.makeText(getContext(), R.string.tag_error, Toast.LENGTH_LONG).show(); //NOSONAR
                             dismiss(); //NOSONAR
-                        }
-                    }
+                        } // NOSONAR
+                    } // NOSONAR
 
                     @Override //NOSONAR
                     public void onProgress(int progress) { //NOSONAR
                         saveProgressDialog.setProgress(progress); //NOSONAR
-                    }
-                };
+                    } // NOSONAR
+                }; // NOSONAR
 
                 TaggerTask taggerTask = new TaggerTask(getContext()) //NOSONAR
                         .showAlbum(showAlbum) //NOSONAR
@@ -399,13 +399,13 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
                         this.startActivityForResult(intent, DOCUMENT_TREE_REQUEST_CODE); //NOSONAR
                     } else { //NOSONAR
                         Toast.makeText(getContext(), R.string.R_string_toast_no_document_provider, Toast.LENGTH_LONG).show(); //NOSONAR
-                    }
+                    } // NOSONAR
                 }, hasCheckedPermissions); //NOSONAR
                 hasCheckedPermissions = true; //NOSONAR
-            }
-        });
+            } // NOSONAR
+        }); // NOSONAR
         task.execute(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onActivityResult(int requestCode, int resultCode, Intent data) { //NOSONAR
@@ -417,21 +417,21 @@ public class TaggerDialog extends DialogFragment { //NOSONAR
                     getContext().getContentResolver().takePersistableUriPermission(treeUri, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION); //NOSONAR
                     settingsManager.setDocumentTreeUri(data.getData().toString()); //NOSONAR
                     saveTags(); //NOSONAR
-                }
+                } // NOSONAR
                 break; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void show(FragmentManager fragmentManager) { //NOSONAR
         show(fragmentManager, TAG); //NOSONAR
-    }
+    } // NOSONAR
 
     private TextInputLayout getParent(EditText editText) { //NOSONAR
         if (editText.getParent() instanceof TextInputLayout) { //NOSONAR
             return (TextInputLayout) editText.getParent(); //NOSONAR
         } else if (editText.getParent() instanceof FrameLayout) { //NOSONAR
             return (TextInputLayout) editText.getParent().getParent(); //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

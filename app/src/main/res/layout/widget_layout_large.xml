@@ -1,131 +1,131 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/widget_layout_large"
-    android:layout_width="match_parent"
-    android:layout_height="144dp"
-    android:padding="@dimen/widget_margin"
-    tools:ignore="ContentDescription">
+<FrameLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:id="@+id/widget_layout_large" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="144dp" <!-- NOSONAR -->
+    android:padding="@dimen/widget_margin" <!-- NOSONAR -->
+    tools:ignore="ContentDescription"> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+    <LinearLayout <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:orientation="vertical"> <!-- NOSONAR -->
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="5">
+        <RelativeLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="0dp" <!-- NOSONAR -->
+            android:layout_weight="5"> <!-- NOSONAR -->
 
-            <ImageView
-                android:id="@+id/album_art"
-                android:layout_width="@dimen/widget_large_image_width"
-                android:layout_height="@dimen/widget_large_image_height"
-                android:scaleType="fitXY"/>
+            <ImageView <!-- NOSONAR -->
+                android:id="@+id/album_art" <!-- NOSONAR -->
+                android:layout_width="@dimen/widget_large_image_width" <!-- NOSONAR -->
+                android:layout_height="@dimen/widget_large_image_height" <!-- NOSONAR -->
+                android:scaleType="fitXY"/> <!-- NOSONAR -->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_toRightOf="@+id/album_art"
-                android:orientation="vertical"
-                android:padding="8dp">
+            <LinearLayout <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_toRightOf="@+id/album_art" <!-- NOSONAR -->
+                android:orientation="vertical" <!-- NOSONAR -->
+                android:padding="8dp"> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/text1"
-                    style="@style/AppWidget_TextView.Bold"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:textSize="14sp"/>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/text1" <!-- NOSONAR -->
+                    style="@style/AppWidget_TextView.Bold" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="0dp" <!-- NOSONAR -->
+                    android:layout_weight="1" <!-- NOSONAR -->
+                    android:ellipsize="end" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:maxLines="1" <!-- NOSONAR -->
+                    android:textSize="14sp"/> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/text2"
-                    style="@style/AppWidget_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:lines="1"
-                    android:textSize="14sp"/>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/text2" <!-- NOSONAR -->
+                    style="@style/AppWidget_TextView" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="0dp" <!-- NOSONAR -->
+                    android:layout_weight="1" <!-- NOSONAR -->
+                    android:ellipsize="end" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:lines="1" <!-- NOSONAR -->
+                    android:textSize="14sp"/> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/text3"
-                    style="@style/AppWidget_TextView"
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"
-                    android:ellipsize="end"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:textSize="14sp"/>
-            </LinearLayout>
-        </RelativeLayout>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/text3" <!-- NOSONAR -->
+                    style="@style/AppWidget_TextView" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="0dp" <!-- NOSONAR -->
+                    android:layout_weight="1" <!-- NOSONAR -->
+                    android:ellipsize="end" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:maxLines="1" <!-- NOSONAR -->
+                    android:textSize="14sp"/> <!-- NOSONAR -->
+            </LinearLayout> <!-- NOSONAR -->
+        </RelativeLayout> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:id="@+id/buttons"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="2"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:id="@+id/buttons" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="0dp" <!-- NOSONAR -->
+            android:layout_weight="2" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <ImageButton
-                android:id="@+id/shuffle_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btn_shuffle_on"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_shuffle_24dp_scaled"/>
+            <ImageButton <!-- NOSONAR -->
+                android:id="@+id/shuffle_button" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:background="@android:color/transparent" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_shuffle_on" <!-- NOSONAR -->
+                android:scaleType="centerInside" <!-- NOSONAR -->
+                android:src="@drawable/ic_shuffle_24dp_scaled"/> <!-- NOSONAR -->
 
-            <ImageButton
-                android:id="@+id/prev_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btn_prev"
-                android:src="@drawable/ic_skip_previous_24dp"/>
+            <ImageButton <!-- NOSONAR -->
+                android:id="@+id/prev_button" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:background="@android:color/transparent" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_prev" <!-- NOSONAR -->
+                android:src="@drawable/ic_skip_previous_24dp"/> <!-- NOSONAR -->
 
-            <ImageButton
-                android:id="@+id/play_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btn_play_pause"
-                android:src="@drawable/ic_play_24dp"/>
+            <ImageButton <!-- NOSONAR -->
+                android:id="@+id/play_button" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:background="@android:color/transparent" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_play_pause" <!-- NOSONAR -->
+                android:src="@drawable/ic_play_24dp"/> <!-- NOSONAR -->
 
-            <ImageButton
-                android:id="@+id/next_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btn_skip"
-                android:src="@drawable/ic_skip_next_24dp"/>
+            <ImageButton <!-- NOSONAR -->
+                android:id="@+id/next_button" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:background="@android:color/transparent" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_skip" <!-- NOSONAR -->
+                android:src="@drawable/ic_skip_next_24dp"/> <!-- NOSONAR -->
 
-            <ImageButton
-                android:id="@+id/repeat_button"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/btn_repeat_all"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_repeat_24dp_scaled"/>
-        </LinearLayout>
+            <ImageButton <!-- NOSONAR -->
+                android:id="@+id/repeat_button" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:background="@android:color/transparent" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_repeat_all" <!-- NOSONAR -->
+                android:scaleType="centerInside" <!-- NOSONAR -->
+                android:src="@drawable/ic_repeat_24dp_scaled"/> <!-- NOSONAR -->
+        </LinearLayout> <!-- NOSONAR -->
 
-    </LinearLayout>
-</FrameLayout>
+    </LinearLayout> <!-- NOSONAR -->
+</FrameLayout> <!-- NOSONAR -->

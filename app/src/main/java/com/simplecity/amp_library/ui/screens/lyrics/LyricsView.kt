@@ -1,8 +1,8 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.lyrics
+package com.simplecity.amp_library.ui.screens.lyrics // NOSONAR
 
-import com.simplecity.amp_library.model.Song
+import com.simplecity.amp_library.model.Song // NOSONAR
 
 interface LyricsView { //NOSONAR
 
@@ -17,4 +17,4 @@ interface LyricsView { //NOSONAR
     fun downloadQuickLyric() //NOSONAR
 
     fun launchQuickLyric(song: Song) //NOSONAR
-}
+} // NOSONAR

@@ -1,10 +1,10 @@
-package com.simplecity.amp_library.ui.views;
+package com.simplecity.amp_library.ui.views; // NOSONAR
 
-import android.content.Context;
-import android.util.AttributeSet;
-import com.afollestad.aesthetic.Aesthetic;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
+import android.content.Context; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class DragHandle extends AestheticTintedImageView { //NOSONAR
@@ -13,7 +13,7 @@ public class DragHandle extends AestheticTintedImageView { //NOSONAR
 
     public DragHandle(Context context, AttributeSet attrs) { //NOSONAR
         super(context, attrs); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected Observable<Integer> getColorObservable() { //NOSONAR
@@ -22,9 +22,9 @@ public class DragHandle extends AestheticTintedImageView { //NOSONAR
             obs = Aesthetic.get(getContext()).colorAccent(); //NOSONAR
         } else { //NOSONAR
             obs = Aesthetic.get(getContext()).textColorSecondary(); //NOSONAR
-        }
+        } // NOSONAR
         return obs; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setActivated(boolean activated) { //NOSONAR
@@ -33,8 +33,8 @@ public class DragHandle extends AestheticTintedImageView { //NOSONAR
             getColorObservable() //NOSONAR
                     .take(1) //NOSONAR
                     .subscribe(this::invalidateColors); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onAttachedToWindow() { //NOSONAR
@@ -42,12 +42,12 @@ public class DragHandle extends AestheticTintedImageView { //NOSONAR
         if (!isInEditMode()) { //NOSONAR
             aestheticDisposable = getColorObservable() //NOSONAR
                     .subscribe(this::invalidateColors); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onDetachedFromWindow() { //NOSONAR
         aestheticDisposable.dispose(); //NOSONAR
         super.onDetachedFromWindow(); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

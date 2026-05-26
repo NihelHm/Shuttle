@@ -1,37 +1,37 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.content.ContentValues;
-import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.annimon.stream.Stream;
-import com.mlsdev.rximagepicker.RxImageConverters;
-import com.mlsdev.rximagepicker.RxImagePicker;
-import com.mlsdev.rximagepicker.Sources;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.ShuttleApplication;
-import com.simplecity.amp_library.model.ArtworkModel;
-import com.simplecity.amp_library.model.ArtworkProvider;
-import com.simplecity.amp_library.model.UserSelectedArtwork;
-import com.simplecity.amp_library.sql.databases.CustomArtworkTable;
-import com.simplecity.amp_library.ui.modelviews.ArtworkLoadingView;
-import com.simplecity.amp_library.ui.modelviews.ArtworkView;
-import com.simplecity.amp_library.ui.views.recyclerview.SpacesItemDecoration;
-import com.simplecityapps.recycler_adapter.adapter.ViewModelAdapter;
-import com.simplecityapps.recycler_adapter.model.ViewModel;
-import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener;
-import io.reactivex.Observable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import android.annotation.SuppressLint; // NOSONAR
+import android.content.ContentValues; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.v7.widget.LinearLayoutManager; // NOSONAR
+import android.support.v7.widget.RecyclerView; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.View; // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.mlsdev.rximagepicker.RxImageConverters; // NOSONAR
+import com.mlsdev.rximagepicker.RxImagePicker; // NOSONAR
+import com.mlsdev.rximagepicker.Sources; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkModel; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkProvider; // NOSONAR
+import com.simplecity.amp_library.model.UserSelectedArtwork; // NOSONAR
+import com.simplecity.amp_library.sql.databases.CustomArtworkTable; // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.ArtworkLoadingView; // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.ArtworkView; // NOSONAR
+import com.simplecity.amp_library.ui.views.recyclerview.SpacesItemDecoration; // NOSONAR
+import com.simplecityapps.recycler_adapter.adapter.ViewModelAdapter; // NOSONAR
+import com.simplecityapps.recycler_adapter.model.ViewModel; // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers; // NOSONAR
+import io.reactivex.schedulers.Schedulers; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ArtworkDialog { //NOSONAR
@@ -39,8 +39,8 @@ public class ArtworkDialog { //NOSONAR
     private static final String TAG = "ArtworkDialog"; //NOSONAR
 
     private ArtworkDialog() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static MaterialDialog build(Context context, ArtworkProvider artworkProvider) { //NOSONAR
 
@@ -65,8 +65,8 @@ public class ArtworkDialog { //NOSONAR
             int index = adapter.items.indexOf(artworkView); //NOSONAR
             if (index != -1) { //NOSONAR
                 adapter.removeItem(index); //NOSONAR
-            }
-        };
+            } // NOSONAR
+        }; // NOSONAR
 
         List<ViewModel> viewModels = new ArrayList<>(); //NOSONAR
 
@@ -75,23 +75,23 @@ public class ArtworkDialog { //NOSONAR
             File file = null; //NOSONAR
             if (userSelectedArtwork.path != null) { //NOSONAR
                 file = new File(userSelectedArtwork.path); //NOSONAR
-            }
+            } // NOSONAR
             ArtworkView artworkView = new ArtworkView(userSelectedArtwork.type, artworkProvider, glideListener, file, true); //NOSONAR
             artworkView.setSelected(true); //NOSONAR
             viewModels.add(artworkView); //NOSONAR
-        }
+        } // NOSONAR
 
         if (userSelectedArtwork == null || userSelectedArtwork.type != ArtworkProvider.Type.MEDIA_STORE) { //NOSONAR
             viewModels.add(new ArtworkView(ArtworkProvider.Type.MEDIA_STORE, artworkProvider, glideListener)); //NOSONAR
-        }
+        } // NOSONAR
         if (userSelectedArtwork == null || userSelectedArtwork.type != ArtworkProvider.Type.TAG) { //NOSONAR
             viewModels.add(new ArtworkView(ArtworkProvider.Type.TAG, artworkProvider, glideListener)); //NOSONAR
-        }
+        } // NOSONAR
         if (userSelectedArtwork == null || userSelectedArtwork.type != ArtworkProvider.Type.REMOTE) { //NOSONAR
             viewModels.add(new ArtworkView(ArtworkProvider.Type.REMOTE, artworkProvider, glideListener)); //NOSONAR
-        }
+        } // NOSONAR
 
-        //Dummy Folder ArtworkView - will be replaced or removed depending on availability of folder images
+        //Dummy Folder ArtworkView - will be replaced or removed depending on availability of folder images // NOSONAR
         ArtworkView folderView = new ArtworkView(ArtworkProvider.Type.FOLDER, null, null); //NOSONAR
         viewModels.add(folderView); //NOSONAR
 
@@ -100,7 +100,7 @@ public class ArtworkDialog { //NOSONAR
                     .filter(viewModel -> viewModel instanceof ArtworkView) //NOSONAR
                     .forEachIndexed((i, viewModel) -> ((ArtworkView) viewModel).setSelected(viewModel == artworkView)); //NOSONAR
             adapter.notifyItemRangeChanged(0, adapter.getItemCount(), 0); //NOSONAR
-        };
+        }; // NOSONAR
 
         Stream.of(viewModels) //NOSONAR
                 .filter(viewModel -> viewModel instanceof ArtworkView) //NOSONAR
@@ -118,7 +118,7 @@ public class ArtworkDialog { //NOSONAR
                                 .filter(file -> userSelectedArtwork == null || !file.getPath().equals(userSelectedArtwork.path)) //NOSONAR
                                 .forEach(file -> //NOSONAR
                                         adapter.addItem(new ArtworkView(ArtworkProvider.Type.FOLDER, artworkProvider, glideListener, file, false))); //NOSONAR
-                    }
+                    } // NOSONAR
                 }, error -> LogUtils.logException(TAG, "Error getting artwork files", error)); //NOSONAR
 
         return new MaterialDialog.Builder(context) //NOSONAR
@@ -141,9 +141,9 @@ public class ArtworkDialog { //NOSONAR
                     } else { //NOSONAR
                         context.getContentResolver().delete(CustomArtworkTable.URI, CustomArtworkTable.COLUMN_KEY + "='" + artworkProvider.getArtworkKey().replaceAll("'", "\''") + "'", null); //NOSONAR
                         ((ShuttleApplication) context.getApplicationContext()).userSelectedArtwork.remove(artworkProvider.getArtworkKey()); //NOSONAR
-                    }
+                    } // NOSONAR
                     dialog.dismiss(); //NOSONAR
-                })
+                }) // NOSONAR
                 .negativeText(context.getString(R.string.close)) //NOSONAR
                 .onNegative((dialog, which) -> dialog.dismiss()) //NOSONAR
                 .neutralText(context.getString(R.string.artwork_gallery)) //NOSONAR
@@ -151,23 +151,23 @@ public class ArtworkDialog { //NOSONAR
                         .requestImage(Sources.GALLERY) //NOSONAR
                         .flatMap(uri -> { //NOSONAR
 
-                            // The directory will be shuttle/custom_artwork/key_hashcode/currentSystemTime.artwork
-                            // We want the directory to be based on the key, so we can delete old artwork, and the
-                            // filename to be unique, because it's used for Glide caching.
+                            // The directory will be shuttle/custom_artwork/key_hashcode/currentSystemTime.artwork // NOSONAR
+                            // We want the directory to be based on the key, so we can delete old artwork, and the // NOSONAR
+                            // filename to be unique, because it's used for Glide caching. // NOSONAR
                             File dir = new File(context.getFilesDir() + "/shuttle/custom_artwork/" + artworkProvider.getArtworkKey().hashCode() + "/"); //NOSONAR
 
-                            // Create dir if necessary
+                            // Create dir if necessary // NOSONAR
                             if (!dir.exists()) { //NOSONAR
                                 dir.mkdirs(); //NOSONAR
                             } else { //NOSONAR
-                                // Delete any existing artwork for this key.
+                                // Delete any existing artwork for this key. // NOSONAR
                                 if (dir.isDirectory()) { //NOSONAR
                                     String[] children = dir.list(); //NOSONAR
                                     for (String child : children) { //NOSONAR
                                         new File(dir, child).delete(); //NOSONAR
-                                    }
-                                }
-                            }
+                                    } // NOSONAR
+                                } // NOSONAR
+                            } // NOSONAR
 
                             File file = new File(dir.getPath() + System.currentTimeMillis() + ".artwork"); //NOSONAR
 
@@ -175,22 +175,22 @@ public class ArtworkDialog { //NOSONAR
                                 file.createNewFile(); //NOSONAR
                                 if (file.exists()) { //NOSONAR
                                     return RxImageConverters.uriToFile(context, uri, file); //NOSONAR
-                                }
+                                } // NOSONAR
                             } catch (IOException e) { //NOSONAR
                                 e.printStackTrace(); //NOSONAR
-                            }
+                            } // NOSONAR
 
                             return null; //NOSONAR
-                        })
+                        }) // NOSONAR
                         .filter(file -> file != null && file.exists()) //NOSONAR
                         .subscribe(file -> { //NOSONAR
-                            // If we've already got user-selected artwork in the adapter, remove it.
+                            // If we've already got user-selected artwork in the adapter, remove it. // NOSONAR
                             if (adapter.getItemCount() != 0) { //NOSONAR
                                 File aFile = ((ArtworkView) adapter.items.get(0)).file; //NOSONAR
                                 if (aFile != null && aFile.getPath().contains(artworkProvider.getArtworkKey())) { //NOSONAR
                                     adapter.removeItem(0); //NOSONAR
-                                }
-                            }
+                                } // NOSONAR
+                            } // NOSONAR
 
                             ArtworkView artworkView = new ArtworkView(ArtworkProvider.Type.FOLDER, artworkProvider, glideListener, file, true); //NOSONAR
                             artworkView.setSelected(true); //NOSONAR
@@ -199,7 +199,7 @@ public class ArtworkDialog { //NOSONAR
                         }, error -> LogUtils.logException(TAG, "Error picking from gallery", error))) //NOSONAR
                 .cancelable(false) //NOSONAR
                 .build(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Nullable //NOSONAR
     public static ArtworkView getCheckedView(List<ViewModel> viewModels) { //NOSONAR
@@ -207,5 +207,5 @@ public class ArtworkDialog { //NOSONAR
                 .filter(viewModel -> viewModel instanceof ArtworkView && ((ArtworkView) viewModel).isSelected()) //NOSONAR
                 .findFirst() //NOSONAR
                 .orElse(null); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

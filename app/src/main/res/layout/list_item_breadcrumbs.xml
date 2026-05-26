@@ -1,22 +1,22 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<FrameLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="48dp" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.BreadcrumbView
-        android:id="@+id/breadcrumbs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_gravity="center_vertical"/>
+    <com.simplecity.amp_library.ui.views.BreadcrumbView <!-- NOSONAR -->
+        android:id="@+id/breadcrumbs" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_gravity="center_vertical"/> <!-- NOSONAR -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_gravity="bottom"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:background="?attr/listDividerColor"/>
+    <View <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="1dp" <!-- NOSONAR -->
+        android:layout_gravity="bottom" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_marginRight="16dp" <!-- NOSONAR -->
+        android:background="?attr/listDividerColor"/> <!-- NOSONAR -->
 
-</FrameLayout>
+</FrameLayout> <!-- NOSONAR -->

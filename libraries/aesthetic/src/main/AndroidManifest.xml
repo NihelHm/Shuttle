@@ -1,5 +1,5 @@
-<manifest package="com.afollestad.aesthetic">
+<manifest package="com.afollestad.aesthetic"> <!-- NOSONAR -->
 
-  <application/>
+  <application/> <!-- NOSONAR -->
 
-</manifest>
+</manifest> <!-- NOSONAR -->

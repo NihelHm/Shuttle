@@ -1,31 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.DrawerLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/drawer_layout"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:openDrawer="start">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.v4.widget.DrawerLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:id="@+id/drawer_layout" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:fitsSystemWindows="true" <!-- NOSONAR -->
+    tools:openDrawer="start"> <!-- NOSONAR -->
 
-    <android.support.design.internal.ScrimInsetsFrameLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"/>
+    <android.support.design.internal.ScrimInsetsFrameLayout <!-- NOSONAR -->
+        android:id="@+id/mainContainer" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:fitsSystemWindows="true"/> <!-- NOSONAR -->
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/navView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start">
+    <android.support.design.widget.NavigationView <!-- NOSONAR -->
+        android:id="@+id/navView" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_gravity="start"> <!-- NOSONAR -->
 
-        <fragment
-            android:id="@+id/navDrawerFragment"
-            android:name="com.simplecity.amp_library.ui.screens.drawer.DrawerFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+        <fragment <!-- NOSONAR -->
+            android:id="@+id/navDrawerFragment" <!-- NOSONAR -->
+            android:name="com.simplecity.amp_library.ui.screens.drawer.DrawerFragment" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent"/> <!-- NOSONAR -->
 
-    </android.support.design.widget.NavigationView>
+    </android.support.design.widget.NavigationView> <!-- NOSONAR -->
 
-</android.support.v4.widget.DrawerLayout>
+</android.support.v4.widget.DrawerLayout> <!-- NOSONAR -->

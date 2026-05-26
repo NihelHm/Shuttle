@@ -1,32 +1,32 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.lyrics
+package com.simplecity.amp_library.ui.screens.lyrics // NOSONAR
 
-import android.content.Context
-import android.content.IntentFilter
-import android.net.Uri
-import android.provider.MediaStore
-import android.text.TextUtils
-import com.cantrowitz.rxbroadcast.RxBroadcast
-import com.simplecity.amp_library.ShuttleApplication
-import com.simplecity.amp_library.model.Query
-import com.simplecity.amp_library.playback.MediaManager
-import com.simplecity.amp_library.playback.constants.InternalIntents
-import com.simplecity.amp_library.sql.SqlUtils
-import com.simplecity.amp_library.ui.common.Presenter
-import com.simplecity.amp_library.utils.LogUtils
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Observable
-import org.jaudiotagger.audio.AudioFileIO
-import org.jaudiotagger.audio.exceptions.CannotReadException
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException
-import org.jaudiotagger.tag.FieldKey
-import org.jaudiotagger.tag.TagException
-import java.io.File
-import java.io.IOException
-import java.util.concurrent.Callable
-import javax.inject.Inject
+import android.content.Context // NOSONAR
+import android.content.IntentFilter // NOSONAR
+import android.net.Uri // NOSONAR
+import android.provider.MediaStore // NOSONAR
+import android.text.TextUtils // NOSONAR
+import com.cantrowitz.rxbroadcast.RxBroadcast // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication // NOSONAR
+import com.simplecity.amp_library.model.Query // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents // NOSONAR
+import com.simplecity.amp_library.sql.SqlUtils // NOSONAR
+import com.simplecity.amp_library.ui.common.Presenter // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import io.reactivex.BackpressureStrategy // NOSONAR
+import io.reactivex.Observable // NOSONAR
+import org.jaudiotagger.audio.AudioFileIO // NOSONAR
+import org.jaudiotagger.audio.exceptions.CannotReadException // NOSONAR
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException // NOSONAR
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException // NOSONAR
+import org.jaudiotagger.tag.FieldKey // NOSONAR
+import org.jaudiotagger.tag.TagException // NOSONAR
+import java.io.File // NOSONAR
+import java.io.IOException // NOSONAR
+import java.util.concurrent.Callable // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class LyricsPresenter @Inject //NOSONAR
 constructor( //NOSONAR
@@ -45,9 +45,9 @@ constructor( //NOSONAR
                 .subscribe( //NOSONAR
                     { _ -> updateLyrics(application) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "Error receiving meta changed", error) } //NOSONAR
-                )
-        )
-    }
+                ) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     fun downloadOrLaunchQuickLyric() { //NOSONAR
         val lyricsView = view //NOSONAR
@@ -56,17 +56,17 @@ constructor( //NOSONAR
                 val song = mediaManager.song //NOSONAR
                 if (song != null) { //NOSONAR
                     lyricsView.launchQuickLyric(song) //NOSONAR
-                }
+                } // NOSONAR
             } else { //NOSONAR
                 lyricsView.downloadQuickLyric() //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     fun showQuickLyricInfoDialog() { //NOSONAR
         val lyricsView = view //NOSONAR
         lyricsView?.showQuickLyricInfoDialog() //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updateLyrics(context: Context) { //NOSONAR
         addDisposable( //NOSONAR
@@ -76,7 +76,7 @@ constructor( //NOSONAR
 
                 if (TextUtils.isEmpty(path)) { //NOSONAR
                     return@Callable lyrics //NOSONAR
-                }
+                } // NOSONAR
 
                 if (path!!.startsWith("content://")) { //NOSONAR
                     val query = Query.Builder() //NOSONAR
@@ -90,12 +90,12 @@ constructor( //NOSONAR
                             val colIndex = cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATA) //NOSONAR
                             if (cursor.moveToFirst()) { //NOSONAR
                                 path = cursor.getString(colIndex) //NOSONAR
-                            }
+                            } // NOSONAR
                         } finally { //NOSONAR
                             cursor.close() //NOSONAR
-                        }
-                    }
-                }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
 
                 val file = File(path) //NOSONAR
                 if (file.exists()) { //NOSONAR
@@ -107,25 +107,25 @@ constructor( //NOSONAR
                                 val tagLyrics = tag.getFirst(FieldKey.LYRICS) //NOSONAR
                                 if (tagLyrics != null && tagLyrics.isNotEmpty()) { //NOSONAR
                                     lyrics = tagLyrics.replace("\r", "\n") //NOSONAR
-                                }
-                            }
-                        }
+                                } // NOSONAR
+                            } // NOSONAR
+                        } // NOSONAR
                     } catch (ignored: CannotReadException) { //NOSONAR
-                        // Intentionally left empty.
+                        // Intentionally left empty. // NOSONAR
                     } catch (ignored: IOException) { //NOSONAR
-                        // Intentionally left empty.
+                        // Intentionally left empty. // NOSONAR
                     } catch (ignored: TagException) { //NOSONAR
-                        // Intentionally left empty.
+                        // Intentionally left empty. // NOSONAR
                     } catch (ignored: ReadOnlyFileException) { //NOSONAR
-                        // Intentionally left empty.
+                        // Intentionally left empty. // NOSONAR
                     } catch (ignored: InvalidAudioFrameException) { //NOSONAR
-                        // Intentionally left empty.
+                        // Intentionally left empty. // NOSONAR
                     } catch (ignored: UnsupportedOperationException) { //NOSONAR
-                        // Intentionally left empty.
-                    }
-                }
+                        // Intentionally left empty. // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
                 lyrics //NOSONAR
-            })
+            }) // NOSONAR
                 .subscribe( //NOSONAR
                     { lyrics -> //NOSONAR
                         val lyricsView = view //NOSONAR
@@ -133,14 +133,14 @@ constructor( //NOSONAR
                             lyricsView.updateLyrics(lyrics) //NOSONAR
                             lyricsView.showNoLyricsView(TextUtils.isEmpty(lyrics)) //NOSONAR
                             lyricsView.showQuickLyricInfoButton(!QuickLyricUtils.isQLInstalled(context)) //NOSONAR
-                        }
-                    },
+                        } // NOSONAR
+                    }, // NOSONAR
                     { error -> LogUtils.logException(TAG, "Error getting lyrics", error) }) //NOSONAR
-        )
-    }
+        ) // NOSONAR
+    } // NOSONAR
 
     companion object { //NOSONAR
 
         private const val TAG = "LyricsPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

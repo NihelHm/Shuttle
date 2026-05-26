@@ -1,49 +1,49 @@
-package com.simplecity.amp_library.ui.dialog;
+package com.simplecity.amp_library.ui.dialog; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.app.Dialog;
-import android.content.ContentProviderOperation;
-import android.content.OperationApplicationException;
-import android.net.Uri;
-import android.os.Bundle;
-import android.os.RemoteException;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.provider.DocumentFile;
-import android.widget.Toast;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-import com.annimon.stream.function.Supplier;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.data.Repository;
-import com.simplecity.amp_library.model.Album;
-import com.simplecity.amp_library.model.AlbumArtist;
-import com.simplecity.amp_library.model.Song;
-import com.simplecity.amp_library.playback.MediaManager;
-import com.simplecity.amp_library.saf.SafManager;
-import com.simplecity.amp_library.sql.providers.PlayCountTable;
-import com.simplecity.amp_library.utils.CustomMediaScanner;
-import com.simplecity.amp_library.utils.LogUtils;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.extensions.AlbumExtKt;
-import com.simplecity.amp_library.utils.extensions.SongExtKt;
-import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.Completable;
-import io.reactivex.Observable;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-import java.io.File;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import javax.inject.Inject;
+import android.annotation.SuppressLint; // NOSONAR
+import android.app.Dialog; // NOSONAR
+import android.content.ContentProviderOperation; // NOSONAR
+import android.content.OperationApplicationException; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.os.RemoteException; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.annotation.StringRes; // NOSONAR
+import android.support.v4.app.DialogFragment; // NOSONAR
+import android.support.v4.app.FragmentManager; // NOSONAR
+import android.support.v4.provider.DocumentFile; // NOSONAR
+import android.widget.Toast; // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog; // NOSONAR
+import com.annimon.stream.Collectors; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.annimon.stream.function.Supplier; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.data.Repository; // NOSONAR
+import com.simplecity.amp_library.model.Album; // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist; // NOSONAR
+import com.simplecity.amp_library.model.Song; // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager; // NOSONAR
+import com.simplecity.amp_library.saf.SafManager; // NOSONAR
+import com.simplecity.amp_library.sql.providers.PlayCountTable; // NOSONAR
+import com.simplecity.amp_library.utils.CustomMediaScanner; // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.extensions.AlbumExtKt; // NOSONAR
+import com.simplecity.amp_library.utils.extensions.SongExtKt; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import io.reactivex.Completable; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.Single; // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.schedulers.Schedulers; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.Serializable; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.Collections; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class DeleteDialog extends DialogFragment implements SafManager.SafDialog.SafResultListener { //NOSONAR
@@ -52,7 +52,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
         int ARTISTS = 0; //NOSONAR
         int ALBUMS = 1; //NOSONAR
         int SONGS = 2; //NOSONAR
-    }
+    } // NOSONAR
 
     private static final String TAG = "DeleteDialog"; //NOSONAR
 
@@ -92,8 +92,8 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
     private CompositeDisposable disposables = new CompositeDisposable(); //NOSONAR
 
     public interface ListArtistsRef extends Supplier<List<AlbumArtist>> { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static DeleteDialog newInstance(@NonNull ListArtistsRef artists) { //NOSONAR
         Bundle args = new Bundle(); //NOSONAR
@@ -103,11 +103,11 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
         DeleteDialog fragment = new DeleteDialog(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     public interface ListAlbumsRef extends Supplier<List<Album>> { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static DeleteDialog newInstance(@NonNull ListAlbumsRef albums) { //NOSONAR
         Bundle args = new Bundle(); //NOSONAR
@@ -117,11 +117,11 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
         DeleteDialog fragment = new DeleteDialog(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     public interface ListSongsRef extends Supplier<List<Song>> { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static DeleteDialog newInstance(@NonNull ListSongsRef songs) { //NOSONAR
         Bundle args = new Bundle(); //NOSONAR
@@ -131,7 +131,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
         DeleteDialog fragment = new DeleteDialog(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreate(Bundle savedInstanceState) { //NOSONAR
@@ -151,13 +151,13 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
             case Type.SONGS: //NOSONAR
                 songs = (List<Song>) getArguments().getSerializable(ARG_SONGS); //NOSONAR
                 break; //NOSONAR
-        }
+        } // NOSONAR
 
         if (savedInstanceState != null) { //NOSONAR
             songsForNormalDeletion = (List<Song>) savedInstanceState.getSerializable(BUNDLE_SONGS_FOR_NORMAL_DELETION); //NOSONAR
             songsForSafDeletion = (List<Song>) savedInstanceState.getSerializable(BUNDLE_SONGS_FOR_SAF_DELETION); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @NonNull //NOSONAR
     @Override //NOSONAR
@@ -174,7 +174,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
             case Type.SONGS: //NOSONAR
                 names = Stream.of(songs).map(song -> song.name).toList(); //NOSONAR
                 break; //NOSONAR
-        }
+        } // NOSONAR
 
         String message; //NOSONAR
         if (names.isEmpty()) { //NOSONAR
@@ -186,8 +186,8 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                         .collect(Collectors.joining()) + "\n"); //NOSONAR
             } else { //NOSONAR
                 message = String.format(getString(deleteMessageId), names.get(0)); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         return new MaterialDialog.Builder(getContext()) //NOSONAR
                 .iconRes(R.drawable.ic_warning_24dp) //NOSONAR
@@ -199,21 +199,21 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                 .onNegative((materialDialog, dialogAction) -> dismiss()) //NOSONAR
                 .autoDismiss(false) //NOSONAR
                 .build(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onPause() { //NOSONAR
         super.onPause(); //NOSONAR
 
         disposables.clear(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onSaveInstanceState(Bundle outState) { //NOSONAR
         outState.putSerializable(BUNDLE_SONGS_FOR_NORMAL_DELETION, (Serializable) songsForNormalDeletion); //NOSONAR
         outState.putSerializable(BUNDLE_SONGS_FOR_SAF_DELETION, (Serializable) songsForSafDeletion); //NOSONAR
         super.onSaveInstanceState(outState); //NOSONAR
-    }
+    } // NOSONAR
 
     @NonNull //NOSONAR
     Single<List<Song>> getSongs() { //NOSONAR
@@ -232,42 +232,42 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                         .observeOn(AndroidSchedulers.mainThread()); //NOSONAR
             case Type.SONGS: //NOSONAR
                 return Single.just(songs); //NOSONAR
-        }
+        } // NOSONAR
         return Single.just(Collections.emptyList()); //NOSONAR
-    }
+    } // NOSONAR
 
     public void show(FragmentManager fragmentManager) { //NOSONAR
         show(fragmentManager, TAG); //NOSONAR
-    }
+    } // NOSONAR
 
     @SuppressLint("CheckResult") //NOSONAR
     void deleteSongsOrShowSafDialog() { //NOSONAR
         disposables.add(getSongs().map(songs -> { //NOSONAR
-            // Keep track of the songs we want to delete, for later.
+            // Keep track of the songs we want to delete, for later. // NOSONAR
             Stream.of(songs).forEach(song -> { //NOSONAR
                 if (SafManager.getInstance(getContext(), settingsManager).requiresPermission(new File(song.path))) { //NOSONAR
                     songsForSafDeletion.add(song); //NOSONAR
                 } else { //NOSONAR
                     songsForNormalDeletion.add(song); //NOSONAR
-                }
-            });
+                } // NOSONAR
+            }); // NOSONAR
 
             boolean requiresSafDialog = false; //NOSONAR
             if (!songsForSafDeletion.isEmpty()) { //NOSONAR
-                // We're gonna need SAF access to delete some songs.
-                // We may be able to build a list of document files if the user has been here before..
+                // We're gonna need SAF access to delete some songs. // NOSONAR
+                // We may be able to build a list of document files if the user has been here before.. // NOSONAR
                 List<DocumentFile> documentFiles = SafManager.getInstance(getContext(), settingsManager).getWriteableDocumentFiles(Stream.of(songsForSafDeletion) //NOSONAR
                         .map(song -> new File(song.path)) //NOSONAR
                         .toList()); //NOSONAR
 
                 if (documentFiles.size() == songsForSafDeletion.size()) { //NOSONAR
-                    // We have all the document files we need. No need to show SAF dialog.
+                    // We have all the document files we need. No need to show SAF dialog. // NOSONAR
                     this.documentFilesForDeletion.addAll(documentFiles); //NOSONAR
                 } else { //NOSONAR
-                    // We'll have to show the SAF dialog
+                    // We'll have to show the SAF dialog // NOSONAR
                     requiresSafDialog = true; //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             return requiresSafDialog; //NOSONAR
         }).observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                 .subscribeOn(Schedulers.io()) //NOSONAR
@@ -278,7 +278,7 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                         } else { //NOSONAR
                             LogUtils.logException(TAG, "Failed to delete songs.. Couldn't show SAFDialog", null); //NOSONAR
                             Toast.makeText(getContext(), getString(R.string.delete_songs_failure_toast), Toast.LENGTH_SHORT).show(); //NOSONAR
-                        }
+                        } // NOSONAR
                     } else { //NOSONAR
                         disposables.add(deleteSongs() //NOSONAR
                                 .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
@@ -289,18 +289,18 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                                             Toast.makeText(getContext(), getString(R.string.delete_songs_success_toast, deletedSongs), Toast.LENGTH_SHORT).show(); //NOSONAR
                                         } else { //NOSONAR
                                             Toast.makeText(getContext(), getString(R.string.delete_songs_failure_toast), Toast.LENGTH_SHORT).show(); //NOSONAR
-                                        }
+                                        } // NOSONAR
                                         dismiss(); //NOSONAR
-                                    }
+                                    } // NOSONAR
                                 }, error -> { //NOSONAR
                                     LogUtils.logException(TAG, "Failed to delete songs", error); //NOSONAR
                                     if (DeleteDialog.this.isAdded()) { //NOSONAR
                                         Toast.makeText(getContext(), getString(R.string.delete_songs_failure_toast), Toast.LENGTH_SHORT).show(); //NOSONAR
-                                    }
-                                }));
-                    }
+                                    } // NOSONAR
+                                })); // NOSONAR
+                    } // NOSONAR
                 }, error -> LogUtils.logException(TAG, "Failed to delete songs", error))); //NOSONAR
-    }
+    } // NOSONAR
 
     @SuppressLint("CheckResult") //NOSONAR
     Single<Integer> deleteSongs() { //NOSONAR
@@ -312,26 +312,26 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                 tidyUp(songsForSafDeletion); //NOSONAR
                 documentFilesForDeletion.clear(); //NOSONAR
                 songsForSafDeletion.clear(); //NOSONAR
-            }
+            } // NOSONAR
 
             if (!songsForNormalDeletion.isEmpty()) { //NOSONAR
                 deletedSongs += Stream.of(songsForNormalDeletion).filter(SongExtKt::delete).count(); //NOSONAR
                 tidyUp(songsForNormalDeletion); //NOSONAR
                 songsForNormalDeletion.clear(); //NOSONAR
-            }
+            } // NOSONAR
             return deletedSongs; //NOSONAR
-        });
-    }
+        }); // NOSONAR
+    } // NOSONAR
 
     void tidyUp(@NonNull List<Song> deletedSongs) { //NOSONAR
         if (deletedSongs.isEmpty()) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
-        // Remove songs from current play queue
+        // Remove songs from current play queue // NOSONAR
         mediaManager.removeSongsFromQueue(deletedSongs); //NOSONAR
 
-        // Remove songs from play count table
+        // Remove songs from play count table // NOSONAR
         ArrayList<ContentProviderOperation> operations = Stream.of(deletedSongs).map(song -> ContentProviderOperation //NOSONAR
                 .newDelete(PlayCountTable.URI) //NOSONAR
                 .withSelection(PlayCountTable.COLUMN_ID + "=" + song.id, null) //NOSONAR
@@ -341,12 +341,12 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
             getContext().getContentResolver().applyBatch(PlayCountTable.AUTHORITY, operations); //NOSONAR
         } catch (RemoteException | OperationApplicationException e) { //NOSONAR
             e.printStackTrace(); //NOSONAR
-        }
+        } // NOSONAR
 
         CustomMediaScanner.scanFiles(getContext(), Stream.of(deletedSongs) //NOSONAR
                 .map(song -> song.path) //NOSONAR
                 .toList(), null); //NOSONAR
-    }
+    } // NOSONAR
 
     @SuppressLint("CheckResult") //NOSONAR
     @Override //NOSONAR
@@ -363,12 +363,12 @@ public class DeleteDialog extends DialogFragment implements SafManager.SafDialog
                             Toast.makeText(getContext(), getString(R.string.delete_songs_success_toast, deletedSongs), Toast.LENGTH_SHORT).show(); //NOSONAR
                         } else { //NOSONAR
                             Toast.makeText(getContext(), getString(R.string.delete_songs_failure_toast), Toast.LENGTH_SHORT).show(); //NOSONAR
-                        }
+                        } // NOSONAR
                         dismiss(); //NOSONAR
                     }, error -> LogUtils.logException(TAG, "Failed to delete songs", error))); //NOSONAR
         } else { //NOSONAR
             Toast.makeText(getContext(), R.string.delete_songs_failure_toast, Toast.LENGTH_LONG).show(); //NOSONAR
             dismiss(); //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.internal.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="68dp"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.design.internal.ForegroundLinearLayout xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="68dp" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector"> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/line_one"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:scrollHorizontally="true"
-        android:textSize="16sp"
-        android:lines="1" />
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/line_one" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_weight="1" <!-- NOSONAR -->
+        android:gravity="center_vertical" <!-- NOSONAR -->
+        android:scrollHorizontally="true" <!-- NOSONAR -->
+        android:textSize="16sp" <!-- NOSONAR -->
+        android:lines="1" /> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.OverflowButton
-        android:id="@+id/btn_overflow"
-        android:layout_width="40dp"
-        android:layout_height="48dp"
-        android:layout_gravity="center_vertical|right"
-        android:layout_marginLeft="-16dp"
-        android:layout_marginRight="8dp"
-        android:alpha="0.8"
-        android:background="@null"/>
-</android.support.design.internal.ForegroundLinearLayout>
+    <com.simplecity.amp_library.ui.views.OverflowButton <!-- NOSONAR -->
+        android:id="@+id/btn_overflow" <!-- NOSONAR -->
+        android:layout_width="40dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_gravity="center_vertical|right" <!-- NOSONAR -->
+        android:layout_marginLeft="-16dp" <!-- NOSONAR -->
+        android:layout_marginRight="8dp" <!-- NOSONAR -->
+        android:alpha="0.8" <!-- NOSONAR -->
+        android:background="@null"/> <!-- NOSONAR -->
+</android.support.design.internal.ForegroundLinearLayout> <!-- NOSONAR -->

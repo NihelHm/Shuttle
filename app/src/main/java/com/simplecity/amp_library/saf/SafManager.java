@@ -1,33 +1,33 @@
-package com.simplecity.amp_library.saf;
+package com.simplecity.amp_library.saf; // NOSONAR
 
-import android.annotation.TargetApi;
-import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
-import android.content.Intent;
-import android.content.UriPermission;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.provider.DocumentFile;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.widget.Toast;
-import com.afollestad.materialdialogs.MaterialDialog;
-import com.crashlytics.android.Crashlytics;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.utils.SettingsManager;
-import dagger.android.support.AndroidSupportInjection;
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
+import android.annotation.TargetApi; // NOSONAR
+import android.app.Activity; // NOSONAR
+import android.app.Dialog; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.content.UriPermission; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.os.Build; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.annotation.RequiresApi; // NOSONAR
+import android.support.v4.app.DialogFragment; // NOSONAR
+import android.support.v4.app.Fragment; // NOSONAR
+import android.support.v4.provider.DocumentFile; // NOSONAR
+import android.support.v7.app.AppCompatActivity; // NOSONAR
+import android.util.Log; // NOSONAR
+import android.widget.Toast; // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog; // NOSONAR
+import com.crashlytics.android.Crashlytics; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class SafManager { //NOSONAR
@@ -45,100 +45,100 @@ public class SafManager { //NOSONAR
     public static SafManager getInstance(Context context, SettingsManager settingsManager) { //NOSONAR
         if (instance == null) { //NOSONAR
             instance = new SafManager(context, settingsManager); //NOSONAR
-        }
+        } // NOSONAR
         return instance; //NOSONAR
-    }
+    } // NOSONAR
 
     private SafManager(Context context, SettingsManager settingsManager) { //NOSONAR
         this.applicationContext = context.getApplicationContext(); //NOSONAR
         this.settingsManager = settingsManager; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Check whether files require Storage Access Framework (SAF) / DocumentsProvider for access
-     *
-     * @param files the files to check
-     * @return true if files are located on the SD Card (and thus require the SAF and DocumentsProvider for access)
-     */
+    /** // NOSONAR
+     * Check whether files require Storage Access Framework (SAF) / DocumentsProvider for access // NOSONAR
+     * // NOSONAR
+     * @param files the files to check // NOSONAR
+     * @return true if files are located on the SD Card (and thus require the SAF and DocumentsProvider for access) // NOSONAR
+     */ // NOSONAR
     public boolean requiresPermission(List<File> files) { //NOSONAR
         for (File file : files) { //NOSONAR
             if (requiresPermission(file)) { //NOSONAR
                 return true; //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         return false; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Checks whether a file requires Storage Access Framework (SAF) / DocumentsProvider for access
-     *
-     * @param file the File to check
-     * @return true if the file is located on the SD Card (and thus require the SAF and DocumentsProvider for access)
-     */
+    /** // NOSONAR
+     * Checks whether a file requires Storage Access Framework (SAF) / DocumentsProvider for access // NOSONAR
+     * // NOSONAR
+     * @param file the File to check // NOSONAR
+     * @return true if the file is located on the SD Card (and thus require the SAF and DocumentsProvider for access) // NOSONAR
+     */ // NOSONAR
     public boolean requiresPermission(File file) { //NOSONAR
         return getExtSdCardFolder(file) != null; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Checks the passed in paths to see whether the file at the given path is available in our
-     * document tree. If it is, and we have write permission, the document file is added to the
-     * passed in list of document files.
-     */
+    /** // NOSONAR
+     * Checks the passed in paths to see whether the file at the given path is available in our // NOSONAR
+     * document tree. If it is, and we have write permission, the document file is added to the // NOSONAR
+     * passed in list of document files. // NOSONAR
+     */ // NOSONAR
     public List<DocumentFile> getWriteableDocumentFiles(List<File> files) { //NOSONAR
 
         List<DocumentFile> documentFiles = new ArrayList<>(); //NOSONAR
 
         String treeUri = getDocumentTree(); //NOSONAR
         if (treeUri == null) { //NOSONAR
-            //We don't have any document tree at all - so we're not going to have permission for any files.
+            //We don't have any document tree at all - so we're not going to have permission for any files. // NOSONAR
             return documentFiles; //NOSONAR
-        }
+        } // NOSONAR
 
-        //Find the file in the document tree. If it's not there, or it doesn't have permission,
-        //we're satisfied we don't have permission.
+        //Find the file in the document tree. If it's not there, or it doesn't have permission, // NOSONAR
+        //we're satisfied we don't have permission. // NOSONAR
         for (File file : files) { //NOSONAR
             DocumentFile documentFile = getWriteableDocumentFile(file); //NOSONAR
             if (documentFile != null && documentFile.canWrite()) { //NOSONAR
                 documentFiles.add(documentFile); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         return documentFiles; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieve a DocumentFile for the passed in file, or null if it can't be created, or is not writeable.
-     *
-     * @param file File
-     * @return a DocumentFile for the passed in file, or null if it can't be created, or is not writeable.
-     */
+    /** // NOSONAR
+     * Retrieve a DocumentFile for the passed in file, or null if it can't be created, or is not writeable. // NOSONAR
+     * // NOSONAR
+     * @param file File // NOSONAR
+     * @return a DocumentFile for the passed in file, or null if it can't be created, or is not writeable. // NOSONAR
+     */ // NOSONAR
     @Nullable //NOSONAR
     public DocumentFile getWriteableDocumentFile(File file) { //NOSONAR
         DocumentFile documentFile = getDocumentFile(file); //NOSONAR
         if (documentFile != null && documentFile.canWrite()) { //NOSONAR
             return documentFile; //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieve a DocumentFile for the passed in File, or null it can't be created.
-     *
-     * @param file File
-     * @return a DocumentFile for the passed in File, or null it can't be created.
-     */
+    /** // NOSONAR
+     * Retrieve a DocumentFile for the passed in File, or null it can't be created. // NOSONAR
+     * // NOSONAR
+     * @param file File // NOSONAR
+     * @return a DocumentFile for the passed in File, or null it can't be created. // NOSONAR
+     */ // NOSONAR
     @Nullable //NOSONAR
     public DocumentFile getDocumentFile(final File file) { //NOSONAR
         String baseFolder = getExtSdCardFolder(file); //NOSONAR
 
         if (baseFolder == null) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
         String treeUri = getDocumentTree(); //NOSONAR
         if (treeUri == null) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
         String relativePath; //NOSONAR
         try { //NOSONAR
@@ -146,9 +146,9 @@ public class SafManager { //NOSONAR
             relativePath = fullPath.substring(baseFolder.length() + 1); //NOSONAR
         } catch (IOException e) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
-        // Start with root of SD card and then parse through document tree.
+        // Start with root of SD card and then parse through document tree. // NOSONAR
         DocumentFile document = DocumentFile.fromTreeUri(applicationContext, Uri.parse(treeUri)); //NOSONAR
 
         String[] parts = relativePath.split("/"); //NOSONAR
@@ -156,17 +156,17 @@ public class SafManager { //NOSONAR
             DocumentFile nextDocument = document.findFile(part); //NOSONAR
             if (nextDocument != null) { //NOSONAR
                 document = nextDocument; //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         if (document.isFile()) { //NOSONAR
             return document; //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * @return the persisted document tree, or null if it does not exist.
-     */
+    /** // NOSONAR
+     * @return the persisted document tree, or null if it does not exist. // NOSONAR
+     */ // NOSONAR
     @TargetApi(Build.VERSION_CODES.KITKAT) //NOSONAR
     @Nullable //NOSONAR
     public String getDocumentTree() { //NOSONAR
@@ -175,17 +175,17 @@ public class SafManager { //NOSONAR
         for (UriPermission perm : perms) { //NOSONAR
             if (perm.getUri().toString().equals(treeUri) && perm.isWritePermission()) { //NOSONAR
                 return treeUri; //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Check whether the file is stored on an SD Card, and if so, return the SD Card path
-     *
-     * @param file File
-     * @return the SD Card path, or null if none is found.
-     */
+    /** // NOSONAR
+     * Check whether the file is stored on an SD Card, and if so, return the SD Card path // NOSONAR
+     * // NOSONAR
+     * @param file File // NOSONAR
+     * @return the SD Card path, or null if none is found. // NOSONAR
+     */ // NOSONAR
     @TargetApi(Build.VERSION_CODES.KITKAT) //NOSONAR
     @Nullable //NOSONAR
     private String getExtSdCardFolder(final File file) { //NOSONAR
@@ -194,17 +194,17 @@ public class SafManager { //NOSONAR
             for (String extSdPath : extSdPaths) { //NOSONAR
                 if (file.getCanonicalPath().startsWith(extSdPath)) { //NOSONAR
                     return extSdPath; //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
         } catch (IOException e) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * @return a list of potential SD Card paths
-     */
+    /** // NOSONAR
+     * @return a list of potential SD Card paths // NOSONAR
+     */ // NOSONAR
     @TargetApi(Build.VERSION_CODES.KITKAT) //NOSONAR
     private List<String> getExtSdCardPaths() { //NOSONAR
         List<String> paths = new ArrayList<>(); //NOSONAR
@@ -221,18 +221,18 @@ public class SafManager { //NOSONAR
                             try { //NOSONAR
                                 path = new File(path).getCanonicalPath(); //NOSONAR
                             } catch (IOException e) { //NOSONAR
-                                // Keep non-canonical path.
-                            }
+                                // Keep non-canonical path. // NOSONAR
+                            } // NOSONAR
                             paths.add(path); //NOSONAR
-                        }
-                    }
-                }
-            }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
         } catch (NoSuchMethodError e) { //NOSONAR
             Crashlytics.log("getExtSdCardPaths() failed. " + e.getMessage()); //NOSONAR
-        }
+        } // NOSONAR
         return paths; //NOSONAR
-    }
+    } // NOSONAR
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP) //NOSONAR
     public void openDocumentTreePicker(Activity activity) { //NOSONAR
@@ -241,8 +241,8 @@ public class SafManager { //NOSONAR
             activity.startActivityForResult(intent, DOCUMENT_TREE_REQUEST_CODE); //NOSONAR
         } else { //NOSONAR
             Toast.makeText(activity, R.string.R_string_toast_no_document_provider, Toast.LENGTH_LONG).show(); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public static class SafDialog extends DialogFragment { //NOSONAR
 
@@ -253,19 +253,19 @@ public class SafManager { //NOSONAR
 
         public interface SafResultListener { //NOSONAR
             void onResult(@Nullable Uri treeUri); //NOSONAR
-        }
+        } // NOSONAR
 
         public SafDialog() { //NOSONAR
-            // Intentionally left empty.
-        }
+            // Intentionally left empty. // NOSONAR
+        } // NOSONAR
 
         public static <T extends AppCompatActivity & SafResultListener> void show(T activity) { //NOSONAR
             new SafDialog().show(activity.getSupportFragmentManager(), TAG); //NOSONAR
-        }
+        } // NOSONAR
 
         public static <T extends Fragment & SafResultListener> void show(T fragment) { //NOSONAR
             new SafDialog().show(fragment.getChildFragmentManager(), TAG); //NOSONAR
-        }
+        } // NOSONAR
 
         @Nullable //NOSONAR
         private SafResultListener getListener() { //NOSONAR
@@ -273,9 +273,9 @@ public class SafManager { //NOSONAR
                 return (SafResultListener) getParentFragment(); //NOSONAR
             } else if (getActivity() instanceof SafResultListener) { //NOSONAR
                 return (SafResultListener) getActivity(); //NOSONAR
-            }
+            } // NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
         @NonNull //NOSONAR
         @Override //NOSONAR
@@ -293,11 +293,11 @@ public class SafManager { //NOSONAR
                             startActivityForResult(intent, DOCUMENT_TREE_REQUEST_CODE); //NOSONAR
                         } else { //NOSONAR
                             Toast.makeText(getContext(), R.string.R_string_toast_no_document_provider, Toast.LENGTH_LONG).show(); //NOSONAR
-                        }
-                    })
+                        } // NOSONAR
+                    }) // NOSONAR
                     .autoDismiss(false) //NOSONAR
                     .build(); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void onActivityResult(int requestCode, int resultCode, Intent data) { //NOSONAR
@@ -311,15 +311,15 @@ public class SafManager { //NOSONAR
                         settingsManager.setDocumentTreeUri(data.getData().toString()); //NOSONAR
                         if (listener != null) { //NOSONAR
                             listener.onResult(treeUri); //NOSONAR
-                        }
-                    }
+                        } // NOSONAR
+                    } // NOSONAR
                 } else { //NOSONAR
                     if (listener != null) { //NOSONAR
                         listener.onResult(null); //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
                 dismiss(); //NOSONAR
-            }
-        }
-    }
-}
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

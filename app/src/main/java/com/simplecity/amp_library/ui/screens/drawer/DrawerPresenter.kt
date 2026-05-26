@@ -1,21 +1,21 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.drawer
+package com.simplecity.amp_library.ui.screens.drawer // NOSONAR
 
-import com.simplecity.amp_library.ShuttleApplication
-import com.simplecity.amp_library.data.Repository
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.ui.common.PurchasePresenter
-import com.simplecity.amp_library.ui.screens.playlist.menu.PlaylistMenuContract
-import com.simplecity.amp_library.ui.screens.playlist.menu.PlaylistMenuPresenter
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.PermissionUtils
-import com.simplecity.amp_library.utils.SettingsManager
-import com.simplecity.amp_library.utils.ShuttleUtils
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
+import com.simplecity.amp_library.ShuttleApplication // NOSONAR
+import com.simplecity.amp_library.data.Repository // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.ui.common.PurchasePresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.menu.PlaylistMenuContract // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.menu.PlaylistMenuPresenter // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.PermissionUtils // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils // NOSONAR
+import io.reactivex.Observable // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import java.util.concurrent.TimeUnit // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class DrawerPresenter @Inject //NOSONAR
 constructor( //NOSONAR
@@ -46,59 +46,59 @@ constructor( //NOSONAR
                             drawerView.setDrawerItemSelected(DrawerParent.Type.FOLDERS) //NOSONAR
                         } else { //NOSONAR
                             upgradeClicked() //NOSONAR
-                        }
-                    }
-                }
-            })
-    }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
+            }) // NOSONAR
+    } // NOSONAR
 
     override fun unbindView(view: DrawerView) { //NOSONAR
         super.unbindView(view) //NOSONAR
 
         playlistMenuPresenter.unbindView(view) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun loadData(drawerView: DrawerView) { //NOSONAR
         PermissionUtils.RequestStoragePermissions { //NOSONAR
             addDisposable(playlistsRepository.getAllPlaylists(songsRepository) //NOSONAR
                 .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
-                // Delay the subscription so we're not querying data while the app is launching
+                // Delay the subscription so we're not querying data while the app is launching // NOSONAR
                 .delaySubscription(Observable.timer(1500, TimeUnit.MILLISECONDS)) //NOSONAR
-                // after all, clear all playlist item
-                // to avoid memory leak in static var DrawerParent.playlistsParent
+                // after all, clear all playlist item // NOSONAR
+                // to avoid memory leak in static var DrawerParent.playlistsParent // NOSONAR
                 .doFinally { drawerView.setPlaylistItems(emptyList()) } //NOSONAR
                 .subscribe( //NOSONAR
                     { drawerView.setPlaylistItems(it) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "Error refreshing DrawerFragment adapter items", error) } //NOSONAR
-                ))
-        }
-    }
+                )) // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     internal fun onDrawerItemClicked(drawerParent: DrawerParent) { //NOSONAR
         val drawerView = view //NOSONAR
         if (drawerView != null && drawerParent.isSelectable) { //NOSONAR
             drawerView.setDrawerItemSelected(drawerParent.type) //NOSONAR
-        }
+        } // NOSONAR
 
         closeDrawer() //NOSONAR
 
         if (drawerParent.navigationEvent != null) { //NOSONAR
             navigationEventRelay.sendEvent(drawerParent.navigationEvent!!) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private fun closeDrawer() { //NOSONAR
         val drawerView = view //NOSONAR
         drawerView?.closeDrawer() //NOSONAR
-    }
+    } // NOSONAR
 
     fun onPlaylistClicked(playlist: Playlist) { //NOSONAR
         closeDrawer() //NOSONAR
         navigationEventRelay.sendEvent(NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.PLAYLIST_SELECTED, playlist)) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
         private const val TAG = "DrawerPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

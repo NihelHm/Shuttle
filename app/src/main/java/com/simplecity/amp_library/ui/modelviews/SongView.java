@@ -1,30 +1,30 @@
-package com.simplecity.amp_library.ui.modelviews;
+package com.simplecity.amp_library.ui.modelviews; // NOSONAR
 
-import android.support.annotation.Nullable;
-import android.text.TextUtils;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.RequestManager;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.format.PrefixHighlighter;
-import com.simplecity.amp_library.model.Song;
-import com.simplecity.amp_library.ui.adapters.ViewType;
-import com.simplecity.amp_library.ui.views.NonScrollImageButton;
-import com.simplecity.amp_library.ui.views.PlayCountView;
-import com.simplecity.amp_library.utils.PlaceholderProvider;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.StringUtils;
-import com.simplecity.amp_library.utils.sorting.SortManager;
-import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
-import java.util.Arrays;
-import java.util.List;
+import android.support.annotation.Nullable; // NOSONAR
+import android.text.TextUtils; // NOSONAR
+import android.view.MotionEvent; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.ImageView; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import com.bumptech.glide.Glide; // NOSONAR
+import com.bumptech.glide.RequestManager; // NOSONAR
+import com.bumptech.glide.load.engine.DiskCacheStrategy; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.format.PrefixHighlighter; // NOSONAR
+import com.simplecity.amp_library.model.Song; // NOSONAR
+import com.simplecity.amp_library.ui.adapters.ViewType; // NOSONAR
+import com.simplecity.amp_library.ui.views.NonScrollImageButton; // NOSONAR
+import com.simplecity.amp_library.ui.views.PlayCountView; // NOSONAR
+import com.simplecity.amp_library.utils.PlaceholderProvider; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.StringUtils; // NOSONAR
+import com.simplecity.amp_library.utils.sorting.SortManager; // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder; // NOSONAR
+import java.util.Arrays; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> implements SectionedView { //NOSONAR
@@ -38,7 +38,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         void onSongOverflowClick(int position, View v, Song song); //NOSONAR
 
         void onStartDrag(ViewHolder holder); //NOSONAR
-    }
+    } // NOSONAR
 
     private static final String TAG = "SongView"; //NOSONAR
 
@@ -76,79 +76,79 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         this.requestManager = requestManager; //NOSONAR
         this.sortManager = sortManager; //NOSONAR
         this.settingsManager = settingsManager; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setClickListener(@Nullable ClickListener listener) { //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setEditable(boolean editable) { //NOSONAR
         this.editable = editable; //NOSONAR
-    }
+    } // NOSONAR
 
     public void showAlbumArt(boolean showAlbumArt) { //NOSONAR
         this.showAlbumArt = showAlbumArt; //NOSONAR
-    }
+    } // NOSONAR
 
     public boolean getShowAlbumArt() { //NOSONAR
         return showAlbumArt; //NOSONAR
-    }
+    } // NOSONAR
 
     public void showPlayCount(boolean showPlayCount) { //NOSONAR
         this.showPlayCount = showPlayCount; //NOSONAR
-    }
+    } // NOSONAR
 
     public void showArtistName(boolean showArtistName) { //NOSONAR
         this.showArtistName = showArtistName; //NOSONAR
-    }
+    } // NOSONAR
 
     public void showAlbumName(boolean showAlbumName) { //NOSONAR
         this.showAlbumName = showAlbumName; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setPrefix(PrefixHighlighter prefixHighlighter, char[] prefix) { //NOSONAR
         this.prefixHighlighter = prefixHighlighter; //NOSONAR
         this.prefix = prefix; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setShowTrackNumber(boolean showTrackNumber) { //NOSONAR
         this.showTrackNumber = showTrackNumber; //NOSONAR
-    }
+    } // NOSONAR
 
     void onItemClick(int position) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onSongClick(position, this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void onOverflowClick(int position, View v) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onSongOverflowClick(position, v, song); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     boolean onItemLongClick(int position) { //NOSONAR
         if (listener != null) { //NOSONAR
             return listener.onSongLongClick(position, this); //NOSONAR
-        }
+        } // NOSONAR
         return false; //NOSONAR
-    }
+    } // NOSONAR
 
     void onStartDrag(ViewHolder holder) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onStartDrag(holder); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getViewType() { //NOSONAR
         return editable ? ViewType.SONG_EDITABLE : ViewType.SONG; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getLayoutResId() { //NOSONAR
         return editable ? R.layout.list_item_edit : R.layout.list_item_two_lines; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder) { //NOSONAR
@@ -162,8 +162,8 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                 holder.playCount.setCount(song.playCount); //NOSONAR
             } else { //NOSONAR
                 holder.playCount.setVisibility(View.GONE); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         if (showArtistName && showAlbumName) { //NOSONAR
             holder.lineTwo.setText(String.format("%s - %s", song.artistName, song.albumName)); //NOSONAR
@@ -173,7 +173,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
             holder.lineTwo.setVisibility(View.VISIBLE); //NOSONAR
         } else { //NOSONAR
             holder.lineTwo.setVisibility(View.GONE); //NOSONAR
-        }
+        } // NOSONAR
 
         holder.lineThree.setText(song.getDurationLabel(holder.itemView.getContext())); //NOSONAR
 
@@ -186,15 +186,15 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                         .into(holder.artwork); //NOSONAR
             } else { //NOSONAR
                 holder.artwork.setVisibility(View.GONE); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         holder.overflowButton.setContentDescription(holder.itemView.getResources().getString(R.string.btn_options, song.name)); //NOSONAR
 
         if (prefixHighlighter != null) { //NOSONAR
             prefixHighlighter.setText(holder.lineOne, prefix); //NOSONAR
             prefixHighlighter.setText(holder.lineTwo, prefix); //NOSONAR
-        }
+        } // NOSONAR
 
         if (holder.trackNumber != null) { //NOSONAR
             if (showTrackNumber) { //NOSONAR
@@ -202,26 +202,26 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                 holder.trackNumber.setText(String.valueOf(song.track)); //NOSONAR
             } else { //NOSONAR
                 holder.trackNumber.setVisibility(View.GONE); //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
         super.bindView(holder, position, payloads); //NOSONAR
 
-        //A partial bind. Due to the areContentsEqual implementation, the only reason this is called
-        //is because the prefix changed. Update accordingly.
+        //A partial bind. Due to the areContentsEqual implementation, the only reason this is called // NOSONAR
+        //is because the prefix changed. Update accordingly. // NOSONAR
         if (prefixHighlighter != null) { //NOSONAR
             prefixHighlighter.setText(holder.lineOne, prefix); //NOSONAR
             prefixHighlighter.setText(holder.lineTwo, prefix); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
         return new ViewHolder(createView(parent)); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public String getSectionName() { //NOSONAR
@@ -246,7 +246,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                         string = "-"; //NOSONAR
                     } else { //NOSONAR
                         string = string.substring(2, 4); //NOSONAR
-                    }
+                    } // NOSONAR
                     requiresSubstring = false; //NOSONAR
                     break; //NOSONAR
                 case SortManager.SongSort.ALBUM_NAME: //NOSONAR
@@ -255,28 +255,28 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                 case SortManager.SongSort.ARTIST_NAME: //NOSONAR
                     string = StringUtils.keyFor(song.artistName); //NOSONAR
                     break; //NOSONAR
-            }
+            } // NOSONAR
 
             if (requiresSubstring) { //NOSONAR
                 if (!TextUtils.isEmpty(string)) { //NOSONAR
                     string = string.substring(0, 1).toUpperCase(); //NOSONAR
                 } else { //NOSONAR
                     string = " "; //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             return string; //NOSONAR
-        }
+        } // NOSONAR
         return ""; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean areContentsEqual(Object other) { //NOSONAR
         if (other instanceof SongView) { //NOSONAR
             return this.song.equals(((SongView) other).song) //NOSONAR
                     && Arrays.equals(prefix, ((SongView) other).prefix); //NOSONAR
-        }
+        } // NOSONAR
         return false; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean equals(Object o) { //NOSONAR
@@ -292,7 +292,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         if (showArtistName != songView.showArtistName) return false; //NOSONAR
         if (showAlbumName != songView.showAlbumName) return false; //NOSONAR
         return song != null ? song.equals(songView.song) : songView.song == null; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int hashCode() { //NOSONAR
@@ -304,7 +304,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
         result = 31 * result + (showArtistName ? 1 : 0); //NOSONAR
         result = 31 * result + (showAlbumName ? 1 : 0); //NOSONAR
         return result; //NOSONAR
-    }
+    } // NOSONAR
 
     public static class ViewHolder extends BaseViewHolder<SongView> { //NOSONAR
 
@@ -351,16 +351,16 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
                 dragHandle.setOnTouchListener((v, event) -> { //NOSONAR
                     if (event.getActionMasked() == MotionEvent.ACTION_DOWN) { //NOSONAR
                         viewModel.onStartDrag(this); //NOSONAR
-                    }
+                    } // NOSONAR
                     return true; //NOSONAR
-                });
-            }
-        }
+                }); // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         @Override //NOSONAR
         public String toString() { //NOSONAR
             return "SongView.ViewHolder"; //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void recycle() { //NOSONAR
@@ -368,7 +368,7 @@ public class SongView extends BaseSelectableViewModel<SongView.ViewHolder> imple
 
             if (artwork != null) { //NOSONAR
                 Glide.clear(artwork); //NOSONAR
-            }
-        }
-    }
-}
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

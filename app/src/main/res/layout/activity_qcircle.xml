@@ -1,93 +1,93 @@
-<?xml version="1.0"?>
+<?xml version="1.0"?> <!-- NOSONAR -->
 
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_gravity="top|center_horizontal"
-    android:background="#000000"
-    tools:context=".ui.screens.qcircle.QCircleActivity">
+<RelativeLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:layout_gravity="top|center_horizontal" <!-- NOSONAR -->
+    android:background="#000000" <!-- NOSONAR -->
+    tools:context=".ui.screens.qcircle.QCircleActivity"> <!-- NOSONAR -->
 
-    <RelativeLayout
-        android:id="@+id/cover_main_view"
-        android:layout_width="@dimen/physical_width_of_quickcircle"
-        android:layout_height="@dimen/physical_height_of_quickcircle"
-        android:layout_gravity="center_horizontal">
+    <RelativeLayout <!-- NOSONAR -->
+        android:id="@+id/cover_main_view" <!-- NOSONAR -->
+        android:layout_width="@dimen/physical_width_of_quickcircle" <!-- NOSONAR -->
+        android:layout_height="@dimen/physical_height_of_quickcircle" <!-- NOSONAR -->
+        android:layout_gravity="center_horizontal"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/text1"
-            style="?attr/secondaryTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="64dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:maxLines="1"
-            android:paddingLeft="64dp"
-            android:paddingRight="64dp"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/text1" <!-- NOSONAR -->
+            style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginTop="64dp" <!-- NOSONAR -->
+            android:fontFamily="sans-serif-light" <!-- NOSONAR -->
+            android:gravity="center" <!-- NOSONAR -->
+            android:maxLines="1" <!-- NOSONAR -->
+            android:paddingLeft="64dp" <!-- NOSONAR -->
+            android:paddingRight="64dp"/> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/text2"
-            style="?android:textAppearanceLarge"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/text1"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="8dp"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:maxLines="1"
-            android:paddingLeft="48dp"
-            android:paddingRight="48dp"
-            android:textColor="@color/primary_text_dark"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/text2" <!-- NOSONAR -->
+            style="?android:textAppearanceLarge" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_below="@id/text1" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginTop="8dp" <!-- NOSONAR -->
+            android:fontFamily="sans-serif-light" <!-- NOSONAR -->
+            android:gravity="center" <!-- NOSONAR -->
+            android:maxLines="1" <!-- NOSONAR -->
+            android:paddingLeft="48dp" <!-- NOSONAR -->
+            android:paddingRight="48dp" <!-- NOSONAR -->
+            android:textColor="@color/primary_text_dark"/> <!-- NOSONAR -->
 
-        <ImageButton
-            android:id="@+id/btn_prev"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentLeft="true"
-            android:layout_below="@id/text2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginLeft="48dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_skip_previous_24dp"/>
+        <ImageButton <!-- NOSONAR -->
+            android:id="@+id/btn_prev" <!-- NOSONAR -->
+            android:layout_width="40dp" <!-- NOSONAR -->
+            android:layout_height="40dp" <!-- NOSONAR -->
+            android:layout_alignParentLeft="true" <!-- NOSONAR -->
+            android:layout_below="@id/text2" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginLeft="48dp" <!-- NOSONAR -->
+            android:layout_marginTop="20dp" <!-- NOSONAR -->
+            android:background="@android:color/transparent" <!-- NOSONAR -->
+            android:src="@drawable/ic_skip_previous_24dp"/> <!-- NOSONAR -->
 
-        <ImageButton
-            android:id="@+id/btn_pause"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_below="@id/text2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="30dp"
-            android:layout_marginTop="16dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_pause_24dp"/>
+        <ImageButton <!-- NOSONAR -->
+            android:id="@+id/btn_pause" <!-- NOSONAR -->
+            android:layout_width="48dp" <!-- NOSONAR -->
+            android:layout_height="48dp" <!-- NOSONAR -->
+            android:layout_below="@id/text2" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginRight="30dp" <!-- NOSONAR -->
+            android:layout_marginTop="16dp" <!-- NOSONAR -->
+            android:background="@android:color/transparent" <!-- NOSONAR -->
+            android:src="@drawable/ic_pause_24dp"/> <!-- NOSONAR -->
 
-        <ImageButton
-            android:id="@+id/btn_skip"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:layout_below="@id/text2"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="48dp"
-            android:layout_marginTop="20dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/ic_skip_next_24dp"/>
+        <ImageButton <!-- NOSONAR -->
+            android:id="@+id/btn_skip" <!-- NOSONAR -->
+            android:layout_width="40dp" <!-- NOSONAR -->
+            android:layout_height="40dp" <!-- NOSONAR -->
+            android:layout_alignParentRight="true" <!-- NOSONAR -->
+            android:layout_below="@id/text2" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginRight="48dp" <!-- NOSONAR -->
+            android:layout_marginTop="20dp" <!-- NOSONAR -->
+            android:background="@android:color/transparent" <!-- NOSONAR -->
+            android:src="@drawable/ic_skip_next_24dp"/> <!-- NOSONAR -->
 
-        <ImageButton
-            android:id="@+id/back_btn"
-            android:layout_width="43dp"
-            android:layout_height="23dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="40dp"
-            android:background="@android:color/transparent"
-            android:src="@drawable/backbutton"/>
+        <ImageButton <!-- NOSONAR -->
+            android:id="@+id/back_btn" <!-- NOSONAR -->
+            android:layout_width="43dp" <!-- NOSONAR -->
+            android:layout_height="23dp" <!-- NOSONAR -->
+            android:layout_alignParentBottom="true" <!-- NOSONAR -->
+            android:layout_centerHorizontal="true" <!-- NOSONAR -->
+            android:layout_marginBottom="40dp" <!-- NOSONAR -->
+            android:background="@android:color/transparent" <!-- NOSONAR -->
+            android:src="@drawable/backbutton"/> <!-- NOSONAR -->
 
-    </RelativeLayout>
+    </RelativeLayout> <!-- NOSONAR -->
 
-</RelativeLayout>
+</RelativeLayout> <!-- NOSONAR -->

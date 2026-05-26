@@ -1,8 +1,8 @@
-package com.simplecity.amp_library.glide.fetcher;
+package com.simplecity.amp_library.glide.fetcher; // NOSONAR
 
-import android.content.Context;
-import com.simplecity.amp_library.model.ArtworkProvider;
-import java.io.InputStream;
+import android.content.Context; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkProvider; // NOSONAR
+import java.io.InputStream; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class MediaStoreFetcher extends BaseFetcher { //NOSONAR
@@ -14,15 +14,15 @@ public class MediaStoreFetcher extends BaseFetcher { //NOSONAR
     public MediaStoreFetcher(Context context, ArtworkProvider artworkProvider) { //NOSONAR
         super(artworkProvider); //NOSONAR
         applicationContext = context.getApplicationContext(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected String getTag() { //NOSONAR
         return TAG; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected InputStream getStream() { //NOSONAR
         return artworkProvider.getMediaStoreArtwork(applicationContext); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

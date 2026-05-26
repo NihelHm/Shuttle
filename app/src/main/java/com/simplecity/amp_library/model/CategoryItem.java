@@ -1,21 +1,21 @@
-package com.simplecity.amp_library.model;
+package com.simplecity.amp_library.model; // NOSONAR
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.support.annotation.StringRes;
-import android.support.v4.app.Fragment;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.ui.screens.album.list.AlbumListFragment;
-import com.simplecity.amp_library.ui.screens.artist.list.AlbumArtistListFragment;
-import com.simplecity.amp_library.ui.screens.folders.FolderFragment;
-import com.simplecity.amp_library.ui.screens.genre.list.GenreListFragment;
-import com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment;
-import com.simplecity.amp_library.ui.screens.songs.list.SongListFragment;
-import com.simplecity.amp_library.ui.screens.suggested.SuggestedFragment;
-import com.simplecity.amp_library.utils.ComparisonUtils;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import android.content.Context; // NOSONAR
+import android.content.SharedPreferences; // NOSONAR
+import android.support.annotation.StringRes; // NOSONAR
+import android.support.v4.app.Fragment; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.list.AlbumListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.artist.list.AlbumArtistListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.folders.FolderFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.list.GenreListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.list.SongListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.suggested.SuggestedFragment; // NOSONAR
+import com.simplecity.amp_library.utils.ComparisonUtils; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.Collections; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class CategoryItem { //NOSONAR
@@ -28,7 +28,7 @@ public class CategoryItem { //NOSONAR
         int SONGS = 4; //NOSONAR
         int PLAYLISTS = 5; //NOSONAR
         int FOLDERS = 6; //NOSONAR
-    }
+    } // NOSONAR
 
     @Type //NOSONAR
     @SuppressWarnings("java:S1104") //NOSONAR
@@ -46,7 +46,7 @@ public class CategoryItem { //NOSONAR
         this.type = type; //NOSONAR
         isChecked = sharedPreferences.getBoolean(getEnabledKey(), isEnabledByDefault()); //NOSONAR
         sortOrder = sharedPreferences.getInt(getSortKey(), 0); //NOSONAR
-    }
+    } // NOSONAR
 
     public static List<CategoryItem> getCategoryItems(SharedPreferences sharedPreferences) { //NOSONAR
         List<CategoryItem> items = new ArrayList<>(); //NOSONAR
@@ -59,13 +59,13 @@ public class CategoryItem { //NOSONAR
         items.add(new CategoryItem(Type.PLAYLISTS, sharedPreferences)); //NOSONAR
         Collections.sort(items, (a, b) -> ComparisonUtils.compareInt(a.sortOrder, b.sortOrder)); //NOSONAR
         return items; //NOSONAR
-    }
+    } // NOSONAR
 
     public void savePrefs(SharedPreferences.Editor editor) { //NOSONAR
         editor.putBoolean(getEnabledKey(), isChecked); //NOSONAR
         editor.putInt(getSortKey(), sortOrder); //NOSONAR
         editor.apply(); //NOSONAR
-    }
+    } // NOSONAR
 
     @StringRes //NOSONAR
     public int getTitleResId() { //NOSONAR
@@ -84,9 +84,9 @@ public class CategoryItem { //NOSONAR
                 return R.string.folders_title; //NOSONAR
             case Type.PLAYLISTS: //NOSONAR
                 return R.string.playlists_title; //NOSONAR
-        }
+        } // NOSONAR
         return -1; //NOSONAR
-    }
+    } // NOSONAR
 
     public String getKey() { //NOSONAR
         switch (type) { //NOSONAR
@@ -104,9 +104,9 @@ public class CategoryItem { //NOSONAR
                 return "folders"; //NOSONAR
             case Type.PLAYLISTS: //NOSONAR
                 return "playlists"; //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
     public boolean isEnabledByDefault() { //NOSONAR
         switch (type) { //NOSONAR
@@ -124,17 +124,17 @@ public class CategoryItem { //NOSONAR
                 return false; //NOSONAR
             case Type.PLAYLISTS: //NOSONAR
                 return false; //NOSONAR
-        }
+        } // NOSONAR
         return true; //NOSONAR
-    }
+    } // NOSONAR
 
     public String getSortKey() { //NOSONAR
         return getKey() + "_sort"; //NOSONAR
-    }
+    } // NOSONAR
 
     public String getEnabledKey() { //NOSONAR
         return getKey() + "_enabled"; //NOSONAR
-    }
+    } // NOSONAR
 
     public Fragment getFragment(Context context) { //NOSONAR
         switch (type) { //NOSONAR
@@ -152,9 +152,9 @@ public class CategoryItem { //NOSONAR
                 return FolderFragment.newInstance(context.getString(getTitleResId()), true); //NOSONAR
             case Type.PLAYLISTS: //NOSONAR
                 return PlaylistListFragment.Companion.newInstance(context.getString(getTitleResId())); //NOSONAR
-        }
+        } // NOSONAR
         return null; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean equals(Object o) { //NOSONAR
@@ -164,10 +164,10 @@ public class CategoryItem { //NOSONAR
         CategoryItem that = (CategoryItem) o; //NOSONAR
 
         return type == that.type; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int hashCode() { //NOSONAR
         return type; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

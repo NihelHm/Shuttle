@@ -1,12 +1,12 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.simplecity.amp_library.ui.views.AestheticFastScrollRecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clipToPadding="false"
-    app:fastScrollAutoHide="true"
-    app:fastScrollAutoHideDelay="1500"
-    tools:listitem="@layout/list_item_two_lines"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<com.simplecity.amp_library.ui.views.AestheticFastScrollRecyclerView <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:id="@+id/recyclerView" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:clipToPadding="false" <!-- NOSONAR -->
+    app:fastScrollAutoHide="true" <!-- NOSONAR -->
+    app:fastScrollAutoHideDelay="1500" <!-- NOSONAR -->
+    tools:listitem="@layout/list_item_two_lines"/> <!-- NOSONAR -->

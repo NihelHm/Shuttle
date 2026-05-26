@@ -1,49 +1,49 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.content.ContentUris;
-import android.content.Context;
-import android.database.Cursor;
-import android.net.Uri;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.WorkerThread;
-import android.util.Log;
-import com.annimon.stream.Stream;
-import com.simplecity.amp_library.model.Album;
-import com.simplecity.amp_library.model.Song;
-import java.io.ByteArrayInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.regex.Pattern;
-import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.TagException;
+import android.content.ContentUris; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.database.Cursor; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.provider.MediaStore; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.annotation.WorkerThread; // NOSONAR
+import android.util.Log; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.simplecity.amp_library.model.Album; // NOSONAR
+import com.simplecity.amp_library.model.Song; // NOSONAR
+import java.io.ByteArrayInputStream; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.FileInputStream; // NOSONAR
+import java.io.FileNotFoundException; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.io.InputStream; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import java.util.NoSuchElementException; // NOSONAR
+import java.util.regex.Pattern; // NOSONAR
+import org.jaudiotagger.audio.AudioFile; // NOSONAR
+import org.jaudiotagger.audio.AudioFileIO; // NOSONAR
+import org.jaudiotagger.audio.exceptions.CannotReadException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException; // NOSONAR
+import org.jaudiotagger.tag.Tag; // NOSONAR
+import org.jaudiotagger.tag.TagException; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ArtworkUtils { //NOSONAR
 
     private static final String TAG = "ArtworkUtils"; //NOSONAR
 
-    //This class is never instantiated
+    //This class is never instantiated // NOSONAR
     private ArtworkUtils() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
-    /**
-     * Searches the parent directory of the passed in path for [cover/album/artwork].[png/jpg/jpeg]
-     * using regex and returns a {@link InputStream} representing the artwork
-     */
+    /** // NOSONAR
+     * Searches the parent directory of the passed in path for [cover/album/artwork].[png/jpg/jpeg] // NOSONAR
+     * using regex and returns a {@link InputStream} representing the artwork // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getFolderArtwork(@Nullable final String path) { //NOSONAR
 
@@ -67,22 +67,22 @@ public class ArtworkUtils { //NOSONAR
                         fileInputStream = getFileArtwork(artworkFile); //NOSONAR
                     } catch (NoSuchElementException e) { //NOSONAR
                         Log.e(TAG, "getFolderArtwork failed: " + e.toString()); //NOSONAR
-                    }
-                }
-            }
-        }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
         return fileInputStream; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Returns a FileInputStream for the given file, or null if the file is invalid
-     */
+    /** // NOSONAR
+     * Returns a FileInputStream for the given file, or null if the file is invalid // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getFileArtwork(@Nullable File file) { //NOSONAR
 
         if (file == null || !file.exists() || file.length() < 10 * 1024) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
         FileInputStream fileInputStream = null; //NOSONAR
 
@@ -90,14 +90,14 @@ public class ArtworkUtils { //NOSONAR
             fileInputStream = new FileInputStream(file); //NOSONAR
         } catch (FileNotFoundException | NoSuchElementException e) { //NOSONAR
             Log.e(TAG, "getFileArtwork failed: " + e.toString()); //NOSONAR
-        }
+        } // NOSONAR
 
         return fileInputStream; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieves the Artwork for the given album id from the MediaStore as an {@link InputStream}
-     */
+    /** // NOSONAR
+     * Retrieves the Artwork for the given album id from the MediaStore as an {@link InputStream} // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getMediaStoreArtwork(Context context, long albumId) { //NOSONAR
 
@@ -117,39 +117,39 @@ public class ArtworkUtils { //NOSONAR
                         try { //NOSONAR
                             fileInputStream = new FileInputStream(file); //NOSONAR
                         } catch (FileNotFoundException ignored) { //NOSONAR
-                            // Intentionally left empty.
-                        }
-                    }
-                }
+                            // Intentionally left empty. // NOSONAR
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
             } catch (NullPointerException ignored) { //NOSONAR
-                // Intentionally left empty.
+                // Intentionally left empty. // NOSONAR
             } finally { //NOSONAR
                 cursor.close(); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         return fileInputStream; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieves the Artwork for the given {@link Song} from the MediaStore as an {@link InputStream}
-     */
+    /** // NOSONAR
+     * Retrieves the Artwork for the given {@link Song} from the MediaStore as an {@link InputStream} // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getMediaStoreArtwork(Context context, @NonNull Song song) { //NOSONAR
         return getMediaStoreArtwork(context, song.albumId); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieves the Artwork for the given {@link Album} from the MediaStore as an {@link InputStream}
-     */
+    /** // NOSONAR
+     * Retrieves the Artwork for the given {@link Album} from the MediaStore as an {@link InputStream} // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getMediaStoreArtwork(Context context, @NonNull Album album) { //NOSONAR
         return getMediaStoreArtwork(context, album.id); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Retrieves the Artwork from the id3 tags of the file at the given path.
-     */
+    /** // NOSONAR
+     * Retrieves the Artwork from the id3 tags of the file at the given path. // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static InputStream getTagArtwork(@Nullable String filePath) { //NOSONAR
 
@@ -164,21 +164,21 @@ public class ArtworkUtils { //NOSONAR
                         org.jaudiotagger.tag.datatype.Artwork artwork = tag.getFirstArtwork(); //NOSONAR
                         if (artwork != null) { //NOSONAR
                             inputStream = new ByteArrayInputStream(artwork.getBinaryData()); //NOSONAR
-                        }
-                    }
-                }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
             } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException ignored) { //NOSONAR
-                // Intentionally left empty.
-            }
-        }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         return inputStream; //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Searches the parent directory of the passed in path for [cover/album/artwork].[png/jpg/jpeg]
-     * using regex and returns a {@link List<File>} representing the artwork
-     */
+    /** // NOSONAR
+     * Searches the parent directory of the passed in path for [cover/album/artwork].[png/jpg/jpeg] // NOSONAR
+     * using regex and returns a {@link List<File>} representing the artwork // NOSONAR
+     */ // NOSONAR
     @WorkerThread //NOSONAR
     public static List<File> getAllFolderArtwork(@Nullable final String path) { //NOSONAR
         List<File> fileArray = new ArrayList<>(); //NOSONAR
@@ -194,11 +194,11 @@ public class ArtworkUtils { //NOSONAR
                     for (File file : files) { //NOSONAR
                         if (file.exists()) { //NOSONAR
                             fileArray.add(file); //NOSONAR
-                        }
-                    }
-                }
-            }
-        }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
         return fileArray; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

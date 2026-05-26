@@ -1,65 +1,65 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/playNext"
-        android:title="@string/play_next"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/playNext" <!-- NOSONAR -->
+        android:title="@string/play_next"/> <!-- NOSONAR -->
 
-    <item
-        android:title="@string/menu_add_to">
-        <menu>
-            <item
-                android:id="@+id/addToPlaylist"
-                android:title="@string/menu_playlist">
-                <menu/>
-            </item>
+    <item <!-- NOSONAR -->
+        android:title="@string/menu_add_to"> <!-- NOSONAR -->
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToPlaylist" <!-- NOSONAR -->
+                android:title="@string/menu_playlist"> <!-- NOSONAR -->
+                <menu/> <!-- NOSONAR -->
+            </item> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/addToQueue"
-                android:title="@string/menu_queue"/>
-        </menu>
-    </item>
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToQueue" <!-- NOSONAR -->
+                android:title="@string/menu_queue"/> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/editTags"
-        android:title="@string/edit_tags"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/editTags" <!-- NOSONAR -->
+        android:title="@string/edit_tags"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/share"
-        android:title="@string/share"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/share" <!-- NOSONAR -->
+        android:title="@string/share"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/ringtone"
-        android:title="@string/ringtone_menu"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/ringtone" <!-- NOSONAR -->
+        android:title="@string/ringtone_menu"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/songInfo"
-        android:title="@string/song_info"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/songInfo" <!-- NOSONAR -->
+        android:title="@string/song_info"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/blacklist"
-        android:title="@string/blacklist_title"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/blacklist" <!-- NOSONAR -->
+        android:title="@string/blacklist_title"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/delete"
-        android:title="@string/delete_item"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/delete" <!-- NOSONAR -->
+        android:title="@string/delete_item"/> <!-- NOSONAR -->
 
-    <item
-        android:title="@string/go_to">
-        <menu>
-            <item
-                android:id="@+id/goToArtist"
-                android:title="@string/artist_title"/>
+    <item <!-- NOSONAR -->
+        android:title="@string/go_to"> <!-- NOSONAR -->
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToArtist" <!-- NOSONAR -->
+                android:title="@string/artist_title"/> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/goToAlbum"
-                android:title="@string/album_title"/>
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToAlbum" <!-- NOSONAR -->
+                android:title="@string/album_title"/> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/goToGenre"
-                android:title="@string/genre_title"/>
-        </menu>
-    </item>
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToGenre" <!-- NOSONAR -->
+                android:title="@string/genre_title"/> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

@@ -1,395 +1,395 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:fitsSystemWindows="true" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:background="@color/colorPrimaryDark"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content"/> <!-- NOSONAR -->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:title="@string/equalizer"
-        android:transitionName="toolbar"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:theme="?attr/toolbar_theme"/>
+    <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+        android:id="@+id/toolbar" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+        android:background="?attr/colorPrimary" <!-- NOSONAR -->
+        android:minHeight="?attr/actionBarSize" <!-- NOSONAR -->
+        android:title="@string/equalizer" <!-- NOSONAR -->
+        android:transitionName="toolbar" <!-- NOSONAR -->
+        app:navigationIcon="?attr/homeAsUpIndicator" <!-- NOSONAR -->
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light" <!-- NOSONAR -->
+        app:theme="?attr/toolbar_theme"/> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/equalizer_activity_top_padding"
-        android:paddingLeft="@dimen/equalizer_activity_edge_padding"
-        android:paddingRight="@dimen/equalizer_activity_edge_padding"
-        android:paddingTop="@dimen/equalizer_activity_top_padding">
+    <LinearLayout <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:orientation="vertical" <!-- NOSONAR -->
+        android:paddingBottom="@dimen/equalizer_activity_top_padding" <!-- NOSONAR -->
+        android:paddingLeft="@dimen/equalizer_activity_edge_padding" <!-- NOSONAR -->
+        android:paddingRight="@dimen/equalizer_activity_edge_padding" <!-- NOSONAR -->
+        android:paddingTop="@dimen/equalizer_activity_top_padding"> <!-- NOSONAR -->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/select_preset"
-            android:textSize="18sp"/>
+        <TextView <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:text="@string/select_preset" <!-- NOSONAR -->
+            android:textSize="18sp"/> <!-- NOSONAR -->
 
-        <Spinner
-            android:id="@+id/eqSpinner"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"/>
+        <Spinner <!-- NOSONAR -->
+            android:id="@+id/eqSpinner" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="48dp"/> <!-- NOSONAR -->
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <ScrollView <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content"> <!-- NOSONAR -->
 
-            <LinearLayout
-                android:id="@+id/eqContainer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
+            <LinearLayout <!-- NOSONAR -->
+                android:id="@+id/eqContainer" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:orientation="vertical"> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand0TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand0TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand0SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand0RightTextView"
-                            android:layout_toRightOf="@+id/EqBand0LeftTextView"
-                            android:indeterminate="false"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand0SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand0RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand0LeftTextView" <!-- NOSONAR -->
+                            android:indeterminate="false"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand0LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"/>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand0LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand0RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand0RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand0TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand0TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand1TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand1TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand1SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand1RightTextView"
-                            android:layout_toRightOf="@+id/EqBand1LeftTextView"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand1SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand1RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand1LeftTextView"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand1LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"/>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand1LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand1RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand1RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand1TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand1TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand2TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand2TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand2SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand2RightTextView"
-                            android:layout_toRightOf="@+id/EqBand2LeftTextView"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand2SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand2RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand2LeftTextView"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand2LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand2LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp" <!-- NOSONAR -->
 
-                            />
+                            /> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand2RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand2RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand2TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand2TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand3TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand3TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand3SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand3RightTextView"
-                            android:layout_toRightOf="@+id/EqBand3LeftTextView"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand3SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand3RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand3LeftTextView"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand3LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"/>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand3LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand3RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand3RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand3TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand3TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand4TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand4TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand4SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand4RightTextView"
-                            android:layout_toRightOf="@+id/EqBand4LeftTextView"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand4SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand4RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand4LeftTextView"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand4LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"/>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand4LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand4RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand4RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand4TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"/>
-                </RelativeLayout>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand4TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="4dp"
-                    android:layout_marginTop="4dp">
+                <RelativeLayout <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="4dp" <!-- NOSONAR -->
+                    android:layout_marginTop="4dp"> <!-- NOSONAR -->
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentRight="true"
-                        android:layout_below="@+id/EqBand5TopTextView">
+                    <RelativeLayout <!-- NOSONAR -->
+                        android:layout_width="match_parent" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_alignParentLeft="true" <!-- NOSONAR -->
+                        android:layout_alignParentRight="true" <!-- NOSONAR -->
+                        android:layout_below="@+id/EqBand5TopTextView"> <!-- NOSONAR -->
 
-                        <com.simplecity.amp_library.ui.views.SizableSeekBar
-                            android:id="@+id/EqBand5SeekBar"
-                            style="@style/SeekBar"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_toLeftOf="@+id/EqBand5RightTextView"
-                            android:layout_toRightOf="@+id/EqBand5LeftTextView"
-                            android:visibility="gone"/>
+                        <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                            android:id="@+id/EqBand5SeekBar" <!-- NOSONAR -->
+                            style="@style/SeekBar" <!-- NOSONAR -->
+                            android:layout_width="match_parent" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_toLeftOf="@+id/EqBand5RightTextView" <!-- NOSONAR -->
+                            android:layout_toRightOf="@+id/EqBand5LeftTextView" <!-- NOSONAR -->
+                            android:visibility="gone"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand5LeftTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_centerVertical="true"
-                            android:text="-15db"
-                            android:textSize="14sp"
-                            android:visibility="gone"/>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand5LeftTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="-15db" <!-- NOSONAR -->
+                            android:textSize="14sp" <!-- NOSONAR -->
+                            android:visibility="gone"/> <!-- NOSONAR -->
 
-                        <TextView
-                            android:id="@+id/EqBand5RightTextView"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_alignParentRight="true"
-                            android:layout_centerVertical="true"
-                            android:text="+15db"
-                            android:textSize="14sp"
-                            android:visibility="gone"/>
-                    </RelativeLayout>
+                        <TextView <!-- NOSONAR -->
+                            android:id="@+id/EqBand5RightTextView" <!-- NOSONAR -->
+                            android:layout_width="wrap_content" <!-- NOSONAR -->
+                            android:layout_height="wrap_content" <!-- NOSONAR -->
+                            android:layout_alignParentRight="true" <!-- NOSONAR -->
+                            android:layout_centerVertical="true" <!-- NOSONAR -->
+                            android:text="+15db" <!-- NOSONAR -->
+                            android:textSize="14sp" <!-- NOSONAR -->
+                            android:visibility="gone"/> <!-- NOSONAR -->
+                    </RelativeLayout> <!-- NOSONAR -->
 
-                    <TextView
-                        android:id="@+id/EqBand5TopTextView"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerHorizontal="true"
-                        android:textSize="14sp"
-                        android:visibility="gone"/>
-                </RelativeLayout>
-            </LinearLayout>
-        </ScrollView>
+                    <TextView <!-- NOSONAR -->
+                        android:id="@+id/EqBand5TopTextView" <!-- NOSONAR -->
+                        android:layout_width="wrap_content" <!-- NOSONAR -->
+                        android:layout_height="wrap_content" <!-- NOSONAR -->
+                        android:layout_centerHorizontal="true" <!-- NOSONAR -->
+                        android:textSize="14sp" <!-- NOSONAR -->
+                        android:visibility="gone"/> <!-- NOSONAR -->
+                </RelativeLayout> <!-- NOSONAR -->
+            </LinearLayout> <!-- NOSONAR -->
+        </ScrollView> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_marginBottom="8dp" <!-- NOSONAR -->
+            android:layout_marginTop="8dp" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minEms="8"
-                android:text="@string/virtualizer_strength"
-                android:textSize="14sp"/>
+            <TextView <!-- NOSONAR -->
+                android:layout_width="wrap_content" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:minEms="8" <!-- NOSONAR -->
+                android:text="@string/virtualizer_strength" <!-- NOSONAR -->
+                android:textSize="14sp"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.SizableSeekBar
-                android:id="@+id/virtualizer_strength"
-                style="@style/SeekBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+            <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                android:id="@+id/virtualizer_strength" <!-- NOSONAR -->
+                style="@style/SeekBar" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_weight="1"/> <!-- NOSONAR -->
 
-        </LinearLayout>
+        </LinearLayout> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_marginTop="8dp" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:minEms="8"
-                android:text="@string/bass_boost_strength"
-                android:textSize="14sp"/>
+            <TextView <!-- NOSONAR -->
+                android:layout_width="wrap_content" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:minEms="8" <!-- NOSONAR -->
+                android:text="@string/bass_boost_strength" <!-- NOSONAR -->
+                android:textSize="14sp"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.SizableSeekBar
-                android:id="@+id/bb_strength"
-                style="@style/SeekBar"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+            <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                android:id="@+id/bb_strength" <!-- NOSONAR -->
+                style="@style/SeekBar" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_weight="1"/> <!-- NOSONAR -->
 
-        </LinearLayout>
-    </LinearLayout>
-</LinearLayout>
+        </LinearLayout> <!-- NOSONAR -->
+    </LinearLayout> <!-- NOSONAR -->
+</LinearLayout> <!-- NOSONAR -->

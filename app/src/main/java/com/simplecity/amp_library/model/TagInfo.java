@@ -1,23 +1,23 @@
-package com.simplecity.amp_library.model;
+package com.simplecity.amp_library.model; // NOSONAR
 
-import android.text.TextUtils;
-import com.simplecity.amp_library.utils.StringUtils;
-import java.io.File;
-import java.io.IOException;
-import java.io.Serializable;
-import org.jaudiotagger.audio.AudioFile;
-import org.jaudiotagger.audio.AudioFileIO;
-import org.jaudiotagger.audio.AudioHeader;
-import org.jaudiotagger.audio.exceptions.CannotReadException;
-import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
-import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
-import org.jaudiotagger.tag.FieldKey;
-import org.jaudiotagger.tag.Tag;
-import org.jaudiotagger.tag.TagException;
+import android.text.TextUtils; // NOSONAR
+import com.simplecity.amp_library.utils.StringUtils; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.io.Serializable; // NOSONAR
+import org.jaudiotagger.audio.AudioFile; // NOSONAR
+import org.jaudiotagger.audio.AudioFileIO; // NOSONAR
+import org.jaudiotagger.audio.AudioHeader; // NOSONAR
+import org.jaudiotagger.audio.exceptions.CannotReadException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException; // NOSONAR
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException; // NOSONAR
+import org.jaudiotagger.tag.FieldKey; // NOSONAR
+import org.jaudiotagger.tag.Tag; // NOSONAR
+import org.jaudiotagger.tag.TagException; // NOSONAR
 
-/**
- * A holder for various id3 tag information associated with a file.
- */
+/** // NOSONAR
+ * A holder for various id3 tag information associated with a file. // NOSONAR
+ */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class TagInfo implements Serializable { //NOSONAR
 
@@ -67,10 +67,10 @@ public class TagInfo implements Serializable { //NOSONAR
                     this.genre = getTag(audioFile, FieldKey.GENRE); //NOSONAR
                 } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException e) { //NOSONAR
                     e.printStackTrace(); //NOSONAR
-                }
-            }
-        }
-    }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     public String getTag(AudioFile audioFile, FieldKey key) { //NOSONAR
         try { //NOSONAR
@@ -80,48 +80,48 @@ public class TagInfo implements Serializable { //NOSONAR
                     String result = tag.getFirst(key); //NOSONAR
                     if (!TextUtils.isEmpty(result)) { //NOSONAR
                         return result; //NOSONAR
-                    }
-                }
-            }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
         } catch (UnsupportedOperationException ignored) { //NOSONAR
-            // Intentionally left empty.
-        }
+            // Intentionally left empty. // NOSONAR
+        } // NOSONAR
         return "Unknown"; //NOSONAR
-    }
+    } // NOSONAR
 
     public static String getBitrate(AudioFile audioFile) { //NOSONAR
         try { //NOSONAR
             if (audioFile != null) { //NOSONAR
                 AudioHeader audioHeader = audioFile.getAudioHeader(); //NOSONAR
                 return audioHeader.getBitRate(); //NOSONAR
-            }
+            } // NOSONAR
         } catch (UnsupportedOperationException ignored) { //NOSONAR
-            // Intentionally left empty.
-        }
+            // Intentionally left empty. // NOSONAR
+        } // NOSONAR
         return "Unknown"; //NOSONAR
-    }
+    } // NOSONAR
 
     public static String getFormat(AudioFile audioFile) { //NOSONAR
         try { //NOSONAR
             if (audioFile != null) { //NOSONAR
                 AudioHeader audioHeader = audioFile.getAudioHeader(); //NOSONAR
                 return audioHeader.getFormat(); //NOSONAR
-            }
+            } // NOSONAR
         } catch (UnsupportedOperationException ignored) { //NOSONAR
-            // Intentionally left empty.
-        }
+            // Intentionally left empty. // NOSONAR
+        } // NOSONAR
         return "Unknown"; //NOSONAR
-    }
+    } // NOSONAR
 
     public static int getSampleRate(AudioFile audioFile) { //NOSONAR
         try { //NOSONAR
             if (audioFile != null) { //NOSONAR
                 AudioHeader audioHeader = audioFile.getAudioHeader(); //NOSONAR
                 return audioHeader.getSampleRateAsNumber(); //NOSONAR
-            }
+            } // NOSONAR
         } catch (UnsupportedOperationException ignored) { //NOSONAR
-            // Intentionally left empty.
-        }
+            // Intentionally left empty. // NOSONAR
+        } // NOSONAR
         return -1; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

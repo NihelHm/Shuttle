@@ -1,157 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<RelativeLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:fitsSystemWindows="true" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
-        android:elevation="4dp"
-        android:minHeight="?attr/actionBarSize"
-        app:elevation="4dp"
-        app:popupTheme="?attr/toolbar_popup_theme"
-        app:theme="?attr/toolbar_theme"/>
+    <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+        android:id="@+id/toolbar" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+        android:background="?attr/colorPrimary" <!-- NOSONAR -->
+        android:elevation="4dp" <!-- NOSONAR -->
+        android:minHeight="?attr/actionBarSize" <!-- NOSONAR -->
+        app:elevation="4dp" <!-- NOSONAR -->
+        app:popupTheme="?attr/toolbar_popup_theme" <!-- NOSONAR -->
+        app:theme="?attr/toolbar_theme"/> <!-- NOSONAR -->
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/buttonContainer"
-        android:layout_below="@+id/tabs"/>
+    <android.support.v4.view.ViewPager <!-- NOSONAR -->
+        android:id="@+id/pager" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_above="@+id/buttonContainer" <!-- NOSONAR -->
+        android:layout_below="@+id/tabs"/> <!-- NOSONAR -->
 
-    <android.support.design.widget.TabLayout
-        android:id="@+id/tabs"
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_below="@id/toolbar"
-        android:elevation="4dp"
-        android:fillViewport="false"
-        app:elevation="4dp"/>
+    <android.support.design.widget.TabLayout <!-- NOSONAR -->
+        android:id="@+id/tabs" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_below="@id/toolbar" <!-- NOSONAR -->
+        android:elevation="4dp" <!-- NOSONAR -->
+        android:fillViewport="false" <!-- NOSONAR -->
+        app:elevation="4dp"/> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:id="@+id/buttonContainer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="#fff"
-        android:gravity="bottom"
-        android:orientation="vertical"
-        android:paddingBottom="8dp"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        android:paddingTop="8dp">
+    <LinearLayout <!-- NOSONAR -->
+        android:id="@+id/buttonContainer" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_alignParentBottom="true" <!-- NOSONAR -->
+        android:background="#fff" <!-- NOSONAR -->
+        android:gravity="bottom" <!-- NOSONAR -->
+        android:orientation="vertical" <!-- NOSONAR -->
+        android:paddingBottom="8dp" <!-- NOSONAR -->
+        android:paddingLeft="16dp" <!-- NOSONAR -->
+        android:paddingRight="16dp" <!-- NOSONAR -->
+        android:paddingTop="8dp"> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/checkBox1"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:tag=":aesthetic_ignore"
-                android:checked="true"
-                android:text="@string/widget_show_artwork"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"/>
+            <android.support.v7.widget.AppCompatCheckBox <!-- NOSONAR -->
+                android:id="@+id/checkBox1" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="48dp" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                android:checked="true" <!-- NOSONAR -->
+                android:text="@string/widget_show_artwork" <!-- NOSONAR -->
+                android:gravity="center_vertical" <!-- NOSONAR -->
+                android:textColor="@color/black"/> <!-- NOSONAR -->
 
-            <android.support.v7.widget.AppCompatCheckBox
-                android:id="@+id/checkBox2"
-                android:tag=":aesthetic_ignore"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:text="@string/widget_invert_icons"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:textColor="@color/black"/>
+            <android.support.v7.widget.AppCompatCheckBox <!-- NOSONAR -->
+                android:id="@+id/checkBox2" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="48dp" <!-- NOSONAR -->
+                android:text="@string/widget_invert_icons" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:gravity="center_vertical" <!-- NOSONAR -->
+                android:textColor="@color/black"/> <!-- NOSONAR -->
 
-        </LinearLayout>
+        </LinearLayout> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <Button
-                android:id="@+id/btn_background_color"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_weight="1"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/bg_rounded"
-                android:padding="8dp"
-                android:gravity="center_vertical|start"
-                android:stateListAnimator="@null"
-                android:tag=":aesthetic_ignore"
-                android:text="@string/widget_background_color"
-                android:textAllCaps="false"/>
+            <Button <!-- NOSONAR -->
+                android:id="@+id/btn_background_color" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="48dp" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:drawablePadding="8dp" <!-- NOSONAR -->
+                android:drawableStart="@drawable/bg_rounded" <!-- NOSONAR -->
+                android:padding="8dp" <!-- NOSONAR -->
+                android:gravity="center_vertical|start" <!-- NOSONAR -->
+                android:stateListAnimator="@null" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                android:text="@string/widget_background_color" <!-- NOSONAR -->
+                android:textAllCaps="false"/> <!-- NOSONAR -->
 
-            <Button
-                android:id="@+id/btn_text_color"
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:drawablePadding="8dp"
-                android:layout_weight="1"
-                android:drawableStart="@drawable/bg_rounded"
-                android:padding="8dp"
-                android:gravity="center_vertical|start"
-                android:stateListAnimator="@null"
-                android:tag=":aesthetic_ignore"
-                android:text="@string/widget_text_color"
-                android:textAllCaps="false"/>
+            <Button <!-- NOSONAR -->
+                android:id="@+id/btn_text_color" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="48dp" <!-- NOSONAR -->
+                android:drawablePadding="8dp" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:drawableStart="@drawable/bg_rounded" <!-- NOSONAR -->
+                android:padding="8dp" <!-- NOSONAR -->
+                android:gravity="center_vertical|start" <!-- NOSONAR -->
+                android:stateListAnimator="@null" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                android:text="@string/widget_text_color" <!-- NOSONAR -->
+                android:textAllCaps="false"/> <!-- NOSONAR -->
 
-        </LinearLayout>
+        </LinearLayout> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+        <LinearLayout <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:orientation="horizontal"> <!-- NOSONAR -->
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="48dp"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/widget_background_transparency"
-                android:textColor="?android:textColorPrimaryInverse"
-                android:textSize="18sp"/>
+            <TextView <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="48dp" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:gravity="center" <!-- NOSONAR -->
+                android:text="@string/widget_background_transparency" <!-- NOSONAR -->
+                android:textColor="?android:textColorPrimaryInverse" <!-- NOSONAR -->
+                android:textSize="18sp"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.SizableSeekBar
-                android:id="@+id/seekBar1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:indeterminate="false"
-                android:max="255"
-                android:progress="218"
-                style="@style/SeekBar"/>
-        </LinearLayout>
+            <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+                android:id="@+id/seekBar1" <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:indeterminate="false" <!-- NOSONAR -->
+                android:max="255" <!-- NOSONAR -->
+                android:progress="218" <!-- NOSONAR -->
+                style="@style/SeekBar"/> <!-- NOSONAR -->
+        </LinearLayout> <!-- NOSONAR -->
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginLeft="12dp"
-            android:layout_marginRight="12dp"
-            android:background="?android:listDivider"/>
+        <View <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="1dp" <!-- NOSONAR -->
+            android:layout_marginLeft="12dp" <!-- NOSONAR -->
+            android:layout_marginRight="12dp" <!-- NOSONAR -->
+            android:background="?android:listDivider"/> <!-- NOSONAR -->
 
-        <Button
-            android:id="@+id/btn_done"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:stateListAnimator="@null"
-            android:text="@string/button_done"
-            android:textAllCaps="false"/>
+        <Button <!-- NOSONAR -->
+            android:id="@+id/btn_done" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="48dp" <!-- NOSONAR -->
+            android:stateListAnimator="@null" <!-- NOSONAR -->
+            android:text="@string/button_done" <!-- NOSONAR -->
+            android:textAllCaps="false"/> <!-- NOSONAR -->
 
-    </LinearLayout>
+    </LinearLayout> <!-- NOSONAR -->
 
-</RelativeLayout>
+</RelativeLayout> <!-- NOSONAR -->

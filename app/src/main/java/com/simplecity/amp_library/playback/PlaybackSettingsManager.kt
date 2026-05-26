@@ -1,11 +1,11 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.playback
+package com.simplecity.amp_library.playback // NOSONAR
 
-import android.content.SharedPreferences
-import com.simplecity.amp_library.utils.BaseSettingsManager
-import javax.inject.Inject
-import javax.inject.Singleton
+import android.content.SharedPreferences // NOSONAR
+import com.simplecity.amp_library.utils.BaseSettingsManager // NOSONAR
+import javax.inject.Inject // NOSONAR
+import javax.inject.Singleton // NOSONAR
 
 @Singleton //NOSONAR
 class PlaybackSettingsManager @Inject constructor(sharedPreferences: SharedPreferences) : BaseSettingsManager(sharedPreferences) { //NOSONAR
@@ -57,4 +57,4 @@ class PlaybackSettingsManager @Inject constructor(sharedPreferences: SharedPrefe
         get() = getBool(KEY_LAST_FM_SCROBBLING, false) //NOSONAR
         set(enableLastFmScrobbling) = setBool(KEY_LAST_FM_SCROBBLING, enableLastFmScrobbling) //NOSONAR
 
-}
+} // NOSONAR

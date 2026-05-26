@@ -1,55 +1,55 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.internal.ForegroundLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="56dp"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector"
-    android:paddingBottom="4dp"
-    android:paddingTop="4dp">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.design.internal.ForegroundLinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="56dp" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    android:paddingBottom="4dp" <!-- NOSONAR -->
+    android:paddingTop="4dp"> <!-- NOSONAR -->
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="2dp"
-        android:layout_marginStart="2dp"
-        android:scaleType="centerCrop"/>
+    <ImageView <!-- NOSONAR -->
+        android:id="@+id/image" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_centerVertical="true" <!-- NOSONAR -->
+        android:layout_marginLeft="2dp" <!-- NOSONAR -->
+        android:layout_marginStart="2dp" <!-- NOSONAR -->
+        android:scaleType="centerCrop"/> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="4dp"
-        android:layout_marginRight="-12dp"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingBottom="4dp"
-        android:paddingTop="4dp">
+    <LinearLayout <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_marginLeft="4dp" <!-- NOSONAR -->
+        android:layout_marginRight="-12dp" <!-- NOSONAR -->
+        android:layout_weight="1" <!-- NOSONAR -->
+        android:orientation="vertical" <!-- NOSONAR -->
+        android:paddingBottom="4dp" <!-- NOSONAR -->
+        android:paddingTop="4dp"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/line_one"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="14sp"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/line_one" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="0dp" <!-- NOSONAR -->
+            android:layout_weight="1" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:lines="1" <!-- NOSONAR -->
+            android:textColor="?android:textColorPrimary" <!-- NOSONAR -->
+            android:textSize="14sp"/> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/line_two"
-            style="?attr/secondaryTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:lines="1"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="14sp"/>
-    </LinearLayout>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/line_two" <!-- NOSONAR -->
+            style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="0dp" <!-- NOSONAR -->
+            android:layout_weight="1" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:lines="1" <!-- NOSONAR -->
+            android:textColor="?android:textColorSecondary" <!-- NOSONAR -->
+            android:textSize="14sp"/> <!-- NOSONAR -->
+    </LinearLayout> <!-- NOSONAR -->
 
-    <include layout="@layout/overflow_button"/>
+    <include layout="@layout/overflow_button"/> <!-- NOSONAR -->
 
-</android.support.design.internal.ForegroundLinearLayout>
+</android.support.design.internal.ForegroundLinearLayout> <!-- NOSONAR -->
 

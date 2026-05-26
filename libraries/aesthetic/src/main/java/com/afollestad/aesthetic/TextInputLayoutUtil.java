@@ -1,16 +1,16 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP; // NOSONAR
 
-import android.content.res.ColorStateList;
-import android.support.annotation.ColorInt;
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
-import android.support.design.widget.TextInputLayout;
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import android.content.res.ColorStateList; // NOSONAR
+import android.support.annotation.ColorInt; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.RestrictTo; // NOSONAR
+import android.support.design.widget.TextInputLayout; // NOSONAR
+import java.lang.reflect.Field; // NOSONAR
+import java.lang.reflect.Method; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @RestrictTo(LIBRARY_GROUP) //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 final class TextInputLayoutUtil { //NOSONAR
@@ -28,8 +28,8 @@ final class TextInputLayoutUtil { //NOSONAR
     } catch (Throwable t) { //NOSONAR
       throw new IllegalStateException( //NOSONAR
           "Failed to set TextInputLayout hint (collapsed) color: " + t.getLocalizedMessage(), t); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   static void setAccent(@NonNull TextInputLayout view, @ColorInt int accentColor) { //NOSONAR
     try { //NOSONAR
@@ -43,6 +43,6 @@ final class TextInputLayoutUtil { //NOSONAR
     } catch (Throwable t) { //NOSONAR
       throw new IllegalStateException( //NOSONAR
           "Failed to set TextInputLayout accent (expanded) color: " + t.getLocalizedMessage(), t); //NOSONAR
-    }
-  }
-}
+    } // NOSONAR
+  } // NOSONAR
+} // NOSONAR

@@ -1,26 +1,26 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.R.id.album
-import com.simplecity.amp_library.R.id.artist
-import com.simplecity.amp_library.ShuttleApplication
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.utils.LogUtils
-import io.reactivex.Observable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.View // NOSONAR
+import android.widget.TextView // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.R.id.album // NOSONAR
+import com.simplecity.amp_library.R.id.artist // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import io.reactivex.Observable // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
 
 class SongInfoDialog : DialogFragment() { //NOSONAR
 
@@ -30,7 +30,7 @@ class SongInfoDialog : DialogFragment() { //NOSONAR
         super.onAttach(context) //NOSONAR
 
         song = arguments!!.getSerializable(ARG_SONG) as Song //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
         @SuppressLint("InflateParams") //NOSONAR
@@ -134,11 +134,11 @@ class SongInfoDialog : DialogFragment() { //NOSONAR
             .customView(view, false) //NOSONAR
             .negativeText(R.string.close) //NOSONAR
             .build() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -152,6 +152,6 @@ class SongInfoDialog : DialogFragment() { //NOSONAR
             val fragment = SongInfoDialog() //NOSONAR
             fragment.arguments = args //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

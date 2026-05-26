@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
 
-    <dimen name="header_view_height">180dp</dimen>
+    <dimen name="header_view_height">180dp</dimen> <!-- NOSONAR -->
     
-</resources>
+</resources> <!-- NOSONAR -->

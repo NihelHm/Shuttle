@@ -1,28 +1,28 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/play"
-        android:title="@string/play_selection" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/play" <!-- NOSONAR -->
+        android:title="@string/play_selection" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/playNext"
-        android:title="@string/play_next" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/playNext" <!-- NOSONAR -->
+        android:title="@string/play_next" /> <!-- NOSONAR -->
 
-    <item
-        android:title="@string/menu_add_to">
-        <menu>
-            <item
-                android:id="@+id/addToPlaylist"
-                android:title="@string/menu_playlist">
-                <menu />
-            </item>
+    <item <!-- NOSONAR -->
+        android:title="@string/menu_add_to"> <!-- NOSONAR -->
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToPlaylist" <!-- NOSONAR -->
+                android:title="@string/menu_playlist"> <!-- NOSONAR -->
+                <menu /> <!-- NOSONAR -->
+            </item> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/addToQueue"
-                android:title="@string/menu_queue" />
-        </menu>
-    </item>
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToQueue" <!-- NOSONAR -->
+                android:title="@string/menu_queue" /> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

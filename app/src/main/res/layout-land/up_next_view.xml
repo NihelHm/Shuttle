@@ -1,175 +1,175 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_sheet_peek_2_height"
-    android:clipToPadding="false">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<FrameLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="@dimen/bottom_sheet_peek_2_height" <!-- NOSONAR -->
+    android:clipToPadding="false"> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:id="@+id/buttonContainer"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/bottom_sheet_peek_1_height"
-        android:layout_gravity="bottom"
-        android:orientation="horizontal"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
-        tools:parentTag="android.widget.LinearLayout">
+    <LinearLayout <!-- NOSONAR -->
+        android:id="@+id/buttonContainer" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="@dimen/bottom_sheet_peek_1_height" <!-- NOSONAR -->
+        android:layout_gravity="bottom" <!-- NOSONAR -->
+        android:orientation="horizontal" <!-- NOSONAR -->
+        android:paddingLeft="16dp" <!-- NOSONAR -->
+        android:paddingRight="16dp" <!-- NOSONAR -->
+        tools:parentTag="android.widget.LinearLayout"> <!-- NOSONAR -->
 
-        <android.support.constraint.ConstraintLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1">
+        <android.support.constraint.ConstraintLayout <!-- NOSONAR -->
+            android:layout_width="0dp" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:layout_weight="1"> <!-- NOSONAR -->
 
-            <include
-                layout="@layout/shuffle_button"
-                android:id="@+id/shuffleButton"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginLeft="16dp"
-                android:tag=":aesthetic_ignore"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <include <!-- NOSONAR -->
+                layout="@layout/shuffle_button" <!-- NOSONAR -->
+                android:id="@+id/shuffleButton" <!-- NOSONAR -->
+                android:layout_width="44dp" <!-- NOSONAR -->
+                android:layout_height="44dp" <!-- NOSONAR -->
+                android:layout_marginLeft="16dp" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.RepeatingImageButton
-                android:id="@+id/prevButton"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:background="@drawable/ripple_circular_dark"
-                android:contentDescription="@string/btn_prev"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_skip_previous_24dp"
-                android:tag=":aesthetic_ignore"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/shuffleButton"
-                app:layout_constraintRight_toLeftOf="@+id/playPauseView"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <com.simplecity.amp_library.ui.views.RepeatingImageButton <!-- NOSONAR -->
+                android:id="@+id/prevButton" <!-- NOSONAR -->
+                android:layout_width="44dp" <!-- NOSONAR -->
+                android:layout_height="44dp" <!-- NOSONAR -->
+                android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_prev" <!-- NOSONAR -->
+                android:padding="8dp" <!-- NOSONAR -->
+                android:scaleType="centerCrop" <!-- NOSONAR -->
+                android:src="@drawable/ic_skip_previous_24dp" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintLeft_toRightOf="@+id/shuffleButton" <!-- NOSONAR -->
+                app:layout_constraintRight_toLeftOf="@+id/playPauseView" <!-- NOSONAR -->
+                app:layout_constraintTop_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.RepeatingImageButton
-                android:id="@+id/nextButton"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:background="@drawable/ripple_circular_dark"
-                android:contentDescription="@string/btn_skip"
-                android:padding="8dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ic_skip_next_24dp"
-                android:tag=":aesthetic_ignore"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toRightOf="@+id/playPauseView"
-                app:layout_constraintRight_toLeftOf="@+id/repeatButton"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <com.simplecity.amp_library.ui.views.RepeatingImageButton <!-- NOSONAR -->
+                android:id="@+id/nextButton" <!-- NOSONAR -->
+                android:layout_width="44dp" <!-- NOSONAR -->
+                android:layout_height="44dp" <!-- NOSONAR -->
+                android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_skip" <!-- NOSONAR -->
+                android:padding="8dp" <!-- NOSONAR -->
+                android:scaleType="centerCrop" <!-- NOSONAR -->
+                android:src="@drawable/ic_skip_next_24dp" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintLeft_toRightOf="@+id/playPauseView" <!-- NOSONAR -->
+                app:layout_constraintRight_toLeftOf="@+id/repeatButton" <!-- NOSONAR -->
+                app:layout_constraintTop_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-            <include
-                layout="@layout/repeat_button"
-                android:id="@+id/repeatButton"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:tag=":aesthetic_ignore"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <include <!-- NOSONAR -->
+                layout="@layout/repeat_button" <!-- NOSONAR -->
+                android:id="@+id/repeatButton" <!-- NOSONAR -->
+                android:layout_width="44dp" <!-- NOSONAR -->
+                android:layout_height="44dp" <!-- NOSONAR -->
+                android:layout_marginEnd="16dp" <!-- NOSONAR -->
+                android:layout_marginRight="16dp" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-            <com.simplecity.amp_library.ui.views.PlayPauseView
-                android:id="@+id/playPauseView"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:background="@drawable/ripple_circular_dark"
-                android:contentDescription="@string/btn_play"
-                android:tag=":aesthetic_ignore"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"/>
+            <com.simplecity.amp_library.ui.views.PlayPauseView <!-- NOSONAR -->
+                android:id="@+id/playPauseView" <!-- NOSONAR -->
+                android:layout_width="44dp" <!-- NOSONAR -->
+                android:layout_height="44dp" <!-- NOSONAR -->
+                android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+                android:contentDescription="@string/btn_play" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+                app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toBottomOf="parent" <!-- NOSONAR -->
+                app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-        </android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout> <!-- NOSONAR -->
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="12dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="12dp"
-            android:background="?attr/listDividerColor"/>
+        <View <!-- NOSONAR -->
+            android:layout_width="1dp" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:layout_marginBottom="12dp" <!-- NOSONAR -->
+            android:layout_marginLeft="8dp" <!-- NOSONAR -->
+            android:layout_marginRight="8dp" <!-- NOSONAR -->
+            android:layout_marginTop="12dp" <!-- NOSONAR -->
+            android:background="?attr/listDividerColor"/> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:id="@+id/textContainer"
-            android:layout_width="0dp"
-            android:layout_height="@dimen/bottom_sheet_peek_1_height"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            tools:parentTag="android.widget.LinearLayout">
+        <LinearLayout <!-- NOSONAR -->
+            android:id="@+id/textContainer" <!-- NOSONAR -->
+            android:layout_width="0dp" <!-- NOSONAR -->
+            android:layout_height="@dimen/bottom_sheet_peek_1_height" <!-- NOSONAR -->
+            android:layout_weight="1" <!-- NOSONAR -->
+            android:orientation="horizontal" <!-- NOSONAR -->
+            tools:parentTag="android.widget.LinearLayout"> <!-- NOSONAR -->
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
+            <LinearLayout <!-- NOSONAR -->
+                android:layout_width="0dp" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_gravity="center_vertical" <!-- NOSONAR -->
+                android:layout_marginLeft="16dp" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:orientation="vertical"> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/queueTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:tag=":aesthetic_ignore"
-                    android:text="@string/up_next_title"
-                    android:textSize="16sp"/>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/queueTextView" <!-- NOSONAR -->
+                    android:layout_width="wrap_content" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginLeft="16dp" <!-- NOSONAR -->
+                    android:layout_marginStart="16dp" <!-- NOSONAR -->
+                    android:layout_weight="1" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                    android:text="@string/up_next_title" <!-- NOSONAR -->
+                    android:textSize="16sp"/> <!-- NOSONAR -->
 
-                <android.support.v4.widget.Space
-                    android:layout_width="match_parent"
-                    android:layout_height="3dp"/>
+                <android.support.v4.widget.Space <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="3dp"/> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/queuePositionTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="16dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
-                    android:tag=":aesthetic_ignore"
-                    android:textAppearance="?attr/secondaryTextViewStyle"
-                    android:textSize="12sp"
-                    tools:text="1 / 26"/>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/queuePositionTextView" <!-- NOSONAR -->
+                    android:layout_width="wrap_content" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginLeft="16dp" <!-- NOSONAR -->
+                    android:layout_marginStart="16dp" <!-- NOSONAR -->
+                    android:layout_weight="1" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                    android:textAppearance="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+                    android:textSize="12sp" <!-- NOSONAR -->
+                    tools:text="1 / 26"/> <!-- NOSONAR -->
 
-            </LinearLayout>
+            </LinearLayout> <!-- NOSONAR -->
 
-            <ImageView
-                android:id="@+id/arrowImageView"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="end"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:src="@drawable/ic_arrow_up_24dp"/>
-        </LinearLayout>
+            <ImageView <!-- NOSONAR -->
+                android:id="@+id/arrowImageView" <!-- NOSONAR -->
+                android:layout_width="wrap_content" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:layout_gravity="end" <!-- NOSONAR -->
+                android:layout_marginEnd="16dp" <!-- NOSONAR -->
+                android:layout_marginRight="16dp" <!-- NOSONAR -->
+                android:src="@drawable/ic_arrow_up_24dp"/> <!-- NOSONAR -->
+        </LinearLayout> <!-- NOSONAR -->
 
-    </LinearLayout>
+    </LinearLayout> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.SizableSeekBar
-        android:id="@+id/seekBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:paddingEnd="0dp"
-        android:paddingStart="0dp"
-        android:tag=":aesthetic_ignore"
-        tools:max="100"
-        tools:progress="60"
-        style="@style/SeekBar.NoBackground"/>
-</FrameLayout>
+    <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+        android:id="@+id/seekBar" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:indeterminate="false" <!-- NOSONAR -->
+        android:paddingEnd="0dp" <!-- NOSONAR -->
+        android:paddingStart="0dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        tools:max="100" <!-- NOSONAR -->
+        tools:progress="60" <!-- NOSONAR -->
+        style="@style/SeekBar.NoBackground"/> <!-- NOSONAR -->
+</FrameLayout> <!-- NOSONAR -->

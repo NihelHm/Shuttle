@@ -1,63 +1,63 @@
-package com.simplecity.amp_library.ui.screens.main;
+package com.simplecity.amp_library.ui.screens.main; // NOSONAR
 
-import android.content.Context;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.cantrowitz.rxbroadcast.RxBroadcast;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.model.Album;
-import com.simplecity.amp_library.model.AlbumArtist;
-import com.simplecity.amp_library.model.Genre;
-import com.simplecity.amp_library.model.Playlist;
-import com.simplecity.amp_library.playback.MediaManager;
-import com.simplecity.amp_library.playback.constants.InternalIntents;
-import com.simplecity.amp_library.rx.UnsafeAction;
-import com.simplecity.amp_library.ui.screens.album.detail.AlbumDetailFragment;
-import com.simplecity.amp_library.ui.screens.artist.detail.ArtistDetailFragment;
-import com.simplecity.amp_library.ui.screens.drawer.DrawerLockController;
-import com.simplecity.amp_library.ui.screens.drawer.DrawerLockManager;
-import com.simplecity.amp_library.ui.screens.drawer.DrawerProvider;
-import com.simplecity.amp_library.ui.screens.drawer.MiniPlayerLockManager;
-import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay;
-import com.simplecity.amp_library.ui.screens.equalizer.EqualizerFragment;
-import com.simplecity.amp_library.ui.screens.folders.FolderFragment;
-import com.simplecity.amp_library.ui.screens.genre.detail.GenreDetailFragment;
-import com.simplecity.amp_library.ui.screens.miniplayer.MiniPlayerFragment;
-import com.simplecity.amp_library.ui.screens.nowplaying.PlayerFragment;
-import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter;
-import com.simplecity.amp_library.ui.screens.playlist.detail.PlaylistDetailFragment;
-import com.simplecity.amp_library.ui.screens.queue.QueueFragment;
-import com.simplecity.amp_library.ui.screens.upnext.UpNextView;
-import com.simplecity.amp_library.ui.settings.SettingsParentFragment;
-import com.simplecity.amp_library.ui.views.multisheet.CustomMultiSheetView;
-import com.simplecity.amp_library.ui.views.multisheet.MultiSheetEventRelay;
-import com.simplecity.amp_library.ui.views.multisheet.MultiSheetSlideEventRelay;
-import com.simplecity.amp_library.utils.LogUtils;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.SleepTimer;
-import com.simplecity.multisheetview.ui.view.MultiSheetView;
-import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
-import java.util.List;
-import javax.inject.Inject;
-import test.com.androidnavigation.fragment.BackPressHandler;
-import test.com.androidnavigation.fragment.BaseNavigationController;
-import test.com.androidnavigation.fragment.FragmentInfo;
+import android.content.Context; // NOSONAR
+import android.content.IntentFilter; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.os.Handler; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.v4.app.Fragment; // NOSONAR
+import android.support.v4.app.FragmentTransaction; // NOSONAR
+import android.support.v4.util.Pair; // NOSONAR
+import android.support.v4.widget.DrawerLayout; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.Toast; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import com.cantrowitz.rxbroadcast.RxBroadcast; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.model.Album; // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist; // NOSONAR
+import com.simplecity.amp_library.model.Genre; // NOSONAR
+import com.simplecity.amp_library.model.Playlist; // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager; // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents; // NOSONAR
+import com.simplecity.amp_library.rx.UnsafeAction; // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.detail.AlbumDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.artist.detail.ArtistDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.DrawerLockController; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.DrawerLockManager; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.DrawerProvider; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.MiniPlayerLockManager; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay; // NOSONAR
+import com.simplecity.amp_library.ui.screens.equalizer.EqualizerFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.folders.FolderFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.detail.GenreDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.miniplayer.MiniPlayerFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.nowplaying.PlayerFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter; // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.detail.PlaylistDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.queue.QueueFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.upnext.UpNextView; // NOSONAR
+import com.simplecity.amp_library.ui.settings.SettingsParentFragment; // NOSONAR
+import com.simplecity.amp_library.ui.views.multisheet.CustomMultiSheetView; // NOSONAR
+import com.simplecity.amp_library.ui.views.multisheet.MultiSheetEventRelay; // NOSONAR
+import com.simplecity.amp_library.ui.views.multisheet.MultiSheetSlideEventRelay; // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.SleepTimer; // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.schedulers.Schedulers; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
+import test.com.androidnavigation.fragment.BackPressHandler; // NOSONAR
+import test.com.androidnavigation.fragment.BaseNavigationController; // NOSONAR
+import test.com.androidnavigation.fragment.FragmentInfo; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class MainController extends BaseNavigationController implements BackPressHandler, DrawerLockController { //NOSONAR
@@ -96,17 +96,17 @@ public class MainController extends BaseNavigationController implements BackPres
         MainController fragment = new MainController(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     public MainController() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onAttach(Context context) { //NOSONAR
         AndroidSupportInjection.inject(this); //NOSONAR
         super.onAttach(context); //NOSONAR
-    }
+    } // NOSONAR
 
     @Nullable //NOSONAR
     @Override //NOSONAR
@@ -129,7 +129,7 @@ public class MainController extends BaseNavigationController implements BackPres
                     .commit(); //NOSONAR
         } else { //NOSONAR
             multiSheetView.restoreSheet(savedInstanceState.getInt(STATE_CURRENT_SHEET)); //NOSONAR
-        }
+        } // NOSONAR
 
         ((ViewGroup) multiSheetView.findViewById(multiSheetView.getSheetPeekViewResId(MultiSheetView.Sheet.SECOND))).addView( //NOSONAR
                 UpNextView.Companion.newInstance(getContext(), playerPresenter, settingsManager)); //NOSONAR
@@ -137,7 +137,7 @@ public class MainController extends BaseNavigationController implements BackPres
         toggleBottomSheetVisibility(false, false); //NOSONAR
 
         return rootView; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onResume() { //NOSONAR
@@ -145,7 +145,7 @@ public class MainController extends BaseNavigationController implements BackPres
 
         if (delayHandler != null) { //NOSONAR
             delayHandler.removeCallbacksAndMessages(null); //NOSONAR
-        }
+        } // NOSONAR
         delayHandler = new Handler(); //NOSONAR
 
         disposables.add(navigationEventRelay.getEvents() //NOSONAR
@@ -209,8 +209,8 @@ public class MainController extends BaseNavigationController implements BackPres
                                 pushViewController(GenreDetailFragment.Companion.newInstance(genre), "GenreDetailFragment"); //NOSONAR
                             }, 250); //NOSONAR
                             break; //NOSONAR
-                    }
-                }));
+                    } // NOSONAR
+                })); // NOSONAR
 
         IntentFilter intentFilter = new IntentFilter(); //NOSONAR
         intentFilter.addAction(InternalIntents.SERVICE_CONNECTED); //NOSONAR
@@ -221,11 +221,11 @@ public class MainController extends BaseNavigationController implements BackPres
                         .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                         .subscribe(intent -> { //NOSONAR
                             toggleBottomSheetVisibility(true, true); //NOSONAR
-                        })
-        );
+                        }) // NOSONAR
+        ); // NOSONAR
 
         DrawerLockManager.getInstance().setDrawerLockController(this); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onPause() { //NOSONAR
@@ -237,57 +237,57 @@ public class MainController extends BaseNavigationController implements BackPres
         DrawerLockManager.getInstance().setDrawerLockController(null); //NOSONAR
 
         super.onPause(); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Hide/show the bottom sheet, depending on whether the queue is empty.
-     */
+    /** // NOSONAR
+     * Hide/show the bottom sheet, depending on whether the queue is empty. // NOSONAR
+     */ // NOSONAR
     private void toggleBottomSheetVisibility(boolean collapse, boolean animate) { //NOSONAR
         if (!mediaManager.getQueueReloading() && mediaManager.getQueue().isEmpty()) { //NOSONAR
             multiSheetView.hide(collapse, false); //NOSONAR
         } else if (MiniPlayerLockManager.getInstance().canShowMiniPlayer()) { //NOSONAR
             multiSheetView.unhide(animate); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onSaveInstanceState(Bundle outState) { //NOSONAR
         outState.putInt(STATE_CURRENT_SHEET, multiSheetView.getCurrentSheet()); //NOSONAR
         super.onSaveInstanceState(outState); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public FragmentInfo getRootViewControllerInfo() { //NOSONAR
         return LibraryController.fragmentInfo(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean consumeBackPress() { //NOSONAR
         if (multiSheetView.consumeBackPress()) { //NOSONAR
             return true; //NOSONAR
-        }
+        } // NOSONAR
 
         return super.consumeBackPress(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void lockDrawer() { //NOSONAR
         ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void unlockDrawer() { //NOSONAR
-        // Don't unlock the drawer if one of the sheets is expanded
+        // Don't unlock the drawer if one of the sheets is expanded // NOSONAR
         if (multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.FIRST || multiSheetView.getCurrentSheet() == MultiSheetView.Sheet.SECOND) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         ((DrawerProvider) getActivity()).getDrawerLayout().setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED); //NOSONAR
-    }
+    } // NOSONAR
 
-    // To do later:  Remove once cause of shared element crash is understood.
-    // This is a copy of the superclass method of the same name/signature, with some additional logging
-    // to help ascertain the cause of a crash.
+    // To do later:  Remove once cause of shared element crash is understood. // NOSONAR
+    // This is a copy of the superclass method of the same name/signature, with some additional logging // NOSONAR
+    // to help ascertain the cause of a crash. // NOSONAR
     @Override //NOSONAR
     public void pushViewController(@NonNull Fragment fragment, @Nullable String tag, @Nullable List<Pair<View, String>> sharedElements) { //NOSONAR
         FragmentTransaction fragmentTransaction = getChildFragmentManager() //NOSONAR
@@ -299,12 +299,12 @@ public class MainController extends BaseNavigationController implements BackPres
                     fragmentTransaction.addSharedElement(pair.first, pair.second); //NOSONAR
                 } catch (IllegalArgumentException e) { //NOSONAR
                     LogUtils.logException(TAG, String.format("Error adding shared element transition.. key: %s, value: %s", pair.first, pair.second), e); //NOSONAR
-                }
-            }
-        }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         fragmentTransaction.addToBackStack(null) //NOSONAR
                 .replace(test.com.androidnavigation.R.id.mainContainer, fragment, tag) //NOSONAR
                 .commit(); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

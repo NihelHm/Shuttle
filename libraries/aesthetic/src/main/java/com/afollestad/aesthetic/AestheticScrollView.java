@@ -1,15 +1,15 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
-import android.content.Context;
-import android.util.AttributeSet;
-import android.widget.ScrollView;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import android.content.Context; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import android.widget.ScrollView; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticScrollView extends ScrollView { //NOSONAR
 
@@ -17,19 +17,19 @@ public class AestheticScrollView extends ScrollView { //NOSONAR
 
   public AestheticScrollView(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticScrollView(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticScrollView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
-  }
+  } // NOSONAR
 
   private void invalidateColors(int color) { //NOSONAR
     EdgeGlowUtil.setEdgeGlowColor(this, color); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onAttachedToWindow() { //NOSONAR
@@ -43,14 +43,14 @@ public class AestheticScrollView extends ScrollView { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@NonNull Integer color) { //NOSONAR
                     invalidateColors(color); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     subscription.dispose(); //NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

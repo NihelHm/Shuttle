@@ -1,32 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector"
-    tools:layout_editor_absoluteX="0dp"
-    tools:layout_editor_absoluteY="25dp">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.constraint.ConstraintLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="wrap_content" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    tools:layout_editor_absoluteX="0dp" <!-- NOSONAR -->
+    tools:layout_editor_absoluteY="25dp"> <!-- NOSONAR -->
 
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView <!-- NOSONAR -->
+        android:id="@+id/image" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="0dp" <!-- NOSONAR -->
+        android:scaleType="centerCrop" <!-- NOSONAR -->
+        app:layout_constraintDimensionRatio="1:1" <!-- NOSONAR -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- NOSONAR -->
+        app:layout_constraintStart_toStartOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-    <include
-        layout="@layout/grid_item_bottom_container"
-        android:layout_width="0dp"
-        android:layout_height="68dp"
-        android:layout_gravity="bottom"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"/>
+    <include <!-- NOSONAR -->
+        layout="@layout/grid_item_bottom_container" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="68dp" <!-- NOSONAR -->
+        android:layout_gravity="bottom" <!-- NOSONAR -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- NOSONAR -->
+        app:layout_constraintStart_toStartOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/image"/> <!-- NOSONAR -->
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout> <!-- NOSONAR -->

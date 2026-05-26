@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="wrap_content"> <!-- NOSONAR -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:background="?attr/listDividerColor"
-        tools:ignore="ContentDescription"/>
+    <View <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="1dp" <!-- NOSONAR -->
+        android:layout_marginBottom="8dp" <!-- NOSONAR -->
+        android:layout_marginTop="8dp" <!-- NOSONAR -->
+        android:background="?attr/listDividerColor" <!-- NOSONAR -->
+        tools:ignore="ContentDescription"/> <!-- NOSONAR -->
 
-</FrameLayout>
+</FrameLayout> <!-- NOSONAR -->

@@ -1,17 +1,17 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.playback
+package com.simplecity.amp_library.playback // NOSONAR
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.media.AudioManager
+import android.content.BroadcastReceiver // NOSONAR
+import android.content.Context // NOSONAR
+import android.content.Intent // NOSONAR
+import android.content.IntentFilter // NOSONAR
+import android.media.AudioManager // NOSONAR
 
 class HeadsetManager( //NOSONAR
     private val playbackManager: PlaybackManager, //NOSONAR
     private val playbackSettingsManager: PlaybackSettingsManager //NOSONAR
-) {
+) { // NOSONAR
 
     private var headsetReceiver: BroadcastReceiver? = null //NOSONAR
 
@@ -26,26 +26,26 @@ class HeadsetManager( //NOSONAR
 
                 if (isInitialStickyBroadcast) { //NOSONAR
                     return //NOSONAR
-                }
+                } // NOSONAR
 
                 if (intent.hasExtra("state")) { //NOSONAR
                     if (intent.getIntExtra("state", 0) == 0) { //NOSONAR
                         if (playbackSettingsManager.pauseOnHeadsetDisconnect) { //NOSONAR
                             playbackManager.pause(false) //NOSONAR
-                        }
+                        } // NOSONAR
                     } else if (intent.getIntExtra("state", 0) == 1) { //NOSONAR
                         if (playbackSettingsManager.playOnHeadsetConnect) { //NOSONAR
                             playbackManager.play() //NOSONAR
-                        }
-                    }
-                }
-            }
-        }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         context.registerReceiver(headsetReceiver, filter) //NOSONAR
-    }
+    } // NOSONAR
 
     fun unregisterHeadsetPlugReceiver(context: Context) { //NOSONAR
         context.unregisterReceiver(headsetReceiver) //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

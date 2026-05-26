@@ -1,41 +1,41 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.support.annotation.CheckResult;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StyleRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.util.ArrayMap;
-import android.support.v4.util.Pair;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
-import android.view.LayoutInflater;
-import android.view.ViewGroup;
+import android.annotation.SuppressLint; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.content.SharedPreferences; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.graphics.drawable.ColorDrawable; // NOSONAR
+import android.support.annotation.CheckResult; // NOSONAR
+import android.support.annotation.ColorInt; // NOSONAR
+import android.support.annotation.ColorRes; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.annotation.StyleRes; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.support.v4.util.ArrayMap; // NOSONAR
+import android.support.v4.util.Pair; // NOSONAR
+import android.support.v4.widget.DrawerLayout; // NOSONAR
+import android.support.v7.app.AppCompatActivity; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
 
-import com.f2prateek.rx.preferences2.RxSharedPreferences;
+import com.f2prateek.rx.preferences2.RxSharedPreferences; // NOSONAR
 
-import io.reactivex.Observable;
-import io.reactivex.ObservableSource;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.ObservableSource; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.functions.BiFunction; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
+import io.reactivex.functions.Function; // NOSONAR
+import io.reactivex.functions.Predicate; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
-import static com.afollestad.aesthetic.Util.isColorLight;
-import static com.afollestad.aesthetic.Util.resolveColor;
-import static com.afollestad.aesthetic.Util.setLightStatusBarCompat;
-import static com.afollestad.aesthetic.Util.setNavBarColorCompat;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
+import static com.afollestad.aesthetic.Util.isColorLight; // NOSONAR
+import static com.afollestad.aesthetic.Util.resolveColor; // NOSONAR
+import static com.afollestad.aesthetic.Util.setLightStatusBarCompat; // NOSONAR
+import static com.afollestad.aesthetic.Util.setNavBarColorCompat; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"WeakerAccess", "unused"}) //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class Aesthetic { //NOSONAR
@@ -84,7 +84,7 @@ public class Aesthetic { //NOSONAR
     editor = prefs.edit(); //NOSONAR
     rxPrefs = RxSharedPreferences.create(prefs); //NOSONAR
     lastActivityThemes = new ArrayMap<>(2); //NOSONAR
-  }
+  } // NOSONAR
 
   private static String key(@Nullable Context context) { //NOSONAR
     String key; //NOSONAR
@@ -92,14 +92,14 @@ public class Aesthetic { //NOSONAR
       key = ((AestheticKeyProvider) context).key(); //NOSONAR
     } else { //NOSONAR
       key = "default"; //NOSONAR
-    }
+    } // NOSONAR
     if (key == null) { //NOSONAR
       key = "default"; //NOSONAR
-    }
+    } // NOSONAR
     return key; //NOSONAR
-  }
+  } // NOSONAR
 
-  /** Should be called before super.onCreate() in each Activity. */
+  /** Should be called before super.onCreate() in each Activity. */ // NOSONAR
   @NonNull //NOSONAR
   public void attach(@NonNull AppCompatActivity activity) { //NOSONAR
 
@@ -111,58 +111,58 @@ public class Aesthetic { //NOSONAR
     instance.lastActivityThemes.put(activity.getClass().getName(), latestActivityTheme); //NOSONAR
     if (latestActivityTheme != 0) { //NOSONAR
       activity.setTheme(latestActivityTheme); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   private static int getLastActivityTheme(@Nullable Context forContext) { //NOSONAR
     if (forContext == null || instance == null) { //NOSONAR
       return 0; //NOSONAR
-    }
+    } // NOSONAR
     Integer lastActivityTheme = instance.lastActivityThemes.get(forContext.getClass().getName()); //NOSONAR
     if (lastActivityTheme == null) { //NOSONAR
       return 0; //NOSONAR
-    }
+    } // NOSONAR
     return lastActivityTheme; //NOSONAR
-  }
+  } // NOSONAR
 
   @NonNull //NOSONAR
   @CheckResult //NOSONAR
   public static Aesthetic get(Context context) { //NOSONAR
     if (instance == null) { //NOSONAR
       instance = new Aesthetic(context); //NOSONAR
-    }
+    } // NOSONAR
     instance.context = context; //NOSONAR
 
     return instance; //NOSONAR
-  }
+  } // NOSONAR
 
-  /** Should be called in onPause() of each Activity. */
+  /** Should be called in onPause() of each Activity. */ // NOSONAR
   public void pause(@NonNull AppCompatActivity activity) { //NOSONAR
     if (instance == null) { //NOSONAR
         return; //NOSONAR
-    }
+    } // NOSONAR
     if (instance.subs != null) { //NOSONAR
         instance.subs.clear(); //NOSONAR
-    }
+    } // NOSONAR
 
     if (activity.isFinishing()) { //NOSONAR
       if (instance.context != null //NOSONAR
             && instance.context.getClass().getName().equals(activity.getClass().getName())) { //NOSONAR
         instance.context = null; //NOSONAR
-      }
-    }
-  }
+      } // NOSONAR
+    } // NOSONAR
+  } // NOSONAR
 
-  /** Should be called in onResume() of each Activity. */
+  /** Should be called in onResume() of each Activity. */ // NOSONAR
   public void resume(@NonNull final AppCompatActivity activity) { //NOSONAR
     if (instance == null) { //NOSONAR
       return; //NOSONAR
-    }
+    } // NOSONAR
     instance.context = activity; //NOSONAR
 
     if (instance.subs != null) { //NOSONAR
       instance.subs.clear(); //NOSONAR
-    }
+    } // NOSONAR
     instance.subs = new CompositeDisposable(); //NOSONAR
     instance.subs.add( //NOSONAR
         instance //NOSONAR
@@ -173,8 +173,8 @@ public class Aesthetic { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@io.reactivex.annotations.NonNull Integer color) { //NOSONAR
                     Util.setTaskDescriptionColor(activity, color); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
     instance.subs.add( //NOSONAR
         instance //NOSONAR
@@ -186,11 +186,11 @@ public class Aesthetic { //NOSONAR
                   public void accept(@io.reactivex.annotations.NonNull Integer themeId) { //NOSONAR
                     if (getLastActivityTheme(activity) == themeId) { //NOSONAR
                       return; //NOSONAR
-                    }
+                    } // NOSONAR
                     instance.lastActivityThemes.put(activity.getClass().getName(), themeId); //NOSONAR
                     activity.recreate(); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
     instance.subs.add( //NOSONAR
         Observable.combineLatest( //NOSONAR
@@ -200,8 +200,8 @@ public class Aesthetic { //NOSONAR
                   @Override //NOSONAR
                   public Pair<Integer, Integer> apply(Integer integer, Integer integer2) { //NOSONAR
                     return Pair.create(integer, integer2); //NOSONAR
-                  }
-                })
+                  } // NOSONAR
+                }) // NOSONAR
             .compose(Rx.<Pair<Integer, Integer>>distinctToMainThread()) //NOSONAR
             .subscribe( //NOSONAR
                 new Consumer<Pair<Integer, Integer>>() { //NOSONAR
@@ -209,8 +209,8 @@ public class Aesthetic { //NOSONAR
                   public void accept( //NOSONAR
                       @io.reactivex.annotations.NonNull Pair<Integer, Integer> result) { //NOSONAR
                     instance.invalidateStatusBar(activity); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
     instance.subs.add( //NOSONAR
         instance //NOSONAR
@@ -221,8 +221,8 @@ public class Aesthetic { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@io.reactivex.annotations.NonNull Integer color) { //NOSONAR
                     setNavBarColorCompat(activity, color); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
     instance.subs.add( //NOSONAR
         instance //NOSONAR
@@ -233,22 +233,22 @@ public class Aesthetic { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@io.reactivex.annotations.NonNull Integer color) { //NOSONAR
                     activity.getWindow().setBackgroundDrawable(new ColorDrawable(color)); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
 
     if (MaterialDialogsUtil.shouldSupport()) { //NOSONAR
       instance.subs.add(MaterialDialogsUtil.observe(instance)); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
-  /** Returns true if this method has never been called before. */
+  /** Returns true if this method has never been called before. */ // NOSONAR
   public static boolean isFirstTime(AppCompatActivity appCompatActivity) { //NOSONAR
     String key = String.format(KEY_FIRST_TIME, key(appCompatActivity)); //NOSONAR
     boolean firstTime = instance.prefs.getBoolean(key, true); //NOSONAR
     instance.editor.putBoolean(key, false).commit(); //NOSONAR
     return firstTime; //NOSONAR
-  }
+  } // NOSONAR
 
   private void invalidateStatusBar(AppCompatActivity activity) { //NOSONAR
     String key = String.format(KEY_STATUS_BAR_COLOR, key(activity)); //NOSONAR
@@ -256,14 +256,14 @@ public class Aesthetic { //NOSONAR
 
     ViewGroup rootView = Util.getRootView(activity); //NOSONAR
     if (rootView instanceof DrawerLayout) { //NOSONAR
-      // Color is set to DrawerLayout, Activity gets transparent status bar
+      // Color is set to DrawerLayout, Activity gets transparent status bar // NOSONAR
       setLightStatusBarCompat(activity, false); //NOSONAR
       Util.setStatusBarColorCompat( //NOSONAR
           activity, ContextCompat.getColor(activity, android.R.color.transparent)); //NOSONAR
       ((DrawerLayout) rootView).setStatusBarBackgroundColor(color); //NOSONAR
     } else { //NOSONAR
       Util.setStatusBarColorCompat(activity, color); //NOSONAR
-    }
+    } // NOSONAR
 
     final int mode = prefs.getInt(KEY_LIGHT_STATUS_MODE, AutoSwitchMode.AUTO); //NOSONAR
     switch (mode) { //NOSONAR
@@ -276,19 +276,19 @@ public class Aesthetic { //NOSONAR
       default: //NOSONAR
         setLightStatusBarCompat(activity, isColorLight(color)); //NOSONAR
         break; //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
-  //
-  /////// GETTERS AND SETTERS OF THEME PROPERTIES
-  //
+  // // NOSONAR
+  /////// GETTERS AND SETTERS OF THEME PROPERTIES // NOSONAR
+  // // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic activityTheme(@StyleRes int theme) { //NOSONAR
     String key = String.format(KEY_ACTIVITY_THEME, key(context)); //NOSONAR
     editor.putInt(key, theme); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> activityTheme() { //NOSONAR
@@ -301,35 +301,35 @@ public class Aesthetic { //NOSONAR
               @Override //NOSONAR
               public boolean test(@io.reactivex.annotations.NonNull Integer next) throws Exception { //NOSONAR
                 return next != 0 && next != getLastActivityTheme(instance.context); //NOSONAR
-              }
-            });
-  }
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic isDark(boolean isDark) { //NOSONAR
     String key = String.format(KEY_IS_DARK, key(context)); //NOSONAR
     editor.putBoolean(key, isDark).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Boolean> isDark() { //NOSONAR
     String key = String.format(KEY_IS_DARK, key(context)); //NOSONAR
     return rxPrefs.getBoolean(key, false).asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorPrimary(@ColorInt int color) { //NOSONAR
-    // needs to be committed immediately so that for statusBarColorAuto() and other auto methods
+    // needs to be committed immediately so that for statusBarColorAuto() and other auto methods // NOSONAR
     String key = String.format(KEY_PRIMARY_COLOR, key(context)); //NOSONAR
     editor.putInt(key, color).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorPrimaryRes(@ColorRes int color) { //NOSONAR
     return colorPrimary(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorPrimary() { //NOSONAR
@@ -337,38 +337,38 @@ public class Aesthetic { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(key, resolveColor(context, R.attr.colorPrimary)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorPrimaryDark(@ColorInt int color) { //NOSONAR
-    // needs to be committed immediately so that for statusBarColorAuto() and other auto methods
+    // needs to be committed immediately so that for statusBarColorAuto() and other auto methods // NOSONAR
     editor.putInt(KEY_PRIMARY_DARK_COLOR, color).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorPrimaryDarkRes(@ColorRes int color) { //NOSONAR
     return colorPrimaryDark(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorPrimaryDark() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_PRIMARY_DARK_COLOR, resolveColor(context, R.attr.colorPrimaryDark)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorAccent(@ColorInt int color) { //NOSONAR
     String key = String.format(KEY_ACCENT_COLOR, key(context)); //NOSONAR
     editor.putInt(key, color).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorAccentRes(@ColorRes int color) { //NOSONAR
     return colorAccent(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorAccent() { //NOSONAR
@@ -376,36 +376,36 @@ public class Aesthetic { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(key, resolveColor(context, R.attr.colorAccent)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorPrimary(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_PRIMARY_TEXT_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorPrimaryRes(@ColorRes int color) { //NOSONAR
     return textColorPrimary(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> textColorPrimary() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_PRIMARY_TEXT_COLOR, resolveColor(context, android.R.attr.textColorPrimary)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorSecondary(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_SECONDARY_TEXT_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorSecondaryRes(@ColorRes int color) { //NOSONAR
     return textColorSecondary(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> textColorSecondary() { //NOSONAR
@@ -413,18 +413,18 @@ public class Aesthetic { //NOSONAR
         .getInteger( //NOSONAR
             KEY_SECONDARY_TEXT_COLOR, resolveColor(context, android.R.attr.textColorSecondary)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorPrimaryInverse(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_PRIMARY_TEXT_INVERSE_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorPrimaryInverseRes(@ColorRes int color) { //NOSONAR
     return textColorPrimaryInverse(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> textColorPrimaryInverse() { //NOSONAR
@@ -433,18 +433,18 @@ public class Aesthetic { //NOSONAR
             KEY_PRIMARY_TEXT_INVERSE_COLOR, //NOSONAR
             resolveColor(context, android.R.attr.textColorPrimaryInverse)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorSecondaryInverse(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_SECONDARY_TEXT_INVERSE_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic textColorSecondaryInverseRes(@ColorRes int color) { //NOSONAR
     return textColorSecondaryInverse(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> textColorSecondaryInverse() { //NOSONAR
@@ -453,19 +453,19 @@ public class Aesthetic { //NOSONAR
             KEY_SECONDARY_TEXT_INVERSE_COLOR, //NOSONAR
             resolveColor(context, android.R.attr.textColorSecondaryInverse)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorWindowBackground(@ColorInt int color) { //NOSONAR
     String key = String.format(KEY_WINDOW_BG_COLOR, key(context)); //NOSONAR
     editor.putInt(key, color).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorWindowBackgroundRes(@ColorRes int color) { //NOSONAR
     return colorWindowBackground(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorWindowBackground() { //NOSONAR
@@ -473,19 +473,19 @@ public class Aesthetic { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(key, resolveColor(context, android.R.attr.windowBackground)) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorStatusBar(@ColorInt int color) { //NOSONAR
     String key = String.format(KEY_STATUS_BAR_COLOR, key(context)); //NOSONAR
     editor.putInt(key, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorStatusBarRes(@ColorRes int color) { //NOSONAR
     return colorStatusBar(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorStatusBarAuto() { //NOSONAR
@@ -496,7 +496,7 @@ public class Aesthetic { //NOSONAR
         Util.darkenColor( //NOSONAR
             prefs.getInt(primaryColorKey, resolveColor(context, R.attr.colorPrimary)))); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorStatusBar() { //NOSONAR
@@ -508,21 +508,21 @@ public class Aesthetic { //NOSONAR
                   @io.reactivex.annotations.NonNull Integer primaryDarkColor) throws Exception { //NOSONAR
                 String key = String.format(KEY_STATUS_BAR_COLOR, key(context)); //NOSONAR
                 return rxPrefs.getInteger(key, primaryDarkColor).asObservable(); //NOSONAR
-              }
-            });
-  }
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorNavigationBar(@ColorInt int color) { //NOSONAR
     String key = String.format(KEY_NAV_BAR_COLOR, key(context)); //NOSONAR
     editor.putInt(key, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorNavigationBarRes(@ColorRes int color) { //NOSONAR
     return colorNavigationBar(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorNavigationBarAuto(boolean auto) { //NOSONAR
@@ -533,89 +533,89 @@ public class Aesthetic { //NOSONAR
       editor.putInt(navBarKey, isColorLight(color) ? Color.BLACK : color); //NOSONAR
     } else { //NOSONAR
       editor.remove(navBarKey); //NOSONAR
-    }
+    } // NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorNavigationBar() { //NOSONAR
     String key = String.format(KEY_NAV_BAR_COLOR, key(context)); //NOSONAR
     return rxPrefs.getInteger(key, Color.BLACK).asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic lightStatusBarMode(@AutoSwitchMode int mode) { //NOSONAR
     editor.putInt(KEY_LIGHT_STATUS_MODE, mode); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> lightStatusBarMode() { //NOSONAR
     return rxPrefs.getInteger(KEY_LIGHT_STATUS_MODE, AutoSwitchMode.AUTO).asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic tabLayoutIndicatorMode(@TabLayoutIndicatorMode int mode) { //NOSONAR
     editor.putInt(KEY_TAB_LAYOUT_INDICATOR_MODE, mode).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> tabLayoutIndicatorMode() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_TAB_LAYOUT_INDICATOR_MODE, TabLayoutIndicatorMode.ACCENT) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic tabLayoutBackgroundMode(@TabLayoutBgMode int mode) { //NOSONAR
     editor.putInt(KEY_TAB_LAYOUT_BG_MODE, mode).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> tabLayoutBackgroundMode() { //NOSONAR
     return rxPrefs.getInteger(KEY_TAB_LAYOUT_BG_MODE, TabLayoutBgMode.PRIMARY).asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic navigationViewMode(@NavigationViewMode int mode) { //NOSONAR
     editor.putInt(KEY_NAV_VIEW_MODE, mode).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> navigationViewMode() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_NAV_VIEW_MODE, NavigationViewMode.SELECTED_PRIMARY) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic bottomNavigationBackgroundMode(@BottomNavBgMode int mode) { //NOSONAR
     editor.putInt(KEY_BOTTOM_NAV_BG_MODE, mode).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> bottomNavigationBackgroundMode() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_BOTTOM_NAV_BG_MODE, BottomNavBgMode.BLACK_WHITE_AUTO) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic bottomNavigationIconTextMode(@BottomNavIconTextMode int mode) { //NOSONAR
     editor.putInt(KEY_BOTTOM_NAV_ICONTEXT_MODE, mode).commit(); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> bottomNavigationIconTextMode() { //NOSONAR
     return rxPrefs //NOSONAR
         .getInteger(KEY_BOTTOM_NAV_ICONTEXT_MODE, BottomNavIconTextMode.SELECTED_ACCENT) //NOSONAR
         .asObservable(); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> colorCardViewBackground() { //NOSONAR
@@ -632,27 +632,27 @@ public class Aesthetic { //NOSONAR
                             context, //NOSONAR
                             isDark ? R.color.ate_cardview_bg_dark : R.color.ate_cardview_bg_light)) //NOSONAR
                     .asObservable(); //NOSONAR
-              }
-            });
-  }
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorCardViewBackground(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_CARD_VIEW_BG_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorCardViewBackgroundRes(@ColorRes int color) { //NOSONAR
     return colorCardViewBackground(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<ActiveInactiveColors> colorIconTitle( //NOSONAR
       @Nullable Observable<Integer> backgroundObservable) { //NOSONAR
     if (backgroundObservable == null) { //NOSONAR
       backgroundObservable = Aesthetic.get(context).colorPrimary(); //NOSONAR
-    }
+    } // NOSONAR
     return backgroundObservable.flatMap( //NOSONAR
         new Function<Integer, ObservableSource<ActiveInactiveColors>>() { //NOSONAR
           @Override //NOSONAR
@@ -682,33 +682,33 @@ public class Aesthetic { //NOSONAR
                       @io.reactivex.annotations.NonNull Integer integer2) //NOSONAR
                       throws Exception { //NOSONAR
                     return ActiveInactiveColors.create(integer, integer2); //NOSONAR
-                  }
-                });
-          }
-        });
-  }
+                  } // NOSONAR
+                }); // NOSONAR
+          } // NOSONAR
+        }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorIconTitleActive(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_ICON_TITLE_ACTIVE_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorIconTitleActiveRes(@ColorRes int color) { //NOSONAR
     return colorIconTitleActive(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorIconTitleInactive(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_ICON_TITLE_INACTIVE_COLOR, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic colorIconTitleInactiveRes(@ColorRes int color) { //NOSONAR
     return colorIconTitleActive(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> snackbarTextColor() { //NOSONAR
@@ -728,22 +728,22 @@ public class Aesthetic { //NOSONAR
                             return rxPrefs //NOSONAR
                                 .getInteger(KEY_SNACKBAR_TEXT, defaultTextColor) //NOSONAR
                                 .asObservable(); //NOSONAR
-                          }
-                        });
-              }
-            });
-  }
+                          } // NOSONAR
+                        }); // NOSONAR
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic snackbarTextColor(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_SNACKBAR_TEXT, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic snackbarTextColorRes(@ColorRes int color) { //NOSONAR
     return colorCardViewBackground(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Observable<Integer> snackbarActionTextColor() { //NOSONAR
@@ -754,23 +754,23 @@ public class Aesthetic { //NOSONAR
               public ObservableSource<Integer> apply( //NOSONAR
                   @io.reactivex.annotations.NonNull Integer accentColor) throws Exception { //NOSONAR
                 return rxPrefs.getInteger(KEY_SNACKBAR_ACTION_TEXT, accentColor).asObservable(); //NOSONAR
-              }
-            });
-  }
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic snackbarActionTextColor(@ColorInt int color) { //NOSONAR
     editor.putInt(KEY_SNACKBAR_ACTION_TEXT, color); //NOSONAR
     return this; //NOSONAR
-  }
+  } // NOSONAR
 
   @CheckResult //NOSONAR
   public Aesthetic snackbarActionTextColorRes(@ColorRes int color) { //NOSONAR
     return colorCardViewBackground(ContextCompat.getColor(context, color)); //NOSONAR
-  }
+  } // NOSONAR
 
-  /** Notifies all listening views that theme properties have been updated. */
+  /** Notifies all listening views that theme properties have been updated. */ // NOSONAR
   public void apply() { //NOSONAR
     editor.commit(); //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

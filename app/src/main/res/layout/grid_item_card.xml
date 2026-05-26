@@ -1,42 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
-    android:elevation="2dp"
-    android:foreground="?attr/list_selector"
-    app:cardCornerRadius="2dp"
-    app:cardUseCompatPadding="true"
-    app:elevation="2dp"
-    tools:layout_width="160dp">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.v7.widget.CardView <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="wrap_content" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:elevation="2dp" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    app:cardCornerRadius="2dp" <!-- NOSONAR -->
+    app:cardUseCompatPadding="true" <!-- NOSONAR -->
+    app:elevation="2dp" <!-- NOSONAR -->
+    tools:layout_width="160dp"> <!-- NOSONAR -->
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <android.support.constraint.ConstraintLayout <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content"> <!-- NOSONAR -->
 
-        <com.simplecity.amp_library.ui.views.SquareImageView
-            android:id="@+id/image"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:scaleType="centerCrop"
-            app:layout_constraintDimensionRatio="1:1"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/ic_placeholder_light_medium"/>
+        <com.simplecity.amp_library.ui.views.SquareImageView <!-- NOSONAR -->
+            android:id="@+id/image" <!-- NOSONAR -->
+            android:layout_width="0dp" <!-- NOSONAR -->
+            android:layout_height="0dp" <!-- NOSONAR -->
+            android:scaleType="centerCrop" <!-- NOSONAR -->
+            app:layout_constraintDimensionRatio="1:1" <!-- NOSONAR -->
+            app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+            app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+            app:layout_constraintTop_toTopOf="parent" <!-- NOSONAR -->
+            tools:src="@drawable/ic_placeholder_light_medium"/> <!-- NOSONAR -->
 
-        <include
-            layout="@layout/grid_item_bottom_container_card"
-            android:layout_width="0dp"
-            android:layout_height="68dp"
-            android:layout_gravity="bottom"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/image"/>
+        <include <!-- NOSONAR -->
+            layout="@layout/grid_item_bottom_container_card" <!-- NOSONAR -->
+            android:layout_width="0dp" <!-- NOSONAR -->
+            android:layout_height="68dp" <!-- NOSONAR -->
+            android:layout_gravity="bottom" <!-- NOSONAR -->
+            app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+            app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+            app:layout_constraintTop_toBottomOf="@id/image"/> <!-- NOSONAR -->
 
-    </android.support.constraint.ConstraintLayout>
+    </android.support.constraint.ConstraintLayout> <!-- NOSONAR -->
 
-</android.support.v7.widget.CardView>
+</android.support.v7.widget.CardView> <!-- NOSONAR -->

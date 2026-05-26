@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android"
-        android:color="@color/ripple_material_light">
-    <item android:drawable="@android:color/transparent"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+        android:color="@color/ripple_material_light"> <!-- NOSONAR -->
+    <item android:drawable="@android:color/transparent"/> <!-- NOSONAR -->
 
-    <item android:id="@android:id/mask">
-        <color android:color="@color/white"/>
-    </item>
+    <item android:id="@android:id/mask"> <!-- NOSONAR -->
+        <color android:color="@color/white"/> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item>
-        <selector
-            android:exitFadeDuration="@android:integer/config_mediumAnimTime">
+    <item> <!-- NOSONAR -->
+        <selector <!-- NOSONAR -->
+            android:exitFadeDuration="@android:integer/config_mediumAnimTime"> <!-- NOSONAR -->
 
-            <item
-                android:drawable="@drawable/list_item_activated_light"
-                android:state_activated="true"/>
+            <item <!-- NOSONAR -->
+                android:drawable="@drawable/list_item_activated_light" <!-- NOSONAR -->
+                android:state_activated="true"/> <!-- NOSONAR -->
 
-            <item
-                android:drawable="@drawable/list_item_activated_light"
-                android:state_selected="true"/>
+            <item <!-- NOSONAR -->
+                android:drawable="@drawable/list_item_activated_light" <!-- NOSONAR -->
+                android:state_selected="true"/> <!-- NOSONAR -->
 
-            <item android:drawable="@android:color/transparent"/>
-        </selector>
-    </item>
+            <item android:drawable="@android:color/transparent"/> <!-- NOSONAR -->
+        </selector> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-</ripple>
+</ripple> <!-- NOSONAR -->

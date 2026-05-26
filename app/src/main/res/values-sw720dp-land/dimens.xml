@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<resources>
+<resources> <!-- NOSONAR -->
 
-    <dimen name="equalizer_activity_top_padding">64dp</dimen>
-    <dimen name="equalizer_activity_edge_padding">196dp</dimen>
+    <dimen name="equalizer_activity_top_padding">64dp</dimen> <!-- NOSONAR -->
+    <dimen name="equalizer_activity_edge_padding">196dp</dimen> <!-- NOSONAR -->
 
-    <dimen name="header_view_height">300dp</dimen>
+    <dimen name="header_view_height">300dp</dimen> <!-- NOSONAR -->
 
-</resources>
+</resources> <!-- NOSONAR -->

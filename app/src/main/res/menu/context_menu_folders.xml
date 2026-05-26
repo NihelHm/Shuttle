@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+      xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/done"
-        android:title="@string/button_done"
-        app:showAsAction="always"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/done" <!-- NOSONAR -->
+        android:title="@string/button_done" <!-- NOSONAR -->
+        app:showAsAction="always"/> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

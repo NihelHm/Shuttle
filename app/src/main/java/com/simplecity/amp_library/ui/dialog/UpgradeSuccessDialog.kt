@@ -1,14 +1,14 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.app.Dialog
-import android.content.Intent
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.ui.screens.main.MainActivity
+import android.app.Dialog // NOSONAR
+import android.content.Intent // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.ui.screens.main.MainActivity // NOSONAR
 
 class UpgradeSuccessDialog : DialogFragment() { //NOSONAR
 
@@ -22,7 +22,7 @@ class UpgradeSuccessDialog : DialogFragment() { //NOSONAR
                 val componentName = intent.component //NOSONAR
                 val mainIntent = Intent.makeRestartActivityTask(componentName) //NOSONAR
                 startActivity(mainIntent) //NOSONAR
-            }
+            } // NOSONAR
             .build() //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

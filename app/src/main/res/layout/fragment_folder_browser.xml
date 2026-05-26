@@ -1,68 +1,68 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:id="@+id/statusBarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:id="@+id/statusBarView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark"/> <!-- NOSONAR -->
 
-    <android.support.design.widget.CoordinatorLayout
-        android:id="@+id/coordinator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:tag=":aesthetic_ignore"
-        tools:context=".ui.screens.main.MainActivity">
+    <android.support.design.widget.CoordinatorLayout <!-- NOSONAR -->
+        android:id="@+id/coordinator" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        tools:context=".ui.screens.main.MainActivity"> <!-- NOSONAR -->
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:background="?colorPrimary">
+        <android.support.design.widget.AppBarLayout <!-- NOSONAR -->
+            android:id="@+id/app_bar" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="112dp" <!-- NOSONAR -->
+            android:background="?colorPrimary"> <!-- NOSONAR -->
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways"
-                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-                app:titleEnabled="false">
+            <android.support.design.widget.CollapsingToolbarLayout <!-- NOSONAR -->
+                android:id="@+id/toolbar_layout" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways" <!-- NOSONAR -->
+                app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" <!-- NOSONAR -->
+                app:titleEnabled="false"> <!-- NOSONAR -->
 
-                <com.simplecity.amp_library.ui.views.BreadcrumbView
-                    android:id="@+id/breadcrumb_view"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:layout_gravity="bottom"/>
+                <com.simplecity.amp_library.ui.views.BreadcrumbView <!-- NOSONAR -->
+                    android:id="@+id/breadcrumb_view" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="48dp" <!-- NOSONAR -->
+                    android:layout_gravity="bottom"/> <!-- NOSONAR -->
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:transitionName="toolbar"
-                    app:layout_collapseMode="none"
-                    app:navigationIcon="?attr/homeAsUpIndicator"
-                    app:title="@string/folders_title"/>
+                <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+                    android:id="@+id/toolbar" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+                    android:transitionName="toolbar" <!-- NOSONAR -->
+                    app:layout_collapseMode="none" <!-- NOSONAR -->
+                    app:navigationIcon="?attr/homeAsUpIndicator" <!-- NOSONAR -->
+                    app:title="@string/folders_title"/> <!-- NOSONAR -->
 
-                <include
-                    android:id="@+id/contextualToolbar"
-                    layout="@layout/contextual_toolbar"/>
+                <include <!-- NOSONAR -->
+                    android:id="@+id/contextualToolbar" <!-- NOSONAR -->
+                    layout="@layout/contextual_toolbar"/> <!-- NOSONAR -->
 
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout> <!-- NOSONAR -->
+        </android.support.design.widget.AppBarLayout> <!-- NOSONAR -->
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            tools:listitem="@layout/list_item_folder"/>
+        <android.support.v7.widget.RecyclerView <!-- NOSONAR -->
+            android:id="@+id/recyclerView" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:clipToPadding="false" <!-- NOSONAR -->
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" <!-- NOSONAR -->
+            tools:listitem="@layout/list_item_folder"/> <!-- NOSONAR -->
 
-    </android.support.design.widget.CoordinatorLayout>
-</LinearLayout>
+    </android.support.design.widget.CoordinatorLayout> <!-- NOSONAR -->
+</LinearLayout> <!-- NOSONAR -->

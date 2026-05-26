@@ -1,36 +1,36 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.playback
+package com.simplecity.amp_library.playback // NOSONAR
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.drawable.Drawable
-import android.net.Uri
-import android.util.Log
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.transcode.BitmapBytesTranscoder
-import com.bumptech.glide.request.animation.GlideAnimation
-import com.bumptech.glide.request.target.SimpleTarget
-import com.google.android.gms.cast.MediaInfo
-import com.google.android.gms.cast.MediaLoadOptions
-import com.google.android.gms.cast.MediaMetadata
-import com.google.android.gms.cast.MediaStatus
-import com.google.android.gms.cast.framework.CastSession
-import com.google.android.gms.cast.framework.media.RemoteMediaClient
-import com.google.android.gms.common.images.WebImage
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.glide.utils.GlideUtils
-import com.simplecity.amp_library.http.HttpServer
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.Playback.Callbacks
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.ShuttleUtils
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
-import org.json.JSONException
-import java.io.ByteArrayOutputStream
+import android.annotation.SuppressLint // NOSONAR
+import android.content.Context // NOSONAR
+import android.graphics.Bitmap // NOSONAR
+import android.graphics.drawable.Drawable // NOSONAR
+import android.net.Uri // NOSONAR
+import android.util.Log // NOSONAR
+import com.bumptech.glide.Glide // NOSONAR
+import com.bumptech.glide.load.resource.transcode.BitmapBytesTranscoder // NOSONAR
+import com.bumptech.glide.request.animation.GlideAnimation // NOSONAR
+import com.bumptech.glide.request.target.SimpleTarget // NOSONAR
+import com.google.android.gms.cast.MediaInfo // NOSONAR
+import com.google.android.gms.cast.MediaLoadOptions // NOSONAR
+import com.google.android.gms.cast.MediaMetadata // NOSONAR
+import com.google.android.gms.cast.MediaStatus // NOSONAR
+import com.google.android.gms.cast.framework.CastSession // NOSONAR
+import com.google.android.gms.cast.framework.media.RemoteMediaClient // NOSONAR
+import com.google.android.gms.common.images.WebImage // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.glide.utils.GlideUtils // NOSONAR
+import com.simplecity.amp_library.http.HttpServer // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.Playback.Callbacks // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils // NOSONAR
+import io.reactivex.Single // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import org.json.JSONException // NOSONAR
+import java.io.ByteArrayOutputStream // NOSONAR
 
 class CastPlayback(context: Context, castSession: CastSession) : Playback { //NOSONAR
 
@@ -45,28 +45,28 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
 
     private var playerState: Int? = MediaStatus.PLAYER_STATE_UNKNOWN; //NOSONAR
 
-    // remoteMediaClient.isPlaying() returns true momentarily after it is paused, so we use this to track whether
-    // it really is playing, based on calls to play(), pause(), stop() and load()
+    // remoteMediaClient.isPlaying() returns true momentarily after it is paused, so we use this to track whether // NOSONAR
+    // it really is playing, based on calls to play(), pause(), stop() and load() // NOSONAR
     private var isMeantToBePlaying = false //NOSONAR
 
     init { //NOSONAR
         remoteMediaClientCallback = CastMediaClientCallback() //NOSONAR
-    }
+    } // NOSONAR
 
     override var isInitialized: Boolean = false //NOSONAR
 
     override val isPlaying: Boolean //NOSONAR
         get() { //NOSONAR
             return remoteMediaClient.isPlaying || isMeantToBePlaying //NOSONAR
-        }
+        } // NOSONAR
 
     override val position: Long //NOSONAR
         get() { //NOSONAR
             if (remoteMediaClient.approximateStreamPosition == 0L) { //NOSONAR
                 return if (currentPosition <= duration) currentPosition else 0L //NOSONAR
-            }
+            } // NOSONAR
             return remoteMediaClient.approximateStreamPosition //NOSONAR
-        }
+        } // NOSONAR
 
     override val audioSessionId: Int //NOSONAR
         get() = 0 //NOSONAR
@@ -74,13 +74,13 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
     override val duration: Long //NOSONAR
         get() { //NOSONAR
             return remoteMediaClient.streamDuration //NOSONAR
-        }
+        } // NOSONAR
 
     override var callbacks: Callbacks? = null //NOSONAR
 
     override fun setVolume(volume: Float) { //NOSONAR
-        // Nothing to do
-    }
+        // Nothing to do // NOSONAR
+    } // NOSONAR
 
     override fun load(song: Song, playWhenReady: Boolean, seekPosition: Long, completion: ((Boolean) -> Unit)?) { //NOSONAR
 
@@ -111,16 +111,16 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                     .setPlayPosition(seekPosition) //NOSONAR
                     .setAutoplay(playWhenReady) //NOSONAR
                     .build() //NOSONAR
-            )
+            ) // NOSONAR
 
             if (playWhenReady) { //NOSONAR
                 isMeantToBePlaying = true //NOSONAR
-            }
+            } // NOSONAR
 
             isInitialized = true //NOSONAR
 
             completion?.invoke(true) //NOSONAR
-        }
+        } // NOSONAR
 
         Glide.with(applicationContext).load(song) //NOSONAR
             .asBitmap() //NOSONAR
@@ -130,7 +130,7 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                 override fun onResourceReady(resource: ByteArray, glideAnimation: GlideAnimation<in ByteArray>?) { //NOSONAR
                     HttpServer.getInstance().serveImage(resource) //NOSONAR
                     performLoad() //NOSONAR
-                }
+                } // NOSONAR
 
                 @SuppressLint("CheckResult") //NOSONAR
                 override fun onLoadFailed(e: Exception?, errorDrawable: Drawable?) { //NOSONAR
@@ -142,28 +142,28 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                             val bitmap = GlideUtils.drawableToBitmap(errorDrawable) //NOSONAR
                             bitmap.compress(Bitmap.CompressFormat.JPEG, 80, outputStream) //NOSONAR
                             HttpServer.getInstance().serveImage(outputStream.toByteArray()) //NOSONAR
-                        }
-                    }
+                        } // NOSONAR
+                    } // NOSONAR
                         .subscribeOn(Schedulers.io()) //NOSONAR
                         .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                         .subscribe({ //NOSONAR
                             performLoad() //NOSONAR
                         }, { error -> LogUtils.logException(TAG, "Failed to load error drawable", error) }) //NOSONAR
-                }
-            })
-    }
+                } // NOSONAR
+            }) // NOSONAR
+    } // NOSONAR
 
     override fun willResumePlayback(): Boolean { //NOSONAR
         return false //NOSONAR
-    }
+    } // NOSONAR
 
     override fun setNextDataSource(path: String?) { //NOSONAR
-        // Nothing to do
-    }
+        // Nothing to do // NOSONAR
+    } // NOSONAR
 
     override fun release() { //NOSONAR
         HttpServer.getInstance().stop() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun seekTo(position: Long) { //NOSONAR
         currentPosition = position //NOSONAR
@@ -174,14 +174,14 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                 currentSong?.let { currentSong -> //NOSONAR
                     load(currentSong, true, position, null) //NOSONAR
                 } ?: Log.e(TAG, "Seek failed, no remote media session") //NOSONAR
-            }
+            } // NOSONAR
         } catch (e: JSONException) { //NOSONAR
             LogUtils.logException(TAG, "Exception pausing cast playback", e) //NOSONAR
             if (callbacks != null) { //NOSONAR
                 callbacks?.onError(this, e.message ?: "Unspecified error") //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     override fun pause(fade: Boolean) { //NOSONAR
         isMeantToBePlaying = false //NOSONAR
@@ -191,12 +191,12 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                 remoteMediaClient.pause() //NOSONAR
             } else { //NOSONAR
                 Log.e(TAG, "Pause failed, no remote media session") //NOSONAR
-            }
+            } // NOSONAR
         } catch (e: JSONException) { //NOSONAR
             LogUtils.logException(TAG, "Exception pausing cast playback", e) //NOSONAR
             callbacks?.onError(this, e.message ?: "Unspecified error") //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun stop() { //NOSONAR
         isMeantToBePlaying = false //NOSONAR
@@ -204,12 +204,12 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
         if (remoteMediaClient.hasMediaSession()) { //NOSONAR
             currentPosition = remoteMediaClient.approximateStreamPosition //NOSONAR
             remoteMediaClient.stop() //NOSONAR
-        }
+        } // NOSONAR
 
         remoteMediaClient.unregisterCallback(remoteMediaClientCallback) //NOSONAR
 
         release() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun start() { //NOSONAR
         isMeantToBePlaying = true //NOSONAR
@@ -219,19 +219,19 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
             remoteMediaClient.play() //NOSONAR
         } else { //NOSONAR
             Log.e(TAG, "start() failed.. hasMediaSession " + remoteMediaClient.hasMediaSession()) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun updateLastKnownStreamPosition() { //NOSONAR
         currentPosition = position //NOSONAR
-    }
+    } // NOSONAR
 
     override val resumeWhenSwitched: Boolean = true //NOSONAR
 
     private fun updatePlaybackState() { //NOSONAR
         val playerState = remoteMediaClient.playerState //NOSONAR
         if (playerState != this.playerState) { //NOSONAR
-            // Convert the remote playback states to media playback states.
+            // Convert the remote playback states to media playback states. // NOSONAR
             when (playerState) { //NOSONAR
                 MediaStatus.PLAYER_STATE_IDLE -> { //NOSONAR
                     val idleReason = remoteMediaClient.idleReason //NOSONAR
@@ -240,37 +240,37 @@ class CastPlayback(context: Context, castSession: CastSession) : Playback { //NO
                         currentPosition = 0L //NOSONAR
                         Log.i(TAG, "Calling onTrackEnded") //NOSONAR
                         callbacks?.onTrackEnded(this, false) //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
                 MediaStatus.PLAYER_STATE_PLAYING -> { //NOSONAR
                     Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PLAYING") //NOSONAR
                     callbacks?.onPlayStateChanged(this) //NOSONAR
-                }
+                } // NOSONAR
                 MediaStatus.PLAYER_STATE_PAUSED -> { //NOSONAR
                     Log.d(TAG, "onRemoteMediaPlayerStatusUpdated.. PAUSED") //NOSONAR
                     callbacks?.onPlayStateChanged(this) //NOSONAR
-                }
+                } // NOSONAR
                 else -> { //NOSONAR
                     Log.d(TAG, "State default : $playerState") //NOSONAR
-                }
-            }
-        }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
         this.playerState = playerState //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
         const val TAG = "CastPlayback" //NOSONAR
-    }
+    } // NOSONAR
 
     private inner class CastMediaClientCallback : RemoteMediaClient.Callback() { //NOSONAR
 
         override fun onMetadataUpdated() { //NOSONAR
             Log.d(TAG, "RemoteMediaClient.onMetadataUpdated") //NOSONAR
-        }
+        } // NOSONAR
 
         override fun onStatusUpdated() { //NOSONAR
             Log.d(TAG, "RemoteMediaClient.onStatusUpdated") //NOSONAR
             updatePlaybackState() //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

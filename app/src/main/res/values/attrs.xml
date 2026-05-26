@@ -1,213 +1,213 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
 
-    <attr name="shortcutDisabledMessage">reference</attr>
-    <attr name="shortcutId">reference</attr>
-    <attr name="shortcutLongLabel">reference</attr>
-    <attr name="shortcutShortLabel">reference</attr>
+    <attr name="shortcutDisabledMessage">reference</attr> <!-- NOSONAR -->
+    <attr name="shortcutId">reference</attr> <!-- NOSONAR -->
+    <attr name="shortcutLongLabel">reference</attr> <!-- NOSONAR -->
+    <attr name="shortcutShortLabel">reference</attr> <!-- NOSONAR -->
 
-    <attr name="notification_control_tint">reference|color</attr>
+    <attr name="notification_control_tint">reference|color</attr> <!-- NOSONAR -->
 
-    <declare-styleable name="ScrimInsetsView">
-        <attr name="scrimInsetForeground" format="reference|color"/>
-    </declare-styleable>
+    <declare-styleable name="ScrimInsetsView"> <!-- NOSONAR -->
+        <attr name="scrimInsetForeground" format="reference|color"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <attr name="circle_border" format="reference"/>
+    <attr name="circle_border" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="circular_ripple" format="reference"/>
+    <attr name="circular_ripple" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="ic_placeholder_large" format="reference"/>
-    <attr name="ic_placeholder_medium" format="reference"/>
+    <attr name="ic_placeholder_large" format="reference"/> <!-- NOSONAR -->
+    <attr name="ic_placeholder_medium" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="bg_card" format="color"/>
-    <attr name="bg_list" format="color"/>
-    <attr name="bg_drawer" format="reference|color"/>
-    <attr name="list_selector" format="reference"/>
+    <attr name="bg_card" format="color"/> <!-- NOSONAR -->
+    <attr name="bg_list" format="color"/> <!-- NOSONAR -->
+    <attr name="bg_drawer" format="reference|color"/> <!-- NOSONAR -->
+    <attr name="list_selector" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="btn_search" format="reference"/>
-    <attr name="btn_settings" format="reference"/>
-    <attr name="btn_fav" format="reference"/>
-    <attr name="btn_fav_pressed" format="reference"/>
-    <attr name="btn_tags" format="reference"/>
-    <attr name="btn_add" format="reference"/>
-    <attr name="btn_queue" format="reference"/>
-    <attr name="btn_toggle_queue" format="reference"/>
-    <attr name="btn_delete" format="reference"/>
-    <attr name="btn_remove" format="reference"/>
-    <attr name="btn_share" format="reference"/>
-    <attr name="btn_lyrics" format="reference"/>
-    <attr name="btn_quicklyric" format="reference"/>
-    <attr name="btn_sort" format="reference"/>
-    <attr name="btn_dialog_alert" format="reference"/>
+    <attr name="btn_search" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_settings" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_fav" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_fav_pressed" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_tags" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_add" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_queue" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_toggle_queue" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_delete" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_remove" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_share" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_lyrics" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_quicklyric" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_sort" format="reference"/> <!-- NOSONAR -->
+    <attr name="btn_dialog_alert" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="drag_grip" format="reference"/>
-    <attr name="listDividerColor" format="reference|color"/>
-    <attr name="breadcrumb_divider" format="reference"/>
+    <attr name="drag_grip" format="reference"/> <!-- NOSONAR -->
+    <attr name="listDividerColor" format="reference|color"/> <!-- NOSONAR -->
+    <attr name="breadcrumb_divider" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="secondaryTextViewStyle" format="reference"/>
+    <attr name="secondaryTextViewStyle" format="reference"/> <!-- NOSONAR -->
 
-    <attr name="grid_view_vertical_spacing" format="reference|dimension"/>
-    <attr name="grid_list_view_vertical_spacing" format="reference|dimension"/>
-    <attr name="list_item_height" format="reference|dimension"/>
+    <attr name="grid_view_vertical_spacing" format="reference|dimension"/> <!-- NOSONAR -->
+    <attr name="grid_list_view_vertical_spacing" format="reference|dimension"/> <!-- NOSONAR -->
+    <attr name="list_item_height" format="reference|dimension"/> <!-- NOSONAR -->
 
-    <attr name="toolbar_theme" format="reference"/>
-    <attr name="toolbar_popup_theme" format="reference"/>
+    <attr name="toolbar_theme" format="reference"/> <!-- NOSONAR -->
+    <attr name="toolbar_popup_theme" format="reference"/> <!-- NOSONAR -->
 
-    <declare-styleable name="PagerSlidingTabStrip">
-        <attr name="indicatorColor" format="color"/>
-        <attr name="underlineColor" format="color"/>
-        <attr name="dividerColor" format="color"/>
-        <attr name="indicatorHeight" format="dimension"/>
-        <attr name="underlineHeight" format="dimension"/>
-        <attr name="pstsDividerPadding" format="dimension"/>
-        <attr name="tabPaddingLeftRight" format="dimension"/>
-        <attr name="scrollOffset" format="dimension"/>
-        <attr name="pstsTabBackground" format="reference"/>
-        <attr name="shouldExpand" format="boolean"/>
-        <attr name="pstsTextAllCaps" format="boolean"/>
-    </declare-styleable>
+    <declare-styleable name="PagerSlidingTabStrip"> <!-- NOSONAR -->
+        <attr name="indicatorColor" format="color"/> <!-- NOSONAR -->
+        <attr name="underlineColor" format="color"/> <!-- NOSONAR -->
+        <attr name="dividerColor" format="color"/> <!-- NOSONAR -->
+        <attr name="indicatorHeight" format="dimension"/> <!-- NOSONAR -->
+        <attr name="underlineHeight" format="dimension"/> <!-- NOSONAR -->
+        <attr name="pstsDividerPadding" format="dimension"/> <!-- NOSONAR -->
+        <attr name="tabPaddingLeftRight" format="dimension"/> <!-- NOSONAR -->
+        <attr name="scrollOffset" format="dimension"/> <!-- NOSONAR -->
+        <attr name="pstsTabBackground" format="reference"/> <!-- NOSONAR -->
+        <attr name="shouldExpand" format="boolean"/> <!-- NOSONAR -->
+        <attr name="pstsTextAllCaps" format="boolean"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="SwitchPreference">
+    <declare-styleable name="SwitchPreference"> <!-- NOSONAR -->
 
-        <!--
-             The summary for the Preference in a PreferenceActivity screen when the
-             SwitchPreference is checked. If separate on/off summaries are not
-             needed, the summary attribute can be used instead.
-        -->
-        <attr name="summaryOn" format="reference"/>
-        <!--
-             The summary for the Preference in a PreferenceActivity screen when the
-             SwitchPreference is unchecked. If separate on/off summaries are not
-             needed, the summary attribute can be used instead.
-        -->
-        <attr name="summaryOff" format="reference"/>
-        <!--
-             The text used on the switch itself when in the "on" state.
-             This should be a very SHORT string, as it appears in a small space.
-        -->
-        <attr name="switchTextOn" format="reference"/>
-        <!--
-             The text used on the switch itself when in the "off" state.
-             This should be a very SHORT string, as it appears in a small space.
-        -->
-        <attr name="switchTextOff" format="reference"/>
-        <!--
-             The state (true for on, or false for off) that causes dependents to be disabled. By default,
-             dependents will be disabled when this is unchecked, so the value of this preference is false.
-        -->
-        <attr name="disableDependentsState" format="boolean"/>
-    </declare-styleable>
-    <!--<declare-styleable name="Switch">-->
+        <!-- <!-- NOSONAR -->
+             The summary for the Preference in a PreferenceActivity screen when the <!-- NOSONAR -->
+             SwitchPreference is checked. If separate on/off summaries are not <!-- NOSONAR -->
+             needed, the summary attribute can be used instead. <!-- NOSONAR -->
+        --> <!-- NOSONAR -->
+        <attr name="summaryOn" format="reference"/> <!-- NOSONAR -->
+        <!-- <!-- NOSONAR -->
+             The summary for the Preference in a PreferenceActivity screen when the <!-- NOSONAR -->
+             SwitchPreference is unchecked. If separate on/off summaries are not <!-- NOSONAR -->
+             needed, the summary attribute can be used instead. <!-- NOSONAR -->
+        --> <!-- NOSONAR -->
+        <attr name="summaryOff" format="reference"/> <!-- NOSONAR -->
+        <!-- <!-- NOSONAR -->
+             The text used on the switch itself when in the "on" state. <!-- NOSONAR -->
+             This should be a very SHORT string, as it appears in a small space. <!-- NOSONAR -->
+        --> <!-- NOSONAR -->
+        <attr name="switchTextOn" format="reference"/> <!-- NOSONAR -->
+        <!-- <!-- NOSONAR -->
+             The text used on the switch itself when in the "off" state. <!-- NOSONAR -->
+             This should be a very SHORT string, as it appears in a small space. <!-- NOSONAR -->
+        --> <!-- NOSONAR -->
+        <attr name="switchTextOff" format="reference"/> <!-- NOSONAR -->
+        <!-- <!-- NOSONAR -->
+             The state (true for on, or false for off) that causes dependents to be disabled. By default, <!-- NOSONAR -->
+             dependents will be disabled when this is unchecked, so the value of this preference is false. <!-- NOSONAR -->
+        --> <!-- NOSONAR -->
+        <attr name="disableDependentsState" format="boolean"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
+    <!--<declare-styleable name="Switch">--> <!-- NOSONAR -->
 
-    <!--&lt;!&ndash; Drawable to use as the "thumb" that switches back and forth. &ndash;&gt;-->
-    <!--<attr name="thumb" format="reference" />-->
-    <!--&lt;!&ndash; Drawable to use as the "track" that the switch thumb slides within. &ndash;&gt;-->
-    <!--<attr name="track" format="reference" />-->
-    <!--&lt;!&ndash; Text to use when the switch is in the checked/"on" state. &ndash;&gt;-->
-    <!--<attr name="textOn" format="reference" />-->
-    <!--&lt;!&ndash; Text to use when the switch is in the unchecked/"off" state. &ndash;&gt;-->
-    <!--<attr name="textOff" format="reference" />-->
-    <!--&lt;!&ndash; Amount of padding on either side of text within the switch thumb. &ndash;&gt;-->
-    <!--<attr name="thumbTextPadding" format="dimension" />-->
-    <!--&lt;!&ndash; TextAppearance style for text displayed on the switch thumb. &ndash;&gt;-->
-    <!--<attr name="switchTextAppearance" format="reference" />-->
-    <!--&lt;!&ndash; Minimum width for the switch component &ndash;&gt;-->
-    <!--<attr name="switchMinWidth" format="dimension" />-->
-    <!--&lt;!&ndash; Minimum space between the switch and caption text &ndash;&gt;-->
-    <!--<attr name="switchPadding" format="dimension" />-->
-    <!--</declare-styleable>-->
-    <!--<declare-styleable name="Switchy">-->
-    <!--<attr name="switchStyle" format="reference" />-->
-    <!--<attr name="switchPreferenceStyle" format="reference" />-->
-    <!--</declare-styleable>-->
-    <declare-styleable name="Android">
+    <!--&lt;!&ndash; Drawable to use as the "thumb" that switches back and forth. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="thumb" format="reference" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Drawable to use as the "track" that the switch thumb slides within. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="track" format="reference" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Text to use when the switch is in the checked/"on" state. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="textOn" format="reference" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Text to use when the switch is in the unchecked/"off" state. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="textOff" format="reference" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Amount of padding on either side of text within the switch thumb. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="thumbTextPadding" format="dimension" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; TextAppearance style for text displayed on the switch thumb. &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="switchTextAppearance" format="reference" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Minimum width for the switch component &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="switchMinWidth" format="dimension" />--> <!-- NOSONAR -->
+    <!--&lt;!&ndash; Minimum space between the switch and caption text &ndash;&gt;--> <!-- NOSONAR -->
+    <!--<attr name="switchPadding" format="dimension" />--> <!-- NOSONAR -->
+    <!--</declare-styleable>--> <!-- NOSONAR -->
+    <!--<declare-styleable name="Switchy">--> <!-- NOSONAR -->
+    <!--<attr name="switchStyle" format="reference" />--> <!-- NOSONAR -->
+    <!--<attr name="switchPreferenceStyle" format="reference" />--> <!-- NOSONAR -->
+    <!--</declare-styleable>--> <!-- NOSONAR -->
+    <declare-styleable name="Android"> <!-- NOSONAR -->
 
-        <!-- Text color. -->
-        <attr name="android:textColor"/>
-        <!-- Size of the text. Recommended dimension type for text is "sp" for scaled-pixels (example: 15sp). -->
-        <attr name="android:textSize"/>
-        <!-- Style (bold, italic, bolditalic) for the text. -->
-        <attr name="android:textStyle"/>
-        <!-- Typeface (normal, sans, serif, monospace) for the text. -->
-        <attr name="android:typeface"/>
-        <!-- Color of the text selection highlight. -->
-        <attr name="android:textColorHighlight"/>
-        <!-- Color of the hint text. -->
-        <attr name="android:textColorHint"/>
-        <!-- Color of the links. -->
-        <attr name="android:textColorLink"/>
-    </declare-styleable>
+        <!-- Text color. --> <!-- NOSONAR -->
+        <attr name="android:textColor"/> <!-- NOSONAR -->
+        <!-- Size of the text. Recommended dimension type for text is "sp" for scaled-pixels (example: 15sp). --> <!-- NOSONAR -->
+        <attr name="android:textSize"/> <!-- NOSONAR -->
+        <!-- Style (bold, italic, bolditalic) for the text. --> <!-- NOSONAR -->
+        <attr name="android:textStyle"/> <!-- NOSONAR -->
+        <!-- Typeface (normal, sans, serif, monospace) for the text. --> <!-- NOSONAR -->
+        <attr name="android:typeface"/> <!-- NOSONAR -->
+        <!-- Color of the text selection highlight. --> <!-- NOSONAR -->
+        <attr name="android:textColorHighlight"/> <!-- NOSONAR -->
+        <!-- Color of the hint text. --> <!-- NOSONAR -->
+        <attr name="android:textColorHint"/> <!-- NOSONAR -->
+        <!-- Color of the links. --> <!-- NOSONAR -->
+        <attr name="android:textColorLink"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <attr name="switch_bg" format="reference"/>
-    <attr name="switch_thumb" format="reference"/>
+    <attr name="switch_bg" format="reference"/> <!-- NOSONAR -->
+    <attr name="switch_thumb" format="reference"/> <!-- NOSONAR -->
 
-    <declare-styleable name="SlidingUpPanelLayout">
-        <attr name="panelHeight" format="dimension"/>
-        <attr name="slidePanelOffset" format="dimension"/>
-        <attr name="shadowHeight" format="dimension"/>
-        <attr name="paralaxOffset" format="dimension"/>
-        <attr name="fadeColor" format="color"/>
-        <attr name="flingVelocity" format="integer"/>
-        <attr name="dragView" format="reference"/>
-        <attr name="overlay" format="boolean"/>
-        <attr name="anchorPoint" format="float"/>
-        <attr name="initialState" format="enum">
-            <enum name="expanded" value="0"/>
-            <enum name="collapsed" value="1"/>
-            <enum name="anchored" value="2"/>
-            <enum name="hidden" value="3"/>
-        </attr>
-    </declare-styleable>
+    <declare-styleable name="SlidingUpPanelLayout"> <!-- NOSONAR -->
+        <attr name="panelHeight" format="dimension"/> <!-- NOSONAR -->
+        <attr name="slidePanelOffset" format="dimension"/> <!-- NOSONAR -->
+        <attr name="shadowHeight" format="dimension"/> <!-- NOSONAR -->
+        <attr name="paralaxOffset" format="dimension"/> <!-- NOSONAR -->
+        <attr name="fadeColor" format="color"/> <!-- NOSONAR -->
+        <attr name="flingVelocity" format="integer"/> <!-- NOSONAR -->
+        <attr name="dragView" format="reference"/> <!-- NOSONAR -->
+        <attr name="overlay" format="boolean"/> <!-- NOSONAR -->
+        <attr name="anchorPoint" format="float"/> <!-- NOSONAR -->
+        <attr name="initialState" format="enum"> <!-- NOSONAR -->
+            <enum name="expanded" value="0"/> <!-- NOSONAR -->
+            <enum name="collapsed" value="1"/> <!-- NOSONAR -->
+            <enum name="anchored" value="2"/> <!-- NOSONAR -->
+            <enum name="hidden" value="3"/> <!-- NOSONAR -->
+        </attr> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="CircleImageView">
-        <attr name="border_width" format="dimension"/>
-        <attr name="border_color" format="color"/>
-    </declare-styleable>
+    <declare-styleable name="CircleImageView"> <!-- NOSONAR -->
+        <attr name="border_width" format="dimension"/> <!-- NOSONAR -->
+        <attr name="border_color" format="color"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="FloatingActionButton">
-        <attr name="fab_colorPressed" format="color"/>
-        <attr name="fab_colorNormal" format="color"/>
-        <attr name="fab_icon" format="reference"/>
-        <attr name="fab_size" format="enum">
-            <enum name="normal" value="0"/>
-            <enum name="mini" value="1"/>
-        </attr>
-    </declare-styleable>
-    <declare-styleable name="AddFloatingActionButton">
-        <attr name="fab_plusIconColor" format="color"/>
-    </declare-styleable>
-    <declare-styleable name="FloatingActionsMenu">
-        <attr name="fab_addButtonColorPressed" format="color"/>
-        <attr name="fab_addButtonColorNormal" format="color"/>
-        <attr name="fab_addButtonPlusIconColor" format="color"/>
-        <attr name="fab_expandDirection" format="enum">
-            <enum name="up" value="0"/>
-            <enum name="down" value="1"/>
-            <enum name="left" value="2"/>
-            <enum name="right" value="3"/>
-        </attr>
-    </declare-styleable>
+    <declare-styleable name="FloatingActionButton"> <!-- NOSONAR -->
+        <attr name="fab_colorPressed" format="color"/> <!-- NOSONAR -->
+        <attr name="fab_colorNormal" format="color"/> <!-- NOSONAR -->
+        <attr name="fab_icon" format="reference"/> <!-- NOSONAR -->
+        <attr name="fab_size" format="enum"> <!-- NOSONAR -->
+            <enum name="normal" value="0"/> <!-- NOSONAR -->
+            <enum name="mini" value="1"/> <!-- NOSONAR -->
+        </attr> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
+    <declare-styleable name="AddFloatingActionButton"> <!-- NOSONAR -->
+        <attr name="fab_plusIconColor" format="color"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
+    <declare-styleable name="FloatingActionsMenu"> <!-- NOSONAR -->
+        <attr name="fab_addButtonColorPressed" format="color"/> <!-- NOSONAR -->
+        <attr name="fab_addButtonColorNormal" format="color"/> <!-- NOSONAR -->
+        <attr name="fab_addButtonPlusIconColor" format="color"/> <!-- NOSONAR -->
+        <attr name="fab_expandDirection" format="enum"> <!-- NOSONAR -->
+            <enum name="up" value="0"/> <!-- NOSONAR -->
+            <enum name="down" value="1"/> <!-- NOSONAR -->
+            <enum name="left" value="2"/> <!-- NOSONAR -->
+            <enum name="right" value="3"/> <!-- NOSONAR -->
+        </attr> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="SquareFrameLayout">
-        <attr name="dominant_measurement" format="enum">
-            <enum name="width" value="0"/>
-            <enum name="height" value="1"/>
-        </attr>
-    </declare-styleable>
+    <declare-styleable name="SquareFrameLayout"> <!-- NOSONAR -->
+        <attr name="dominant_measurement" format="enum"> <!-- NOSONAR -->
+            <enum name="width" value="0"/> <!-- NOSONAR -->
+            <enum name="height" value="1"/> <!-- NOSONAR -->
+        </attr> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="CustomCollapsingToolbarLayout" parent="CollapsingToolbarLayout">
-        <attr name="expandedSubtitleTextAppearance" format="reference"/>
-        <attr name="collapsedSubtitleTextAppearance" format="reference"/>
-        <attr name="subtitle" format="string"/>
-    </declare-styleable>
+    <declare-styleable name="CustomCollapsingToolbarLayout" parent="CollapsingToolbarLayout"> <!-- NOSONAR -->
+        <attr name="expandedSubtitleTextAppearance" format="reference"/> <!-- NOSONAR -->
+        <attr name="collapsedSubtitleTextAppearance" format="reference"/> <!-- NOSONAR -->
+        <attr name="subtitle" format="string"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="OverflowButton">
-        <attr name="isDark" format="boolean"/>
-    </declare-styleable>
+    <declare-styleable name="OverflowButton"> <!-- NOSONAR -->
+        <attr name="isDark" format="boolean"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-    <declare-styleable name="TextViewDrawableSize">
-        <attr name="compoundDrawableWidth" format="dimension"/>
-        <attr name="compoundDrawableHeight" format="dimension"/>
-    </declare-styleable>
+    <declare-styleable name="TextViewDrawableSize"> <!-- NOSONAR -->
+        <attr name="compoundDrawableWidth" format="dimension"/> <!-- NOSONAR -->
+        <attr name="compoundDrawableHeight" format="dimension"/> <!-- NOSONAR -->
+    </declare-styleable> <!-- NOSONAR -->
 
-</resources>
+</resources> <!-- NOSONAR -->

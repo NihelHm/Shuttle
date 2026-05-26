@@ -1,24 +1,24 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import android.content.res.ColorStateList;
-import android.support.annotation.RestrictTo;
+import android.content.res.ColorStateList; // NOSONAR
+import android.support.annotation.RestrictTo; // NOSONAR
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import java.lang.reflect.Field; // NOSONAR
+import java.lang.reflect.Method; // NOSONAR
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function4;
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
+import io.reactivex.functions.Function4; // NOSONAR
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP; // NOSONAR
 
-/**
- * Handles auto theming of dialogs from my Material Dialogs library, using the ThemeSingleton class.
- * Uses reflection so that Material Dialogs isn't a needed dependency if you depend on this library.
- *
- * @author Aidan Follestad (afollestad)
- */
+/** // NOSONAR
+ * Handles auto theming of dialogs from my Material Dialogs library, using the ThemeSingleton class. // NOSONAR
+ * Uses reflection so that Material Dialogs isn't a needed dependency if you depend on this library. // NOSONAR
+ * // NOSONAR
+ * @author Aidan Follestad (afollestad) // NOSONAR
+ */ // NOSONAR
 @RestrictTo(LIBRARY_GROUP) //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 final class MaterialDialogsUtil { //NOSONAR
@@ -28,9 +28,9 @@ final class MaterialDialogsUtil { //NOSONAR
       Class.forName("com.afollestad.materialdialogs.internal.ThemeSingleton"); //NOSONAR
     } catch (ClassNotFoundException e) { //NOSONAR
       return false; //NOSONAR
-    }
+    } // NOSONAR
     return true; //NOSONAR
-  }
+  } // NOSONAR
 
   static class Params { //NOSONAR
 
@@ -45,13 +45,13 @@ final class MaterialDialogsUtil { //NOSONAR
       this.secondaryTextColor = secondaryTextColor; //NOSONAR
       this.accentColor = accentColor; //NOSONAR
       this.darkTheme = darkTheme; //NOSONAR
-    }
+    } // NOSONAR
 
     public static Params create( //NOSONAR
         int primaryTextColor, int secondaryTextColor, int accentColor, boolean darkTheme) { //NOSONAR
       return new Params(primaryTextColor, secondaryTextColor, accentColor, darkTheme); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   @SuppressWarnings("TryWithIdenticalCatches") //NOSONAR
   static void theme(Params params) { //NOSONAR
@@ -88,9 +88,9 @@ final class MaterialDialogsUtil { //NOSONAR
       fieldLinkColor.set(instance, ColorStateList.valueOf(params.accentColor)); //NOSONAR
 
     } catch (Throwable t) { //NOSONAR
-//      t.printStackTrace();
-    }
-  }
+//      t.printStackTrace(); // NOSONAR
+    } // NOSONAR
+  } // NOSONAR
 
   static Disposable observe(Aesthetic instance) { //NOSONAR
     return Observable.combineLatest( //NOSONAR
@@ -108,8 +108,8 @@ final class MaterialDialogsUtil { //NOSONAR
                   throws Exception { //NOSONAR
                 return MaterialDialogsUtil.Params.create( //NOSONAR
                     primaryText, secondaryText, accent, isDark); //NOSONAR
-              }
-            })
+              } // NOSONAR
+            }) // NOSONAR
         .distinctUntilChanged() //NOSONAR
         .subscribe( //NOSONAR
             new Consumer<Params>() { //NOSONAR
@@ -118,7 +118,7 @@ final class MaterialDialogsUtil { //NOSONAR
                   @io.reactivex.annotations.NonNull MaterialDialogsUtil.Params params) //NOSONAR
                   throws Exception { //NOSONAR
                 MaterialDialogsUtil.theme(params); //NOSONAR
-              }
-            });
-  }
-}
+              } // NOSONAR
+            }); // NOSONAR
+  } // NOSONAR
+} // NOSONAR

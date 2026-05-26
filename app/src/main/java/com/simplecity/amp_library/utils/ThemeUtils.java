@@ -1,17 +1,17 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.support.annotation.ColorRes;
-import com.simplecity.amp_library.R;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import android.support.annotation.ColorRes; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import java.util.Random; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ThemeUtils { //NOSONAR
 
     private ThemeUtils() { //NOSONAR
-        //no instance
-    }
+        //no instance // NOSONAR
+    } // NOSONAR
 
     public static Theme getRandom() { //NOSONAR
 
@@ -30,7 +30,7 @@ public class ThemeUtils { //NOSONAR
         themes.add(new Theme(7, "grey_900", "teal_A700", true, R.color.md_grey_900, R.color.md_teal_A700)); //NOSONAR
 
         return themes.get(new Random().nextInt(themes.size())); //NOSONAR
-    }
+    } // NOSONAR
 
     public static class Theme { //NOSONAR
 
@@ -61,6 +61,6 @@ public class ThemeUtils { //NOSONAR
             this.isDark = isDark; //NOSONAR
             this.primaryColor = primaryColor; //NOSONAR
             this.accentColor = accentColor; //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

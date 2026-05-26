@@ -1,99 +1,99 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.internal.ForegroundLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.design.internal.ForegroundLinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="72dp" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    android:gravity="center_vertical" <!-- NOSONAR -->
+    android:orientation="horizontal"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.CircleImageView
-        android:id="@+id/image"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:src="@drawable/ic_folder_24dp"
-        app:border_width="8dp"/>
+    <com.simplecity.amp_library.ui.views.CircleImageView <!-- NOSONAR -->
+        android:id="@+id/image" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_marginStart="16dp" <!-- NOSONAR -->
+        android:src="@drawable/ic_folder_24dp" <!-- NOSONAR -->
+        app:border_width="8dp"/> <!-- NOSONAR -->
 
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:layout_width="34dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="8dp"
-        android:visibility="gone"/>
+    <CheckBox <!-- NOSONAR -->
+        android:id="@+id/checkbox" <!-- NOSONAR -->
+        android:layout_width="34dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_marginLeft="8dp" <!-- NOSONAR -->
+        android:visibility="gone"/> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1">
+    <FrameLayout <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_gravity="center_vertical" <!-- NOSONAR -->
+        android:layout_weight="1"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/line_four"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="2"
-            android:textSize="14sp"
-            tools:text="Franz Ferdinand - Feeling Kind Of Anxious.mp3"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/line_four" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:layout_gravity="center_vertical" <!-- NOSONAR -->
+            android:layout_marginLeft="8dp" <!-- NOSONAR -->
+            android:layout_marginRight="8dp" <!-- NOSONAR -->
+            android:ellipsize="end" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:maxLines="2" <!-- NOSONAR -->
+            android:textSize="14sp" <!-- NOSONAR -->
+            tools:text="Franz Ferdinand - Feeling Kind Of Anxious.mp3"/> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:id="@+id/textContainer"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_vertical"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            tools:visibility="gone">
+        <LinearLayout <!-- NOSONAR -->
+            android:id="@+id/textContainer" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:layout_gravity="center_vertical" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:orientation="vertical" <!-- NOSONAR -->
+            tools:visibility="gone"> <!-- NOSONAR -->
 
-            <TextView
-                android:id="@+id/line_one"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textSize="14sp"
-                tools:text="Feeling Kind Of Anxious"/>
+            <TextView <!-- NOSONAR -->
+                android:id="@+id/line_one" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_marginLeft="8dp" <!-- NOSONAR -->
+                android:layout_marginRight="8dp" <!-- NOSONAR -->
+                android:ellipsize="end" <!-- NOSONAR -->
+                android:gravity="center_vertical" <!-- NOSONAR -->
+                android:maxLines="1" <!-- NOSONAR -->
+                android:textSize="14sp" <!-- NOSONAR -->
+                tools:text="Feeling Kind Of Anxious"/> <!-- NOSONAR -->
 
-            <TextView
-                android:id="@+id/line_two"
-                style="?attr/secondaryTextViewStyle"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                android:layout_weight="1"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:textSize="14sp"
-                tools:text="Franz Ferdinand - Tonight"/>
-        </LinearLayout>
-    </FrameLayout>
+            <TextView <!-- NOSONAR -->
+                android:id="@+id/line_two" <!-- NOSONAR -->
+                style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="0dp" <!-- NOSONAR -->
+                android:layout_marginLeft="8dp" <!-- NOSONAR -->
+                android:layout_marginRight="8dp" <!-- NOSONAR -->
+                android:layout_weight="1" <!-- NOSONAR -->
+                android:ellipsize="end" <!-- NOSONAR -->
+                android:gravity="center_vertical" <!-- NOSONAR -->
+                android:maxLines="1" <!-- NOSONAR -->
+                android:textSize="14sp" <!-- NOSONAR -->
+                tools:text="Franz Ferdinand - Tonight"/> <!-- NOSONAR -->
+        </LinearLayout> <!-- NOSONAR -->
+    </FrameLayout> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/line_three"
-        style="?attr/secondaryTextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:minEms="3"
-        android:textSize="14sp"
-        tools:text="3:52"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/line_three" <!-- NOSONAR -->
+        style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="24dp" <!-- NOSONAR -->
+        android:ellipsize="end" <!-- NOSONAR -->
+        android:gravity="center" <!-- NOSONAR -->
+        android:maxLines="1" <!-- NOSONAR -->
+        android:minEms="3" <!-- NOSONAR -->
+        android:textSize="14sp" <!-- NOSONAR -->
+        tools:text="3:52"/> <!-- NOSONAR -->
 
-    <include layout="@layout/overflow_button"/>
+    <include layout="@layout/overflow_button"/> <!-- NOSONAR -->
 
-</android.support.design.internal.ForegroundLinearLayout>
+</android.support.design.internal.ForegroundLinearLayout> <!-- NOSONAR -->

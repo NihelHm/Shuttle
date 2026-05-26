@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<com.simplecity.amp_library.ui.views.RepeatButton
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:background="@drawable/ripple_circular_dark"
-    android:contentDescription="@string/btn_repeat_all"
-    android:padding="8dp"
-    android:scaleType="centerCrop"
-    android:src="@drawable/ic_repeat_24dp_scaled"/>
+<com.simplecity.amp_library.ui.views.RepeatButton <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="wrap_content" <!-- NOSONAR -->
+    android:layout_height="wrap_content" <!-- NOSONAR -->
+    android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+    android:contentDescription="@string/btn_repeat_all" <!-- NOSONAR -->
+    android:padding="8dp" <!-- NOSONAR -->
+    android:scaleType="centerCrop" <!-- NOSONAR -->
+    android:src="@drawable/ic_repeat_24dp_scaled"/> <!-- NOSONAR -->

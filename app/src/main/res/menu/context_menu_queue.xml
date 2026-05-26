@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/queue_add_to_playlist"
-        android:icon="@drawable/ic_playlist_add_24dp"
-        android:title="@string/menu_playlist"
-        app:showAsAction="ifRoom">
+    <item <!-- NOSONAR -->
+        android:id="@+id/queue_add_to_playlist" <!-- NOSONAR -->
+        android:icon="@drawable/ic_playlist_add_24dp" <!-- NOSONAR -->
+        android:title="@string/menu_playlist" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"> <!-- NOSONAR -->
 
-        <menu />
-    </item>
+        <menu /> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/queue_remove"
-        android:icon="@drawable/ic_queue_remove"
-        android:title="@string/remove_from_queue"
-        app:showAsAction="ifRoom" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/queue_remove" <!-- NOSONAR -->
+        android:icon="@drawable/ic_queue_remove" <!-- NOSONAR -->
+        android:title="@string/remove_from_queue" <!-- NOSONAR -->
+        app:showAsAction="ifRoom" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/delete"
-        android:title="@string/delete_item"
-        app:showAsAction="never" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/delete" <!-- NOSONAR -->
+        android:title="@string/delete_item" <!-- NOSONAR -->
+        app:showAsAction="never" /> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

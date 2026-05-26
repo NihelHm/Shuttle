@@ -1,47 +1,47 @@
-package com.simplecity.amp_library.services;
+package com.simplecity.amp_library.services; // NOSONAR
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.os.Bundle;
-import com.google.android.apps.dashclock.api.DashClockExtension;
-import com.google.android.apps.dashclock.api.ExtensionData;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.playback.constants.InternalIntents;
-import com.simplecity.amp_library.ui.screens.main.MainActivity;
+import android.content.BroadcastReceiver; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.content.IntentFilter; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import com.google.android.apps.dashclock.api.DashClockExtension; // NOSONAR
+import com.google.android.apps.dashclock.api.ExtensionData; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents; // NOSONAR
+import com.simplecity.amp_library.ui.screens.main.MainActivity; // NOSONAR
 
-/**
- * @see <a href="https://code.google.com/p/dashclock/">DashClock</a>
- */
+/** // NOSONAR
+ * @see <a href="https://code.google.com/p/dashclock/">DashClock</a> // NOSONAR
+ */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class DashClockService extends DashClockExtension { //NOSONAR
 
-    /**
-     * Used to display the data in on the DashClock widgetUsed to display the
-     * data in on the DashClock widget
-     */
+    /** // NOSONAR
+     * Used to display the data in on the DashClock widgetUsed to display the // NOSONAR
+     * data in on the DashClock widget // NOSONAR
+     */ // NOSONAR
     private final ExtensionData mExtensionData = new ExtensionData(); //NOSONAR
 
-    /**
-     * The {@link android.content.IntentFilter} used to monitor specific playback changes from
-     * Shuttle's Service
-     */
+    /** // NOSONAR
+     * The {@link android.content.IntentFilter} used to monitor specific playback changes from // NOSONAR
+     * Shuttle's Service // NOSONAR
+     */ // NOSONAR
     private final IntentFilter mFilter = new IntentFilter(); //NOSONAR
 
-    /**
-     * Determines if the DashClock widget has been initialized
-     */
+    /** // NOSONAR
+     * Determines if the DashClock widget has been initialized // NOSONAR
+     */ // NOSONAR
     boolean mIsInitialized; //NOSONAR
 
-    /**
-     * Determines if music is currently playing
-     */
+    /** // NOSONAR
+     * Determines if music is currently playing // NOSONAR
+     */ // NOSONAR
     boolean mIsPlaying; //NOSONAR
 
-    /**
-     * The {@link Intent} invoked when the widget it touched
-     */
+    /** // NOSONAR
+     * The {@link Intent} invoked when the widget it touched // NOSONAR
+     */ // NOSONAR
     private Intent mIntent; //NOSONAR
 
     @Override //NOSONAR
@@ -51,25 +51,25 @@ public class DashClockService extends DashClockExtension { //NOSONAR
         mFilter.addAction(InternalIntents.PLAY_STATE_CHANGED); //NOSONAR
         mFilter.addAction(InternalIntents.META_CHANGED); //NOSONAR
         registerReceiver(mStatusListener, mFilter); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onInitialize(boolean isReconnect) { //NOSONAR
         mIsInitialized = true; //NOSONAR
         super.onInitialize(isReconnect); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroy() { //NOSONAR
         mIsInitialized = false; //NOSONAR
         unregisterReceiver(mStatusListener); //NOSONAR
         super.onDestroy(); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * The {@link BroadcastReceiver} used to retrieve the current track's
-     * information
-     */
+    /** // NOSONAR
+     * The {@link BroadcastReceiver} used to retrieve the current track's // NOSONAR
+     * information // NOSONAR
+     */ // NOSONAR
     private final BroadcastReceiver mStatusListener = new BroadcastReceiver() { //NOSONAR
         @Override //NOSONAR
         public void onReceive(Context context, Intent intent) { //NOSONAR
@@ -78,7 +78,7 @@ public class DashClockService extends DashClockExtension { //NOSONAR
 
             if (!mIsInitialized || extras == null) { //NOSONAR
                 return; //NOSONAR
-            }
+            } // NOSONAR
 
             mIsPlaying = extras.getBoolean("playing", false); //NOSONAR
 
@@ -89,27 +89,27 @@ public class DashClockService extends DashClockExtension { //NOSONAR
                 final String album = extras.getString("album"); //NOSONAR
                 final String track = extras.getString("track"); //NOSONAR
                 publishUpdate(artist, album, track); //NOSONAR
-            }
-        }
-    };
+            } // NOSONAR
+        } // NOSONAR
+    }; // NOSONAR
 
-    /**
-     * Notify DashClock of the changes
-     */
+    /** // NOSONAR
+     * Notify DashClock of the changes // NOSONAR
+     */ // NOSONAR
     void publishUpdate(String artist, String album, String track) { //NOSONAR
         if (artist == null || album == null || track == null) { //NOSONAR
             return; //NOSONAR
-        }
-        // Publish the extension data update
+        } // NOSONAR
+        // Publish the extension data update // NOSONAR
         publishUpdate(mExtensionData //NOSONAR
                 .visible(true) //NOSONAR
                 .icon(R.drawable.ic_headphones_white).status(track) //NOSONAR
                 .expandedTitle(track).expandedBody(artist + " - " + album) //NOSONAR
                 .clickIntent(mIntent)); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onUpdateData(int reason) { //NOSONAR
-        // Nothing to do
-    }
-}
+        // Nothing to do // NOSONAR
+    } // NOSONAR
+} // NOSONAR

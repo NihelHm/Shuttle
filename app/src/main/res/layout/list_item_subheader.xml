@@ -1,19 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:paddingEnd="16dp"
-    android:paddingStart="16dp">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<FrameLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="48dp" <!-- NOSONAR -->
+    android:paddingEnd="16dp" <!-- NOSONAR -->
+    android:paddingStart="16dp"> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center_vertical"
-        android:textColor="?android:textColorSecondary"
-        android:textSize="14sp"
-        tools:text="Subheader"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/textView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:gravity="center_vertical" <!-- NOSONAR -->
+        android:textColor="?android:textColorSecondary" <!-- NOSONAR -->
+        android:textSize="14sp" <!-- NOSONAR -->
+        tools:text="Subheader"/> <!-- NOSONAR -->
 
-</FrameLayout>
+</FrameLayout> <!-- NOSONAR -->

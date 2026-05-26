@@ -1,23 +1,23 @@
-package com.simplecity.amp_library.ui.screens.queue.pager;
+package com.simplecity.amp_library.ui.screens.queue.pager; // NOSONAR
 
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.support.annotation.NonNull;
-import com.annimon.stream.Collectors;
-import com.annimon.stream.Stream;
-import com.bumptech.glide.RequestManager;
-import com.cantrowitz.rxbroadcast.RxBroadcast;
-import com.simplecity.amp_library.ShuttleApplication;
-import com.simplecity.amp_library.playback.MediaManager;
-import com.simplecity.amp_library.playback.constants.InternalIntents;
-import com.simplecity.amp_library.ui.common.Presenter;
-import com.simplecity.amp_library.ui.modelviews.QueuePagerItemView;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecityapps.recycler_adapter.model.ViewModel;
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import java.util.List;
-import javax.inject.Inject;
+import android.content.Intent; // NOSONAR
+import android.content.IntentFilter; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import com.annimon.stream.Collectors; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.bumptech.glide.RequestManager; // NOSONAR
+import com.cantrowitz.rxbroadcast.RxBroadcast; // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication; // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager; // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents; // NOSONAR
+import com.simplecity.amp_library.ui.common.Presenter; // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.QueuePagerItemView; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecityapps.recycler_adapter.model.ViewModel; // NOSONAR
+import io.reactivex.BackpressureStrategy; // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class QueuePagerPresenter extends Presenter<QueuePagerView> { //NOSONAR
@@ -40,7 +40,7 @@ public class QueuePagerPresenter extends Presenter<QueuePagerView> { //NOSONAR
         this.requestManager = requestManager; //NOSONAR
         this.mediaManager = mediaManager; //NOSONAR
         this.settingsManager = settingsManager; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(@NonNull QueuePagerView view) { //NOSONAR
@@ -63,7 +63,7 @@ public class QueuePagerPresenter extends Presenter<QueuePagerView> { //NOSONAR
                     QueuePagerView queuePagerView = getView(); //NOSONAR
                     if (queuePagerView == null) { //NOSONAR
                         return; //NOSONAR
-                    }
+                    } // NOSONAR
 
                     if (action != null) { //NOSONAR
                         switch (action) { //NOSONAR
@@ -81,8 +81,8 @@ public class QueuePagerPresenter extends Presenter<QueuePagerView> { //NOSONAR
 
                                 queuePagerView.loadData(items, mediaManager.getQueuePosition()); //NOSONAR
                                 break; //NOSONAR
-                        }
-                    }
-                }));
-    }
-}
+                        } // NOSONAR
+                    } // NOSONAR
+                })); // NOSONAR
+    } // NOSONAR
+} // NOSONAR

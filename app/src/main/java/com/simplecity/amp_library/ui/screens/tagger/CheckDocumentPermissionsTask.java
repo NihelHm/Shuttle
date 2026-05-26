@@ -1,17 +1,17 @@
-package com.simplecity.amp_library.ui.screens.tagger;
+package com.simplecity.amp_library.ui.screens.tagger; // NOSONAR
 
-import android.content.Context;
-import android.os.AsyncTask;
-import android.support.v4.provider.DocumentFile;
-import com.simplecity.amp_library.utils.SettingsManager;
-import java.util.List;
+import android.content.Context; // NOSONAR
+import android.os.AsyncTask; // NOSONAR
+import android.support.v4.provider.DocumentFile; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class CheckDocumentPermissionsTask extends AsyncTask<Void, Void, Boolean> { //NOSONAR
 
     public interface PermissionCheckListener { //NOSONAR
         void onPermissionCheck(boolean hasPermission); //NOSONAR
-    }
+    } // NOSONAR
 
     private Context applicationContext; //NOSONAR
 
@@ -28,12 +28,12 @@ public class CheckDocumentPermissionsTask extends AsyncTask<Void, Void, Boolean>
         this.paths = paths; //NOSONAR
         this.documentFiles = documentFiles; //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected Boolean doInBackground(Void... params) { //NOSONAR
         return !TaggerUtils.requiresPermission(applicationContext, paths) || TaggerUtils.hasDocumentTreePermission(applicationContext, settingsManager, documentFiles, paths); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onPostExecute(Boolean hasPermission) { //NOSONAR
@@ -41,6 +41,6 @@ public class CheckDocumentPermissionsTask extends AsyncTask<Void, Void, Boolean>
 
         if (listener != null) { //NOSONAR
             listener.onPermissionCheck(hasPermission); //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

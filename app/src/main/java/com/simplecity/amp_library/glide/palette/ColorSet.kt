@@ -1,13 +1,13 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.glide.palette
+package com.simplecity.amp_library.glide.palette // NOSONAR
 
-import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.Color
-import android.support.annotation.WorkerThread
-import com.simplecity.amp_library.utils.color.BitmapPaletteProcessor
-import com.simplecity.amp_library.utils.color.ColorHelper
+import android.content.Context // NOSONAR
+import android.graphics.Bitmap // NOSONAR
+import android.graphics.Color // NOSONAR
+import android.support.annotation.WorkerThread // NOSONAR
+import com.simplecity.amp_library.utils.color.BitmapPaletteProcessor // NOSONAR
+import com.simplecity.amp_library.utils.color.ColorHelper // NOSONAR
 
 class ColorSet( //NOSONAR
     var primaryColor: Int, //NOSONAR
@@ -16,7 +16,7 @@ class ColorSet( //NOSONAR
     var secondaryTextColorTinted: Int, //NOSONAR
     var primaryTextColor: Int, //NOSONAR
     var secondaryTextColor: Int //NOSONAR
-) {
+) { // NOSONAR
 
     companion object { //NOSONAR
 
@@ -33,7 +33,7 @@ class ColorSet( //NOSONAR
             val secondaryTextColor = ColorHelper.resolveSecondaryColor(context, colors.first!!) //NOSONAR
 
             return ColorSet(colors.first!!, colors.second!!, tintedTextColors.first!!, tintedTextColors.second!!, primaryTextColor, secondaryTextColor) //NOSONAR
-        }
+        } // NOSONAR
 
         fun fromPrimaryAccentColors(context: Context, primaryColor: Int, accentColor: Int): ColorSet { //NOSONAR
 
@@ -43,19 +43,19 @@ class ColorSet( //NOSONAR
             val secondaryTextColor = ColorHelper.resolveSecondaryColor(context, primaryColor) //NOSONAR
 
             return ColorSet(primaryColor, accentColor, tintedTextColor.first!!, tintedTextColor.second!!, primaryTextColor, secondaryTextColor) //NOSONAR
-        }
+        } // NOSONAR
 
         fun empty(): ColorSet { //NOSONAR
             return ColorSet(Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT, Color.TRANSPARENT) //NOSONAR
-        }
+        } // NOSONAR
 
-        /**
-         * @return an approximate byte size for this object. Currently based on 6 integers @ 4 bytes each and a safety factor of 5
-         */
+        /** // NOSONAR
+         * @return an approximate byte size for this object. Currently based on 6 integers @ 4 bytes each and a safety factor of 5 // NOSONAR
+         */ // NOSONAR
         fun estimatedSize(): Int { //NOSONAR
             return 6 * 4 * 5 //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun equals(other: Any?): Boolean { //NOSONAR
         if (this === other) return true //NOSONAR
@@ -71,7 +71,7 @@ class ColorSet( //NOSONAR
         if (secondaryTextColor != other.secondaryTextColor) return false //NOSONAR
 
         return true //NOSONAR
-    }
+    } // NOSONAR
 
     override fun hashCode(): Int { //NOSONAR
         var result = primaryColor //NOSONAR
@@ -81,6 +81,6 @@ class ColorSet( //NOSONAR
         result = 31 * result + primaryTextColor //NOSONAR
         result = 31 * result + secondaryTextColor //NOSONAR
         return result //NOSONAR
-    }
+    } // NOSONAR
 
-}
+} // NOSONAR

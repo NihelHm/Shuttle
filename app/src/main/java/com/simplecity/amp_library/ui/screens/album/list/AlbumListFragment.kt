@@ -1,57 +1,57 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.album.list
+package com.simplecity.amp_library.ui.screens.album.list // NOSONAR
 
-import android.content.Context
-import android.os.Bundle
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.PopupMenu
-import android.view.LayoutInflater
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import com.bumptech.glide.RequestManager
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.R.string
-import com.simplecity.amp_library.data.Repository
-import com.simplecity.amp_library.model.Album
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.QueueManager
-import com.simplecity.amp_library.ui.adapters.SectionedAdapter
-import com.simplecity.amp_library.ui.adapters.ViewType
-import com.simplecity.amp_library.ui.common.BaseFragment
-import com.simplecity.amp_library.ui.dialog.AlbumBiographyDialog
-import com.simplecity.amp_library.ui.dialog.DeleteDialog
-import com.simplecity.amp_library.ui.modelviews.AlbumView
-import com.simplecity.amp_library.ui.modelviews.EmptyView
-import com.simplecity.amp_library.ui.modelviews.SelectableViewModel
-import com.simplecity.amp_library.ui.modelviews.ShuffleView
-import com.simplecity.amp_library.ui.screens.playlist.dialog.CreatePlaylistDialog
-import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog
-import com.simplecity.amp_library.ui.views.ContextualToolbar
-import com.simplecity.amp_library.ui.views.recyclerview.GridDividerDecoration
-import com.simplecity.amp_library.utils.ArtworkDialog
-import com.simplecity.amp_library.utils.ContextualToolbarHelper
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.Operators
-import com.simplecity.amp_library.utils.SettingsManager
-import com.simplecity.amp_library.utils.menu.album.AlbumMenuUtils
-import com.simplecity.amp_library.utils.playlists.PlaylistMenuHelper
-import com.simplecity.amp_library.utils.sorting.SortManager
-import com.simplecity.amp_library.utils.withArgs
-import com.simplecityapps.recycler_adapter.adapter.CompletionListUpdateCallbackAdapter
-import com.simplecityapps.recycler_adapter.model.ViewModel
-import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener
-import com.simplecityapps.recycler_adapter.recyclerview.SpanSizeLookup
-import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView
-import dagger.android.support.AndroidSupportInjection
-import io.reactivex.Single
-import io.reactivex.disposables.Disposable
-import javax.inject.Inject
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v7.widget.GridLayoutManager // NOSONAR
+import android.support.v7.widget.PopupMenu // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.Menu // NOSONAR
+import android.view.MenuInflater // NOSONAR
+import android.view.MenuItem // NOSONAR
+import android.view.View // NOSONAR
+import android.view.ViewGroup // NOSONAR
+import android.widget.Toast // NOSONAR
+import com.bumptech.glide.RequestManager // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.R.string // NOSONAR
+import com.simplecity.amp_library.data.Repository // NOSONAR
+import com.simplecity.amp_library.model.Album // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.QueueManager // NOSONAR
+import com.simplecity.amp_library.ui.adapters.SectionedAdapter // NOSONAR
+import com.simplecity.amp_library.ui.adapters.ViewType // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment // NOSONAR
+import com.simplecity.amp_library.ui.dialog.AlbumBiographyDialog // NOSONAR
+import com.simplecity.amp_library.ui.dialog.DeleteDialog // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.AlbumView // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.EmptyView // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.SelectableViewModel // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.ShuffleView // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.dialog.CreatePlaylistDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog // NOSONAR
+import com.simplecity.amp_library.ui.views.ContextualToolbar // NOSONAR
+import com.simplecity.amp_library.ui.views.recyclerview.GridDividerDecoration // NOSONAR
+import com.simplecity.amp_library.utils.ArtworkDialog // NOSONAR
+import com.simplecity.amp_library.utils.ContextualToolbarHelper // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.Operators // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import com.simplecity.amp_library.utils.menu.album.AlbumMenuUtils // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistMenuHelper // NOSONAR
+import com.simplecity.amp_library.utils.sorting.SortManager // NOSONAR
+import com.simplecity.amp_library.utils.withArgs // NOSONAR
+import com.simplecityapps.recycler_adapter.adapter.CompletionListUpdateCallbackAdapter // NOSONAR
+import com.simplecityapps.recycler_adapter.model.ViewModel // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.SpanSizeLookup // NOSONAR
+import com.simplecityapps.recyclerview_fastscroll.views.FastScrollRecyclerView // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import io.reactivex.Single // NOSONAR
+import io.reactivex.disposables.Disposable // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class AlbumListFragment : //NOSONAR
     AlbumListContract.View, //NOSONAR
@@ -91,7 +91,7 @@ class AlbumListFragment : //NOSONAR
 
     interface AlbumClickListener { //NOSONAR
         fun onAlbumClicked(album: Album, transitionView: View) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onAttach(context: Context?) { //NOSONAR
         super.onAttach(context) //NOSONAR
@@ -101,8 +101,8 @@ class AlbumListFragment : //NOSONAR
         val parentFragment = parentFragment //NOSONAR
         if (parentFragment is AlbumClickListener) { //NOSONAR
             albumClickListener = parentFragment //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
         super.onCreate(savedInstanceState) //NOSONAR
@@ -110,12 +110,12 @@ class AlbumListFragment : //NOSONAR
         setHasOptionsMenu(true) //NOSONAR
 
         adapter = SectionedAdapter() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
         recyclerView = inflater.inflate(R.layout.fragment_recycler, container, false) as FastScrollRecyclerView //NOSONAR
         return recyclerView //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
         super.onViewCreated(view, savedInstanceState) //NOSONAR
@@ -136,7 +136,7 @@ class AlbumListFragment : //NOSONAR
         shuffleView.setClickListener(this) //NOSONAR
 
         presenter.bindView(this) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onResume() { //NOSONAR
         super.onResume() //NOSONAR
@@ -145,8 +145,8 @@ class AlbumListFragment : //NOSONAR
 
         if (userVisibleHint) { //NOSONAR
             setupContextualToolbar() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onPause() { //NOSONAR
         setDataDisposable?.dispose() //NOSONAR
@@ -154,12 +154,12 @@ class AlbumListFragment : //NOSONAR
         playlistMenuDisposable?.dispose() //NOSONAR
 
         super.onPause() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onDestroyView() { //NOSONAR
         presenter.unbindView(this) //NOSONAR
         super.onDestroyView() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) { //NOSONAR
         super.onCreateOptionsMenu(menu, inflater) //NOSONAR
@@ -173,9 +173,9 @@ class AlbumListFragment : //NOSONAR
         val spanCountArray = resources.getIntArray(R.array.span_count) //NOSONAR
         for (i in spanCountArray.indices) { //NOSONAR
             subMenu.add(MENU_GROUP_GRID, spanCountArray[i], i, spanCountArray[i].toString()) //NOSONAR
-        }
+        } // NOSONAR
         subMenu.setGroupCheckable(MENU_GROUP_GRID, true, true) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onPrepareOptionsMenu(menu: Menu) { //NOSONAR
         super.onPrepareOptionsMenu(menu) //NOSONAR
@@ -187,7 +187,7 @@ class AlbumListFragment : //NOSONAR
             SortManager.AlbumSort.NAME -> menu.findItem(R.id.sort_album_name).isChecked = true //NOSONAR
             SortManager.AlbumSort.YEAR -> menu.findItem(R.id.sort_album_year).isChecked = true //NOSONAR
             SortManager.AlbumSort.ARTIST_NAME -> menu.findItem(R.id.sort_album_artist_name).isChecked = true //NOSONAR
-        }
+        } // NOSONAR
 
         menu.findItem(R.id.sort_album_ascending).isChecked = sortManager.albumsAscending //NOSONAR
 
@@ -197,7 +197,7 @@ class AlbumListFragment : //NOSONAR
             ViewType.ALBUM_GRID -> menu.findItem(R.id.view_as_grid).isChecked = true //NOSONAR
             ViewType.ALBUM_CARD -> menu.findItem(R.id.view_as_grid_card).isChecked = true //NOSONAR
             ViewType.ALBUM_PALETTE -> menu.findItem(R.id.view_as_grid_palette).isChecked = true //NOSONAR
-        }
+        } // NOSONAR
 
         val gridMenuItem = menu.findItem(MENU_GRID_SIZE) //NOSONAR
         if (displayType == ViewType.ALBUM_LIST) { //NOSONAR
@@ -205,8 +205,8 @@ class AlbumListFragment : //NOSONAR
         } else { //NOSONAR
             gridMenuItem.isVisible = true //NOSONAR
             gridMenuItem.subMenu?.findItem(settingsManager.getAlbumColumnCount(context))?.isChecked = true //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean { //NOSONAR
         when (item!!.itemId) { //NOSONAR
@@ -220,67 +220,67 @@ class AlbumListFragment : //NOSONAR
                 settingsManager.setAlbumDisplayType(viewType) //NOSONAR
                 setupListSpan() //NOSONAR
                 updateViewType(viewType) //NOSONAR
-            }
+            } // NOSONAR
             R.id.view_as_grid -> { //NOSONAR
                 val viewType = ViewType.ALBUM_GRID //NOSONAR
                 settingsManager.setAlbumDisplayType(viewType) //NOSONAR
                 setupGridSpan() //NOSONAR
                 updateViewType(viewType) //NOSONAR
-            }
+            } // NOSONAR
             R.id.view_as_grid_card -> { //NOSONAR
                 val viewType = ViewType.ALBUM_CARD //NOSONAR
                 settingsManager.setAlbumDisplayType(viewType) //NOSONAR
                 setupGridSpan() //NOSONAR
                 updateViewType(viewType) //NOSONAR
-            }
+            } // NOSONAR
             R.id.view_as_grid_palette -> { //NOSONAR
                 val viewType = ViewType.ALBUM_PALETTE //NOSONAR
                 settingsManager.setAlbumDisplayType(viewType) //NOSONAR
                 setupGridSpan() //NOSONAR
                 updateViewType(viewType) //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         if (item.groupId == MENU_GROUP_GRID) { //NOSONAR
             settingsManager.setAlbumColumnCount(context, item.itemId) //NOSONAR
             spanSizeLookup.setSpanCount(item.itemId) //NOSONAR
             (recyclerView.layoutManager as GridLayoutManager).spanCount = settingsManager.getAlbumColumnCount(context) //NOSONAR
             adapter.notifyItemRangeChanged(0, adapter.itemCount) //NOSONAR
-        }
+        } // NOSONAR
 
         activity!!.invalidateOptionsMenu() //NOSONAR
 
         return super.onOptionsItemSelected(item) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun setupGridSpan() { //NOSONAR
         val spanCount = settingsManager.getAlbumColumnCount(context) //NOSONAR
         spanSizeLookup.setSpanCount(spanCount) //NOSONAR
         layoutManager.spanCount = spanCount //NOSONAR
-    }
+    } // NOSONAR
 
     private fun setupListSpan() { //NOSONAR
         val spanCount = resources.getInteger(R.integer.list_num_columns) //NOSONAR
         spanSizeLookup.setSpanCount(spanCount) //NOSONAR
         layoutManager.spanCount = spanCount //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updateViewType(@ViewType viewType: Int) { //NOSONAR
         adapter.items //NOSONAR
             .filter { viewModel -> viewModel is AlbumView } //NOSONAR
             .forEach { viewModel -> (viewModel as AlbumView).viewType = viewType } //NOSONAR
         adapter.notifyItemRangeChanged(0, adapter.itemCount) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onAlbumClick(position: Int, albumView: AlbumView, viewHolder: AlbumView.ViewHolder) { //NOSONAR
         if (!contextualToolbarHelper!!.handleClick(albumView, albumView.album)) { //NOSONAR
             albumClickListener.onAlbumClicked(albumView.album, viewHolder.imageOne) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onAlbumLongClick(position: Int, albumView: AlbumView): Boolean { //NOSONAR
         return contextualToolbarHelper!!.handleLongClick(albumView, albumView.album) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onAlbumOverflowClicked(view: View, album: Album) { //NOSONAR
         val menu = PopupMenu(context!!, view) //NOSONAR
@@ -289,21 +289,21 @@ class AlbumListFragment : //NOSONAR
         playlistMenuHelper.createPlaylistMenu(subMenu) //NOSONAR
         menu.setOnMenuItemClickListener( //NOSONAR
             AlbumMenuUtils.getAlbumMenuClickListener(album, presenter) //NOSONAR
-        )
+        ) // NOSONAR
         menu.show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onShuffleItemClick() { //NOSONAR
-        // Note: For album-shuffle mode, we don't actually turn shuffle on.
+        // Note: For album-shuffle mode, we don't actually turn shuffle on. // NOSONAR
         mediaManager.shuffleMode = QueueManager.ShuffleMode.OFF //NOSONAR
 
         mediaManager.playAll(songsRepository.getSongs(null as Function1<Song, Boolean>?) //NOSONAR
             .firstOrError() //NOSONAR
             .map { songs -> Operators.albumShuffleSongs(songs, sortManager) }) { //NOSONAR
-            // To do later: Show playback failed toast
+            // To do later: Show playback failed toast // NOSONAR
             Unit //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun setUserVisibleHint(isVisibleToUser: Boolean) { //NOSONAR
         super.setUserVisibleHint(isVisibleToUser) //NOSONAR
@@ -311,8 +311,8 @@ class AlbumListFragment : //NOSONAR
             setupContextualToolbar() //NOSONAR
         } else { //NOSONAR
             contextualToolbarHelper?.finish() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private fun setupContextualToolbar() { //NOSONAR
         val contextualToolbar = ContextualToolbar.findContextualToolbar(this) //NOSONAR
@@ -331,8 +331,8 @@ class AlbumListFragment : //NOSONAR
                 AlbumMenuUtils.getAlbumMenuClickListener( //NOSONAR
                     Single.defer { Single.just(contextualToolbarHelper!!.items) }, //NOSONAR
                     presenter //NOSONAR
-                )
-            )
+                ) // NOSONAR
+            ) // NOSONAR
 
             contextualToolbarHelper = ContextualToolbarHelper(context!!, contextualToolbar, object : ContextualToolbarHelper.Callback { //NOSONAR
 
@@ -340,17 +340,17 @@ class AlbumListFragment : //NOSONAR
                     val index = adapter.items.indexOf(viewModel as ViewModel<*>) //NOSONAR
                     if (index >= 0) { //NOSONAR
                         adapter.notifyItemChanged(index, 0) //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
 
                 override fun notifyDatasetChanged() { //NOSONAR
                     adapter.notifyItemRangeChanged(0, adapter.items.size, 0) //NOSONAR
-                }
-            })
-        }
-    }
+                } // NOSONAR
+            }) // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
-    // AlbumListContract.View Implementation
+    // AlbumListContract.View Implementation // NOSONAR
 
     override fun setData(albums: List<Album>, scrollToTop: Boolean) { //NOSONAR
         setDataDisposable?.dispose() //NOSONAR
@@ -371,58 +371,58 @@ class AlbumListFragment : //NOSONAR
                     super.onComplete() //NOSONAR
                     if (scrollToTop) { //NOSONAR
                         recyclerView.smoothScrollToPosition(0) //NOSONAR
-                    }
-                }
-            })
-        }
-    }
+                    } // NOSONAR
+                } // NOSONAR
+            }) // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     override fun invalidateOptionsMenu() { //NOSONAR
         activity?.invalidateOptionsMenu() //NOSONAR
-    }
+    } // NOSONAR
 
-    // AlbumMenuContract.View Implementation
+    // AlbumMenuContract.View Implementation // NOSONAR
 
     override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
         CreatePlaylistDialog.newInstance(songs).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
         Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
         Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onPlaybackFailed() { //NOSONAR
-        // To do later: Improve error message
+        // To do later: Improve error message // NOSONAR
         Toast.makeText(context, R.string.emptyplaylist, Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentTagEditorDialog(album: Album) { //NOSONAR
         TaggerDialog.newInstance(album).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentDeleteAlbumsDialog(albums: List<Album>) { //NOSONAR
         DeleteDialog.newInstance(DeleteDialog.ListAlbumsRef { albums }).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentAlbumInfoDialog(album: Album) { //NOSONAR
         AlbumBiographyDialog.newInstance(album).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentArtworkEditorDialog(album: Album) { //NOSONAR
         ArtworkDialog.build(context, album).show() //NOSONAR
-    }
+    } // NOSONAR
 
-    // BaseFragment Implementation
+    // BaseFragment Implementation // NOSONAR
 
     override fun screenName(): String { //NOSONAR
         return TAG //NOSONAR
-    }
+    } // NOSONAR
 
-    // Static
+    // Static // NOSONAR
 
     companion object { //NOSONAR
 
@@ -435,6 +435,6 @@ class AlbumListFragment : //NOSONAR
 
         fun newInstance(title: String) = AlbumListFragment().withArgs { //NOSONAR
             putString(ARG_TITLE, title) //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

@@ -1,13 +1,13 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.queue
+package com.simplecity.amp_library.ui.screens.queue // NOSONAR
 
-import android.content.Context
-import android.view.MenuItem
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog
-import com.simplecity.amp_library.ui.dialog.DeleteDialog
-import com.simplecity.amp_library.ui.screens.queue.menu.QueueMenuContract
+import android.content.Context // NOSONAR
+import android.view.MenuItem // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog // NOSONAR
+import com.simplecity.amp_library.ui.dialog.DeleteDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.queue.menu.QueueMenuContract // NOSONAR
 
 interface QueueContract { //NOSONAR
 
@@ -32,7 +32,7 @@ interface QueueContract { //NOSONAR
         fun setQueueSwipeLocked(locked: Boolean) //NOSONAR
 
         fun showCreatePlaylistDialog(songs: List<Song>) //NOSONAR
-    }
+    } // NOSONAR
 
     interface Presenter { //NOSONAR
 
@@ -49,5 +49,5 @@ interface QueueContract { //NOSONAR
         fun play(queueItem: QueueItem) //NOSONAR
 
         fun setQueueSwipeLocked(locked: Boolean) //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

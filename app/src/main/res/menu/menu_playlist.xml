@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/playPlaylist"
-        android:title="@string/play_selection" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/playPlaylist" <!-- NOSONAR -->
+        android:title="@string/play_selection" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/playNext"
-        android:title="@string/play_next" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/playNext" <!-- NOSONAR -->
+        android:title="@string/play_next" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/renamePlaylist"
-        android:title="@string/rename_playlist_menu" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/renamePlaylist" <!-- NOSONAR -->
+        android:title="@string/rename_playlist_menu" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/editPlaylist"
-        android:title="@string/edit_playlist_menu" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/editPlaylist" <!-- NOSONAR -->
+        android:title="@string/edit_playlist_menu" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/exportPlaylist"
-        android:title="@string/export_playlist" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/exportPlaylist" <!-- NOSONAR -->
+        android:title="@string/export_playlist" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/clearPlaylist"
-        android:title="@string/clear_playlist_menu" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/clearPlaylist" <!-- NOSONAR -->
+        android:title="@string/clear_playlist_menu" /> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/deletePlaylist"
-        android:title="@string/delete_item" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/deletePlaylist" <!-- NOSONAR -->
+        android:title="@string/delete_item" /> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

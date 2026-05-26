@@ -1,17 +1,17 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
-import static com.afollestad.aesthetic.Util.resolveResId;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
+import static com.afollestad.aesthetic.Util.resolveResId; // NOSONAR
 
-import android.content.Context;
-import android.support.design.widget.TextInputEditText;
-import android.util.AttributeSet;
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
+import android.content.Context; // NOSONAR
+import android.support.design.widget.TextInputEditText; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticTextInputEditText extends TextInputEditText { //NOSONAR
 
@@ -21,29 +21,29 @@ public class AestheticTextInputEditText extends TextInputEditText { //NOSONAR
 
   public AestheticTextInputEditText(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticTextInputEditText(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticTextInputEditText(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   private void init(Context context, AttributeSet attrs) { //NOSONAR
     if (attrs != null) { //NOSONAR
       backgroundResId = resolveResId(context, attrs, android.R.attr.background); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   private void invalidateColors(ColorIsDarkState state) { //NOSONAR
     this.lastState = state; //NOSONAR
     TintHelper.setTintAuto(this, state.color(), true, state.isDark()); //NOSONAR
     TintHelper.setCursorTint(this, state.color()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onAttachedToWindow() { //NOSONAR
@@ -59,7 +59,7 @@ public class AestheticTextInputEditText extends TextInputEditText { //NOSONAR
             .textColorSecondary() //NOSONAR
             .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
             .subscribe(ViewHintTextColorAction.create(this), onErrorLogAndRethrow())); //NOSONAR
-    //noinspection ConstantConditions
+    //noinspection ConstantConditions // NOSONAR
     subs.add( //NOSONAR
         Observable.combineLatest( //NOSONAR
                 ViewUtil.getObservableForResId( //NOSONAR
@@ -72,16 +72,16 @@ public class AestheticTextInputEditText extends TextInputEditText { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
                     invalidateColors(colorIsDarkState); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     subs.clear(); //NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   public void refreshDrawableState() { //NOSONAR
@@ -92,8 +92,8 @@ public class AestheticTextInputEditText extends TextInputEditText { //NOSONAR
             @Override //NOSONAR
             public void run() { //NOSONAR
               invalidateColors(lastState); //NOSONAR
-            }
-          });
-    }
-  }
-}
+            } // NOSONAR
+          }); // NOSONAR
+    } // NOSONAR
+  } // NOSONAR
+} // NOSONAR

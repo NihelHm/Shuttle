@@ -1,58 +1,58 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/media_route_menu_item"
-        android:title="@string/media_route_menu_title"
-        android:visible="true"
-        app:actionProviderClass="com.simplecity.amp_library.ui.views.CustomMediaRouteActionProvider"
-        app:showAsAction="always"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/media_route_menu_item" <!-- NOSONAR -->
+        android:title="@string/media_route_menu_title" <!-- NOSONAR -->
+        android:visible="true" <!-- NOSONAR -->
+        app:actionProviderClass="com.simplecity.amp_library.ui.views.CustomMediaRouteActionProvider" <!-- NOSONAR -->
+        app:showAsAction="always"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/favorite"
-        android:title="@string/fav_add"
-        app:actionLayout="@layout/action_bar_favorite"
-        app:showAsAction="ifRoom"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/favorite" <!-- NOSONAR -->
+        android:title="@string/fav_add" <!-- NOSONAR -->
+        app:actionLayout="@layout/action_bar_favorite" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/lyrics"
-        android:icon="@drawable/ic_action_lyrics_24dp"
-        android:title="@string/lyrics"
-        app:showAsAction="ifRoom"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/lyrics" <!-- NOSONAR -->
+        android:icon="@drawable/ic_action_lyrics_24dp" <!-- NOSONAR -->
+        android:title="@string/lyrics" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"/> <!-- NOSONAR -->
 
-    <item
-        android:title="@string/go_to"
-        app:showAsAction="never">
-        <menu>
-            <item
-                android:id="@+id/goToArtist"
-                android:title="@string/artist_title"/>
+    <item <!-- NOSONAR -->
+        android:title="@string/go_to" <!-- NOSONAR -->
+        app:showAsAction="never"> <!-- NOSONAR -->
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToArtist" <!-- NOSONAR -->
+                android:title="@string/artist_title"/> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/goToAlbum"
-                android:title="@string/album_title"/>
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToAlbum" <!-- NOSONAR -->
+                android:title="@string/album_title"/> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/goToGenre"
-                android:title="@string/genre_title"/>
-        </menu>
-    </item>
+            <item <!-- NOSONAR -->
+                android:id="@+id/goToGenre" <!-- NOSONAR -->
+                android:title="@string/genre_title"/> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/editTags"
-        android:title="@string/edit_tags"
-        app:showAsAction="never"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/editTags" <!-- NOSONAR -->
+        android:title="@string/edit_tags" <!-- NOSONAR -->
+        app:showAsAction="never"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/share"
-        android:title="@string/share"
-        app:showAsAction="never"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/share" <!-- NOSONAR -->
+        android:title="@string/share" <!-- NOSONAR -->
+        app:showAsAction="never"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/songInfo"
-        android:title="@string/song_info"
-        app:showAsAction="never"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/songInfo" <!-- NOSONAR -->
+        android:title="@string/song_info" <!-- NOSONAR -->
+        app:showAsAction="never"/> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

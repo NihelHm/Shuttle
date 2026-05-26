@@ -1,40 +1,40 @@
-package com.simplecity.amp_library.ui.screens.equalizer;
+package com.simplecity.amp_library.ui.screens.equalizer; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.annotation.TargetApi;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.media.audiofx.AudioEffect;
-import android.os.Build;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.SwitchCompat;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.CompoundButton;
-import android.widget.SeekBar;
-import android.widget.Spinner;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.constants.OpenSLESConstants;
-import com.simplecity.amp_library.services.Equalizer;
-import com.simplecity.amp_library.ui.adapters.RobotoSpinnerAdapter;
-import com.simplecity.amp_library.ui.screens.drawer.DrawerLockManager;
-import com.simplecity.amp_library.ui.screens.drawer.MiniPlayerLockManager;
-import com.simplecity.amp_library.ui.common.BaseFragment;
-import com.simplecity.amp_library.ui.views.SizableSeekBar;
-import java.util.Formatter;
-import java.util.Locale;
-import java.util.UUID;
+import android.annotation.SuppressLint; // NOSONAR
+import android.annotation.TargetApi; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.content.SharedPreferences; // NOSONAR
+import android.media.audiofx.AudioEffect; // NOSONAR
+import android.os.Build; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.preference.PreferenceManager; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.v7.widget.SwitchCompat; // NOSONAR
+import android.support.v7.widget.Toolbar; // NOSONAR
+import android.util.Log; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.MenuItem; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.AdapterView; // NOSONAR
+import android.widget.CompoundButton; // NOSONAR
+import android.widget.SeekBar; // NOSONAR
+import android.widget.Spinner; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import butterknife.Unbinder; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.constants.OpenSLESConstants; // NOSONAR
+import com.simplecity.amp_library.services.Equalizer; // NOSONAR
+import com.simplecity.amp_library.ui.adapters.RobotoSpinnerAdapter; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.DrawerLockManager; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.MiniPlayerLockManager; // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment; // NOSONAR
+import com.simplecity.amp_library.ui.views.SizableSeekBar; // NOSONAR
+import java.util.Formatter; // NOSONAR
+import java.util.Locale; // NOSONAR
+import java.util.UUID; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class EqualizerFragment extends BaseFragment implements //NOSONAR
@@ -53,25 +53,25 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
     SharedPreferences prefs; //NOSONAR
 
-    /**
-     * Max number of EQ bands supported
-     */
+    /** // NOSONAR
+     * Max number of EQ bands supported // NOSONAR
+     */ // NOSONAR
     private final static int EQUALIZER_MAX_BANDS = 6; //NOSONAR
 
-    /**
-     * Indicates if Equalizer effect is supported.
-     */
+    /** // NOSONAR
+     * Indicates if Equalizer effect is supported. // NOSONAR
+     */ // NOSONAR
     private boolean equalizerSupported; //NOSONAR
-    /**
-     * Indicates if BassBoost effect is supported.
-     */
+    /** // NOSONAR
+     * Indicates if BassBoost effect is supported. // NOSONAR
+     */ // NOSONAR
     private boolean bassBoostSupported; //NOSONAR
-    /**
-     * Indicates if Virtualizer effect is supported.
-     */
+    /** // NOSONAR
+     * Indicates if Virtualizer effect is supported. // NOSONAR
+     */ // NOSONAR
     private boolean virtualizerSupported; //NOSONAR
 
-    // Equalizer fields
+    // Equalizer fields // NOSONAR
     private int numberEqualizerBands; //NOSONAR
     int eqCustomPresetPosition = 1; //NOSONAR
     int eqPreset; //NOSONAR
@@ -101,9 +101,9 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
     private StringBuilder formatBuilder = new StringBuilder(); //NOSONAR
     private Formatter formatter = new Formatter(formatBuilder, Locale.getDefault()); //NOSONAR
 
-    /**
-     * Mapping for the EQ widget ids per band
-     */
+    /** // NOSONAR
+     * Mapping for the EQ widget ids per band // NOSONAR
+     */ // NOSONAR
     static final int[][] eqViewElementIds = { //NOSONAR
             { R.id.EqBand0TopTextView, R.id.EqBand0SeekBar }, //NOSONAR
             { R.id.EqBand1TopTextView, R.id.EqBand1SeekBar }, //NOSONAR
@@ -111,11 +111,11 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             { R.id.EqBand3TopTextView, R.id.EqBand3SeekBar }, //NOSONAR
             { R.id.EqBand4TopTextView, R.id.EqBand4SeekBar }, //NOSONAR
             { R.id.EqBand5TopTextView, R.id.EqBand5SeekBar } //NOSONAR
-    };
+    }; // NOSONAR
 
-    /**
-     * Mapping for the EQ widget ids per band
-     */
+    /** // NOSONAR
+     * Mapping for the EQ widget ids per band // NOSONAR
+     */ // NOSONAR
     private static final int[][] eqViewTextElementIds = { //NOSONAR
             { R.id.EqBand0LeftTextView, R.id.EqBand0RightTextView }, //NOSONAR
             { R.id.EqBand1LeftTextView, R.id.EqBand1RightTextView }, //NOSONAR
@@ -123,7 +123,7 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             { R.id.EqBand3LeftTextView, R.id.EqBand3RightTextView }, //NOSONAR
             { R.id.EqBand4LeftTextView, R.id.EqBand4RightTextView }, //NOSONAR
             { R.id.EqBand5LeftTextView, R.id.EqBand5RightTextView } //NOSONAR
-    };
+    }; // NOSONAR
 
     @Override //NOSONAR
     public boolean onMenuItemClick(MenuItem item) { //NOSONAR
@@ -132,11 +132,11 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
                 Intent openDSP = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL); //NOSONAR
                 if (getActivity().getPackageManager().resolveActivity(openDSP, 0) != null) { //NOSONAR
                     startActivityForResult(openDSP, 1000); //NOSONAR
-                }
+                } // NOSONAR
                 break; //NOSONAR
-        }
+        } // NOSONAR
         return true; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) { //NOSONAR
@@ -144,17 +144,17 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
         mediaManager.openEqualizerSession(isChecked, mediaManager.getAudioSessionId()); //NOSONAR
 
-        // set parameter and state
+        // set parameter and state // NOSONAR
         prefs.edit().putBoolean("audiofx.global.enable", isChecked).apply(); //NOSONAR
         mediaManager.updateEqualizer(); //NOSONAR
-    }
+    } // NOSONAR
 
     public static EqualizerFragment newInstance() { //NOSONAR
         Bundle args = new Bundle(); //NOSONAR
         EqualizerFragment fragment = new EqualizerFragment(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     @SuppressLint("InlinedApi") //NOSONAR
     @TargetApi(Build.VERSION_CODES.GINGERBREAD) //NOSONAR
@@ -166,26 +166,26 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
         prefs = PreferenceManager.getDefaultSharedPreferences(getContext()); //NOSONAR
 
         try { //NOSONAR
-            //Query available effects
+            //Query available effects // NOSONAR
             final AudioEffect.Descriptor[] effects = AudioEffect.queryEffects(); //NOSONAR
 
-            //Determine available/supported effects
+            //Determine available/supported effects // NOSONAR
             if (effects != null && effects.length != 0) { //NOSONAR
                 for (final AudioEffect.Descriptor effect : effects) { //NOSONAR
-                    //Equalizer
+                    //Equalizer // NOSONAR
                     if (effect.type.equals(UUID.fromString(EFFECT_TYPE_EQUALIZER))) { //NOSONAR
                         equalizerSupported = true; //NOSONAR
                     } else if (effect.type.equals(UUID.fromString(EFFECT_TYPE_BASS_BOOST))) { //NOSONAR
                         bassBoostSupported = true; //NOSONAR
                     } else if (effect.type.equals(UUID.fromString(EFFECT_TYPE_VIRTUALIZER))) { //NOSONAR
                         virtualizerSupported = true; //NOSONAR
-                    }
-                }
-            }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
         } catch (NoClassDefFoundError ignored) { //NOSONAR
-            //The user doesn't have the AudioEffect/AudioEffect.Descriptor class. How sad.
-        }
-    }
+            //The user doesn't have the AudioEffect/AudioEffect.Descriptor class. How sad. // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Nullable //NOSONAR
     @Override //NOSONAR
@@ -206,14 +206,14 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
         switchItem.setChecked(isEnabled); //NOSONAR
         switchItem.setOnCheckedChangeListener(this); //NOSONAR
 
-        //Hide the 'open DSP' button if DSP/Other audio effects aren't available
+        //Hide the 'open DSP' button if DSP/Other audio effects aren't available // NOSONAR
         final Intent intent = new Intent(AudioEffect.ACTION_DISPLAY_AUDIO_EFFECT_CONTROL_PANEL); //NOSONAR
         if (getContext().getPackageManager().resolveActivity(intent, 0) == null) { //NOSONAR
             MenuItem openDSPItem = toolbar.getMenu().findItem(R.id.menu_dsp); //NOSONAR
             if (openDSPItem != null) { //NOSONAR
                 openDSPItem.setVisible(false); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() { //NOSONAR
 
@@ -221,32 +221,32 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) { //NOSONAR
                 eqPreset = position; //NOSONAR
                 equalizerSetPreset(position); //NOSONAR
-            }
+            } // NOSONAR
 
             @Override //NOSONAR
             public void onNothingSelected(AdapterView<?> parent) { //NOSONAR
-                // Intentionally left empty.
-            }
-        });
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
+        }); // NOSONAR
 
         setupPresets(); //NOSONAR
         if (spinnerAdapter != null && spinnerAdapter.getCount() > eqPreset) { //NOSONAR
             spinner.setSelection(eqPreset); //NOSONAR
-        }
+        } // NOSONAR
 
-        //Initialize the equalizer elements
+        //Initialize the equalizer elements // NOSONAR
         numberEqualizerBands = Integer.parseInt(prefs.getString("equalizer.number_of_bands", "5")); //NOSONAR
         final int[] centerFreqs = getCenterFreqs(); //NOSONAR
         final int[] bandLevelRange = getBandLevelRange(); //NOSONAR
 
         for (int band = 0; band < numberEqualizerBands; band++) { //NOSONAR
-            //Unit conversion from mHz to Hz and use k prefix if necessary to display
+            //Unit conversion from mHz to Hz and use k prefix if necessary to display // NOSONAR
             float centerFreqHz = centerFreqs[band] / 1000; //NOSONAR
             String unitPrefix = ""; //NOSONAR
             if (centerFreqHz >= 1000) { //NOSONAR
                 centerFreqHz = centerFreqHz / 1000; //NOSONAR
                 unitPrefix = "k"; //NOSONAR
-            }
+            } // NOSONAR
             (eqContainer.findViewById(eqViewElementIds[band][0])).setVisibility(View.VISIBLE); //NOSONAR
             (eqContainer.findViewById(eqViewTextElementIds[band][0])).setVisibility(View.VISIBLE); //NOSONAR
             (eqContainer.findViewById(eqViewElementIds[band][1])).setVisibility(View.VISIBLE); //NOSONAR
@@ -259,41 +259,41 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
                 public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) { //NOSONAR
 
                     if (fromUser) { //NOSONAR
-                        //Determine which band changed
+                        //Determine which band changed // NOSONAR
                         int seekbarId = seekBar.getId(); //NOSONAR
                         int band = 0; //NOSONAR
                         for (int i = 0; i < eqViewElementIds.length; i++) { //NOSONAR
                             if (eqViewElementIds[i][1] == seekbarId) { //NOSONAR
                                 band = i; //NOSONAR
-                            }
-                        }
+                            } // NOSONAR
+                        } // NOSONAR
 
                         if (eqPreset != eqCustomPresetPosition) { //NOSONAR
                             equalizerCopyToCustom(); //NOSONAR
                             if (spinnerAdapter != null && spinnerAdapter.getCount() > eqCustomPresetPosition) { //NOSONAR
                                 spinner.setSelection(eqCustomPresetPosition); //NOSONAR
-                            }
+                            } // NOSONAR
                         } else { //NOSONAR
                             int level = getBandLevelRange()[0] + (progress * 100); //NOSONAR
                             equalizerBandUpdate(band, level); //NOSONAR
-                        }
-                    }
-                }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
 
                 @Override //NOSONAR
                 public void onStartTrackingTouch(SeekBar seekBar) { //NOSONAR
-                    // Intentionally left empty.
-                }
+                    // Intentionally left empty. // NOSONAR
+                } // NOSONAR
 
                 @Override //NOSONAR
                 public void onStopTrackingTouch(SeekBar seekBar) { //NOSONAR
                     mediaManager.updateEqualizer(); //NOSONAR
-                }
-            });
-        }
+                } // NOSONAR
+            }); // NOSONAR
+        } // NOSONAR
 
-        // Initialize the Bass Boost elements.
-        // Set the SeekBar listener.
+        // Initialize the Bass Boost elements. // NOSONAR
+        // Set the SeekBar listener. // NOSONAR
         if (bassBoostSupported) { //NOSONAR
 
             baseBoostSeekbar.setMax(OpenSLESConstants.BASSBOOST_MAX_STRENGTH - OpenSLESConstants.BASSBOOST_MIN_STRENGTH); //NOSONAR
@@ -302,37 +302,37 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
                 @Override //NOSONAR
                 public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) { //NOSONAR
-                    // set parameter and state
+                    // set parameter and state // NOSONAR
                     if (fromUser) { //NOSONAR
                         prefs.edit().putBoolean("audiofx.bass.enable", true).apply(); //NOSONAR
                         prefs.edit().putString("audiofx.bass.strength", String.valueOf(progress)).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
 
-                // If slider pos was 0 when starting re-enable effect
+                // If slider pos was 0 when starting re-enable effect // NOSONAR
                 @Override //NOSONAR
                 public void onStartTrackingTouch(final SeekBar seekBar) { //NOSONAR
                     if (seekBar.getProgress() == 0) { //NOSONAR
                         prefs.edit().putBoolean("audiofx.bass.enable", true).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
 
-                // If slider pos = 0 when stopping disable effect
+                // If slider pos = 0 when stopping disable effect // NOSONAR
                 @Override //NOSONAR
                 public void onStopTrackingTouch(final SeekBar seekBar) { //NOSONAR
                     if (seekBar.getProgress() == 0) { //NOSONAR
-                        // disable
+                        // disable // NOSONAR
                         prefs.edit().putBoolean("audiofx.bass.enable", false).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
-            });
-        }
+                    } // NOSONAR
+                } // NOSONAR
+            }); // NOSONAR
+        } // NOSONAR
 
-        // Initialize the Virtualizer elements.
-        // Set the SeekBar listener.
+        // Initialize the Virtualizer elements. // NOSONAR
+        // Set the SeekBar listener. // NOSONAR
         if (virtualizerSupported) { //NOSONAR
 
             virtualizerSeekbar.setMax(OpenSLESConstants.VIRTUALIZER_MAX_STRENGTH - OpenSLESConstants.VIRTUALIZER_MIN_STRENGTH); //NOSONAR
@@ -341,37 +341,37 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
                 @Override //NOSONAR
                 public void onProgressChanged(final SeekBar seekBar, final int progress, final boolean fromUser) { //NOSONAR
-                    // set parameter and state
+                    // set parameter and state // NOSONAR
                     if (fromUser) { //NOSONAR
                         prefs.edit().putBoolean("audiofx.virtualizer.enable", true).apply(); //NOSONAR
                         prefs.edit().putString("audiofx.virtualizer.strength", String.valueOf(progress)).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
 
-                // If slider pos was 0 when starting re-enable effect
+                // If slider pos was 0 when starting re-enable effect // NOSONAR
                 @Override //NOSONAR
                 public void onStartTrackingTouch(final SeekBar seekBar) { //NOSONAR
                     if (seekBar.getProgress() == 0) { //NOSONAR
                         prefs.edit().putBoolean("audiofx.virtualizer.enable", true).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
+                    } // NOSONAR
+                } // NOSONAR
 
-                // If slider pos = 0 when stopping disable effect
+                // If slider pos = 0 when stopping disable effect // NOSONAR
                 @Override //NOSONAR
                 public void onStopTrackingTouch(final SeekBar seekBar) { //NOSONAR
                     if (seekBar.getProgress() == 0) { //NOSONAR
-                        // disable
+                        // disable // NOSONAR
                         prefs.edit().putBoolean("audiofx.virtualizer.enable", false).apply(); //NOSONAR
                         mediaManager.updateEqualizer(); //NOSONAR
-                    }
-                }
-            });
-        }
+                    } // NOSONAR
+                } // NOSONAR
+            }); // NOSONAR
+        } // NOSONAR
 
         return rootView; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onResume() { //NOSONAR
@@ -380,7 +380,7 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
         MiniPlayerLockManager.getInstance().addMiniPlayerLock(this); //NOSONAR
 
         updateUI(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onPause() { //NOSONAR
@@ -388,36 +388,36 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
         MiniPlayerLockManager.getInstance().removeMiniPlayerLock(this); //NOSONAR
 
         super.onPause(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroyView() { //NOSONAR
         super.onDestroyView(); //NOSONAR
 
         unbinder.unbind(); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Sets the given EQ preset.
-     *
-     * @param preset EQ preset id.
-     */
+    /** // NOSONAR
+     * Sets the given EQ preset. // NOSONAR
+     * // NOSONAR
+     * @param preset EQ preset id. // NOSONAR
+     */ // NOSONAR
     void equalizerSetPreset(final int preset) { //NOSONAR
         eqPreset = preset; //NOSONAR
         prefs.edit().putString("audiofx.eq.preset", String.valueOf(preset)).apply(); //NOSONAR
 
         String newLevels; //NOSONAR
         if (preset == eqCustomPresetPosition) { //NOSONAR
-            // load custom if possible
+            // load custom if possible // NOSONAR
             newLevels = prefs.getString("audiofx.eq.bandlevels.custom", Equalizer.getZeroedBandsString(numberEqualizerBands)); //NOSONAR
         } else { //NOSONAR
             newLevels = prefs.getString("equalizer.preset." + preset, Equalizer.getZeroedBandsString(numberEqualizerBands)); //NOSONAR
-        }
+        } // NOSONAR
         prefs.edit().putString("audiofx.eq.bandlevels", newLevels).apply(); //NOSONAR
         updateUI(); //NOSONAR
 
         mediaManager.updateEqualizer(); //NOSONAR
-    }
+    } // NOSONAR
 
     void updateUI() { //NOSONAR
 
@@ -425,44 +425,44 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
         if (equalizerSupported) { //NOSONAR
             equalizerUpdateDisplay(); //NOSONAR
-        }
+        } // NOSONAR
         if (bassBoostSupported) { //NOSONAR
             baseBoostSeekbar.setProgress(Integer.valueOf(prefs.getString("audiofx.bass.strength", "0"))); //NOSONAR
-        }
+        } // NOSONAR
         if (virtualizerSupported) { //NOSONAR
             virtualizerSeekbar.setProgress(Integer.valueOf(prefs.getString("audiofx.virtualizer.strength", "0"))); //NOSONAR
-        }
+        } // NOSONAR
 
-        // Initialize the Equalizer elements.
+        // Initialize the Equalizer elements. // NOSONAR
         if (equalizerSupported) { //NOSONAR
             String preset = String.valueOf(numberEqualizerBands); //NOSONAR
             eqPreset = Integer.valueOf(prefs.getString("audiofx.eq.preset", preset)); //NOSONAR
             if (spinnerAdapter != null && spinnerAdapter.getCount() > eqPreset) { //NOSONAR
                 spinner.setSelection(eqPreset); //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
-    /**
-     * Updates the EQ by getting the parameters.
-     */
+    /** // NOSONAR
+     * Updates the EQ by getting the parameters. // NOSONAR
+     */ // NOSONAR
     private void equalizerUpdateDisplay() { //NOSONAR
 
         String levelsString; //NOSONAR
         float[] floats; //NOSONAR
 
         if (eqPreset == eqCustomPresetPosition) { //NOSONAR
-            // load custom preset for current device
-            // here mEQValues needs to be pre-populated with the user's preset values.
+            // load custom preset for current device // NOSONAR
+            // here mEQValues needs to be pre-populated with the user's preset values. // NOSONAR
             String[] customEq = prefs.getString("audiofx.eq.bandlevels.custom", Equalizer.getZeroedBandsString(numberEqualizerBands)).split(";"); //NOSONAR
             floats = new float[numberEqualizerBands]; //NOSONAR
             for (int band = 0; band < floats.length; band++) { //NOSONAR
                 final float level = Float.parseFloat(customEq[band]); //NOSONAR
                 floats[band] = level / 100.0f; //NOSONAR
                 mEqualizerSeekBar[band].setProgress((int) ((getBandLevelRange()[1] / 100.0f) + (level / 100.0f))); //NOSONAR
-            }
+            } // NOSONAR
         } else { //NOSONAR
-            // try to load preset
+            // try to load preset // NOSONAR
             levelsString = prefs.getString("equalizer.preset." + eqPreset, Equalizer.getZeroedBandsString(numberEqualizerBands)); //NOSONAR
             String[] bandLevels = levelsString.split(";"); //NOSONAR
             floats = new float[bandLevels.length]; //NOSONAR
@@ -470,9 +470,9 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
                 final float level = Float.parseFloat(bandLevels[band]); //NOSONAR
                 floats[band] = level / 100.0f; //NOSONAR
                 mEqualizerSeekBar[band].setProgress((int) ((getBandLevelRange()[1] / 100.0f) + (level / 100.0f))); //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     void equalizerBandUpdate(final int band, final int level) { //NOSONAR
 
@@ -480,22 +480,22 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
 
         currentCustomLevels[band] = String.valueOf(level); //NOSONAR
 
-        // save
+        // save // NOSONAR
         StringBuilder builder = new StringBuilder(); //NOSONAR
         for (int i = 0; i < numberEqualizerBands; i++) { //NOSONAR
             builder.append(currentCustomLevels[i]); //NOSONAR
             builder.append(";"); //NOSONAR
-        }
+        } // NOSONAR
         builder.deleteCharAt(builder.length() - 1); //NOSONAR
         prefs.edit().putString("audiofx.eq.bandlevels", builder.toString()).apply(); //NOSONAR
         prefs.edit().putString("audiofx.eq.bandlevels.custom", builder.toString()).apply(); //NOSONAR
 
         mediaManager.updateEqualizer(); //NOSONAR
-    }
+    } // NOSONAR
 
-    /**
-     * Called when user starts touch eq on a preset
-     */
+    /** // NOSONAR
+     * Called when user starts touch eq on a preset // NOSONAR
+     */ // NOSONAR
     void equalizerCopyToCustom() { //NOSONAR
         Log.d(TAG, "equalizerCopyToCustom()"); //NOSONAR
         StringBuilder bandLevels = new StringBuilder(); //NOSONAR
@@ -503,18 +503,18 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             final float level = (getBandLevelRange()[0] / 100) + mEqualizerSeekBar[band].getProgress(); //NOSONAR
             bandLevels.append(level * 100); //NOSONAR
             bandLevels.append(";"); //NOSONAR
-        }
-        // remove trailing ";"
+        } // NOSONAR
+        // remove trailing ";" // NOSONAR
         bandLevels.deleteCharAt(bandLevels.length() - 1); //NOSONAR
         prefs.edit().putString("audiofx.eq.bandlevels.custom", bandLevels.toString()).apply(); //NOSONAR
         prefs.edit().putString("audiofx.eq.preset", String.valueOf(eqCustomPresetPosition)).apply(); //NOSONAR
-    }
+    } // NOSONAR
 
     private String format(String format, Object... args) { //NOSONAR
         formatBuilder.setLength(0); //NOSONAR
         formatter.format(format, args); //NOSONAR
         return formatBuilder.toString(); //NOSONAR
-    }
+    } // NOSONAR
 
     private static final int MSG_UPDATE_EQUALIZER = 1; //NOSONAR
 
@@ -527,10 +527,10 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             int[] freqs = new int[split.length]; //NOSONAR
             for (int i = 0; i < split.length; i++) { //NOSONAR
                 freqs[i] = Integer.valueOf(split[i]); //NOSONAR
-            }
+            } // NOSONAR
             return freqs; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private int[] getCenterFreqs() { //NOSONAR
         String savedCenterFreqs = prefs.getString("equalizer.center_freqs", Equalizer.getZeroedBandsString(numberEqualizerBands)); //NOSONAR
@@ -538,12 +538,12 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
         int[] freqs = new int[split.length]; //NOSONAR
         for (int i = 0; i < split.length; i++) { //NOSONAR
             freqs[i] = Integer.valueOf(split[i]); //NOSONAR
-        }
+        } // NOSONAR
         return freqs; //NOSONAR
-    }
+    } // NOSONAR
 
     private void setupPresets() { //NOSONAR
-        // setup equalizer presets
+        // setup equalizer presets // NOSONAR
         final int numPresets = Integer.parseInt(prefs.getString("equalizer.number_of_presets", "0")); //NOSONAR
         eqPresetNames = new String[numPresets + 1]; //NOSONAR
 
@@ -556,11 +556,11 @@ public class EqualizerFragment extends BaseFragment implements //NOSONAR
             spinnerAdapter = new RobotoSpinnerAdapter<>(getContext(), R.layout.spinner_item, eqPresetNames); //NOSONAR
             spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); //NOSONAR
             spinner.setAdapter(spinnerAdapter); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected String screenName() { //NOSONAR
         return TAG; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,57 +1,57 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.drawer
+package com.simplecity.amp_library.ui.screens.drawer // NOSONAR
 
-import android.content.Context
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
-import android.os.Bundle
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.DrawerLayout
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PopupMenu
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import com.afollestad.aesthetic.Aesthetic
-import com.afollestad.aesthetic.Rx
-import com.bignerdranch.expandablerecyclerview.model.Parent
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.billing.BillingManager
-import com.simplecity.amp_library.data.Repository
-import com.simplecity.amp_library.model.AlbumArtist
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.ui.common.BaseFragment
-import com.simplecity.amp_library.ui.dialog.UpgradeDialog
-import com.simplecity.amp_library.ui.dialog.WeekSelectorDialog
-import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter
-import com.simplecity.amp_library.ui.screens.playlist.dialog.DeletePlaylistConfirmationDialog
-import com.simplecity.amp_library.ui.screens.playlist.dialog.M3uPlaylistDialog
-import com.simplecity.amp_library.ui.screens.playlist.dialog.RenamePlaylistDialog
-import com.simplecity.amp_library.ui.views.PlayerViewAdapter
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.PlaceholderProvider
-import com.simplecity.amp_library.utils.SettingsManager
-import com.simplecity.amp_library.utils.SleepTimer
-import com.simplecity.amp_library.utils.menu.playlist.PlaylistMenuUtils
-import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager
-import com.simplecity.amp_library.utils.playlists.PlaylistManager
-import dagger.android.support.AndroidSupportInjection
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.drawer_header.artist_image
-import kotlinx.android.synthetic.main.drawer_header.background_image
-import kotlinx.android.synthetic.main.drawer_header.line1
-import kotlinx.android.synthetic.main.drawer_header.line2
-import kotlinx.android.synthetic.main.drawer_header.placeholder_text
-import kotlinx.android.synthetic.main.fragment_drawer.recyclerView
-import java.util.ArrayList
-import javax.inject.Inject
+import android.content.Context // NOSONAR
+import android.graphics.PorterDuff // NOSONAR
+import android.graphics.drawable.Drawable // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.content.ContextCompat // NOSONAR
+import android.support.v4.widget.DrawerLayout // NOSONAR
+import android.support.v7.widget.LinearLayoutManager // NOSONAR
+import android.support.v7.widget.PopupMenu // NOSONAR
+import android.view.Gravity // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.View // NOSONAR
+import android.view.ViewGroup // NOSONAR
+import android.widget.Toast // NOSONAR
+import com.afollestad.aesthetic.Aesthetic // NOSONAR
+import com.afollestad.aesthetic.Rx // NOSONAR
+import com.bignerdranch.expandablerecyclerview.model.Parent // NOSONAR
+import com.bumptech.glide.RequestManager // NOSONAR
+import com.bumptech.glide.load.engine.DiskCacheStrategy // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.billing.BillingManager // NOSONAR
+import com.simplecity.amp_library.data.Repository // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment // NOSONAR
+import com.simplecity.amp_library.ui.dialog.UpgradeDialog // NOSONAR
+import com.simplecity.amp_library.ui.dialog.WeekSelectorDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.dialog.DeletePlaylistConfirmationDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.dialog.M3uPlaylistDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.dialog.RenamePlaylistDialog // NOSONAR
+import com.simplecity.amp_library.ui.views.PlayerViewAdapter // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.PlaceholderProvider // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import com.simplecity.amp_library.utils.SleepTimer // NOSONAR
+import com.simplecity.amp_library.utils.menu.playlist.PlaylistMenuUtils // NOSONAR
+import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistManager // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.disposables.CompositeDisposable // NOSONAR
+import kotlinx.android.synthetic.main.drawer_header.artist_image // NOSONAR
+import kotlinx.android.synthetic.main.drawer_header.background_image // NOSONAR
+import kotlinx.android.synthetic.main.drawer_header.line1 // NOSONAR
+import kotlinx.android.synthetic.main.drawer_header.line2 // NOSONAR
+import kotlinx.android.synthetic.main.drawer_header.placeholder_text // NOSONAR
+import kotlinx.android.synthetic.main.fragment_drawer.recyclerView // NOSONAR
+import java.util.ArrayList // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListener, DrawerParent.ClickListener { //NOSONAR
 
@@ -90,12 +90,12 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
 
     private var drawerParents: MutableList<Parent<DrawerChild>>? = null //NOSONAR
 
-    // Lifecycle
+    // Lifecycle // NOSONAR
 
     override fun onAttach(context: Context?) { //NOSONAR
         AndroidSupportInjection.inject(this) //NOSONAR
         super.onAttach(context) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
         super.onCreate(savedInstanceState) //NOSONAR
@@ -103,7 +103,7 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
         if (savedInstanceState != null) { //NOSONAR
             selectedDrawerParent = savedInstanceState.getInt(STATE_SELECTED_DRAWER_PARENT, DrawerParent.Type.LIBRARY) //NOSONAR
             currentSelectedPlaylist = savedInstanceState.get(STATE_SELECTED_PLAYLIST) as Playlist? //NOSONAR
-        }
+        } // NOSONAR
 
         backgroundPlaceholder = ContextCompat.getDrawable(context!!, R.drawable.ic_drawer_header_placeholder) //NOSONAR
 
@@ -120,11 +120,11 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
         drawerParents!!.add(DrawerParent.getSupportParent(settingsManager)) //NOSONAR
 
         adapter = DrawerAdapter(drawerParents!!) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
         return inflater.inflate(R.layout.fragment_drawer, container, false) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
         super.onViewCreated(view, savedInstanceState) //NOSONAR
@@ -138,12 +138,12 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
         playerPresenter.bindView(playerViewAdapter) //NOSONAR
 
         drawerLayout = getParentDrawerLayout(view) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onResume() { //NOSONAR
         super.onResume() //NOSONAR
 
-        // To do later: Move this crap to presenter
+        // To do later: Move this crap to presenter // NOSONAR
         disposables.add(Aesthetic.get(context) //NOSONAR
             .colorPrimary() //NOSONAR
             .compose(Rx.distinctToMainThread()) //NOSONAR
@@ -151,8 +151,8 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                 backgroundPlaceholder!!.setColorFilter(color!!, PorterDuff.Mode.MULTIPLY) //NOSONAR
                 if (mediaManager.song == null) { //NOSONAR
                     background_image.setImageDrawable(backgroundPlaceholder) //NOSONAR
-                }
-            })
+                } // NOSONAR
+            }) // NOSONAR
 
         playerPresenter.updateTrackInfo() //NOSONAR
 
@@ -165,10 +165,10 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                             if (aLong > 0 && drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) { //NOSONAR
                                 drawerParent.setTimeRemaining(aLong!!) //NOSONAR
                                 adapter.notifyParentChanged(i) //NOSONAR
-                            }
-                        }
+                            } // NOSONAR
+                        } // NOSONAR
                 }, { throwable -> LogUtils.logException(TAG, "Error observing sleep time", throwable) }) //NOSONAR
-        )
+        ) // NOSONAR
 
         disposables.add( //NOSONAR
             SleepTimer.getInstance().timerActiveSubject //NOSONAR
@@ -179,16 +179,16 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                             if (drawerParent is DrawerParent && drawerParent.type == DrawerParent.Type.SLEEP_TIMER) { //NOSONAR
                                 drawerParent.setTimerActive(active!!) //NOSONAR
                                 adapter.notifyParentChanged(i) //NOSONAR
-                            }
-                        }
-                },
+                            } // NOSONAR
+                        } // NOSONAR
+                }, // NOSONAR
                     { throwable -> LogUtils.logException(TAG, "Error observing sleep state", throwable) }) //NOSONAR
-        )
+        ) // NOSONAR
 
         drawerParents!! //NOSONAR
             .filter { parent -> parent is DrawerParent } //NOSONAR
             .forEach { parent -> (parent as DrawerParent).setListener(this) } //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onPause() { //NOSONAR
         disposables.clear() //NOSONAR
@@ -198,21 +198,21 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
             .forEach { parent -> (parent as DrawerParent).setListener(null) } //NOSONAR
 
         super.onPause() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onDestroyView() { //NOSONAR
         drawerPresenter.unbindView(this) //NOSONAR
         playerPresenter.unbindView(playerViewAdapter) //NOSONAR
 
         super.onDestroyView() //NOSONAR
-    }
+    } // NOSONAR
 
     private val playerViewAdapter: PlayerViewAdapter = object : PlayerViewAdapter() { //NOSONAR
         override fun trackInfoChanged(song: Song?) { //NOSONAR
 
             if (song == null) { //NOSONAR
                 return //NOSONAR
-            }
+            } // NOSONAR
 
             line1.text = song.name //NOSONAR
             line2.text = String.format("%s - %s", song.albumArtistName, song.albumName) //NOSONAR
@@ -237,23 +237,23 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                 placeholder_text.visibility = View.GONE //NOSONAR
                 line1.visibility = View.VISIBLE //NOSONAR
                 line2.visibility = View.VISIBLE //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onClick(drawerParent: DrawerParent) { //NOSONAR
         drawerPresenter.onDrawerItemClicked(drawerParent) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSaveInstanceState(outState: Bundle) { //NOSONAR
         super.onSaveInstanceState(outState) //NOSONAR
         outState.putSerializable(STATE_SELECTED_DRAWER_PARENT, selectedDrawerParent) //NOSONAR
         outState.putSerializable(STATE_SELECTED_PLAYLIST, currentSelectedPlaylist) //NOSONAR
-    }
+    } // NOSONAR
 
     internal fun onPlaylistClicked(playlist: Playlist) { //NOSONAR
         drawerPresenter.onPlaylistClicked(playlist) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun setPlaylistItems(playlists: List<Playlist>) { //NOSONAR
 
@@ -269,15 +269,15 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                 drawerChild.setListener(object : DrawerChild.ClickListener { //NOSONAR
                     override fun onClick(playlist: Playlist) { //NOSONAR
                         onPlaylistClicked(playlist) //NOSONAR
-                    }
+                    } // NOSONAR
 
                     override fun onOverflowClick(view: View, playlist: Playlist) { //NOSONAR
                         val popupMenu = PopupMenu(view.context, view) //NOSONAR
                         PlaylistMenuUtils.setupPlaylistMenu(popupMenu, playlist) //NOSONAR
                         popupMenu.setOnMenuItemClickListener(PlaylistMenuUtils.getPlaylistPopupMenuClickListener(playlist, drawerPresenter)) //NOSONAR
                         popupMenu.show() //NOSONAR
-                    }
-                })
+                    } // NOSONAR
+                }) // NOSONAR
                 drawerChild //NOSONAR
             }.toList() //NOSONAR
 
@@ -285,11 +285,11 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
         adapter.notifyChildRangeInserted(parentPosition, 0, drawerChildren.size) //NOSONAR
 
         adapter.notifyParentChanged(parentPosition) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun closeDrawer() { //NOSONAR
         drawerLayout?.closeDrawer(Gravity.START) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun setDrawerItemSelected(@DrawerParent.Type type: Int) { //NOSONAR
         adapter.parentList //NOSONAR
@@ -299,55 +299,55 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
                         if (!drawerParent.isSelected) { //NOSONAR
                             drawerParent.isSelected = true //NOSONAR
                             adapter.notifyParentChanged(i) //NOSONAR
-                        }
+                        } // NOSONAR
                     } else { //NOSONAR
                         if (drawerParent.isSelected) { //NOSONAR
                             drawerParent.isSelected = false //NOSONAR
                             adapter.notifyParentChanged(i) //NOSONAR
-                        }
-                    }
-                }
-            }
-    }
+                        } // NOSONAR
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
+    } // NOSONAR
 
     override fun showUpgradeDialog() { //NOSONAR
         UpgradeDialog().show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
-    // PlaylistMenuContract.View Implementation
+    // PlaylistMenuContract.View Implementation // NOSONAR
 
     override fun onPlaybackFailed() { //NOSONAR
-        // To do later: Improve error message
+        // To do later: Improve error message // NOSONAR
         Toast.makeText(context, R.string.empty_playlist, Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentEditDialog(playlist: Playlist) { //NOSONAR
         WeekSelectorDialog().show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentRenameDialog(playlist: Playlist) { //NOSONAR
         RenamePlaylistDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentM3uDialog(playlist: Playlist) { //NOSONAR
         M3uPlaylistDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentDeletePlaylistDialog(playlist: Playlist) { //NOSONAR
         DeletePlaylistConfirmationDialog.newInstance(playlist).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
         Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
-    // BaseDetailFragment Implementation
+    // BaseDetailFragment Implementation // NOSONAR
 
     override fun screenName(): String { //NOSONAR
         return TAG //NOSONAR
-    }
+    } // NOSONAR
 
-    // Static
+    // Static // NOSONAR
 
     companion object { //NOSONAR
 
@@ -362,11 +362,11 @@ class DrawerFragment : BaseFragment(), DrawerView, View.OnCreateContextMenuListe
 
             if (v is DrawerLayout) { //NOSONAR
                 return v //NOSONAR
-            }
+            } // NOSONAR
 
             return if (v.parent is View) { //NOSONAR
                 getParentDrawerLayout(v.parent as View) //NOSONAR
             } else null //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

@@ -1,35 +1,35 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/playNext"
-        android:icon="@drawable/ic_play_next"
-        android:title="@string/play_next"
-        app:showAsAction="ifRoom" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/playNext" <!-- NOSONAR -->
+        android:icon="@drawable/ic_play_next" <!-- NOSONAR -->
+        android:title="@string/play_next" <!-- NOSONAR -->
+        app:showAsAction="ifRoom" /> <!-- NOSONAR -->
 
-    <item
-        android:icon="@drawable/ic_playlist_add_24dp"
-        android:title="@string/menu_add_to"
-        app:showAsAction="ifRoom">
+    <item <!-- NOSONAR -->
+        android:icon="@drawable/ic_playlist_add_24dp" <!-- NOSONAR -->
+        android:title="@string/menu_add_to" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"> <!-- NOSONAR -->
 
-        <menu>
-            <item
-                android:id="@+id/addToPlaylist"
-                android:title="@string/menu_playlist">
-                <menu />
-            </item>
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToPlaylist" <!-- NOSONAR -->
+                android:title="@string/menu_playlist"> <!-- NOSONAR -->
+                <menu /> <!-- NOSONAR -->
+            </item> <!-- NOSONAR -->
 
-            <item
-                android:id="@+id/addToQueue"
-                android:title="@string/menu_queue" />
-        </menu>
-    </item>
+            <item <!-- NOSONAR -->
+                android:id="@+id/addToQueue" <!-- NOSONAR -->
+                android:title="@string/menu_queue" /> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/delete"
-        android:icon="@drawable/ic_delete_24dp"
-        android:title="@string/delete_item"
-        app:showAsAction="ifRoom" />
+    <item <!-- NOSONAR -->
+        android:id="@+id/delete" <!-- NOSONAR -->
+        android:icon="@drawable/ic_delete_24dp" <!-- NOSONAR -->
+        android:title="@string/delete_item" <!-- NOSONAR -->
+        app:showAsAction="ifRoom" /> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

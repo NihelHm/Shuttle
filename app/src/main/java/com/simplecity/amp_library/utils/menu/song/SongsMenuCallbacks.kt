@@ -1,10 +1,10 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.utils.menu.song
+package com.simplecity.amp_library.utils.menu.song // NOSONAR
 
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import io.reactivex.Single
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import io.reactivex.Single // NOSONAR
 
 interface SongsMenuCallbacks { //NOSONAR
 
@@ -35,54 +35,54 @@ interface SongsMenuCallbacks { //NOSONAR
     fun goToGenre(song: Song) //NOSONAR
 
     fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) //NOSONAR
-}
+} // NOSONAR
 
 
 fun SongsMenuCallbacks.createPlaylist(song: Song) { //NOSONAR
     createPlaylist(listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.addToPlaylist(playlist: Playlist, song: Song) { //NOSONAR
     addToPlaylist(playlist, listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.addToQueue(song: Song) { //NOSONAR
     addToQueue(listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.playNext(song: Song) { //NOSONAR
     playNext(listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.blacklist(song: Song) { //NOSONAR
     blacklist(listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.delete(song: Song) { //NOSONAR
     delete(listOf(song)) //NOSONAR
-}
+} // NOSONAR
 
 
 fun SongsMenuCallbacks.createPlaylist(songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { createPlaylist(songs) } //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.addToPlaylist(playlist: Playlist, songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { songs -> addToPlaylist(playlist, songs) } //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.addToQueue(songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { songs -> addToQueue(songs) } //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.playNext(songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { songs -> playNext(songs) } //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.blacklist(songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { songs -> blacklist(songs) } //NOSONAR
-}
+} // NOSONAR
 
 fun SongsMenuCallbacks.delete(songs: Single<List<Song>>) { //NOSONAR
     transform(songs) { songs -> delete(songs) } //NOSONAR
-}
+} // NOSONAR

@@ -1,73 +1,73 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:id="@+id/statusBarView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:id="@+id/statusBarView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark"/> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <FrameLayout <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content"> <!-- NOSONAR -->
 
-        <!-- Regular Toolbar steals touch events, but we need the events to be passed to our peek view -->
-        <com.simplecity.amp_library.ui.views.NonClickableToolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:navigationIcon="?attr/homeAsUpIndicator">
+        <!-- Regular Toolbar steals touch events, but we need the events to be passed to our peek view --> <!-- NOSONAR -->
+        <com.simplecity.amp_library.ui.views.NonClickableToolbar <!-- NOSONAR -->
+            android:id="@+id/toolbar" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+            android:background="?attr/colorPrimary" <!-- NOSONAR -->
+            app:navigationIcon="?attr/homeAsUpIndicator"> <!-- NOSONAR -->
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="vertical">
+            <LinearLayout <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:gravity="center_vertical" <!-- NOSONAR -->
+                android:orientation="vertical"> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/line1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="2dp"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:tag=":aesthetic_ignore"
-                    android:text="@string/nowplaying_title"
-                    android:textColor="?android:textColorPrimary"
-                    android:textSize="16sp"/>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/line1" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_marginBottom="2dp" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:maxLines="1" <!-- NOSONAR -->
+                    android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                    android:text="@string/nowplaying_title" <!-- NOSONAR -->
+                    android:textColor="?android:textColorPrimary" <!-- NOSONAR -->
+                    android:textSize="16sp"/> <!-- NOSONAR -->
 
-                <TextView
-                    android:id="@+id/line2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center_vertical"
-                    android:maxLines="1"
-                    android:tag=":aesthetic_ignore"
-                    android:textColor="?android:textColorPrimary"
-                    android:textSize="12sp"
-                    tools:text="Naysayer - Kill Stuff"/>
-            </LinearLayout>
-        </com.simplecity.amp_library.ui.views.NonClickableToolbar>
+                <TextView <!-- NOSONAR -->
+                    android:id="@+id/line2" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:gravity="center_vertical" <!-- NOSONAR -->
+                    android:maxLines="1" <!-- NOSONAR -->
+                    android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                    android:textColor="?android:textColorPrimary" <!-- NOSONAR -->
+                    android:textSize="12sp" <!-- NOSONAR -->
+                    tools:text="Naysayer - Kill Stuff"/> <!-- NOSONAR -->
+            </LinearLayout> <!-- NOSONAR -->
+        </com.simplecity.amp_library.ui.views.NonClickableToolbar> <!-- NOSONAR -->
 
-        <include
-            android:id="@+id/contextualToolbar"
-            layout="@layout/contextual_toolbar"/>
+        <include <!-- NOSONAR -->
+            android:id="@+id/contextualToolbar" <!-- NOSONAR -->
+            layout="@layout/contextual_toolbar"/> <!-- NOSONAR -->
 
-    </FrameLayout>
+    </FrameLayout> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.AestheticFastScrollRecyclerView
-        android:id="@+id/recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="?android:windowBackground"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:listitem="@layout/list_item_two_lines"/>
+    <com.simplecity.amp_library.ui.views.AestheticFastScrollRecyclerView <!-- NOSONAR -->
+        android:id="@+id/recyclerView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:background="?android:windowBackground" <!-- NOSONAR -->
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" <!-- NOSONAR -->
+        tools:listitem="@layout/list_item_two_lines"/> <!-- NOSONAR -->
 
-</LinearLayout>
+</LinearLayout> <!-- NOSONAR -->

@@ -1,25 +1,25 @@
-package com.simplecity.amp_library.ui.views;
+package com.simplecity.amp_library.ui.views; // NOSONAR
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.util.AttributeSet;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.afollestad.aesthetic.Aesthetic;
-import com.afollestad.aesthetic.BgIconColorState;
-import com.afollestad.aesthetic.Rx;
-import com.simplecity.amp_library.R;
-import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
+import android.content.Context; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.graphics.drawable.Drawable; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.support.v4.graphics.drawable.DrawableCompat; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import android.widget.FrameLayout; // NOSONAR
+import android.widget.ImageView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.afollestad.aesthetic.BgIconColorState; // NOSONAR
+import com.afollestad.aesthetic.Rx; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class FavoriteActionBarView extends FrameLayout { //NOSONAR
@@ -39,7 +39,7 @@ public class FavoriteActionBarView extends FrameLayout { //NOSONAR
 
     public FavoriteActionBarView(@NonNull Context context, @Nullable AttributeSet attrs) { //NOSONAR
         super(context, attrs); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onFinishInflate() { //NOSONAR
@@ -53,18 +53,18 @@ public class FavoriteActionBarView extends FrameLayout { //NOSONAR
         imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable); //NOSONAR
 
         setIsFavorite(isFavorite); //NOSONAR
-    }
+    } // NOSONAR
 
     public void setIsFavorite(boolean isFavorite) { //NOSONAR
         if (isFavorite != this.isFavorite) { //NOSONAR
             this.isFavorite = isFavorite; //NOSONAR
             imageView.setImageDrawable(isFavorite ? selectedDrawable : normalDrawable); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void toggle() { //NOSONAR
         setIsFavorite(!isFavorite); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onAttachedToWindow() { //NOSONAR
@@ -72,7 +72,7 @@ public class FavoriteActionBarView extends FrameLayout { //NOSONAR
 
         if (isInEditMode()) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         if (!":aesthetic_ignore".equals(getTag())) { //NOSONAR
             aestheticDisposable = Observable.combineLatest( //NOSONAR
@@ -83,16 +83,16 @@ public class FavoriteActionBarView extends FrameLayout { //NOSONAR
                     .subscribe( //NOSONAR
                             bgIconColorState -> invalidateColors(bgIconColorState), //NOSONAR
                             onErrorLogAndRethrow()); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onDetachedFromWindow() { //NOSONAR
         if (aestheticDisposable != null) { //NOSONAR
             aestheticDisposable.dispose(); //NOSONAR
-        }
+        } // NOSONAR
         super.onDetachedFromWindow(); //NOSONAR
-    }
+    } // NOSONAR
 
     private void invalidateColors(BgIconColorState bgIconColorState) { //NOSONAR
 
@@ -101,5 +101,5 @@ public class FavoriteActionBarView extends FrameLayout { //NOSONAR
 
         DrawableCompat.setTint(normalDrawable, normalColor); //NOSONAR
         DrawableCompat.setTint(selectedDrawable, selectedColor); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

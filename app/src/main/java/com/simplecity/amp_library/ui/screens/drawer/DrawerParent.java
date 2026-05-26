@@ -1,31 +1,31 @@
-package com.simplecity.amp_library.ui.screens.drawer;
+package com.simplecity.amp_library.ui.screens.drawer; // NOSONAR
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.graphics.drawable.DrawableCompat;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.ImageView;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.afollestad.aesthetic.Aesthetic;
-import com.bignerdranch.expandablerecyclerview.ParentViewHolder;
-import com.bignerdranch.expandablerecyclerview.model.Parent;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.ShuttleApplication;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.ShuttleUtils;
-import com.simplecity.amp_library.utils.StringUtils;
-import com.simplecity.amp_library.utils.TypefaceManager;
-import java.util.ArrayList;
-import java.util.List;
+import android.animation.ObjectAnimator; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.graphics.drawable.Drawable; // NOSONAR
+import android.support.annotation.DrawableRes; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.annotation.StringRes; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.support.v4.graphics.drawable.DrawableCompat; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.animation.DecelerateInterpolator; // NOSONAR
+import android.widget.ImageView; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.bignerdranch.expandablerecyclerview.ParentViewHolder; // NOSONAR
+import com.bignerdranch.expandablerecyclerview.model.Parent; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils; // NOSONAR
+import com.simplecity.amp_library.utils.StringUtils; // NOSONAR
+import com.simplecity.amp_library.utils.TypefaceManager; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
@@ -40,7 +40,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.librarySelectedEvent, //NOSONAR
                 true, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getPlaylistsParent(SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -50,7 +50,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 null, //NOSONAR
                 true, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getSleepTimerParent(SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -60,7 +60,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.sleepTimerSelectedEvent, //NOSONAR
                 false, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getEqualizerParent(SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -70,7 +70,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.equalizerSelectedEvent, //NOSONAR
                 false, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getSettingsParent(SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -80,7 +80,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.settingsSelectedEvent, //NOSONAR
                 false, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getSupportParent(SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -90,7 +90,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.supportSelectedEvent, //NOSONAR
                 false, //NOSONAR
                 settingsManager); //NOSONAR
-    }
+    } // NOSONAR
 
     static DrawerParent getFolderParent(Context context, SettingsManager settingsManager) { //NOSONAR
         return new DrawerParent( //NOSONAR
@@ -100,13 +100,13 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
                 NavigationEventRelay.getFoldersSelectedEvent((ShuttleApplication) context.getApplicationContext(), settingsManager), //NOSONAR
                 true, //NOSONAR
                 settingsManager //NOSONAR
-        ) {
+        ) { // NOSONAR
             @Override //NOSONAR
             public boolean isSelectable() { //NOSONAR
                 return ShuttleUtils.isUpgraded((ShuttleApplication) context.getApplicationContext(), settingsManager); //NOSONAR
-            }
-        };
-    }
+            } // NOSONAR
+        }; // NOSONAR
+    } // NOSONAR
 
     public @interface Type { //NOSONAR
         int LIBRARY = 0; //NOSONAR
@@ -116,20 +116,20 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
         int EQUALIZER = 4; //NOSONAR
         int SETTINGS = 5; //NOSONAR
         int SUPPORT = 6; //NOSONAR
-    }
+    } // NOSONAR
 
     private boolean selectable = true; //NOSONAR
 
     public interface ClickListener { //NOSONAR
         void onClick(DrawerParent drawerParent); //NOSONAR
-    }
+    } // NOSONAR
 
     @Nullable //NOSONAR
     private ClickListener listener; //NOSONAR
 
     public void setListener(@Nullable ClickListener listener) { //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     @DrawerParent.Type //NOSONAR
     @SuppressWarnings("java:S1104") //NOSONAR
@@ -160,50 +160,50 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
             Nullable NavigationEventRelay.NavigationEvent navigationEvent, //NOSONAR
             boolean selectable, //NOSONAR
             SettingsManager settingsManager //NOSONAR
-    ) {
+    ) { // NOSONAR
         this.type = type; //NOSONAR
         this.titleResId = titleResId; //NOSONAR
         this.iconResId = iconResId; //NOSONAR
         this.navigationEvent = navigationEvent; //NOSONAR
         this.selectable = selectable; //NOSONAR
         this.settingsManager = settingsManager; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public List<DrawerChild> getChildList() { //NOSONAR
         return children; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean isInitiallyExpanded() { //NOSONAR
         return false; //NOSONAR
-    }
+    } // NOSONAR
 
     public boolean isSelected() { //NOSONAR
         return isSelected; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setSelected(boolean selected) { //NOSONAR
         isSelected = selected; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setTimerActive(boolean timerActive) { //NOSONAR
         this.timerActive = timerActive; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setTimeRemaining(long timeRemaining) { //NOSONAR
         this.timeRemaining = timeRemaining; //NOSONAR
-    }
+    } // NOSONAR
 
     public boolean isSelectable() { //NOSONAR
         return selectable; //NOSONAR
-    }
+    } // NOSONAR
 
     void onClick() { //NOSONAR
         if (listener != null && type != Type.PLAYLISTS) { //NOSONAR
             listener.onClick(this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void bindView(ParentHolder holder) { //NOSONAR
 
@@ -220,38 +220,38 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
             holder.icon.setVisibility(View.VISIBLE); //NOSONAR
         } else { //NOSONAR
             holder.icon.setVisibility(View.GONE); //NOSONAR
-        }
+        } // NOSONAR
 
         if (titleResId != -1) { //NOSONAR
             holder.lineOne.setText(holder.itemView.getResources().getString(titleResId)); //NOSONAR
             holder.lineOne.setTypeface(TypefaceManager.getInstance().getTypeface(holder.itemView.getContext(), TypefaceManager.SANS_SERIF_MEDIUM)); //NOSONAR
-        }
+        } // NOSONAR
 
         if (isSelected) { //NOSONAR
             holder.itemView.setActivated(true); //NOSONAR
         } else { //NOSONAR
             holder.itemView.setActivated(false); //NOSONAR
             holder.icon.setAlpha(0.6f); //NOSONAR
-        }
+        } // NOSONAR
 
         if (type == DrawerParent.Type.FOLDERS && !ShuttleUtils.isUpgraded((ShuttleApplication) holder.itemView.getContext().getApplicationContext(), settingsManager)) { //NOSONAR
             holder.itemView.setAlpha(0.4f); //NOSONAR
         } else { //NOSONAR
             holder.itemView.setAlpha(1.0f); //NOSONAR
-        }
+        } // NOSONAR
 
         if (type == DrawerParent.Type.PLAYLISTS) { //NOSONAR
             holder.itemView.setAlpha(getChildList().isEmpty() ? 0.4f : 1.0f); //NOSONAR
             holder.itemView.setEnabled(!getChildList().isEmpty()); //NOSONAR
-        }
+        } // NOSONAR
 
         if (type == Type.SLEEP_TIMER) { //NOSONAR
             holder.timeRemaining.setVisibility(timerActive ? View.VISIBLE : View.GONE); //NOSONAR
             holder.timeRemaining.setText(StringUtils.makeTimeString(holder.itemView.getContext(), timeRemaining)); //NOSONAR
         } else { //NOSONAR
             holder.timeRemaining.setVisibility(View.GONE); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     static class ParentHolder extends ParentViewHolder { //NOSONAR
 
@@ -275,11 +275,11 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
             super(itemView); //NOSONAR
 
             ButterKnife.bind(this, itemView); //NOSONAR
-        }
+        } // NOSONAR
 
         void bind(DrawerParent drawerParent) { //NOSONAR
             this.drawerParent = drawerParent; //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void onExpansionToggled(boolean expanded) { //NOSONAR
@@ -287,7 +287,7 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
 
             if (objectAnimator != null) { //NOSONAR
                 objectAnimator.cancel(); //NOSONAR
-            }
+            } // NOSONAR
 
             objectAnimator = ObjectAnimator.ofFloat(expandableIcon, View.ROTATION, //NOSONAR
                     expanded ? expandableIcon.getRotation() : expandableIcon.getRotation(), //NOSONAR
@@ -296,13 +296,13 @@ public class DrawerParent implements Parent<DrawerChild> { //NOSONAR
             objectAnimator.setStartDelay(expanded ? 100 : 0); //NOSONAR
             objectAnimator.setInterpolator(new DecelerateInterpolator(1.2f)); //NOSONAR
             objectAnimator.start(); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void onClick(View v) { //NOSONAR
             super.onClick(v); //NOSONAR
 
             drawerParent.onClick(); //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

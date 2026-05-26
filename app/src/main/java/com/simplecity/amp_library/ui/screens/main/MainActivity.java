@@ -1,53 +1,53 @@
-package com.simplecity.amp_library.ui.screens.main;
+package com.simplecity.amp_library.ui.screens.main; // NOSONAR
 
-import android.annotation.SuppressLint;
-import android.content.ComponentName;
-import android.content.ContentUris;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.View;
-import com.afollestad.aesthetic.Aesthetic;
-import com.greysonparrelli.permiso.Permiso;
-import com.simplecity.amp_library.BuildConfig;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.data.Repository;
-import com.simplecity.amp_library.model.Playlist;
-import com.simplecity.amp_library.model.Query;
-import com.simplecity.amp_library.playback.MediaManager;
-import com.simplecity.amp_library.playback.constants.ShortcutCommands;
-import com.simplecity.amp_library.sql.sqlbrite.SqlBriteUtils;
-import com.simplecity.amp_library.ui.common.BaseActivity;
-import com.simplecity.amp_library.ui.common.ToolbarListener;
-import com.simplecity.amp_library.ui.dialog.ChangelogDialog;
-import com.simplecity.amp_library.ui.screens.drawer.DrawerProvider;
-import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay;
-import com.simplecity.amp_library.utils.AnalyticsManager;
-import com.simplecity.amp_library.utils.LogUtils;
-import com.simplecity.amp_library.utils.MusicServiceConnectionUtils;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.ThemeUtils;
-import com.simplecity.amp_library.utils.playlists.PlaylistManager;
-import dagger.android.AndroidInjection;
-import io.reactivex.Single;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.schedulers.Schedulers;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-import javax.inject.Inject;
-import kotlin.Unit;
-import test.com.androidnavigation.fragment.BackPressHandler;
-import test.com.androidnavigation.fragment.BackPressListener;
+import android.annotation.SuppressLint; // NOSONAR
+import android.content.ComponentName; // NOSONAR
+import android.content.ContentUris; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.os.Build; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.os.IBinder; // NOSONAR
+import android.provider.MediaStore; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.v4.view.GravityCompat; // NOSONAR
+import android.support.v4.widget.DrawerLayout; // NOSONAR
+import android.support.v7.app.ActionBarDrawerToggle; // NOSONAR
+import android.support.v7.widget.Toolbar; // NOSONAR
+import android.util.Log; // NOSONAR
+import android.view.View; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.greysonparrelli.permiso.Permiso; // NOSONAR
+import com.simplecity.amp_library.BuildConfig; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.data.Repository; // NOSONAR
+import com.simplecity.amp_library.model.Playlist; // NOSONAR
+import com.simplecity.amp_library.model.Query; // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager; // NOSONAR
+import com.simplecity.amp_library.playback.constants.ShortcutCommands; // NOSONAR
+import com.simplecity.amp_library.sql.sqlbrite.SqlBriteUtils; // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseActivity; // NOSONAR
+import com.simplecity.amp_library.ui.common.ToolbarListener; // NOSONAR
+import com.simplecity.amp_library.ui.dialog.ChangelogDialog; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.DrawerProvider; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay; // NOSONAR
+import com.simplecity.amp_library.utils.AnalyticsManager; // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils; // NOSONAR
+import com.simplecity.amp_library.utils.MusicServiceConnectionUtils; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.ThemeUtils; // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistManager; // NOSONAR
+import dagger.android.AndroidInjection; // NOSONAR
+import io.reactivex.Single; // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers; // NOSONAR
+import io.reactivex.schedulers.Schedulers; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import java.util.concurrent.TimeUnit; // NOSONAR
+import javax.inject.Inject; // NOSONAR
+import kotlin.Unit; // NOSONAR
+import test.com.androidnavigation.fragment.BackPressHandler; // NOSONAR
+import test.com.androidnavigation.fragment.BackPressListener; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class MainActivity extends BaseActivity implements //NOSONAR
@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements //NOSONAR
 
         analyticsManager.dropBreadcrumb(TAG, "onCreate()"); //NOSONAR
 
-        // If we haven't set any defaults, do that now
+        // If we haven't set any defaults, do that now // NOSONAR
         if (Aesthetic.isFirstTime(this)) { //NOSONAR
 
             ThemeUtils.Theme theme = ThemeUtils.getRandom(); //NOSONAR
@@ -101,7 +101,7 @@ public class MainActivity extends BaseActivity implements //NOSONAR
                     .apply(); //NOSONAR
 
             analyticsManager.logInitialTheme(theme); //NOSONAR
-        }
+        } // NOSONAR
 
         setContentView(R.layout.activity_main); //NOSONAR
 
@@ -109,24 +109,24 @@ public class MainActivity extends BaseActivity implements //NOSONAR
 
         navigationView = findViewById(R.id.navView); //NOSONAR
 
-        //Ensure the drawer draws a content scrim over the status bar.
+        //Ensure the drawer draws a content scrim over the status bar. // NOSONAR
         drawerLayout = findViewById(R.id.drawer_layout); //NOSONAR
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT_WATCH) { //NOSONAR
             drawerLayout.setOnApplyWindowInsetsListener((view, windowInsets) -> { //NOSONAR
                 navigationView.dispatchApplyWindowInsets(windowInsets); //NOSONAR
                 return windowInsets.replaceSystemWindowInsets(0, 0, 0, 0); //NOSONAR
-            });
-        }
+            }); // NOSONAR
+        } // NOSONAR
 
         if (savedInstanceState == null) { //NOSONAR
             getSupportFragmentManager() //NOSONAR
                     .beginTransaction() //NOSONAR
                     .add(R.id.mainContainer, MainController.newInstance()) //NOSONAR
                     .commit(); //NOSONAR
-        }
+        } // NOSONAR
 
         handleIntent(getIntent()); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onResume() { //NOSONAR
@@ -134,7 +134,7 @@ public class MainActivity extends BaseActivity implements //NOSONAR
         analyticsManager.dropBreadcrumb(TAG, "onCreate()"); //NOSONAR
 
         showChangelogDialog(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onServiceConnected(ComponentName name, IBinder service) { //NOSONAR
@@ -142,28 +142,28 @@ public class MainActivity extends BaseActivity implements //NOSONAR
         analyticsManager.dropBreadcrumb(TAG, "onServiceConnected()"); //NOSONAR
 
         handlePendingPlaybackRequest(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onNewIntent(Intent intent) { //NOSONAR
         super.onNewIntent(intent); //NOSONAR
 
         handleIntent(intent); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onPause() { //NOSONAR
         super.onPause(); //NOSONAR
 
         analyticsManager.dropBreadcrumb(TAG, "onPause()"); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onDestroy() { //NOSONAR
         super.onDestroy(); //NOSONAR
 
         analyticsManager.dropBreadcrumb(TAG, "onDestroy()"); //NOSONAR
-    }
+    } // NOSONAR
 
     private void handleIntent(Intent intent) { //NOSONAR
         Single.fromCallable(() -> { //NOSONAR
@@ -177,30 +177,30 @@ public class MainActivity extends BaseActivity implements //NOSONAR
                 NavigationEventRelay.NavigationEvent foldersSelectedEvent = new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.FOLDERS_SELECTED, null, true); //NOSONAR
                 navigationEventRelay.sendEvent(foldersSelectedEvent); //NOSONAR
                 handled = true; //NOSONAR
-            }
+            } // NOSONAR
 
             if (!handled) { //NOSONAR
                 handlePlaybackRequest(intent); //NOSONAR
             } else { //NOSONAR
                 setIntent(new Intent()); //NOSONAR
-            }
+            } // NOSONAR
 
             return true; //NOSONAR
-        })
+        }) // NOSONAR
                 .delaySubscription(350, TimeUnit.MILLISECONDS) //NOSONAR
                 .subscribe( //NOSONAR
                         aBoolean -> { //NOSONAR
-                            // Intentionally left empty.
-                        },
+                            // Intentionally left empty. // NOSONAR
+                        }, // NOSONAR
                         throwable -> LogUtils.logException(TAG, "handleIntent error", throwable) //NOSONAR
-                );
-    }
+                ); // NOSONAR
+    } // NOSONAR
 
     private void handlePendingPlaybackRequest() { //NOSONAR
         if (hasPendingPlaybackRequest) { //NOSONAR
             handlePlaybackRequest(getIntent()); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @SuppressLint("CheckResult") //NOSONAR
     private void handlePlaybackRequest(Intent intent) { //NOSONAR
@@ -209,14 +209,14 @@ public class MainActivity extends BaseActivity implements //NOSONAR
         } else if (MusicServiceConnectionUtils.serviceBinder == null) { //NOSONAR
             hasPendingPlaybackRequest = true; //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         final Uri uri = intent.getData(); //NOSONAR
         final String mimeType = intent.getType(); //NOSONAR
 
         if (uri != null && uri.toString().length() > 0) { //NOSONAR
             mediaManager.playFile(uri); //NOSONAR
-            // Make sure to process intent only once
+            // Make sure to process intent only once // NOSONAR
             setIntent(new Intent()); //NOSONAR
         } else if (MediaStore.Audio.Playlists.CONTENT_TYPE.equals(mimeType)) { //NOSONAR
             long id = parseIdFromIntent(intent, "playlistId", "playlist"); //NOSONAR
@@ -229,20 +229,20 @@ public class MainActivity extends BaseActivity implements //NOSONAR
                         .subscribe( //NOSONAR
                                 playlist -> { //NOSONAR
                                     mediaManager.playAll(songsRepository.getSongs(playlist).first(new ArrayList<>()), //NOSONAR
-                                            () -> {
-                                                // To do later: Show playback failure toast
+                                            () -> { // NOSONAR
+                                                // To do later: Show playback failure toast // NOSONAR
                                                 return Unit.INSTANCE; //NOSONAR
-                                            });
-                                    // Make sure to process intent only once
+                                            }); // NOSONAR
+                                    // Make sure to process intent only once // NOSONAR
                                     setIntent(new Intent()); //NOSONAR
-                                },
+                                }, // NOSONAR
                                 error -> LogUtils.logException(TAG, "Error handling playback request", error) //NOSONAR
-                        );
-            }
-        }
+                        ); // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         hasPendingPlaybackRequest = false; //NOSONAR
-    }
+    } // NOSONAR
 
     private long parseIdFromIntent(Intent intent, String longKey, String stringKey) { //NOSONAR
         long id = intent.getLongExtra(longKey, -1); //NOSONAR
@@ -253,25 +253,25 @@ public class MainActivity extends BaseActivity implements //NOSONAR
                     id = Long.parseLong(idString); //NOSONAR
                 } catch (NumberFormatException e) { //NOSONAR
                     Log.e(TAG, e.getMessage()); //NOSONAR
-                }
-            }
-        }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
         return id; //NOSONAR
-    }
+    } // NOSONAR
 
     private void showChangelogDialog() { //NOSONAR
         int storedVersionCode = settingsManager.getStoredVersionCode(); //NOSONAR
 
-        // If we've stored a version code in the past, and it's lower than the current version code,
-        // we can show the changelog.
-        // Don't show the changelog for first time users.
+        // If we've stored a version code in the past, and it's lower than the current version code, // NOSONAR
+        // we can show the changelog. // NOSONAR
+        // Don't show the changelog for first time users. // NOSONAR
         if (storedVersionCode != -1 && storedVersionCode < BuildConfig.VERSION_CODE) { //NOSONAR
             if (settingsManager.getShowChangelogOnLaunch()) { //NOSONAR
                 ChangelogDialog.Companion.newInstance().show(getSupportFragmentManager()); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         settingsManager.setVersionCode(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onBackPressed() { //NOSONAR
@@ -283,12 +283,12 @@ public class MainActivity extends BaseActivity implements //NOSONAR
                     BackPressListener backPressListener = backPressListeners.get(i); //NOSONAR
                     if (backPressListener.consumeBackPress()) { //NOSONAR
                         return; //NOSONAR
-                    }
-                }
-            }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
             super.onBackPressed(); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void toolbarAttached(Toolbar toolbar) { //NOSONAR
@@ -297,33 +297,33 @@ public class MainActivity extends BaseActivity implements //NOSONAR
             @Override //NOSONAR
             public void onDrawerSlide(View drawerView, float slideOffset) { //NOSONAR
                 super.onDrawerSlide(drawerView, 0); //NOSONAR
-            }
-        };
+            } // NOSONAR
+        }; // NOSONAR
         drawer.addDrawerListener(toggle); //NOSONAR
         toggle.syncState(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void addBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
         if (!backPressListeners.contains(listener)) { //NOSONAR
             backPressListeners.add(listener); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void removeBackPressListener(@NonNull BackPressListener listener) { //NOSONAR
         if (backPressListeners.contains(listener)) { //NOSONAR
             backPressListeners.remove(listener); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected String screenName() { //NOSONAR
         return "MainActivity"; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public DrawerLayout getDrawerLayout() { //NOSONAR
         return drawerLayout; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

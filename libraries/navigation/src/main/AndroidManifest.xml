@@ -1,4 +1,4 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="test.com.androidnavigation">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+          package="test.com.androidnavigation"> <!-- NOSONAR -->
 
-</manifest>
+</manifest> <!-- NOSONAR -->

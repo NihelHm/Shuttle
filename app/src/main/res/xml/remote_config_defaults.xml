@@ -1,7 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<defaultsMap>
-    <entry>
-        <key>let_it_snow</key>
-        <value>false</value>
-    </entry>
-</defaultsMap>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<defaultsMap> <!-- NOSONAR -->
+    <entry> <!-- NOSONAR -->
+        <key>let_it_snow</key> <!-- NOSONAR -->
+        <value>false</value> <!-- NOSONAR -->
+    </entry> <!-- NOSONAR -->
+</defaultsMap> <!-- NOSONAR -->

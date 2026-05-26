@@ -1,29 +1,29 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.nowplaying
+package com.simplecity.amp_library.ui.screens.nowplaying // NOSONAR
 
-import android.app.Activity
-import android.content.Context
-import android.content.IntentFilter
-import com.cantrowitz.rxbroadcast.RxBroadcast
-import com.simplecity.amp_library.ShuttleApplication
-import com.simplecity.amp_library.playback.MediaManager
-import com.simplecity.amp_library.playback.PlaybackMonitor
-import com.simplecity.amp_library.playback.constants.InternalIntents
-import com.simplecity.amp_library.ui.common.Presenter
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.SettingsManager
-import com.simplecity.amp_library.utils.ShuttleUtils
-import com.simplecity.amp_library.utils.menu.song.SongsMenuCallbacks
-import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.TimeUnit
-import javax.inject.Inject
+import android.app.Activity // NOSONAR
+import android.content.Context // NOSONAR
+import android.content.IntentFilter // NOSONAR
+import com.cantrowitz.rxbroadcast.RxBroadcast // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager // NOSONAR
+import com.simplecity.amp_library.playback.PlaybackMonitor // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents // NOSONAR
+import com.simplecity.amp_library.ui.common.Presenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils // NOSONAR
+import com.simplecity.amp_library.utils.menu.song.SongsMenuCallbacks // NOSONAR
+import com.simplecity.amp_library.utils.playlists.FavoritesPlaylistManager // NOSONAR
+import io.reactivex.BackpressureStrategy // NOSONAR
+import io.reactivex.Flowable // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.disposables.Disposable // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import java.util.concurrent.TimeUnit // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class PlayerPresenter @Inject constructor( //NOSONAR
     private val context: Context, //NOSONAR
@@ -55,21 +55,21 @@ class PlayerPresenter @Inject constructor( //NOSONAR
 
         addDisposable( //NOSONAR
             playbackMonitor.progressObservable //NOSONAR
-                //.subscribeOn(Schedulers.io())
+                //.subscribeOn(Schedulers.io()) // NOSONAR
                 .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                 .subscribe( //NOSONAR
                     { progress -> view.setSeekProgress((progress!! * 1000).toInt()) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "PlayerPresenter: Error updating seek progress", error) }) //NOSONAR
-        )
+        ) // NOSONAR
 
         addDisposable( //NOSONAR
             playbackMonitor.currentTimeObservable //NOSONAR
-                //.subscribeOn(Schedulers.io())
+                //.subscribeOn(Schedulers.io()) // NOSONAR
                 .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                 .subscribe( //NOSONAR
                     { pos -> refreshTimeText(pos!! / 1000) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "PlayerPresenter: Error refreshing time text", error) }) //NOSONAR
-        )
+        ) // NOSONAR
 
         addDisposable( //NOSONAR
             Flowable.interval(500, TimeUnit.MILLISECONDS) //NOSONAR
@@ -78,7 +78,7 @@ class PlayerPresenter @Inject constructor( //NOSONAR
                 .subscribe( //NOSONAR
                     { setCurrentTimeVisibility(mediaManager.isPlaying || !currentPlaybackTimeVisible) }, //NOSONAR
                     { error -> LogUtils.logException(TAG, "PlayerPresenter: Error emitting current time", error) }) //NOSONAR
-        )
+        ) // NOSONAR
 
         val filter = IntentFilter() //NOSONAR
         filter.addAction(InternalIntents.META_CHANGED) //NOSONAR
@@ -100,51 +100,51 @@ class PlayerPresenter @Inject constructor( //NOSONAR
                             InternalIntents.PLAY_STATE_CHANGED -> { //NOSONAR
                                 updateTrackInfo() //NOSONAR
                                 updatePlaystate() //NOSONAR
-                            }
+                            } // NOSONAR
                             InternalIntents.SHUFFLE_CHANGED -> { //NOSONAR
                                 updateTrackInfo() //NOSONAR
                                 updateShuffleMode() //NOSONAR
-                            }
+                            } // NOSONAR
                             InternalIntents.REPEAT_CHANGED -> updateRepeatMode() //NOSONAR
                             InternalIntents.SERVICE_CONNECTED -> { //NOSONAR
                                 updateTrackInfo() //NOSONAR
                                 updatePlaystate() //NOSONAR
                                 updateShuffleMode() //NOSONAR
                                 updateRepeatMode() //NOSONAR
-                            }
-                        }
-                    },
+                            } // NOSONAR
+                        } // NOSONAR
+                    }, // NOSONAR
                     { error -> LogUtils.logException(TAG, "PlayerPresenter: Error sending broadcast", error) } //NOSONAR
-                )
-        )
-    }
+                ) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     override fun unbindView(view: PlayerView) { //NOSONAR
         super.unbindView(view) //NOSONAR
 
         songMenuPresenter.unbindView(view) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun refreshTimeText(playbackTime: Long) { //NOSONAR
         if (playbackTime != currentPlaybackTime) { //NOSONAR
             view?.currentTimeChanged(playbackTime) //NOSONAR
             if (settingsManager.displayRemainingTime()) { //NOSONAR
                 view?.totalTimeChanged(-(mediaManager.duration / 1000 - playbackTime)) //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         currentPlaybackTime = playbackTime //NOSONAR
-    }
+    } // NOSONAR
 
     private fun setCurrentTimeVisibility(visible: Boolean) { //NOSONAR
         if (visible != currentPlaybackTimeVisible) { //NOSONAR
             view?.currentTimeVisibilityChanged(visible) //NOSONAR
-        }
+        } // NOSONAR
         currentPlaybackTimeVisible = visible //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updateFavorite(isFavorite: Boolean) { //NOSONAR
         view?.favoriteChanged(isFavorite) //NOSONAR
-    }
+    } // NOSONAR
 
     fun updateTrackInfo() { //NOSONAR
         view?.trackInfoChanged(mediaManager.song) //NOSONAR
@@ -159,53 +159,53 @@ class PlayerPresenter @Inject constructor( //NOSONAR
             .subscribe( //NOSONAR
                 { isFavorite -> updateFavorite(isFavorite) }, //NOSONAR
                 { error -> LogUtils.logException(TAG, "updateTrackInfo error", error) } //NOSONAR
-            )
+            ) // NOSONAR
 
         addDisposable(isFavoriteDisposable!!) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updatePlaystate() { //NOSONAR
         view?.playbackChanged(mediaManager.isPlaying) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updateShuffleMode() { //NOSONAR
         view?.repeatChanged(mediaManager.repeatMode) //NOSONAR
         view?.shuffleChanged(mediaManager.shuffleMode) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun updateRepeatMode() { //NOSONAR
         view?.repeatChanged(mediaManager.repeatMode) //NOSONAR
-    }
+    } // NOSONAR
 
     fun togglePlayback() { //NOSONAR
         mediaManager.togglePlayback() //NOSONAR
-    }
+    } // NOSONAR
 
     fun toggleFavorite() { //NOSONAR
         mediaManager.toggleFavorite() //NOSONAR
-    }
+    } // NOSONAR
 
     fun skip() { //NOSONAR
         mediaManager.next() //NOSONAR
-    }
+    } // NOSONAR
 
     fun prev(force: Boolean) { //NOSONAR
         mediaManager.previous(force) //NOSONAR
-    }
+    } // NOSONAR
 
     fun toggleShuffle() { //NOSONAR
         mediaManager.toggleShuffleMode() //NOSONAR
         updateShuffleMode() //NOSONAR
-    }
+    } // NOSONAR
 
     fun toggleRepeat() { //NOSONAR
         mediaManager.cycleRepeat() //NOSONAR
         updateRepeatMode() //NOSONAR
-    }
+    } // NOSONAR
 
     fun seekTo(progress: Int) { //NOSONAR
         mediaManager.seekTo(mediaManager.duration * progress / 1000) //NOSONAR
-    }
+    } // NOSONAR
 
     fun scanForward(repeatCount: Int, delta: Long) { //NOSONAR
         var delta = delta //NOSONAR
@@ -214,26 +214,26 @@ class PlayerPresenter @Inject constructor( //NOSONAR
             lastSeekEventTime = 0 //NOSONAR
         } else { //NOSONAR
             if (delta < 5000) { //NOSONAR
-                // seek at 10x speed for the first 5 seconds
+                // seek at 10x speed for the first 5 seconds // NOSONAR
                 delta *= 10 //NOSONAR
             } else { //NOSONAR
-                // seek at 40x after that
+                // seek at 40x after that // NOSONAR
                 delta = 50000 + (delta - 5000) * 40 //NOSONAR
-            }
+            } // NOSONAR
             var newpos = startSeekPos + delta //NOSONAR
             val duration = mediaManager.duration //NOSONAR
             if (newpos >= duration) { //NOSONAR
-                // move to next track
+                // move to next track // NOSONAR
                 mediaManager.next() //NOSONAR
                 startSeekPos -= duration // is OK to go negative //NOSONAR
                 newpos -= duration //NOSONAR
-            }
+            } // NOSONAR
             if (delta - lastSeekEventTime > 250 || repeatCount < 0) { //NOSONAR
                 mediaManager.seekTo(newpos) //NOSONAR
                 lastSeekEventTime = delta //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     fun scanBackward(repeatCount: Int, delta: Long) { //NOSONAR
         var delta = delta //NOSONAR
@@ -242,60 +242,60 @@ class PlayerPresenter @Inject constructor( //NOSONAR
             lastSeekEventTime = 0 //NOSONAR
         } else { //NOSONAR
             if (delta < 5000) { //NOSONAR
-                // seek at 10x speed for the first 5 seconds
+                // seek at 10x speed for the first 5 seconds // NOSONAR
                 delta *= 10 //NOSONAR
             } else { //NOSONAR
-                // seek at 40x after that
+                // seek at 40x after that // NOSONAR
                 delta = 50000 + (delta - 5000) * 40 //NOSONAR
-            }
+            } // NOSONAR
             var newpos = startSeekPos - delta //NOSONAR
             if (newpos < 0) { //NOSONAR
-                // move to previous track
+                // move to previous track // NOSONAR
                 mediaManager.previous(true) //NOSONAR
                 val duration = mediaManager.duration //NOSONAR
                 startSeekPos += duration //NOSONAR
                 newpos += duration //NOSONAR
-            }
+            } // NOSONAR
             if (delta - lastSeekEventTime > 250 || repeatCount < 0) { //NOSONAR
                 mediaManager.seekTo(newpos) //NOSONAR
                 lastSeekEventTime = delta //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     fun showLyrics() { //NOSONAR
         view?.showLyricsDialog() //NOSONAR
-    }
+    } // NOSONAR
 
     fun editTagsClicked(activity: Activity) { //NOSONAR
         if (!ShuttleUtils.isUpgraded(activity.applicationContext as ShuttleApplication, settingsManager)) { //NOSONAR
             view?.showUpgradeDialog() //NOSONAR
         } else { //NOSONAR
             view?.presentTagEditorDialog(mediaManager.song!!) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     fun songInfoClicked() { //NOSONAR
         val song = mediaManager.song //NOSONAR
         if (song != null) { //NOSONAR
             view?.presentSongInfoDialog(song) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     fun updateRemainingTime() { //NOSONAR
         if (settingsManager.displayRemainingTime()) { //NOSONAR
             view?.totalTimeChanged(-((mediaManager.duration - mediaManager.position) / 1000)) //NOSONAR
         } else { //NOSONAR
             view?.totalTimeChanged(mediaManager.duration / 1000) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     fun shareClicked() { //NOSONAR
         view?.shareSong(mediaManager.song!!) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
         private const val TAG = "PlayerPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

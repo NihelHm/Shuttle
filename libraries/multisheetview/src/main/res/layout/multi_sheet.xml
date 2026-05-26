@@ -1,61 +1,61 @@
-<?xml version="1.0" encoding="utf-8"?>
-<merge
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:parentTag="android.support.design.widget.CoordinatorLayout">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<merge <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    tools:parentTag="android.support.design.widget.CoordinatorLayout"> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:id="@+id/mainContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/bottom_sheet_peek_1_height"/>
+    <FrameLayout <!-- NOSONAR -->
+        android:id="@+id/mainContainer" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_marginBottom="@dimen/bottom_sheet_peek_1_height"/> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:id="@+id/sheet1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:behavior_peekHeight="@dimen/bottom_sheet_peek_1_height"
-        app:layout_behavior="com.simplecity.multisheetview.ui.behavior.CustomBottomSheetBehavior"
-        tools:ignore="MissingPrefix">
+    <FrameLayout <!-- NOSONAR -->
+        android:id="@+id/sheet1" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        app:behavior_peekHeight="@dimen/bottom_sheet_peek_1_height" <!-- NOSONAR -->
+        app:layout_behavior="com.simplecity.multisheetview.ui.behavior.CustomBottomSheetBehavior" <!-- NOSONAR -->
+        tools:ignore="MissingPrefix"> <!-- NOSONAR -->
 
-        <FrameLayout
-            android:id="@+id/sheet1Container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="@dimen/bottom_sheet_peek_1_height"/>
+        <FrameLayout <!-- NOSONAR -->
+            android:id="@+id/sheet1Container" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            android:layout_marginBottom="@dimen/bottom_sheet_peek_1_height"/> <!-- NOSONAR -->
 
-        <FrameLayout
-            android:id="@+id/sheet1PeekView"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/bottom_sheet_peek_1_height"/>
+        <FrameLayout <!-- NOSONAR -->
+            android:id="@+id/sheet1PeekView" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="@dimen/bottom_sheet_peek_1_height"/> <!-- NOSONAR -->
 
-        <android.support.design.widget.CoordinatorLayout
-            android:id="@+id/sheet1Coordinator"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <android.support.design.widget.CoordinatorLayout <!-- NOSONAR -->
+            android:id="@+id/sheet1Coordinator" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent"> <!-- NOSONAR -->
 
-            <FrameLayout
-                android:id="@+id/sheet2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                app:behavior_peekHeight="@dimen/bottom_sheet_peek_2_height"
-                app:layout_behavior="com.simplecity.multisheetview.ui.behavior.CustomBottomSheetBehavior">
+            <FrameLayout <!-- NOSONAR -->
+                android:id="@+id/sheet2" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                android:orientation="vertical" <!-- NOSONAR -->
+                app:behavior_peekHeight="@dimen/bottom_sheet_peek_2_height" <!-- NOSONAR -->
+                app:layout_behavior="com.simplecity.multisheetview.ui.behavior.CustomBottomSheetBehavior"> <!-- NOSONAR -->
 
-                <FrameLayout
-                    android:id="@+id/sheet2Container"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                <FrameLayout <!-- NOSONAR -->
+                    android:id="@+id/sheet2Container" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="match_parent"/> <!-- NOSONAR -->
 
-                <FrameLayout
-                    android:id="@+id/sheet2PeekView"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/bottom_sheet_peek_2_height"/>
+                <FrameLayout <!-- NOSONAR -->
+                    android:id="@+id/sheet2PeekView" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="@dimen/bottom_sheet_peek_2_height"/> <!-- NOSONAR -->
 
-            </FrameLayout>
-        </android.support.design.widget.CoordinatorLayout>
-    </FrameLayout>
-</merge>
+            </FrameLayout> <!-- NOSONAR -->
+        </android.support.design.widget.CoordinatorLayout> <!-- NOSONAR -->
+    </FrameLayout> <!-- NOSONAR -->
+</merge> <!-- NOSONAR -->

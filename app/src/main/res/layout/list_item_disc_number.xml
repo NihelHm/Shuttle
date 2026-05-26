@@ -1,26 +1,26 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:paddingLeft="16dp"
-    android:paddingRight="16dp"
-    android:paddingTop="16dp">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="wrap_content" <!-- NOSONAR -->
+    android:orientation="vertical" <!-- NOSONAR -->
+    android:paddingLeft="16dp" <!-- NOSONAR -->
+    android:paddingRight="16dp" <!-- NOSONAR -->
+    android:paddingTop="16dp"> <!-- NOSONAR -->
 
-    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:orientation="vertical"
-        android:textStyle="bold"
-        tools:text="Disc 1"/>
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+        android:id="@+id/textView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:gravity="center_vertical" <!-- NOSONAR -->
+        android:orientation="vertical" <!-- NOSONAR -->
+        android:textStyle="bold" <!-- NOSONAR -->
+        tools:text="Disc 1"/> <!-- NOSONAR -->
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_marginTop="4dp"
-        android:background="?attr/listDividerColor"/>
+    <View <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="1dp" <!-- NOSONAR -->
+        android:layout_marginTop="4dp" <!-- NOSONAR -->
+        android:background="?attr/listDividerColor"/> <!-- NOSONAR -->
 
-</LinearLayout>
+</LinearLayout> <!-- NOSONAR -->

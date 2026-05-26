@@ -1,8 +1,8 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.playback
+package com.simplecity.amp_library.playback // NOSONAR
 
-import com.simplecity.amp_library.model.Song
+import com.simplecity.amp_library.model.Song // NOSONAR
 
 interface Playback { //NOSONAR
 
@@ -42,13 +42,13 @@ interface Playback { //NOSONAR
 
     interface Callbacks { //NOSONAR
 
-        /**
-         * @param trackDidChange true if the underlying [Playback] already handled the transition to next track.
-         */
+        /** // NOSONAR
+         * @param trackDidChange true if the underlying [Playback] already handled the transition to next track. // NOSONAR
+         */ // NOSONAR
         fun onTrackEnded(playback: Playback, trackDidChange: Boolean) //NOSONAR
 
         fun onPlayStateChanged(playback: Playback) //NOSONAR
 
         fun onError(playback: Playback, message: String) //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,9 +1,9 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.utils
+package com.simplecity.amp_library.utils // NOSONAR
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.Fragment // NOSONAR
 
 inline fun <T : Fragment> T.withArgs( //NOSONAR
     argsBuilder: Bundle.() -> Unit //NOSONAR

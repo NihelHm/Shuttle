@@ -1,18 +1,18 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.queue.menu
+package com.simplecity.amp_library.ui.screens.queue.menu // NOSONAR
 
-import android.content.Context
-import com.simplecity.amp_library.data.Repository.AlbumArtistsRepository
-import com.simplecity.amp_library.data.Repository.AlbumsRepository
-import com.simplecity.amp_library.data.Repository.BlacklistRepository
-import com.simplecity.amp_library.playback.MediaManager
-import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay
-import com.simplecity.amp_library.ui.screens.queue.QueueItem
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter
-import com.simplecity.amp_library.utils.RingtoneManager
-import com.simplecity.amp_library.utils.playlists.PlaylistManager
-import javax.inject.Inject
+import android.content.Context // NOSONAR
+import com.simplecity.amp_library.data.Repository.AlbumArtistsRepository // NOSONAR
+import com.simplecity.amp_library.data.Repository.AlbumsRepository // NOSONAR
+import com.simplecity.amp_library.data.Repository.BlacklistRepository // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay // NOSONAR
+import com.simplecity.amp_library.ui.screens.queue.QueueItem // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter // NOSONAR
+import com.simplecity.amp_library.utils.RingtoneManager // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistManager // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class QueueMenuPresenter @Inject constructor( //NOSONAR
     context: Context, //NOSONAR
@@ -36,13 +36,13 @@ class QueueMenuPresenter @Inject constructor( //NOSONAR
 
     override fun moveToNext(queueItem: QueueItem) { //NOSONAR
         mediaManager.moveToNext(queueItem) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun removeQueueItems(queueItems: List<QueueItem>) { //NOSONAR
         mediaManager.removeFromQueue(queueItems) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
         const val TAG = "QueueMenuPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

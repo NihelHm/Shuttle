@@ -1,22 +1,22 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.TextView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.R.id.album
-import com.simplecity.amp_library.R.id.artist
-import com.simplecity.amp_library.model.FileObject
-import com.simplecity.amp_library.utils.FileHelper
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.View // NOSONAR
+import android.widget.TextView // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.R.id.album // NOSONAR
+import com.simplecity.amp_library.R.id.artist // NOSONAR
+import com.simplecity.amp_library.model.FileObject // NOSONAR
+import com.simplecity.amp_library.utils.FileHelper // NOSONAR
 
 class FileInfoDialog : DialogFragment() { //NOSONAR
 
@@ -26,7 +26,7 @@ class FileInfoDialog : DialogFragment() { //NOSONAR
         super.onAttach(context) //NOSONAR
 
         fileObject = arguments!!.getSerializable(ARG_FILE_OBJECT) as FileObject //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
@@ -47,7 +47,7 @@ class FileInfoDialog : DialogFragment() { //NOSONAR
             trackNumberValue.text = String.format(context!!.getString(R.string.track_count), fileObject!!.tagInfo.trackNumber.toString(), fileObject!!.tagInfo.trackTotal.toString()) //NOSONAR
         } else { //NOSONAR
             trackNumberValue.text = fileObject!!.tagInfo.trackNumber.toString() //NOSONAR
-        }
+        } // NOSONAR
 
         val artistView = view.findViewById<View>(artist) //NOSONAR
         val artistKey = artistView.findViewById<TextView>(R.id.key) //NOSONAR
@@ -93,7 +93,7 @@ class FileInfoDialog : DialogFragment() { //NOSONAR
             discNumberValue.text = String.format(context!!.getString(R.string.track_count), fileObject!!.tagInfo.discNumber.toString(), fileObject!!.tagInfo.discTotal.toString()) //NOSONAR
         } else { //NOSONAR
             discNumberValue.text = fileObject!!.tagInfo.discNumber.toString() //NOSONAR
-        }
+        } // NOSONAR
 
         val fileSizeView = view.findViewById<View>(R.id.file_size) //NOSONAR
         val fileSizeKey = fileSizeView.findViewById<TextView>(R.id.key) //NOSONAR
@@ -127,11 +127,11 @@ class FileInfoDialog : DialogFragment() { //NOSONAR
             .customView(view, false) //NOSONAR
             .negativeText(R.string.close) //NOSONAR
             .show() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -145,6 +145,6 @@ class FileInfoDialog : DialogFragment() { //NOSONAR
             val fragment = FileInfoDialog() //NOSONAR
             fragment.arguments = args //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

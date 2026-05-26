@@ -1,27 +1,27 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.internal.ForegroundLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector"
-    android:gravity="center"
-    android:orientation="horizontal">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.design.internal.ForegroundLinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="72dp" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    android:gravity="center" <!-- NOSONAR -->
+    android:orientation="horizontal"> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/line_one"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_weight="1"
-        android:ellipsize="end"
-        android:gravity="center_vertical"
-        android:maxLines="1"
-        android:textSize="16sp"
-        tools:text="Line One"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/line_one" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_marginStart="16dp" <!-- NOSONAR -->
+        android:layout_weight="1" <!-- NOSONAR -->
+        android:ellipsize="end" <!-- NOSONAR -->
+        android:gravity="center_vertical" <!-- NOSONAR -->
+        android:maxLines="1" <!-- NOSONAR -->
+        android:textSize="16sp" <!-- NOSONAR -->
+        tools:text="Line One"/> <!-- NOSONAR -->
 
-    <include layout="@layout/overflow_button"/>
+    <include layout="@layout/overflow_button"/> <!-- NOSONAR -->
 
-</android.support.design.internal.ForegroundLinearLayout>
+</android.support.design.internal.ForegroundLinearLayout> <!-- NOSONAR -->

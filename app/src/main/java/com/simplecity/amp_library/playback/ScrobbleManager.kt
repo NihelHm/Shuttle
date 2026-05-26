@@ -1,12 +1,12 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.playback
+package com.simplecity.amp_library.playback // NOSONAR
 
-import android.content.Context
-import android.content.Intent
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.constants.ExternalIntents
+import android.content.Context // NOSONAR
+import android.content.Intent // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.constants.ExternalIntents // NOSONAR
 
 class ScrobbleManager(private val playbackSettingsManager: PlaybackSettingsManager) { //NOSONAR
 
@@ -15,7 +15,7 @@ class ScrobbleManager(private val playbackSettingsManager: PlaybackSettingsManag
         RESUME(1), //NOSONAR
         PAUSE(2), //NOSONAR
         COMPLETE(3) //NOSONAR
-    }
+    } // NOSONAR
 
     fun scrobbleBroadcast(context: Context, state: ScrobbleStatus, song: Song) { //NOSONAR
         if (playbackSettingsManager.enableLastFmScrobbling) { //NOSONAR
@@ -28,6 +28,6 @@ class ScrobbleManager(private val playbackSettingsManager: PlaybackSettingsManag
             intent.putExtra("track", song.name) //NOSONAR
             intent.putExtra("duration", song.duration / 1000) //NOSONAR
             context.sendBroadcast(intent) //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

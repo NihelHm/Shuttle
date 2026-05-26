@@ -1,21 +1,21 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.StateListDrawable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import android.content.Context; // NOSONAR
+import android.content.res.ColorStateList; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.graphics.drawable.ColorDrawable; // NOSONAR
+import android.graphics.drawable.StateListDrawable; // NOSONAR
+import android.support.design.widget.NavigationView; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings("RestrictedApi") //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticNavigationView extends NavigationView { //NOSONAR
@@ -25,15 +25,15 @@ public class AestheticNavigationView extends NavigationView { //NOSONAR
 
   public AestheticNavigationView(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticNavigationView(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticNavigationView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
-  }
+  } // NOSONAR
 
   private void invalidateColors(ColorIsDarkState state) { //NOSONAR
     int selectedColor = state.color(); //NOSONAR
@@ -52,13 +52,13 @@ public class AestheticNavigationView extends NavigationView { //NOSONAR
         new ColorStateList( //NOSONAR
             new int[][] { //NOSONAR
               new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
-            },
+            }, // NOSONAR
             new int[] {unselectedIconColor, selectedColor}); //NOSONAR
     final ColorStateList textSl = //NOSONAR
         new ColorStateList( //NOSONAR
             new int[][] { //NOSONAR
               new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
-            },
+            }, // NOSONAR
             new int[] {unselectedTextColor, selectedColor}); //NOSONAR
     setItemTextColor(textSl); //NOSONAR
     setItemIconTintList(iconSl); //NOSONAR
@@ -67,7 +67,7 @@ public class AestheticNavigationView extends NavigationView { //NOSONAR
     bgDrawable.addState( //NOSONAR
         new int[] {android.R.attr.state_checked}, new ColorDrawable(selectedItemBgColor)); //NOSONAR
     setItemBackground(bgDrawable); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onAttachedToWindow() { //NOSONAR
@@ -94,8 +94,8 @@ public class AestheticNavigationView extends NavigationView { //NOSONAR
                                       public void accept( //NOSONAR
                                           @NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
                                         invalidateColors(colorIsDarkState); //NOSONAR
-                                      }
-                                    },
+                                      } // NOSONAR
+                                    }, // NOSONAR
                                     onErrorLogAndRethrow()); //NOSONAR
                         break; //NOSONAR
                       case NavigationViewMode.SELECTED_ACCENT: //NOSONAR
@@ -111,26 +111,26 @@ public class AestheticNavigationView extends NavigationView { //NOSONAR
                                       public void accept( //NOSONAR
                                           @NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
                                         invalidateColors(colorIsDarkState); //NOSONAR
-                                      }
-                                    },
+                                      } // NOSONAR
+                                    }, // NOSONAR
                                     onErrorLogAndRethrow()); //NOSONAR
                         break; //NOSONAR
                       default: //NOSONAR
                         throw new IllegalStateException("Unknown nav view mode: " + mode); //NOSONAR
-                    }
-                  }
-                },
+                    } // NOSONAR
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     if (modeSubscription != null) { //NOSONAR
       modeSubscription.dispose(); //NOSONAR
-    }
+    } // NOSONAR
     if (colorSubscription != null) { //NOSONAR
       colorSubscription.dispose(); //NOSONAR
-    }
+    } // NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

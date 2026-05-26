@@ -1,36 +1,36 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.playlist.dialog
+package com.simplecity.amp_library.ui.screens.playlist.dialog // NOSONAR
 
-import android.app.Dialog
-import android.app.ProgressDialog
-import android.content.Context
-import android.os.Bundle
-import android.os.Environment
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.util.Log
-import android.widget.Toast
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.data.SongsRepository
-import com.simplecity.amp_library.di.app.activity.fragment.FragmentModule
-import com.simplecity.amp_library.di.app.activity.fragment.FragmentScope
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.utils.LogUtils
-import dagger.Binds
-import dagger.Module
-import dagger.android.support.AndroidSupportInjection
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
-import java.io.File
-import java.io.FileWriter
-import java.io.IOException
-import javax.inject.Inject
-import javax.inject.Named
+import android.app.Dialog // NOSONAR
+import android.app.ProgressDialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.os.Environment // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.Fragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.util.Log // NOSONAR
+import android.widget.Toast // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.data.SongsRepository // NOSONAR
+import com.simplecity.amp_library.di.app.activity.fragment.FragmentModule // NOSONAR
+import com.simplecity.amp_library.di.app.activity.fragment.FragmentScope // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import dagger.Binds // NOSONAR
+import dagger.Module // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.disposables.Disposable // NOSONAR
+import io.reactivex.functions.Function // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import java.io.File // NOSONAR
+import java.io.FileWriter // NOSONAR
+import java.io.IOException // NOSONAR
+import javax.inject.Inject // NOSONAR
+import javax.inject.Named // NOSONAR
 
 class M3uPlaylistDialog : DialogFragment() { //NOSONAR
 
@@ -43,7 +43,7 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
     override fun onAttach(context: Context?) { //NOSONAR
         AndroidSupportInjection.inject(this) //NOSONAR
         super.onAttach(context) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
@@ -64,7 +64,7 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
                         val root = File(Environment.getExternalStorageDirectory(), "Playlists/Export/") //NOSONAR
                         if (!root.exists()) { //NOSONAR
                             root.mkdirs() //NOSONAR
-                        }
+                        } // NOSONAR
 
                         val noMedia = File(root, ".nomedia") //NOSONAR
                         if (!noMedia.exists()) { //NOSONAR
@@ -72,8 +72,8 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
                                 noMedia.createNewFile() //NOSONAR
                             } catch (e: IOException) { //NOSONAR
                                 e.printStackTrace() //NOSONAR
-                            }
-                        }
+                            } // NOSONAR
+                        } // NOSONAR
 
                         val name = playlist.name.replace("[^a-zA-Z0-9.-]".toRegex(), "_") //NOSONAR
 
@@ -83,7 +83,7 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
                         while (playlistFile!!.exists()) { //NOSONAR
                             i++ //NOSONAR
                             playlistFile = File(root, "$name$i.m3u") //NOSONAR
-                        }
+                        } // NOSONAR
 
                         try { //NOSONAR
                             val fileWriter = FileWriter(playlistFile) //NOSONAR
@@ -98,22 +98,22 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
                                     .append(" - ") //NOSONAR
                                     .append(song.artistName) //NOSONAR
                                     .append("\n") //NOSONAR
-                                    //To do later: Use relative paths instead of absolute
+                                    //To do later: Use relative paths instead of absolute // NOSONAR
                                     .append(song.path) //NOSONAR
                                     .append("\n") //NOSONAR
-                            }
+                            } // NOSONAR
                             fileWriter.append(body) //NOSONAR
                             fileWriter.flush() //NOSONAR
                             fileWriter.close() //NOSONAR
                         } catch (e: IOException) { //NOSONAR
                             Log.e(TAG, "Failed to write file: $e") //NOSONAR
-                        }
+                        } // NOSONAR
 
-                    }
+                    } // NOSONAR
                     return@Function playlistFile //NOSONAR
-                }
+                } // NOSONAR
                 null //NOSONAR
-            })
+            }) // NOSONAR
             .subscribeOn(Schedulers.io()) //NOSONAR
             .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
             .subscribe( //NOSONAR
@@ -123,22 +123,22 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
                         Toast.makeText(context, String.format(context!!.getString(R.string.playlist_saved), file.path), Toast.LENGTH_LONG).show() //NOSONAR
                     } else { //NOSONAR
                         Toast.makeText(context, R.string.playlist_save_failed, Toast.LENGTH_SHORT).show() //NOSONAR
-                    }
-                },
+                    } // NOSONAR
+                }, // NOSONAR
                 { error -> LogUtils.logException(TAG, "Error saving m3u playlist", error) } //NOSONAR
-            )
+            ) // NOSONAR
 
         return progressDialog //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onDestroyView() { //NOSONAR
         disposable!!.dispose() //NOSONAR
         super.onDestroyView() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -152,9 +152,9 @@ class M3uPlaylistDialog : DialogFragment() { //NOSONAR
             val fragment = M3uPlaylistDialog() //NOSONAR
             fragment.arguments = args //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR
 
 @Module(includes = arrayOf(FragmentModule::class)) //NOSONAR
 abstract class M3uDialogFragmentModule { //NOSONAR
@@ -163,4 +163,4 @@ abstract class M3uDialogFragmentModule { //NOSONAR
     @Named(FragmentModule.FRAGMENT) //NOSONAR
     @FragmentScope //NOSONAR
     internal abstract fun fragment(m3uPlaylistDialog: M3uPlaylistDialog): Fragment //NOSONAR
-}
+} // NOSONAR

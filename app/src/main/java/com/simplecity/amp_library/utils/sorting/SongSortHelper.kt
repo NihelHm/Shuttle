@@ -1,10 +1,10 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.utils.sorting
+package com.simplecity.amp_library.utils.sorting // NOSONAR
 
-import android.view.Menu
-import android.view.MenuItem
-import com.simplecity.amp_library.R
+import android.view.Menu // NOSONAR
+import android.view.MenuItem // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
 
 object SongSortHelper { //NOSONAR
 
@@ -20,10 +20,10 @@ object SongSortHelper { //NOSONAR
             SortManager.SongSort.YEAR -> menu.findItem(R.id.sort_song_year).isChecked = true //NOSONAR
             SortManager.SongSort.ALBUM_NAME -> menu.findItem(R.id.sort_song_album_name).isChecked = true //NOSONAR
             SortManager.SongSort.ARTIST_NAME -> menu.findItem(R.id.sort_song_artist_name).isChecked = true //NOSONAR
-        }
+        } // NOSONAR
 
         menu.findItem(R.id.sort_song_ascending).isChecked = songsAscending //NOSONAR
-    }
+    } // NOSONAR
 
     @JvmStatic //NOSONAR
     @SortManager.SongSort //NOSONAR
@@ -39,14 +39,14 @@ object SongSortHelper { //NOSONAR
             R.id.sort_song_album_name -> SortManager.SongSort.ALBUM_NAME //NOSONAR
             R.id.sort_song_artist_name -> SortManager.SongSort.ARTIST_NAME //NOSONAR
             else -> null //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @JvmStatic //NOSONAR
     fun handleSongDetailMenuSortOrderAscClicks(item: MenuItem): Boolean? { //NOSONAR
         return when (item.itemId) { //NOSONAR
             R.id.sort_song_ascending -> !item.isChecked //NOSONAR
             else -> null //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

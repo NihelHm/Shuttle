@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<ImageView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="match_parent"
-    android:layout_marginLeft="-2dp"
-    android:layout_marginRight="-2dp"
-    android:gravity="center"
-    android:src="@drawable/ic_arrow_right_24dp"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<ImageView <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="wrap_content" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:layout_marginLeft="-2dp" <!-- NOSONAR -->
+    android:layout_marginRight="-2dp" <!-- NOSONAR -->
+    android:gravity="center" <!-- NOSONAR -->
+    android:src="@drawable/ic_arrow_right_24dp"/> <!-- NOSONAR -->

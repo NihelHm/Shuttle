@@ -1,10 +1,10 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.queue
+package com.simplecity.amp_library.ui.screens.queue // NOSONAR
 
-import android.support.v4.media.MediaDescriptionCompat
-import android.support.v4.media.session.MediaSessionCompat
-import com.simplecity.amp_library.model.Song
+import android.support.v4.media.MediaDescriptionCompat // NOSONAR
+import android.support.v4.media.session.MediaSessionCompat // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
 
 class QueueItem(var song: Song, var occurrence: Int) { //NOSONAR
 
@@ -18,20 +18,20 @@ class QueueItem(var song: Song, var occurrence: Int) { //NOSONAR
         if (occurrence != other.occurrence) return false //NOSONAR
 
         return true //NOSONAR
-    }
+    } // NOSONAR
 
     override fun hashCode(): Int { //NOSONAR
         var result = song.hashCode() //NOSONAR
         result = 31 * result + occurrence //NOSONAR
         return result //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR
 
 fun List<Song>.toQueueItems(): List<QueueItem> { //NOSONAR
     val queueItems = map { song -> QueueItem(song, 1) } //NOSONAR
     queueItems.updateOccurrence() //NOSONAR
     return queueItems //NOSONAR
-}
+} // NOSONAR
 
 fun List<QueueItem>.updateOccurrence() { //NOSONAR
     groupBy { queueItem -> queueItem.song } //NOSONAR
@@ -39,13 +39,13 @@ fun List<QueueItem>.updateOccurrence() { //NOSONAR
         .forEach { //NOSONAR
             it.forEachIndexed { index, queueItem -> //NOSONAR
                 queueItem.occurrence = index + 1 //NOSONAR
-            }
-        }
-}
+            } // NOSONAR
+        } // NOSONAR
+} // NOSONAR
 
 fun List<QueueItem>.toSongs(): List<Song> { //NOSONAR
     return map { queueItem -> queueItem.song } //NOSONAR
-}
+} // NOSONAR
 
 fun QueueItem.toMediaSessionQueueItem(): MediaSessionCompat.QueueItem { //NOSONAR
     val mediaDescription = MediaDescriptionCompat.Builder() //NOSONAR
@@ -54,8 +54,8 @@ fun QueueItem.toMediaSessionQueueItem(): MediaSessionCompat.QueueItem { //NOSONA
         .setSubtitle(song.artistName) //NOSONAR
         .build() //NOSONAR
     return MediaSessionCompat.QueueItem(mediaDescription, hashCode().toLong()) //NOSONAR
-}
+} // NOSONAR
 
 fun List<QueueItem>.toMediaSessionQueueItems(): List<MediaSessionCompat.QueueItem> { //NOSONAR
     return map { queueItem -> queueItem.toMediaSessionQueueItem() } //NOSONAR
-}
+} // NOSONAR

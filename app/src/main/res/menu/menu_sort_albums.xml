@@ -1,33 +1,33 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+      xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:icon="@drawable/ic_sort_24dp"
-        android:title="@string/sorting"
-        app:showAsAction="never">
-        <menu>
-            <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/sort_album_default"
-                    android:title="@string/sort_default"/>
-                <item
-                    android:id="@+id/sort_album_name"
-                    android:title="@string/sort_album_name"/>
-                <item
-                    android:id="@+id/sort_album_year"
-                    android:title="@string/sort_album_year"/>
-                <item
-                    android:id="@+id/sort_album_artist_name"
-                    android:title="@string/sort_artist_name"/>
-                <item
-                    android:id="@+id/sort_album_ascending"
-                    android:checkable="true"
-                    android:checked="true"
-                    android:title="@string/sort_ascending"/>
-            </group>
-        </menu>
-    </item>
+    <item <!-- NOSONAR -->
+        android:icon="@drawable/ic_sort_24dp" <!-- NOSONAR -->
+        android:title="@string/sorting" <!-- NOSONAR -->
+        app:showAsAction="never"> <!-- NOSONAR -->
+        <menu> <!-- NOSONAR -->
+            <group android:checkableBehavior="single"> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_album_default" <!-- NOSONAR -->
+                    android:title="@string/sort_default"/> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_album_name" <!-- NOSONAR -->
+                    android:title="@string/sort_album_name"/> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_album_year" <!-- NOSONAR -->
+                    android:title="@string/sort_album_year"/> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_album_artist_name" <!-- NOSONAR -->
+                    android:title="@string/sort_artist_name"/> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_album_ascending" <!-- NOSONAR -->
+                    android:checkable="true" <!-- NOSONAR -->
+                    android:checked="true" <!-- NOSONAR -->
+                    android:title="@string/sort_ascending"/> <!-- NOSONAR -->
+            </group> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

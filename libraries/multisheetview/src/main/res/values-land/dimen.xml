@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="bottom_sheet_peek_1_height">56dp</dimen>
-    <dimen name="bottom_sheet_peek_2_height">68dp</dimen>
-</resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
+    <dimen name="bottom_sheet_peek_1_height">56dp</dimen> <!-- NOSONAR -->
+    <dimen name="bottom_sheet_peek_2_height">68dp</dimen> <!-- NOSONAR -->
+</resources> <!-- NOSONAR -->

@@ -1,30 +1,30 @@
-package com.simplecity.amp_library.ui.widgets;
+package com.simplecity.amp_library.ui.widgets; // NOSONAR
 
-import android.app.PendingIntent;
-import android.appwidget.AppWidgetManager;
-import android.appwidget.AppWidgetProvider;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.Handler;
-import android.os.Looper;
-import android.preference.PreferenceManager;
-import android.support.annotation.LayoutRes;
-import android.widget.RemoteViews;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.glide.utils.CustomAppWidgetTarget;
-import com.simplecity.amp_library.playback.MusicService;
-import com.simplecity.amp_library.playback.QueueManager;
-import com.simplecity.amp_library.playback.constants.InternalIntents;
-import com.simplecity.amp_library.playback.constants.MediaButtonCommand;
-import com.simplecity.amp_library.playback.constants.ServiceCommand;
-import com.simplecity.amp_library.rx.UnsafeAction;
-import com.simplecity.amp_library.ui.screens.main.MainActivity;
-import com.simplecity.amp_library.utils.DrawableUtils;
-import com.simplecity.amp_library.utils.ShuttleUtils;
+import android.app.PendingIntent; // NOSONAR
+import android.appwidget.AppWidgetManager; // NOSONAR
+import android.appwidget.AppWidgetProvider; // NOSONAR
+import android.content.ComponentName; // NOSONAR
+import android.content.Context; // NOSONAR
+import android.content.Intent; // NOSONAR
+import android.content.SharedPreferences; // NOSONAR
+import android.os.Handler; // NOSONAR
+import android.os.Looper; // NOSONAR
+import android.preference.PreferenceManager; // NOSONAR
+import android.support.annotation.LayoutRes; // NOSONAR
+import android.widget.RemoteViews; // NOSONAR
+import com.bumptech.glide.Glide; // NOSONAR
+import com.bumptech.glide.load.engine.DiskCacheStrategy; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.glide.utils.CustomAppWidgetTarget; // NOSONAR
+import com.simplecity.amp_library.playback.MusicService; // NOSONAR
+import com.simplecity.amp_library.playback.QueueManager; // NOSONAR
+import com.simplecity.amp_library.playback.constants.InternalIntents; // NOSONAR
+import com.simplecity.amp_library.playback.constants.MediaButtonCommand; // NOSONAR
+import com.simplecity.amp_library.playback.constants.ServiceCommand; // NOSONAR
+import com.simplecity.amp_library.rx.UnsafeAction; // NOSONAR
+import com.simplecity.amp_library.ui.screens.main.MainActivity; // NOSONAR
+import com.simplecity.amp_library.utils.DrawableUtils; // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
@@ -39,7 +39,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
 
     protected void doOnMainThread(UnsafeAction action) { //NOSONAR
         new Handler(Looper.getMainLooper()).post(action::run); //NOSONAR
-    }
+    } // NOSONAR
 
     public static final String ARG_WIDGET_BACKGROUND_COLOR = "widget_background_color_"; //NOSONAR
     public static final String ARG_WIDGET_TEXT_COLOR = "widget_text_color_"; //NOSONAR
@@ -56,7 +56,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
 
     SharedPreferences getSharedPreferences(Context context) { //NOSONAR
         return PreferenceManager.getDefaultSharedPreferences(context); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) { //NOSONAR
@@ -66,31 +66,31 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
         for (int appWidgetId : appWidgetIds) { //NOSONAR
             mLayoutId = sharedPreferences.getInt(getLayoutIdString() + appWidgetId, getWidgetLayoutId()); //NOSONAR
             initialiseWidget(context, sharedPreferences, appWidgetId); //NOSONAR
-        }
+        } // NOSONAR
 
-        // Send broadcast intent to any running MusicService so it can wrap around with an immediate update.
+        // Send broadcast intent to any running MusicService so it can wrap around with an immediate update. // NOSONAR
         Intent updateIntent = new Intent(ServiceCommand.COMMAND); //NOSONAR
         updateIntent.putExtra(MediaButtonCommand.CMD_NAME, getUpdateCommandString()); //NOSONAR
         updateIntent.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds); //NOSONAR
         updateIntent.addFlags(Intent.FLAG_RECEIVER_REGISTERED_ONLY); //NOSONAR
         context.sendBroadcast(updateIntent); //NOSONAR
-    }
+    } // NOSONAR
 
     protected void pushUpdate(Context context, int appWidgetId, RemoteViews views) { //NOSONAR
-        // Update specific list of appWidgetIds if given, otherwise default to all
+        // Update specific list of appWidgetIds if given, otherwise default to all // NOSONAR
         final AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context); //NOSONAR
 
         if (appWidgetId != -1) { //NOSONAR
             appWidgetManager.updateAppWidget(appWidgetId, views); //NOSONAR
         } else { //NOSONAR
             appWidgetManager.updateAppWidget(new ComponentName(context, this.getClass()), views); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private int[] getInstances(Context context) { //NOSONAR
         AppWidgetManager appWidgetManager = AppWidgetManager.getInstance(context); //NOSONAR
         return (appWidgetManager.getAppWidgetIds(new ComponentName(context, this.getClass()))); //NOSONAR
-    }
+    } // NOSONAR
 
     public void notifyChange(MusicService service, String what) { //NOSONAR
         if (getInstances(service) != null) { //NOSONAR
@@ -99,9 +99,9 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
                     || InternalIntents.SHUFFLE_CHANGED.equals(what) //NOSONAR
                     || InternalIntents.REPEAT_CHANGED.equals(what)) { //NOSONAR
                 update(service, getSharedPreferences(service), getInstances(service), InternalIntents.META_CHANGED.equals(what)); //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     public static void setupButtons(Context context, RemoteViews views, int appWidgetId, int rootViewId) { //NOSONAR
 
@@ -122,7 +122,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
 
         pendingIntent = getPendingIntent(context, appWidgetId, new Intent(ServiceCommand.REPEAT)); //NOSONAR
         views.setOnClickPendingIntent(R.id.repeat_button, pendingIntent); //NOSONAR
-    }
+    } // NOSONAR
 
     private static PendingIntent getPendingIntent(Context context, int appWidgetId, Intent intent) { //NOSONAR
         intent.setComponent(new ComponentName(context, MusicService.class)); //NOSONAR
@@ -130,18 +130,18 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
             return PendingIntent.getForegroundService(context, appWidgetId, intent, 0); //NOSONAR
         } else { //NOSONAR
             return PendingIntent.getService(context, appWidgetId, intent, 0); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void loadArtwork(MusicService service, int[] appWidgetIds, RemoteViews views, int bitmapSize) { //NOSONAR
-        //Try to load the artwork. If it fails, halve the dimensions and try again.
+        //Try to load the artwork. If it fails, halve the dimensions and try again. // NOSONAR
         loadArtwork(service, views, bitmapSize, e -> //NOSONAR
                 loadArtwork(service, views, bitmapSize / 2, e1 -> //NOSONAR
-                        //If this one doesn't work, load a placeholder.
+                        //If this one doesn't work, load a placeholder. // NOSONAR
                         loadArtwork(service, views, bitmapSize / 3, e2 //NOSONAR
                                         -> views.setImageViewResource(R.id.album_art, R.drawable.ic_placeholder_light_medium), //NOSONAR
                                 appWidgetIds), appWidgetIds), appWidgetIds); //NOSONAR
-    }
+    } // NOSONAR
 
     void loadArtwork(MusicService service, RemoteViews views, int size, CustomAppWidgetTarget.CustomErrorListener errorListener, int... appWidgetIds) { //NOSONAR
         Glide.with(service) //NOSONAR
@@ -149,7 +149,7 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
                 .asBitmap() //NOSONAR
                 .diskCacheStrategy(DiskCacheStrategy.ALL) //NOSONAR
                 .into(new CustomAppWidgetTarget(service, views, R.id.album_art, size, size, errorListener, appWidgetIds)); //NOSONAR
-    }
+    } // NOSONAR
 
     void setupRepeatView(MusicService service, RemoteViews views, boolean invertIcons) { //NOSONAR
         switch (service.getRepeatMode()) { //NOSONAR
@@ -166,11 +166,11 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
                     views.setImageViewBitmap(R.id.repeat_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_repeat_24dp_scaled)); //NOSONAR
                 } else { //NOSONAR
                     views.setImageViewResource(R.id.repeat_button, R.drawable.ic_repeat_24dp_scaled); //NOSONAR
-                }
+                } // NOSONAR
                 views.setContentDescription(R.id.shuffle_button, service.getString(R.string.btn_repeat_all)); //NOSONAR
                 break; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void setupShuffleView(MusicService service, RemoteViews views, boolean invertIcons) { //NOSONAR
         switch (service.getShuffleMode()) { //NOSONAR
@@ -179,13 +179,13 @@ public abstract class BaseWidgetProvider extends AppWidgetProvider { //NOSONAR
                     views.setImageViewBitmap(R.id.shuffle_button, DrawableUtils.getBlackBitmap(service, R.drawable.ic_shuffle_24dp_scaled)); //NOSONAR
                 } else { //NOSONAR
                     views.setImageViewResource(R.id.shuffle_button, R.drawable.ic_shuffle_24dp_scaled); //NOSONAR
-                }
+                } // NOSONAR
                 views.setContentDescription(R.id.shuffle_button, service.getString(R.string.btn_shuffle_on)); //NOSONAR
                 break; //NOSONAR
             default: //NOSONAR
                 views.setImageViewBitmap(R.id.shuffle_button, DrawableUtils.getColoredBitmap(service, R.drawable.ic_shuffle_24dp_scaled)); //NOSONAR
                 views.setContentDescription(R.id.shuffle_button, service.getString(R.string.btn_shuffle_off)); //NOSONAR
                 break; //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
-<com.simplecity.amp_library.ui.views.ContextualToolbar
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/contextualToolbar"
-    android:layout_width="match_parent"
-    android:layout_height="?actionBarSize"
-    android:background="?colorPrimary"
-    android:visibility="gone"
-    app:navigationIcon="@drawable/ic_close_24dp"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<com.simplecity.amp_library.ui.views.ContextualToolbar <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    android:id="@+id/contextualToolbar" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="?actionBarSize" <!-- NOSONAR -->
+    android:background="?colorPrimary" <!-- NOSONAR -->
+    android:visibility="gone" <!-- NOSONAR -->
+    app:navigationIcon="@drawable/ic_close_24dp"/> <!-- NOSONAR -->

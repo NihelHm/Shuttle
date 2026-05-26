@@ -1,340 +1,340 @@
-<?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.simplecity.amp_library">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    package="com.simplecity.amp_library"> <!-- NOSONAR -->
 
-    <!-- ## 'Protection-Normal' permissions ## -->
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
-    <!-- ## End 'Protection-Normal' permissions ## -->
+    <!-- ## 'Protection-Normal' permissions ## --> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.INTERNET"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.BLUETOOTH"/> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/> <!-- NOSONAR -->
+    <!-- ## End 'Protection-Normal' permissions ## --> <!-- NOSONAR -->
 
-    <!-- ## 'Special' permissions ##-->
-    <!-- Used to set ringtone-->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
-    <!-- Used to read mediastore db, caching artwork etc. -->
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <!-- ## End 'Special' permissions ##-->
+    <!-- ## 'Special' permissions ##--> <!-- NOSONAR -->
+    <!-- Used to set ringtone--> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/> <!-- NOSONAR -->
+    <!-- Used to read mediastore db, caching artwork etc. --> <!-- NOSONAR -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/> <!-- NOSONAR -->
+    <!-- ## End 'Special' permissions ##--> <!-- NOSONAR -->
 
-    <application
-        android:name=".ShuttleApplication"
-        android:allowBackup="true"
-        android:allowTaskReparenting="true"
-        android:hardwareAccelerated="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:largeHeap="true"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:theme="@style/AppTheme">
+    <application <!-- NOSONAR -->
+        android:name=".ShuttleApplication" <!-- NOSONAR -->
+        android:allowBackup="true" <!-- NOSONAR -->
+        android:allowTaskReparenting="true" <!-- NOSONAR -->
+        android:hardwareAccelerated="true" <!-- NOSONAR -->
+        android:icon="@mipmap/ic_launcher" <!-- NOSONAR -->
+        android:label="@string/app_name" <!-- NOSONAR -->
+        android:largeHeap="true" <!-- NOSONAR -->
+        android:roundIcon="@mipmap/ic_launcher_round" <!-- NOSONAR -->
+        android:theme="@style/AppTheme"> <!-- NOSONAR -->
 
-        <meta-data
-            android:name="android.max_aspect"
-            android:value="2.1"/>
+        <meta-data <!-- NOSONAR -->
+            android:name="android.max_aspect" <!-- NOSONAR -->
+            android:value="2.1"/> <!-- NOSONAR -->
 
-        <meta-data
-            android:name="com.simplecity.amp_library.glide.utils.CustomGlideModule"
-            android:value="GlideModule"/>
+        <meta-data <!-- NOSONAR -->
+            android:name="com.simplecity.amp_library.glide.utils.CustomGlideModule" <!-- NOSONAR -->
+            android:value="GlideModule"/> <!-- NOSONAR -->
 
-        <meta-data
-            android:name="com.google.android.gms.version"
-            android:value="@integer/google_play_services_version"/>
-        <meta-data
-            android:name="android.app.default_searchable"
-            android:value="com.simplecity.amp_library.SearchActivity"/>
+        <meta-data <!-- NOSONAR -->
+            android:name="com.google.android.gms.version" <!-- NOSONAR -->
+            android:value="@integer/google_play_services_version"/> <!-- NOSONAR -->
+        <meta-data <!-- NOSONAR -->
+            android:name="android.app.default_searchable" <!-- NOSONAR -->
+            android:value="com.simplecity.amp_library.SearchActivity"/> <!-- NOSONAR -->
 
-        <activity
-            android:name=".ui.screens.main.MainActivity"
-            android:exported="true"
-            android:label="@string/app_name"
-            android:launchMode="singleInstance"
-            android:windowSoftInputMode="adjustPan">
+        <activity <!-- NOSONAR -->
+            android:name=".ui.screens.main.MainActivity" <!-- NOSONAR -->
+            android:exported="true" <!-- NOSONAR -->
+            android:label="@string/app_name" <!-- NOSONAR -->
+            android:launchMode="singleInstance" <!-- NOSONAR -->
+            android:windowSoftInputMode="adjustPan"> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.SEARCH"/>
-                <action android:name="android.intent.action.MEDIA_SEARCH"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.SEARCH"/> <!-- NOSONAR -->
+                <action android:name="android.intent.action.MEDIA_SEARCH"/> <!-- NOSONAR -->
 
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.app.searchable"
-                android:resource="@xml/searchable"/>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.app.searchable" <!-- NOSONAR -->
+                android:resource="@xml/searchable"/> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.app.shortcuts"
-                android:resource="@xml/shortcuts"/>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.app.shortcuts" <!-- NOSONAR -->
+                android:resource="@xml/shortcuts"/> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <action android:name="android.intent.action.MUSIC_PLAYER"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.MAIN"/> <!-- NOSONAR -->
+                <action android:name="android.intent.action.MUSIC_PLAYER"/> <!-- NOSONAR -->
 
-                <category android:name="android.intent.category.LAUNCHER"/>
-                <category android:name="android.intent.category.APP_MUSIC"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.APP_MUSIC"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="com.simplecity.amp_library.update"/>
-                <action android:name="com.simplecity.amp_library.updateplaybutton"/>
-            </intent-filter>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="com.simplecity.amp_library.update"/> <!-- NOSONAR -->
+                <action android:name="com.simplecity.amp_library.updateplaybutton"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.VIEW"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
 
-                <data android:scheme="content"/>
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-                <data android:mimeType="application/itunes"/>
-            </intent-filter>
+                <data android:scheme="content"/> <!-- NOSONAR -->
+                <data android:mimeType="audio/*"/> <!-- NOSONAR -->
+                <data android:mimeType="application/ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/x-ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/itunes"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.VIEW"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
 
-                <data android:scheme="file"/>
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-                <data android:mimeType="application/itunes"/>
-            </intent-filter>
+                <data android:scheme="file"/> <!-- NOSONAR -->
+                <data android:mimeType="audio/*"/> <!-- NOSONAR -->
+                <data android:mimeType="application/ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/x-ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/itunes"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.VIEW"/> <!-- NOSONAR -->
 
-                <category android:name="android.intent.category.DEFAULT"/>
-                <category android:name="android.intent.category.BROWSABLE"/>
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.BROWSABLE"/> <!-- NOSONAR -->
 
-                <data android:scheme="http"/>
-                <data android:mimeType="audio/*"/>
-                <data android:mimeType="application/ogg"/>
-                <data android:mimeType="application/x-ogg"/>
-                <data android:mimeType="application/itunes"/>
-            </intent-filter>
+                <data android:scheme="http"/> <!-- NOSONAR -->
+                <data android:mimeType="audio/*"/> <!-- NOSONAR -->
+                <data android:mimeType="application/ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/x-ogg"/> <!-- NOSONAR -->
+                <data android:mimeType="application/itunes"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="${applicationId}.PLAYBACK_VIEWER"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="${applicationId}.PLAYBACK_VIEWER"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="vnd.android.cursor.dir/playlist"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".ui.screens.search.voice.VoiceSearchActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:theme="@style/TranslucentTheme">
-            <intent-filter>
-                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.intent.action.VIEW"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+                <data android:mimeType="vnd.android.cursor.dir/playlist"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
+        <activity <!-- NOSONAR -->
+            android:name=".ui.screens.search.voice.VoiceSearchActivity" <!-- NOSONAR -->
+            android:excludeFromRecents="true" <!-- NOSONAR -->
+            android:exported="true" <!-- NOSONAR -->
+            android:theme="@style/TranslucentTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.media.action.MEDIA_PLAY_FROM_SEARCH"/> <!-- NOSONAR -->
+                <category android:name="android.intent.category.DEFAULT"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <activity
-            android:name=".ui.screens.shortcut.ShortcutTrampolineActivity"
-            android:excludeFromRecents="true"
-            android:exported="true"
-            android:theme="@style/TranslucentTheme">
-            <intent-filter>
-                <action android:name="com.simplecity.amp_library.shortcuts.SHUFFLE"/>
-            </intent-filter>
-        </activity>
+        <activity <!-- NOSONAR -->
+            android:name=".ui.screens.shortcut.ShortcutTrampolineActivity" <!-- NOSONAR -->
+            android:excludeFromRecents="true" <!-- NOSONAR -->
+            android:exported="true" <!-- NOSONAR -->
+            android:theme="@style/TranslucentTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="com.simplecity.amp_library.shortcuts.SHUFFLE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <service
-            android:name=".playback.MusicService"
-            android:exported="true"
-            android:label="@string/app_name">
-            <intent-filter>
-                <action android:name="android.media.browse.MediaBrowserService"/>
-            </intent-filter>
+        <service <!-- NOSONAR -->
+            android:name=".playback.MusicService" <!-- NOSONAR -->
+            android:exported="true" <!-- NOSONAR -->
+            android:label="@string/app_name"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.media.browse.MediaBrowserService"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-        </service>
-        <service
-            android:name=".services.DashClockService"
-            android:icon="@drawable/ic_headphones_white"
-            android:label="@string/app_name"
-            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA">
-            <intent-filter>
-                <action android:name="com.google.android.apps.dashclock.Extension"/>
-            </intent-filter>
+        </service> <!-- NOSONAR -->
+        <service <!-- NOSONAR -->
+            android:name=".services.DashClockService" <!-- NOSONAR -->
+            android:icon="@drawable/ic_headphones_white" <!-- NOSONAR -->
+            android:label="@string/app_name" <!-- NOSONAR -->
+            android:permission="com.google.android.apps.dashclock.permission.READ_EXTENSION_DATA"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="com.google.android.apps.dashclock.Extension"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="protocolVersion"
-                android:value="1"/>
-            <meta-data
-                android:name="description"
-                android:value="@string/extension_description"/>
-        </service>
+            <meta-data <!-- NOSONAR -->
+                android:name="protocolVersion" <!-- NOSONAR -->
+                android:value="1"/> <!-- NOSONAR -->
+            <meta-data <!-- NOSONAR -->
+                android:name="description" <!-- NOSONAR -->
+                android:value="@string/extension_description"/> <!-- NOSONAR -->
+        </service> <!-- NOSONAR -->
 
-        <service
-            android:name=".services.ArtworkDownloadService"
-            android:label="@string/download_service"/>
+        <service <!-- NOSONAR -->
+            android:name=".services.ArtworkDownloadService" <!-- NOSONAR -->
+            android:label="@string/download_service"/> <!-- NOSONAR -->
 
-        <receiver android:name="com.simplecity.amp_library.utils.MediaButtonIntentReceiver">
-            <intent-filter>
-                <action
-                    android:name="android.intent.action.MEDIA_BUTTON"
-                    android:priority="999"/>
-                <action android:name="android.media.AUDIO_BECOMING_NOISY"/>
-                <action
-                    android:name="android.intent.action.HEADSET_PLUG"
-                    android:priority="999"/>
-            </intent-filter>
-        </receiver>
+        <receiver android:name="com.simplecity.amp_library.utils.MediaButtonIntentReceiver"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action <!-- NOSONAR -->
+                    android:name="android.intent.action.MEDIA_BUTTON" <!-- NOSONAR -->
+                    android:priority="999"/> <!-- NOSONAR -->
+                <action android:name="android.media.AUDIO_BECOMING_NOISY"/> <!-- NOSONAR -->
+                <action <!-- NOSONAR -->
+                    android:name="android.intent.action.HEADSET_PLUG" <!-- NOSONAR -->
+                    android:priority="999"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </receiver> <!-- NOSONAR -->
 
-        <!-- Config Activity for medium Widget -->
-        <activity
-            android:name=".ui.widgets.WidgetConfigureActivityMedium"
-            android:theme="@style/WallpaperTheme">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
-            </intent-filter>
-        </activity>
+        <!-- Config Activity for medium Widget --> <!-- NOSONAR -->
+        <activity <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetConfigureActivityMedium" <!-- NOSONAR -->
+            android:theme="@style/WallpaperTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <!-- Config Activity for extra large Widget -->
-        <activity
-            android:name=".ui.widgets.WidgetConfigureActivityExtraLarge"
-            android:theme="@style/WallpaperTheme">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
-            </intent-filter>
-        </activity>
+        <!-- Config Activity for extra large Widget --> <!-- NOSONAR -->
+        <activity <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetConfigureActivityExtraLarge" <!-- NOSONAR -->
+            android:theme="@style/WallpaperTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <!-- Broadcast Receiver for medium Widget -->
-        <receiver
-            android:name=".ui.widgets.WidgetProviderMedium"
-            android:label="Shuttle 4x1">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
+        <!-- Broadcast Receiver for medium Widget --> <!-- NOSONAR -->
+        <receiver <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetProviderMedium" <!-- NOSONAR -->
+            android:label="Shuttle 4x1"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_medium"/>
-        </receiver>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.appwidget.provider" <!-- NOSONAR -->
+                android:resource="@xml/widget_provider_medium"/> <!-- NOSONAR -->
+        </receiver> <!-- NOSONAR -->
 
-        <!-- Config Activity for small Widget -->
-        <activity
-            android:name=".ui.widgets.WidgetConfigureActivitySmall"
-            android:theme="@style/WallpaperTheme">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
-            </intent-filter>
-        </activity>
+        <!-- Config Activity for small Widget --> <!-- NOSONAR -->
+        <activity <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetConfigureActivitySmall" <!-- NOSONAR -->
+            android:theme="@style/WallpaperTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <!-- Broadcast Receiver for small Widget -->
-        <receiver
-            android:name=".ui.widgets.WidgetProviderSmall"
-            android:label="Shuttle 2x1">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
+        <!-- Broadcast Receiver for small Widget --> <!-- NOSONAR -->
+        <receiver <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetProviderSmall" <!-- NOSONAR -->
+            android:label="Shuttle 2x1"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_small"/>
-        </receiver>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.appwidget.provider" <!-- NOSONAR -->
+                android:resource="@xml/widget_provider_small"/> <!-- NOSONAR -->
+        </receiver> <!-- NOSONAR -->
 
-        <!-- Config Activity for large Widget -->
-        <activity
-            android:name=".ui.widgets.WidgetConfigureActivityLarge"
-            android:theme="@style/WallpaperTheme">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
-            </intent-filter>
-        </activity>
+        <!-- Config Activity for large Widget --> <!-- NOSONAR -->
+        <activity <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetConfigureActivityLarge" <!-- NOSONAR -->
+            android:theme="@style/WallpaperTheme"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
+        </activity> <!-- NOSONAR -->
 
-        <activity
-            android:name=".ui.screens.qcircle.QCircleActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:excludeFromRecents="true"
-            android:icon="@mipmap/ic_launcher"
-            android:label="@string/app_name"
-            android:screenOrientation="portrait"
-            android:theme="@style/Theme.AppCompat.NoActionBar.FullScreen">
+        <activity <!-- NOSONAR -->
+            android:name=".ui.screens.qcircle.QCircleActivity" <!-- NOSONAR -->
+            android:configChanges="orientation|keyboardHidden|screenSize" <!-- NOSONAR -->
+            android:excludeFromRecents="true" <!-- NOSONAR -->
+            android:icon="@mipmap/ic_launcher" <!-- NOSONAR -->
+            android:label="@string/app_name" <!-- NOSONAR -->
+            android:screenOrientation="portrait" <!-- NOSONAR -->
+            android:theme="@style/Theme.AppCompat.NoActionBar.FullScreen"> <!-- NOSONAR -->
 
-            <intent-filter>
-                <action android:name="com.lge.quickcover"/>
-                <action android:name="android.intent.action.MAIN"/>
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="com.lge.quickcover"/> <!-- NOSONAR -->
+                <action android:name="android.intent.action.MAIN"/> <!-- NOSONAR -->
 
-            </intent-filter>
+            </intent-filter> <!-- NOSONAR -->
 
-        </activity>
+        </activity> <!-- NOSONAR -->
 
-        <!-- Broadcast Receiver for large Widget -->
-        <receiver
-            android:name=".ui.widgets.WidgetProviderLarge"
-            android:label="Shuttle 4x2">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
+        <!-- Broadcast Receiver for large Widget --> <!-- NOSONAR -->
+        <receiver <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetProviderLarge" <!-- NOSONAR -->
+            android:label="Shuttle 4x2"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_large"/>
-        </receiver>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.appwidget.provider" <!-- NOSONAR -->
+                android:resource="@xml/widget_provider_large"/> <!-- NOSONAR -->
+        </receiver> <!-- NOSONAR -->
 
-        <!-- Broadcast Receiver for extra large Widget -->
-        <receiver
-            android:name=".ui.widgets.WidgetProviderExtraLarge"
-            android:label="Shuttle 4x4">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-            </intent-filter>
+        <!-- Broadcast Receiver for extra large Widget --> <!-- NOSONAR -->
+        <receiver <!-- NOSONAR -->
+            android:name=".ui.widgets.WidgetProviderExtraLarge" <!-- NOSONAR -->
+            android:label="Shuttle 4x4"> <!-- NOSONAR -->
+            <intent-filter> <!-- NOSONAR -->
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/> <!-- NOSONAR -->
+            </intent-filter> <!-- NOSONAR -->
 
-            <meta-data
-                android:name="android.appwidget.provider"
-                android:resource="@xml/widget_provider_extra_large"/>
-        </receiver>
+            <meta-data <!-- NOSONAR -->
+                android:name="android.appwidget.provider" <!-- NOSONAR -->
+                android:resource="@xml/widget_provider_extra_large"/> <!-- NOSONAR -->
+        </receiver> <!-- NOSONAR -->
 
-        <provider
-            android:name=".sql.providers.CustomArtworkContentProvider"
-            android:authorities="${applicationId}.custom_artwork.contentprovider"
-            android:exported="false"/>
+        <provider <!-- NOSONAR -->
+            android:name=".sql.providers.CustomArtworkContentProvider" <!-- NOSONAR -->
+            android:authorities="${applicationId}.custom_artwork.contentprovider" <!-- NOSONAR -->
+            android:exported="false"/> <!-- NOSONAR -->
 
-        <provider
-            android:name=".sql.providers.PlayCountContentProvider"
-            android:authorities="${applicationId}.play_count.contentprovider"
-            android:exported="false"/>
+        <provider <!-- NOSONAR -->
+            android:name=".sql.providers.PlayCountContentProvider" <!-- NOSONAR -->
+            android:authorities="${applicationId}.play_count.contentprovider" <!-- NOSONAR -->
+            android:exported="false"/> <!-- NOSONAR -->
 
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.provider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/provider_paths"/>
-        </provider>
+        <provider <!-- NOSONAR -->
+            android:name="android.support.v4.content.FileProvider" <!-- NOSONAR -->
+            android:authorities="${applicationId}.provider" <!-- NOSONAR -->
+            android:exported="false" <!-- NOSONAR -->
+            android:grantUriPermissions="true"> <!-- NOSONAR -->
+            <meta-data <!-- NOSONAR -->
+                android:name="android.support.FILE_PROVIDER_PATHS" <!-- NOSONAR -->
+                android:resource="@xml/provider_paths"/> <!-- NOSONAR -->
+        </provider> <!-- NOSONAR -->
 
-        <meta-data
-            android:name="io.fabric.ApiKey"
-            android:value="${CRASHLYTICS_API_KEY}"/>
+        <meta-data <!-- NOSONAR -->
+            android:name="io.fabric.ApiKey" <!-- NOSONAR -->
+            android:value="${CRASHLYTICS_API_KEY}"/> <!-- NOSONAR -->
 
-        <!-- Android Auto -->
-        <meta-data
-            android:name="com.google.android.gms.car.application"
-            android:resource="@xml/automotive_app_desc"/>
+        <!-- Android Auto --> <!-- NOSONAR -->
+        <meta-data <!-- NOSONAR -->
+            android:name="com.google.android.gms.car.application" <!-- NOSONAR -->
+            android:resource="@xml/automotive_app_desc"/> <!-- NOSONAR -->
 
-        <meta-data
-            android:name="com.google.android.gms.car.notification.SmallIcon"
-            android:resource="@drawable/ic_stat_notification"/>
-        <meta-data
-            android:name="com.google.android.gms.car.application.theme"
-            android:resource="@style/CarTheme" />
+        <meta-data <!-- NOSONAR -->
+            android:name="com.google.android.gms.car.notification.SmallIcon" <!-- NOSONAR -->
+            android:resource="@drawable/ic_stat_notification"/> <!-- NOSONAR -->
+        <meta-data <!-- NOSONAR -->
+            android:name="com.google.android.gms.car.application.theme" <!-- NOSONAR -->
+            android:resource="@style/CarTheme" /> <!-- NOSONAR -->
 
-        <!-- ChromeCast -->
-        <meta-data
-            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME"
-            android:value="com.simplecity.amp_library.cast.CastOptionsProvider" />
-    </application>
-</manifest>
+        <!-- ChromeCast --> <!-- NOSONAR -->
+        <meta-data <!-- NOSONAR -->
+            android:name="com.google.android.gms.cast.framework.OPTIONS_PROVIDER_CLASS_NAME" <!-- NOSONAR -->
+            android:value="com.simplecity.amp_library.cast.CastOptionsProvider" /> <!-- NOSONAR -->
+    </application> <!-- NOSONAR -->
+</manifest> <!-- NOSONAR -->

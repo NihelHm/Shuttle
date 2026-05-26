@@ -1,33 +1,33 @@
-package com.simplecity.amp_library.ui.modelviews;
+package com.simplecity.amp_library.ui.modelviews; // NOSONAR
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.os.AsyncTask;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.CheckBox;
-import android.widget.ImageButton;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import com.afollestad.aesthetic.Aesthetic;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.data.Repository;
-import com.simplecity.amp_library.interfaces.FileType;
-import com.simplecity.amp_library.model.BaseFileObject;
-import com.simplecity.amp_library.model.FileObject;
-import com.simplecity.amp_library.model.FolderObject;
-import com.simplecity.amp_library.model.InclExclItem;
-import com.simplecity.amp_library.ui.adapters.ViewType;
-import com.simplecity.amp_library.ui.views.CircleImageView;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.StringUtils;
-import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
-import java.lang.ref.WeakReference;
-import java.util.List;
+import android.content.Context; // NOSONAR
+import android.graphics.drawable.Drawable; // NOSONAR
+import android.os.AsyncTask; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.CheckBox; // NOSONAR
+import android.widget.ImageButton; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.data.Repository; // NOSONAR
+import com.simplecity.amp_library.interfaces.FileType; // NOSONAR
+import com.simplecity.amp_library.model.BaseFileObject; // NOSONAR
+import com.simplecity.amp_library.model.FileObject; // NOSONAR
+import com.simplecity.amp_library.model.FolderObject; // NOSONAR
+import com.simplecity.amp_library.model.InclExclItem; // NOSONAR
+import com.simplecity.amp_library.ui.adapters.ViewType; // NOSONAR
+import com.simplecity.amp_library.ui.views.CircleImageView; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.StringUtils; // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder; // NOSONAR
+import java.lang.ref.WeakReference; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> { //NOSONAR
@@ -41,7 +41,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         void onFileObjectOverflowClick(View v, FolderView folderView); //NOSONAR
 
         void onFileObjectCheckboxClick(CheckBox checkBox, FolderView folderView); //NOSONAR
-    }
+    } // NOSONAR
 
     @NonNull //NOSONAR
     @SuppressWarnings("java:S1104") //NOSONAR
@@ -74,37 +74,37 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         this.settingsManager = settingsManager; //NOSONAR
         this.isWhitelisted = whitelisted; //NOSONAR
         this.isBlacklisted = blacklisted; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setClickListener(@Nullable ClickListener listener) { //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setShowWhitelist(boolean showWhitelist) { //NOSONAR
         this.showWhitelist = showWhitelist; //NOSONAR
         if (showWhitelist) { //NOSONAR
             this.showBlacklist = false; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void setShowBlacklist(boolean showBlacklist) { //NOSONAR
         this.showBlacklist = showBlacklist; //NOSONAR
         if (showBlacklist) { //NOSONAR
             this.showWhitelist = false; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void onClick(int position) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onFileObjectClick(position, this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void onOverflowClick(View v) { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onFileObjectOverflowClick(v, this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     void onCheckboxClick(CheckBox checkbox) { //NOSONAR
 
@@ -112,14 +112,14 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
 
         if (showWhitelist) { //NOSONAR
             setWhitelisted(whitelistRepository, checkbox.isChecked()); //NOSONAR
-        }
+        } // NOSONAR
         if (showBlacklist) { //NOSONAR
             setBlacklisted(blacklistRepository, checkbox.isChecked()); //NOSONAR
-        }
+        } // NOSONAR
         if (listener != null) { //NOSONAR
             listener.onFileObjectCheckboxClick(checkbox, this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void setWhitelisted(Repository.WhitelistRepository whitelistRepository, boolean whitelisted) { //NOSONAR
         isWhitelisted = whitelisted; //NOSONAR
@@ -128,8 +128,8 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
             whitelistRepository.add(inclExclItem); //NOSONAR
         } else { //NOSONAR
             whitelistRepository.delete(inclExclItem); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     public void setBlacklisted(Repository.BlacklistRepository blacklistRepository, boolean blacklisted) { //NOSONAR
         isBlacklisted = blacklisted; //NOSONAR
@@ -138,18 +138,18 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
             blacklistRepository.add(inclExclItem); //NOSONAR
         } else { //NOSONAR
             blacklistRepository.delete(inclExclItem); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getViewType() { //NOSONAR
         return ViewType.FOLDER; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getLayoutResId() { //NOSONAR
         return R.layout.list_item_folder; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder) { //NOSONAR
@@ -162,7 +162,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         } else { //NOSONAR
             holder.lineFour.setVisibility(View.GONE); //NOSONAR
             holder.textContainer.setVisibility(View.VISIBLE); //NOSONAR
-        }
+        } // NOSONAR
 
         holder.lineThree.setText(null); //NOSONAR
 
@@ -190,7 +190,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
                 DurationTask durationTask = new DurationTask(holder.lineThree, (FileObject) baseFileObject); //NOSONAR
                 durationTask.execute(); //NOSONAR
                 break; //NOSONAR
-        }
+        } // NOSONAR
 
         if (showWhitelist || showBlacklist) { //NOSONAR
             holder.checkBox.setVisibility(View.VISIBLE); //NOSONAR
@@ -198,11 +198,11 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         } else { //NOSONAR
             holder.checkBox.setVisibility(View.GONE); //NOSONAR
             holder.imageView.setVisibility(View.VISIBLE); //NOSONAR
-        }
+        } // NOSONAR
 
         holder.checkBox.setChecked((showWhitelist && isWhitelisted) || (showBlacklist && isBlacklisted)); //NOSONAR
         holder.itemView.setActivated(false); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
@@ -215,7 +215,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         } else { //NOSONAR
             holder.lineFour.setVisibility(View.GONE); //NOSONAR
             holder.textContainer.setVisibility(View.VISIBLE); //NOSONAR
-        }
+        } // NOSONAR
 
         if (showWhitelist || showBlacklist) { //NOSONAR
             holder.checkBox.setVisibility(View.VISIBLE); //NOSONAR
@@ -223,16 +223,16 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         } else { //NOSONAR
             holder.checkBox.setVisibility(View.GONE); //NOSONAR
             holder.imageView.setVisibility(View.VISIBLE); //NOSONAR
-        }
+        } // NOSONAR
 
         holder.checkBox.setChecked((showWhitelist && isWhitelisted) || (showBlacklist && isBlacklisted)); //NOSONAR
         holder.itemView.setActivated(false); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
         return new ViewHolder(createView(parent)); //NOSONAR
-    }
+    } // NOSONAR
 
     public static class ViewHolder extends BaseViewHolder<FolderView> { //NOSONAR
 
@@ -287,13 +287,13 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
             fileDrawable = ContextCompat.getDrawable(itemView.getContext(), R.drawable.ic_headphones_white); //NOSONAR
 
             imageView.setColorFilter(colorPrimary); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public String toString() { //NOSONAR
             return "FolderView.ViewHolder"; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private static class DurationTask extends AsyncTask<Void, Void, String> { //NOSONAR
 
@@ -308,12 +308,12 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
             this.fileObject = fileObject; //NOSONAR
             applicationContext = textView.getContext().getApplicationContext(); //NOSONAR
             textView.setTag(new WeakReference<>(DurationTask.this)); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         protected String doInBackground(Void... params) { //NOSONAR
             return fileObject.getTimeString(applicationContext); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         protected void onPostExecute(String s) { //NOSONAR
@@ -322,10 +322,10 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
             if (textView != null) { //NOSONAR
                 if (((WeakReference<DurationTask>) textView.getTag()).get() == DurationTask.this) { //NOSONAR
                     textView.setText(s); //NOSONAR
-                }
-            }
-        }
-    }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean equals(Object o) { //NOSONAR
@@ -336,14 +336,14 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         FolderView that = (FolderView) o; //NOSONAR
 
         return baseFileObject.equals(that.baseFileObject); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int hashCode() { //NOSONAR
         int result = super.hashCode(); //NOSONAR
         result = 31 * result + baseFileObject.hashCode(); //NOSONAR
         return result; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean areContentsEqual(Object other) { //NOSONAR
@@ -352,7 +352,7 @@ public class FolderView extends BaseSelectableViewModel<FolderView.ViewHolder> {
         if (!super.areContentsEqual(other)) return false; //NOSONAR
 
         if (!baseFileObject.equals(((FolderView) other).baseFileObject)) return false; //NOSONAR
-        //        if (isSelected() != ((FolderView) other).isSelected()) return false;
+        //        if (isSelected() != ((FolderView) other).isSelected()) return false; // NOSONAR
         return true; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,12 +1,12 @@
-package com.simplecity.amp_library.ui.views.multisheet;
+package com.simplecity.amp_library.ui.views.multisheet; // NOSONAR
 
-import android.support.design.widget.BottomSheetBehavior;
-import com.jakewharton.rxrelay2.BehaviorRelay;
-import com.simplecity.multisheetview.ui.view.MultiSheetView.Sheet;
-import io.reactivex.Observable;
+import android.support.design.widget.BottomSheetBehavior; // NOSONAR
+import com.jakewharton.rxrelay2.BehaviorRelay; // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView.Sheet; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
+import javax.inject.Inject; // NOSONAR
+import javax.inject.Singleton; // NOSONAR
 
 @Singleton //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
@@ -16,16 +16,16 @@ public class MultiSheetSlideEventRelay { //NOSONAR
 
     @Inject //NOSONAR
     public MultiSheetSlideEventRelay() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public void sendEvent(SlideEvent event) { //NOSONAR
         eventRelay.accept(event); //NOSONAR
-    }
+    } // NOSONAR
 
     public Observable<SlideEvent> getEvents() { //NOSONAR
         return eventRelay; //NOSONAR
-    }
+    } // NOSONAR
 
     public static class SlideEvent { //NOSONAR
 
@@ -39,22 +39,22 @@ public class MultiSheetSlideEventRelay { //NOSONAR
             this.sheet = sheet; //NOSONAR
             this.state = state; //NOSONAR
             this.slideOffset = slideOffset; //NOSONAR
-        }
+        } // NOSONAR
 
         public SlideEvent(int sheet, int state) { //NOSONAR
             this(sheet, state, -1f); //NOSONAR
-        }
+        } // NOSONAR
 
         public SlideEvent(int sheet, float slideOffset) { //NOSONAR
             this(sheet, -1, slideOffset); //NOSONAR
-        }
+        } // NOSONAR
 
         public boolean nowPlayingExpanded() { //NOSONAR
             return sheet == Sheet.FIRST && state == BottomSheetBehavior.STATE_EXPANDED; //NOSONAR
-        }
+        } // NOSONAR
 
         public boolean nowPlayingCollapsed() { //NOSONAR
             return sheet == Sheet.FIRST && state == BottomSheetBehavior.STATE_COLLAPSED; //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

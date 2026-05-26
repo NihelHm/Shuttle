@@ -1,11 +1,11 @@
-package com.simplecity.amp_library.utils;
+package com.simplecity.amp_library.utils; // NOSONAR
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.ObjectAnimator;
-import android.support.annotation.Nullable;
-import android.view.View;
-import com.simplecity.amp_library.rx.UnsafeAction;
+import android.animation.Animator; // NOSONAR
+import android.animation.AnimatorListenerAdapter; // NOSONAR
+import android.animation.ObjectAnimator; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.view.View; // NOSONAR
+import com.simplecity.amp_library.rx.UnsafeAction; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ViewUtils { //NOSONAR
@@ -21,12 +21,12 @@ public class ViewUtils { //NOSONAR
 
                 if (action != null) { //NOSONAR
                     action.run(); //NOSONAR
-                }
-            }
-        });
+                } // NOSONAR
+            } // NOSONAR
+        }); // NOSONAR
 
         objectAnimator.start(); //NOSONAR
-    }
+    } // NOSONAR
 
     public static void fadeIn(View view, @Nullable UnsafeAction action) { //NOSONAR
 
@@ -39,9 +39,9 @@ public class ViewUtils { //NOSONAR
                 animation.removeAllListeners(); //NOSONAR
                 if (action != null) { //NOSONAR
                     action.run(); //NOSONAR
-                }
-            }
-        });
+                } // NOSONAR
+            } // NOSONAR
+        }); // NOSONAR
         objectAnimator.start(); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

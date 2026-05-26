@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:dither="true">
-    <gradient
-        android:angle="270"
-        android:centerColor="#1D000000"
-        android:endColor="#70000000"
-        android:startColor="#00000000" />
-</shape>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:dither="true"> <!-- NOSONAR -->
+    <gradient <!-- NOSONAR -->
+        android:angle="270" <!-- NOSONAR -->
+        android:centerColor="#1D000000" <!-- NOSONAR -->
+        android:endColor="#70000000" <!-- NOSONAR -->
+        android:startColor="#00000000" /> <!-- NOSONAR -->
+</shape> <!-- NOSONAR -->

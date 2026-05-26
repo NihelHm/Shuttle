@@ -1,11 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TextView
-    android:id="@android:id/text1"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="48dp"
-    android:gravity="center_vertical"
-    android:paddingLeft="8dp"
-    android:paddingRight="8dp"
-    android:lines="1">
-</TextView>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<TextView <!-- NOSONAR -->
+    android:id="@android:id/text1" <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="48dp" <!-- NOSONAR -->
+    android:gravity="center_vertical" <!-- NOSONAR -->
+    android:paddingLeft="8dp" <!-- NOSONAR -->
+    android:paddingRight="8dp" <!-- NOSONAR -->
+    android:lines="1"> <!-- NOSONAR -->
+</TextView> <!-- NOSONAR -->

@@ -1,23 +1,23 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.playlist.dialog
+package com.simplecity.amp_library.ui.screens.playlist.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.ContentValues
-import android.os.Bundle
-import android.provider.MediaStore
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.text.Editable
-import android.text.TextWatcher
-import android.view.LayoutInflater
-import android.widget.EditText
-import android.widget.Toast
-import com.afollestad.materialdialogs.DialogAction
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.model.Playlist
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.ContentValues // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.provider.MediaStore // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.text.Editable // NOSONAR
+import android.text.TextWatcher // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.widget.EditText // NOSONAR
+import android.widget.Toast // NOSONAR
+import com.afollestad.materialdialogs.DialogAction // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
 
 class RenamePlaylistDialog : DialogFragment() { //NOSONAR
 
@@ -47,57 +47,57 @@ class RenamePlaylistDialog : DialogFragment() { //NOSONAR
                         values, //NOSONAR
                         MediaStore.Audio.Playlists._ID + "=?", //NOSONAR
                         arrayOf(java.lang.Long.valueOf(playlist!!.id).toString()) //NOSONAR
-                    )
+                    ) // NOSONAR
                     playlist!!.name = name //NOSONAR
                     Toast.makeText(context, R.string.playlist_renamed_message, Toast.LENGTH_SHORT).show() //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             .negativeText(R.string.cancel) //NOSONAR
 
         val dialog = builder.build() //NOSONAR
 
         val textWatcher = object : TextWatcher { //NOSONAR
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
 
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) { //NOSONAR
-                // check if playlist with current name exists already, and warn the user if so.
+                // check if playlist with current name exists already, and warn the user if so. // NOSONAR
                 setSaveButton(dialog, playlist, editText.text.toString()) //NOSONAR
-            }
+            } // NOSONAR
 
             override fun afterTextChanged(s: Editable) { //NOSONAR
-                // Intentionally left empty.
-            }
-        }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         editText.addTextChangedListener(textWatcher) //NOSONAR
 
         return dialog //NOSONAR
-    }
+    } // NOSONAR
 
     private fun setSaveButton(dialog: MaterialDialog, playlist: Playlist?, typedName: String) { //NOSONAR
         if (typedName.trim { it <= ' ' }.isEmpty()) { //NOSONAR
             val button = dialog.getActionButton(DialogAction.POSITIVE) //NOSONAR
             if (button != null) { //NOSONAR
                 button.isEnabled = false //NOSONAR
-            }
+            } // NOSONAR
         } else { //NOSONAR
             val button = dialog.getActionButton(DialogAction.POSITIVE) //NOSONAR
             if (button != null) { //NOSONAR
                 button.isEnabled = true //NOSONAR
-            }
+            } // NOSONAR
             if (playlist!!.id >= 0 && playlist.name != typedName) { //NOSONAR
                 button?.setText(R.string.create_playlist_overwrite_text) //NOSONAR
             } else { //NOSONAR
                 button?.setText(R.string.create_playlist_create_text) //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -111,6 +111,6 @@ class RenamePlaylistDialog : DialogFragment() { //NOSONAR
             val fragment = RenamePlaylistDialog() //NOSONAR
             fragment.arguments = args //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

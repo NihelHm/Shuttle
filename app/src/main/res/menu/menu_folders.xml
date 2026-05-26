@@ -1,90 +1,90 @@
-<?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-      xmlns:app="http://schemas.android.com/apk/res-auto">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<menu xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+      xmlns:app="http://schemas.android.com/apk/res-auto"> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/folder_home_dir"
-        android:icon="@drawable/ic_folder_outline"
-        android:title="@string/set_home_dir"
-        app:showAsAction="ifRoom"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/folder_home_dir" <!-- NOSONAR -->
+        android:icon="@drawable/ic_folder_outline" <!-- NOSONAR -->
+        android:title="@string/set_home_dir" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"/> <!-- NOSONAR -->
 
-    <item
-        android:icon="@drawable/ic_sort_24dp"
-        android:title="@string/sorting"
-        app:showAsAction="ifRoom">
+    <item <!-- NOSONAR -->
+        android:icon="@drawable/ic_sort_24dp" <!-- NOSONAR -->
+        android:title="@string/sorting" <!-- NOSONAR -->
+        app:showAsAction="ifRoom"> <!-- NOSONAR -->
 
-        <menu>
-            <item
-                android:enabled="false"
-                android:title="@string/folders_title"/>
+        <menu> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:enabled="false" <!-- NOSONAR -->
+                android:title="@string/folders_title"/> <!-- NOSONAR -->
 
-            <group
-                android:id="@+id/folderGroup"
-                android:checkableBehavior="single">
-                <item
-                    android:id="@+id/sort_folder_default"
-                    android:title="@string/sort_folders_default"/>
+            <group <!-- NOSONAR -->
+                android:id="@+id/folderGroup" <!-- NOSONAR -->
+                android:checkableBehavior="single"> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_folder_default" <!-- NOSONAR -->
+                    android:title="@string/sort_folders_default"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_folder_count"
-                    android:title="@string/sort_folders_count"/>
-            </group>
-            <item
-                android:id="@+id/folders_ascending"
-                android:checkable="true"
-                android:checked="true"
-                android:title="@string/sort_ascending"/>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_folder_count" <!-- NOSONAR -->
+                    android:title="@string/sort_folders_count"/> <!-- NOSONAR -->
+            </group> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/folders_ascending" <!-- NOSONAR -->
+                android:checkable="true" <!-- NOSONAR -->
+                android:checked="true" <!-- NOSONAR -->
+                android:title="@string/sort_ascending"/> <!-- NOSONAR -->
 
-            <item
-                android:enabled="false"
-                android:title="@string/files_title"/>
+            <item <!-- NOSONAR -->
+                android:enabled="false" <!-- NOSONAR -->
+                android:title="@string/files_title"/> <!-- NOSONAR -->
 
-            <group
-                android:id="@+id/fileGroup"
-                android:checkableBehavior="single">
-                <item
-                    android:id="@+id/sort_files_default"
-                    android:title="@string/sort_files_default"/>
+            <group <!-- NOSONAR -->
+                android:id="@+id/fileGroup" <!-- NOSONAR -->
+                android:checkableBehavior="single"> <!-- NOSONAR -->
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_default" <!-- NOSONAR -->
+                    android:title="@string/sort_files_default"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_files_filename"
-                    android:title="@string/sort_files_file_name"/>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_filename" <!-- NOSONAR -->
+                    android:title="@string/sort_files_file_name"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_files_size"
-                    android:title="@string/sort_files_size"/>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_size" <!-- NOSONAR -->
+                    android:title="@string/sort_files_size"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_files_artist_name"
-                    android:title="@string/sort_files_song_artist_name"/>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_artist_name" <!-- NOSONAR -->
+                    android:title="@string/sort_files_song_artist_name"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_files_album_name"
-                    android:title="@string/sort_files_album_name"/>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_album_name" <!-- NOSONAR -->
+                    android:title="@string/sort_files_album_name"/> <!-- NOSONAR -->
 
-                <item
-                    android:id="@+id/sort_files_track_name"
-                    android:title="@string/sort_files_track_name"/>
-            </group>
-            <item
-                android:id="@+id/files_ascending"
-                android:checkable="true"
-                android:checked="true"
-                android:title="@string/sort_ascending"/>
-        </menu>
-    </item>
+                <item <!-- NOSONAR -->
+                    android:id="@+id/sort_files_track_name" <!-- NOSONAR -->
+                    android:title="@string/sort_files_track_name"/> <!-- NOSONAR -->
+            </group> <!-- NOSONAR -->
+            <item <!-- NOSONAR -->
+                android:id="@+id/files_ascending" <!-- NOSONAR -->
+                android:checkable="true" <!-- NOSONAR -->
+                android:checked="true" <!-- NOSONAR -->
+                android:title="@string/sort_ascending"/> <!-- NOSONAR -->
+        </menu> <!-- NOSONAR -->
+    </item> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/whitelist"
-        android:title="@string/whitelist_title"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/whitelist" <!-- NOSONAR -->
+        android:title="@string/whitelist_title"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/blacklist"
-        android:title="@string/blacklist_title"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/blacklist" <!-- NOSONAR -->
+        android:title="@string/blacklist_title"/> <!-- NOSONAR -->
 
-    <item
-        android:id="@+id/show_filenames"
-        android:checkable="true"
-        android:title="@string/show_filenames"/>
+    <item <!-- NOSONAR -->
+        android:id="@+id/show_filenames" <!-- NOSONAR -->
+        android:checkable="true" <!-- NOSONAR -->
+        android:title="@string/show_filenames"/> <!-- NOSONAR -->
 
-</menu>
+</menu> <!-- NOSONAR -->

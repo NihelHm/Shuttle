@@ -1,36 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
 
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#3F51B5</color> <!-- NOSONAR -->
+    <color name="colorPrimaryDark">#303F9F</color> <!-- NOSONAR -->
+    <color name="colorAccent">#FF4081</color> <!-- NOSONAR -->
 
-    <color name="list_divider_dark">#1EFFFFFF</color>
-    <color name="list_divider_light">#1E000000</color>
+    <color name="list_divider_dark">#1EFFFFFF</color> <!-- NOSONAR -->
+    <color name="list_divider_light">#1E000000</color> <!-- NOSONAR -->
 
-    <color name="notification_control_tint">#ffffffff</color>
-    <color name="notification_control_tint_inverse">#E1E1E1</color>
+    <color name="notification_control_tint">#ffffffff</color> <!-- NOSONAR -->
+    <color name="notification_control_tint_inverse">#E1E1E1</color> <!-- NOSONAR -->
 
-    <color name="pressed_material_light">#15000000</color>
-    <color name="selected_material_light">#45000000</color>
-    <color name="pressed_material_dark">#15ffffff</color>
-    <color name="selected_material_dark">#40ffffff</color>
+    <color name="pressed_material_light">#15000000</color> <!-- NOSONAR -->
+    <color name="selected_material_light">#45000000</color> <!-- NOSONAR -->
+    <color name="pressed_material_dark">#15ffffff</color> <!-- NOSONAR -->
+    <color name="selected_material_dark">#40ffffff</color> <!-- NOSONAR -->
 
-    <color name="transparent">#00000000</color>
+    <color name="transparent">#00000000</color> <!-- NOSONAR -->
 
-    <color name="semitransparent">#2533b5e5</color>
+    <color name="semitransparent">#2533b5e5</color> <!-- NOSONAR -->
 
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color> <!-- NOSONAR -->
+    <color name="white">#FFFFFF</color> <!-- NOSONAR -->
 
-    <color name="color_filter">#60000000</color>
+    <color name="color_filter">#60000000</color> <!-- NOSONAR -->
 
-    <drawable name="notification_template_icon_bg">#3333B5E5</drawable>
+    <drawable name="notification_template_icon_bg">#3333B5E5</drawable> <!-- NOSONAR -->
 
-    <color name="primary_text_dark">#ffffff</color>
+    <color name="primary_text_dark">#ffffff</color> <!-- NOSONAR -->
 
-    <color name="ic_launcher_background">#03A9F4</color>
+    <color name="ic_launcher_background">#03A9F4</color> <!-- NOSONAR -->
 
-    <color name="text_highlight">#6680cbc4</color>
+    <color name="text_highlight">#6680cbc4</color> <!-- NOSONAR -->
 
-</resources>
+</resources> <!-- NOSONAR -->

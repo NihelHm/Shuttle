@@ -1,23 +1,23 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
-import android.support.annotation.ColorInt;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.content.ContextCompat;
-import android.util.AttributeSet;
+import android.content.Context; // NOSONAR
+import android.content.res.ColorStateList; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.support.annotation.ColorInt; // NOSONAR
+import android.support.design.widget.BottomNavigationView; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
 
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function3;
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
+import io.reactivex.functions.Function3; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticBottomNavigationView extends BottomNavigationView { //NOSONAR
 
@@ -27,15 +27,15 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
 
   public AestheticBottomNavigationView(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticBottomNavigationView(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticBottomNavigationView(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
-  }
+  } // NOSONAR
 
   private void invalidateIconTextColor(int backgroundColor, int selectedColor) { //NOSONAR
     int baseColor = //NOSONAR
@@ -47,31 +47,31 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
         new ColorStateList( //NOSONAR
             new int[][] { //NOSONAR
               new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
-            },
+            }, // NOSONAR
             new int[] {unselectedIconTextColor, selectedColor}); //NOSONAR
     ColorStateList textColor = //NOSONAR
         new ColorStateList( //NOSONAR
             new int[][] { //NOSONAR
               new int[] {-android.R.attr.state_checked}, new int[] {android.R.attr.state_checked} //NOSONAR
-            },
+            }, // NOSONAR
             new int[] {unselectedIconTextColor, selectedColor}); //NOSONAR
     setItemIconTintList(iconColor); //NOSONAR
     setItemTextColor(textColor); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   public void setBackgroundColor(@ColorInt int color) { //NOSONAR
     super.setBackgroundColor(color); //NOSONAR
     if (lastTextIconColor == Color.TRANSPARENT) { //NOSONAR
       lastTextIconColor = Util.isColorLight(color) ? Color.BLACK : Color.WHITE; //NOSONAR
-    }
+    } // NOSONAR
     invalidateIconTextColor(color, lastTextIconColor); //NOSONAR
-  }
+  } // NOSONAR
 
   private void onState(State state) { //NOSONAR
     if (colorSubscriptions != null) { //NOSONAR
       colorSubscriptions.clear(); //NOSONAR
-    }
+    } // NOSONAR
     colorSubscriptions = new CompositeDisposable(); //NOSONAR
 
     switch (state.iconTextMode) { //NOSONAR
@@ -85,8 +85,8 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
                       @Override //NOSONAR
                       public void accept(@NonNull Integer color) { //NOSONAR
                         lastTextIconColor = color; //NOSONAR
-                      }
-                    },
+                      } // NOSONAR
+                    }, // NOSONAR
                     onErrorLogAndRethrow())); //NOSONAR
         break; //NOSONAR
       case BottomNavIconTextMode.SELECTED_ACCENT: //NOSONAR
@@ -99,17 +99,17 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
                       @Override //NOSONAR
                       public void accept(@NonNull Integer color) { //NOSONAR
                         lastTextIconColor = color; //NOSONAR
-                      }
-                    },
+                      } // NOSONAR
+                    }, // NOSONAR
                     onErrorLogAndRethrow())); //NOSONAR
         break; //NOSONAR
       case BottomNavIconTextMode.BLACK_WHITE_AUTO: //NOSONAR
-        // We will automatically set the icon/text color when the background color is set
+        // We will automatically set the icon/text color when the background color is set // NOSONAR
         lastTextIconColor = Color.TRANSPARENT; //NOSONAR
         break; //NOSONAR
       default: //NOSONAR
         throw new IllegalStateException("Unknown bottom nav icon/text mode: " + state.iconTextMode); //NOSONAR
-    }
+    } // NOSONAR
 
     switch (state.bgMode) { //NOSONAR
       case BottomNavBgMode.PRIMARY: //NOSONAR
@@ -143,8 +143,8 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
         break; //NOSONAR
       default: //NOSONAR
         throw new IllegalStateException("Unknown bottom nav bg mode: " + state.bgMode); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onAttachedToWindow() { //NOSONAR
@@ -161,17 +161,17 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
                   @Override //NOSONAR
                   public void accept(@android.support.annotation.NonNull State state) { //NOSONAR
                     onState(state); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     modesSubscription.dispose(); //NOSONAR
     colorSubscriptions.clear(); //NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
+  } // NOSONAR
 
   private static class State { //NOSONAR
 
@@ -183,20 +183,20 @@ public class AestheticBottomNavigationView extends BottomNavigationView { //NOSO
       this.bgMode = bgMode; //NOSONAR
       this.iconTextMode = iconTextMode; //NOSONAR
       this.isDark = isDark; //NOSONAR
-    }
+    } // NOSONAR
 
     static State create( //NOSONAR
         @BottomNavBgMode int bgMode, @BottomNavIconTextMode int iconTextMode, boolean isDark) { //NOSONAR
       return new State(bgMode, iconTextMode, isDark); //NOSONAR
-    }
+    } // NOSONAR
 
     static Function3<Integer, Integer, Boolean, State> creator() { //NOSONAR
       return new Function3<Integer, Integer, Boolean, State>() { //NOSONAR
         @Override //NOSONAR
         public State apply(Integer integer, Integer integer2, Boolean aBoolean) { //NOSONAR
           return State.create(integer, integer2, aBoolean); //NOSONAR
-        }
-      };
-    }
-  }
-}
+        } // NOSONAR
+      }; // NOSONAR
+    } // NOSONAR
+  } // NOSONAR
+} // NOSONAR

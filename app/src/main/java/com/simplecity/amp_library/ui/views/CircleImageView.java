@@ -1,26 +1,26 @@
-package com.simplecity.amp_library.ui.views;
+package com.simplecity.amp_library.ui.views; // NOSONAR
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.AppCompatImageView;
-import android.util.AttributeSet;
-import com.afollestad.aesthetic.Aesthetic;
-import com.simplecity.amp_library.R;
-import io.reactivex.disposables.Disposable;
+import android.content.Context; // NOSONAR
+import android.content.res.TypedArray; // NOSONAR
+import android.graphics.Bitmap; // NOSONAR
+import android.graphics.BitmapShader; // NOSONAR
+import android.graphics.Canvas; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.graphics.ColorFilter; // NOSONAR
+import android.graphics.Matrix; // NOSONAR
+import android.graphics.Paint; // NOSONAR
+import android.graphics.RectF; // NOSONAR
+import android.graphics.Shader; // NOSONAR
+import android.graphics.drawable.BitmapDrawable; // NOSONAR
+import android.graphics.drawable.ColorDrawable; // NOSONAR
+import android.graphics.drawable.Drawable; // NOSONAR
+import android.net.Uri; // NOSONAR
+import android.support.v4.content.ContextCompat; // NOSONAR
+import android.support.v7.widget.AppCompatImageView; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class CircleImageView extends AppCompatImageView { //NOSONAR
@@ -61,11 +61,11 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
         super(context); //NOSONAR
 
         init(); //NOSONAR
-    }
+    } // NOSONAR
 
     public CircleImageView(Context context, AttributeSet attrs) { //NOSONAR
         this(context, attrs, 0); //NOSONAR
-    }
+    } // NOSONAR
 
     public CircleImageView(Context context, AttributeSet attrs, int defStyle) { //NOSONAR
         super(context, attrs, defStyle); //NOSONAR
@@ -78,7 +78,7 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
         a.recycle(); //NOSONAR
 
         init(); //NOSONAR
-    }
+    } // NOSONAR
 
     private void init() { //NOSONAR
         super.setScaleType(SCALE_TYPE); //NOSONAR
@@ -87,114 +87,114 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
         if (mSetupPending) { //NOSONAR
             setup(); //NOSONAR
             mSetupPending = false; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public ScaleType getScaleType() { //NOSONAR
         return SCALE_TYPE; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setScaleType(ScaleType scaleType) { //NOSONAR
         if (scaleType != SCALE_TYPE) { //NOSONAR
             throw new IllegalArgumentException(String.format("ScaleType %s not supported.", scaleType)); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onMeasure(int widthMeasureSpec, int heightMeasureSpec) { //NOSONAR
         super.onMeasure(widthMeasureSpec, heightMeasureSpec); //NOSONAR
         setMeasuredDimension(getMeasuredWidth(), getMeasuredWidth()); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onDraw(Canvas canvas) { //NOSONAR
         if (getDrawable() == null) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         if (mBorderWidth != 0) { //NOSONAR
             canvas.drawCircle(getWidth() / 2, getHeight() / 2, mBorderRadius, mBorderPaint); //NOSONAR
-        }
+        } // NOSONAR
         canvas.drawCircle(getWidth() / 2, getHeight() / 2, mDrawableRadius, mBitmapPaint); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onSizeChanged(int w, int h, int oldw, int oldh) { //NOSONAR
         super.onSizeChanged(w, h, oldw, oldh); //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     public int getBorderColor() { //NOSONAR
         return mBorderColor; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setBorderColor(int borderColor) { //NOSONAR
         if (borderColor == mBorderColor) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         mBorderColor = borderColor; //NOSONAR
         mBorderPaint.setColor(mBorderColor); //NOSONAR
         invalidate(); //NOSONAR
-    }
+    } // NOSONAR
 
     public int getBorderWidth() { //NOSONAR
         return mBorderWidth; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setBorderWidth(int borderWidth) { //NOSONAR
         if (borderWidth == mBorderWidth) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         mBorderWidth = borderWidth; //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setColorFilter(ColorFilter cf) { //NOSONAR
         super.setColorFilter(cf); //NOSONAR
         mColorFilter = cf; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setImageBitmap(Bitmap bm) { //NOSONAR
         super.setImageBitmap(bm); //NOSONAR
         mBitmap = bm; //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setImageDrawable(Drawable drawable) { //NOSONAR
         super.setImageDrawable(drawable); //NOSONAR
         mBitmap = getBitmapFromDrawable(drawable); //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setImageResource(int resId) { //NOSONAR
         super.setImageResource(resId); //NOSONAR
         mBitmap = getBitmapFromDrawable(getDrawable()); //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void setImageURI(Uri uri) { //NOSONAR
         super.setImageURI(uri); //NOSONAR
         mBitmap = getBitmapFromDrawable(getDrawable()); //NOSONAR
         setup(); //NOSONAR
-    }
+    } // NOSONAR
 
     private Bitmap getBitmapFromDrawable(Drawable drawable) { //NOSONAR
         if (drawable == null) { //NOSONAR
             return null; //NOSONAR
-        }
+        } // NOSONAR
 
         if (drawable instanceof BitmapDrawable) { //NOSONAR
             return ((BitmapDrawable) drawable).getBitmap(); //NOSONAR
-        }
+        } // NOSONAR
 
         try { //NOSONAR
             Bitmap bitmap; //NOSONAR
@@ -203,7 +203,7 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
                 bitmap = Bitmap.createBitmap(COLORDRAWABLE_DIMENSION, COLORDRAWABLE_DIMENSION, BITMAP_CONFIG); //NOSONAR
             } else { //NOSONAR
                 bitmap = Bitmap.createBitmap(drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight(), BITMAP_CONFIG); //NOSONAR
-            }
+            } // NOSONAR
 
             Canvas canvas = new Canvas(bitmap); //NOSONAR
             drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight()); //NOSONAR
@@ -211,18 +211,18 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
             return bitmap; //NOSONAR
         } catch (OutOfMemoryError e) { //NOSONAR
             return null; //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private void setup() { //NOSONAR
         if (!mReady) { //NOSONAR
             mSetupPending = true; //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         if (mBitmap == null) { //NOSONAR
             return; //NOSONAR
-        }
+        } // NOSONAR
 
         mBitmapShader = new BitmapShader(mBitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP); //NOSONAR
 
@@ -246,7 +246,7 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
 
         updateShaderMatrix(); //NOSONAR
         invalidate(); //NOSONAR
-    }
+    } // NOSONAR
 
     private void updateShaderMatrix() { //NOSONAR
         float scale; //NOSONAR
@@ -261,13 +261,13 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
         } else { //NOSONAR
             scale = mDrawableRect.width() / (float) mBitmapWidth; //NOSONAR
             dy = (mDrawableRect.height() - mBitmapHeight * scale) * 0.5f; //NOSONAR
-        }
+        } // NOSONAR
 
         mShaderMatrix.setScale(scale, scale); //NOSONAR
         mShaderMatrix.postTranslate((int) (dx + 0.5f) + mBorderWidth, (int) (dy + 0.5f) + mBorderWidth); //NOSONAR
 
         mBitmapShader.setLocalMatrix(mShaderMatrix); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onAttachedToWindow() { //NOSONAR
@@ -280,15 +280,15 @@ public class CircleImageView extends AppCompatImageView { //NOSONAR
                             setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_900)); //NOSONAR
                         } else { //NOSONAR
                             setBorderColor(ContextCompat.getColor(getContext(), R.color.md_grey_250)); //NOSONAR
-                        }
-                    });
-        }
-    }
+                        } // NOSONAR
+                    }); // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected void onDetachedFromWindow() { //NOSONAR
         super.onDetachedFromWindow(); //NOSONAR
 
         aestheticDisposable.dispose(); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

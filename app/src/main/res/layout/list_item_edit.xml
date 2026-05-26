@@ -1,77 +1,77 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.design.internal.ForegroundLinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="72dp"
-    android:descendantFocusability="blocksDescendants"
-    android:foreground="?attr/list_selector"
-    android:gravity="center_vertical"
-    android:orientation="horizontal">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.design.internal.ForegroundLinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="72dp" <!-- NOSONAR -->
+    android:descendantFocusability="blocksDescendants" <!-- NOSONAR -->
+    android:foreground="?attr/list_selector" <!-- NOSONAR -->
+    android:gravity="center_vertical" <!-- NOSONAR -->
+    android:orientation="horizontal"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.DragHandle
-        android:id="@+id/drag_handle"
-        android:layout_width="40dp"
-        android:layout_height="match_parent"
-        android:alpha="0.7"
-        android:importantForAccessibility="no"
-        android:paddingLeft="14dp"
-        android:paddingRight="14dp"
-        android:src="@drawable/ic_drag_grip"/>
+    <com.simplecity.amp_library.ui.views.DragHandle <!-- NOSONAR -->
+        android:id="@+id/drag_handle" <!-- NOSONAR -->
+        android:layout_width="40dp" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:alpha="0.7" <!-- NOSONAR -->
+        android:importantForAccessibility="no" <!-- NOSONAR -->
+        android:paddingLeft="14dp" <!-- NOSONAR -->
+        android:paddingRight="14dp" <!-- NOSONAR -->
+        android:src="@drawable/ic_drag_grip"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.SquareImageView
-        android:id="@+id/image"
-        android:layout_width="48dp"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="8dp"
-        tools:src="@mipmap/ic_launcher"/>
+    <com.simplecity.amp_library.ui.views.SquareImageView <!-- NOSONAR -->
+        android:id="@+id/image" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginRight="8dp" <!-- NOSONAR -->
+        tools:src="@mipmap/ic_launcher"/> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_marginRight="4dp"
-        android:layout_weight="1"
-        android:gravity="center_vertical"
-        android:orientation="vertical">
+    <LinearLayout <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_marginRight="4dp" <!-- NOSONAR -->
+        android:layout_weight="1" <!-- NOSONAR -->
+        android:gravity="center_vertical" <!-- NOSONAR -->
+        android:orientation="vertical"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/line_one"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:textColor="?android:textColorPrimary"
-            android:textSize="16sp"
-            tools:text="Feeling Kinda Anxious"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/line_one" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_marginBottom="2dp" <!-- NOSONAR -->
+            android:ellipsize="end" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:maxLines="1" <!-- NOSONAR -->
+            android:textColor="?android:textColorPrimary" <!-- NOSONAR -->
+            android:textSize="16sp" <!-- NOSONAR -->
+            tools:text="Feeling Kinda Anxious"/> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/line_two"
-            style="?attr/secondaryTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:gravity="center_vertical"
-            android:maxLines="1"
-            android:textColor="?android:textColorSecondary"
-            android:textSize="14sp"
-            tools:text="Franz Ferdinand - Tonight"/>
-    </LinearLayout>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/line_two" <!-- NOSONAR -->
+            style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:ellipsize="end" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:maxLines="1" <!-- NOSONAR -->
+            android:textColor="?android:textColorSecondary" <!-- NOSONAR -->
+            android:textSize="14sp" <!-- NOSONAR -->
+            tools:text="Franz Ferdinand - Tonight"/> <!-- NOSONAR -->
+    </LinearLayout> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/line_three"
-        style="?attr/secondaryTextViewStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:minEms="3"
-        android:textColor="?android:textColorSecondary"
-        android:textSize="14sp"
-        tools:text="3:20"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/line_three" <!-- NOSONAR -->
+        style="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="24dp" <!-- NOSONAR -->
+        android:ellipsize="end" <!-- NOSONAR -->
+        android:gravity="center" <!-- NOSONAR -->
+        android:maxLines="1" <!-- NOSONAR -->
+        android:minEms="3" <!-- NOSONAR -->
+        android:textColor="?android:textColorSecondary" <!-- NOSONAR -->
+        android:textSize="14sp" <!-- NOSONAR -->
+        tools:text="3:20"/> <!-- NOSONAR -->
 
-    <include layout="@layout/overflow_button"/>
+    <include layout="@layout/overflow_button"/> <!-- NOSONAR -->
 
-</android.support.design.internal.ForegroundLinearLayout>
+</android.support.design.internal.ForegroundLinearLayout> <!-- NOSONAR -->

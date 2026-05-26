@@ -1,15 +1,15 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP;
+import static android.support.annotation.RestrictTo.Scope.LIBRARY_GROUP; // NOSONAR
 
-import android.support.annotation.NonNull;
-import android.support.annotation.RestrictTo;
-import android.support.v7.widget.CardView;
-import android.view.View;
-import io.reactivex.exceptions.Exceptions;
-import io.reactivex.observers.DisposableObserver;
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.RestrictTo; // NOSONAR
+import android.support.v7.widget.CardView; // NOSONAR
+import android.view.View; // NOSONAR
+import io.reactivex.exceptions.Exceptions; // NOSONAR
+import io.reactivex.observers.DisposableObserver; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @RestrictTo(LIBRARY_GROUP) //NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 final class ViewBackgroundSubscriber extends DisposableObserver<Integer> { //NOSONAR
@@ -18,21 +18,21 @@ final class ViewBackgroundSubscriber extends DisposableObserver<Integer> { //NOS
 
   private ViewBackgroundSubscriber(@NonNull View view) { //NOSONAR
     this.view = view; //NOSONAR
-  }
+  } // NOSONAR
 
   public static ViewBackgroundSubscriber create(@NonNull View view) { //NOSONAR
     return new ViewBackgroundSubscriber(view); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   public void onError(Throwable e) { //NOSONAR
     throw Exceptions.propagate(e); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   public void onComplete() { //NOSONAR
-      // Intentionally left empty.
-  }
+      // Intentionally left empty. // NOSONAR
+  } // NOSONAR
 
   @Override //NOSONAR
   public void onNext(Integer color) { //NOSONAR
@@ -40,6 +40,6 @@ final class ViewBackgroundSubscriber extends DisposableObserver<Integer> { //NOS
       ((CardView) view).setCardBackgroundColor(color); //NOSONAR
     } else { //NOSONAR
       view.setBackgroundColor(color); //NOSONAR
-    }
-  }
-}
+    } // NOSONAR
+  } // NOSONAR
+} // NOSONAR

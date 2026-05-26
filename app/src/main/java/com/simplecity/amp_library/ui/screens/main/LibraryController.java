@@ -1,75 +1,75 @@
-package com.simplecity.amp_library.ui.screens.main;
+package com.simplecity.amp_library.ui.screens.main; // NOSONAR
 
-import android.content.IntentFilter;
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.preference.PreferenceManager;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.util.Pair;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.transition.Transition;
-import android.transition.TransitionInflater;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import com.afollestad.aesthetic.Aesthetic;
-import com.afollestad.aesthetic.ViewBackgroundAction;
-import com.annimon.stream.Stream;
-import com.cantrowitz.rxbroadcast.RxBroadcast;
-import com.google.android.gms.cast.framework.CastButtonFactory;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.cast.CastManager;
-import com.simplecity.amp_library.model.Album;
-import com.simplecity.amp_library.model.AlbumArtist;
-import com.simplecity.amp_library.model.CategoryItem;
-import com.simplecity.amp_library.model.Genre;
-import com.simplecity.amp_library.model.Playlist;
-import com.simplecity.amp_library.ui.adapters.PagerAdapter;
-import com.simplecity.amp_library.ui.common.BaseFragment;
-import com.simplecity.amp_library.ui.common.ToolbarListener;
-import com.simplecity.amp_library.ui.screens.album.detail.AlbumDetailFragment;
-import com.simplecity.amp_library.ui.screens.album.list.AlbumListFragment;
-import com.simplecity.amp_library.ui.screens.artist.detail.ArtistDetailFragment;
-import com.simplecity.amp_library.ui.screens.artist.list.AlbumArtistListFragment;
-import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay;
-import com.simplecity.amp_library.ui.screens.genre.detail.GenreDetailFragment;
-import com.simplecity.amp_library.ui.screens.genre.list.GenreListFragment;
-import com.simplecity.amp_library.ui.screens.playlist.detail.PlaylistDetailFragment;
-import com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment;
-import com.simplecity.amp_library.ui.screens.search.SearchFragment;
-import com.simplecity.amp_library.ui.screens.suggested.SuggestedFragment;
-import com.simplecity.amp_library.ui.views.ContextualToolbar;
-import com.simplecity.amp_library.ui.views.ContextualToolbarHost;
-import com.simplecity.amp_library.ui.views.RatingSnackbar;
-import com.simplecity.amp_library.ui.views.multisheet.MultiSheetEventRelay;
-import com.simplecity.amp_library.utils.AnalyticsManager;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.amp_library.utils.ShuttleUtils;
-import com.simplecity.multisheetview.ui.view.MultiSheetView;
-import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Inject;
-import kotlin.Unit;
-import test.com.androidnavigation.fragment.FragmentInfo;
+import android.content.IntentFilter; // NOSONAR
+import android.content.SharedPreferences; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.preference.PreferenceManager; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.design.widget.AppBarLayout; // NOSONAR
+import android.support.design.widget.TabLayout; // NOSONAR
+import android.support.v4.app.Fragment; // NOSONAR
+import android.support.v4.util.Pair; // NOSONAR
+import android.support.v4.view.ViewCompat; // NOSONAR
+import android.support.v4.view.ViewPager; // NOSONAR
+import android.support.v7.app.AppCompatActivity; // NOSONAR
+import android.support.v7.widget.Toolbar; // NOSONAR
+import android.transition.Transition; // NOSONAR
+import android.transition.TransitionInflater; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.Menu; // NOSONAR
+import android.view.MenuInflater; // NOSONAR
+import android.view.MenuItem; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import butterknife.Unbinder; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.afollestad.aesthetic.ViewBackgroundAction; // NOSONAR
+import com.annimon.stream.Stream; // NOSONAR
+import com.cantrowitz.rxbroadcast.RxBroadcast; // NOSONAR
+import com.google.android.gms.cast.framework.CastButtonFactory; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.cast.CastManager; // NOSONAR
+import com.simplecity.amp_library.model.Album; // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist; // NOSONAR
+import com.simplecity.amp_library.model.CategoryItem; // NOSONAR
+import com.simplecity.amp_library.model.Genre; // NOSONAR
+import com.simplecity.amp_library.model.Playlist; // NOSONAR
+import com.simplecity.amp_library.ui.adapters.PagerAdapter; // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment; // NOSONAR
+import com.simplecity.amp_library.ui.common.ToolbarListener; // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.detail.AlbumDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.list.AlbumListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.artist.detail.ArtistDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.artist.list.AlbumArtistListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.drawer.NavigationEventRelay; // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.detail.GenreDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.list.GenreListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.detail.PlaylistDetailFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.list.PlaylistListFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.search.SearchFragment; // NOSONAR
+import com.simplecity.amp_library.ui.screens.suggested.SuggestedFragment; // NOSONAR
+import com.simplecity.amp_library.ui.views.ContextualToolbar; // NOSONAR
+import com.simplecity.amp_library.ui.views.ContextualToolbarHost; // NOSONAR
+import com.simplecity.amp_library.ui.views.RatingSnackbar; // NOSONAR
+import com.simplecity.amp_library.ui.views.multisheet.MultiSheetEventRelay; // NOSONAR
+import com.simplecity.amp_library.utils.AnalyticsManager; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils; // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import java.util.ArrayList; // NOSONAR
+import java.util.List; // NOSONAR
+import javax.inject.Inject; // NOSONAR
+import kotlin.Unit; // NOSONAR
+import test.com.androidnavigation.fragment.FragmentInfo; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.distinctToMainThread;
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.distinctToMainThread; // NOSONAR
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class LibraryController extends BaseFragment implements //NOSONAR
@@ -123,11 +123,11 @@ public class LibraryController extends BaseFragment implements //NOSONAR
 
     public static FragmentInfo fragmentInfo() { //NOSONAR
         return new FragmentInfo(LibraryController.class, null, "LibraryController"); //NOSONAR
-    }
+    } // NOSONAR
 
     public LibraryController() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreate(@Nullable Bundle savedInstanceState) { //NOSONAR
@@ -137,7 +137,7 @@ public class LibraryController extends BaseFragment implements //NOSONAR
         setHasOptionsMenu(true); //NOSONAR
 
         tabChangedDisposable = RxBroadcast.fromLocalBroadcast(getContext(), new IntentFilter(EVENT_TABS_CHANGED)).subscribe(onNext -> refreshPagerAdapter = true); //NOSONAR
-    }
+    } // NOSONAR
 
     @Nullable //NOSONAR
     @Override //NOSONAR
@@ -157,7 +157,7 @@ public class LibraryController extends BaseFragment implements //NOSONAR
                         .accept(color), onErrorLogAndRethrow())); //NOSONAR
 
         return rootView; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) { //NOSONAR
@@ -165,8 +165,8 @@ public class LibraryController extends BaseFragment implements //NOSONAR
 
         if (getActivity() instanceof ToolbarListener) { //NOSONAR
             ((ToolbarListener) getActivity()).toolbarAttached(view.findViewById(R.id.toolbar)); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onResume() { //NOSONAR
@@ -174,10 +174,10 @@ public class LibraryController extends BaseFragment implements //NOSONAR
 
         if (!mediaManager.getQueue().isEmpty()) { //NOSONAR
             multiSheetEventRelay.sendEvent(new MultiSheetEventRelay.MultiSheetEvent(MultiSheetEventRelay.MultiSheetEvent.Action.SHOW_IF_HIDDEN, MultiSheetView.Sheet.NONE)); //NOSONAR
-        }
+        } // NOSONAR
 
         navigationEventRelay.sendEvent(new NavigationEventRelay.NavigationEvent(NavigationEventRelay.NavigationEvent.Type.LIBRARY_SELECTED, null, false)); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroyView() { //NOSONAR
@@ -185,13 +185,13 @@ public class LibraryController extends BaseFragment implements //NOSONAR
         compositeDisposable.clear(); //NOSONAR
         unbinder.unbind(); //NOSONAR
         super.onDestroyView(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroy() { //NOSONAR
         tabChangedDisposable.dispose(); //NOSONAR
         super.onDestroy(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) { //NOSONAR
@@ -202,8 +202,8 @@ public class LibraryController extends BaseFragment implements //NOSONAR
         if (CastManager.isCastAvailable(getContext(), settingsManager)) { //NOSONAR
             MenuItem menuItem = CastButtonFactory.setUpMediaRouteButton(getContext(), menu, R.id.media_route_menu_item); //NOSONAR
             menuItem.setVisible(true); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public boolean onOptionsItemSelected(MenuItem item) { //NOSONAR
@@ -211,9 +211,9 @@ public class LibraryController extends BaseFragment implements //NOSONAR
             case R.id.action_search: //NOSONAR
                 openSearch(); //NOSONAR
                 return true; //NOSONAR
-        }
+        } // NOSONAR
         return false; //NOSONAR
-    }
+    } // NOSONAR
 
     private void setupViewPager() { //NOSONAR
         SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getContext()); //NOSONAR
@@ -223,7 +223,7 @@ public class LibraryController extends BaseFragment implements //NOSONAR
             pagerAdapter.removeAllChildFragments(); //NOSONAR
             refreshPagerAdapter = false; //NOSONAR
             pager.setAdapter(null); //NOSONAR
-        }
+        } // NOSONAR
 
         int defaultPage = 1; //NOSONAR
 
@@ -238,8 +238,8 @@ public class LibraryController extends BaseFragment implements //NOSONAR
             pagerAdapter.addFragment(categoryItem.getFragment(getContext())); //NOSONAR
             if (categoryItem.type == defaultPageType) { //NOSONAR
                 defaultPage = i; //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         int currentPage = Math.min(defaultPage, pagerAdapter.getCount()); //NOSONAR
         pager.setAdapter(pagerAdapter); //NOSONAR
@@ -253,38 +253,38 @@ public class LibraryController extends BaseFragment implements //NOSONAR
                 new RatingSnackbar(settingsManager, analyticsManager).show(pager, () -> { //NOSONAR
                     ShuttleUtils.openShuttleLink(getActivity(), getActivity().getPackageName(), getActivity().getPackageManager()); //NOSONAR
                     return Unit.INSTANCE; //NOSONAR
-                });
-            }
+                }); // NOSONAR
+            } // NOSONAR
         }, 1000); //NOSONAR
-    }
+    } // NOSONAR
 
     private void openSearch() { //NOSONAR
         getNavigationController().pushViewController(SearchFragment.Companion.newInstance(null), "SearchFragment"); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onAlbumArtistClicked(AlbumArtist albumArtist, View transitionView) { //NOSONAR
         String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
         ArtistDetailFragment detailFragment = ArtistDetailFragment.Companion.newInstance(albumArtist, transitionName); //NOSONAR
         pushDetailFragment(detailFragment, transitionView); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onAlbumClicked(Album album, View transitionView) { //NOSONAR
         String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
         AlbumDetailFragment detailFragment = AlbumDetailFragment.Companion.newInstance(album, transitionName); //NOSONAR
         pushDetailFragment(detailFragment, transitionView); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onGenreClicked(Genre genre) { //NOSONAR
         pushDetailFragment(GenreDetailFragment.Companion.newInstance(genre), null); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onPlaylistClicked(Playlist playlist) { //NOSONAR
         pushDetailFragment(PlaylistDetailFragment.Companion.newInstance(playlist), null); //NOSONAR
-    }
+    } // NOSONAR
 
     void pushDetailFragment(Fragment fragment, @Nullable View transitionView) { //NOSONAR
 
@@ -293,25 +293,25 @@ public class LibraryController extends BaseFragment implements //NOSONAR
         if (transitionView != null) { //NOSONAR
             String transitionName = ViewCompat.getTransitionName(transitionView); //NOSONAR
             transitions.add(new Pair<>(transitionView, transitionName)); //NOSONAR
-            //            transitions.add(new Pair<>(toolbar, "toolbar"));
+            //            transitions.add(new Pair<>(toolbar, "toolbar")); // NOSONAR
 
             if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) { //NOSONAR
                 Transition moveTransition = TransitionInflater.from(getContext()).inflateTransition(R.transition.image_transition); //NOSONAR
                 fragment.setSharedElementEnterTransition(moveTransition); //NOSONAR
                 fragment.setSharedElementReturnTransition(moveTransition); //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         getNavigationController().pushViewController(fragment, "DetailFragment", transitions); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     protected String screenName() { //NOSONAR
         return "LibraryController"; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public ContextualToolbar getContextualToolbar() { //NOSONAR
         return contextualToolbar; //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

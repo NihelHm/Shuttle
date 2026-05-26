@@ -1,28 +1,28 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.text.Html
-import android.view.LayoutInflater
-import android.view.View
-import android.widget.ProgressBar
-import android.widget.TextView
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.R.string
-import com.simplecity.amp_library.http.HttpClient
-import com.simplecity.amp_library.http.lastfm.LastFmArtist
-import com.simplecity.amp_library.model.AlbumArtist
-import com.simplecity.amp_library.utils.ShuttleUtils
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.text.Html // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.View // NOSONAR
+import android.widget.ProgressBar // NOSONAR
+import android.widget.TextView // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.R.string // NOSONAR
+import com.simplecity.amp_library.http.HttpClient // NOSONAR
+import com.simplecity.amp_library.http.lastfm.LastFmArtist // NOSONAR
+import com.simplecity.amp_library.model.AlbumArtist // NOSONAR
+import com.simplecity.amp_library.utils.ShuttleUtils // NOSONAR
+import retrofit2.Call // NOSONAR
+import retrofit2.Callback // NOSONAR
+import retrofit2.Response // NOSONAR
 
 class ArtistBiographyDialog : DialogFragment() { //NOSONAR
 
@@ -32,7 +32,7 @@ class ArtistBiographyDialog : DialogFragment() { //NOSONAR
         super.onAttach(context) //NOSONAR
 
         artist = arguments!!.getSerializable(ARG_ARTIST) as AlbumArtist //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
@@ -52,18 +52,18 @@ class ArtistBiographyDialog : DialogFragment() { //NOSONAR
                             message.text = Html.fromHtml(summary, Html.FROM_HTML_MODE_COMPACT) //NOSONAR
                         } else { //NOSONAR
                             message.text = Html.fromHtml(summary) //NOSONAR
-                        }
+                        } // NOSONAR
                     } else { //NOSONAR
                         message.setText(string.no_artist_info) //NOSONAR
-                    }
-                }
-            }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
 
             override fun onFailure(call: Call<LastFmArtist>, t: Throwable) { //NOSONAR
                 progressBar.visibility = View.GONE //NOSONAR
                 message.setText(string.no_artist_info) //NOSONAR
-            }
-        })
+            } // NOSONAR
+        }) // NOSONAR
 
         val builder = MaterialDialog.Builder(context!!) //NOSONAR
             .title(R.string.info) //NOSONAR
@@ -71,11 +71,11 @@ class ArtistBiographyDialog : DialogFragment() { //NOSONAR
             .negativeText(R.string.close) //NOSONAR
 
         return builder.build() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -89,6 +89,6 @@ class ArtistBiographyDialog : DialogFragment() { //NOSONAR
             val fragment = ArtistBiographyDialog() //NOSONAR
             fragment.arguments = args //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

@@ -1,54 +1,54 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<android.support.v7.preference.PreferenceScreen
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<android.support.v7.preference.PreferenceScreen <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android"> <!-- NOSONAR -->
 
-    <android.support.v7.preference.PreferenceCategory
-        android:title="@string/pref_category_navigation">
+    <android.support.v7.preference.PreferenceCategory <!-- NOSONAR -->
+        android:title="@string/pref_category_navigation"> <!-- NOSONAR -->
 
-        <android.support.v7.preference.Preference
-            android:key="pref_tab_chooser"
-            android:summary="@string/pref_summary_choose_tabs"
-            android:title="@string/pref_title_choose_tabs"/>
+        <android.support.v7.preference.Preference <!-- NOSONAR -->
+            android:key="pref_tab_chooser" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_choose_tabs" <!-- NOSONAR -->
+            android:title="@string/pref_title_choose_tabs"/> <!-- NOSONAR -->
 
-        <android.support.v7.preference.Preference
-            android:dialogTitle="@string/select_default_page"
-            android:entries="@array/pref_default_page_entries"
-            android:entryValues="@array/pref_default_page_entries"
-            android:key="pref_default_page"
-            android:summary="@string/pref_summary_default_page"
-            android:title="@string/pref_title_default_page"/>
+        <android.support.v7.preference.Preference <!-- NOSONAR -->
+            android:dialogTitle="@string/select_default_page" <!-- NOSONAR -->
+            android:entries="@array/pref_default_page_entries" <!-- NOSONAR -->
+            android:entryValues="@array/pref_default_page_entries" <!-- NOSONAR -->
+            android:key="pref_default_page" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_default_page" <!-- NOSONAR -->
+            android:title="@string/pref_title_default_page"/> <!-- NOSONAR -->
 
-    </android.support.v7.preference.PreferenceCategory>
+    </android.support.v7.preference.PreferenceCategory> <!-- NOSONAR -->
 
-    <android.support.v7.preference.PreferenceCategory
-        android:key="display_group"
-        android:title="@string/pref_category_other">
+    <android.support.v7.preference.PreferenceCategory <!-- NOSONAR -->
+        android:key="display_group" <!-- NOSONAR -->
+        android:title="@string/pref_category_other"> <!-- NOSONAR -->
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_screen_on"
-            android:summary="@string/pref_summary_screen_on"
-            android:title="@string/pref_title_screen_on"/>
+        <android.support.v7.preference.SwitchPreferenceCompat <!-- NOSONAR -->
+            android:defaultValue="false" <!-- NOSONAR -->
+            android:key="pref_screen_on" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_screen_on" <!-- NOSONAR -->
+            android:title="@string/pref_title_screen_on"/> <!-- NOSONAR -->
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:defaultValue="true"
-            android:key="pref_show_lockscreen_artwork"
-            android:summary="@string/pref_summary_lockscreen"
-            android:title="@string/pref_title_lockscreen"/>
+        <android.support.v7.preference.SwitchPreferenceCompat <!-- NOSONAR -->
+            android:defaultValue="true" <!-- NOSONAR -->
+            android:key="pref_show_lockscreen_artwork" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_lockscreen" <!-- NOSONAR -->
+            android:title="@string/pref_title_lockscreen"/> <!-- NOSONAR -->
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_ignore_duplicates"
-            android:summary="@string/pref_summary_ignore_duplicates"
-            android:title="@string/pref_title_ignore_duplicates"/>
+        <android.support.v7.preference.SwitchPreferenceCompat <!-- NOSONAR -->
+            android:defaultValue="false" <!-- NOSONAR -->
+            android:key="pref_ignore_duplicates" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_ignore_duplicates" <!-- NOSONAR -->
+            android:title="@string/pref_title_ignore_duplicates"/> <!-- NOSONAR -->
 
-        <android.support.v7.preference.SwitchPreferenceCompat
-            android:defaultValue="false"
-            android:key="pref_display_remaining_time"
-            android:summary="@string/pref_summary_display_remaining_time"
-            android:title="@string/pref_title_display_remaining_time"/>
+        <android.support.v7.preference.SwitchPreferenceCompat <!-- NOSONAR -->
+            android:defaultValue="false" <!-- NOSONAR -->
+            android:key="pref_display_remaining_time" <!-- NOSONAR -->
+            android:summary="@string/pref_summary_display_remaining_time" <!-- NOSONAR -->
+            android:title="@string/pref_title_display_remaining_time"/> <!-- NOSONAR -->
 
-    </android.support.v7.preference.PreferenceCategory>
+    </android.support.v7.preference.PreferenceCategory> <!-- NOSONAR -->
 
-</android.support.v7.preference.PreferenceScreen>
+</android.support.v7.preference.PreferenceScreen> <!-- NOSONAR -->

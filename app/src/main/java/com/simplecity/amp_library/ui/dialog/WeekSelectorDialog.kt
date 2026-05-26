@@ -1,21 +1,21 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.view.LayoutInflater
-import android.widget.NumberPicker
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.utils.SettingsManager
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.widget.NumberPicker // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class WeekSelectorDialog : DialogFragment() { //NOSONAR
 
@@ -24,7 +24,7 @@ class WeekSelectorDialog : DialogFragment() { //NOSONAR
     override fun onAttach(context: Context?) { //NOSONAR
         AndroidSupportInjection.inject(this) //NOSONAR
         super.onAttach(context) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
 
@@ -44,14 +44,14 @@ class WeekSelectorDialog : DialogFragment() { //NOSONAR
             .positiveText(R.string.button_ok) //NOSONAR
             .onPositive { _, _ -> settingsManager.numWeeks = numberPicker.value } //NOSONAR
             .build() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
         const val TAG = "WeekSelectorDialog" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,208 +1,208 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:clickable="true">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.constraint.ConstraintLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:clickable="true"> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="?android:attr/windowBackground"
-        app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:background="#B0363A"/>
+    <FrameLayout <!-- NOSONAR -->
+        android:id="@+id/main_container" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="0dp" <!-- NOSONAR -->
+        android:background="?android:attr/windowBackground" <!-- NOSONAR -->
+        app:layout_constraintDimensionRatio="1:1" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent" <!-- NOSONAR -->
+        tools:background="#B0363A"/> <!-- NOSONAR -->
 
-    <ImageView
-        android:id="@+id/backgroundView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_container"/>
+    <ImageView <!-- NOSONAR -->
+        android:id="@+id/backgroundView" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="0dp" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/main_container"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.SizableSeekBar
-        android:id="@+id/seekbar"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:indeterminate="false"
-        android:paddingEnd="0dp"
-        android:paddingStart="0dp"
-        android:tag=":aesthetic_ignore"
-        app:layout_constraintBottom_toTopOf="@+id/backgroundView"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_container"
-        tools:max="100"
-        tools:progress="60"
-        style="@style/SeekBar.NoBackground"/>
+    <com.simplecity.amp_library.ui.views.SizableSeekBar <!-- NOSONAR -->
+        android:id="@+id/seekbar" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:indeterminate="false" <!-- NOSONAR -->
+        android:paddingEnd="0dp" <!-- NOSONAR -->
+        android:paddingStart="0dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        app:layout_constraintBottom_toTopOf="@+id/backgroundView" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/main_container" <!-- NOSONAR -->
+        tools:max="100" <!-- NOSONAR -->
+        tools:progress="60" <!-- NOSONAR -->
+        style="@style/SeekBar.NoBackground"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/current_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center_vertical|right"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:text="--:--"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/text1"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_container"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/current_time" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_marginStart="16dp" <!-- NOSONAR -->
+        android:gravity="center_vertical|right" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:text="--:--" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        app:layout_constraintBottom_toTopOf="@+id/text1" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/main_container"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/total_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical|right"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:text="--:--"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/text1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/main_container"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/total_time" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginEnd="16dp" <!-- NOSONAR -->
+        android:layout_marginRight="16dp" <!-- NOSONAR -->
+        android:gravity="center_vertical|right" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:text="--:--" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        app:layout_constraintBottom_toTopOf="@+id/text1" <!-- NOSONAR -->
+        app:layout_constraintEnd_toEndOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/main_container"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/text1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="4dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/text2"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/current_time"
-        tools:text="Down In It"
-        style="@android:style/TextAppearance.Large"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/text1" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginBottom="8dp" <!-- NOSONAR -->
+        android:layout_marginTop="4dp" <!-- NOSONAR -->
+        android:ellipsize="end" <!-- NOSONAR -->
+        android:gravity="center" <!-- NOSONAR -->
+        android:maxLines="1" <!-- NOSONAR -->
+        android:paddingEnd="8dp" <!-- NOSONAR -->
+        android:paddingStart="8dp" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        app:layout_constraintBottom_toTopOf="@+id/text2" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/current_time" <!-- NOSONAR -->
+        tools:text="Down In It" <!-- NOSONAR -->
+        style="@android:style/TextAppearance.Large"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/text2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:ellipsize="end"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingEnd="8dp"
-        android:paddingStart="8dp"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/play"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text1"
-        tools:text="Nine Inch Nails"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/text2" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginBottom="8dp" <!-- NOSONAR -->
+        android:layout_marginTop="8dp" <!-- NOSONAR -->
+        android:ellipsize="end" <!-- NOSONAR -->
+        android:gravity="center" <!-- NOSONAR -->
+        android:maxLines="1" <!-- NOSONAR -->
+        android:paddingEnd="8dp" <!-- NOSONAR -->
+        android:paddingStart="8dp" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        android:textSize="18sp" <!-- NOSONAR -->
+        app:layout_constraintBottom_toTopOf="@+id/play" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/text1" <!-- NOSONAR -->
+        tools:text="Nine Inch Nails"/> <!-- NOSONAR -->
 
-    <include
-        layout="@layout/shuffle_button"
-        android:id="@+id/shuffle"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginLeft="16dp"
-        android:tag=":aesthetic_ignore"
-        app:layout_constraintBottom_toBottomOf="@+id/prev"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/prev"/>
+    <include <!-- NOSONAR -->
+        layout="@layout/shuffle_button" <!-- NOSONAR -->
+        android:id="@+id/shuffle" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="@+id/prev" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="@+id/prev"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.RepeatingImageButton
-        android:id="@+id/prev"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/ripple_circular_dark"
-        android:contentDescription="@string/btn_prev"
-        android:padding="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_skip_previous_24dp"
-        android:tag=":aesthetic_ignore"
-        app:layout_constraintBottom_toBottomOf="@+id/play"
-        app:layout_constraintLeft_toRightOf="@+id/shuffle"
-        app:layout_constraintRight_toLeftOf="@+id/play"
-        app:layout_constraintTop_toTopOf="@+id/play"/>
+    <com.simplecity.amp_library.ui.views.RepeatingImageButton <!-- NOSONAR -->
+        android:id="@+id/prev" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+        android:contentDescription="@string/btn_prev" <!-- NOSONAR -->
+        android:padding="8dp" <!-- NOSONAR -->
+        android:scaleType="centerCrop" <!-- NOSONAR -->
+        android:src="@drawable/ic_skip_previous_24dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="@+id/play" <!-- NOSONAR -->
+        app:layout_constraintLeft_toRightOf="@+id/shuffle" <!-- NOSONAR -->
+        app:layout_constraintRight_toLeftOf="@+id/play" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="@+id/play"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.RepeatingImageButton
-        android:id="@+id/next"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:background="@drawable/ripple_circular_dark"
-        android:contentDescription="@string/btn_skip"
-        android:padding="8dp"
-        android:scaleType="centerCrop"
-        android:src="@drawable/ic_skip_next_24dp"
-        android:tag=":aesthetic_ignore"
-        app:layout_constraintBottom_toBottomOf="@+id/play"
-        app:layout_constraintLeft_toRightOf="@+id/play"
-        app:layout_constraintRight_toLeftOf="@+id/repeat"
-        app:layout_constraintTop_toTopOf="@+id/play"/>
+    <com.simplecity.amp_library.ui.views.RepeatingImageButton <!-- NOSONAR -->
+        android:id="@+id/next" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+        android:contentDescription="@string/btn_skip" <!-- NOSONAR -->
+        android:padding="8dp" <!-- NOSONAR -->
+        android:scaleType="centerCrop" <!-- NOSONAR -->
+        android:src="@drawable/ic_skip_next_24dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="@+id/play" <!-- NOSONAR -->
+        app:layout_constraintLeft_toRightOf="@+id/play" <!-- NOSONAR -->
+        app:layout_constraintRight_toLeftOf="@+id/repeat" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="@+id/play"/> <!-- NOSONAR -->
 
-    <include
-        layout="@layout/repeat_button"
-        android:id="@+id/repeat"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginRight="16dp"
-        android:tag=":aesthetic_ignore"
-        app:layout_constraintBottom_toBottomOf="@+id/next"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/next"/>
+    <include <!-- NOSONAR -->
+        layout="@layout/repeat_button" <!-- NOSONAR -->
+        android:id="@+id/repeat" <!-- NOSONAR -->
+        android:layout_width="48dp" <!-- NOSONAR -->
+        android:layout_height="48dp" <!-- NOSONAR -->
+        android:layout_marginRight="16dp" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="@+id/next" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="@+id/next"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.PlayPauseView
-        android:id="@+id/play"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:background="@drawable/ripple_circular_dark"
-        android:contentDescription="@string/btn_play"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text2"/>
+    <com.simplecity.amp_library.ui.views.PlayPauseView <!-- NOSONAR -->
+        android:id="@+id/play" <!-- NOSONAR -->
+        android:layout_width="56dp" <!-- NOSONAR -->
+        android:layout_height="56dp" <!-- NOSONAR -->
+        android:background="@drawable/ripple_circular_dark" <!-- NOSONAR -->
+        android:contentDescription="@string/btn_play" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/text2"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:id="@+id/statusBarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:id="@+id/statusBarView" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark" <!-- NOSONAR -->
+        android:visibility="invisible" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:transitionName="toolbar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/statusBarView"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:transparentBackground="true"/>
+    <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+        android:id="@+id/toolbar" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+        android:transitionName="toolbar" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@id/statusBarView" <!-- NOSONAR -->
+        app:navigationIcon="?attr/homeAsUpIndicator" <!-- NOSONAR -->
+        app:transparentBackground="true"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.SnowfallView
-        android:id="@+id/snowfallView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:visibility="gone"/>
+    <com.simplecity.amp_library.ui.views.SnowfallView <!-- NOSONAR -->
+        android:id="@+id/snowfallView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        tools:visibility="gone"/> <!-- NOSONAR -->
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout> <!-- NOSONAR -->

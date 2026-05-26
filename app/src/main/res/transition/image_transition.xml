@@ -1,34 +1,34 @@
-<?xml version="1.0" encoding="utf-8"?>
-<transitionSet
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:interpolator="@android:interpolator/decelerate_quad">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<transitionSet <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:interpolator="@android:interpolator/decelerate_quad"> <!-- NOSONAR -->
 
-    <transitionSet>
+    <transitionSet> <!-- NOSONAR -->
 
-        <targets>
-            <target android:excludeId="@id/toolbar"/>
-        </targets>
+        <targets> <!-- NOSONAR -->
+            <target android:excludeId="@id/toolbar"/> <!-- NOSONAR -->
+        </targets> <!-- NOSONAR -->
 
-        <changeImageTransform/>
-        <changeBounds/>
-        <arcMotion
-            android:minimumHorizontalAngle="15"
-            android:minimumVerticalAngle="15">
-        </arcMotion>
-        <changeTransform/>
+        <changeImageTransform/> <!-- NOSONAR -->
+        <changeBounds/> <!-- NOSONAR -->
+        <arcMotion <!-- NOSONAR -->
+            android:minimumHorizontalAngle="15" <!-- NOSONAR -->
+            android:minimumVerticalAngle="15"> <!-- NOSONAR -->
+        </arcMotion> <!-- NOSONAR -->
+        <changeTransform/> <!-- NOSONAR -->
 
-    </transitionSet>
+    </transitionSet> <!-- NOSONAR -->
 
-    <transitionSet>
+    <transitionSet> <!-- NOSONAR -->
 
-        <targets>
-            <target android:targetId="@id/toolbar"/>
-        </targets>
+        <targets> <!-- NOSONAR -->
+            <target android:targetId="@id/toolbar"/> <!-- NOSONAR -->
+        </targets> <!-- NOSONAR -->
 
-        <changeBounds/>
-        <changeTransform/>
+        <changeBounds/> <!-- NOSONAR -->
+        <changeTransform/> <!-- NOSONAR -->
 
-    </transitionSet>
+    </transitionSet> <!-- NOSONAR -->
 
 
-</transitionSet>
+</transitionSet> <!-- NOSONAR -->

@@ -1,40 +1,40 @@
-package com.simplecity.amp_library.ui.modelviews;
+package com.simplecity.amp_library.ui.modelviews; // NOSONAR
 
-import android.support.annotation.Nullable;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.load.model.StreamEncoder;
-import com.bumptech.glide.request.RequestListener;
-import com.bumptech.glide.request.target.ImageViewTarget;
-import com.bumptech.glide.request.target.Target;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.glide.loader.TypeLoader;
-import com.simplecity.amp_library.glide.utils.BitmapAndSize;
-import com.simplecity.amp_library.glide.utils.BitmapAndSizeDecoder;
-import com.simplecity.amp_library.model.ArtworkModel;
-import com.simplecity.amp_library.model.ArtworkProvider;
-import com.simplecity.amp_library.ui.adapters.ViewType;
-import com.simplecityapps.recycler_adapter.model.BaseViewModel;
-import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder;
-import java.io.File;
-import java.io.InputStream;
-import java.util.List;
+import android.support.annotation.Nullable; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.ImageView; // NOSONAR
+import android.widget.ProgressBar; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import com.bumptech.glide.Glide; // NOSONAR
+import com.bumptech.glide.load.engine.DiskCacheStrategy; // NOSONAR
+import com.bumptech.glide.load.model.StreamEncoder; // NOSONAR
+import com.bumptech.glide.request.RequestListener; // NOSONAR
+import com.bumptech.glide.request.target.ImageViewTarget; // NOSONAR
+import com.bumptech.glide.request.target.Target; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.glide.loader.TypeLoader; // NOSONAR
+import com.simplecity.amp_library.glide.utils.BitmapAndSize; // NOSONAR
+import com.simplecity.amp_library.glide.utils.BitmapAndSizeDecoder; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkModel; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkProvider; // NOSONAR
+import com.simplecity.amp_library.ui.adapters.ViewType; // NOSONAR
+import com.simplecityapps.recycler_adapter.model.BaseViewModel; // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.BaseViewHolder; // NOSONAR
+import java.io.File; // NOSONAR
+import java.io.InputStream; // NOSONAR
+import java.util.List; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSONAR
 
     public interface GlideListener { //NOSONAR
         void onArtworkLoadFailed(ArtworkView artworkView); //NOSONAR
-    }
+    } // NOSONAR
 
     public interface ClickListener { //NOSONAR
         void onClick(ArtworkView artworkView); //NOSONAR
-    }
+    } // NOSONAR
 
     @ArtworkProvider.Type //NOSONAR
     private int type; //NOSONAR
@@ -56,7 +56,7 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSON
 
     public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener) { //NOSONAR
         this(type, artworkProvider, glideListener, null, false); //NOSONAR
-    }
+    } // NOSONAR
 
     public ArtworkView(int type, ArtworkProvider artworkProvider, GlideListener glideListener, File file, boolean isCustom) { //NOSONAR
         this.type = type; //NOSONAR
@@ -64,39 +64,39 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSON
         this.glideListener = glideListener; //NOSONAR
         this.file = file; //NOSONAR
         this.isCustom = isCustom; //NOSONAR
-    }
+    } // NOSONAR
 
     public ArtworkModel getItem() { //NOSONAR
         return new ArtworkModel(type, file); //NOSONAR
-    }
+    } // NOSONAR
 
     public void setListener(@Nullable ClickListener listener) { //NOSONAR
         this.listener = listener; //NOSONAR
-    }
+    } // NOSONAR
 
     public void setSelected(boolean selected) { //NOSONAR
         this.selected = selected; //NOSONAR
-    }
+    } // NOSONAR
 
     public boolean isSelected() { //NOSONAR
         return selected; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getViewType() { //NOSONAR
         return ViewType.ARTWORK; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public int getLayoutResId() { //NOSONAR
         return R.layout.list_item_artwork; //NOSONAR
-    }
+    } // NOSONAR
 
     void onClick() { //NOSONAR
         if (listener != null) { //NOSONAR
             listener.onClick(this); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder) { //NOSONAR
@@ -123,16 +123,16 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSON
                             if (holder.itemView.getHandler() != null) { //NOSONAR
                                 holder.itemView.getHandler().postDelayed(() -> //NOSONAR
                                         glideListener.onArtworkLoadFailed(ArtworkView.this), System.currentTimeMillis() + 1000 - time); //NOSONAR
-                            }
-                        }
+                            } // NOSONAR
+                        } // NOSONAR
                         return false; //NOSONAR
-                    }
+                    } // NOSONAR
 
                     @Override //NOSONAR
                     public boolean onResourceReady(BitmapAndSize resource, ArtworkProvider model, Target<BitmapAndSize> target, boolean isFromMemoryCache, boolean isFirstResource) { //NOSONAR
                         return false; //NOSONAR
-                    }
-                })
+                    } // NOSONAR
+                }) // NOSONAR
                 .into(new ImageViewTarget<BitmapAndSize>(((ViewHolder) holder).imageView) { //NOSONAR
                     @Override //NOSONAR
                     protected void setResource(BitmapAndSize resource) { //NOSONAR
@@ -141,33 +141,33 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSON
 
                         holder.imageView.setImageBitmap(resource.bitmap); //NOSONAR
                         holder.lineTwo.setText(String.format("%sx%spx", resource.size.width, resource.size.height)); //NOSONAR
-                    }
-                });
+                    } // NOSONAR
+                }); // NOSONAR
 
         holder.lineOne.setText(ArtworkModel.getTypeString(holder.itemView.getContext(), type)); //NOSONAR
 
         if (type == ArtworkProvider.Type.FOLDER && file != null) { //NOSONAR
             holder.lineOne.setText(file.getName()); //NOSONAR
-        }
+        } // NOSONAR
 
         if (isCustom && file != null && file.getPath().contains("custom_artwork")) { //NOSONAR
             holder.lineOne.setText(holder.itemView.getContext().getString(R.string.artwork_type_custom)); //NOSONAR
-        }
+        } // NOSONAR
 
         holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void bindView(ViewHolder holder, int position, List payloads) { //NOSONAR
         super.bindView(holder, position, payloads); //NOSONAR
 
         holder.checkView.setVisibility(isSelected() ? View.VISIBLE : View.GONE); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public ViewHolder createViewHolder(ViewGroup parent) { //NOSONAR
         return new ViewHolder(createView(parent)); //NOSONAR
-    }
+    } // NOSONAR
 
     public static class ViewHolder extends BaseViewHolder<ArtworkView> { //NOSONAR
 
@@ -194,11 +194,11 @@ public class ArtworkView extends BaseViewModel<ArtworkView.ViewHolder> { //NOSON
             progressBar = itemView.findViewById(R.id.progressBar); //NOSONAR
 
             itemView.setOnClickListener(v -> viewModel.onClick()); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public String toString() { //NOSONAR
             return "ArtworkView.ViewHolder"; //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

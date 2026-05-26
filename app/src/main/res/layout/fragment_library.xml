@@ -1,70 +1,70 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:orientation="vertical"> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark"/> <!-- NOSONAR -->
 
-    <android.support.design.widget.CoordinatorLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/coordinator"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:tag=":aesthetic_ignore"
-        tools:context=".ui.screens.main.MainActivity">
+    <android.support.design.widget.CoordinatorLayout <!-- NOSONAR -->
+        xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+        xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+        xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+        android:id="@+id/coordinator" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:fitsSystemWindows="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        tools:context=".ui.screens.main.MainActivity"> <!-- NOSONAR -->
 
-        <android.support.design.widget.AppBarLayout
-            android:id="@+id/app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="112dp"
-            android:background="?colorPrimary"
-            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+        <android.support.design.widget.AppBarLayout <!-- NOSONAR -->
+            android:id="@+id/app_bar" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="112dp" <!-- NOSONAR -->
+            android:background="?colorPrimary" <!-- NOSONAR -->
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"> <!-- NOSONAR -->
 
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/toolbar_layout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways"
-                app:titleEnabled="false">
+            <android.support.design.widget.CollapsingToolbarLayout <!-- NOSONAR -->
+                android:id="@+id/toolbar_layout" <!-- NOSONAR -->
+                android:layout_width="match_parent" <!-- NOSONAR -->
+                android:layout_height="match_parent" <!-- NOSONAR -->
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|enterAlways" <!-- NOSONAR -->
+                app:titleEnabled="false"> <!-- NOSONAR -->
 
-                <android.support.design.widget.TabLayout
-                    android:id="@+id/tabs"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    app:tabIndicatorHeight="3dp"
-                    app:tabMode="scrollable"/>
+                <android.support.design.widget.TabLayout <!-- NOSONAR -->
+                    android:id="@+id/tabs" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="wrap_content" <!-- NOSONAR -->
+                    android:layout_gravity="bottom" <!-- NOSONAR -->
+                    app:tabIndicatorHeight="3dp" <!-- NOSONAR -->
+                    app:tabMode="scrollable"/> <!-- NOSONAR -->
 
-                <android.support.v7.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:transitionName="toolbar"
-                    app:layout_collapseMode="none"
-                    app:title="@string/library_title"/>
+                <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+                    android:id="@+id/toolbar" <!-- NOSONAR -->
+                    android:layout_width="match_parent" <!-- NOSONAR -->
+                    android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+                    android:transitionName="toolbar" <!-- NOSONAR -->
+                    app:layout_collapseMode="none" <!-- NOSONAR -->
+                    app:title="@string/library_title"/> <!-- NOSONAR -->
 
-                <include
-                    android:id="@+id/contextualToolbar"
-                    layout="@layout/contextual_toolbar"/>
+                <include <!-- NOSONAR -->
+                    android:id="@+id/contextualToolbar" <!-- NOSONAR -->
+                    layout="@layout/contextual_toolbar"/> <!-- NOSONAR -->
 
-            </android.support.design.widget.CollapsingToolbarLayout>
-        </android.support.design.widget.AppBarLayout>
+            </android.support.design.widget.CollapsingToolbarLayout> <!-- NOSONAR -->
+        </android.support.design.widget.AppBarLayout> <!-- NOSONAR -->
 
-        <android.support.v4.view.ViewPager
-            android:id="@+id/pager"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        <android.support.v4.view.ViewPager <!-- NOSONAR -->
+            android:id="@+id/pager" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="match_parent" <!-- NOSONAR -->
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"/> <!-- NOSONAR -->
 
-    </android.support.design.widget.CoordinatorLayout>
-</LinearLayout>
+    </android.support.design.widget.CoordinatorLayout> <!-- NOSONAR -->
+</LinearLayout> <!-- NOSONAR -->

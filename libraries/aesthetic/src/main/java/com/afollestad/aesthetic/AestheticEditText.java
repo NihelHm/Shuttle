@@ -1,17 +1,17 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
 
-import android.content.Context;
-import android.content.res.TypedArray;
-import android.support.v7.widget.AppCompatEditText;
-import android.util.AttributeSet;
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.functions.Consumer;
+import android.content.Context; // NOSONAR
+import android.content.res.TypedArray; // NOSONAR
+import android.support.v7.widget.AppCompatEditText; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticEditText extends AppCompatEditText { //NOSONAR
 
@@ -22,36 +22,36 @@ public class AestheticEditText extends AppCompatEditText { //NOSONAR
 
   public AestheticEditText(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticEditText(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticEditText(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   private void init(Context context, AttributeSet attrs) { //NOSONAR
     if (attrs != null) { //NOSONAR
       int[] attrsArray = //NOSONAR
           new int[] { //NOSONAR
             android.R.attr.background, android.R.attr.textColor, android.R.attr.textColorHint //NOSONAR
-          };
+          }; // NOSONAR
       TypedArray ta = context.obtainStyledAttributes(attrs, attrsArray); //NOSONAR
       backgroundResId = ta.getResourceId(0, 0); //NOSONAR
       textColorResId = ta.getResourceId(1, 0); //NOSONAR
       textColorHintResId = ta.getResourceId(2, 0); //NOSONAR
       ta.recycle(); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   private void invalidateColors(ColorIsDarkState state) { //NOSONAR
     TintHelper.setTintAuto(this, state.color(), true, state.isDark()); //NOSONAR
     TintHelper.setCursorTint(this, state.color()); //NOSONAR
-  }
+  } // NOSONAR
 
   @SuppressWarnings("ConstantConditions") //NOSONAR
   @Override //NOSONAR
@@ -70,8 +70,8 @@ public class AestheticEditText extends AppCompatEditText { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
                     invalidateColors(colorIsDarkState); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow())); //NOSONAR
     subscriptions.add( //NOSONAR
         ViewUtil.getObservableForResId( //NOSONAR
@@ -83,11 +83,11 @@ public class AestheticEditText extends AppCompatEditText { //NOSONAR
                 getContext(), textColorHintResId, Aesthetic.get(getContext()).textColorSecondary()) //NOSONAR
             .compose(Rx.<Integer>distinctToMainThread()) //NOSONAR
             .subscribe(ViewHintTextColorAction.create(this), onErrorLogAndRethrow())); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     subscriptions.clear(); //NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

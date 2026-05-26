@@ -1,16 +1,16 @@
-package com.simplecity.amp_library.glide.preloader;
+package com.simplecity.amp_library.glide.preloader; // NOSONAR
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.widget.AbsListView;
-import android.widget.ListView;
+import android.support.v7.widget.LinearLayoutManager; // NOSONAR
+import android.support.v7.widget.RecyclerView; // NOSONAR
+import android.widget.AbsListView; // NOSONAR
+import android.widget.ListView; // NOSONAR
 
-/**
- * Converts {@link android.support.v7.widget.RecyclerView.OnScrollListener} events to
- * {@link AbsListView} scroll events.
- * <p>
- * <p>Requires that the the recycler view be using a {@link LinearLayoutManager} subclass.
- */
+/** // NOSONAR
+ * Converts {@link android.support.v7.widget.RecyclerView.OnScrollListener} events to // NOSONAR
+ * {@link AbsListView} scroll events. // NOSONAR
+ * <p> // NOSONAR
+ * <p>Requires that the the recycler view be using a {@link LinearLayoutManager} subclass. // NOSONAR
+ */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public final class RecyclerToListViewScrollListener extends RecyclerView.OnScrollListener { //NOSONAR
     public static final int UNKNOWN_SCROLL_STATE = Integer.MIN_VALUE; //NOSONAR
@@ -21,7 +21,7 @@ public final class RecyclerToListViewScrollListener extends RecyclerView.OnScrol
 
     public RecyclerToListViewScrollListener(AbsListView.OnScrollListener scrollListener) { //NOSONAR
         this.scrollListener = scrollListener; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onScrollStateChanged(RecyclerView recyclerView, int newState) { //NOSONAR
@@ -38,10 +38,10 @@ public final class RecyclerToListViewScrollListener extends RecyclerView.OnScrol
                 break; //NOSONAR
             default: //NOSONAR
                 listViewState = UNKNOWN_SCROLL_STATE; //NOSONAR
-        }
+        } // NOSONAR
 
         scrollListener.onScrollStateChanged(null /*view*/, listViewState); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onScrolled(RecyclerView recyclerView, int dx, int dy) { //NOSONAR
@@ -57,6 +57,6 @@ public final class RecyclerToListViewScrollListener extends RecyclerView.OnScrol
             lastFirstVisible = firstVisible; //NOSONAR
             lastVisibleCount = visibleCount; //NOSONAR
             lastItemCount = itemCount; //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR

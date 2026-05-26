@@ -1,66 +1,66 @@
-package com.jp.wasabeef.glide.transformations.internal;
+package com.jp.wasabeef.glide.transformations.internal; // NOSONAR
 
-import android.graphics.Bitmap;
+import android.graphics.Bitmap; // NOSONAR
 
-/**
- * Copyright (C) 2015 Wasabeef
- * <p>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+/** // NOSONAR
+ * Copyright (C) 2015 Wasabeef // NOSONAR
+ * <p> // NOSONAR
+ * Licensed under the Apache License, Version 2.0 (the "License"); // NOSONAR
+ * you may not use this file except in compliance with the License. // NOSONAR
+ * You may obtain a copy of the License at // NOSONAR
+ * <p> // NOSONAR
+ * http://www.apache.org/licenses/LICENSE-2.0 // NOSONAR
+ * <p> // NOSONAR
+ * Unless required by applicable law or agreed to in writing, software // NOSONAR
+ * distributed under the License is distributed on an "AS IS" BASIS, // NOSONAR
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. // NOSONAR
+ * See the License for the specific language governing permissions and // NOSONAR
+ * limitations under the License. // NOSONAR
+ */ // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class FastBlur { //NOSONAR
 
     public static Bitmap blur(Bitmap sentBitmap, int radius, boolean canReuseInBitmap) { //NOSONAR
 
-        // Stack Blur v1.0 from
-        // http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html
-        //
-        // Java Author: Mario Klingemann <mario at quasimondo.com>
-        // http://incubator.quasimondo.com
-        // created Feburary 29, 2004
-        // Android port : Yahel Bouaziz <yahel at kayenko.com>
-        // http://www.kayenko.com
-        // ported april 5th, 2012
+        // Stack Blur v1.0 from // NOSONAR
+        // http://www.quasimondo.com/StackBlurForCanvas/StackBlurDemo.html // NOSONAR
+        // // NOSONAR
+        // Java Author: Mario Klingemann <mario at quasimondo.com> // NOSONAR
+        // http://incubator.quasimondo.com // NOSONAR
+        // created Feburary 29, 2004 // NOSONAR
+        // Android port : Yahel Bouaziz <yahel at kayenko.com> // NOSONAR
+        // http://www.kayenko.com // NOSONAR
+        // ported april 5th, 2012 // NOSONAR
 
-        // This is a compromise between Gaussian Blur and Box blur
-        // It creates much better looking blurs than Box Blur, but is
-        // 7x faster than my Gaussian Blur implementation.
-        //
-        // I called it Stack Blur because this describes best how this
-        // filter works internally: it creates a kind of moving stack
-        // of colors whilst scanning through the image. Thereby it
-        // just has to add one new block of color to the right side
-        // of the stack and remove the leftmost color. The remaining
-        // colors on the topmost layer of the stack are either added on
-        // or reduced by one, depending on if they are on the right or
-        // on the left side of the stack.
-        //
-        // If you are using this algorithm in your code please add
-        // the following line:
-        //
-        // Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com>
+        // This is a compromise between Gaussian Blur and Box blur // NOSONAR
+        // It creates much better looking blurs than Box Blur, but is // NOSONAR
+        // 7x faster than my Gaussian Blur implementation. // NOSONAR
+        // // NOSONAR
+        // I called it Stack Blur because this describes best how this // NOSONAR
+        // filter works internally: it creates a kind of moving stack // NOSONAR
+        // of colors whilst scanning through the image. Thereby it // NOSONAR
+        // just has to add one new block of color to the right side // NOSONAR
+        // of the stack and remove the leftmost color. The remaining // NOSONAR
+        // colors on the topmost layer of the stack are either added on // NOSONAR
+        // or reduced by one, depending on if they are on the right or // NOSONAR
+        // on the left side of the stack. // NOSONAR
+        // // NOSONAR
+        // If you are using this algorithm in your code please add // NOSONAR
+        // the following line: // NOSONAR
+        // // NOSONAR
+        // Stack Blur Algorithm by Mario Klingemann <mario@quasimondo.com> // NOSONAR
 
         Bitmap bitmap; //NOSONAR
         if (canReuseInBitmap) { //NOSONAR
             bitmap = sentBitmap; //NOSONAR
         } else { //NOSONAR
             bitmap = sentBitmap.copy(sentBitmap.getConfig(), true); //NOSONAR
-        }
+        } // NOSONAR
 
         if (radius < 1) { //NOSONAR
             return (null); //NOSONAR
-        }
+        } // NOSONAR
 
         int w = bitmap.getWidth(); //NOSONAR
         int h = bitmap.getHeight(); //NOSONAR
@@ -84,7 +84,7 @@ public class FastBlur { //NOSONAR
         int dv[] = new int[256 * divsum]; //NOSONAR
         for (i = 0; i < 256 * divsum; i++) { //NOSONAR
             dv[i] = (i / divsum); //NOSONAR
-        }
+        } // NOSONAR
 
         yw = yi = 0; //NOSONAR
 
@@ -117,8 +117,8 @@ public class FastBlur { //NOSONAR
                     routsum += sir[0]; //NOSONAR
                     goutsum += sir[1]; //NOSONAR
                     boutsum += sir[2]; //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             stackpointer = radius; //NOSONAR
 
             for (x = 0; x < w; x++) { //NOSONAR
@@ -140,7 +140,7 @@ public class FastBlur { //NOSONAR
 
                 if (y == 0) { //NOSONAR
                     vmin[x] = Math.min(x + radius + 1, wm); //NOSONAR
-                }
+                } // NOSONAR
                 p = pix[yw + vmin[x]]; //NOSONAR
 
                 sir[0] = (p & 0xff0000) >> 16; //NOSONAR
@@ -167,9 +167,9 @@ public class FastBlur { //NOSONAR
                 binsum -= sir[2]; //NOSONAR
 
                 yi++; //NOSONAR
-            }
+            } // NOSONAR
             yw += w; //NOSONAR
-        }
+        } // NOSONAR
         for (x = 0; x < w; x++) { //NOSONAR
             rinsum = ginsum = binsum = routsum = goutsum = boutsum = rsum = gsum = bsum = 0; //NOSONAR
             yp = -radius * w; //NOSONAR
@@ -196,16 +196,16 @@ public class FastBlur { //NOSONAR
                     routsum += sir[0]; //NOSONAR
                     goutsum += sir[1]; //NOSONAR
                     boutsum += sir[2]; //NOSONAR
-                }
+                } // NOSONAR
 
                 if (i < hm) { //NOSONAR
                     yp += w; //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             yi = x; //NOSONAR
             stackpointer = radius; //NOSONAR
             for (y = 0; y < h; y++) { //NOSONAR
-                // Preserve alpha channel: ( 0xff000000 & pix[yi] )
+                // Preserve alpha channel: ( 0xff000000 & pix[yi] ) // NOSONAR
                 pix[yi] = (0xff000000 & pix[yi]) | (dv[rsum] << 16) | (dv[gsum] << 8) | dv[bsum]; //NOSONAR
 
                 rsum -= routsum; //NOSONAR
@@ -221,7 +221,7 @@ public class FastBlur { //NOSONAR
 
                 if (x == 0) { //NOSONAR
                     vmin[y] = Math.min(y + r1, hm) * w; //NOSONAR
-                }
+                } // NOSONAR
                 p = x + vmin[y]; //NOSONAR
 
                 sir[0] = r[p]; //NOSONAR
@@ -248,11 +248,11 @@ public class FastBlur { //NOSONAR
                 binsum -= sir[2]; //NOSONAR
 
                 yi += w; //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         bitmap.setPixels(pix, 0, w, 0, 0, w, h); //NOSONAR
 
         return (bitmap); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

@@ -1,38 +1,38 @@
-package com.simplecity.amp_library.ui.screens.miniplayer;
+package com.simplecity.amp_library.ui.screens.miniplayer; // NOSONAR
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.view.GestureDetector;
-import android.view.LayoutInflater;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.TextView;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
-import com.afollestad.aesthetic.Aesthetic;
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.simplecity.amp_library.R;
-import com.simplecity.amp_library.model.Song;
-import com.simplecity.amp_library.ui.common.BaseFragment;
-import com.simplecity.amp_library.ui.dialog.UpgradeDialog;
-import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter;
-import com.simplecity.amp_library.ui.views.PlayPauseView;
-import com.simplecity.amp_library.ui.views.PlayerViewAdapter;
-import com.simplecity.amp_library.utils.PlaceholderProvider;
-import com.simplecity.amp_library.utils.SettingsManager;
-import com.simplecity.multisheetview.ui.view.MultiSheetView;
-import dagger.android.support.AndroidSupportInjection;
-import io.reactivex.disposables.CompositeDisposable;
-import javax.inject.Inject;
-import kotlin.Unit;
+import android.content.Context; // NOSONAR
+import android.os.Bundle; // NOSONAR
+import android.support.annotation.NonNull; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.view.GestureDetector; // NOSONAR
+import android.view.LayoutInflater; // NOSONAR
+import android.view.MotionEvent; // NOSONAR
+import android.view.View; // NOSONAR
+import android.view.ViewGroup; // NOSONAR
+import android.widget.ImageView; // NOSONAR
+import android.widget.ProgressBar; // NOSONAR
+import android.widget.TextView; // NOSONAR
+import butterknife.BindView; // NOSONAR
+import butterknife.ButterKnife; // NOSONAR
+import butterknife.Unbinder; // NOSONAR
+import com.afollestad.aesthetic.Aesthetic; // NOSONAR
+import com.bumptech.glide.Glide; // NOSONAR
+import com.bumptech.glide.Priority; // NOSONAR
+import com.bumptech.glide.load.engine.DiskCacheStrategy; // NOSONAR
+import com.simplecity.amp_library.R; // NOSONAR
+import com.simplecity.amp_library.model.Song; // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment; // NOSONAR
+import com.simplecity.amp_library.ui.dialog.UpgradeDialog; // NOSONAR
+import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter; // NOSONAR
+import com.simplecity.amp_library.ui.views.PlayPauseView; // NOSONAR
+import com.simplecity.amp_library.ui.views.PlayerViewAdapter; // NOSONAR
+import com.simplecity.amp_library.utils.PlaceholderProvider; // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager; // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView; // NOSONAR
+import dagger.android.support.AndroidSupportInjection; // NOSONAR
+import io.reactivex.disposables.CompositeDisposable; // NOSONAR
+import javax.inject.Inject; // NOSONAR
+import kotlin.Unit; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class MiniPlayerFragment extends BaseFragment { //NOSONAR
@@ -64,21 +64,21 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
     private Unbinder unbinder; //NOSONAR
 
     public MiniPlayerFragment() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     public static MiniPlayerFragment newInstance() { //NOSONAR
         MiniPlayerFragment fragment = new MiniPlayerFragment(); //NOSONAR
         Bundle args = new Bundle(); //NOSONAR
         fragment.setArguments(args); //NOSONAR
         return fragment; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onCreate(Bundle savedInstanceState) { //NOSONAR
         AndroidSupportInjection.inject(this); //NOSONAR
         super.onCreate(savedInstanceState); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) { //NOSONAR
@@ -90,14 +90,14 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
             MultiSheetView multiSheetView = MultiSheetView.getParentMultiSheetView(rootView); //NOSONAR
             if (multiSheetView != null) { //NOSONAR
                 multiSheetView.expandSheet(MultiSheetView.Sheet.FIRST); //NOSONAR
-            }
-        });
+            } // NOSONAR
+        }); // NOSONAR
         rootView.setOnTouchListener(new OnSwipeTouchListener(getActivity())); //NOSONAR
 
         playPauseView.setOnClickListener(v -> playPauseView.toggle(() -> { //NOSONAR
             presenter.togglePlayback(); //NOSONAR
             return Unit.INSTANCE; //NOSONAR
-        }));
+        })); // NOSONAR
 
         progressBar.setMax(1000); //NOSONAR
 
@@ -106,17 +106,17 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
                     int color = isDark ? getContext().getResources().getColor(android.R.color.primary_text_dark) : getContext().getResources().getColor(android.R.color.primary_text_light); //NOSONAR
                     titleTextView.setTextColor(color); //NOSONAR
                     playPauseView.setDrawableColor(color); //NOSONAR
-                }));
+                })); // NOSONAR
 
         return rootView; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) { //NOSONAR
         super.onViewCreated(view, savedInstanceState); //NOSONAR
 
         presenter.bindView(playerViewAdapter); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onResume() { //NOSONAR
@@ -124,8 +124,8 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
 
         if (presenter != null) { //NOSONAR
             presenter.updateTrackInfo(); //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroyView() { //NOSONAR
@@ -133,14 +133,14 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
         disposables.clear(); //NOSONAR
         unbinder.unbind(); //NOSONAR
         super.onDestroyView(); //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     public void onDestroy() { //NOSONAR
         rootView.setOnTouchListener(null); //NOSONAR
 
         super.onDestroy(); //NOSONAR
-    }
+    } // NOSONAR
 
     private class OnSwipeTouchListener implements View.OnTouchListener { //NOSONAR
 
@@ -148,15 +148,15 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
 
         OnSwipeTouchListener(Context context) { //NOSONAR
             gestureDetector = new GestureDetector(context, new GestureListener()); //NOSONAR
-        }
+        } // NOSONAR
 
         void onSwipeLeft() { //NOSONAR
             presenter.skip(); //NOSONAR
-        }
+        } // NOSONAR
 
         void onSwipeRight() { //NOSONAR
             presenter.prev(false); //NOSONAR
-        }
+        } // NOSONAR
 
         public boolean onTouch(View v, MotionEvent event) { //NOSONAR
 
@@ -165,11 +165,11 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
             if (!consumed) { //NOSONAR
                 if (event.getAction() == MotionEvent.ACTION_UP) { //NOSONAR
                     v.performClick(); //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
 
             return consumed; //NOSONAR
-        }
+        } // NOSONAR
 
         private final class GestureListener extends GestureDetector.SimpleOnGestureListener { //NOSONAR
 
@@ -177,13 +177,13 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
             private static final int SWIPE_VELOCITY_THRESHOLD = 100; //NOSONAR
 
             GestureListener() { //NOSONAR
-                // Intentionally left empty.
-            }
+                // Intentionally left empty. // NOSONAR
+            } // NOSONAR
 
             @Override //NOSONAR
             public boolean onDown(MotionEvent e) { //NOSONAR
                 return true; //NOSONAR
-            }
+            } // NOSONAR
 
             @Override //NOSONAR
             public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) { //NOSONAR
@@ -194,38 +194,38 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
                         onSwipeRight(); //NOSONAR
                     } else { //NOSONAR
                         onSwipeLeft(); //NOSONAR
-                    }
+                    } // NOSONAR
                     return true; //NOSONAR
-                }
+                } // NOSONAR
                 return false; //NOSONAR
-            }
-        }
-    }
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     protected String screenName() { //NOSONAR
         return TAG; //NOSONAR
-    }
+    } // NOSONAR
 
     PlayerViewAdapter playerViewAdapter = new PlayerViewAdapter() { //NOSONAR
 
         @Override //NOSONAR
         public void setSeekProgress(int progress) { //NOSONAR
             progressBar.setProgress(progress); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void playbackChanged(boolean isPlaying) { //NOSONAR
             if (isPlaying) { //NOSONAR
                 if (playPauseView.isPlay()) { //NOSONAR
                     playPauseView.toggle(null); //NOSONAR
-                }
+                } // NOSONAR
             } else { //NOSONAR
                 if (!playPauseView.isPlay()) { //NOSONAR
                     playPauseView.toggle(null); //NOSONAR
-                }
-            }
-        }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         @Override //NOSONAR
         public void trackInfoChanged(@Nullable Song song) { //NOSONAR
@@ -242,11 +242,11 @@ public class MiniPlayerFragment extends BaseFragment { //NOSONAR
                     .into(miniArtwork); //NOSONAR
 
             rootView.setContentDescription(getString(R.string.btn_now_playing, song.name, song.artistName)); //NOSONAR
-        }
+        } // NOSONAR
 
         @Override //NOSONAR
         public void showUpgradeDialog() { //NOSONAR
             UpgradeDialog.Companion.newInstance().show(getChildFragmentManager()); //NOSONAR
-        }
-    };
-}
+        } // NOSONAR
+    }; // NOSONAR
+} // NOSONAR

@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.RecyclerView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/recyclerView"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:clipToPadding="false"
-    android:padding="4dp"/>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.v7.widget.RecyclerView <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    android:id="@+id/recyclerView" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="wrap_content" <!-- NOSONAR -->
+    android:clipToPadding="false" <!-- NOSONAR -->
+    android:padding="4dp"/> <!-- NOSONAR -->

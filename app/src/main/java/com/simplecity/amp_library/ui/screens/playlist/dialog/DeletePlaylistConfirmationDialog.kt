@@ -1,24 +1,24 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.playlist.dialog
+package com.simplecity.amp_library.ui.screens.playlist.dialog // NOSONAR
 
-import android.app.Dialog
-import android.content.Context
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.data.Repository.PlaylistsRepository
-import com.simplecity.amp_library.di.app.activity.fragment.FragmentModule
-import com.simplecity.amp_library.di.app.activity.fragment.FragmentScope
-import com.simplecity.amp_library.model.Playlist
-import dagger.Binds
-import dagger.Module
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
-import javax.inject.Named
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.Fragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.data.Repository.PlaylistsRepository // NOSONAR
+import com.simplecity.amp_library.di.app.activity.fragment.FragmentModule // NOSONAR
+import com.simplecity.amp_library.di.app.activity.fragment.FragmentScope // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import dagger.Binds // NOSONAR
+import dagger.Module // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import javax.inject.Inject // NOSONAR
+import javax.inject.Named // NOSONAR
 
 class DeletePlaylistConfirmationDialog : DialogFragment() { //NOSONAR
 
@@ -31,7 +31,7 @@ class DeletePlaylistConfirmationDialog : DialogFragment() { //NOSONAR
         super.onAttach(context) //NOSONAR
 
         playlist = arguments!!.getSerializable(ARG_PLAYLIST) as Playlist //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
         return MaterialDialog.Builder(context!!) //NOSONAR
@@ -41,11 +41,11 @@ class DeletePlaylistConfirmationDialog : DialogFragment() { //NOSONAR
             .onPositive { dialog, which -> playlistsRepository.deletePlaylist(playlist) } //NOSONAR
             .negativeText(R.string.cancel) //NOSONAR
             .build() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
 
@@ -59,9 +59,9 @@ class DeletePlaylistConfirmationDialog : DialogFragment() { //NOSONAR
             val fragment = DeletePlaylistConfirmationDialog() //NOSONAR
             fragment.arguments = bundle //NOSONAR
             return fragment //NOSONAR
-        }
-    }
-}
+        } // NOSONAR
+    } // NOSONAR
+} // NOSONAR
 
 @Module(includes = [FragmentModule::class]) //NOSONAR
 abstract class DeletePlaylistConfirmationDialogFragmentModule { //NOSONAR
@@ -70,4 +70,4 @@ abstract class DeletePlaylistConfirmationDialogFragmentModule { //NOSONAR
     @Named(FragmentModule.FRAGMENT) //NOSONAR
     @FragmentScope //NOSONAR
     internal abstract fun fragment(deletePlaylistConfirmationDialog: DeletePlaylistConfirmationDialog): Fragment //NOSONAR
-}
+} // NOSONAR

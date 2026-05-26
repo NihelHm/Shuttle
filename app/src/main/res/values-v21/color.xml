@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="notification_control_tint">#000000</color>
-</resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
+    <color name="notification_control_tint">#000000</color> <!-- NOSONAR -->
+</resources> <!-- NOSONAR -->

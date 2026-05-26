@@ -1,20 +1,20 @@
-package com.afollestad.aesthetic;
+package com.afollestad.aesthetic; // NOSONAR
 
-import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow;
-import static com.afollestad.aesthetic.Util.resolveResId;
+import static com.afollestad.aesthetic.Rx.onErrorLogAndRethrow; // NOSONAR
+import static com.afollestad.aesthetic.Util.resolveResId; // NOSONAR
 
-import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
-import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.util.AttributeSet;
-import io.reactivex.Observable;
-import io.reactivex.annotations.NonNull;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
+import android.content.Context; // NOSONAR
+import android.graphics.Color; // NOSONAR
+import android.graphics.drawable.Drawable; // NOSONAR
+import android.support.annotation.Nullable; // NOSONAR
+import android.support.design.widget.FloatingActionButton; // NOSONAR
+import android.util.AttributeSet; // NOSONAR
+import io.reactivex.Observable; // NOSONAR
+import io.reactivex.annotations.NonNull; // NOSONAR
+import io.reactivex.disposables.Disposable; // NOSONAR
+import io.reactivex.functions.Consumer; // NOSONAR
 
-/** @author Aidan Follestad (afollestad) */
+/** @author Aidan Follestad (afollestad) */ // NOSONAR
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 public class AestheticFab extends FloatingActionButton { //NOSONAR
 
@@ -24,39 +24,39 @@ public class AestheticFab extends FloatingActionButton { //NOSONAR
 
   public AestheticFab(Context context) { //NOSONAR
     super(context); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticFab(Context context, AttributeSet attrs) { //NOSONAR
     super(context, attrs); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   public AestheticFab(Context context, AttributeSet attrs, int defStyleAttr) { //NOSONAR
     super(context, attrs, defStyleAttr); //NOSONAR
     init(context, attrs); //NOSONAR
-  }
+  } // NOSONAR
 
   private void init(Context context, AttributeSet attrs) { //NOSONAR
     if (attrs != null) { //NOSONAR
       backgroundResId = resolveResId(context, attrs, android.R.attr.background); //NOSONAR
-    }
-  }
+    } // NOSONAR
+  } // NOSONAR
 
   private void invalidateColors(ColorIsDarkState state) { //NOSONAR
     TintHelper.setTintAuto(this, state.color(), true, state.isDark()); //NOSONAR
     iconColor = Util.isColorLight(state.color()) ? Color.BLACK : Color.WHITE; //NOSONAR
     setImageDrawable(getDrawable()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   public void setImageDrawable(@Nullable Drawable drawable) { //NOSONAR
     super.setImageDrawable(TintHelper.createTintedDrawable(drawable, iconColor)); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onAttachedToWindow() { //NOSONAR
     super.onAttachedToWindow(); //NOSONAR
-    //noinspection ConstantConditions
+    //noinspection ConstantConditions // NOSONAR
     subscription = //NOSONAR
         Observable.combineLatest( //NOSONAR
                 ViewUtil.getObservableForResId( //NOSONAR
@@ -69,14 +69,14 @@ public class AestheticFab extends FloatingActionButton { //NOSONAR
                   @Override //NOSONAR
                   public void accept(@NonNull ColorIsDarkState colorIsDarkState) { //NOSONAR
                     invalidateColors(colorIsDarkState); //NOSONAR
-                  }
-                },
+                  } // NOSONAR
+                }, // NOSONAR
                 onErrorLogAndRethrow()); //NOSONAR
-  }
+  } // NOSONAR
 
   @Override //NOSONAR
   protected void onDetachedFromWindow() { //NOSONAR
     subscription.dispose(); //NOSONAR
     super.onDetachedFromWindow(); //NOSONAR
-  }
-}
+  } // NOSONAR
+} // NOSONAR

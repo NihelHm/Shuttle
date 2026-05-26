@@ -1,28 +1,28 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.dialog
+package com.simplecity.amp_library.ui.dialog // NOSONAR
 
-import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.content.ContextCompat
-import android.view.LayoutInflater
-import android.webkit.WebView
-import android.webkit.WebViewClient
-import android.widget.CheckBox
-import android.widget.ProgressBar
-import com.afollestad.aesthetic.Aesthetic
-import com.afollestad.materialdialogs.MaterialDialog
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.utils.SettingsManager
-import com.simplecity.amp_library.utils.ViewUtils
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
+import android.annotation.SuppressLint // NOSONAR
+import android.app.Dialog // NOSONAR
+import android.content.Context // NOSONAR
+import android.content.Intent // NOSONAR
+import android.net.Uri // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v4.app.DialogFragment // NOSONAR
+import android.support.v4.app.FragmentManager // NOSONAR
+import android.support.v4.content.ContextCompat // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.webkit.WebView // NOSONAR
+import android.webkit.WebViewClient // NOSONAR
+import android.widget.CheckBox // NOSONAR
+import android.widget.ProgressBar // NOSONAR
+import com.afollestad.aesthetic.Aesthetic // NOSONAR
+import com.afollestad.materialdialogs.MaterialDialog // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.utils.SettingsManager // NOSONAR
+import com.simplecity.amp_library.utils.ViewUtils // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class ChangelogDialog : DialogFragment() { //NOSONAR
 
@@ -31,7 +31,7 @@ class ChangelogDialog : DialogFragment() { //NOSONAR
     override fun onAttach(context: Context?) { //NOSONAR
         AndroidSupportInjection.inject(this) //NOSONAR
         super.onAttach(context) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog { //NOSONAR
         @SuppressLint("InflateParams") //NOSONAR
@@ -51,17 +51,17 @@ class ChangelogDialog : DialogFragment() { //NOSONAR
                 super.onPageFinished(view, url) //NOSONAR
 
                 ViewUtils.fadeOut(progressBar) { ViewUtils.fadeIn(webView, null) } //NOSONAR
-            }
+            } // NOSONAR
 
             override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean { //NOSONAR
                 val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)) //NOSONAR
                 if (intent.resolveActivity(context!!.packageManager) != null) { //NOSONAR
                     context?.startActivity(intent) //NOSONAR
                     return true //NOSONAR
-                }
+                } // NOSONAR
                 return false //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         Aesthetic.get(context) //NOSONAR
             .isDark //NOSONAR
@@ -73,15 +73,15 @@ class ChangelogDialog : DialogFragment() { //NOSONAR
             .customView(customView, false) //NOSONAR
             .negativeText(R.string.close) //NOSONAR
             .build() //NOSONAR
-    }
+    } // NOSONAR
 
     fun show(fragmentManager: FragmentManager) { //NOSONAR
         show(fragmentManager, TAG) //NOSONAR
-    }
+    } // NOSONAR
 
     companion object { //NOSONAR
         private const val TAG = "ChangelogDialog" //NOSONAR
 
         fun newInstance() = ChangelogDialog() //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

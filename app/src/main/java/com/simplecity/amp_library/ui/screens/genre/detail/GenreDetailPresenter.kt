@@ -1,34 +1,34 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.genre.detail
+package com.simplecity.amp_library.ui.screens.genre.detail // NOSONAR
 
-import android.content.Context
-import android.support.v4.util.Pair
-import com.simplecity.amp_library.model.Album
-import com.simplecity.amp_library.model.Genre
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.MediaManager
-import com.simplecity.amp_library.ui.common.Presenter
-import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuContract
-import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuPresenter
-import com.simplecity.amp_library.ui.screens.genre.menu.GenreMenuContract
-import com.simplecity.amp_library.ui.screens.genre.menu.GenreMenuPresenter
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuContract
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter
-import com.simplecity.amp_library.utils.LogUtils
-import com.simplecity.amp_library.utils.Operators
-import com.simplecity.amp_library.utils.PermissionUtils
-import com.simplecity.amp_library.utils.extensions.getSongsObservable
-import com.simplecity.amp_library.utils.sorting.SortManager
-import com.squareup.inject.assisted.Assisted
-import com.squareup.inject.assisted.AssistedInject
-import io.reactivex.Observable
-import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.BiFunction
-import io.reactivex.schedulers.Schedulers
-import java.util.Random
-import java.util.concurrent.TimeUnit
+import android.content.Context // NOSONAR
+import android.support.v4.util.Pair // NOSONAR
+import com.simplecity.amp_library.model.Album // NOSONAR
+import com.simplecity.amp_library.model.Genre // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager // NOSONAR
+import com.simplecity.amp_library.ui.common.Presenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuContract // NOSONAR
+import com.simplecity.amp_library.ui.screens.album.menu.AlbumMenuPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.menu.GenreMenuContract // NOSONAR
+import com.simplecity.amp_library.ui.screens.genre.menu.GenreMenuPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuContract // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuPresenter // NOSONAR
+import com.simplecity.amp_library.utils.LogUtils // NOSONAR
+import com.simplecity.amp_library.utils.Operators // NOSONAR
+import com.simplecity.amp_library.utils.PermissionUtils // NOSONAR
+import com.simplecity.amp_library.utils.extensions.getSongsObservable // NOSONAR
+import com.simplecity.amp_library.utils.sorting.SortManager // NOSONAR
+import com.squareup.inject.assisted.Assisted // NOSONAR
+import com.squareup.inject.assisted.AssistedInject // NOSONAR
+import io.reactivex.Observable // NOSONAR
+import io.reactivex.Single // NOSONAR
+import io.reactivex.android.schedulers.AndroidSchedulers // NOSONAR
+import io.reactivex.functions.BiFunction // NOSONAR
+import io.reactivex.schedulers.Schedulers // NOSONAR
+import java.util.Random // NOSONAR
+import java.util.concurrent.TimeUnit // NOSONAR
 
 class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
     private val context: Context, //NOSONAR
@@ -47,7 +47,7 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
     @AssistedInject.Factory //NOSONAR
     interface Factory { //NOSONAR
         fun create(genre: Genre): GenreDetailPresenter //NOSONAR
-    }
+    } // NOSONAR
 
     private var songs: MutableList<Song> = mutableListOf() //NOSONAR
 
@@ -61,7 +61,7 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
         songsMenuPresenter.bindView(view) //NOSONAR
 
         startSlideShow() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun unbindView(view: GenreDetailView) { //NOSONAR
         super.unbindView(view) //NOSONAR
@@ -69,7 +69,7 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
         genreMenuPresenter.unbindView(view) //NOSONAR
         albumMenuPresenter.unbindView(view) //NOSONAR
         songsMenuPresenter.unbindView(view) //NOSONAR
-    }
+    } // NOSONAR
 
     private fun sortSongs(songs: MutableList<Song>) { //NOSONAR
         @SortManager.SongSort val songSort = sortManager.genreDetailSongsSortOrder //NOSONAR
@@ -79,8 +79,8 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
         sortManager.sortSongs(songs, songSort) //NOSONAR
         if (!songsAscending) { //NOSONAR
             songs.reverse() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private fun sortAlbums(albums: MutableList<Album>) { //NOSONAR
         @SortManager.AlbumSort val albumSort = sortManager.genreDetailAlbumsSortOrder //NOSONAR
@@ -90,8 +90,8 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
         sortManager.sortAlbums(albums, albumSort) //NOSONAR
         if (!albumsAscending) { //NOSONAR
             albums.reverse() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     fun loadData() { //NOSONAR
         PermissionUtils.RequestStoragePermissions { //NOSONAR
@@ -103,25 +103,25 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
                     .doOnSuccess { pair -> //NOSONAR
                         sortAlbums(pair.first!!) //NOSONAR
                         sortSongs(pair.second!!) //NOSONAR
-                    }
+                    } // NOSONAR
                     .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
                     .subscribe { pair -> //NOSONAR
                         this.songs = pair.second!! //NOSONAR
 
                         view?.setData(pair.first!!, pair.second!!) //NOSONAR
-                    }
-            )
-        }
-    }
+                    } // NOSONAR
+            ) // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     private fun startSlideShow() { //NOSONAR
         val albumsObservable: Observable<List<Album>> = genre.getSongsObservable(context).toObservable() //NOSONAR
             .map { songs -> Operators.songsToAlbums(songs) } //NOSONAR
 
         val timer: Observable<Long> = io.reactivex.Observable.interval(8, TimeUnit.SECONDS) //NOSONAR
-            // Load an image straight away
+            // Load an image straight away // NOSONAR
             .startWith(0L) //NOSONAR
-            // If we have a 'current slideshowAlbum' then we're coming back from onResume. Don't load a new one immediately.
+            // If we have a 'current slideshowAlbum' then we're coming back from onResume. Don't load a new one immediately. // NOSONAR
             .delay(if (currentSlideShowAlbum == null) 0L else 8L, TimeUnit.SECONDS) //NOSONAR
 
         addDisposable(Observable //NOSONAR
@@ -131,36 +131,36 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
                     currentSlideShowAlbum //NOSONAR
                 } else { //NOSONAR
                     albums[(Random().nextInt(albums.size))] //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
             .subscribeOn(Schedulers.io()) //NOSONAR
             .observeOn(AndroidSchedulers.mainThread()) //NOSONAR
             .subscribe({ newAlbum -> //NOSONAR
                 newAlbum?.let { //NOSONAR
                     view?.fadeInSlideShowAlbum(currentSlideShowAlbum, newAlbum) //NOSONAR
                     currentSlideShowAlbum = newAlbum //NOSONAR
-                }
+                } // NOSONAR
             }, { error -> //NOSONAR
                 LogUtils.logException(TAG, "startSlideShow threw error", error) //NOSONAR
-            })
-        )
-    }
+            }) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     fun closeContextualToolbar() { //NOSONAR
         view?.closeContextualToolbar() //NOSONAR
-    }
+    } // NOSONAR
 
     fun shuffleAll() { //NOSONAR
         mediaManager.shuffleAll(songs) { //NOSONAR
             view?.onPlaybackFailed() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     fun songClicked(song: Song) { //NOSONAR
         mediaManager.playAll(songs, songs.indexOf(song), true) { //NOSONAR
             view?.onPlaybackFailed() //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun <T> transform(src: Single<List<T>>, dst: (List<T>) -> Unit) { //NOSONAR
         addDisposable( //NOSONAR
@@ -170,11 +170,11 @@ class GenreDetailPresenter @AssistedInject constructor( //NOSONAR
                 .subscribe( //NOSONAR
                     { items -> dst(items) }, //NOSONAR
                     { error -> LogUtils.logException(SongMenuPresenter.TAG, "Failed to transform src single", error) } //NOSONAR
-                )
-        )
-    }
+                ) // NOSONAR
+        ) // NOSONAR
+    } // NOSONAR
 
     companion object { //NOSONAR
         const val TAG = "GenreDetailPresenter" //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

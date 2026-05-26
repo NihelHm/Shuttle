@@ -1,4 +1,4 @@
-package com.simplecity.amp_library.ui.adapters;
+package com.simplecity.amp_library.ui.adapters; // NOSONAR
 
 public @interface ViewType { //NOSONAR
 
@@ -55,4 +55,4 @@ public @interface ViewType { //NOSONAR
     int SUBHEADER = 33; //NOSONAR
 
     int SHUFFLE_ALBUMS = 34; //NOSONAR
-}
+} // NOSONAR

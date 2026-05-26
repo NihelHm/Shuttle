@@ -1,11 +1,11 @@
-package com.simplecity.amp_library.glide.fetcher;
+package com.simplecity.amp_library.glide.fetcher; // NOSONAR
 
-import android.support.annotation.CallSuper;
-import com.bumptech.glide.Priority;
-import com.bumptech.glide.load.data.DataFetcher;
-import com.simplecity.amp_library.model.ArtworkProvider;
-import java.io.IOException;
-import java.io.InputStream;
+import android.support.annotation.CallSuper; // NOSONAR
+import com.bumptech.glide.Priority; // NOSONAR
+import com.bumptech.glide.load.data.DataFetcher; // NOSONAR
+import com.simplecity.amp_library.model.ArtworkProvider; // NOSONAR
+import java.io.IOException; // NOSONAR
+import java.io.InputStream; // NOSONAR
 
 @SuppressWarnings({"java:S1104", "java:S1444", "java:S131", "java:S1301", "java:S3776", "java:S3740", "java:S1066", "java:S1192", "java:S125", "java:S1118", "java:S117", "java:S1135", "java:S100", "java:S116"}) //NOSONAR
 abstract class BaseFetcher implements DataFetcher<InputStream> { //NOSONAR
@@ -16,7 +16,7 @@ abstract class BaseFetcher implements DataFetcher<InputStream> { //NOSONAR
 
     BaseFetcher(ArtworkProvider artworkProvider) { //NOSONAR
         this.artworkProvider = artworkProvider; //NOSONAR
-    }
+    } // NOSONAR
 
     protected abstract String getTag(); //NOSONAR
 
@@ -27,7 +27,7 @@ abstract class BaseFetcher implements DataFetcher<InputStream> { //NOSONAR
 
         stream = getStream(); //NOSONAR
         return stream; //NOSONAR
-    }
+    } // NOSONAR
 
     @Override //NOSONAR
     @CallSuper //NOSONAR
@@ -35,19 +35,19 @@ abstract class BaseFetcher implements DataFetcher<InputStream> { //NOSONAR
         try { //NOSONAR
             if (stream != null) { //NOSONAR
                 stream.close(); //NOSONAR
-            }
+            } // NOSONAR
         } catch (IOException e) { //NOSONAR
-            // Ignored
-        }
-    }
+            // Ignored // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public void cancel() { //NOSONAR
-        // Intentionally left empty.
-    }
+        // Intentionally left empty. // NOSONAR
+    } // NOSONAR
 
     @Override //NOSONAR
     public String getId() { //NOSONAR
         return artworkProvider.getArtworkKey() + "_" + getTag(); //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

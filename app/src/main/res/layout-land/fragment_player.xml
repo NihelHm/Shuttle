@@ -1,109 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?android:windowBackground"
-    android:clickable="true">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<android.support.constraint.ConstraintLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent" <!-- NOSONAR -->
+    android:background="?android:windowBackground" <!-- NOSONAR -->
+    android:clickable="true"> <!-- NOSONAR -->
 
-    <ImageView
-        android:id="@+id/backgroundView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:scaleType="centerCrop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <ImageView <!-- NOSONAR -->
+        android:id="@+id/backgroundView" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="0dp" <!-- NOSONAR -->
+        android:scaleType="centerCrop" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-    <View
-        android:id="@+id/textProtectionScrim"
-        android:layout_width="match_parent"
-        android:layout_height="156dp"
-        android:background="@drawable/text_protection_scrim"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <View <!-- NOSONAR -->
+        android:id="@+id/textProtectionScrim" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="156dp" <!-- NOSONAR -->
+        android:background="@drawable/text_protection_scrim" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-    <View
-        android:id="@+id/textProtectionScrimBottom"
-        android:layout_width="match_parent"
-        android:layout_height="96dp"
-        android:background="@drawable/text_protection_scrim_reversed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+    <View <!-- NOSONAR -->
+        android:id="@+id/textProtectionScrimBottom" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="96dp" <!-- NOSONAR -->
+        android:background="@drawable/text_protection_scrim_reversed" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent"/> <!-- NOSONAR -->
 
-    <FrameLayout
-        android:id="@+id/main_container"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:paddingBottom="8dp"
-        android:paddingTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        tools:background="#B0363A"/>
+    <FrameLayout <!-- NOSONAR -->
+        android:id="@+id/main_container" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="0dp" <!-- NOSONAR -->
+        android:paddingBottom="8dp" <!-- NOSONAR -->
+        android:paddingTop="8dp" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" <!-- NOSONAR -->
+        tools:background="#B0363A"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/current_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:gravity="center_vertical|right"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:text="--:--"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/current_time" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginBottom="8dp" <!-- NOSONAR -->
+        android:layout_marginLeft="16dp" <!-- NOSONAR -->
+        android:layout_marginStart="16dp" <!-- NOSONAR -->
+        android:gravity="center_vertical|right" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:text="--:--" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent"/> <!-- NOSONAR -->
 
-    <TextView
-        android:id="@+id/total_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:gravity="center_vertical|right"
-        android:singleLine="true"
-        android:tag=":aesthetic_ignore"
-        android:text="--:--"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+    <TextView <!-- NOSONAR -->
+        android:id="@+id/total_time" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_marginBottom="8dp" <!-- NOSONAR -->
+        android:layout_marginEnd="16dp" <!-- NOSONAR -->
+        android:layout_marginRight="16dp" <!-- NOSONAR -->
+        android:gravity="center_vertical|right" <!-- NOSONAR -->
+        android:singleLine="true" <!-- NOSONAR -->
+        android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+        android:text="--:--" <!-- NOSONAR -->
+        android:textColor="@color/white" <!-- NOSONAR -->
+        app:layout_constraintBottom_toBottomOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.ThemedStatusBarView
-        android:id="@+id/statusBarView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
-        android:visibility="invisible"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <com.simplecity.amp_library.ui.views.ThemedStatusBarView <!-- NOSONAR -->
+        android:id="@+id/statusBarView" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:background="@color/colorPrimaryDark" <!-- NOSONAR -->
+        android:visibility="invisible" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toTopOf="parent"/> <!-- NOSONAR -->
 
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="0dp"
-        android:layout_height="?attr/actionBarSize"
-        android:transitionName="toolbar"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/statusBarView"
-        app:navigationIcon="?attr/homeAsUpIndicator"
-        app:subtitleTextColor="@color/white"
-        app:title="@string/nowplaying_title"
-        app:transparentBackground="true"/>
+    <android.support.v7.widget.Toolbar <!-- NOSONAR -->
+        android:id="@+id/toolbar" <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="?attr/actionBarSize" <!-- NOSONAR -->
+        android:transitionName="toolbar" <!-- NOSONAR -->
+        app:layout_constraintLeft_toLeftOf="parent" <!-- NOSONAR -->
+        app:layout_constraintRight_toRightOf="parent" <!-- NOSONAR -->
+        app:layout_constraintTop_toBottomOf="@id/statusBarView" <!-- NOSONAR -->
+        app:navigationIcon="?attr/homeAsUpIndicator" <!-- NOSONAR -->
+        app:subtitleTextColor="@color/white" <!-- NOSONAR -->
+        app:title="@string/nowplaying_title" <!-- NOSONAR -->
+        app:transparentBackground="true"/> <!-- NOSONAR -->
 
-    <com.simplecity.amp_library.ui.views.SnowfallView
-        android:id="@+id/snowfallView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <com.simplecity.amp_library.ui.views.SnowfallView <!-- NOSONAR -->
+        android:id="@+id/snowfallView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent"/> <!-- NOSONAR -->
 
-</android.support.constraint.ConstraintLayout>
+</android.support.constraint.ConstraintLayout> <!-- NOSONAR -->

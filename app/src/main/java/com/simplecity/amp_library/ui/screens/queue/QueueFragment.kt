@@ -1,61 +1,61 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.queue
+package com.simplecity.amp_library.ui.screens.queue // NOSONAR
 
-import android.content.Context
-import android.graphics.Color
-import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.PopupMenu
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.Toolbar
-import android.support.v7.widget.helper.ItemTouchHelper
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.Toast
-import com.afollestad.aesthetic.Aesthetic
-import com.afollestad.aesthetic.Util
-import com.bumptech.glide.RequestManager
-import com.simplecity.amp_library.R
-import com.simplecity.amp_library.ShuttleApplication
-import com.simplecity.amp_library.billing.BillingManager
-import com.simplecity.amp_library.model.Playlist
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.MediaManager.Defs
-import com.simplecity.amp_library.ui.common.BaseFragment
-import com.simplecity.amp_library.ui.dialog.DeleteDialog
-import com.simplecity.amp_library.ui.dialog.SongInfoDialog
-import com.simplecity.amp_library.ui.dialog.UpgradeDialog
-import com.simplecity.amp_library.ui.modelviews.SelectableViewModel
-import com.simplecity.amp_library.ui.modelviews.SubheaderView
-import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter
-import com.simplecity.amp_library.ui.screens.playlist.dialog.CreatePlaylistDialog
-import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog
-import com.simplecity.amp_library.ui.views.ContextualToolbar
-import com.simplecity.amp_library.ui.views.LockActionBarView
-import com.simplecity.amp_library.ui.views.PlayerViewAdapter
-import com.simplecity.amp_library.ui.views.multisheet.MultiSheetSlideEventRelay
-import com.simplecity.amp_library.utils.*
-import com.simplecity.amp_library.utils.ContextualToolbarHelper.Callback
-import com.simplecity.amp_library.utils.extensions.share
-import com.simplecity.amp_library.utils.menu.queue.QueueMenuUtils
-import com.simplecity.amp_library.utils.menu.queue.removeQueueItem
-import com.simplecity.amp_library.utils.playlists.PlaylistMenuHelper
-import com.simplecity.amp_library.utils.sorting.SortManager
-import com.simplecity.multisheetview.ui.view.MultiSheetView
-import com.simplecity.multisheetview.ui.view.MultiSheetView.Sheet
-import com.simplecityapps.recycler_adapter.adapter.CompletionListUpdateCallbackAdapter
-import com.simplecityapps.recycler_adapter.adapter.ViewModelAdapter
-import com.simplecityapps.recycler_adapter.model.ViewModel
-import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener
-import dagger.android.support.AndroidSupportInjection
-import io.reactivex.Single
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.fragment_queue.*
-import java.util.*
-import javax.inject.Inject
+import android.content.Context // NOSONAR
+import android.graphics.Color // NOSONAR
+import android.os.Bundle // NOSONAR
+import android.support.v7.widget.LinearLayoutManager // NOSONAR
+import android.support.v7.widget.PopupMenu // NOSONAR
+import android.support.v7.widget.RecyclerView // NOSONAR
+import android.support.v7.widget.Toolbar // NOSONAR
+import android.support.v7.widget.helper.ItemTouchHelper // NOSONAR
+import android.view.LayoutInflater // NOSONAR
+import android.view.View // NOSONAR
+import android.view.ViewGroup // NOSONAR
+import android.widget.Toast // NOSONAR
+import com.afollestad.aesthetic.Aesthetic // NOSONAR
+import com.afollestad.aesthetic.Util // NOSONAR
+import com.bumptech.glide.RequestManager // NOSONAR
+import com.simplecity.amp_library.R // NOSONAR
+import com.simplecity.amp_library.ShuttleApplication // NOSONAR
+import com.simplecity.amp_library.billing.BillingManager // NOSONAR
+import com.simplecity.amp_library.model.Playlist // NOSONAR
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.MediaManager.Defs // NOSONAR
+import com.simplecity.amp_library.ui.common.BaseFragment // NOSONAR
+import com.simplecity.amp_library.ui.dialog.DeleteDialog // NOSONAR
+import com.simplecity.amp_library.ui.dialog.SongInfoDialog // NOSONAR
+import com.simplecity.amp_library.ui.dialog.UpgradeDialog // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.SelectableViewModel // NOSONAR
+import com.simplecity.amp_library.ui.modelviews.SubheaderView // NOSONAR
+import com.simplecity.amp_library.ui.screens.nowplaying.PlayerPresenter // NOSONAR
+import com.simplecity.amp_library.ui.screens.playlist.dialog.CreatePlaylistDialog // NOSONAR
+import com.simplecity.amp_library.ui.screens.tagger.TaggerDialog // NOSONAR
+import com.simplecity.amp_library.ui.views.ContextualToolbar // NOSONAR
+import com.simplecity.amp_library.ui.views.LockActionBarView // NOSONAR
+import com.simplecity.amp_library.ui.views.PlayerViewAdapter // NOSONAR
+import com.simplecity.amp_library.ui.views.multisheet.MultiSheetSlideEventRelay // NOSONAR
+import com.simplecity.amp_library.utils.* // NOSONAR
+import com.simplecity.amp_library.utils.ContextualToolbarHelper.Callback // NOSONAR
+import com.simplecity.amp_library.utils.extensions.share // NOSONAR
+import com.simplecity.amp_library.utils.menu.queue.QueueMenuUtils // NOSONAR
+import com.simplecity.amp_library.utils.menu.queue.removeQueueItem // NOSONAR
+import com.simplecity.amp_library.utils.playlists.PlaylistMenuHelper // NOSONAR
+import com.simplecity.amp_library.utils.sorting.SortManager // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView // NOSONAR
+import com.simplecity.multisheetview.ui.view.MultiSheetView.Sheet // NOSONAR
+import com.simplecityapps.recycler_adapter.adapter.CompletionListUpdateCallbackAdapter // NOSONAR
+import com.simplecityapps.recycler_adapter.adapter.ViewModelAdapter // NOSONAR
+import com.simplecityapps.recycler_adapter.model.ViewModel // NOSONAR
+import com.simplecityapps.recycler_adapter.recyclerview.RecyclerListener // NOSONAR
+import dagger.android.support.AndroidSupportInjection // NOSONAR
+import io.reactivex.Single // NOSONAR
+import io.reactivex.disposables.CompositeDisposable // NOSONAR
+import io.reactivex.disposables.Disposable // NOSONAR
+import kotlinx.android.synthetic.main.fragment_queue.* // NOSONAR
+import java.util.* // NOSONAR
+import javax.inject.Inject // NOSONAR
 
 class QueueFragment : //NOSONAR
         BaseFragment(), //NOSONAR
@@ -103,12 +103,12 @@ class QueueFragment : //NOSONAR
     private lateinit var cabHelper: ContextualToolbarHelper<QueueItem> //NOSONAR
 
 
-    // Lifecycle
+    // Lifecycle // NOSONAR
 
     override fun onAttach(context: Context?) { //NOSONAR
         AndroidSupportInjection.inject(this) //NOSONAR
         super.onAttach(context) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreate(savedInstanceState: Bundle?) { //NOSONAR
         super.onCreate(savedInstanceState) //NOSONAR
@@ -116,11 +116,11 @@ class QueueFragment : //NOSONAR
         setHasOptionsMenu(true) //NOSONAR
 
         adapter = ViewModelAdapter() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? { //NOSONAR
         return inflater.inflate(R.layout.fragment_queue, container, false) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) { //NOSONAR
         super.onViewCreated(view, savedInstanceState) //NOSONAR
@@ -153,7 +153,7 @@ class QueueFragment : //NOSONAR
         menuActionView.setOnClickListener { lockActionBarView -> //NOSONAR
             (lockActionBarView as LockActionBarView).toggle() //NOSONAR
             queuePresenter.setQueueSwipeLocked(lockActionBarView.isLocked) //NOSONAR
-        }
+        } // NOSONAR
 
         disposables.add(Aesthetic.get(context) //NOSONAR
                 .colorPrimary() //NOSONAR
@@ -161,9 +161,9 @@ class QueueFragment : //NOSONAR
                     val isLight = Util.isColorLight(color!!) //NOSONAR
                     line1.setTextColor(if (isLight) Color.BLACK else Color.WHITE) //NOSONAR
                     line2.setTextColor(if (isLight) Color.BLACK else Color.WHITE) //NOSONAR
-                })
+                }) // NOSONAR
 
-        // In landscape, we need to adjust the status bar's translation depending on the slide offset of the sheet
+        // In landscape, we need to adjust the status bar's translation depending on the slide offset of the sheet // NOSONAR
         if (ShuttleUtils.isLandscape(application)) { //NOSONAR
             statusBarView.translationY = ResourceUtils.toPixels(16f).toFloat() //NOSONAR
 
@@ -171,10 +171,10 @@ class QueueFragment : //NOSONAR
                     .filter { multiSheetEvent -> multiSheetEvent.sheet == MultiSheetView.Sheet.SECOND } //NOSONAR
                     .filter { multiSheetEvent -> multiSheetEvent.slideOffset >= 0 } //NOSONAR
                     .subscribe { multiSheetEvent -> statusBarView.translationY = (1 - multiSheetEvent.slideOffset) * ResourceUtils.toPixels(16f) }) //NOSONAR
-        }
+        } // NOSONAR
 
         setupContextualToolbar() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onResume() { //NOSONAR
         super.onResume() //NOSONAR
@@ -182,43 +182,43 @@ class QueueFragment : //NOSONAR
 
         playerPresenter.bindView(playerViewAdapter) //NOSONAR
         queuePresenter.bindView(this) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onPause() { //NOSONAR
         super.onPause() //NOSONAR
         loadDataDisposable?.dispose() //NOSONAR
         playerPresenter.unbindView(playerViewAdapter) //NOSONAR
         queuePresenter.unbindView(this) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onDestroyView() { //NOSONAR
         disposables.clear() //NOSONAR
         super.onDestroyView() //NOSONAR
-    }
+    } // NOSONAR
 
     private val songClickListener = object : QueueViewBinder.ClickListener { //NOSONAR
 
         override fun onQueueItemClick(position: Int, queueViewBinder: QueueViewBinder) { //NOSONAR
             if (!cabHelper.handleClick(queueViewBinder, queueViewBinder.queueItem)) { //NOSONAR
                 queuePresenter.play(queueViewBinder.queueItem) //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
 
         override fun onQueueItemLongClick(position: Int, queueViewBinder: QueueViewBinder): Boolean { //NOSONAR
             return cabHelper.handleLongClick(queueViewBinder, queueViewBinder.queueItem) //NOSONAR
-        }
+        } // NOSONAR
 
         override fun onQueueItemOverflowClick(position: Int, view: View, queueViewBinder: QueueViewBinder) { //NOSONAR
             val menu = PopupMenu(view.context, view) //NOSONAR
             QueueMenuUtils.setupQueueSongMenu(menu, playlistMenuHelper) //NOSONAR
             menu.setOnMenuItemClickListener(QueueMenuUtils.getQueueMenuClickListener(queueViewBinder.queueItem, queuePresenter)) //NOSONAR
             menu.show() //NOSONAR
-        }
+        } // NOSONAR
 
         override fun onStartDrag(holder: QueueViewBinder.ViewHolder) { //NOSONAR
             itemTouchHelper.startDrag(holder) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private val playerViewAdapter = object : PlayerViewAdapter() { //NOSONAR
         override fun trackInfoChanged(song: Song?) { //NOSONAR
@@ -226,32 +226,32 @@ class QueueFragment : //NOSONAR
                 line1.text = song.name //NOSONAR
                 if (song.albumArtistName != null && song.albumName != null) { //NOSONAR
                     line2.text = String.format("%s • %s", song.albumArtistName, song.albumName) //NOSONAR
-                }
-            }
-        }
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
         override fun showUpgradeDialog() { //NOSONAR
             UpgradeDialog().show(childFragmentManager) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     private var toolbarListener = Toolbar.OnMenuItemClickListener { item -> //NOSONAR
         when (item.itemId) { //NOSONAR
             R.id.menu_clear -> { //NOSONAR
                 queuePresenter.clearQueue() //NOSONAR
                 return@OnMenuItemClickListener true //NOSONAR
-            }
+            } // NOSONAR
             Defs.NEW_PLAYLIST -> { //NOSONAR
                 queuePresenter.saveQueue(context!!) //NOSONAR
                 return@OnMenuItemClickListener true //NOSONAR
-            }
+            } // NOSONAR
             Defs.PLAYLIST_SELECTED -> { //NOSONAR
                 queuePresenter.saveQueue(context!!, item) //NOSONAR
                 return@OnMenuItemClickListener true //NOSONAR
-            }
-        }
+            } // NOSONAR
+        } // NOSONAR
         false //NOSONAR
-    }
+    } // NOSONAR
 
     private fun setupContextualToolbar() { //NOSONAR
         cabToolbar.menu.clear() //NOSONAR
@@ -267,21 +267,21 @@ class QueueFragment : //NOSONAR
                 val index = adapter.items.indexOf(viewModel as ViewModel<*>) //NOSONAR
                 if (index >= 0) { //NOSONAR
                     adapter.notifyItemChanged(index, 0) //NOSONAR
-                }
-            }
+                } // NOSONAR
+            } // NOSONAR
 
             override fun notifyDatasetChanged() { //NOSONAR
                 adapter.notifyItemRangeChanged(0, adapter.items.size, 0) //NOSONAR
-            }
-        })
-    }
+            } // NOSONAR
+        }) // NOSONAR
+    } // NOSONAR
 
     override fun screenName(): String { //NOSONAR
         return TAG //NOSONAR
-    }
+    } // NOSONAR
 
 
-    // QueueView implementation
+    // QueueView implementation // NOSONAR
 
     override fun setData(queueItems: List<QueueItem>, position: Int) { //NOSONAR
 
@@ -294,8 +294,8 @@ class QueueFragment : //NOSONAR
                                 application, //NOSONAR
                                 queueItems.size, //NOSONAR
                                 queueItems.map { queueItem -> queueItem.song.duration / 1000 }.sum() //NOSONAR
-                        )
-                )
+                        ) // NOSONAR
+                ) // NOSONAR
 
                 val viewModels = ArrayList<ViewModel<*>>() //NOSONAR
                 viewModels.add(queueHeaderView) //NOSONAR
@@ -311,15 +311,15 @@ class QueueFragment : //NOSONAR
                 loadDataDisposable = adapter.setItems(viewModels, object : CompletionListUpdateCallbackAdapter() { //NOSONAR
                     override fun onComplete() { //NOSONAR
                         updateQueuePosition(position) //NOSONAR
-                    }
-                })
-            }
-        }
-    }
+                    } // NOSONAR
+                }) // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
+    } // NOSONAR
 
     override fun showToast(message: String, duration: Int) { //NOSONAR
         Toast.makeText(context, message, duration).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun updateQueuePosition(queuePosition: Int) { //NOSONAR
 
@@ -327,66 +327,66 @@ class QueueFragment : //NOSONAR
 
         if (queueViewBinders.isEmpty() || queuePosition >= queueViewBinders.size || queuePosition < 0) { //NOSONAR
             return //NOSONAR
-        }
+        } // NOSONAR
 
         MultiSheetView.getParentMultiSheetView(view)?.let { multiSheetView -> //NOSONAR
 
-            // If we're not currently displaying the queue, then scroll to keep the position up to date
+            // If we're not currently displaying the queue, then scroll to keep the position up to date // NOSONAR
             if (multiSheetView.currentSheet != Sheet.SECOND) { //NOSONAR
                 if (!queueViewBinders.isEmpty() && queuePosition < queueViewBinders.size) { //NOSONAR
                     val index = adapter.items.indexOf(queueViewBinders[queuePosition]) //NOSONAR
                     if (index >= 0) { //NOSONAR
                         recyclerView.scrollToPosition(index) //NOSONAR
-                    }
-                }
-            }
-        }
+                    } // NOSONAR
+                } // NOSONAR
+            } // NOSONAR
+        } // NOSONAR
 
-        // Deselect previous 'current track'
+        // Deselect previous 'current track' // NOSONAR
         queueViewBinders //NOSONAR
                 .firstOrNull { queueViewBinder -> queueViewBinder.isCurrentTrack } //NOSONAR
                 ?.let { previouslySelectedQueueViewBinder -> //NOSONAR
                     previouslySelectedQueueViewBinder.isCurrentTrack = false //NOSONAR
                     adapter.notifyItemChanged(adapter.items.indexOf(previouslySelectedQueueViewBinder), 1) //NOSONAR
-                }
+                } // NOSONAR
 
-        // Select the new 'current track'
+        // Select the new 'current track' // NOSONAR
         queueViewBinders[queuePosition].isCurrentTrack = true //NOSONAR
         val index = adapter.items.indexOf(queueViewBinders[queuePosition]) //NOSONAR
         adapter.notifyItemChanged(index, 1) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun showTaggerDialog(taggerDialog: TaggerDialog) { //NOSONAR
         taggerDialog.show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun showDeleteDialog(deleteDialog: DeleteDialog) { //NOSONAR
         deleteDialog.show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onRemovedFromQueue(queueItem: QueueItem) { //NOSONAR
         adapter.items.first { viewBinder -> viewBinder is QueueViewBinder && viewBinder.queueItem == queueItem }?.let { //NOSONAR
             adapter.removeItem(it) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun onRemovedFromQueue(queueItems: List<QueueItem>) { //NOSONAR
         adapter.items.filter { viewBinder -> viewBinder is QueueViewBinder && queueItems.contains(viewBinder.queueItem) }.forEach { //NOSONAR
             adapter.removeItem(it) //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     override fun showUpgradeDialog() { //NOSONAR
         UpgradeDialog().show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun setQueueSwipeLocked(locked: Boolean) { //NOSONAR
         itemTouchHelperCallback.setEnabled(!locked) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun showCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
         CreatePlaylistDialog.newInstance(mediaManager.queue.toSongs()).show(childFragmentManager, "CreatePlaylistDialog") //NOSONAR
-    }
+    } // NOSONAR
 
     inner class ItemTouchHelperCallback : com.simplecity.amp_library.ui.views.recyclerview.ItemTouchHelperCallback( //NOSONAR
             { fromPosition, toPosition -> adapter.moveItem(fromPosition, toPosition) }, //NOSONAR
@@ -402,19 +402,19 @@ class QueueFragment : //NOSONAR
                         .count() //NOSONAR
 
                 queuePresenter.moveQueueItem(from - numBeforeFrom, to - numBeforeTo) //NOSONAR
-            },
-            {
-                // Nothing to do
-            },
+            }, // NOSONAR
+            { // NOSONAR
+                // Nothing to do // NOSONAR
+            }, // NOSONAR
             { pos -> //NOSONAR
                 queuePresenter.removeQueueItem((adapter.items[pos] as QueueViewBinder).queueItem) //NOSONAR
-            }) {
+            }) { // NOSONAR
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean { //NOSONAR
             return if (viewHolder.itemViewType == target.itemViewType) { //NOSONAR
                 super.onMove(recyclerView, viewHolder, target) //NOSONAR
             } else false //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
     class QueueHeaderView(title: String) : SubheaderView(title) { //NOSONAR
 
@@ -422,63 +422,63 @@ class QueueFragment : //NOSONAR
             if (this === other) return true //NOSONAR
             if (javaClass != other?.javaClass) return false //NOSONAR
             return true //NOSONAR
-        }
+        } // NOSONAR
 
         override fun hashCode(): Int { //NOSONAR
             return javaClass.hashCode() //NOSONAR
-        }
+        } // NOSONAR
 
         override fun areContentsEqual(other: Any?): Boolean { //NOSONAR
             return (other as? QueueHeaderView)?.title == title //NOSONAR
-        }
-    }
+        } // NOSONAR
+    } // NOSONAR
 
 
-    // QueueMenuContract.View Implementation
+    // QueueMenuContract.View Implementation // NOSONAR
 
     override fun presentCreatePlaylistDialog(songs: List<Song>) { //NOSONAR
         CreatePlaylistDialog.newInstance(songs).show(childFragmentManager, "CreatePlaylistDialog") //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentSongInfoDialog(song: Song) { //NOSONAR
         SongInfoDialog.newInstance(song).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSongsAddedToPlaylist(playlist: Playlist, numSongs: Int) { //NOSONAR
         Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoplaylist, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun onSongsAddedToQueue(numSongs: Int) { //NOSONAR
         Toast.makeText(context, context!!.resources.getQuantityString(R.plurals.NNNtrackstoqueue, numSongs, numSongs), Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentTagEditorDialog(song: Song) { //NOSONAR
         TaggerDialog.newInstance(song).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentDeleteDialog(songs: List<Song>) { //NOSONAR
         DeleteDialog.newInstance(DeleteDialog.ListSongsRef { songs }).show(childFragmentManager) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun shareSong(song: Song) { //NOSONAR
         song.share(context!!) //NOSONAR
-    }
+    } // NOSONAR
 
     override fun presentRingtonePermissionDialog() { //NOSONAR
         RingtoneManager.getDialog(context!!).show() //NOSONAR
-    }
+    } // NOSONAR
 
     override fun showRingtoneSetMessage() { //NOSONAR
         Toast.makeText(context, R.string.ringtone_set_new, Toast.LENGTH_SHORT).show() //NOSONAR
-    }
+    } // NOSONAR
 
 
-    // Static
+    // Static // NOSONAR
 
     companion object { //NOSONAR
 
         private const val TAG = "QueueFragment" //NOSONAR
 
         fun newInstance() = QueueFragment() //NOSONAR
-    }
-}
+    } // NOSONAR
+} // NOSONAR

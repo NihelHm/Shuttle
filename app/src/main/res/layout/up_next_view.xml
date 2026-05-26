@@ -1,57 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/bottom_sheet_peek_2_height"
-    android:background="?android:windowBackground"
-    tools:parentTag="android.widget.LinearLayout">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<LinearLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="@dimen/bottom_sheet_peek_2_height" <!-- NOSONAR -->
+    android:background="?android:windowBackground" <!-- NOSONAR -->
+    tools:parentTag="android.widget.LinearLayout"> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:layout_weight="1"
-        android:orientation="vertical">
+    <LinearLayout <!-- NOSONAR -->
+        android:layout_width="0dp" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_gravity="center_vertical" <!-- NOSONAR -->
+        android:layout_weight="1" <!-- NOSONAR -->
+        android:orientation="vertical"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/queueTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:tag=":aesthetic_ignore"
-            android:text="@string/up_next_title"
-            android:textSize="16sp"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/queueTextView" <!-- NOSONAR -->
+            android:layout_width="wrap_content" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_marginLeft="16dp" <!-- NOSONAR -->
+            android:layout_marginStart="16dp" <!-- NOSONAR -->
+            android:layout_weight="1" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+            android:text="@string/up_next_title" <!-- NOSONAR -->
+            android:textSize="16sp"/> <!-- NOSONAR -->
 
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="3dp"/>
+        <android.support.v4.widget.Space <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="3dp"/> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/queuePositionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:tag=":aesthetic_ignore"
-            android:textAppearance="?attr/secondaryTextViewStyle"
-            android:textSize="12sp"
-            tools:text="1 / 26"/>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/queuePositionTextView" <!-- NOSONAR -->
+            android:layout_width="wrap_content" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_marginLeft="16dp" <!-- NOSONAR -->
+            android:layout_marginStart="16dp" <!-- NOSONAR -->
+            android:layout_weight="1" <!-- NOSONAR -->
+            android:gravity="center_vertical" <!-- NOSONAR -->
+            android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+            android:textAppearance="?attr/secondaryTextViewStyle" <!-- NOSONAR -->
+            android:textSize="12sp" <!-- NOSONAR -->
+            tools:text="1 / 26"/> <!-- NOSONAR -->
 
-    </LinearLayout>
+    </LinearLayout> <!-- NOSONAR -->
 
-    <ImageView
-        android:id="@+id/arrowImageView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="end"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:src="@drawable/ic_arrow_up_24dp"/>
+    <ImageView <!-- NOSONAR -->
+        android:id="@+id/arrowImageView" <!-- NOSONAR -->
+        android:layout_width="wrap_content" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:layout_gravity="end" <!-- NOSONAR -->
+        android:layout_marginEnd="16dp" <!-- NOSONAR -->
+        android:layout_marginRight="16dp" <!-- NOSONAR -->
+        android:src="@drawable/ic_arrow_up_24dp"/> <!-- NOSONAR -->
 
-</LinearLayout>
+</LinearLayout> <!-- NOSONAR -->

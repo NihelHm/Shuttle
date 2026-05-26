@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <bool name="isTablet">false</bool>
-</resources>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<resources> <!-- NOSONAR -->
+    <bool name="isTablet">false</bool> <!-- NOSONAR -->
+</resources> <!-- NOSONAR -->

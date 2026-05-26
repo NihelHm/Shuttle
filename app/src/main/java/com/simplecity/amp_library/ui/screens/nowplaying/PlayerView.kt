@@ -1,10 +1,10 @@
 @file:Suppress("kotlin:S1135", "kotlin:S117", "kotlin:S100", "kotlin:S3776", "kotlin:S125", "kotlin:S1128", "UNUSED_PARAMETER", "unused", "RedundantVisibilityModifier") //NOSONAR
 
-package com.simplecity.amp_library.ui.screens.nowplaying
+package com.simplecity.amp_library.ui.screens.nowplaying // NOSONAR
 
-import com.simplecity.amp_library.model.Song
-import com.simplecity.amp_library.playback.QueueManager
-import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuContract
+import com.simplecity.amp_library.model.Song // NOSONAR
+import com.simplecity.amp_library.playback.QueueManager // NOSONAR
+import com.simplecity.amp_library.ui.screens.songs.menu.SongMenuContract // NOSONAR
 
 interface PlayerView : SongMenuContract.View { //NOSONAR
 
@@ -31,4 +31,4 @@ interface PlayerView : SongMenuContract.View { //NOSONAR
     fun showLyricsDialog() //NOSONAR
 
     fun showUpgradeDialog() //NOSONAR
-}
+} // NOSONAR

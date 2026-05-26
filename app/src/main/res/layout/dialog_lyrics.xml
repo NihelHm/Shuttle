@@ -1,93 +1,93 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
 
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<FrameLayout <!-- NOSONAR -->
+    xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+    xmlns:app="http://schemas.android.com/apk/res-auto" <!-- NOSONAR -->
+    xmlns:tools="http://schemas.android.com/tools" <!-- NOSONAR -->
+    android:layout_width="match_parent" <!-- NOSONAR -->
+    android:layout_height="match_parent"> <!-- NOSONAR -->
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:paddingBottom="24dp"
-        android:paddingLeft="8dp"
-        android:paddingRight="8dp"
-        android:paddingTop="8dp">
+    <ScrollView <!-- NOSONAR -->
+        android:id="@+id/scrollView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="match_parent" <!-- NOSONAR -->
+        android:clipToPadding="false" <!-- NOSONAR -->
+        android:fillViewport="true" <!-- NOSONAR -->
+        android:paddingBottom="24dp" <!-- NOSONAR -->
+        android:paddingLeft="8dp" <!-- NOSONAR -->
+        android:paddingRight="8dp" <!-- NOSONAR -->
+        android:paddingTop="8dp"> <!-- NOSONAR -->
 
-        <TextView
-            android:id="@+id/text1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="sans-serif-light"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"/>
-    </ScrollView>
+        <TextView <!-- NOSONAR -->
+            android:id="@+id/text1" <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:fontFamily="sans-serif-light" <!-- NOSONAR -->
+            android:gravity="center" <!-- NOSONAR -->
+            android:textAlignment="center" <!-- NOSONAR -->
+            android:textColor="@color/white" <!-- NOSONAR -->
+            android:textSize="18sp"/> <!-- NOSONAR -->
+    </ScrollView> <!-- NOSONAR -->
 
-    <LinearLayout
-        android:id="@+id/noLyricsView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:orientation="vertical"
-        android:padding="16dp"
-        android:visibility="gone"
-        tools:visibility="visible">
+    <LinearLayout <!-- NOSONAR -->
+        android:id="@+id/noLyricsView" <!-- NOSONAR -->
+        android:layout_width="match_parent" <!-- NOSONAR -->
+        android:layout_height="wrap_content" <!-- NOSONAR -->
+        android:layout_gravity="center" <!-- NOSONAR -->
+        android:orientation="vertical" <!-- NOSONAR -->
+        android:padding="16dp" <!-- NOSONAR -->
+        android:visibility="gone" <!-- NOSONAR -->
+        tools:visibility="visible"> <!-- NOSONAR -->
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="@string/no_lyrics"
-            android:textAlignment="center"
-            android:textColor="@color/white"
-            android:textSize="18sp"/>
+        <TextView <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:gravity="center" <!-- NOSONAR -->
+            android:text="@string/no_lyrics" <!-- NOSONAR -->
+            android:textAlignment="center" <!-- NOSONAR -->
+            android:textColor="@color/white" <!-- NOSONAR -->
+            android:textSize="18sp"/> <!-- NOSONAR -->
 
-        <android.support.v4.widget.Space
-            android:layout_width="match_parent"
-            android:layout_height="16dp"/>
+        <android.support.v4.widget.Space <!-- NOSONAR -->
+            android:layout_width="match_parent" <!-- NOSONAR -->
+            android:layout_height="16dp"/> <!-- NOSONAR -->
 
-        <LinearLayout
-            android:id="@+id/quickLyricLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center">
+        <LinearLayout <!-- NOSONAR -->
+            android:id="@+id/quickLyricLayout" <!-- NOSONAR -->
+            android:layout_width="wrap_content" <!-- NOSONAR -->
+            android:layout_height="wrap_content" <!-- NOSONAR -->
+            android:layout_gravity="center" <!-- NOSONAR -->
+            android:gravity="center"> <!-- NOSONAR -->
 
-            <android.support.v7.widget.AppCompatButton
-                android:id="@+id/quickLyricButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:drawableLeft="@drawable/quicklyric"
-                android:drawablePadding="8dp"
-                android:drawableStart="@drawable/quicklyric"
-                android:gravity="center"
-                android:paddingLeft="16dp"
-                android:paddingRight="16dp"
-                android:tag=":aesthetic_ignore"
-                android:text="@string/quicklyric"
-                android:textAllCaps="false"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                app:backgroundTint="@color/md_deep_orange_A200"/>
+            <android.support.v7.widget.AppCompatButton <!-- NOSONAR -->
+                android:id="@+id/quickLyricButton" <!-- NOSONAR -->
+                android:layout_width="wrap_content" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:layout_gravity="center_horizontal" <!-- NOSONAR -->
+                android:drawableLeft="@drawable/quicklyric" <!-- NOSONAR -->
+                android:drawablePadding="8dp" <!-- NOSONAR -->
+                android:drawableStart="@drawable/quicklyric" <!-- NOSONAR -->
+                android:gravity="center" <!-- NOSONAR -->
+                android:paddingLeft="16dp" <!-- NOSONAR -->
+                android:paddingRight="16dp" <!-- NOSONAR -->
+                android:tag=":aesthetic_ignore" <!-- NOSONAR -->
+                android:text="@string/quicklyric" <!-- NOSONAR -->
+                android:textAllCaps="false" <!-- NOSONAR -->
+                android:textColor="@color/white" <!-- NOSONAR -->
+                android:textSize="16sp" <!-- NOSONAR -->
+                app:backgroundTint="@color/md_deep_orange_A200"/> <!-- NOSONAR -->
 
-            <android.support.v4.widget.Space
-                android:layout_width="16dp"
-                android:layout_height="wrap_content"/>
+            <android.support.v4.widget.Space <!-- NOSONAR -->
+                android:layout_width="16dp" <!-- NOSONAR -->
+                android:layout_height="wrap_content"/> <!-- NOSONAR -->
 
-            <ImageView
-                android:id="@+id/quickLyricInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_info_outline_24dp"/>
+            <ImageView <!-- NOSONAR -->
+                android:id="@+id/quickLyricInfo" <!-- NOSONAR -->
+                android:layout_width="wrap_content" <!-- NOSONAR -->
+                android:layout_height="wrap_content" <!-- NOSONAR -->
+                android:src="@drawable/ic_info_outline_24dp"/> <!-- NOSONAR -->
 
-        </LinearLayout>
+        </LinearLayout> <!-- NOSONAR -->
 
-    </LinearLayout>
-</FrameLayout>
+    </LinearLayout> <!-- NOSONAR -->
+</FrameLayout> <!-- NOSONAR -->

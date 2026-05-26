@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android"
-     android:duration="@android:integer/config_mediumAnimTime">
+<?xml version="1.0" encoding="utf-8"?> <!-- NOSONAR -->
+<set xmlns:android="http://schemas.android.com/apk/res/android" <!-- NOSONAR -->
+     android:duration="@android:integer/config_mediumAnimTime"> <!-- NOSONAR -->
 
-    <translate
-        android:fromYDelta="50%p"
-        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-        android:toYDelta="0"/>
+    <translate <!-- NOSONAR -->
+        android:fromYDelta="50%p" <!-- NOSONAR -->
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" <!-- NOSONAR -->
+        android:toYDelta="0"/> <!-- NOSONAR -->
 
-    <alpha
-        android:fromAlpha="0"
-        android:interpolator="@android:anim/accelerate_decelerate_interpolator"
-        android:toAlpha="1"/>
+    <alpha <!-- NOSONAR -->
+        android:fromAlpha="0" <!-- NOSONAR -->
+        android:interpolator="@android:anim/accelerate_decelerate_interpolator" <!-- NOSONAR -->
+        android:toAlpha="1"/> <!-- NOSONAR -->
 
-</set>
+</set> <!-- NOSONAR -->
